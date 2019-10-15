@@ -2,7 +2,6 @@
 using System.Linq;
 using Tax.Data;
 
-
 namespace Tax.AppConsole
 {
     class Program

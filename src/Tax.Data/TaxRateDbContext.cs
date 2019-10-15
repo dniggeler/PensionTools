@@ -10,7 +10,7 @@ namespace Tax.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Filename=C:\Users\dnigg\OneDrive\temp\PensionTools\TaxDb");
+            optionsBuilder.UseSqlite(@"Filename=C:\workspace\private\PensionTools\src\Tax.Data\files\TaxDb");
 
             base.OnConfiguring(optionsBuilder);
         }
