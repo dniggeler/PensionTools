@@ -23,11 +23,12 @@ namespace Tax.AppConsole
 
             var provider = GetServiceProvider(configuration);
 
-            using (var dbContext = provider.GetService<TaxRateDbContext>())
+            using (var dbContext = provider.GetService<TaxTariffDbContext>())
             {
-                foreach (var taxItem in dbContext.Blogs.Where(item => item.Canton == "ZH" && item.Year == 2017))
+                foreach (var taxItem in dbContext.Tariffs.Where(item => item.Canton == "ZH" && 
+                                                                        item.Year == 2018))
                 {
-                    Console.WriteLine($"{taxItem.Municipality}: {taxItem.TaxRateMunicipality}");
+                    Console.WriteLine($"{taxItem.IncomeLevel}: {taxItem.TaxAmount}");
                 }
             }
         }
@@ -36,6 +37,7 @@ namespace Tax.AppConsole
         {
             var serviceCollection = new ServiceCollection();
 
+            serviceCollection.AddDbContext<TaxTariffDbContext>();
             serviceCollection.AddDbContext<TaxRateDbContext>();
             serviceCollection.AddOptions<DbSettings>();
 

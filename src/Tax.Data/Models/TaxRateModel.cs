@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace Tax.Data
+namespace Tax.Data.Models
 {
     public class TaxRateModel
     {

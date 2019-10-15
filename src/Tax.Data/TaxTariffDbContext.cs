@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Tax.Data.Abstractions.Models;
 using Tax.Data.Models;
@@ -7,13 +6,13 @@ using Tax.Data.Models;
 
 namespace Tax.Data
 {
-    public class TaxRateDbContext : DbContext
+    public class TaxTariffDbContext : DbContext
     {
         private readonly DbSettings _settings;
 
-        public DbSet<TaxRateModel> TaxRates { get; set; }
+        public DbSet<TaxTariffModel> Tariffs { get; set; }
 
-        public TaxRateDbContext(IOptions<DbSettings> options)
+        public TaxTariffDbContext(IOptions<DbSettings> options)
         {
             _settings = options.Value;
         }
@@ -27,8 +26,8 @@ namespace Tax.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TaxRateModel>().ToTable("Steuerfuss");
-            modelBuilder.Entity<TaxRateModel>().HasNoKey();
+            modelBuilder.Entity<TaxTariffModel>().ToTable("Steuertarif");
+            modelBuilder.Entity<TaxTariffModel>().HasNoKey();
             
             base.OnModelCreating(modelBuilder);
         }
