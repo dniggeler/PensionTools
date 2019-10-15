@@ -9,4 +9,14 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Tax.Data.Abstractions\Tax.Data.Abstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="files\TaxDb">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
