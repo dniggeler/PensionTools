@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>PensionCoach.Tools.TaxCalculator.Abstractions</AssemblyName>
+    <RootNamespace>PensionCoach.Tools.TaxCalculator.Abstractions</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LanguageExt.Core" Version="3.3.28" />
+  </ItemGroup>
+
+</Project>
