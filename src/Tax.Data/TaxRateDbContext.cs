@@ -11,7 +11,7 @@ namespace Tax.Data
     {
         private readonly DbSettings _settings;
 
-        public DbSet<TaxRateModel> TaxRates { get; set; }
+        public DbSet<TaxRateModel> Rates { get; set; }
 
         public TaxRateDbContext(IOptions<DbSettings> options)
         {
