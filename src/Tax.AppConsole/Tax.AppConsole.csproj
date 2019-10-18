@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tax.Data\Tax.Data.csproj" />
+    <ProjectReference Include="..\TaxCalculator\TaxCalculator.csproj" />
   </ItemGroup>
 
 </Project>

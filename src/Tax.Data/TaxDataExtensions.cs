@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Tax.Data
 {
@@ -8,6 +9,10 @@ namespace Tax.Data
         {
             collection.AddDbContext<TaxTariffDbContext>();
             collection.AddDbContext<TaxRateDbContext>();
+            collection.AddSingleton<Func<TaxTariffDbContext>>(provider =>
+                provider.GetRequiredService<TaxTariffDbContext>);
+            collection.AddSingleton<Func<TaxRateDbContext>>(provider =>
+                provider.GetRequiredService<TaxRateDbContext>);
         }
     }
 }

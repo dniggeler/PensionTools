@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PensionCoach.Tools.TaxCalculator.Abstractions;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using Tax.Data;
 using Tax.Data.Abstractions.Models;
+using TaxCalculator;
 
 namespace Tax.AppConsole
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var configurationDict = new Dictionary<string, string>
             {
@@ -23,25 +27,21 @@ namespace Tax.AppConsole
 
             var provider = GetServiceProvider(configuration);
 
-            using (var dbContext = provider.GetService<TaxTariffDbContext>())
-            {
-                foreach (var taxItem in dbContext.Tariffs.Where(item => item.Canton == "ZH" && 
-                                                                        item.Year == 2018))
-                {
-                    Console.WriteLine($"{taxItem.IncomeLevel}: {taxItem.TaxAmount}");
-                }
-            }
+            var calculator = provider.GetService<IIncomeTaxCalculator>();
+            var result = await calculator.CalculateAsync(new TaxPerson());
         }
 
         private static IServiceProvider GetServiceProvider(IConfiguration configuration)
         {
             var serviceCollection = new ServiceCollection();
 
-            serviceCollection.AddDbContext<TaxTariffDbContext>();
-            serviceCollection.AddDbContext<TaxRateDbContext>();
+            serviceCollection.AddTaxData();
+            serviceCollection.AddTaxCalculators();
             serviceCollection.AddOptions<DbSettings>();
 
             serviceCollection.Configure<DbSettings>(configuration.GetSection("DbSettings"));
+
+
 
             return serviceCollection.BuildServiceProvider();
         }
