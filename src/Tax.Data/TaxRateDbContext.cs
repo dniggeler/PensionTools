@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Tax.Data.Abstractions.Models;
-using Tax.Data.Models;
 
 
 namespace Tax.Data
