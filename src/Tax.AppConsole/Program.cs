@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using Tax.Data;
@@ -27,8 +29,17 @@ namespace Tax.AppConsole
 
             var provider = GetServiceProvider(configuration);
 
+
+            var logger = provider.GetService<ILogger<Program>>();
+
             var calculator = provider.GetService<IIncomeTaxCalculator>();
             var result = await calculator.CalculateAsync(new TaxPerson());
+
+            result
+                .Match(Left: r => logger.LogDebug(r.TaxAmount.ToString()),
+                    Right: err => logger.LogDebug(err));
+
+            logger.LogError("Hi, error");
         }
 
         private static IServiceProvider GetServiceProvider(IConfiguration configuration)
@@ -41,7 +52,11 @@ namespace Tax.AppConsole
 
             serviceCollection.Configure<DbSettings>(configuration.GetSection("DbSettings"));
 
-
+            serviceCollection.AddLogging(builder =>
+            {
+                builder.SetMinimumLevel(LogLevel.Debug);
+                builder.AddConsole();
+            });
 
             return serviceCollection.BuildServiceProvider();
         }
