@@ -19,10 +19,22 @@ namespace TaxCalculator.Tests
         [Fact(DisplayName = "Income Tax")]
         public async Task ShouldCalculateIncomeTax()
         {
+            // given
+            var taxPerson = new TaxPerson
+            {
+                Canton = "ZH",
+                CalculationYear = 2018,
+                CivilStatus = CivilStatus.Single,
+                DenominationType = DenominationType.Married,
+                Municipality = "Zürich",
+                TaxableIncome = 100_000
+            };
+
             // when
-            var result = await _fixture.Calculator.CalculateAsync(new TaxPerson());
+            var result = await _fixture.Calculator.CalculateAsync(taxPerson);
 
             result.IsRight.Should().BeFalse();
+            Snapshooter.Xunit.Snapshot.Match(result);
         }
     }
 }
