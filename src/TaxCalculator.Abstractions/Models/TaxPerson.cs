@@ -15,7 +15,7 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
         public string Canton { get; set; }
         public Option<CivilStatus> CivilStatus { get; set; }
         public Option<TariffType> TariffType { get; set; }
-        public Option<decimal> TaxableIncome { get; set; } 
+        public decimal TaxableIncome { get; set; } 
         public Option<decimal> TaxableWealth { get; set; }
         public Option<DenominationType> DenominationType { get; set; }
     }

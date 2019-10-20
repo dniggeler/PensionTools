@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FluentValidation;
 using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using Tax.Data;
+using Tax.Data.Abstractions;
 using Tax.Data.Abstractions.Models;
 
 
@@ -18,15 +17,15 @@ namespace TaxCalculator
     {
         private readonly IValidator<TaxPerson> _taxPersonValidator;
         private readonly Func<TaxRateDbContext> _rateDbContextFunc;
-        private readonly Func<TaxTariffDbContext> _tariffDbContextFunc;
+        private readonly ITaxTariffData _tariffData;
 
         public IncomeTaxCalculator(IValidator<TaxPerson> taxPersonValidator,
             Func<TaxRateDbContext> rateDbContextFunc,
-            Func<TaxTariffDbContext> tariffDbContextFunc)
+            ITaxTariffData tariffData)
         {
             _taxPersonValidator = taxPersonValidator;
             _rateDbContextFunc = rateDbContextFunc;
-            _tariffDbContextFunc = tariffDbContextFunc;
+            _tariffData = tariffData;
         }
 
         public Task<Either<TaxResult, string>> CalculateAsync(TaxPerson person)
@@ -38,43 +37,53 @@ namespace TaxCalculator
                 return Task.FromResult<Either<TaxResult,string>>($"validation failed: {errorMessageLine}");
             }
 
-            using (var dbContext = _tariffDbContextFunc())
-            {
-                var tariffItems = dbContext.Tariffs
-                    .Where(item => item.Year == person.CalculationYear &&
-                                   item.Canton == person.Canton && 
-                                   item.TariffType == 1 && 
-                                   item.TaxType == 1)
-                    .OrderBy( item => item.TaxAmount)
-                    .ToList();
+            var tariffItems =
+                from year in person.CalculationYear
+                select _tariffData.Get(new TaxFilterModel
+                    {
+                        Year = year,
+                        Canton = person.Canton
+                    })
+                    .OrderBy(item => item.TaxAmount);
 
-                var taxTariff = TariffMatch(tariffItems, person.TaxableIncome);
-            }
+            var result =
+                (from tariffs in tariffItems
+                    select TariffMatch(tariffs, person.TaxableIncome))
+                .Match<Either<TaxResult, string>>(
+                    Some: tariff => CalculateIncomeTax(person, tariff),
+                    None: () => "incomplete input data");
 
-            Option<TaxResult> result = from i in person.TaxableIncome
-                select (new TaxResult
-                {
-                    TaxableIncome = i,
-                    Rate = 0.02M,
-                });
-                    
-            return Task.FromResult( result
-                .Match<Either<TaxResult,string>>(
-                    Some: r => r,
-                    None: () => "incomplete input data"));
+            return Task.FromResult(result);
         }
 
-        private Option<TaxTariffModel> TariffMatch(IEnumerable<TaxTariffModel> tariffItems, Option<decimal> personTaxableIncome)
+        private TaxResult CalculateIncomeTax(TaxPerson person, TaxTariffModel tariff)
+        {
+            using (var dbContext = _rateDbContextFunc())
+            {
+                var taxRate = dbContext.Rates
+                    .Single(item => item.Canton == person.Canton &&
+                                            item.Year == person.CalculationYear &&
+                                            item.Municipality == person.Municipality);
+
+                return new TaxResult
+                {
+                    TaxableIncome = person.TaxableIncome,
+                    Rate = tariff.TaxAmount,
+                };
+            }
+        }
+
+        private TaxTariffModel TariffMatch(IEnumerable<TaxTariffModel> tariffItems, decimal taxableIncome)
         {
             foreach (var taxTariffModel in tariffItems)
             {
-                if (taxTariffModel.TaxAmount >= personTaxableIncome)
+                if (taxTariffModel.TaxAmount >= taxableIncome)
                 {
                     return taxTariffModel;
                 }
             }
 
-            return Option<TaxTariffModel>.None;
+            return null;
         }
     }
 }
