@@ -1,4 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Tax.Data;
@@ -16,10 +20,18 @@ namespace TaxCalculator.Tests
 
         public TaxCalculatorFixture()
         {
+            var projectPath = Assembly.GetExecutingAssembly()
+                .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
+                .First();
+
+            var dbFile = Path.Combine(projectPath, @"src\Tax.Data\files\TaxDb");
+
+
             var configurationDict = new Dictionary<string, string>
             {
-                {"DbSettings:FilePath", @"C:\workspace\private\PensionTools\src\Tax.Data\files\TaxDb"}
+                {"DbSettings:FilePath", dbFile}
             };
+
 
             IConfiguration configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection(configurationDict)

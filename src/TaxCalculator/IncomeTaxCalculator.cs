@@ -38,20 +38,16 @@ namespace TaxCalculator
             }
 
             var tariffItems =
-                from year in person.CalculationYear
-                select _tariffData.Get(new TaxFilterModel
+                _tariffData.Get(new TaxFilterModel
                     {
-                        Year = year,
+                        Year = person.CalculationYear,
                         Canton = person.Canton
                     })
                     .OrderBy(item => item.TaxAmount);
 
-            var result =
-                (from tariffs in tariffItems
-                    select TariffMatch(tariffs, person.TaxableIncome))
-                .Match<Either<TaxResult, string>>(
-                    Some: tariff => CalculateIncomeTax(person, tariff),
-                    None: () => "incomplete input data");
+            var tariffMatch = TariffMatch(tariffItems, person.TaxableIncome);
+
+            Either<TaxResult, string> result = CalculateIncomeTax(person, tariffMatch);
 
             return Task.FromResult(result);
         }
@@ -65,10 +61,16 @@ namespace TaxCalculator
                                             item.Year == person.CalculationYear &&
                                             item.Municipality == person.Municipality);
 
+                var incrementMultiplier = Math.Floor( ( person.TaxableIncome - tariff.IncomeLevel) / tariff.IncomeIncrement );
+
+                var baseTaxAmount = incrementMultiplier * tariff.TaxIncrement + tariff.TaxAmount;
+
                 return new TaxResult
                 {
                     TaxableIncome = person.TaxableIncome,
-                    Rate = tariff.TaxAmount,
+                    BaseTaxAmount = baseTaxAmount,
+                    MunicipalityRate = taxRate.TaxRateMunicipality,
+                    CantonRate = taxRate.TaxRateCanton,
                 };
             }
         }
@@ -77,7 +79,7 @@ namespace TaxCalculator
         {
             foreach (var taxTariffModel in tariffItems)
             {
-                if (taxTariffModel.TaxAmount >= taxableIncome)
+                if (taxTariffModel.IncomeLevel >= taxableIncome)
                 {
                     return taxTariffModel;
                 }

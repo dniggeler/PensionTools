@@ -9,7 +9,7 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
     public enum DenominationType { Base, Married }
     public class TaxPerson
     {
-        public Option<int> CalculationYear { get; set; }
+        public int CalculationYear { get; set; }
         public string Name { get; set; }
         public string Municipality { get; set; }
         public string Canton { get; set; }

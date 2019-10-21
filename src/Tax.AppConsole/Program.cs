@@ -36,7 +36,7 @@ namespace Tax.AppConsole
             var result = await calculator.CalculateAsync(new TaxPerson());
 
             result
-                .Match(Left: r => logger.LogDebug(r.TaxAmount.ToString()),
+                .Match(Left: r => logger.LogDebug(r.MunicipalityTaxAmount.ToString()),
                     Right: err => logger.LogDebug(err));
 
             logger.LogError("Hi, error");
