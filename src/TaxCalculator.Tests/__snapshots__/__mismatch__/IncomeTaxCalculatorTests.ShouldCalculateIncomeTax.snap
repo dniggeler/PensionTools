@@ -4,13 +4,13 @@
     "Right": null,
     "Left": {
       "CalculationYear": 2018,
-      "TaxableIncome": 100000.0,
+      "TaxableIncome": 99995.0,
       "CantonRate": 100.0,
       "MunicipalityRate": 119.0,
       "BaseTaxAmount": 4877.0,
-      "MunicipalityTaxAmount": 5541.83,
-      "CantonTaxAmount": 4877.0,
-      "TotalTaxAmount": 10198.83
+      "MunicipalityTaxAmount": 5531.12,
+      "CantonTaxAmount": 4648.0,
+      "TotalTaxAmount": 10179.12
     }
   }
 ]

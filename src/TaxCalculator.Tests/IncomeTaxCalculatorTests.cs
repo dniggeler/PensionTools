@@ -25,10 +25,10 @@ namespace TaxCalculator.Tests
             {
                 Canton = "ZH",
                 CalculationYear = 2018,
-                CivilStatus = CivilStatus.Single,
-                DenominationType = DenominationType.Base,
+                CivilStatus = CivilStatus.Married,
+                DenominationType = DenominationType.Married,
                 Municipality = "Zürich",
-                TaxableIncome = 100_000
+                TaxableIncome = 99995
             };
 
             // when
