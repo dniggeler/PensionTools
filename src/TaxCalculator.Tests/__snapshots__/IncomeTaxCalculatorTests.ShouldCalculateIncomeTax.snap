@@ -1,0 +1,16 @@
+﻿[
+  {
+    "State": "IsLeft",
+    "Right": null,
+    "Left": {
+      "CalculationYear": 2018,
+      "TaxableIncome": 100000.0,
+      "CantonRate": 100.0,
+      "MunicipalityRate": 119.0,
+      "BaseTaxAmount": 4657.0,
+      "MunicipalityTaxAmount": 5541.83,
+      "CantonTaxAmount": 4657.0,
+      "TotalTaxAmount": 10198.83
+    }
+  }
+]

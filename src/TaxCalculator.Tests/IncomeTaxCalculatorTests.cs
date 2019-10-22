@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using Snapshooter.Xunit;
 using Xunit;
 
 namespace TaxCalculator.Tests
@@ -25,7 +26,7 @@ namespace TaxCalculator.Tests
                 Canton = "ZH",
                 CalculationYear = 2018,
                 CivilStatus = CivilStatus.Single,
-                DenominationType = DenominationType.Married,
+                DenominationType = DenominationType.Base,
                 Municipality = "Zürich",
                 TaxableIncome = 100_000
             };
@@ -34,7 +35,7 @@ namespace TaxCalculator.Tests
             var result = await _fixture.Calculator.CalculateAsync(taxPerson);
 
             result.IsRight.Should().BeFalse();
-            Snapshooter.Xunit.Snapshot.Match(result);
+            Snapshot.Match(result);
         }
     }
 }

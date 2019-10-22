@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,8 +26,7 @@ namespace Tax.AppConsole
                 .Build();
 
             var provider = GetServiceProvider(configuration);
-
-
+            
             var logger = provider.GetService<ILogger<Program>>();
 
             var calculator = provider.GetService<IIncomeTaxCalculator>();

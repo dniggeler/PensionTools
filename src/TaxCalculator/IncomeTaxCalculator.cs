@@ -67,6 +67,7 @@ namespace TaxCalculator
 
                 return new TaxResult
                 {
+                    CalculationYear = person.CalculationYear,
                     TaxableIncome = person.TaxableIncome,
                     BaseTaxAmount = baseTaxAmount,
                     MunicipalityRate = taxRate.TaxRateMunicipality,

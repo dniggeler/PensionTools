@@ -2,12 +2,13 @@
 {
     public class TaxResult
     {
+        public int CalculationYear { get; set; }
         public decimal TaxableIncome { get; set; }
         public decimal CantonRate { get; set; }
         public decimal MunicipalityRate { get; set; }
         public decimal BaseTaxAmount { get; set; }
-        public decimal MunicipalityTaxAmount => TaxableIncome * MunicipalityRate;
-        public decimal CantonTaxAmount => TaxableIncome * CantonRate;
-        public decimal TotalTaxAmount => MunicipalityTaxAmount + CantonRate;
+        public decimal MunicipalityTaxAmount => BaseTaxAmount * MunicipalityRate / 100M;
+        public decimal CantonTaxAmount => BaseTaxAmount * CantonRate / 100M;
+        public decimal TotalTaxAmount => MunicipalityTaxAmount + CantonTaxAmount;
     }
 }
