@@ -7,10 +7,10 @@
       "TaxableIncome": 99995.0,
       "CantonRate": 100.0,
       "MunicipalityRate": 119.0,
-      "BaseTaxAmount": 4877.0,
-      "MunicipalityTaxAmount": 5531.12,
-      "CantonTaxAmount": 4648.0,
-      "TotalTaxAmount": 10179.12
+      "BaseTaxAmount": 4878.0,
+      "MunicipalityTaxAmount": 5804.82,
+      "CantonTaxAmount": 4878.0,
+      "TotalTaxAmount": 10682.82
     }
   }
 ]

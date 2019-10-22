@@ -61,7 +61,9 @@ namespace TaxCalculator
                                             item.Year == person.CalculationYear &&
                                             item.Municipality == person.Municipality);
 
-                var incrementMultiplier = Math.Floor( ( person.TaxableIncome - tariff.IncomeLevel) / tariff.IncomeIncrement );
+                var referenceTaxableIncome = person.TaxableIncome - person.TaxableIncome % tariff.IncomeIncrement;
+
+                var incrementMultiplier = (referenceTaxableIncome - tariff.IncomeLevel) / tariff.IncomeIncrement;
 
                 var baseTaxAmount = incrementMultiplier * tariff.TaxIncrement + tariff.TaxAmount;
 
@@ -78,15 +80,10 @@ namespace TaxCalculator
 
         private TaxTariffModel TariffMatch(IEnumerable<TaxTariffModel> tariffItems, decimal taxableIncome)
         {
-            foreach (var taxTariffModel in tariffItems)
-            {
-                if (taxTariffModel.IncomeLevel >= taxableIncome)
-                {
-                    return taxTariffModel;
-                }
-            }
-
-            return null;
+            return tariffItems
+                .Where(item => item.IncomeLevel <= taxableIncome)
+                .OrderByDescending(item => item.IncomeLevel)
+                .First();
         }
     }
 }
