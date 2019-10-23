@@ -45,7 +45,10 @@ namespace TaxCalculator
                     })
                     .OrderBy(item => item.TaxAmount);
 
-            var tariffMatch = TariffMatch(tariffItems, person.TaxableIncome);
+            var tariffMatch = tariffItems
+                .Where(item => item.IncomeLevel <= person.TaxableIncome)
+                .OrderByDescending(item => item.IncomeLevel)
+                .First();
 
             Either<TaxResult, string> result = CalculateIncomeTax(person, tariffMatch);
 
@@ -58,8 +61,8 @@ namespace TaxCalculator
             {
                 var taxRate = dbContext.Rates
                     .Single(item => item.Canton == person.Canton &&
-                                            item.Year == person.CalculationYear &&
-                                            item.Municipality == person.Municipality);
+                                    item.Year == person.CalculationYear &&
+                                    item.Municipality == person.Municipality);
 
                 var referenceTaxableIncome = person.TaxableIncome - person.TaxableIncome % tariff.IncomeIncrement;
 
@@ -76,14 +79,6 @@ namespace TaxCalculator
                     CantonRate = taxRate.TaxRateCanton,
                 };
             }
-        }
-
-        private TaxTariffModel TariffMatch(IEnumerable<TaxTariffModel> tariffItems, decimal taxableIncome)
-        {
-            return tariffItems
-                .Where(item => item.IncomeLevel <= taxableIncome)
-                .OrderByDescending(item => item.IncomeLevel)
-                .First();
         }
     }
 }
