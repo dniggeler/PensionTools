@@ -41,11 +41,17 @@ namespace TaxCalculator
                 _tariffData.Get(new TaxFilterModel
                     {
                         Year = person.CalculationYear,
-                        Canton = person.Canton
+                        Canton = person.Canton,
+                        
                     })
                     .OrderBy(item => item.TaxAmount);
 
+            var tariffTypeId = person.TariffType
+                .Match(Some: type => (int)type,
+                    None: () => 0);
+
             var tariffMatch = tariffItems
+                .Where(item => item.TariffType == tariffTypeId)
                 .Where(item => item.IncomeLevel <= person.TaxableIncome)
                 .OrderByDescending(item => item.IncomeLevel)
                 .First();

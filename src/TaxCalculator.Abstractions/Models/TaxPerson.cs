@@ -4,8 +4,6 @@ using LanguageExt;
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
 {
-    public enum CivilStatus {  Single, Married }
-    public enum TariffType { Base, Married }
     public enum DenominationType { Base, Married }
     public class TaxPerson
     {
