@@ -12,15 +12,15 @@ using Tax.Data.Abstractions.Models;
 
 namespace TaxCalculator
 {
-    public class IncomeTaxCalculator : IIncomeTaxCalculator
+    public class WealthTaxCalculator : IWealthTaxCalculator
     {
-        private const int IncomeTaxTypeId = (int)TaxType.Income;
+        private const int TaxTypeId = (int)TaxType.Wealth;
 
         private readonly IValidator<TaxPerson> _taxPersonValidator;
         private readonly Func<TaxRateDbContext> _rateDbContextFunc;
         private readonly ITaxTariffData _tariffData;
 
-        public IncomeTaxCalculator(IValidator<TaxPerson> taxPersonValidator,
+        public WealthTaxCalculator(IValidator<TaxPerson> taxPersonValidator,
             Func<TaxRateDbContext> rateDbContextFunc,
             ITaxTariffData tariffData)
         {
@@ -53,17 +53,17 @@ namespace TaxCalculator
 
             var tariffMatch = tariffItems
                 .Where(item => item.TariffType == tariffTypeId)
-                .Where(item => item.TaxType == IncomeTaxTypeId)
-                .Where(item => item.IncomeLevel <= person.TaxableIncome)
+                .Where(item => item.TaxType == TaxTypeId)
+                .Where(item => item.IncomeLevel <= person.TaxableWealth)
                 .OrderByDescending(item => item.IncomeLevel)
                 .First();
 
-            Either<TaxResult, string> result = CalculateIncomeTax(person, tariffMatch);
+            Either<TaxResult, string> result = CalculateTax(person, tariffMatch);
 
             return Task.FromResult(result);
         }
 
-        private TaxResult CalculateIncomeTax(TaxPerson person, TaxTariffModel tariff)
+        private TaxResult CalculateTax(TaxPerson person, TaxTariffModel tariff)
         {
             using (var dbContext = _rateDbContextFunc())
             {
@@ -72,16 +72,16 @@ namespace TaxCalculator
                                     item.Year == person.CalculationYear &&
                                     item.Municipality == person.Municipality);
 
-                var referenceTaxableIncome = person.TaxableIncome - person.TaxableIncome % tariff.IncomeIncrement;
+                var referenceTaxableAmount = person.TaxableWealth - person.TaxableWealth % tariff.IncomeIncrement;
 
-                var incrementMultiplier = (referenceTaxableIncome - tariff.IncomeLevel) / tariff.IncomeIncrement;
+                var incrementMultiplier = (referenceTaxableAmount - tariff.IncomeLevel) / tariff.IncomeIncrement;
 
                 var baseTaxAmount = incrementMultiplier * tariff.TaxIncrement + tariff.TaxAmount;
 
                 return new TaxResult
                 {
                     CalculationYear = person.CalculationYear,
-                    ReferencedTaxableAmount = referenceTaxableIncome,
+                    ReferencedTaxableAmount = referenceTaxableAmount,
                     BaseTaxAmount = baseTaxAmount,
                     MunicipalityRate = taxRate.TaxRateMunicipality,
                     CantonRate = taxRate.TaxRateCanton,

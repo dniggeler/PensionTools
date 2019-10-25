@@ -12,6 +12,7 @@ namespace TaxCalculator
         public static void AddTaxCalculators(this ServiceCollection collection)
         {
             collection.AddTransient<IIncomeTaxCalculator, IncomeTaxCalculator>();
+            collection.AddTransient<IWealthTaxCalculator, WealthTaxCalculator>();
             collection.AddSingleton<IValidator<TaxPerson>, TaxPersonValidator>();
         }
     }
