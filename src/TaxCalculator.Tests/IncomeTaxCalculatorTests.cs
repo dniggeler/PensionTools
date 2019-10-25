@@ -26,7 +26,7 @@ namespace TaxCalculator.Tests
                 Canton = "ZH",
                 CalculationYear = 2018,
                 CivilStatus = CivilStatus.Married,
-                DenominationType = DenominationType.Married,
+                DenominationType = ReligiousGroupType.Married,
                 Municipality = "Zürich",
                 TaxableIncome = 99995
             };

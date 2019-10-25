@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
@@ -46,8 +45,8 @@ namespace TaxCalculator
                     })
                     .OrderBy(item => item.TaxAmount);
 
-            var tariffTypeId = person.TariffType
-                .Match(Some: type => (int)type,
+            var tariffTypeId = Map(person.CivilStatus)
+                .Match(Some: t => (int)t,
                     None: () => 0);
 
             var tariffMatch = tariffItems
@@ -85,6 +84,19 @@ namespace TaxCalculator
                     CantonRate = taxRate.TaxRateCanton,
                 };
             }
+        }
+
+        private Option<TariffType> Map(Option<CivilStatus> status)
+        {
+            return status.Match(
+                Some: s => s switch
+                {
+                    CivilStatus.Undefined => Option<TariffType>.None,
+                    CivilStatus.Single => TariffType.Base,
+                    CivilStatus.Married => TariffType.Married,
+                    _ => Option<TariffType>.None
+                },
+                None: () => Option<TariffType>.None);
         }
     }
 }

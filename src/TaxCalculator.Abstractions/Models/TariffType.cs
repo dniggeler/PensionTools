@@ -3,7 +3,7 @@
     public enum TariffType
     {
         Undefined = 0,
-        Base, 
-        Married
+        Base = 1, 
+        Married = 2
     }
 }
