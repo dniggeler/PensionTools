@@ -14,6 +14,8 @@ namespace TaxCalculator
 {
     public class IncomeTaxCalculator : IIncomeTaxCalculator
     {
+        private const int IncomeTaxTypeId = (int)TaxType.Income;
+
         private readonly IValidator<TaxPerson> _taxPersonValidator;
         private readonly Func<TaxRateDbContext> _rateDbContextFunc;
         private readonly ITaxTariffData _tariffData;
@@ -51,6 +53,7 @@ namespace TaxCalculator
 
             var tariffMatch = tariffItems
                 .Where(item => item.TariffType == tariffTypeId)
+                .Where(item => item.TaxType == IncomeTaxTypeId)
                 .Where(item => item.IncomeLevel <= person.TaxableIncome)
                 .OrderByDescending(item => item.IncomeLevel)
                 .First();
