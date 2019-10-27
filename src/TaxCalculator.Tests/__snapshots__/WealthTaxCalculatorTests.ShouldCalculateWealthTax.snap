@@ -4,7 +4,7 @@
     "Right": null,
     "Left": {
       "CalculationYear": 2018,
-      "ReferencedTaxableIncome": 522000.0,
+      "ReferencedTaxableAmount": 522000.0,
       "CantonRate": 100.0,
       "MunicipalityRate": 119.0,
       "BaseTaxAmount": 252.5,

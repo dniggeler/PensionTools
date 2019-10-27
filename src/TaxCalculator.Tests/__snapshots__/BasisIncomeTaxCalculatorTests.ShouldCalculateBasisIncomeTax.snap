@@ -1,0 +1,11 @@
+﻿[
+  {
+    "State": "IsLeft",
+    "Right": null,
+    "Left": {
+      "CalculationYear": 2018,
+      "DeterminingFactorTaxableAmount": 99900.0,
+      "TaxAmount": 4878.0
+    }
+  }
+]

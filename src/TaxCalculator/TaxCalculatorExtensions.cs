@@ -1,9 +1,8 @@
-﻿using System;
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-using Tax.Data;
+using TaxCalculator.Validators;
 
 namespace TaxCalculator
 {
@@ -13,7 +12,20 @@ namespace TaxCalculator
         {
             collection.AddTransient<IIncomeTaxCalculator, IncomeTaxCalculator>();
             collection.AddTransient<IWealthTaxCalculator, WealthTaxCalculator>();
+
+            collection.AddValidators();
+            collection.AddBasisCalculators();
+        }
+
+        private static void AddValidators(this ServiceCollection collection)
+        {
+            collection.AddSingleton<IValidator<BasisTaxPerson>, BasisTaxPersonValidator>();
             collection.AddSingleton<IValidator<TaxPerson>, TaxPersonValidator>();
+        }
+
+        private static void AddBasisCalculators(this ServiceCollection collection)
+        {
+            collection.AddTransient<IBasisIncomeTaxCalculator, BasisIncomeTaxCalculator>();
         }
     }
 }
