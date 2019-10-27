@@ -10,14 +10,14 @@ using Tax.Data.Abstractions.Models;
 
 namespace TaxCalculator
 {
-    public class BasisIncomeTaxCalculator : IBasisIncomeTaxCalculator
+    public class BasisWealthTaxCalculator : IBasisWealthTaxCalculator
     {
-        private const int IncomeTaxTypeId = (int)TaxType.Income;
+        private const int TaxTypeId = (int)TaxType.Wealth;
 
         private readonly IValidator<BasisTaxPerson> _taxPersonValidator;
         private readonly ITaxTariffData _tariffData;
 
-        public BasisIncomeTaxCalculator(IValidator<BasisTaxPerson> taxPersonValidator,
+        public BasisWealthTaxCalculator(IValidator<BasisTaxPerson> taxPersonValidator,
             ITaxTariffData tariffData)
         {
             _taxPersonValidator = taxPersonValidator;
@@ -46,7 +46,7 @@ namespace TaxCalculator
                 // get all income level candidate
                 .Map(typeId => tariffItems
                     .Where(item => item.TariffType == (int) typeId)
-                    .Where(item => item.TaxType == IncomeTaxTypeId)
+                    .Where(item => item.TaxType == TaxTypeId)
                     .Where(item => item.IncomeLevel <= person.TaxableAmount)
                     .OrderByDescending(item => item.IncomeLevel))
                 // take the largest one

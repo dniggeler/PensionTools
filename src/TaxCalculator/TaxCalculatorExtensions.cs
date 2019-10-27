@@ -26,6 +26,7 @@ namespace TaxCalculator
         private static void AddBasisCalculators(this ServiceCollection collection)
         {
             collection.AddTransient<IBasisIncomeTaxCalculator, BasisIncomeTaxCalculator>();
+            collection.AddTransient<IBasisWealthTaxCalculator, BasisWealthTaxCalculator>();
         }
     }
 }
