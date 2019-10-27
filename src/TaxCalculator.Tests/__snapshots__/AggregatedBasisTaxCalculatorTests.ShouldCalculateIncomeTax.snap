@@ -1,0 +1,16 @@
+﻿[
+  {
+    "State": "IsRight",
+    "Right": {
+      "IncomeTax": {
+        "DeterminingFactorTaxableAmount": 99900.0,
+        "TaxAmount": 4878.0
+      },
+      "WealthTax": {
+        "DeterminingFactorTaxableAmount": 522000.0,
+        "TaxAmount": 252.5
+      }
+    },
+    "Left": null
+  }
+]

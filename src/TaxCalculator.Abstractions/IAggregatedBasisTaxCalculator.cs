@@ -5,8 +5,8 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions
 {
-    public interface IBasisIncomeTaxCalculator
+    public interface IAggregatedBasisTaxCalculator
     {
-        Task<Either<string,BasisTaxResult>> CalculateAsync(int calculationYear, BasisTaxPerson person);
+        Task<Either<string, AggregatedBasisTaxResult>> CalculateAsync(int calculationYear, TaxPerson person);
     }
 }

@@ -7,7 +7,6 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using Tax.Data.Abstractions;
 using Tax.Data.Abstractions.Models;
 
-
 namespace TaxCalculator
 {
     public class BasisIncomeTaxCalculator : IBasisIncomeTaxCalculator
@@ -24,13 +23,13 @@ namespace TaxCalculator
             _tariffData = tariffData;
         }
 
-        public Task<Either<BasisTaxResult, string>> CalculateAsync(int calculationYear, BasisTaxPerson person)
+        public Task<Either<string, BasisTaxResult>> CalculateAsync(int calculationYear, BasisTaxPerson person)
         {
             var validationResult = _taxPersonValidator.Validate(person);
             if (!validationResult.IsValid)
             {
                 var errorMessageLine = string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
-                return Task.FromResult<Either<BasisTaxResult, string>>($"validation failed: {errorMessageLine}");
+                return Task.FromResult<Either<string, BasisTaxResult>>($"validation failed: {errorMessageLine}");
             }
 
             var tariffItems =
@@ -38,7 +37,6 @@ namespace TaxCalculator
                     {
                         Year = calculationYear,
                         Canton = person.Canton,
-
                     })
                     .OrderBy(item => item.TaxAmount);
 
@@ -53,7 +51,7 @@ namespace TaxCalculator
                 .Map(items => items.First())
                 // calculate result
                 .Map(tariff => CalculateIncomeTax(person, tariff))
-                .Match<Either<BasisTaxResult, string>>(
+                .Match<Either<string, BasisTaxResult>>(
                     Some: r => r,
                     None: () => "Tariff not available")
                 .AsTask();

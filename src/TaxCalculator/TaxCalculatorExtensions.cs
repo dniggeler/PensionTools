@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using AutoMapper;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
@@ -12,6 +13,14 @@ namespace TaxCalculator
         {
             collection.AddTransient<IIncomeTaxCalculator, IncomeTaxCalculator>();
             collection.AddTransient<IWealthTaxCalculator, WealthTaxCalculator>();
+            collection.AddTransient<IAggregatedBasisTaxCalculator, AggregatedBasisTaxCalculator>();
+
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            collection.AddSingleton(_ => mappingConfig.CreateMapper());
 
             collection.AddValidators();
             collection.AddBasisCalculators();
