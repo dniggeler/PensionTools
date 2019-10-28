@@ -23,28 +23,31 @@ namespace TaxCalculator
         public async Task<Either<string, TaxResult>> CalculateAsync(int calculationYear, TaxPerson person)
         {
             string msg =
-                $"No municipality {person.Municipality} for this canton {person.Canton} and calculation {calculationYear} year found.";
+                $@"no municipality {person.Municipality} for this canton 
+                    {person.Canton} and calculation {calculationYear} year found";
 
-            var aggregatedTaxResult = await _basisTaxCalculator.CalculateAsync(calculationYear, person);
-            var taxRate = _taxRateDbContext.Rates
-                .Where(item => item.Canton == person.Canton &&
-                               item.Year == person.CalculationYear &&
-                               item.Municipality == person.Municipality)
-                .ToList()
-                .Match<Either<string,TaxRateModel>>(
-                    Empty: () => msg,
-                    More: s => "Query not unique",
-                    One: item => item);
+            Either<string, AggregatedBasisTaxResult> aggregatedTaxResult = 
+                await _basisTaxCalculator.CalculateAsync(calculationYear, person);
 
-            return new TaxResult
-            {
-                CalculationYear = person.CalculationYear,
-                ReferencedTaxableAmount = 0,
-                BaseTaxAmount = 0,
-                MunicipalityRate = taxRate.TaxRateMunicipality,
-                CantonRate = taxRate.TaxRateCanton,
-            };
+            Option<TaxRateModel> taxRate = _taxRateDbContext.Rates
+                .FirstOrDefault(item => item.Canton == person.Canton &&
+                                        item.Year == person.CalculationYear &&
+                                        item.Municipality == person.Municipality);
+            var result = from rate in taxRate
+                from r in aggregatedTaxResult.ToOption()
+                select new TaxResult
+                {
+                    CalculationYear = person.CalculationYear,
+                    MunicipalityRate = rate.TaxRateMunicipality,
+                    CantonRate = rate.TaxRateCanton,
+                    BasisIncomeTax = r.IncomeTax,
+                    BasisWealthTax = r.WealthTax
+                };
 
+            return result
+                .Match<Either<string, TaxResult>>(
+                    Some: item => item,
+                    None: () => msg);
         }
     }
 }
