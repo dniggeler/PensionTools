@@ -9,7 +9,8 @@
       "WealthTax": {
         "DeterminingFactorTaxableAmount": 522000.0,
         "TaxAmount": 252.5
-      }
+      },
+      "Total": 5130.5
     },
     "Left": null
   }
