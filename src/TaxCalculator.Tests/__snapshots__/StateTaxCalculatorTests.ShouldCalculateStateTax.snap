@@ -1,0 +1,22 @@
+﻿[
+  {
+    "State": "IsRight",
+    "Right": {
+      "CalculationYear": 2018,
+      "BasisIncomeTax": {
+        "DeterminingFactorTaxableAmount": 99900.0,
+        "TaxAmount": 4878.0
+      },
+      "BasisWealthTax": {
+        "DeterminingFactorTaxableAmount": 522000.0,
+        "TaxAmount": 252.5
+      },
+      "CantonRate": 100.0,
+      "MunicipalityRate": 119.0,
+      "MunicipalityTaxAmount": 6105.295,
+      "CantonTaxAmount": 5130.5,
+      "TotalTaxAmount": 11235.795
+    },
+    "Left": null
+  }
+]
