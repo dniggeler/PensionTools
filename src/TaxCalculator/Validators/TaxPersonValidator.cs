@@ -10,7 +10,6 @@ namespace TaxCalculator.Validators
         private readonly string[] _supportedCantons = {"ZH"};
         public TaxPersonValidator()
         {
-            RuleFor(x => x.CalculationYear).Must(x => x >= MinSupportedYear);
             RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
             RuleFor(x => x.DenominationType).Must(x => x.IsSome);
             RuleFor(x => x.Canton).Must(x => _supportedCantons.Contains(x));

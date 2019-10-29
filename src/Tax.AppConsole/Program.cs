@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +15,7 @@ namespace Tax.AppConsole
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static async Task Main()
         {
             var configurationDict = new Dictionary<string, string>
             {
@@ -30,11 +31,13 @@ namespace Tax.AppConsole
             var logger = provider.GetService<ILogger<Program>>();
 
             var calculator = provider.GetService<IIncomeTaxCalculator>();
-            var result = await calculator.CalculateAsync(new TaxPerson());
+            int calculationYear = 2018;
+            var result = await calculator.CalculateAsync(calculationYear, new TaxPerson());
 
             result
-                .Match(Left: r => logger.LogDebug(r.MunicipalityTaxAmount.ToString()),
-                    Right: err => logger.LogDebug(err));
+                .Match(
+                    Right: r => logger.LogDebug(r.MunicipalityTaxAmount.ToString(CultureInfo.InvariantCulture)),
+                    Left: err => logger.LogDebug(err));
 
             logger.LogError("Hi, error");
         }

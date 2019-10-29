@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using LanguageExt;
-using Microsoft.EntityFrameworkCore.Storage;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using Tax.Data;
@@ -14,7 +13,8 @@ namespace TaxCalculator
         private readonly IAggregatedBasisTaxCalculator _basisTaxCalculator;
         private readonly TaxRateDbContext _taxRateDbContext;
 
-        public StateTaxCalculator(IAggregatedBasisTaxCalculator basisTaxCalculator, TaxRateDbContext dbContext)
+        public StateTaxCalculator(IAggregatedBasisTaxCalculator basisTaxCalculator, 
+            TaxRateDbContext dbContext)
         {
             _basisTaxCalculator = basisTaxCalculator;
             _taxRateDbContext = dbContext;
@@ -31,13 +31,13 @@ namespace TaxCalculator
 
             Option<TaxRateModel> taxRate = _taxRateDbContext.Rates
                 .FirstOrDefault(item => item.Canton == person.Canton &&
-                                        item.Year == person.CalculationYear &&
+                                        item.Year == calculationYear &&
                                         item.Municipality == person.Municipality);
             var result = from rate in taxRate
                 from r in aggregatedTaxResult.ToOption()
                 select new TaxResult
                 {
-                    CalculationYear = person.CalculationYear,
+                    CalculationYear = calculationYear,
                     MunicipalityRate = rate.TaxRateMunicipality,
                     CantonRate = rate.TaxRateCanton,
                     BasisIncomeTax = r.IncomeTax,

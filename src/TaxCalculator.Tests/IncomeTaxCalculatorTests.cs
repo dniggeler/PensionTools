@@ -21,10 +21,10 @@ namespace TaxCalculator.Tests
         public async Task ShouldCalculateIncomeTax()
         {
             // given
+            var calculationYear = 2018;
             var taxPerson = new TaxPerson
             {
                 Canton = "ZH",
-                CalculationYear = 2018,
                 CivilStatus = CivilStatus.Married,
                 DenominationType = ReligiousGroupType.Married,
                 Municipality = "Zürich",
@@ -32,9 +32,9 @@ namespace TaxCalculator.Tests
             };
 
             // when
-            var result = await _fixture.Calculator.CalculateAsync(taxPerson);
+            var result = await _fixture.Calculator.CalculateAsync(calculationYear, taxPerson);
 
-            result.IsRight.Should().BeFalse();
+            result.IsRight.Should().BeTrue();
             Snapshot.Match(result);
         }
     }

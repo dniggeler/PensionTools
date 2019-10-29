@@ -27,7 +27,6 @@ namespace TaxCalculator.Tests
             {
                 Canton = "ZH",
                 Name = "Burli",
-                CalculationYear = 2018,
                 CivilStatus = CivilStatus.Married,
                 DenominationType = ReligiousGroupType.Married,
                 Municipality = "Zürich",
