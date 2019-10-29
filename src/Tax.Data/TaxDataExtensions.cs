@@ -9,6 +9,7 @@ namespace Tax.Data
     {
         public static void AddTaxData(this ServiceCollection collection)
         {
+            collection.AddDbContext<FederalTaxTariffDbContext>();
             collection.AddDbContext<TaxTariffDbContext>();
             collection.AddDbContext<TaxRateDbContext>();
 

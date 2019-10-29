@@ -4,7 +4,6 @@ using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Tax.Data.Abstractions.Models;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Tax.Data.Tests
 {
@@ -12,12 +11,10 @@ namespace Tax.Data.Tests
     public class TaxDbContextTests : IClassFixture<TaxDataFixture>
     {
         private readonly TaxDataFixture _fixture;
-        private readonly ITestOutputHelper _outputHelper;
 
-        public TaxDbContextTests(TaxDataFixture fixture, ITestOutputHelper outputHelper)
+        public TaxDbContextTests(TaxDataFixture fixture)
         {
             _fixture = fixture;
-            _outputHelper = outputHelper;
         }
 
         [Fact(DisplayName = "Tax Rate")]
@@ -36,6 +33,26 @@ namespace Tax.Data.Tests
                 using var dbContext = _fixture.Provider.GetService<TaxRateDbContext>();
                 return dbContext.Rates.Where(item => item.Canton == "ZH" &&
                                                      item.Year == 2017)
+                    .ToList();
+            }
+        }
+
+        [Fact(DisplayName = "Federal Tax Tariff")]
+        public void ShouldReturnFederalTaxTariff()
+        {
+            // given
+            int calculationYear = 2018;
+
+            // when
+            var result = GetTariffs();
+
+            // then
+            result.Should().NotBeNullOrEmpty();
+
+            IEnumerable<FederalTaxTariffModel> GetTariffs()
+            {
+                using var dbContext = _fixture.Provider.GetService<FederalTaxTariffDbContext>();
+                return dbContext.Tariffs.Where(item => item.Year == calculationYear)
                     .ToList();
             }
         }
