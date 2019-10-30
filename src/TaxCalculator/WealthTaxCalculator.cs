@@ -38,6 +38,9 @@ namespace TaxCalculator
             }
 
             var basisTaxPerson = _mapper.Map<BasisTaxPerson>(person);
+
+            basisTaxPerson.TaxableAmount = person.TaxableWealth;
+
             var basisTaxResult =
                 await _basisWealthTaxCalculator.CalculateAsync(calculationYear, basisTaxPerson);
 
