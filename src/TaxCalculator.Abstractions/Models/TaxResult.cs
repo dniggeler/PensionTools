@@ -7,7 +7,7 @@
         public BasisTaxResult BasisWealthTax { get; set; }
         public decimal CantonRate { get; set; }
         public decimal MunicipalityRate { get; set; }
- public decimal MunicipalityTaxAmount => MunicipalityRate / 100M * (BasisIncomeTax.TaxAmount + BasisWealthTax.TaxAmount);
+        public decimal MunicipalityTaxAmount => MunicipalityRate / 100M * (BasisIncomeTax.TaxAmount + BasisWealthTax.TaxAmount);
         public decimal CantonTaxAmount => CantonRate / 100M * (BasisIncomeTax.TaxAmount + BasisWealthTax.TaxAmount);
         public decimal TotalTaxAmount => MunicipalityTaxAmount + CantonTaxAmount;
     }

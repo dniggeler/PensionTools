@@ -1,16 +1,17 @@
 ﻿[
   {
-    "State": "IsLeft",
-    "Right": null,
-    "Left": {
-      "CalculationYear": 2018,
-      "ReferencedTaxableAmount": 522000.0,
+    "State": "IsRight",
+    "Right": {
+      "BasisTaxAmount": {
+        "DeterminingFactorTaxableAmount": 522000.0,
+        "TaxAmount": 252.5
+      },
       "CantonRate": 100.0,
       "MunicipalityRate": 119.0,
-      "BaseTaxAmount": 252.5,
       "MunicipalityTaxAmount": 300.475,
       "CantonTaxAmount": 252.5,
       "TotalTaxAmount": 552.975
-    }
+    },
+    "Left": null
   }
 ]

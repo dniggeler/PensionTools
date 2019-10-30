@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using FluentAssertions;
+using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using Snapshooter.Xunit;
@@ -33,7 +34,8 @@ namespace TaxCalculator.Tests
             };
 
             // when
-            var result = await _fixture.Calculator.CalculateAsync(calculationYear, taxPerson);
+            Either<string, SingleTaxResult> result = 
+                await _fixture.Calculator.CalculateAsync(calculationYear, taxPerson);
 
             result.IsRight.Should().BeTrue();
             Snapshot.Match(result);

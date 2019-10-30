@@ -28,7 +28,7 @@ namespace TaxCalculator
             _mapper = mapper;
         }
 
-        public async Task<Either<string,TaxResult>> CalculateAsync(int calculationYear, TaxPerson person)
+        public async Task<Either<string, SingleTaxResult>> CalculateAsync(int calculationYear, TaxPerson person)
         {
             var validationResult = _taxPersonValidator.Validate(person);
             if (!validationResult.IsValid)
@@ -42,12 +42,12 @@ namespace TaxCalculator
                 await _basisIncomeTaxCalculator.CalculateAsync(calculationYear, basisPerson);
 
             return incomeTaxResult
-                .Match<Either<string,TaxResult>>(
+                .Match<Either<string,SingleTaxResult>>(
                     Right: r => CalculateIncomeTax(calculationYear, person, r),
                     Left: msg => msg);
         }
 
-        private TaxResult CalculateIncomeTax(int calculationYear, TaxPerson person, 
+        private SingleTaxResult CalculateIncomeTax(int calculationYear, TaxPerson person, 
             BasisTaxResult basisTaxResult)
         {
             using (var dbContext = _rateDbContextFunc())
@@ -57,10 +57,9 @@ namespace TaxCalculator
                                     item.Year == calculationYear &&
                                     item.Municipality == person.Municipality);
 
-                return new TaxResult
+                return new SingleTaxResult
                 {
-                    CalculationYear = calculationYear,
-                    BasisIncomeTax = basisTaxResult,
+                    BasisTaxAmount = basisTaxResult,
                     MunicipalityRate = taxRate.TaxRateMunicipality,
                     CantonRate = taxRate.TaxRateCanton,
                 };
