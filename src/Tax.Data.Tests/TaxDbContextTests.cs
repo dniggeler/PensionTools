@@ -57,7 +57,7 @@ namespace Tax.Data.Tests
             }
         }
 
-        [Fact(DisplayName = "Tax Tariffs")]
+        [Fact(DisplayName = "State Tax Tariffs")]
         public void ShouldReturnTaxTariff()
         {
             // given

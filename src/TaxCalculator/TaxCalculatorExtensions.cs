@@ -13,6 +13,7 @@ namespace TaxCalculator
         {
             collection.AddTransient<IIncomeTaxCalculator, IncomeTaxCalculator>();
             collection.AddTransient<IWealthTaxCalculator, WealthTaxCalculator>();
+            collection.AddTransient<IFederalTaxCalculator, FederalTaxCalculator>();
             collection.AddTransient<IAggregatedBasisTaxCalculator, AggregatedBasisTaxCalculator>();
             collection.AddTransient<IStateTaxCalculator , StateTaxCalculator>();
 
