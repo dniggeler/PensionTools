@@ -12,8 +12,6 @@ namespace TaxCalculator
 {
     public class FederalTaxCalculator : IFederalTaxCalculator
     {
-        private const int IncomeTaxTypeId = (int)TaxType.Income;
-
         private readonly IValidator<FederalTaxPerson> _taxPersonValidator;
         private readonly FederalTaxTariffDbContext _federalDbContext;
 
@@ -37,7 +35,6 @@ namespace TaxCalculator
                 .Map(typeId => _federalDbContext.Tariffs
                     .Where(item => item.Year == calculationYear)
                     .Where(item => item.TariffType == (int) typeId)
-                    .Where(item => item.TaxType == IncomeTaxTypeId)
                     .Where(item => item.IncomeLevel <= person.TaxableIncome)
                     .OrderByDescending(item => item.IncomeLevel))
                 // take the largest one

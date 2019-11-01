@@ -22,8 +22,5 @@ namespace Tax.Data.Abstractions.Models
 
         [Column("Tariftyp")]
         public int TariffType { get; set; }
-
-        [Column("Steuertyp")]
-        public int TaxType { get; set; }
     }
 }
