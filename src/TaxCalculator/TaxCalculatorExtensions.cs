@@ -16,6 +16,7 @@ namespace TaxCalculator
             collection.AddTransient<IFederalTaxCalculator, FederalTaxCalculator>();
             collection.AddTransient<IAggregatedBasisTaxCalculator, AggregatedBasisTaxCalculator>();
             collection.AddTransient<IStateTaxCalculator , StateTaxCalculator>();
+            collection.AddTransient<IFullTaxCalculator , FullTaxCalculator>();
 
             var mappingConfig = new MapperConfiguration(mc =>
             {
