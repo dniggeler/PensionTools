@@ -52,7 +52,9 @@ namespace Tax.Data.Tests
             IEnumerable<FederalTaxTariffModel> GetTariffs()
             {
                 using var dbContext = _fixture.Provider.GetService<FederalTaxTariffDbContext>();
-                return dbContext.Tariffs.Where(item => item.Year == calculationYear)
+                return dbContext.Tariffs
+                    .Where(item => item.Year == calculationYear)
+                    .OrderByDescending(item => item.IncomeLevel)
                     .ToList();
             }
         }
