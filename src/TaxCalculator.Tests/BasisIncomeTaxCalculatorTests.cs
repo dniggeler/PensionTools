@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using FluentAssertions;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
@@ -17,24 +18,30 @@ namespace TaxCalculator.Tests
             _fixture = fixture;
         }
 
-        [Fact(DisplayName = "Income Tax")]
-        public async Task ShouldCalculateBasisIncomeTax()
+        [Theory(DisplayName = "Basis Income Tax")]
+        [InlineData(2018, 0, "Married")]
+        [InlineData(2018, 99995, "Married")]
+        [InlineData(2018, 99995, "Single")]
+        public async Task ShouldCalculateBasisIncomeTax(int calculationYear, double wealthAsDouble,
+            string civilStatusCode)
         {
             // given
-            int calculationYear = 2018;
+            string canton = "ZH";
+            decimal wealth = Convert.ToDecimal(wealthAsDouble);
+            CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
 
             var taxPerson = new BasisTaxPerson
             {
-                Canton = "ZH",
-                CivilStatus = CivilStatus.Married,
-                TaxableAmount = 99995
+                Canton = canton,
+                CivilStatus = status,
+                TaxableAmount = wealth
             };
 
             // when
             var result = await _fixture.Calculator.CalculateAsync(calculationYear, taxPerson);
 
             result.IsRight.Should().BeTrue();
-            Snapshot.Match(result);
+            Snapshot.Match(result,$"Theory Basis Income Tax {calculationYear}{wealthAsDouble}{civilStatusCode}");
         }
     }
 }

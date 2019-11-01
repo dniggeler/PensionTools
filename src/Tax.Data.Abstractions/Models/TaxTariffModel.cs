@@ -20,8 +20,8 @@ namespace Tax.Data.Abstractions.Models
         [Column("Steuerinkrement")]
         public decimal TaxIncrement { get; set; }
 
-        [Column("Einkommensinkrement")]
-        public decimal IncomeIncrement { get; set; }
+        [Column("Einkommensinkrement")] 
+        public decimal IncomeIncrement { get; set; } = 1000;
 
         [Column("Tariftyp")]
         public int TariffType { get; set; }

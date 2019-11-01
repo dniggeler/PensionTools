@@ -54,8 +54,8 @@ namespace Tax.Data.Tests
                 using var dbContext = _fixture.Provider.GetService<FederalTaxTariffDbContext>();
                 return dbContext.Tariffs
                     .Where(item => item.Year == calculationYear)
-                    .OrderByDescending(item => item.IncomeLevel)
-                    .ToList();
+                    .ToList()
+                    .OrderByDescending(item => item.IncomeLevel);
             }
         }
 

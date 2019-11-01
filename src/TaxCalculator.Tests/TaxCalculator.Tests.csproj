@@ -25,4 +25,8 @@
     <ProjectReference Include="..\TaxCalculator\TaxCalculator.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="__snapshots__\" />
+  </ItemGroup>
+
 </Project>

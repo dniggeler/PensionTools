@@ -46,9 +46,9 @@ namespace TaxCalculator
                     .Where(item => item.TariffType == (int) typeId)
                     .Where(item => item.TaxType == IncomeTaxTypeId)
                     .Where(item => item.IncomeLevel <= person.TaxableAmount)
-                    .OrderByDescending(item => item.IncomeLevel))
-                // take the largest one
-                .Map(items => items.First())
+                    .OrderByDescending(item => item.IncomeLevel)
+                    .DefaultIfEmpty(new TaxTariffModel())
+                    .First())
                 // calculate result
                 .Map(tariff => CalculateIncomeTax(person, tariff))
                 .Match<Either<string, BasisTaxResult>>(
@@ -59,19 +59,17 @@ namespace TaxCalculator
 
         private BasisTaxResult CalculateIncomeTax(BasisTaxPerson person, TaxTariffModel tariff)
         {
+            var referenceTaxableIncome = person.TaxableAmount - person.TaxableAmount % tariff.IncomeIncrement;
+
+            var incrementMultiplier = (referenceTaxableIncome - tariff.IncomeLevel) / tariff.IncomeIncrement;
+
+            var baseTaxAmount = incrementMultiplier * tariff.TaxIncrement + tariff.TaxAmount;
+
+            return new BasisTaxResult
             {
-                var referenceTaxableIncome = person.TaxableAmount - person.TaxableAmount % tariff.IncomeIncrement;
-
-                var incrementMultiplier = (referenceTaxableIncome - tariff.IncomeLevel) / tariff.IncomeIncrement;
-
-                var baseTaxAmount = incrementMultiplier * tariff.TaxIncrement + tariff.TaxAmount;
-
-                return new BasisTaxResult
-                {
-                    DeterminingFactorTaxableAmount = referenceTaxableIncome,
-                    TaxAmount = baseTaxAmount,
-                };
-            }
+                DeterminingFactorTaxableAmount = referenceTaxableIncome,
+                TaxAmount = baseTaxAmount,
+            };
         }
 
         private Option<TariffType> Map(Option<CivilStatus> status)

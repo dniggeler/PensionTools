@@ -35,6 +35,7 @@ namespace TaxCalculator
                 .Map(typeId => _federalDbContext.Tariffs
                     .Where(item => item.Year == calculationYear)
                     .Where(item => item.TariffType == (int) typeId)
+                    .ToList()
                     .Where(item => item.IncomeLevel <= person.TaxableIncome)
                     .OrderByDescending(item => item.IncomeLevel))
                 // take the largest one
