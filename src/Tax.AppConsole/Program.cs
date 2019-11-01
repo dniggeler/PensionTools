@@ -26,7 +26,6 @@ namespace Tax.AppConsole
 
             var dbFile = Path.Combine(projectPath, @"src\Tax.Data\files\TaxDb");
 
-
             var configurationDict = new Dictionary<string, string>
             {
                 {"DbSettings:FilePath", dbFile}
@@ -42,23 +41,26 @@ namespace Tax.AppConsole
 
             var calculator = provider.GetService<IFullTaxCalculator>();
             int calculationYear = 2018;
-            var taxPerson = new TaxPerson
-            {
-                Canton = "ZH",
-                Name = "Burli",
-                CivilStatus = CivilStatus.Married,
-                DenominationType = ReligiousGroupType.Married,
-                Municipality = "Zürich",
-                TaxableIncome = 125000,
-                TaxableFederalIncome = 125000,
-                TaxableWealth = 300000
-            };
-            var result = await calculator.CalculateAsync(calculationYear, taxPerson);
 
-            result
-                .Match(
-                    Right: r => logger.LogInformation(r.TotalTaxAmount.ToString(CultureInfo.InvariantCulture)),
-                    Left: err => logger.LogInformation(err));
+            decimal[] incomes = {0M, 1000, 10000, 20000, 40000, 70000, 90000, 120000};
+
+            Parallel.ForEach(incomes, async amount =>
+            {
+                var taxPerson = new TaxPerson
+                {
+                    Canton = "ZH",
+                    Name = "Burli",
+                    CivilStatus = CivilStatus.Single,
+                    DenominationType = ReligiousGroupType.Married,
+                    Municipality = "Zürich",
+                    TaxableIncome = amount,
+                    TaxableFederalIncome = amount,
+                    TaxableWealth = 300000
+                };
+
+                var r = await calculator.CalculateAsync(calculationYear, taxPerson);
+                Console.WriteLine($"Income: {amount}, Total tax: {r.IfRight(v=>v.TotalTaxAmount.ToString())}");
+            });
         }
 
         private static IServiceProvider GetServiceProvider(IConfiguration configuration)

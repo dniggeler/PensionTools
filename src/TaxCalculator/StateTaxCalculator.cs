@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
@@ -11,10 +12,10 @@ namespace TaxCalculator
     public class StateTaxCalculator : IStateTaxCalculator
     {
         private readonly IAggregatedBasisTaxCalculator _basisTaxCalculator;
-        private readonly TaxRateDbContext _taxRateDbContext;
+        private readonly Func<TaxRateDbContext> _taxRateDbContext;
 
-        public StateTaxCalculator(IAggregatedBasisTaxCalculator basisTaxCalculator, 
-            TaxRateDbContext dbContext)
+        public StateTaxCalculator(IAggregatedBasisTaxCalculator basisTaxCalculator,
+            Func<TaxRateDbContext> dbContext)
         {
             _basisTaxCalculator = basisTaxCalculator;
             _taxRateDbContext = dbContext;
@@ -29,25 +30,29 @@ namespace TaxCalculator
             Either<string, AggregatedBasisTaxResult> aggregatedTaxResult = 
                 await _basisTaxCalculator.CalculateAsync(calculationYear, person);
 
-            Option<TaxRateModel> taxRate = _taxRateDbContext.Rates
-                .FirstOrDefault(item => item.Canton == person.Canton &&
-                                        item.Year == calculationYear &&
-                                        item.Municipality == person.Municipality);
-            var result = from rate in taxRate
-                from r in aggregatedTaxResult.ToOption()
-                select new TaxResult
-                {
-                    CalculationYear = calculationYear,
-                    MunicipalityRate = rate.TaxRateMunicipality,
-                    CantonRate = rate.TaxRateCanton,
-                    BasisIncomeTax = r.IncomeTax,
-                    BasisWealthTax = r.WealthTax
-                };
+            using (var ctxt = _taxRateDbContext())
+            {
+                Option<TaxRateModel> taxRate = ctxt.Rates
+                    .FirstOrDefault(item => item.Canton == person.Canton &&
+                                            item.Year == calculationYear &&
+                                            item.Municipality == person.Municipality);
+                var result = from rate in taxRate
+                    from r in aggregatedTaxResult.ToOption()
+                    select new TaxResult
+                    {
+                        CalculationYear = calculationYear,
+                        MunicipalityRate = rate.TaxRateMunicipality,
+                        CantonRate = rate.TaxRateCanton,
+                        BasisIncomeTax = r.IncomeTax,
+                        BasisWealthTax = r.WealthTax
+                    };
 
-            return result
-                .Match<Either<string, TaxResult>>(
-                    Some: item => item,
-                    None: () => msg);
+                return result
+                    .Match<Either<string, TaxResult>>(
+                        Some: item => item,
+                        None: () => msg);
+            }
+
         }
     }
 }
