@@ -8,7 +8,8 @@ namespace TaxCalculator
         public MappingProfile()
         {
             CreateMap<TaxPerson, BasisTaxPerson>()
-                .ForMember(x =>x.TaxableAmount, m => m.MapFrom( s=> s.TaxableIncome));
+                .ForMember(d =>d.TaxableAmount, m => m.MapFrom( s=> s.TaxableIncome));
+            CreateMap<TaxPerson, FederalTaxPerson>();
         }
     }
 }
