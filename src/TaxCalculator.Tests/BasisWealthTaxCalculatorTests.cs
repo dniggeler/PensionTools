@@ -19,6 +19,7 @@ namespace TaxCalculator.Tests
         }
 
         [Theory(DisplayName = "Basis Wealth Tax")]
+        [InlineData(2018, 4_000_000, "Married")]
         [InlineData(2018, 0, "Married")]
         [InlineData(2018, 522000, "Married")]
         [InlineData(2018, 522000, "Single")]

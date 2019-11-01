@@ -37,9 +37,9 @@ namespace TaxCalculator
                     .Where(item => item.TariffType == (int) typeId)
                     .ToList()
                     .Where(item => item.IncomeLevel <= person.TaxableIncome)
-                    .OrderByDescending(item => item.IncomeLevel))
-                // take the largest one
-                .Map(items => items.First())
+                    .OrderByDescending(item => item.IncomeLevel)
+                    .DefaultIfEmpty(new FederalTaxTariffModel())
+                    .First())
                 // calculate result
                 .Map(tariff => CalculateTax(person, tariff))
                 .Match<Either<string, BasisTaxResult>>(

@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using FluentAssertions;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
@@ -17,28 +18,37 @@ namespace TaxCalculator.Tests
             _fixture = fixture;
         }
 
-        [Fact(DisplayName = "State Tax")]
-        public async Task ShouldCalculateStateTax()
+        [Theory(DisplayName = "State Tax")]
+        [InlineData(2018, 500_000, 4000_000,"Married")]
+        [InlineData(2018, 0,0, "Married")]
+        [InlineData(2018, 99995, 522000, "Married")]
+        public async Task ShouldCalculateStateTax(int calculationYear, double incomeAsDouble, double wealthAsDouble,
+            string civilStatusCode)
         {
             // given
-            int calculationYear = 2018;
+            string name = "Burli";
+            string canton = "ZH";
+            decimal income = Convert.ToDecimal(incomeAsDouble);
+            decimal wealth = Convert.ToDecimal(wealthAsDouble);
+            CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
 
             var taxPerson = new TaxPerson
             {
-                Canton = "ZH",
-                Name = "Burli",
-                CivilStatus = CivilStatus.Married,
+                Canton = canton,
+                Name = name,
+                CivilStatus = status,
                 DenominationType = ReligiousGroupType.Married,
                 Municipality = "Zürich",
-                TaxableIncome = 99995,
-                TaxableWealth = 522000
+                TaxableIncome = income,
+                TaxableWealth = wealth
             };
 
             // when
             var result = await _fixture.Calculator.CalculateAsync(calculationYear, taxPerson);
 
             result.IsRight.Should().BeTrue();
-            Snapshot.Match(result);
+            Snapshot.Match(result, $"Theory State Tax {calculationYear}{incomeAsDouble}{wealthAsDouble}{civilStatusCode}");
+
         }
     }
 }

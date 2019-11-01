@@ -7,7 +7,7 @@ using Xunit;
 
 namespace TaxCalculator.Tests
 {
-    [Trait("Calculator", "Basis Tax")]
+    [Trait("Calculator", "Aggregated Tax")]
     public class AggregatedBasisTaxCalculatorTests : IClassFixture<TaxCalculatorFixture<IAggregatedBasisTaxCalculator>>
     {
         private readonly TaxCalculatorFixture<IAggregatedBasisTaxCalculator> _fixture;
@@ -17,8 +17,8 @@ namespace TaxCalculator.Tests
             _fixture = fixture;
         }
 
-        [Fact(DisplayName = "Aggregated Tax")]
-        public async Task ShouldCalculateIncomeTax()
+        [Fact(DisplayName = "Below Max but Above Min Level")]
+        public async Task ShouldCalculateIncomeTaxWhenBelowMaxButAboveMinLevel()
         {
             // given
             int calculationYear = 2018;
