@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,9 +20,16 @@ namespace Tax.AppConsole
     {
         static async Task Main()
         {
+            var projectPath = Assembly.GetExecutingAssembly()
+                .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
+                .First();
+
+            var dbFile = Path.Combine(projectPath, @"src\Tax.Data\files\TaxDb");
+
+
             var configurationDict = new Dictionary<string, string>
             {
-                {"DbSettings:FilePath", @"C:\workspace\private\PensionTools\src\Tax.Data\files\TaxDb"}
+                {"DbSettings:FilePath", dbFile}
             };
 
             IConfiguration configuration = new ConfigurationBuilder()
@@ -30,16 +40,25 @@ namespace Tax.AppConsole
             
             var logger = provider.GetService<ILogger<Program>>();
 
-            var calculator = provider.GetService<IIncomeTaxCalculator>();
+            var calculator = provider.GetService<IFullTaxCalculator>();
             int calculationYear = 2018;
-            var result = await calculator.CalculateAsync(calculationYear, new TaxPerson());
+            var taxPerson = new TaxPerson
+            {
+                Canton = "ZH",
+                Name = "Burli",
+                CivilStatus = CivilStatus.Married,
+                DenominationType = ReligiousGroupType.Married,
+                Municipality = "Zürich",
+                TaxableIncome = 125000,
+                TaxableFederalIncome = 125000,
+                TaxableWealth = 300000
+            };
+            var result = await calculator.CalculateAsync(calculationYear, taxPerson);
 
             result
                 .Match(
-                    Right: r => logger.LogDebug(r.MunicipalityTaxAmount.ToString(CultureInfo.InvariantCulture)),
-                    Left: err => logger.LogDebug(err));
-
-            logger.LogError("Hi, error");
+                    Right: r => logger.LogInformation(r.TotalTaxAmount.ToString(CultureInfo.InvariantCulture)),
+                    Left: err => logger.LogInformation(err));
         }
 
         private static IServiceProvider GetServiceProvider(IConfiguration configuration)
