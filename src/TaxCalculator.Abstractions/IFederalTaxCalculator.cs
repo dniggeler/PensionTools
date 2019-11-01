@@ -7,6 +7,6 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions
 {
     public interface IFederalTaxCalculator
     {
-        Task<Either<string,BasisTaxResult>> CalculateAsync(int calculationYear, BasisTaxPerson person);
+        Task<Either<string,BasisTaxResult>> CalculateAsync(int calculationYear, FederalTaxPerson person);
     }
 }

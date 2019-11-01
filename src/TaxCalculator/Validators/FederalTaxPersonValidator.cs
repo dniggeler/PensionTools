@@ -3,12 +3,12 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
 namespace TaxCalculator.Validators
 {
-    public class BasisTaxPersonValidator : AbstractValidator<BasisTaxPerson>
+    public class FederalTaxPersonValidator : AbstractValidator<FederalTaxPerson>
     {
-        public BasisTaxPersonValidator()
+        public FederalTaxPersonValidator()
         {
+            RuleFor(x => x.Name).NotNull().NotEmpty();
             RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
-            RuleFor(x => x.Canton).SetValidator(new CantonValidator());
         }
     }
 }

@@ -22,11 +22,11 @@ namespace TaxCalculator.Tests
         {
             // given
             var calculationYear = 2018;
-            var taxPerson = new BasisTaxPerson
+            var taxPerson = new FederalTaxPerson
             {
-                Canton = "ZH",
+                Name = "Burli",
                 CivilStatus = CivilStatus.Married,
-                TaxableAmount = 99995
+                TaxableIncome = 99995
             };
 
             // when

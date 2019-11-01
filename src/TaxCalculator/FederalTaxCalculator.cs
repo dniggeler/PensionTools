@@ -5,8 +5,8 @@ using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using Tax.Data;
-using Tax.Data.Abstractions;
 using Tax.Data.Abstractions.Models;
+
 
 namespace TaxCalculator
 {
@@ -14,16 +14,16 @@ namespace TaxCalculator
     {
         private const int IncomeTaxTypeId = (int)TaxType.Income;
 
-        private readonly IValidator<BasisTaxPerson> _taxPersonValidator;
+        private readonly IValidator<FederalTaxPerson> _taxPersonValidator;
         private readonly FederalTaxTariffDbContext _federalDbContext;
 
-        public FederalTaxCalculator(IValidator<BasisTaxPerson> taxPersonValidator, FederalTaxTariffDbContext federalDbContext)
+        public FederalTaxCalculator(IValidator<FederalTaxPerson> taxPersonValidator, FederalTaxTariffDbContext federalDbContext)
         {
             _taxPersonValidator = taxPersonValidator;
             _federalDbContext = federalDbContext;
         }
 
-        public Task<Either<string, BasisTaxResult>> CalculateAsync(int calculationYear, BasisTaxPerson person)
+        public Task<Either<string, BasisTaxResult>> CalculateAsync(int calculationYear, FederalTaxPerson person)
         {
             var validationResult = _taxPersonValidator.Validate(person);
             if (!validationResult.IsValid)
@@ -38,7 +38,7 @@ namespace TaxCalculator
                     .Where(item => item.Year == calculationYear)
                     .Where(item => item.TariffType == (int) typeId)
                     .Where(item => item.TaxType == IncomeTaxTypeId)
-                    .Where(item => item.IncomeLevel <= person.TaxableAmount)
+                    .Where(item => item.IncomeLevel <= person.TaxableIncome)
                     .OrderByDescending(item => item.IncomeLevel))
                 // take the largest one
                 .Map(items => items.First())
@@ -50,21 +50,19 @@ namespace TaxCalculator
                 .AsTask();
         }
 
-        private BasisTaxResult CalculateTax(BasisTaxPerson person, FederalTaxTariffModel tariff)
+        private BasisTaxResult CalculateTax(FederalTaxPerson person, FederalTaxTariffModel tariff)
         {
+            var referenceTaxableIncome = person.TaxableIncome - person.TaxableIncome % tariff.IncomeIncrement;
+
+            var incrementMultiplier = (referenceTaxableIncome - tariff.IncomeLevel) / tariff.IncomeIncrement;
+
+            var baseTaxAmount = incrementMultiplier * tariff.TaxIncrement + tariff.TaxAmount;
+
+            return new BasisTaxResult
             {
-                var referenceTaxableIncome = person.TaxableAmount - person.TaxableAmount % tariff.IncomeIncrement;
-
-                var incrementMultiplier = (referenceTaxableIncome - tariff.IncomeLevel) / tariff.IncomeIncrement;
-
-                var baseTaxAmount = incrementMultiplier * tariff.TaxIncrement + tariff.TaxAmount;
-
-                return new BasisTaxResult
-                {
-                    DeterminingFactorTaxableAmount = referenceTaxableIncome,
-                    TaxAmount = baseTaxAmount,
-                };
-            }
+                DeterminingFactorTaxableAmount = referenceTaxableIncome,
+                TaxAmount = baseTaxAmount,
+            };
         }
 
         private Option<TariffType> Map(Option<CivilStatus> status)
