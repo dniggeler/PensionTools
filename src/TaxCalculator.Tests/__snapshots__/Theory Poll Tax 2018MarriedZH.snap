@@ -1,7 +1,9 @@
 ﻿[
   {
     "State": "IsRight",
-    "Right": 48.0,
+    "Right": [
+      48.0
+    ],
     "Left": null
   }
 ]

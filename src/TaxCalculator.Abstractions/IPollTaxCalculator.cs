@@ -8,6 +8,6 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions
 {
     public interface IPollTaxCalculator
     {
-        Task<Either<string,decimal>> CalculateAsync(int calculationYear, PollTaxPerson person);
+        Task<Either<string, Option<decimal>>> CalculateAsync(int calculationYear, PollTaxPerson person);
     }
 }

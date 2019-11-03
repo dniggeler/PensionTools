@@ -1,4 +1,7 @@
-﻿namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
+﻿using LanguageExt;
+
+
+namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
 {
     public class TaxResult
     {
@@ -10,5 +13,6 @@
         public decimal MunicipalityTaxAmount => MunicipalityRate / 100M * (BasisIncomeTax.TaxAmount + BasisWealthTax.TaxAmount);
         public decimal CantonTaxAmount => CantonRate / 100M * (BasisIncomeTax.TaxAmount + BasisWealthTax.TaxAmount);
         public decimal TotalTaxAmount => MunicipalityTaxAmount + CantonTaxAmount;
+        public Option<decimal> PollTaxAmount { get; set; }
     }
 }

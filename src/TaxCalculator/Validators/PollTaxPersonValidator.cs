@@ -7,12 +7,13 @@ namespace TaxCalculator.Validators
 {
     public class PollTaxPersonValidator : AbstractValidator<PollTaxPerson>
     {
-        private static string[] _cantonsWithPollTax = {"ZH", "LU", "SO" };
+        
 
         public PollTaxPersonValidator()
         {
             RuleFor(x => x.Name).NotNull().NotEmpty();
             RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
+            RuleFor(x => x.Canton).NotNull().NotEmpty();
         }
     }
 }
