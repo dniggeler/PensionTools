@@ -42,7 +42,7 @@ namespace Tax.AppConsole
             var calculator = provider.GetService<IFullTaxCalculator>();
             int calculationYear = 2018;
 
-            decimal[] incomes = {0M, 1000, 10000, 20000, 40000, 70000, 90000, 120000};
+            decimal[] incomes = {0M, 1000, 10000, 20000, 40000, 70000, 90000, 120000,150000,200000,300000,500000,800000,1000000};
 
             Parallel.ForEach(incomes, async amount =>
             {
