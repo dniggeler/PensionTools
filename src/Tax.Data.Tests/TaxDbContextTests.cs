@@ -32,7 +32,7 @@ namespace Tax.Data.Tests
             {
                 using var dbContext = _fixture.Provider.GetService<TaxRateDbContext>();
                 return dbContext.Rates.Where(item => item.Canton == "ZH" &&
-                                                     item.Year == 2017)
+                                                     item.Year == 2018)
                     .ToList();
             }
         }
