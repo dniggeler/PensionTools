@@ -40,6 +40,7 @@ namespace TaxCalculator
 
         private static void AddBasisCalculators(this ServiceCollection collection)
         {
+            collection.AddTransient<IChurchTaxCalculator, ChurchTaxCalculator>();
             collection.AddTransient<IPollTaxCalculator, PollTaxCalculator>();
             collection.AddTransient<IBasisIncomeTaxCalculator, BasisIncomeTaxCalculator>();
             collection.AddTransient<IBasisWealthTaxCalculator, BasisWealthTaxCalculator>();
