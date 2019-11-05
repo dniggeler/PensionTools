@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;
 using Xunit;
 
@@ -33,16 +34,22 @@ namespace TaxCalculator.Tests
             decimal wealth = Convert.ToDecimal(wealthAsDouble);
             CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
 
-            var taxPerson = new TaxPerson()
+            var taxPerson = new ChurchTaxPerson
             {
                 Canton = canton,
                 Name = name,
                 CivilStatus = status,
-                DenominationType = ReligiousGroupType.Married,
+                ReligiousGroup = ReligiousGroupType.Married,
                 Municipality = "Zürich",
-                TaxableIncome = income,
-                TaxableFederalIncome = federalIncome,
-                TaxableWealth = wealth
+            };
+
+            var taxResult = new SingleTaxResult
+            {
+                BasisTaxAmount = new BasisTaxResult
+                {
+                    DeterminingFactorTaxableAmount = 99900,
+                    TaxAmount = 4877M,
+                },
             };
 
             // when
