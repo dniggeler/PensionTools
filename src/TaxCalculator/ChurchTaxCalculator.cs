@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace TaxCalculator
+﻿namespace TaxCalculator
 {
     using System.Linq;
     using System.Threading.Tasks;
@@ -15,19 +12,19 @@ namespace TaxCalculator
     public class ChurchTaxCalculator : IChurchTaxCalculator
     {
         private readonly IValidator<ChurchTaxPerson> churchTaxPersonValidator;
-        private readonly IValidator<BasisTaxResult> basisTaxResultValidator;
+        private readonly IValidator<SingleTaxResult> taxResultValidator;
 
         public ChurchTaxCalculator(
             IValidator<ChurchTaxPerson> churchTaxPersonValidator,
-            IValidator<BasisTaxResult> basisTaxResultValidator)
+            IValidator<SingleTaxResult> basisTaxResultValidator)
         {
             this.churchTaxPersonValidator = churchTaxPersonValidator;
-            this.basisTaxResultValidator = basisTaxResultValidator;
+            this.taxResultValidator = basisTaxResultValidator;
         }
 
         /// <inheritdoc />
-        public Task<Either<string, ChurchTaxResult>> CalculateAsync(int calculationYear, ChurchTaxPerson person,
-            SingleTaxResult basisIncomeTaxResult)
+        public Task<Either<string, ChurchTaxResult>> CalculateAsync(
+            int calculationYear, ChurchTaxPerson person, SingleTaxResult taxResult)
         {
             if (person == null)
             {
@@ -36,11 +33,11 @@ namespace TaxCalculator
                         $"validation failed: {nameof(person)} null");
             }
 
-            if (basisIncomeTaxResult == null)
+            if (taxResult == null)
             {
                 return Task
                     .FromResult<Either<string, ChurchTaxResult>>(
-                        $"validation failed: {nameof(basisIncomeTaxResult)} null");
+                        $"validation failed: {nameof(taxResult)} null");
             }
 
             var validationResult = this.churchTaxPersonValidator.Validate(person);
@@ -50,23 +47,25 @@ namespace TaxCalculator
                 var errorMessageLine = string.Join(
                     ";", validationResult.Errors.Select(x => x.ErrorMessage));
                 return Task
-                    .FromResult<Either<string, ChurchTaxResult>>($"validation failed: {errorMessageLine}");
+                    .FromResult<Either<string, ChurchTaxResult>>(
+                        $"validation failed: {errorMessageLine}");
             }
 
-            var validationResultForTax = this.basisTaxResultValidator.Validate(basisIncomeTaxResult);
+            var validationResultForTax = this.taxResultValidator.Validate(taxResult);
 
             if (!validationResultForTax.IsValid)
             {
                 var errorMessageLine = string.Join(
                     ";", validationResult.Errors.Select(x => x.ErrorMessage));
                 return Task
-                    .FromResult<Either<string, ChurchTaxResult>>($"validation failed: {errorMessageLine}");
+                    .FromResult<Either<string, ChurchTaxResult>>(
+                        $"validation failed: {errorMessageLine}");
             }
 
             Either<string, ChurchTaxResult> churchTaxResult = new ChurchTaxResult
             {
                 TaxAmount = 117M,
-                TaxAmountPartner =  117M,
+                TaxAmountPartner = 117M,
             };
 
             return Task.FromResult(churchTaxResult);

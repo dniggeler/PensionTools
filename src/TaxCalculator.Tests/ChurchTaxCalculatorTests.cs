@@ -23,8 +23,12 @@ namespace TaxCalculator.Tests
         [InlineData(2018, 500_000,500_000, 4000_000,"Married")]
         [InlineData(2018, 0,5000,0, "Married")]
         [InlineData(2018, 99995, 96000, 522000, "Married")]
-        public async Task ShouldCalculateChurchTax(int calculationYear, double stateIncomeAsDouble, 
-            double federalIncomeAsDouble, double wealthAsDouble, string civilStatusCode)
+        public async Task ShouldCalculateChurchTax(
+            int calculationYear, 
+            double stateIncomeAsDouble, 
+            double federalIncomeAsDouble, 
+            double wealthAsDouble, 
+            string civilStatusCode)
         {
             // given
             string name = "Burli";
@@ -53,7 +57,7 @@ namespace TaxCalculator.Tests
             };
 
             // when
-            var result = await _fixture.Calculator.CalculateAsync(calculationYear, taxPerson,null);
+            var result = await _fixture.Calculator.CalculateAsync(calculationYear, taxPerson, taxResult);
 
             result.IsRight.Should().BeTrue();
             Snapshot.Match(result, $"Theory Church Tax {calculationYear}{stateIncomeAsDouble}{wealthAsDouble}{civilStatusCode}");
