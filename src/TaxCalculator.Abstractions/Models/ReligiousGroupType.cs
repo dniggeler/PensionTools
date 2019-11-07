@@ -2,6 +2,9 @@
 {
     public enum ReligiousGroupType
     {
-        Base, Married
+        Undefined = 0, 
+        Protestant,
+        Catholic,
+        Roman
     }
 }

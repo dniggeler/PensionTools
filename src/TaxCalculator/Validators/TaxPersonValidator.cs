@@ -11,7 +11,7 @@ namespace TaxCalculator.Validators
         public TaxPersonValidator()
         {
             RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
-            RuleFor(x => x.DenominationType).Must(x => x.IsSome);
+            RuleFor(x => x.ReligiousGroupType).Must(x => x.IsSome);
             RuleFor(x => x.Canton).Must(x => _supportedCantons.Contains(x));
         }
     }

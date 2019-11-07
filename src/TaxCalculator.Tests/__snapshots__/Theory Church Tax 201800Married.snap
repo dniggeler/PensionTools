@@ -3,10 +3,10 @@
     "State": "IsRight",
     "Right": {
       "TaxAmount": [
-        117.0
+        0.0
       ],
       "TaxAmountPartner": [
-        117.0
+        0.0
       ]
     },
     "Left": null

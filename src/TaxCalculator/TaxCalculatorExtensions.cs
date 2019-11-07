@@ -37,7 +37,7 @@ namespace TaxCalculator
             collection.AddSingleton<IValidator<FederalTaxPerson>, FederalTaxPersonValidator>();
             collection.AddSingleton<IValidator<PollTaxPerson>, PollTaxPersonValidator>();
             collection.AddSingleton<IValidator<ChurchTaxPerson>, ChurchTaxPersonValidator>();
-            collection.AddSingleton<IValidator<SingleTaxResult>, ChurchTaxResultValidator>();
+            collection.AddSingleton<IValidator<AggregatedBasisTaxResult>, AggregatedTaxResultValidator>();
         }
 
         private static void AddBasisCalculators(this ServiceCollection collection)

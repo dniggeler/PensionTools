@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using FluentAssertions;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -20,47 +19,57 @@ namespace TaxCalculator.Tests
         }
 
         [Theory(DisplayName = "Church Tax")]
-        [InlineData(2018, 500_000,500_000, 4000_000,"Married")]
-        [InlineData(2018, 0,5000,0, "Married")]
-        [InlineData(2018, 99995, 96000, 522000, "Married")]
+        [InlineData(2018, 4877,252, "Married", "Protestant", "Zürich")]
+        [InlineData(2018, 0,0, "Married", "Protestant", "Zürich")]
         public async Task ShouldCalculateChurchTax(
             int calculationYear, 
-            double stateIncomeAsDouble, 
-            double federalIncomeAsDouble, 
-            double wealthAsDouble, 
-            string civilStatusCode)
+            double incomeTaxAsDouble, 
+            double wealthTaxAsDouble, 
+            string civilStatusCode,
+            string religiousGroupCode,
+            string municipality)
         {
             // given
             string name = "Burli";
             string canton = "ZH";
-            decimal income = Convert.ToDecimal(stateIncomeAsDouble);
-            decimal federalIncome = Convert.ToDecimal(federalIncomeAsDouble);
-            decimal wealth = Convert.ToDecimal(wealthAsDouble);
+            decimal incomeTax = Convert.ToDecimal(incomeTaxAsDouble);
+            decimal wealthTax = Convert.ToDecimal(wealthTaxAsDouble);
             CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
+
+            ReligiousGroupType religiousGroup =
+                Enum.Parse<ReligiousGroupType>(religiousGroupCode);
+
+            ReligiousGroupType partnerReligiousGroup 
+                = ReligiousGroupType.Protestant;
 
             var taxPerson = new ChurchTaxPerson
             {
                 Canton = canton,
                 Name = name,
                 CivilStatus = status,
-                ReligiousGroup = ReligiousGroupType.Married,
-                Municipality = "Zürich",
+                ReligiousGroup = religiousGroup,
+                ReligiousGroupPartner = partnerReligiousGroup,
+                Municipality = municipality,
             };
 
-            var taxResult = new SingleTaxResult
+            var taxResult = new AggregatedBasisTaxResult
             {
-                BasisTaxAmount = new BasisTaxResult
+                IncomeTax = new BasisTaxResult
                 {
-                    DeterminingFactorTaxableAmount = 99900,
-                    TaxAmount = 4877M,
+                    TaxAmount = incomeTax,
+                },
+                WealthTax = new BasisTaxResult
+                {
+                    TaxAmount = wealthTax,
                 },
             };
 
             // when
             var result = await _fixture.Calculator.CalculateAsync(calculationYear, taxPerson, taxResult);
 
-            result.IsRight.Should().BeTrue();
-            Snapshot.Match(result, $"Theory Church Tax {calculationYear}{stateIncomeAsDouble}{wealthAsDouble}{civilStatusCode}");
+            Snapshot.Match(
+                result,
+                $"Theory Church Tax {calculationYear}{incomeTax}{wealthTax}{civilStatusCode}");
 
         }
     }

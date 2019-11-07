@@ -51,7 +51,7 @@ namespace Tax.AppConsole
                     Canton = "ZH",
                     Name = "Burli",
                     CivilStatus = CivilStatus.Single,
-                    DenominationType = ReligiousGroupType.Married,
+                    ReligiousGroupType = ReligiousGroupType.Protestant,
                     Municipality = "Zürich",
                     TaxableIncome = amount,
                     TaxableFederalIncome = amount,

@@ -14,6 +14,6 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
         public decimal TaxableFederalIncome { get; set; } 
         public decimal TaxableWealth { get; set; }
         public int NumberOfChildren { get; set; }
-        public Option<ReligiousGroupType> DenominationType { get; set; }
+        public Option<ReligiousGroupType> ReligiousGroupType { get; set; }
     }
 }
