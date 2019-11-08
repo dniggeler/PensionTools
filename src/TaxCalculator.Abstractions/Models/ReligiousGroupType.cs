@@ -2,7 +2,7 @@
 {
     public enum ReligiousGroupType
     {
-        Undefined = 0, 
+        Other, 
         Protestant,
         Catholic,
         Roman
