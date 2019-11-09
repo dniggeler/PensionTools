@@ -20,6 +20,7 @@ namespace TaxCalculator.Tests
 
         [Theory(DisplayName = "Church Tax")]
         [InlineData(2018, 4877,252, "Married", "Protestant", "Zürich")]
+        [InlineData(2018, 4877,252, "Married", "Catholic", "Zürich")]
         [InlineData(2018, 0,0, "Married", "Protestant", "Zürich")]
         public async Task ShouldCalculateChurchTax(
             int calculationYear, 
@@ -69,7 +70,7 @@ namespace TaxCalculator.Tests
 
             Snapshot.Match(
                 result,
-                $"Theory Church Tax {calculationYear}{incomeTax}{wealthTax}{civilStatusCode}");
+                $"Theory Church Tax {calculationYear}{incomeTax}{wealthTax}{civilStatusCode}{religiousGroupCode}");
 
         }
     }

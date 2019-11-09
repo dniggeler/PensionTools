@@ -73,11 +73,15 @@
         private Task<Either<string, ChurchTaxResult>> CalculateInternalAsync(
             int calculationYear, ChurchTaxPerson person, AggregatedBasisTaxResult taxResult)
         {
-            decimal splitFactor =
+            var religiousGroupPartner = Prelude.Optional(
+                person.ReligiousGroupPartner.IfNone(ReligiousGroupType.Other));
+
+            var splitFactor =
                 (from c in person.CivilStatus
                 from r in person.ReligiousGroup
+                from rp in religiousGroupPartner
                 select this.DetermineSplitFactor(
-                    c, r, person.ReligiousGroupPartner.IfNone(ReligiousGroupType.Other)))
+                    c, r, rp))
                 .IfNone(0M);
 
             using (var context = this.taxRateContextFunc())
@@ -87,22 +91,30 @@
                                    && item.Canton == person.Canton
                                    && item.Municipality == person.Municipality);
 
-                return person.ReligiousGroup
-                    .Map(group => group switch
+                Option<ChurchTaxResult> result =
+                        from ratePerson in person.ReligiousGroup.Map(GetTaxRate)
+                        from ratePartner in religiousGroupPartner.Map(GetTaxRate)
+                        select new ChurchTaxResult
+                        {
+                            TaxAmount = ratePerson / 100M * taxResult.Total * splitFactor,
+                            TaxAmountPartner = ratePartner / 100M * taxResult.Total * (1M - splitFactor),
+                        };
+
+                return result.Match<Either<string, ChurchTaxResult>>(
+                        Some: r => r,
+                        None: () => "Calculation failed")
+                    .AsTask();
+
+                decimal GetTaxRate(ReligiousGroupType religiousGroupType)
+                {
+                    return religiousGroupType switch
                     {
                         ReligiousGroupType.Roman => taxRateModel.RomanChurchTaxRate,
                         ReligiousGroupType.Protestant => taxRateModel.ProtestantChurchTaxRate,
                         ReligiousGroupType.Catholic => taxRateModel.CatholicChurchTaxRate,
                         _ => 0M
-                    })
-                    .Match<Either<string, ChurchTaxResult>>(
-                        Some: rate => new ChurchTaxResult
-                        {
-                            TaxAmount = rate / 100M * taxResult.Total * splitFactor,
-                            TaxAmountPartner = rate / 100M * taxResult.Total * (1M - splitFactor),
-                        },
-                        None: () => "Calculation failed")
-                    .AsTask();
+                    };
+                }
             }
         }
 
@@ -111,7 +123,7 @@
             ReligiousGroupType religiousGroupType,
             ReligiousGroupType personReligiousGroupPartner)
         {
-            decimal splitFactor = (civilStatus, religiousGroupType, religiousGroupType)
+            decimal splitFactor = (civilStatus, religiousGroupType, personReligiousGroupPartner)
                 switch
                 {
                     (CivilStatus.Undefined, _, _) => 1.0M,
