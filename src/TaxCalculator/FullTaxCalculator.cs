@@ -8,26 +8,27 @@ namespace TaxCalculator
 {
     public class FullTaxCalculator : IFullTaxCalculator
     {
-        private readonly IMapper _mapper;
-        private readonly IStateTaxCalculator _stateTaxCalculator;
-        private readonly IFederalTaxCalculator _federalTaxCalculator;
+        private readonly IMapper mapper;
+        private readonly IStateTaxCalculator stateTaxCalculator;
+        private readonly IFederalTaxCalculator federalTaxCalculator;
 
         public FullTaxCalculator(
             IMapper mapper,
             IStateTaxCalculator stateTaxCalculator,
             IFederalTaxCalculator federalTaxCalculator)
         {
-            _mapper = mapper;
-            _stateTaxCalculator = stateTaxCalculator;
-            _federalTaxCalculator = federalTaxCalculator;
+            this.mapper = mapper;
+            this.stateTaxCalculator = stateTaxCalculator;
+            this.federalTaxCalculator = federalTaxCalculator;
         }
 
-        public async Task<Either<string, FullTaxResult>> CalculateAsync(int calculationYear, TaxPerson person)
+        public async Task<Either<string, FullTaxResult>> CalculateAsync(
+            int calculationYear, TaxPerson person)
         {
-            var federalTaxPerson = _mapper.Map<FederalTaxPerson>(person);
+            var federalTaxPerson = this.mapper.Map<FederalTaxPerson>(person);
 
-            var stateTaxResultTask = _stateTaxCalculator.CalculateAsync(calculationYear, person);
-            var federalTaxResultTask = _federalTaxCalculator.CalculateAsync(calculationYear, federalTaxPerson);
+            var stateTaxResultTask = this.stateTaxCalculator.CalculateAsync(calculationYear, person);
+            var federalTaxResultTask = this.federalTaxCalculator.CalculateAsync(calculationYear, federalTaxPerson);
 
             await Task.WhenAll(stateTaxResultTask, federalTaxResultTask);
 
@@ -37,9 +38,10 @@ namespace TaxCalculator
                     select new FullTaxResult()
                     {
                         StateTaxResult = stateTax,
-                        FederalTaxResult = federalTax
+                        FederalTaxResult = federalTax,
                     })
-                .Match<Either<string, FullTaxResult>>(Some: v => v,
+                .Match<Either<string, FullTaxResult>>(
+                    Some: v => v,
                     None: () => "Full tax calculation failed");
         }
     }

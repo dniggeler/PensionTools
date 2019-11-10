@@ -13,54 +13,67 @@ namespace TaxCalculator
 {
     public class StateTaxCalculator : IStateTaxCalculator
     {
-        private readonly IAggregatedBasisTaxCalculator _basisTaxCalculator;
-        private readonly IPollTaxCalculator _pollTaxCalculator;
-        private readonly IMapper _mapper;
-        private readonly Func<TaxRateDbContext> _taxRateDbContext;
+        private readonly IAggregatedBasisTaxCalculator basisTaxCalculator;
+        private readonly IChurchTaxCalculator churchTaxCalculator;
+        private readonly IPollTaxCalculator pollTaxCalculator;
+        private readonly IMapper mapper;
+        private readonly Func<TaxRateDbContext> taxRateDbContext;
 
-        public StateTaxCalculator(IAggregatedBasisTaxCalculator basisTaxCalculator, 
+        public StateTaxCalculator(
+            IAggregatedBasisTaxCalculator basisTaxCalculator,
+            IChurchTaxCalculator churchTaxCalculator,
             IPollTaxCalculator pollTaxCalculator,
             IMapper mapper,
             Func<TaxRateDbContext> dbContext)
         {
-            _basisTaxCalculator = basisTaxCalculator;
-            _pollTaxCalculator = pollTaxCalculator;
-            _mapper = mapper;
-            _taxRateDbContext = dbContext;
+            this.basisTaxCalculator = basisTaxCalculator;
+            this.churchTaxCalculator = churchTaxCalculator;
+            this.pollTaxCalculator = pollTaxCalculator;
+            this.mapper = mapper;
+            this.taxRateDbContext = dbContext;
         }
 
-        public async Task<Either<string, TaxResult>> CalculateAsync(int calculationYear, TaxPerson person)
+        public async Task<Either<string, TaxResult>> CalculateAsync(
+            int calculationYear, TaxPerson person)
         {
             string msg =
                 $@"no municipality {person.Municipality} for this canton 
                     {person.Canton} and calculation {calculationYear} year found";
 
-            var aggregatedTaxResultTask = 
-                 _basisTaxCalculator.CalculateAsync(calculationYear, person);
+            var aggregatedTaxResultTask =
+                 this.basisTaxCalculator.CalculateAsync(calculationYear, person);
 
-            var pollTaxPerson = _mapper.Map<PollTaxPerson>(person);
+            var pollTaxPerson = this.mapper.Map<PollTaxPerson>(person);
             var pollTaxResultTask =
-                _pollTaxCalculator.CalculateAsync(calculationYear, pollTaxPerson);
+                this.pollTaxCalculator.CalculateAsync(calculationYear, pollTaxPerson);
+
+            var churchTaxPerson = this.mapper.Map<ChurchTaxPerson>(person);
 
             await Task.WhenAll(pollTaxResultTask, aggregatedTaxResultTask);
 
-            using (var ctxt = _taxRateDbContext())
+            var aggregatedTaxResult = await aggregatedTaxResultTask;
+            var churchTaxResult = await aggregatedTaxResult
+                .BindAsync(r => this.churchTaxCalculator.CalculateAsync(
+                        calculationYear, churchTaxPerson, r));
+
+            using (var ctxt = this.taxRateDbContext())
             {
                 Option<TaxRateModel> taxRate = ctxt.Rates
                     .FirstOrDefault(item => item.Canton == person.Canton &&
                                             item.Year == calculationYear &&
                                             item.Municipality == person.Municipality);
                 var result = from rate in taxRate
-                    from r in aggregatedTaxResultTask.Result.ToOption()
+                    from r in aggregatedTaxResult.ToOption()
+                    from c in churchTaxResult.ToOption()
                     select new TaxResult
                     {
                         CalculationYear = calculationYear,
                         MunicipalityRate = rate.TaxRateMunicipality,
                         CantonRate = rate.TaxRateCanton,
                         BasisIncomeTax = r.IncomeTax,
-                        BasisWealthTax = r.WealthTax
+                        BasisWealthTax = r.WealthTax,
+                        ChurchTax = c,
                     };
-
 
                 result.IfSome(r => pollTaxResultTask.Result.IfRight(v => r.PollTaxAmount = v));
                 return result
@@ -68,7 +81,6 @@ namespace TaxCalculator
                         Some: item => item,
                         None: () => msg);
             }
-
         }
     }
 }

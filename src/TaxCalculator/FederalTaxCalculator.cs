@@ -45,13 +45,12 @@ namespace TaxCalculator
                         .DefaultIfEmpty(new FederalTaxTariffModel())
                         .First())
                     // calculate result
-                    .Map(tariff => CalculateTax(person, tariff))
+                    .Map(tariff => this.CalculateTax(person, tariff))
                     .Match<Either<string, BasisTaxResult>>(
                         Some: r => r,
                         None: () => "Tariff not available")
                     .AsTask();
             }
-            
         }
 
         private BasisTaxResult CalculateTax(FederalTaxPerson person, FederalTaxTariffModel tariff)

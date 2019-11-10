@@ -9,10 +9,11 @@ namespace TaxCalculator
     {
         public MappingProfile()
         {
-            CreateMap<TaxPerson, BasisTaxPerson>()
-                .ForMember(d =>d.TaxableAmount, m => m.MapFrom( s=> s.TaxableIncome));
-            CreateMap<TaxPerson, FederalTaxPerson>();
-            CreateMap<TaxPerson, PollTaxPerson>();
+            this.CreateMap<TaxPerson, BasisTaxPerson>()
+                .ForMember(d => d.TaxableAmount, m => m.MapFrom( s=> s.TaxableIncome));
+            this.CreateMap<TaxPerson, FederalTaxPerson>();
+            this.CreateMap<TaxPerson, PollTaxPerson>();
+            this.CreateMap<TaxPerson, ChurchTaxPerson>();
         }
     }
 }
