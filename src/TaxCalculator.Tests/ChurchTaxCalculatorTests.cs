@@ -49,7 +49,7 @@ namespace TaxCalculator.Tests
                 Name = name,
                 CivilStatus = status,
                 ReligiousGroup = religiousGroup,
-                ReligiousGroupPartner = partnerReligiousGroup,
+                PartnerReligiousGroup = partnerReligiousGroup,
                 Municipality = municipality,
             };
 

@@ -19,11 +19,15 @@ namespace TaxCalculator.Tests
         }
 
         [Theory(DisplayName = "State Tax")]
-        [InlineData(2018, 500_000, 4000_000,"Married")]
-        [InlineData(2018, 0,0, "Married")]
-        [InlineData(2018, 99995, 522000, "Married")]
-        public async Task ShouldCalculateStateTax(int calculationYear, double incomeAsDouble, double wealthAsDouble,
-            string civilStatusCode)
+        [InlineData(2018, 500_000, 4000_000, "Married", "Protestant")]
+        [InlineData(2018, 0,0, "Married", "Protestant")]
+        [InlineData(2018, 99995, 522000, "Married", "Protestant")]
+        public async Task ShouldCalculateStateTax(
+            int calculationYear,
+            double incomeAsDouble,
+            double wealthAsDouble,
+            string civilStatusCode,
+            string religiousGroupTypeCode)
         {
             // given
             string name = "Burli";
@@ -31,13 +35,16 @@ namespace TaxCalculator.Tests
             decimal income = Convert.ToDecimal(incomeAsDouble);
             decimal wealth = Convert.ToDecimal(wealthAsDouble);
             CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
+            ReligiousGroupType religiousGroupType = Enum.Parse<ReligiousGroupType>(religiousGroupTypeCode);
+            ReligiousGroupType partnerReligiousGroupType = ReligiousGroupType.Protestant;
 
             var taxPerson = new TaxPerson
             {
                 Canton = canton,
                 Name = name,
                 CivilStatus = status,
-                ReligiousGroupType = ReligiousGroupType.Protestant,
+                ReligiousGroupType = religiousGroupType,
+                PartnerReligiousGroupType = partnerReligiousGroupType,
                 Municipality = "Zürich",
                 TaxableIncome = income,
                 TaxableWealth = wealth

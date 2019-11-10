@@ -3,7 +3,7 @@
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
 {
-    public class TaxResult
+    public class StateTaxResult
     {
         public int CalculationYear { get; set; }
         public BasisTaxResult BasisIncomeTax { get; set; }
@@ -13,7 +13,14 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
         public decimal MunicipalityRate { get; set; }
         public decimal MunicipalityTaxAmount => MunicipalityRate / 100M * (BasisIncomeTax.TaxAmount + BasisWealthTax.TaxAmount);
         public decimal CantonTaxAmount => CantonRate / 100M * (BasisIncomeTax.TaxAmount + BasisWealthTax.TaxAmount);
-        public decimal TotalTaxAmount => MunicipalityTaxAmount + CantonTaxAmount;
+
+        public decimal ChurchTaxAmount => ChurchTax.TaxAmount.IfNone(0) +
+                                          ChurchTax.TaxAmountPartner.IfNone(0);
+
+        public decimal TotalTaxAmount => MunicipalityTaxAmount +
+                                         CantonTaxAmount +
+                                         ChurchTaxAmount +
+                                         PollTaxAmount.IfNone(0);
         public Option<decimal> PollTaxAmount { get; set; }
     }
 }

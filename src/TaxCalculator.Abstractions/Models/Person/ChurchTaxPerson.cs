@@ -9,6 +9,6 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person
         public string Canton { get; set; }
         public Option<CivilStatus> CivilStatus { get; set; }
         public Option<ReligiousGroupType> ReligiousGroup { get; set; }
-        public Option<ReligiousGroupType> ReligiousGroupPartner { get; set; }
+        public Option<ReligiousGroupType> PartnerReligiousGroup { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class FullTaxResult
     {
-        public TaxResult StateTaxResult { get; set; }
+        public StateTaxResult StateTaxResult { get; set; }
         public BasisTaxResult FederalTaxResult { get; set; }
         public decimal TotalTaxAmount => StateTaxResult.TotalTaxAmount + FederalTaxResult.TaxAmount;
     }

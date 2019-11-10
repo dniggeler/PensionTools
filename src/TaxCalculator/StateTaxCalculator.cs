@@ -33,7 +33,7 @@ namespace TaxCalculator
             this.taxRateDbContext = dbContext;
         }
 
-        public async Task<Either<string, TaxResult>> CalculateAsync(
+        public async Task<Either<string, StateTaxResult>> CalculateAsync(
             int calculationYear, TaxPerson person)
         {
             string msg =
@@ -65,7 +65,7 @@ namespace TaxCalculator
                 var result = from rate in taxRate
                     from r in aggregatedTaxResult.ToOption()
                     from c in churchTaxResult.ToOption()
-                    select new TaxResult
+                    select new StateTaxResult
                     {
                         CalculationYear = calculationYear,
                         MunicipalityRate = rate.TaxRateMunicipality,
@@ -77,7 +77,7 @@ namespace TaxCalculator
 
                 result.IfSome(r => pollTaxResultTask.Result.IfRight(v => r.PollTaxAmount = v));
                 return result
-                    .Match<Either<string, TaxResult>>(
+                    .Match<Either<string, StateTaxResult>>(
                         Some: item => item,
                         None: () => msg);
             }

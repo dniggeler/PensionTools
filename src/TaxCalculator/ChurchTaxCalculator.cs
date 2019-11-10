@@ -74,7 +74,7 @@
             int calculationYear, ChurchTaxPerson person, AggregatedBasisTaxResult taxResult)
         {
             var religiousGroupPartner = Prelude.Optional(
-                person.ReligiousGroupPartner.IfNone(ReligiousGroupType.Other));
+                person.PartnerReligiousGroup.IfNone(ReligiousGroupType.Other));
 
             var splitFactor =
                 (from c in person.CivilStatus

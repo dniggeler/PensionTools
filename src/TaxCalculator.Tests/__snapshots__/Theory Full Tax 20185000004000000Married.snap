@@ -12,11 +12,20 @@
           "DeterminingFactorTaxableAmount": 4000000.0,
           "TaxAmount": 7879.5
         },
+        "ChurchTax": {
+          "TaxAmount": [
+            4074.5250
+          ],
+          "TaxAmountPartner": [
+            2910.375
+          ]
+        },
         "CantonRate": 100.0,
         "MunicipalityRate": 119.0,
         "MunicipalityTaxAmount": 69266.925,
         "CantonTaxAmount": 58207.5,
-        "TotalTaxAmount": 127474.425,
+        "ChurchTaxAmount": 6984.9000,
+        "TotalTaxAmount": 134507.3250,
         "PollTaxAmount": [
           48.0
         ]
@@ -25,7 +34,7 @@
         "DeterminingFactorTaxableAmount": 500000.0,
         "TaxAmount": 51562.0
       },
-      "TotalTaxAmount": 179036.425
+      "TotalTaxAmount": 186069.3250
     },
     "Left": null
   }

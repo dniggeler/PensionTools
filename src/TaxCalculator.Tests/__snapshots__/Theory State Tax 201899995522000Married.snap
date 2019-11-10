@@ -11,11 +11,20 @@
         "DeterminingFactorTaxableAmount": 522000.0,
         "TaxAmount": 252.5
       },
+      "ChurchTax": {
+        "TaxAmount": [
+          256.525
+        ],
+        "TaxAmountPartner": [
+          256.525
+        ]
+      },
       "CantonRate": 100.0,
       "MunicipalityRate": 119.0,
       "MunicipalityTaxAmount": 6105.295,
       "CantonTaxAmount": 5130.5,
-      "TotalTaxAmount": 11235.795,
+      "ChurchTaxAmount": 513.050,
+      "TotalTaxAmount": 11796.845,
       "PollTaxAmount": [
         48.0
       ]
