@@ -128,7 +128,7 @@
                 {
                     (CivilStatus.Undefined, _, _) => 1.0M,
                     (CivilStatus.Single, ReligiousGroupType.Other, _) => 0.0M,
-                    (CivilStatus.Single, _, _) => 0.0M,
+                    (CivilStatus.Single, _, _) => 1.0M,
                     (CivilStatus.Married, ReligiousGroupType.Other, ReligiousGroupType.Other)
                     => 0.0M,
                     (CivilStatus.Married, ReligiousGroupType.Other, _) => 1.0M,

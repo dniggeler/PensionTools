@@ -42,7 +42,7 @@ namespace Tax.AppConsole
             var calculator = provider.GetService<IFullTaxCalculator>();
             int calculationYear = 2018;
 
-            decimal[] incomes = {0M, 1000, 10000, 20000, 40000, 70000, 90000, 120000,150000,200000,300000,500000,800000,1000000};
+            decimal[] incomes = {0M, 1000, 10000, 20000, 40000, 70000, 90000, 99995, 120000,150000,200000,300000,500000,800000,1000000};
 
             Parallel.ForEach(incomes, async amount =>
             {
@@ -55,11 +55,12 @@ namespace Tax.AppConsole
                     Municipality = "Zürich",
                     TaxableIncome = amount,
                     TaxableFederalIncome = amount,
-                    TaxableWealth = 300000
+                    TaxableWealth = 522000,
                 };
 
                 var r = await calculator.CalculateAsync(calculationYear, taxPerson);
-                Console.WriteLine($"Income: {amount}, Total tax: {r.IfRight(v=>v.TotalTaxAmount.ToString())}");
+                Console.WriteLine(
+                    $"Income: {amount}, Federal: {r.IfRight(v => v.FederalTaxResult.TaxAmount.ToString(CultureInfo.InvariantCulture))}, Total tax: {r.IfRight(v=>v.TotalTaxAmount.ToString())}");
             });
         }
 
