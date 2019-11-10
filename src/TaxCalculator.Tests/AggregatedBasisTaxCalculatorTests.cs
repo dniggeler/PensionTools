@@ -28,7 +28,7 @@ namespace TaxCalculator.Tests
                 Canton = "ZH",
                 Name = "Burli",
                 CivilStatus = CivilStatus.Married,
-                DenominationType = ReligiousGroupType.Married,
+                ReligiousGroupType = ReligiousGroupType.Protestant,
                 Municipality = "Zürich",
                 TaxableIncome = 99995,
                 TaxableWealth = 522000

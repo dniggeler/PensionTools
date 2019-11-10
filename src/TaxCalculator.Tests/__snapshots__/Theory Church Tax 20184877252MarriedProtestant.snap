@@ -1,0 +1,14 @@
+﻿[
+  {
+    "State": "IsRight",
+    "Right": {
+      "TaxAmount": [
+        256.45
+      ],
+      "TaxAmountPartner": [
+        256.45
+      ]
+    },
+    "Left": null
+  }
+]

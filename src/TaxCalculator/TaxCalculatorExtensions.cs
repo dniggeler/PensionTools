@@ -3,6 +3,7 @@ using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using TaxCalculator.Validators;
 
 namespace TaxCalculator
@@ -34,10 +35,15 @@ namespace TaxCalculator
             collection.AddSingleton<IValidator<BasisTaxPerson>, BasisTaxPersonValidator>();
             collection.AddSingleton<IValidator<TaxPerson>, TaxPersonValidator>();
             collection.AddSingleton<IValidator<FederalTaxPerson>, FederalTaxPersonValidator>();
+            collection.AddSingleton<IValidator<PollTaxPerson>, PollTaxPersonValidator>();
+            collection.AddSingleton<IValidator<ChurchTaxPerson>, ChurchTaxPersonValidator>();
+            collection.AddSingleton<IValidator<AggregatedBasisTaxResult>, AggregatedTaxResultValidator>();
         }
 
         private static void AddBasisCalculators(this ServiceCollection collection)
         {
+            collection.AddTransient<IChurchTaxCalculator, ChurchTaxCalculator>();
+            collection.AddTransient<IPollTaxCalculator, PollTaxCalculator>();
             collection.AddTransient<IBasisIncomeTaxCalculator, BasisIncomeTaxCalculator>();
             collection.AddTransient<IBasisWealthTaxCalculator, BasisWealthTaxCalculator>();
         }

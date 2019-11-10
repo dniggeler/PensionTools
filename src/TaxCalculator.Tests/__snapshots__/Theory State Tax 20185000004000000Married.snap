@@ -15,7 +15,10 @@
       "MunicipalityRate": 119.0,
       "MunicipalityTaxAmount": 69266.925,
       "CantonTaxAmount": 58207.5,
-      "TotalTaxAmount": 127474.425
+      "TotalTaxAmount": 127474.425,
+      "PollTaxAmount": [
+        48.0
+      ]
     },
     "Left": null
   }

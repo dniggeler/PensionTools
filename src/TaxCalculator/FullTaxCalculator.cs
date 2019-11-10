@@ -12,7 +12,9 @@ namespace TaxCalculator
         private readonly IStateTaxCalculator _stateTaxCalculator;
         private readonly IFederalTaxCalculator _federalTaxCalculator;
 
-        public FullTaxCalculator(IMapper mapper, IStateTaxCalculator stateTaxCalculator, 
+        public FullTaxCalculator(
+            IMapper mapper,
+            IStateTaxCalculator stateTaxCalculator,
             IFederalTaxCalculator federalTaxCalculator)
         {
             _mapper = mapper;

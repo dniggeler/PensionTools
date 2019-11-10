@@ -1,33 +1,35 @@
-﻿using System.Threading.Tasks;
-using AutoMapper;
-using LanguageExt;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-
-namespace TaxCalculator
+﻿namespace TaxCalculator
 {
+    using System.Threading.Tasks;
+    using AutoMapper;
+    using LanguageExt;
+    using PensionCoach.Tools.TaxCalculator.Abstractions;
+    using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+
     public class AggregatedBasisTaxCalculator : IAggregatedBasisTaxCalculator
     {
-        private readonly IMapper _mapper;
-        private readonly IBasisIncomeTaxCalculator _basisIncomeTaxCalculator;
-        private readonly IBasisWealthTaxCalculator _basisWealthTaxCalculator;
+        private readonly IMapper mapper;
+        private readonly IBasisIncomeTaxCalculator basisIncomeTaxCalculator;
+        private readonly IBasisWealthTaxCalculator basisWealthTaxCalculator;
 
-        public AggregatedBasisTaxCalculator(IMapper mapper, IBasisIncomeTaxCalculator basisIncomeTaxCalculator, 
-            IBasisWealthTaxCalculator basisWealthTaxCalculator)
+        public AggregatedBasisTaxCalculator(
+            IMapper mapper, IBasisIncomeTaxCalculator basisIncomeTaxCalculator, IBasisWealthTaxCalculator basisWealthTaxCalculator)
         {
-            _mapper = mapper;
-            _basisIncomeTaxCalculator = basisIncomeTaxCalculator;
-            _basisWealthTaxCalculator = basisWealthTaxCalculator;
+            this.mapper = mapper;
+            this.basisIncomeTaxCalculator = basisIncomeTaxCalculator;
+            this.basisWealthTaxCalculator = basisWealthTaxCalculator;
         }
 
         public async Task<Either<string,AggregatedBasisTaxResult>> CalculateAsync(int calculationYear, TaxPerson person)
         {
-            var basisTaxPerson = _mapper.Map<BasisTaxPerson>(person);
+            var basisTaxPerson = this.mapper.Map<BasisTaxPerson>(person);
 
-            var incomeTaxResultTask = _basisIncomeTaxCalculator.CalculateAsync(calculationYear, basisTaxPerson);
+            var incomeTaxResultTask = 
+                this.basisIncomeTaxCalculator.CalculateAsync(calculationYear, basisTaxPerson);
 
             basisTaxPerson.TaxableAmount = person.TaxableWealth;
-            var wealthTaxResultTask = _basisWealthTaxCalculator.CalculateAsync(calculationYear, basisTaxPerson);
+            var wealthTaxResultTask = 
+                this.basisWealthTaxCalculator.CalculateAsync(calculationYear, basisTaxPerson);
 
             await Task.WhenAll(incomeTaxResultTask, wealthTaxResultTask);
 
@@ -36,7 +38,7 @@ namespace TaxCalculator
                 select new AggregatedBasisTaxResult
                 {
                     IncomeTax = income,
-                    WealthTax = wealth
+                    WealthTax = wealth,
                 };
         }
     }

@@ -9,16 +9,17 @@ namespace Tax.Data
 {
     public class TaxTariffData : ITaxTariffData
     {
-        private readonly TaxTariffDbContext _dbContext;
+        private readonly Func<TaxTariffDbContext> _dbContext;
 
-        public TaxTariffData(TaxTariffDbContext dbContext)
+        public TaxTariffData(Func<TaxTariffDbContext> dbContext)
         {
             _dbContext = dbContext;
         }
 
         public IReadOnlyCollection<TaxTariffModel> Get(TaxFilterModel filter)
         {
-            return _dbContext.Tariffs
+            using var ctxt = _dbContext();
+            return ctxt.Tariffs
                 .Where(item => item.Canton == filter.Canton && item.Year == filter.Year)
                 .ToList();
         }

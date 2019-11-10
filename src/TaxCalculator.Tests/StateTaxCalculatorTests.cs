@@ -37,7 +37,7 @@ namespace TaxCalculator.Tests
                 Canton = canton,
                 Name = name,
                 CivilStatus = status,
-                DenominationType = ReligiousGroupType.Married,
+                ReligiousGroupType = ReligiousGroupType.Protestant,
                 Municipality = "Zürich",
                 TaxableIncome = income,
                 TaxableWealth = wealth
