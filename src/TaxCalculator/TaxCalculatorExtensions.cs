@@ -32,6 +32,7 @@ namespace TaxCalculator
 
         private static void AddValidators(this ServiceCollection collection)
         {
+            collection.AddSingleton<IValidator<CapitalBenefitTaxPerson>, CapitalBenefitsTaxPersonValidator>();
             collection.AddSingleton<IValidator<BasisTaxPerson>, BasisTaxPersonValidator>();
             collection.AddSingleton<IValidator<TaxPerson>, TaxPersonValidator>();
             collection.AddSingleton<IValidator<FederalTaxPerson>, FederalTaxPersonValidator>();
@@ -46,6 +47,7 @@ namespace TaxCalculator
             collection.AddTransient<IPollTaxCalculator, PollTaxCalculator>();
             collection.AddTransient<IBasisIncomeTaxCalculator, BasisIncomeTaxCalculator>();
             collection.AddTransient<IBasisWealthTaxCalculator, BasisWealthTaxCalculator>();
+            collection.AddTransient<ICapitalBenefitTaxCalculator, CapitalBenefitTaxCalculator>();
         }
     }
 }

@@ -8,6 +8,7 @@
     {
         private readonly string[] supportedCantons = { "ZH" };
 
+        /// <inheritdoc />
         public CapitalBenefitsTaxPersonValidator()
         {
             this.RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
