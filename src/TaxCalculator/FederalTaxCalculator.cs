@@ -44,6 +44,7 @@ namespace TaxCalculator
                         .OrderByDescending(item => item.IncomeLevel)
                         .DefaultIfEmpty(new FederalTaxTariffModel())
                         .First())
+
                     // calculate result
                     .Map(tariff => this.CalculateTax(person, tariff))
                     .Match<Either<string, BasisTaxResult>>(
