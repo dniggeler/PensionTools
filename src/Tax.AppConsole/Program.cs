@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data;
 using Tax.Data.Abstractions.Models;
 using TaxCalculator;
@@ -39,28 +40,26 @@ namespace Tax.AppConsole
             
             var logger = provider.GetService<ILogger<Program>>();
 
-            var calculator = provider.GetService<IFullTaxCalculator>();
+            var calculator = provider.GetService<ICapitalBenefitTaxCalculator>();
             int calculationYear = 2018;
 
-            decimal[] incomes = {0M, 1000, 10000, 20000, 40000, 70000, 90000, 99995, 120000,150000,200000,300000,500000,800000,1000000};
+            decimal[] incomes = {0M, 1000, 10000, 20000, 40000, 70000, 90000, 99995, 120000,150000,200000,300000,500000,800000,1000000,1500000,2000000,4000000};
 
             Parallel.ForEach(incomes, async amount =>
             {
-                var taxPerson = new TaxPerson
+                var taxPerson = new CapitalBenefitTaxPerson
                 {
                     Canton = "ZH",
                     Name = "Burli",
                     CivilStatus = CivilStatus.Single,
                     ReligiousGroupType = ReligiousGroupType.Protestant,
                     Municipality = "Zürich",
-                    TaxableIncome = amount,
-                    TaxableFederalIncome = amount,
-                    TaxableWealth = 522000,
+                    TaxableBenefits = amount,
                 };
 
                 var r = await calculator.CalculateAsync(calculationYear, taxPerson);
                 Console.WriteLine(
-                    $"Income: {amount}, Federal: {r.IfRight(v => v.FederalTaxResult.TaxAmount.ToString(CultureInfo.InvariantCulture))}, Total tax: {r.IfRight(v=>v.TotalTaxAmount.ToString())}");
+                    $"Benefits: {amount}, Total tax: {r.IfRight(v => v.TotalTaxAmount.ToString(CultureInfo.InvariantCulture))}");
             });
         }
 
