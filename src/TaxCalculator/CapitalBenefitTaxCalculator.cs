@@ -30,10 +30,37 @@ namespace TaxCalculator
         public async Task<Either<string, StateTaxResult>> CalculateAsync(
             int calculationYear, CapitalBenefitTaxPerson capitalBenefitTaxPerson)
         {
+            const decimal annuitizeFactor = 10;
             TaxPerson taxPerson = this.mapper.Map<TaxPerson>(capitalBenefitTaxPerson);
+
+            taxPerson.TaxableIncome = capitalBenefitTaxPerson.TaxableBenefits / annuitizeFactor;
+
             var stateTaxResult = await this.stateTaxCalculator.CalculateAsync(calculationYear, taxPerson);
 
-            return stateTaxResult;
+            return stateTaxResult
+                .Map(r => this.Scale(r, annuitizeFactor));
+        }
+
+        private StateTaxResult Scale(StateTaxResult intermediateResult, decimal scaleFactor)
+        {
+            intermediateResult.BasisIncomeTax.DeterminingFactorTaxableAmount
+                = intermediateResult.BasisIncomeTax.DeterminingFactorTaxableAmount * scaleFactor;
+            intermediateResult.BasisIncomeTax.TaxAmount
+                = intermediateResult.BasisIncomeTax.TaxAmount * scaleFactor;
+
+            intermediateResult.ChurchTax.TaxAmount =
+                intermediateResult.ChurchTax.TaxAmount.Match(
+                    Some: r => r * scaleFactor,
+                    None: () => Option<decimal>.None);
+
+            intermediateResult.ChurchTax.TaxAmountPartner =
+                intermediateResult.ChurchTax.TaxAmountPartner.Match(
+                    Some: r => r * scaleFactor,
+                    None: () => Option<decimal>.None);
+
+            intermediateResult.PollTaxAmount = Option<decimal>.None;
+
+            return intermediateResult;
         }
     }
 }
