@@ -5,7 +5,6 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
 {
     public class StateTaxResult
     {
-        public int CalculationYear { get; set; }
         public BasisTaxResult BasisIncomeTax { get; set; }
         public BasisTaxResult BasisWealthTax { get; set; }
         public ChurchTaxResult ChurchTax { get; set; }

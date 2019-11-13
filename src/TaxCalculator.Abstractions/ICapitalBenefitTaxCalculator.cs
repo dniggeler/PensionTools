@@ -8,6 +8,7 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions
 {
     public interface ICapitalBenefitTaxCalculator
     {
-        Task<Either<string,StateTaxResult>> CalculateAsync(int calculationYear, CapitalBenefitTaxPerson person);
+        Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(
+            int calculationYear, CapitalBenefitTaxPerson person);
     }
 }

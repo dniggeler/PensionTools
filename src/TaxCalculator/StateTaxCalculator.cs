@@ -67,7 +67,6 @@ namespace TaxCalculator
                     from c in churchTaxResult.ToOption()
                     select new StateTaxResult
                     {
-                        CalculationYear = calculationYear,
                         MunicipalityRate = rate.TaxRateMunicipality,
                         CantonRate = rate.TaxRateCanton,
                         BasisIncomeTax = r.IncomeTax,

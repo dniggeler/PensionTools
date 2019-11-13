@@ -2,7 +2,6 @@
   {
     "State": "IsRight",
     "Right": {
-      "CalculationYear": 2018,
       "BasisIncomeTax": {
         "DeterminingFactorTaxableAmount": 0.0,
         "TaxAmount": 0.0

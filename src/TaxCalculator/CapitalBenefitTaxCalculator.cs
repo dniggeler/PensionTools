@@ -1,10 +1,8 @@
-﻿using AutoMapper;
-using FluentValidation;
-
-
-namespace TaxCalculator
+﻿namespace TaxCalculator
 {
     using System.Threading.Tasks;
+    using AutoMapper;
+    using FluentValidation;
     using LanguageExt;
     using PensionCoach.Tools.TaxCalculator.Abstractions;
     using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
@@ -27,7 +25,7 @@ namespace TaxCalculator
         }
 
         /// <inheritdoc />
-        public async Task<Either<string, StateTaxResult>> CalculateAsync(
+        public async Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(
             int calculationYear, CapitalBenefitTaxPerson capitalBenefitTaxPerson)
         {
             const decimal annuitizeFactor = 10;
@@ -41,26 +39,32 @@ namespace TaxCalculator
                 .Map(r => this.Scale(r, annuitizeFactor));
         }
 
-        private StateTaxResult Scale(StateTaxResult intermediateResult, decimal scaleFactor)
+        private CapitalBenefitTaxResult Scale(StateTaxResult intermediateResult, decimal scaleFactor)
         {
-            intermediateResult.BasisIncomeTax.DeterminingFactorTaxableAmount
-                = intermediateResult.BasisIncomeTax.DeterminingFactorTaxableAmount * scaleFactor;
-            intermediateResult.BasisIncomeTax.TaxAmount
-                = intermediateResult.BasisIncomeTax.TaxAmount * scaleFactor;
+            var result = new CapitalBenefitTaxResult
+            {
+                BasisTax = new BasisTaxResult
+                {
+                    DeterminingFactorTaxableAmount =
+                        intermediateResult.BasisIncomeTax.DeterminingFactorTaxableAmount * scaleFactor,
+                    TaxAmount =
+                        intermediateResult.BasisIncomeTax.TaxAmount * scaleFactor,
+                },
+                ChurchTax = new ChurchTaxResult
+                {
+                    TaxAmount = intermediateResult.ChurchTax.TaxAmount.Match(
+                        Some: r => r * scaleFactor,
+                        None: () => Option<decimal>.None),
 
-            intermediateResult.ChurchTax.TaxAmount =
-                intermediateResult.ChurchTax.TaxAmount.Match(
-                    Some: r => r * scaleFactor,
-                    None: () => Option<decimal>.None);
+                    TaxAmountPartner = intermediateResult.ChurchTax.TaxAmountPartner.Match(
+                        Some: r => r * scaleFactor,
+                        None: () => Option<decimal>.None),
+                },
+                CantonRate = intermediateResult.CantonRate,
+                MunicipalityRate = intermediateResult.MunicipalityRate,
+            };
 
-            intermediateResult.ChurchTax.TaxAmountPartner =
-                intermediateResult.ChurchTax.TaxAmountPartner.Match(
-                    Some: r => r * scaleFactor,
-                    None: () => Option<decimal>.None);
-
-            intermediateResult.PollTaxAmount = Option<decimal>.None;
-
-            return intermediateResult;
+            return result;
         }
     }
 }
