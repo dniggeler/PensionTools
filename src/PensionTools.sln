@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{782F68B3-D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaxCalculators.Tests", "TaxCalculators.Tests", "{6BF8BD0F-9F88-4D41-B1E0-F4E3D84330A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxCalculator.WebApi", "TaxCalculator.WebApi\TaxCalculator.WebApi.csproj", "{19811879-AEFC-4F75-BF52-10CB8471F5CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{1A039171-DE86-4DCE-8D47-8626666004E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A039171-DE86-4DCE-8D47-8626666004E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A039171-DE86-4DCE-8D47-8626666004E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19811879-AEFC-4F75-BF52-10CB8471F5CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19811879-AEFC-4F75-BF52-10CB8471F5CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19811879-AEFC-4F75-BF52-10CB8471F5CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19811879-AEFC-4F75-BF52-10CB8471F5CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

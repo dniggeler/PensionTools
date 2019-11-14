@@ -10,7 +10,7 @@ namespace TaxCalculator
 {
     public static class TaxCalculatorExtensions
     {
-        public static void AddTaxCalculators(this ServiceCollection collection)
+        public static void AddTaxCalculators(this IServiceCollection collection)
         {
             collection.AddTransient<IIncomeTaxCalculator, IncomeTaxCalculator>();
             collection.AddTransient<IWealthTaxCalculator, WealthTaxCalculator>();
@@ -30,7 +30,7 @@ namespace TaxCalculator
             collection.AddBasisCalculators();
         }
 
-        private static void AddValidators(this ServiceCollection collection)
+        private static void AddValidators(this IServiceCollection collection)
         {
             collection.AddSingleton<IValidator<CapitalBenefitTaxPerson>, CapitalBenefitsTaxPersonValidator>();
             collection.AddSingleton<IValidator<BasisTaxPerson>, BasisTaxPersonValidator>();
@@ -41,7 +41,7 @@ namespace TaxCalculator
             collection.AddSingleton<IValidator<AggregatedBasisTaxResult>, AggregatedTaxResultValidator>();
         }
 
-        private static void AddBasisCalculators(this ServiceCollection collection)
+        private static void AddBasisCalculators(this IServiceCollection collection)
         {
             collection.AddTransient<IChurchTaxCalculator, ChurchTaxCalculator>();
             collection.AddTransient<IPollTaxCalculator, PollTaxCalculator>();
