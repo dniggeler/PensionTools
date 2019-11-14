@@ -7,7 +7,7 @@ namespace Tax.Data
 {
     public static class TaxDataExtensions
     {
-        public static void AddTaxData(this ServiceCollection collection)
+        public static void AddTaxData(this IServiceCollection collection)
         {
             collection.AddDbContext<FederalTaxTariffDbContext>(ServiceLifetime.Transient);
             collection.AddDbContext<TaxTariffDbContext>(ServiceLifetime.Transient);

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +22,24 @@ namespace TaxCalculator.WebApi
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    var projectPath = Assembly.GetExecutingAssembly()
+                        .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
+                        .First();
+
+                    var dbFile = Path.Combine(projectPath, @"src\Tax.Data\files\TaxDb");
+
+                    var configurationDict = new Dictionary<string, string>
+                    {
+                        {"DbSettings:FilePath", dbFile}
+                    };
+
+                    webBuilder.UseStartup<Startup>()
+                        .ConfigureAppConfiguration((context, builder) =>
+                        {
+                            builder
+                                .AddInMemoryCollection(configurationDict)
+                                .Build();
+                        });
                 });
     }
 }

@@ -1,13 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Tax.Data;
+using Tax.Data.Abstractions.Models;
+
 
 namespace TaxCalculator.WebApi
 {
@@ -24,7 +22,11 @@ namespace TaxCalculator.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTaxData();
             services.AddTaxCalculators();
+            services.AddOptions<DbSettings>();
+
+            services.Configure<DbSettings>(Configuration.GetSection("DbSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
