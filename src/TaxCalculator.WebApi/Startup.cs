@@ -21,6 +21,7 @@ namespace TaxCalculator.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks();
             services.AddControllers();
             services.AddTaxData();
             services.AddTaxCalculators();
@@ -38,8 +39,8 @@ namespace TaxCalculator.WebApi
             }
 
             app.UseRouting();
-
             app.UseAuthorization();
+            app.UseHealthChecks("/");
 
             app.UseEndpoints(endpoints =>
             {
