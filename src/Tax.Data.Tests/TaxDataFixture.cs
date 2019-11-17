@@ -19,25 +19,21 @@ namespace Tax.Data.Tests
                 .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
                 .First();
 
-            var dbFile = Path.Combine(projectPath, @"src\Tax.Data\files\TaxDb");
+            var dbFile = Path.Combine(projectPath, @"src\Tax.Data\files\TaxDb.db");
 
 
             var configurationDict = new Dictionary<string, string>
             {
-                {"DbSettings:FilePath", dbFile}
+                {"ConnectionStrings:TaxDb", dbFile}
             };
 
-
-            
             IConfiguration configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection(configurationDict)
                 .Build();
 
             ServiceCollection coll = new ServiceCollection();
 
-            coll.AddTaxData();
-            coll.AddOptions<DbSettings>();
-            coll.Configure<DbSettings>(configuration.GetSection("DbSettings"));
+            coll.AddTaxData(configuration);
 
             Provider = coll.BuildServiceProvider();
         }

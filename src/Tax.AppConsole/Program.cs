@@ -67,7 +67,7 @@ namespace Tax.AppConsole
         {
             var serviceCollection = new ServiceCollection();
 
-            serviceCollection.AddTaxData();
+            serviceCollection.AddTaxData(configuration);
             serviceCollection.AddTaxCalculators();
             serviceCollection.AddOptions<DbSettings>();
 

@@ -24,14 +24,12 @@ namespace TaxCalculator.Tests
                 .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
                 .First();
 
-            var dbFile = Path.Combine(projectPath, @"src\Tax.Data\files\TaxDb");
-
-
+            var dbFile = Path.Combine(projectPath, @"src\Tax.Data\files\TaxDb.db");
+            
             var configurationDict = new Dictionary<string, string>
             {
-                {"DbSettings:FilePath", dbFile}
+                {"ConnectionStrings:TaxDb", dbFile}
             };
-
 
             IConfiguration configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection(configurationDict)
@@ -39,10 +37,8 @@ namespace TaxCalculator.Tests
 
             ServiceCollection coll = new ServiceCollection();
 
-            coll.AddTaxData();
+            coll.AddTaxData(configuration);
             coll.AddTaxCalculators();
-            coll.AddOptions<DbSettings>();
-            coll.Configure<DbSettings>(configuration.GetSection("DbSettings"));
 
             Provider = coll.BuildServiceProvider();
 

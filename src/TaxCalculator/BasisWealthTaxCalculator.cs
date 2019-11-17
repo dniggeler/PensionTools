@@ -35,7 +35,7 @@ namespace TaxCalculator
             }
 
             var tariffItems =
-                _tariffData.Get(new TaxFilterModel
+                this._tariffData.Get(new TaxFilterModel
                     {
                         Year = calculationYear,
                         Canton = person.Canton,

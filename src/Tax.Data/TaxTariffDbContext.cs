@@ -1,30 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Tax.Data.Abstractions;
+﻿using Microsoft.EntityFrameworkCore;
 using Tax.Data.Abstractions.Models;
-
 
 namespace Tax.Data
 {
     public class TaxTariffDbContext : DbContext
     {
-        private readonly DbSettings _settings;
-
         public DbSet<TaxTariffModel> Tariffs { get; set; }
 
-        public TaxTariffDbContext(IOptions<DbSettings> options)
-        {
-            _settings = options.Value;
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite($"Filename={_settings.FilePath}");
-
-            base.OnConfiguring(optionsBuilder);
-        }
+        public TaxTariffDbContext(DbContextOptions<TaxTariffDbContext> options)
+        :base(options)
+        {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

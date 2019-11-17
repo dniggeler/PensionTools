@@ -23,7 +23,7 @@ namespace TaxCalculator.WebApi
         {
             services.AddHealthChecks();
             services.AddControllers();
-            services.AddTaxData();
+            services.AddTaxData(Configuration);
             services.AddTaxCalculators();
             services.AddOptions<DbSettings>();
 
