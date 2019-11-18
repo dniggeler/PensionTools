@@ -25,9 +25,6 @@ namespace TaxCalculator.WebApi
             services.AddControllers();
             services.AddTaxData(Configuration);
             services.AddTaxCalculators();
-            services.AddOptions<DbSettings>();
-
-            services.Configure<DbSettings>(Configuration.GetSection("DbSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
