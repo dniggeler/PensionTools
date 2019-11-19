@@ -17,20 +17,20 @@ namespace TaxCalculator
         private readonly IChurchTaxCalculator churchTaxCalculator;
         private readonly IPollTaxCalculator pollTaxCalculator;
         private readonly IMapper mapper;
-        private readonly Func<TaxRateDbContext> taxRateDbContext;
+        private readonly TaxRateDbContext _dbContext;
 
         public StateTaxCalculator(
             IAggregatedBasisTaxCalculator basisTaxCalculator,
             IChurchTaxCalculator churchTaxCalculator,
             IPollTaxCalculator pollTaxCalculator,
             IMapper mapper,
-            Func<TaxRateDbContext> dbContext)
+            TaxRateDbContext dbContext)
         {
             this.basisTaxCalculator = basisTaxCalculator;
             this.churchTaxCalculator = churchTaxCalculator;
             this.pollTaxCalculator = pollTaxCalculator;
             this.mapper = mapper;
-            this.taxRateDbContext = dbContext;
+            _dbContext = dbContext;
         }
 
         public async Task<Either<string, StateTaxResult>> CalculateAsync(
@@ -56,9 +56,8 @@ namespace TaxCalculator
                 .BindAsync(r => this.churchTaxCalculator.CalculateAsync(
                         calculationYear, churchTaxPerson, r));
 
-            using (var ctxt = this.taxRateDbContext())
             {
-                Option<TaxRateModel> taxRate = ctxt.Rates
+                Option<TaxRateModel> taxRate = _dbContext.Rates
                     .FirstOrDefault(item => item.Canton == person.Canton &&
                                             item.Year == calculationYear &&
                                             item.Municipality == person.Municipality);

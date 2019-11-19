@@ -15,16 +15,16 @@
     {
         private readonly IValidator<ChurchTaxPerson> churchTaxPersonValidator;
         private readonly IValidator<AggregatedBasisTaxResult> taxResultValidator;
-        private readonly Func<TaxRateDbContext> taxRateContextFunc;
+        private readonly TaxRateDbContext taxRateContext;
 
         public ChurchTaxCalculator(
             IValidator<ChurchTaxPerson> churchTaxPersonValidator,
             IValidator<AggregatedBasisTaxResult> basisTaxResultValidator,
-            Func<TaxRateDbContext> taxRateContextFunc)
+            TaxRateDbContext taxRateContext)
         {
             this.churchTaxPersonValidator = churchTaxPersonValidator;
             this.taxResultValidator = basisTaxResultValidator;
-            this.taxRateContextFunc = taxRateContextFunc;
+            this.taxRateContext = taxRateContext;
         }
 
         /// <inheritdoc />
@@ -84,9 +84,8 @@
                     c, r, rp))
                 .IfNone(0M);
 
-            using (var context = this.taxRateContextFunc())
             {
-                TaxRateModel taxRateModel = context.Rates
+                TaxRateModel taxRateModel = this.taxRateContext.Rates
                     .Single(item => item.Year == calculationYear
                                    && item.Canton == person.Canton
                                    && item.Municipality == person.Municipality);

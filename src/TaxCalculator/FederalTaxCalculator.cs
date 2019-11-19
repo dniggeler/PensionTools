@@ -14,10 +14,10 @@ namespace TaxCalculator
     public class FederalTaxCalculator : IFederalTaxCalculator
     {
         private readonly IValidator<FederalTaxPerson> _taxPersonValidator;
-        private readonly Func<FederalTaxTariffDbContext> _federalDbContext;
+        private readonly FederalTaxTariffDbContext _federalDbContext;
 
         public FederalTaxCalculator(IValidator<FederalTaxPerson> taxPersonValidator,
-            Func<FederalTaxTariffDbContext> federalDbContext)
+            FederalTaxTariffDbContext federalDbContext)
         {
             _taxPersonValidator = taxPersonValidator;
             _federalDbContext = federalDbContext;
@@ -32,26 +32,23 @@ namespace TaxCalculator
                 return Task.FromResult<Either<string, BasisTaxResult>>($"validation failed: {errorMessageLine}");
             }
 
-            using (var ctxt = _federalDbContext())
-            {
-                return Map(person.CivilStatus)
-                    // get all income level candidate
-                    .Map(typeId => ctxt.Tariffs
-                        .Where(item => item.Year == calculationYear)
-                        .Where(item => item.TariffType == (int)typeId)
-                        .ToList()
-                        .Where(item => item.IncomeLevel <= person.TaxableIncome)
-                        .OrderByDescending(item => item.IncomeLevel)
-                        .DefaultIfEmpty(new FederalTaxTariffModel())
-                        .First())
+            return Map(person.CivilStatus)
+                // get all income level candidate
+                .Map(typeId => _federalDbContext.Tariffs
+                    .Where(item => item.Year == calculationYear)
+                    .Where(item => item.TariffType == (int) typeId)
+                    .ToList()
+                    .Where(item => item.IncomeLevel <= person.TaxableIncome)
+                    .OrderByDescending(item => item.IncomeLevel)
+                    .DefaultIfEmpty(new FederalTaxTariffModel())
+                    .First())
 
-                    // calculate result
-                    .Map(tariff => this.CalculateTax(person, tariff))
-                    .Match<Either<string, BasisTaxResult>>(
-                        Some: r => r,
-                        None: () => "Tariff not available")
-                    .AsTask();
-            }
+                // calculate result
+                .Map(tariff => this.CalculateTax(person, tariff))
+                .Match<Either<string, BasisTaxResult>>(
+                    Some: r => r,
+                    None: () => "Tariff not available")
+                .AsTask();
         }
 
         private BasisTaxResult CalculateTax(FederalTaxPerson person, FederalTaxTariffModel tariff)
