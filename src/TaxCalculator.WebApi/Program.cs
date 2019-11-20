@@ -26,7 +26,7 @@ namespace TaxCalculator.WebApi
                         .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
                         .First();
 
-                    var dbFile = Path.Combine(projectPath, @"src\Tax.Data\files\TaxDb.db");
+                    var dbFile = Path.Combine(projectPath, @"/app/data/TaxDb.db");
 
                     var configurationDict = new Dictionary<string, string>
                     {
