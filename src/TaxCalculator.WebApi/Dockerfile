@@ -15,6 +15,6 @@ RUN dotnet publish "TaxCalculator.WebApi.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
-COPY ["Tax.Data/files/TaxDb.db", "data/TaxDb.db"]
+COPY ["Tax.Data/files/TaxDb.db", "/data/TaxDb.db"]
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "TaxCalculator.WebApi.dll"]

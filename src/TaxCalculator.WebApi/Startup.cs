@@ -4,8 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Tax.Data;
-using Tax.Data.Abstractions.Models;
-
 
 namespace TaxCalculator.WebApi
 {
@@ -21,7 +19,10 @@ namespace TaxCalculator.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHealthChecks();
+            services.AddHealthChecks()
+                .AddDbContextCheck<FederalTaxTariffDbContext>()
+                .AddDbContextCheck<TaxTariffDbContext>()
+                .AddDbContextCheck<TaxRateDbContext>();
             services.AddControllers();
             services.AddTaxData(Configuration);
             services.AddTaxCalculators();
@@ -38,7 +39,7 @@ namespace TaxCalculator.WebApi
             app.UseRouting();
             app.UseAuthorization();
             app.UseHealthChecks("/");
-
+                
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

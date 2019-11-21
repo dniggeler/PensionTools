@@ -22,22 +22,11 @@ namespace TaxCalculator.WebApi
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    var projectPath = Assembly.GetExecutingAssembly()
-                        .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
-                        .First();
-
-                    var dbFile = Path.Combine(projectPath, @"/app/data/TaxDb.db");
-
-                    var configurationDict = new Dictionary<string, string>
-                    {
-                        {"ConnectionStrings:TaxDb", dbFile}
-                    };
-
                     webBuilder.UseStartup<Startup>()
                         .ConfigureAppConfiguration((context, builder) =>
                         {
                             builder
-                                .AddInMemoryCollection(configurationDict)
+                                .AddJsonFile("appsettings.json",true)
                                 .Build();
                         });
                 });

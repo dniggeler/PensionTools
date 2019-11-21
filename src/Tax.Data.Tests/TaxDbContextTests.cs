@@ -74,7 +74,7 @@ namespace Tax.Data.Tests
             {
                 using var dbContext = _fixture.Provider.GetService<TaxTariffDbContext>();
                 return dbContext.Tariffs.Where(item => item.Canton == "ZH" &&
-                                                     item.Year == 2018)
+                                                       item.Year == 2018)
                     .ToList();
             }
         }
