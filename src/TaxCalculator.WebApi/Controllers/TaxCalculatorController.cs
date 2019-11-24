@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using LanguageExt;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
@@ -14,14 +16,74 @@ namespace TaxCalculator.WebApi.Controllers
     public class TaxCalculatorController : ControllerBase
     {
         private readonly ICapitalBenefitTaxCalculator _benefitTaxCalculator;
+        private readonly IFullTaxCalculator _fullTaxCalculator;
         private readonly ILogger<TaxCalculatorController> _logger;
 
         public TaxCalculatorController(
             ICapitalBenefitTaxCalculator benefitTaxCalculator,
+            IFullTaxCalculator fullTaxCalculator,
             ILogger<TaxCalculatorController> logger)
         {
             _benefitTaxCalculator = benefitTaxCalculator;
+            _fullTaxCalculator = fullTaxCalculator;
             _logger = logger;
+        }
+
+        [HttpPost]
+        [Route("fulltax")]
+        public async Task<ActionResult<FullTaxResponse>> CalculateFullTax(
+            FullTaxRequest request)
+        {
+            var taxPerson = MapRequest(request);
+
+            Either<string, FullTaxResult> result =
+                await _fullTaxCalculator.CalculateAsync(
+                    request.CalculationYear,
+                    taxPerson);
+
+            return result
+                .Match<ActionResult>(
+                    Right: r => Ok(MapResponse(r)),
+                    Left: BadRequest);
+
+            FullTaxResponse MapResponse(FullTaxResult r)
+            {
+                return new FullTaxResponse
+                {
+                    Name = taxPerson.Name,
+                    CalculationYear = request.CalculationYear,
+                    TotalTaxAmount = r.TotalTaxAmount,
+                    FederalTaxAmount = r.FederalTaxResult.TaxAmount,
+                    WealthTaxAmount = r.StateTaxResult.BasisWealthTax.TaxAmount,
+                    CantonTaxAmount = r.StateTaxResult.CantonTaxAmount,
+                    MunicipalityTaxAmount = r.StateTaxResult.MunicipalityTaxAmount,
+                    ChurchTaxAmount = r.StateTaxResult.ChurchTaxAmount,
+                    PollTaxAmount = r.StateTaxResult.PollTaxAmount.IfNone(0),
+                    CantonRate = r.StateTaxResult.CantonRate,
+                    MunicipalityRate = r.StateTaxResult.MunicipalityRate,
+                };
+            }
+
+            TaxPerson MapRequest(FullTaxRequest request)
+            {
+                var name = string.IsNullOrEmpty(request.Name)
+                    ? Guid.NewGuid().ToString().Substring(0, 6)
+                    : request.Name;
+
+                return new TaxPerson
+                {
+                    Name = name,
+                    Canton = request.Canton,
+                    CivilStatus = request.CivilStatus,
+                    Municipality = request.Municipality,
+                    ReligiousGroupType = request.ReligiousGroup,
+                    PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
+                    NumberOfChildren = 0,
+                    TaxableIncome = request.TaxableIncome,
+                    TaxableWealth = request.TaxableWealth,
+                    TaxableFederalIncome = request.TaxableFederalIncome,
+                };
+            }
         }
 
         [HttpPost]
@@ -29,26 +91,50 @@ namespace TaxCalculator.WebApi.Controllers
         public async Task<ActionResult<CapitalBenefitTaxResponse>> CalculateCapitalBenefitTax(
             CapitalBenefitTaxRequest request)
         {
-            var result = await _benefitTaxCalculator.CalculateAsync(
-                request.CalculationYear,
-                new CapitalBenefitTaxPerson
-                {
-                    Name ="Burli",
-                    Canton = "ZH",
-                    CivilStatus = CivilStatus.Single,
-                    Municipality = "Zürich",
-                    ReligiousGroupType = ReligiousGroupType.Protestant,
-                    NumberOfChildren = 0,
-                    TaxableBenefits = 2000000,
-                });
-            var response = await Task.FromResult(new CapitalBenefitTaxResponse
-            {
-                TaxAmount =  result.Match(
-                    Right: r => r.TotalTaxAmount,
-                    Left: v => 0M)
-            });
+            var taxPerson = MapRequest(request);
 
-            return Ok(response);
+            Either<string, CapitalBenefitTaxResult> result =
+                await _benefitTaxCalculator.CalculateAsync(
+                    request.CalculationYear,
+                    taxPerson);
+
+            return result
+                .Match<ActionResult>(
+                Right: r => Ok(MapResponse(r)),
+                Left: BadRequest);
+
+            // local methods
+            CapitalBenefitTaxResponse MapResponse(CapitalBenefitTaxResult r)
+            {
+                return new CapitalBenefitTaxResponse
+                {
+                    Name = taxPerson.Name,
+                    CalculationYear = request.CalculationYear,
+                    TaxAmount = r.TotalTaxAmount,
+                    ChurchTaxAmount = r.ChurchTaxAmount,
+                    CantonRate = r.CantonRate,
+                    MunicipalityRate = r.MunicipalityRate,
+                };
+            }
+
+            CapitalBenefitTaxPerson MapRequest(CapitalBenefitTaxRequest request)
+            {
+                var name = string.IsNullOrEmpty(request.Name)
+                    ? Guid.NewGuid().ToString().Substring(0, 6)
+                    : request.Name;
+
+                return new CapitalBenefitTaxPerson
+                {
+                    Name = name,
+                    Canton = request.Canton,
+                    CivilStatus = request.CivilStatus,
+                    Municipality = request.Municipality,
+                    ReligiousGroupType = request.ReligiousGroup,
+                    PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
+                    NumberOfChildren = 0,
+                    TaxableBenefits = request.TaxableBenefits,
+                };
+            }
         }
     }
 }

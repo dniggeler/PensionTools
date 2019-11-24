@@ -1,4 +1,4 @@
-﻿namespace TaxCalculator
+﻿namespace TaxCalculator.Mapping
 {
     using AutoMapper;
     using PensionCoach.Tools.TaxCalculator.Abstractions.Models;

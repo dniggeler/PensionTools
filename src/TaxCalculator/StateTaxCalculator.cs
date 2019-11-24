@@ -1,23 +1,23 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using LanguageExt;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
-using Tax.Data;
-using Tax.Data.Abstractions.Models;
-
-namespace TaxCalculator
+﻿namespace TaxCalculator
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using AutoMapper;
+    using LanguageExt;
+    using PensionCoach.Tools.TaxCalculator.Abstractions;
+    using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+    using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
+    using Tax.Data;
+    using Tax.Data.Abstractions.Models;
+
     public class StateTaxCalculator : IStateTaxCalculator
     {
         private readonly IAggregatedBasisTaxCalculator basisTaxCalculator;
         private readonly IChurchTaxCalculator churchTaxCalculator;
         private readonly IPollTaxCalculator pollTaxCalculator;
         private readonly IMapper mapper;
-        private readonly TaxRateDbContext _dbContext;
+        private readonly TaxRateDbContext dbContext;
 
         public StateTaxCalculator(
             IAggregatedBasisTaxCalculator basisTaxCalculator,
@@ -30,7 +30,7 @@ namespace TaxCalculator
             this.churchTaxCalculator = churchTaxCalculator;
             this.pollTaxCalculator = pollTaxCalculator;
             this.mapper = mapper;
-            _dbContext = dbContext;
+            this.dbContext = dbContext;
         }
 
         public async Task<Either<string, StateTaxResult>> CalculateAsync(
@@ -57,7 +57,7 @@ namespace TaxCalculator
                         calculationYear, churchTaxPerson, r));
 
             {
-                Option<TaxRateModel> taxRate = _dbContext.Rates
+                Option<TaxRateModel> taxRate = this.dbContext.Rates
                     .FirstOrDefault(item => item.Canton == person.Canton &&
                                             item.Year == calculationYear &&
                                             item.Municipality == person.Municipality);

@@ -3,7 +3,7 @@
 
 namespace TaxCalculator.WebApi.Models
 {
-    public class CapitalBenefitTaxRequest
+    public class FullTaxRequest
     {
         public string Name { get; set; }
 
@@ -19,6 +19,10 @@ namespace TaxCalculator.WebApi.Models
 
         public string Municipality { get; set; }
 
-        public decimal TaxableBenefits { get; set; }
+        public decimal TaxableIncome { get; set; }
+
+        public decimal TaxableFederalIncome { get; set; }
+
+        public decimal TaxableWealth        { get; set; }
     }
 }

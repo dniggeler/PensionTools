@@ -27,6 +27,7 @@ namespace TaxCalculator.WebApi
                         {
                             builder
                                 .AddJsonFile("appsettings.json",true)
+                                .AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json")
                                 .Build();
                         });
                 });
