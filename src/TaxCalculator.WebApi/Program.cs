@@ -26,8 +26,10 @@ namespace TaxCalculator.WebApi
                         .ConfigureAppConfiguration((context, builder) =>
                         {
                             builder
-                                .AddJsonFile("appsettings.json",true)
-                                .AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json")
+                                .AddJsonFile("appsettings.json")
+                                .AddJsonFile(
+                                    $"appsettings.{context.HostingEnvironment.EnvironmentName}.json",
+                                    true)
                                 .Build();
                         });
                 });
