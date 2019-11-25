@@ -47,7 +47,7 @@ namespace TaxCalculator.Tests
 
             Snapshot.Match(
                 result,
-                $"Theory Capital Benefit Tax {calculationYear}{capitalBenefitAmount}{civilStatusCode}");
+                $"Theory Federal Capital Benefit Tax {calculationYear}{capitalBenefitAmount}{civilStatusCode}");
         }
     }
 }

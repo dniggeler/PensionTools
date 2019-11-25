@@ -25,7 +25,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(
+        public async Task<Either<string, BasisTaxResult>> CalculateAsync(
             int calculationYear, FederalCapitalBenefitTaxPerson capitalBenefitTaxPerson)
         {
             const decimal scaleFactor = 0.2M;
@@ -36,20 +36,15 @@
             return taxResult.Map(r => this.Scale(r, scaleFactor));
         }
 
-        private CapitalBenefitTaxResult Scale(BasisTaxResult intermediateResult, decimal scaleFactor)
+        private BasisTaxResult Scale(BasisTaxResult intermediateResult, decimal scaleFactor)
         {
-            var result = new CapitalBenefitTaxResult
+            return new BasisTaxResult
             {
-                BasisTax = new BasisTaxResult
-                {
-                    DeterminingFactorTaxableAmount =
-                        intermediateResult.DeterminingFactorTaxableAmount * scaleFactor,
-                    TaxAmount =
-                        intermediateResult.TaxAmount * scaleFactor,
-                },
+                DeterminingFactorTaxableAmount =
+                    intermediateResult.DeterminingFactorTaxableAmount,
+                TaxAmount =
+                    intermediateResult.TaxAmount * scaleFactor,
             };
-
-            return result;
         }
     }
 }

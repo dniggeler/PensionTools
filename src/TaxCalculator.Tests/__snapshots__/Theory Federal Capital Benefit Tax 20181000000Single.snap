@@ -1,0 +1,10 @@
+﻿[
+  {
+    "State": "IsRight",
+    "Right": {
+      "DeterminingFactorTaxableAmount": 1000000.0,
+      "TaxAmount": 23000.00
+    },
+    "Left": null
+  }
+]
