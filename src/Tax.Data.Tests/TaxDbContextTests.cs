@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Tax.Data.Abstractions.Models;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Tax.Data.Tests
 {
@@ -11,10 +13,29 @@ namespace Tax.Data.Tests
     public class TaxDbContextTests : IClassFixture<TaxDataFixture>
     {
         private readonly TaxDataFixture _fixture;
+        private readonly ITestOutputHelper _outputHelper;
 
-        public TaxDbContextTests(TaxDataFixture fixture)
+        public TaxDbContextTests(TaxDataFixture fixture, ITestOutputHelper outputHelper)
         {
             _fixture = fixture;
+            _outputHelper = outputHelper;
+        }
+
+
+        [Fact(DisplayName = "Connection String")]
+        public void ShouldReturnValidConnectionString()
+        {
+            // given
+
+            // when
+            var configSvc = _fixture.Provider.GetRequiredService<IConfiguration>();
+
+            var result = configSvc.GetConnectionString("TaxDb");
+
+            _outputHelper.WriteLine($"Connection String={result}");
+
+            // then
+            result.Should().NotBeNullOrEmpty();
         }
 
         [Fact(DisplayName = "Tax Rate")]

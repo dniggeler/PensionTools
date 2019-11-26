@@ -31,6 +31,7 @@ namespace Tax.Data.Tests
                 .Build();
 
             ServiceCollection coll = new ServiceCollection();
+            coll.AddScoped(c => configuration);
 
             coll.AddTaxData(configuration);
 
