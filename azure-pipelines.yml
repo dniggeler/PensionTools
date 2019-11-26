@@ -9,6 +9,7 @@ trigger:
 pool:
   vmImage: ubuntu-16.04
 
+steps:
 - task: UseDotNet@2
   inputs:
     version: '3.0.x'
