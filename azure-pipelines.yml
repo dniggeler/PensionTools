@@ -8,3 +8,11 @@ trigger:
 
 pool:
   vmImage: 'Ubuntu 16.04'
+
+variables:
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+- task: UseDotNet@2
+  inputs:
+    version: '3.0.x'
