@@ -30,11 +30,11 @@ steps:
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'  
 
 - task: Docker@2
-      displayName: Build and push an image to container registry
-      inputs:
-        command: buildAndPush
-        repository: 'malagueta/pensiontools'
-        dockerfile: 'src/TaxCalculator.WebApi/Dockerfile'
-        containerRegistry: 'kDockerRegistry'
-        tags: |
-          '0.0.1'    
+  displayName: Build and push an image to container registry
+  inputs:
+    command: buildAndPush
+    repository: 'malagueta/pensiontools'
+    dockerfile: 'src/TaxCalculator.WebApi/Dockerfile'
+    containerRegistry: 'kDockerRegistry'
+    tags: |
+      '0.0.1'    
