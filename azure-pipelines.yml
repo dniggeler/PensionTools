@@ -12,13 +12,14 @@ pool:
 variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  webProject: 'src/TaxCalculator.WebApi/TaxCalculator.WebApi.csproj'
 
 steps:
 
-- script: dotnet restore src/TaxCalculator.WebApi/TaxCalculator.WebApi.csproj
+- script: dotnet restore $(webProject)
   displayName: 'dotnet restore'
 
-- script: dotnet build src/TaxCalculator.WebApi/TaxCalculator.WebApi.csproj --configuration $(buildConfiguration)
+- script: dotnet build $(webProject) --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
