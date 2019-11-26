@@ -16,6 +16,16 @@ variables:
 
 steps:
 
+- task: Docker@2
+  displayName: Build and push an image to container registry
+  inputs:
+    command: buildAndPush
+    repository: 'malagueta/pensiontools'
+    dockerfile: 'src/TaxCalculator.WebApi/Dockerfile'
+    containerRegistry: 'kDocker Registery'
+    tags: |
+      0.0.1
+
 - script: dotnet restore $(webProject)
   displayName: 'dotnet restore'
 
@@ -29,12 +39,4 @@ steps:
     projects: '**/*Tests/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'  
 
-- task: Docker@2
-  displayName: Build and push an image to container registry
-  inputs:
-    command: buildAndPush
-    repository: 'malagueta/pensiontools'
-    dockerfile: 'src/TaxCalculator.WebApi/Dockerfile'
-    containerRegistry: 'kDocker Registery'
-    tags: |
-      '0.0.1'    
+    
