@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Tax.Data.Abstractions.Models;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Tax.Data.Tests
 {
@@ -13,12 +12,10 @@ namespace Tax.Data.Tests
     public class TaxDbContextTests : IClassFixture<TaxDataFixture>
     {
         private readonly TaxDataFixture _fixture;
-        private readonly ITestOutputHelper _outputHelper;
 
-        public TaxDbContextTests(TaxDataFixture fixture, ITestOutputHelper outputHelper)
+        public TaxDbContextTests(TaxDataFixture fixture)
         {
             _fixture = fixture;
-            _outputHelper = outputHelper;
         }
 
 
@@ -32,7 +29,7 @@ namespace Tax.Data.Tests
 
             var result = configSvc.GetConnectionString("TaxDb");
 
-            _outputHelper.WriteLine($"Connection String={result}");
+            System.Diagnostics.Trace.WriteLine($"Connection String={result}");
 
             // then
             result.Should().NotBeNullOrEmpty();
