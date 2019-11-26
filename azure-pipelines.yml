@@ -15,10 +15,6 @@ variables:
 
 steps:
 
-- task: UseDotNet@2
-  inputs:
-    version: '3.0.x'
-
 - script: dotnet restore src/TaxCalculator.WebApi/TaxCalculator.WebApi.csproj
   displayName: 'dotnet restore'
 
