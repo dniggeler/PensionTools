@@ -35,6 +35,6 @@ steps:
     command: buildAndPush
     repository: 'malagueta/pensiontools'
     dockerfile: 'src/TaxCalculator.WebApi/Dockerfile'
-    containerRegistry: 'kDockerRegistry'
+    containerRegistry: 'kDocker Registery'
     tags: |
       '0.0.1'    
