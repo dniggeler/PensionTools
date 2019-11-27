@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: windows-latest
+  vmImage: ubuntu-latest
 
 variables:
   buildPlatform: 'Any CPU'
@@ -38,6 +38,6 @@ steps:
   inputs:
     command: test
     projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'  
+    arguments: '--configuration $(buildConfiguration) --logger="console"'  
 
     
