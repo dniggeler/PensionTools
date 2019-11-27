@@ -20,7 +20,7 @@ steps:
   displayName: Build and push an image to container registry
   inputs:
     command: buildAndPush
-    buildContext: $(Build.SourceDirectroy)/src
+    buildContext: $(Build.SourceDirectory)/src
     repository: 'malagueta/pensiontools'
     dockerfile: 'src/TaxCalculator.WebApi/Dockerfile'
     containerRegistry: 'kDocker Registery'
