@@ -9,6 +9,7 @@
         public MappingProfile()
         {
             this.CreateMap<CapitalBenefitTaxPerson, TaxPerson>();
+            this.CreateMap<CapitalBenefitTaxPerson, FederalCapitalBenefitTaxPerson>();
             this.CreateMap<TaxPerson, BasisTaxPerson>()
                 .ForMember(d => d.TaxableAmount, m => m.MapFrom( s=> s.TaxableIncome));
             this.CreateMap<FederalCapitalBenefitTaxPerson, FederalTaxPerson>()

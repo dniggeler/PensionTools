@@ -21,6 +21,7 @@
             collection.AddTransient<IAggregatedBasisTaxCalculator, AggregatedBasisTaxCalculator>();
             collection.AddTransient<IStateTaxCalculator, StateTaxCalculator>();
             collection.AddTransient<IFullTaxCalculator, FullTaxCalculator>();
+            collection.AddTransient<IFullCapitalBenefitTaxCalculator, FullCapitalBenefitTaxCalculator>();
 
             var mappingConfig = new MapperConfiguration(mc =>
             {
