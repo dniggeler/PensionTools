@@ -12,29 +12,32 @@ using TaxCalculator.WebApi.Models;
 namespace TaxCalculator.WebApi.Controllers
 {
     [ApiController]
-    [Route("api/tax/calculators")]
+    [Route("api/calculators/tax")]
     public class TaxCalculatorController : ControllerBase
     {
         private readonly ICapitalBenefitTaxCalculator _benefitTaxCalculator;
+        private readonly IFullCapitalBenefitTaxCalculator _fullCapitalBenefitTaxCalculator;
         private readonly IFullTaxCalculator _fullTaxCalculator;
         private readonly ILogger<TaxCalculatorController> _logger;
 
         public TaxCalculatorController(
             ICapitalBenefitTaxCalculator benefitTaxCalculator,
+            IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator,
             IFullTaxCalculator fullTaxCalculator,
             ILogger<TaxCalculatorController> logger)
         {
             _benefitTaxCalculator = benefitTaxCalculator;
+            _fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;
             _fullTaxCalculator = fullTaxCalculator;
             _logger = logger;
         }
 
         [HttpPost]
-        [Route("fulltax")]
+        [Route("full/incomeandwealth")]
         public async Task<ActionResult<FullTaxResponse>> CalculateFullTax(
             FullTaxRequest request)
         {
-            var taxPerson = MapRequest(request);
+            var taxPerson = MapRequest();
 
             Either<string, FullTaxResult> result =
                 await _fullTaxCalculator.CalculateAsync(
@@ -64,7 +67,7 @@ namespace TaxCalculator.WebApi.Controllers
                 };
             }
 
-            TaxPerson MapRequest(FullTaxRequest request)
+            TaxPerson MapRequest()
             {
                 var name = string.IsNullOrEmpty(request.Name)
                     ? Guid.NewGuid().ToString().Substring(0, 6)
@@ -87,11 +90,11 @@ namespace TaxCalculator.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("capitalbenefit")]
+        [Route("state/capitalbenefit")]
         public async Task<ActionResult<CapitalBenefitTaxResponse>> CalculateCapitalBenefitTax(
             CapitalBenefitTaxRequest request)
         {
-            var taxPerson = MapRequest(request);
+            var taxPerson = MapRequest();
 
             Either<string, CapitalBenefitTaxResult> result =
                 await _benefitTaxCalculator.CalculateAsync(
@@ -117,7 +120,56 @@ namespace TaxCalculator.WebApi.Controllers
                 };
             }
 
-            CapitalBenefitTaxPerson MapRequest(CapitalBenefitTaxRequest request)
+            CapitalBenefitTaxPerson MapRequest()
+            {
+                var name = string.IsNullOrEmpty(request.Name)
+                    ? Guid.NewGuid().ToString().Substring(0, 6)
+                    : request.Name;
+
+                return new CapitalBenefitTaxPerson
+                {
+                    Name = name,
+                    Canton = request.Canton,
+                    CivilStatus = request.CivilStatus,
+                    Municipality = request.Municipality,
+                    ReligiousGroupType = request.ReligiousGroup,
+                    PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
+                    NumberOfChildren = 0,
+                    TaxableBenefits = request.TaxableBenefits,
+                };
+            }
+        }
+
+
+        [HttpPost]
+        [Route("full/capitalbenefit")]
+        public async Task<ActionResult<CapitalBenefitTaxResponse>> CalculateFullCapitalBenefitTax(
+            CapitalBenefitTaxRequest request)
+        {
+            var taxPerson = MapRequest();
+
+            Either<string, FullCapitalBenefitTaxResult> result =
+                await _fullCapitalBenefitTaxCalculator.CalculateAsync(
+                    request.CalculationYear,
+                    taxPerson);
+
+            return result
+                .Match<ActionResult>(
+                Right: r => Ok(MapResponse(r)),
+                Left: BadRequest);
+
+            // local methods
+            CapitalBenefitTaxResponse MapResponse(FullCapitalBenefitTaxResult r)
+            {
+                return new CapitalBenefitTaxResponse
+                {
+                    Name = taxPerson.Name,
+                    CalculationYear = request.CalculationYear,
+                    TaxAmount = r.TotalTaxAmount,
+                };
+            }
+
+            CapitalBenefitTaxPerson MapRequest()
             {
                 var name = string.IsNullOrEmpty(request.Name)
                     ? Guid.NewGuid().ToString().Substring(0, 6)
