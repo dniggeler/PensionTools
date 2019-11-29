@@ -13,7 +13,9 @@
         {
             this.RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
             this.RuleFor(x => x.ReligiousGroupType).Must(x => x.IsSome);
-            this.RuleFor(x => x.Canton).Must(x => this.supportedCantons.Contains(x));
+            this.RuleFor(x => x.Canton)
+                .Must(x => this.supportedCantons.Contains(x))
+                .WithMessage(x => $"Canton {x.Canton} is not yet supported");
         }
     }
 }

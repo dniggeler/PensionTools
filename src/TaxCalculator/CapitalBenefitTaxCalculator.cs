@@ -1,5 +1,6 @@
 ﻿namespace TaxCalculator
 {
+    using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
     using FluentValidation;
@@ -28,6 +29,15 @@
         public async Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(
             int calculationYear, CapitalBenefitTaxPerson capitalBenefitTaxPerson)
         {
+            var validationResult = this.validator.Validate(capitalBenefitTaxPerson);
+            if (!validationResult.IsValid)
+            {
+                var errorMessageLine =
+                    string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
+
+                return errorMessageLine;
+            }
+
             const decimal annuitizeFactor = 10;
             TaxPerson taxPerson = this.mapper.Map<TaxPerson>(capitalBenefitTaxPerson);
 
