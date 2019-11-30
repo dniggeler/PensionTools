@@ -1,13 +1,13 @@
-﻿namespace TaxCalculator.Validators
-{
-    using System.Linq;
-    using FluentValidation;
+﻿using System.Linq;
+using FluentValidation;
 
-    public class CantonCapitalBenefitsValidator : AbstractValidator<string>
+namespace TaxCalculator.Validators
+{
+    public class CantonValidator : AbstractValidator<string>
     {
         private readonly string[] supportedCantons = { "ZH" };
 
-        public CantonCapitalBenefitsValidator()
+        public CantonValidator()
         {
             this.RuleFor(canton => canton)
                 .Must(c => this.supportedCantons.Contains(c))

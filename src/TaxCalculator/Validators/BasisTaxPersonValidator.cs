@@ -8,7 +8,7 @@ namespace TaxCalculator.Validators
         public BasisTaxPersonValidator()
         {
             this.RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
-            this.RuleFor(x => x.Canton).SetValidator(new CantonIncomeTaxValidator());
+            this.RuleFor(x => x.Canton).SetValidator(new CantonValidator());
         }
     }
 }
