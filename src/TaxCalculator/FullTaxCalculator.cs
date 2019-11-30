@@ -32,9 +32,12 @@ namespace TaxCalculator
 
             await Task.WhenAll(stateTaxResultTask, federalTaxResultTask);
 
+            Either<string, StateTaxResult> stateTaxResult = await stateTaxResultTask;
+            Either<string, BasisTaxResult> federalTaxResult = await federalTaxResultTask;
+
             return
-                (from stateTax in stateTaxResultTask.Result.ToOption()
-                 from federalTax in federalTaxResultTask.Result.ToOption()
+                (from stateTax in stateTaxResult.ToOption()
+                 from federalTax in federalTaxResult.ToOption()
                  select new FullTaxResult()
                  {
                      StateTaxResult = stateTax,
@@ -42,7 +45,10 @@ namespace TaxCalculator
                  })
                 .Match<Either<string, FullTaxResult>>(
                     Some: v => v,
-                    None: () => "Full tax calculation failed");
+                    None: () =>
+                    {
+                        return "Full tax calculation failed";
+                    });
         }
     }
 }
