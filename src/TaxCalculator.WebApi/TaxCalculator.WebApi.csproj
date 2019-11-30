@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileRunArguments>-v "$(SolutionDir)\..\src\Tax.Data\files:/data:ro"</DockerfileRunArguments>
-  <CodeAnalysisRuleSet>CustomCodeAnalysisRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>CustomCodeAnalysisRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
+using FluentValidation.Results;
 using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
@@ -26,22 +27,23 @@ namespace TaxCalculator
 
         public Task<Either<string, BasisTaxResult>> CalculateAsync(int calculationYear, BasisTaxPerson person)
         {
-            var validationResult = this.taxPersonValidator.Validate(person);
-            if (!validationResult.IsValid)
-            {
-                var errorMessageLine = string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
-                return Task.FromResult<Either<string, BasisTaxResult>>($"validation failed: {errorMessageLine}");
-            }
+            Option<ValidationResult> validationResult = this.taxPersonValidator.Validate(person);
+
+            var tariffType = validationResult
+                .Where(v => !v.IsValid)
+                .Map<Either<string, bool>>(r => string.Join(";", r.Errors.Select(x => x.ErrorMessage)))
+                .IfNone(true)
+                .Bind(_ => this.Map(person.CivilStatus));
 
             var tariffItems =
                 this.tariffData.Get(new TaxFilterModel
-                {
-                    Year = calculationYear,
-                    Canton = person.Canton,
-                })
+                    {
+                        Year = calculationYear,
+                        Canton = person.Canton,
+                    })
                     .OrderBy(item => item.TaxAmount);
 
-            return this.Map(person.CivilStatus)
+            return tariffType
 
                 // get all income level candidate
                 .Map(typeId => tariffItems
@@ -54,9 +56,6 @@ namespace TaxCalculator
 
                 // calculate result
                 .Map(tariff => this.CalculateIncomeTax(person, tariff))
-                .Match<Either<string, BasisTaxResult>>(
-                    Some: r => r,
-                    None: () => "Tariff not available")
                 .AsTask();
         }
 
@@ -75,7 +74,7 @@ namespace TaxCalculator
             };
         }
 
-        private Option<TariffType> Map(Option<CivilStatus> status)
+        private Either<string, TariffType> Map(Option<CivilStatus> status)
         {
             return status.Match(
                 Some: s => s switch
@@ -85,7 +84,8 @@ namespace TaxCalculator
                     CivilStatus.Married => TariffType.Married,
                     _ => Option<TariffType>.None
                 },
-                None: () => Option<TariffType>.None);
+                None: () => Option<TariffType>.None)
+                .ToEither("Civil status unknown");
         }
     }
 }

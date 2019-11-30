@@ -19,6 +19,6 @@
             this.CreateMap<TaxPerson, ChurchTaxPerson>()
                 .ForMember(d => d.ReligiousGroup, m => m.MapFrom(s => s.ReligiousGroupType))
                 .ForMember(d => d.PartnerReligiousGroup, m => m.MapFrom(s => s.PartnerReligiousGroupType));
-        }
+            }
     }
 }
