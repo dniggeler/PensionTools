@@ -56,29 +56,27 @@
                 .BindAsync(r => this.churchTaxCalculator.CalculateAsync(
                         calculationYear, churchTaxPerson, r));
 
-            {
-                Option<TaxRateModel> taxRate = this.dbContext.Rates
-                    .FirstOrDefault(item => item.Canton == person.Canton &&
-                                            item.Year == calculationYear &&
-                                            item.Municipality == person.Municipality);
-                var result = from rate in taxRate
-                    from r in aggregatedTaxResult.ToOption()
-                    from c in churchTaxResult.ToOption()
-                    select new StateTaxResult
-                    {
-                        MunicipalityRate = rate.TaxRateMunicipality,
-                        CantonRate = rate.TaxRateCanton,
-                        BasisIncomeTax = r.IncomeTax,
-                        BasisWealthTax = r.WealthTax,
-                        ChurchTax = c,
-                    };
+            Option<TaxRateModel> taxRate = this.dbContext.Rates
+                .FirstOrDefault(item => item.Canton == person.Canton &&
+                                        item.Year == calculationYear &&
+                                        item.Municipality == person.Municipality);
+            var result = from rate in taxRate
+                from r in aggregatedTaxResult.ToOption()
+                from c in churchTaxResult.ToOption()
+                select new StateTaxResult
+                {
+                    MunicipalityRate = rate.TaxRateMunicipality,
+                    CantonRate = rate.TaxRateCanton,
+                    BasisIncomeTax = r.IncomeTax,
+                    BasisWealthTax = r.WealthTax,
+                    ChurchTax = c,
+                };
 
-                result.IfSome(r => pollTaxResultTask.Result.IfRight(v => r.PollTaxAmount = v));
-                return result
-                    .Match<Either<string, StateTaxResult>>(
-                        Some: item => item,
-                        None: () => msg);
-            }
+            result.IfSome(r => pollTaxResultTask.Result.IfRight(v => r.PollTaxAmount = v));
+            return result
+                .Match<Either<string, StateTaxResult>>(
+                    Some: item => item,
+                    None: () => msg);
         }
     }
 }

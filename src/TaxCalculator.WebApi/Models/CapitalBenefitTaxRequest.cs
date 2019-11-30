@@ -1,6 +1,5 @@
 ﻿using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
-
 namespace TaxCalculator.WebApi.Models
 {
     public class CapitalBenefitTaxRequest

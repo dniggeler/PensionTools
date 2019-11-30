@@ -7,7 +7,7 @@ using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using TaxCalculator.WebApi.Models;
-
+using static LanguageExt.Prelude;
 
 namespace TaxCalculator.WebApi.Controllers
 {
@@ -15,10 +15,10 @@ namespace TaxCalculator.WebApi.Controllers
     [Route("api/calculators/tax")]
     public class TaxCalculatorController : ControllerBase
     {
-        private readonly ICapitalBenefitTaxCalculator _benefitTaxCalculator;
-        private readonly IFullCapitalBenefitTaxCalculator _fullCapitalBenefitTaxCalculator;
-        private readonly IFullTaxCalculator _fullTaxCalculator;
-        private readonly ILogger<TaxCalculatorController> _logger;
+        private readonly ICapitalBenefitTaxCalculator benefitTaxCalculator;
+        private readonly IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator;
+        private readonly IFullTaxCalculator fullTaxCalculator;
+        private readonly ILogger<TaxCalculatorController> logger;
 
         public TaxCalculatorController(
             ICapitalBenefitTaxCalculator benefitTaxCalculator,
@@ -26,28 +26,32 @@ namespace TaxCalculator.WebApi.Controllers
             IFullTaxCalculator fullTaxCalculator,
             ILogger<TaxCalculatorController> logger)
         {
-            _benefitTaxCalculator = benefitTaxCalculator;
-            _fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;
-            _fullTaxCalculator = fullTaxCalculator;
-            _logger = logger;
+            this.benefitTaxCalculator = benefitTaxCalculator;
+            this.fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;
+            this.fullTaxCalculator = fullTaxCalculator;
+            this.logger = logger;
         }
 
         [HttpPost]
         [Route("full/incomeandwealth")]
-        public async Task<ActionResult<FullTaxResponse>> CalculateFullTax(
-            FullTaxRequest request)
+        public async Task<ActionResult<FullTaxResponse>> CalculateFullTax(FullTaxRequest request)
         {
+            if (request == null)
+            {
+                return this.BadRequest(nameof(request));
+            }
+
             var taxPerson = MapRequest();
 
             Either<string, FullTaxResult> result =
-                await _fullTaxCalculator.CalculateAsync(
+                await this.fullTaxCalculator.CalculateAsync(
                     request.CalculationYear,
                     taxPerson);
 
             return result
                 .Match<ActionResult>(
-                    Right: r => Ok(MapResponse(r)),
-                    Left: BadRequest);
+                    Right: r => this.Ok(MapResponse(r)),
+                    Left: this.BadRequest);
 
             FullTaxResponse MapResponse(FullTaxResult r)
             {
@@ -94,17 +98,22 @@ namespace TaxCalculator.WebApi.Controllers
         public async Task<ActionResult<CapitalBenefitTaxResponse>> CalculateCapitalBenefitTax(
             CapitalBenefitTaxRequest request)
         {
+            if (request == null)
+            {
+                return this.BadRequest(nameof(request));
+            }
+
             var taxPerson = MapRequest();
 
             Either<string, CapitalBenefitTaxResult> result =
-                await _benefitTaxCalculator.CalculateAsync(
+                await this.benefitTaxCalculator.CalculateAsync(
                     request.CalculationYear,
                     taxPerson);
 
             return result
                 .Match<ActionResult>(
-                Right: r => Ok(MapResponse(r)),
-                Left: BadRequest);
+                Right: r => this.Ok(MapResponse(r)),
+                Left: this.BadRequest);
 
             // local methods
             CapitalBenefitTaxResponse MapResponse(CapitalBenefitTaxResult r)
@@ -140,23 +149,27 @@ namespace TaxCalculator.WebApi.Controllers
             }
         }
 
-
         [HttpPost]
         [Route("full/capitalbenefit")]
         public async Task<ActionResult<CapitalBenefitTaxResponse>> CalculateFullCapitalBenefitTax(
             CapitalBenefitTaxRequest request)
         {
+            if (request == null)
+            {
+                return this.BadRequest(nameof(request));
+            }
+
             var taxPerson = MapRequest();
 
             Either<string, FullCapitalBenefitTaxResult> result =
-                await _fullCapitalBenefitTaxCalculator.CalculateAsync(
+                await this.fullCapitalBenefitTaxCalculator.CalculateAsync(
                     request.CalculationYear,
                     taxPerson);
 
             return result
                 .Match<ActionResult>(
-                Right: r => Ok(MapResponse(r)),
-                Left: BadRequest);
+                Right: r => this.Ok(MapResponse(r)),
+                Left: this.BadRequest);
 
             // local methods
             CapitalBenefitTaxResponse MapResponse(FullCapitalBenefitTaxResult r)

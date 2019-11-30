@@ -11,7 +11,7 @@ namespace TaxCalculator.WebApi
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -24,7 +24,7 @@ namespace TaxCalculator.WebApi
                 .AddDbContextCheck<TaxTariffDbContext>()
                 .AddDbContextCheck<TaxRateDbContext>();
             services.AddControllers();
-            services.AddTaxData(Configuration);
+            services.AddTaxData(this.Configuration);
             services.AddTaxCalculators();
         }
 
@@ -39,7 +39,6 @@ namespace TaxCalculator.WebApi
             app.UseRouting();
             app.UseAuthorization();
             app.UseHealthChecks("/");
-                
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

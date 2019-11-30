@@ -1,6 +1,5 @@
 ﻿using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
-
 namespace TaxCalculator.WebApi.Models
 {
     public class FullTaxRequest
@@ -23,6 +22,6 @@ namespace TaxCalculator.WebApi.Models
 
         public decimal TaxableFederalIncome { get; set; }
 
-        public decimal TaxableWealth        { get; set; }
+        public decimal TaxableWealth { get; set; }
     }
 }

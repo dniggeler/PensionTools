@@ -78,42 +78,40 @@
 
             var splitFactor =
                 (from c in person.CivilStatus
-                from r in person.ReligiousGroup
-                from rp in religiousGroupPartner
-                select this.DetermineSplitFactor(
-                    c, r, rp))
+                 from r in person.ReligiousGroup
+                 from rp in religiousGroupPartner
+                 select this.DetermineSplitFactor(
+                     c, r, rp))
                 .IfNone(0M);
 
-            {
-                TaxRateModel taxRateModel = this.taxRateContext.Rates
-                    .Single(item => item.Year == calculationYear
-                                   && item.Canton == person.Canton
-                                   && item.Municipality == person.Municipality);
+            TaxRateModel taxRateModel = this.taxRateContext.Rates
+                .Single(item => item.Year == calculationYear
+                                && item.Canton == person.Canton
+                                && item.Municipality == person.Municipality);
 
-                Option<ChurchTaxResult> result =
-                        from ratePerson in person.ReligiousGroup.Map(GetTaxRate)
-                        from ratePartner in religiousGroupPartner.Map(GetTaxRate)
-                        select new ChurchTaxResult
-                        {
-                            TaxAmount = ratePerson / 100M * taxResult.Total * splitFactor,
-                            TaxAmountPartner = ratePartner / 100M * taxResult.Total * (1M - splitFactor),
-                        };
-
-                return result.Match<Either<string, ChurchTaxResult>>(
-                        Some: r => r,
-                        None: () => "Calculation failed")
-                    .AsTask();
-
-                decimal GetTaxRate(ReligiousGroupType religiousGroupType)
+            Option<ChurchTaxResult> result =
+                from ratePerson in person.ReligiousGroup.Map(GetTaxRate)
+                from ratePartner in religiousGroupPartner.Map(GetTaxRate)
+                select new ChurchTaxResult
                 {
-                    return religiousGroupType switch
-                    {
-                        ReligiousGroupType.Roman => taxRateModel.RomanChurchTaxRate,
-                        ReligiousGroupType.Protestant => taxRateModel.ProtestantChurchTaxRate,
-                        ReligiousGroupType.Catholic => taxRateModel.CatholicChurchTaxRate,
-                        _ => 0M
-                    };
-                }
+                    TaxAmount = ratePerson / 100M * taxResult.Total * splitFactor,
+                    TaxAmountPartner = ratePartner / 100M * taxResult.Total * (1M - splitFactor),
+                };
+
+            return result.Match<Either<string, ChurchTaxResult>>(
+                    Some: r => r,
+                    None: () => "Calculation failed")
+                .AsTask();
+
+            decimal GetTaxRate(ReligiousGroupType religiousGroupType)
+            {
+                return religiousGroupType switch
+                {
+                    ReligiousGroupType.Roman => taxRateModel.RomanChurchTaxRate,
+                    ReligiousGroupType.Protestant => taxRateModel.ProtestantChurchTaxRate,
+                    ReligiousGroupType.Catholic => taxRateModel.CatholicChurchTaxRate,
+                    _ => 0M
+                };
             }
         }
 
@@ -124,15 +122,15 @@
         {
             decimal splitFactor = (civilStatus, religiousGroupType, personReligiousGroupPartner)
                 switch
-                {
-                    (CivilStatus.Undefined, _, _) => 1.0M,
-                    (CivilStatus.Single, ReligiousGroupType.Other, _) => 0.0M,
-                    (CivilStatus.Single, _, _) => 1.0M,
-                    (CivilStatus.Married, ReligiousGroupType.Other, ReligiousGroupType.Other)
-                    => 0.0M,
-                    (CivilStatus.Married, ReligiousGroupType.Other, _) => 1.0M,
-                    _ => 0.5M
-                };
+            {
+                (CivilStatus.Undefined, _, _) => 1.0M,
+                (CivilStatus.Single, ReligiousGroupType.Other, _) => 0.0M,
+                (CivilStatus.Single, _, _) => 1.0M,
+                (CivilStatus.Married, ReligiousGroupType.Other, ReligiousGroupType.Other)
+                => 0.0M,
+                (CivilStatus.Married, ReligiousGroupType.Other, _) => 1.0M,
+                _ => 0.5M
+            };
 
             return splitFactor;
         }

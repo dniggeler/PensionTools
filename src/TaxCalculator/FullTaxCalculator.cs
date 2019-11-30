@@ -34,12 +34,12 @@ namespace TaxCalculator
 
             return
                 (from stateTax in stateTaxResultTask.Result.ToOption()
-                    from federalTax in federalTaxResultTask.Result.ToOption()
-                    select new FullTaxResult()
-                    {
-                        StateTaxResult = stateTax,
-                        FederalTaxResult = federalTax,
-                    })
+                 from federalTax in federalTaxResultTask.Result.ToOption()
+                 select new FullTaxResult()
+                 {
+                     StateTaxResult = stateTax,
+                     FederalTaxResult = federalTax,
+                 })
                 .Match<Either<string, FullTaxResult>>(
                     Some: v => v,
                     None: () => "Full tax calculation failed");
