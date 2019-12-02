@@ -5,13 +5,13 @@ namespace TaxCalculator.Validators
 {
     public class CantonValidator : AbstractValidator<string>
     {
-        private readonly string[] _supportedCantons = { "ZH" };
+        private readonly string[] supportedCantons = { "ZH" };
 
         public CantonValidator()
         {
-            RuleFor(x => x).NotEmpty();
-            RuleFor(x => x).NotNull();
-            RuleFor(c => c).Must(c => _supportedCantons.Contains(c));
+            this.RuleFor(canton => canton)
+                .Must(c => this.supportedCantons.Contains(c))
+                .WithMessage(c => $"Canton {c} is not yet supported");
         }
     }
 }

@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using FluentValidation;
 using LanguageExt;
-using LanguageExt.SomeHelp;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -11,37 +10,36 @@ namespace TaxCalculator
 {
     public class PollTaxCalculator : IPollTaxCalculator
     {
-        private static readonly string[] CantonsWithPollTax = { "ZH", "LU", "SO" };
-
-        private readonly IValidator<PollTaxPerson> _personValidator;
         private const decimal PollTaxAmount = 24M;
+        private static readonly string[] CantonsWithPollTax = { "ZH", "LU", "SO" };
+        private readonly IValidator<PollTaxPerson> personValidator;
 
         public PollTaxCalculator(IValidator<PollTaxPerson> personValidator)
         {
-            _personValidator = personValidator;
+            this.personValidator = personValidator;
         }
 
-        public Task<Either<string, Option<decimal>>> CalculateAsync(int calculationYear,
-            PollTaxPerson person)
+        public Task<Either<string, Option<decimal>>> CalculateAsync(
+            int calculationYear, PollTaxPerson person)
         {
-            var validationResult = _personValidator.Validate(person);
+            var validationResult = this.personValidator.Validate(person);
             if (!validationResult.IsValid)
             {
                 var errorMessageLine = string.Join(";", validationResult.Errors
                     .Select(x => x.ErrorMessage));
                 return Task
-                    .FromResult<Either<string,Option<decimal>>>( $"validation failed: {errorMessageLine}");
+                    .FromResult<Either<string, Option<decimal>>>($"validation failed: {errorMessageLine}");
             }
 
-            if (!HasPollTax(person.Canton))
+            if (!this.HasPollTax(person.Canton))
             {
                 return Task.FromResult<Either<string, Option<decimal>>>(Option<decimal>.None);
             }
 
             return (from status in person.CivilStatus
-                from nbrOfPolls in GetNumberOfPolls(status)
-                select nbrOfPolls * PollTaxAmount)
-                .Match<Either<string,Option<decimal>>>(
+                    from nbrOfPolls in this.GetNumberOfPolls(status)
+                    select nbrOfPolls * PollTaxAmount)
+                .Match<Either<string, Option<decimal>>>(
                     Some: r => Prelude.Right<Option<decimal>>(r),
                     None: () => "No tax available")
                 .AsTask();

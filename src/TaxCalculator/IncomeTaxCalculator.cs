@@ -12,45 +12,48 @@ namespace TaxCalculator
 {
     public class IncomeTaxCalculator : IIncomeTaxCalculator
     {
-        private readonly IValidator<TaxPerson> _taxPersonValidator;
-        private readonly Func<TaxRateDbContext> _rateDbContextFunc;
-        private readonly IBasisIncomeTaxCalculator _basisIncomeTaxCalculator;
-        private readonly IMapper _mapper;
+        private readonly IValidator<TaxPerson> taxPersonValidator;
+        private readonly Func<TaxRateDbContext> rateDbContextFunc;
+        private readonly IBasisIncomeTaxCalculator basisIncomeTaxCalculator;
+        private readonly IMapper mapper;
 
-        public IncomeTaxCalculator(IValidator<TaxPerson> taxPersonValidator,
-            Func<TaxRateDbContext> rateDbContextFunc, 
+        public IncomeTaxCalculator(
+            IValidator<TaxPerson> taxPersonValidator,
+            Func<TaxRateDbContext> rateDbContextFunc,
             IBasisIncomeTaxCalculator basisIncomeTaxCalculator,
             IMapper mapper)
         {
-            _taxPersonValidator = taxPersonValidator;
-            _rateDbContextFunc = rateDbContextFunc;
-            _basisIncomeTaxCalculator = basisIncomeTaxCalculator;
-            _mapper = mapper;
+            this.taxPersonValidator = taxPersonValidator;
+            this.rateDbContextFunc = rateDbContextFunc;
+            this.basisIncomeTaxCalculator = basisIncomeTaxCalculator;
+            this.mapper = mapper;
         }
 
         public async Task<Either<string, SingleTaxResult>> CalculateAsync(int calculationYear, TaxPerson person)
         {
-            var validationResult = _taxPersonValidator.Validate(person);
+            var validationResult = this.taxPersonValidator.Validate(person);
             if (!validationResult.IsValid)
             {
                 var errorMessageLine = string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
                 return $"validation failed: {errorMessageLine}";
             }
 
-            var basisPerson = _mapper.Map<BasisTaxPerson>(person);
-            Either<string, BasisTaxResult> incomeTaxResult = 
-                await _basisIncomeTaxCalculator.CalculateAsync(calculationYear, basisPerson);
+            var basisPerson = this.mapper.Map<BasisTaxPerson>(person);
+            Either<string, BasisTaxResult> incomeTaxResult =
+                await this.basisIncomeTaxCalculator.CalculateAsync(calculationYear, basisPerson);
 
             return incomeTaxResult
-                .Match<Either<string,SingleTaxResult>>(
-                    Right: r => CalculateIncomeTax(calculationYear, person, r),
+                .Match<Either<string, SingleTaxResult>>(
+                    Right: r => this.CalculateIncomeTax(calculationYear, person, r),
                     Left: msg => msg);
         }
 
-        private SingleTaxResult CalculateIncomeTax(int calculationYear, TaxPerson person, 
+        private SingleTaxResult CalculateIncomeTax(
+            int calculationYear,
+            TaxPerson person,
             BasisTaxResult basisTaxResult)
         {
-            using (var dbContext = _rateDbContextFunc())
+            using (var dbContext = this.rateDbContextFunc())
             {
                 var taxRate = dbContext.Rates
                     .Single(item => item.Canton == person.Canton &&

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using LanguageExt;
@@ -8,26 +7,26 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using Tax.Data.Abstractions;
 using Tax.Data.Abstractions.Models;
 
-
 namespace TaxCalculator
 {
     public class BasisWealthTaxCalculator : IBasisWealthTaxCalculator
     {
         private const int TaxTypeId = (int)TaxType.Wealth;
 
-        private readonly IValidator<BasisTaxPerson> _taxPersonValidator;
-        private readonly ITaxTariffData _tariffData;
+        private readonly IValidator<BasisTaxPerson> taxPersonValidator;
+        private readonly ITaxTariffData tariffData;
 
-        public BasisWealthTaxCalculator(IValidator<BasisTaxPerson> taxPersonValidator,
+        public BasisWealthTaxCalculator(
+            IValidator<BasisTaxPerson> taxPersonValidator,
             ITaxTariffData tariffData)
         {
-            _taxPersonValidator = taxPersonValidator;
-            _tariffData = tariffData;
+            this.taxPersonValidator = taxPersonValidator;
+            this.tariffData = tariffData;
         }
 
         public Task<Either<string, BasisTaxResult>> CalculateAsync(int calculationYear, BasisTaxPerson person)
         {
-            var validationResult = _taxPersonValidator.Validate(person);
+            var validationResult = this.taxPersonValidator.Validate(person);
             if (!validationResult.IsValid)
             {
                 var errorMessageLine = string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
@@ -35,15 +34,15 @@ namespace TaxCalculator
             }
 
             var tariffItems =
-                this._tariffData.Get(new TaxFilterModel
-                    {
-                        Year = calculationYear,
-                        Canton = person.Canton,
-
-                    })
+                this.tariffData.Get(new TaxFilterModel
+                {
+                    Year = calculationYear,
+                    Canton = person.Canton,
+                })
                     .OrderBy(item => item.TaxAmount);
 
-            return Map(person.CivilStatus)
+            return this.Map(person.CivilStatus)
+
                 // get all income level candidate
                 .Map(typeId => tariffItems
                     .Where(item => item.TariffType == (int)typeId)
@@ -52,8 +51,9 @@ namespace TaxCalculator
                     .OrderByDescending(item => item.IncomeLevel)
                     .DefaultIfEmpty(new TaxTariffModel())
                     .First())
+
                 // calculate result
-                .Map(tariff => CalculateIncomeTax(person, tariff))
+                .Map(tariff => this.CalculateIncomeTax(person, tariff))
                 .Match<Either<string, BasisTaxResult>>(
                     Some: r => r,
                     None: () => "Tariff not available")
@@ -62,12 +62,12 @@ namespace TaxCalculator
 
         private BasisTaxResult CalculateIncomeTax(BasisTaxPerson person, TaxTariffModel tariff)
         {
-
-            var referenceTaxableIncome = person.TaxableAmount - person.TaxableAmount % tariff.IncomeIncrement;
+            var referenceTaxableIncome =
+                person.TaxableAmount - (person.TaxableAmount % tariff.IncomeIncrement);
 
             var incrementMultiplier = (referenceTaxableIncome - tariff.IncomeLevel) / tariff.IncomeIncrement;
 
-            var baseTaxAmount = incrementMultiplier * tariff.TaxIncrement + tariff.TaxAmount;
+            var baseTaxAmount = (incrementMultiplier * tariff.TaxIncrement) + tariff.TaxAmount;
 
             return new BasisTaxResult
             {

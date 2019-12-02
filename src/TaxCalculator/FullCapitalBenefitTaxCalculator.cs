@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Text;
 
-
 namespace TaxCalculator
 {
     using System.Threading.Tasks;

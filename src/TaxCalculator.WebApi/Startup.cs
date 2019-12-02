@@ -1,8 +1,13 @@
+using System;
+using System.IO;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 using Tax.Data;
 
 namespace TaxCalculator.WebApi
@@ -11,7 +16,7 @@ namespace TaxCalculator.WebApi
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -24,8 +29,28 @@ namespace TaxCalculator.WebApi
                 .AddDbContextCheck<TaxTariffDbContext>()
                 .AddDbContextCheck<TaxRateDbContext>();
             services.AddControllers();
-            services.AddTaxData(Configuration);
+            services.AddTaxData(this.Configuration);
             services.AddTaxCalculators();
+            services.AddSwaggerExamplesFromAssemblyOf<Examples.CapitalBenefitTaxRequestExample>();
+            services.AddSwaggerGen(opt =>
+            {
+                opt.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Tax Calculators",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Dieter Niggeler",
+                        Email = "dnig69+2@gmail.com",
+                    },
+                    Version = "v1",
+                });
+                opt.ExampleFilters();
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                opt.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,7 +64,12 @@ namespace TaxCalculator.WebApi
             app.UseRouting();
             app.UseAuthorization();
             app.UseHealthChecks("/");
-                
+            app.UseSwagger();
+            app.UseSwaggerUI(opt =>
+            {
+                opt.SwaggerEndpoint("/swagger/v1/swagger.json", "Tax Calculators Api V1");
+                opt.RoutePrefix = "swagger";
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
