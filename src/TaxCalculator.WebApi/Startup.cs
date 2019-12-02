@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 using Tax.Data;
 
 namespace TaxCalculator.WebApi
@@ -30,7 +31,7 @@ namespace TaxCalculator.WebApi
             services.AddControllers();
             services.AddTaxData(this.Configuration);
             services.AddTaxCalculators();
-
+            services.AddSwaggerExamplesFromAssemblyOf<Examples.CapitalBenefitTaxRequestExample>();
             services.AddSwaggerGen(opt =>
             {
                 opt.SwaggerDoc("v1", new OpenApiInfo
@@ -43,6 +44,7 @@ namespace TaxCalculator.WebApi
                     },
                     Version = "v1",
                 });
+                opt.ExampleFilters();
 
                 // Set the comments path for the Swagger JSON and UI.
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

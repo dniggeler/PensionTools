@@ -16,30 +16,34 @@ namespace TaxCalculator.WebApi.Controllers
     [Route("api/calculators/tax")]
     public class TaxCalculatorController : ControllerBase
     {
-        private readonly ICapitalBenefitTaxCalculator benefitTaxCalculator;
         private readonly IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator;
         private readonly IFullTaxCalculator fullTaxCalculator;
         private readonly ILogger<TaxCalculatorController> logger;
 
         public TaxCalculatorController(
-            ICapitalBenefitTaxCalculator benefitTaxCalculator,
             IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator,
             IFullTaxCalculator fullTaxCalculator,
             ILogger<TaxCalculatorController> logger)
         {
-            this.benefitTaxCalculator = benefitTaxCalculator;
             this.fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;
             this.fullTaxCalculator = fullTaxCalculator;
             this.logger = logger;
         }
 
         /// <summary>
-        /// Calculates the full tax.
+        /// Calculates the full tax. Result comprises municipality, state and federal income tax amounts.
+        /// And, wealth capital tax is  calculated for municipality and state only. Wealth is not taxed on federal level.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>Calculation results.</returns>
+        /// <remarks>
+        /// Einkommens- und Vermögenssteuerrechner für Gemeinde- und Staatsteuern. Vermögenssteuern werden
+        /// auf Bundesebene keine erhoben.
+        /// </remarks>
         [HttpPost]
         [Route("full/incomeandwealth")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<FullTaxResponse>> CalculateFullTax(FullTaxRequest request)
         {
             if (request == null)
@@ -100,66 +104,6 @@ namespace TaxCalculator.WebApi.Controllers
         }
 
         /// <summary>
-        /// Calculates the municipality capital benefit tax.</summary>
-        /// <param name="request">The request.</param>
-        /// <returns>Calculation results.</returns>
-        [HttpPost]
-        [Route("municipality/capitalbenefit")]
-        public async Task<ActionResult<CapitalBenefitTaxResponse>> CalculateMunicipalityCapitalBenefitTax(
-            CapitalBenefitTaxRequest request)
-        {
-            if (request == null)
-            {
-                return this.BadRequest(nameof(request));
-            }
-
-            var taxPerson = MapRequest();
-
-            Either<string, CapitalBenefitTaxResult> result =
-                await this.benefitTaxCalculator.CalculateAsync(
-                    request.CalculationYear,
-                    taxPerson);
-
-            return result
-                .Match<ActionResult>(
-                Right: r => this.Ok(MapResponse(r)),
-                Left: this.BadRequest);
-
-            // local methods
-            CapitalBenefitTaxResponse MapResponse(CapitalBenefitTaxResult r)
-            {
-                return new CapitalBenefitTaxResponse
-                {
-                    Name = taxPerson.Name,
-                    CalculationYear = request.CalculationYear,
-                    TaxAmount = r.TotalTaxAmount,
-                    ChurchTaxAmount = r.ChurchTaxAmount,
-                    CantonRate = r.CantonRate,
-                    MunicipalityRate = r.MunicipalityRate,
-                };
-            }
-
-            CapitalBenefitTaxPerson MapRequest()
-            {
-                var name = string.IsNullOrEmpty(request.Name)
-                    ? Guid.NewGuid().ToString().Substring(0, 6)
-                    : request.Name;
-
-                return new CapitalBenefitTaxPerson
-                {
-                    Name = name,
-                    Canton = request.Canton,
-                    CivilStatus = request.CivilStatus,
-                    Municipality = request.Municipality,
-                    ReligiousGroupType = request.ReligiousGroup,
-                    PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
-                    NumberOfChildren = 0,
-                    TaxableBenefits = request.TaxableBenefits,
-                };
-            }
-        }
-
-        /// <summary>
         /// Calculates the overall capital benefit tax including state, municipality and
         /// federal tax amounts.
         /// </summary>
@@ -193,8 +137,8 @@ namespace TaxCalculator.WebApi.Controllers
 
             return result
                 .Match<ActionResult>(
-                Right: r => this.Ok(MapResponse(r)),
-                Left: this.BadRequest);
+                    Right: r => this.Ok(MapResponse(r)),
+                    Left: this.BadRequest);
 
             // local methods
             CapitalBenefitTaxResponse MapResponse(FullCapitalBenefitTaxResult r)
