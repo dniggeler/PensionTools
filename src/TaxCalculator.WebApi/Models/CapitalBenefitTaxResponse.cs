@@ -6,11 +6,18 @@
 
         public int CalculationYear { get; set; }
 
-        public decimal CantonRate { get; set; }
+        public decimal TotalTaxAmount { get; set; }
 
-        public decimal MunicipalityRate { get; set; }
+        public TaxDetailResponse TaxDetails { get; set; }
+    }
 
-        public decimal TaxAmount { get; set; }
+    public class TaxDetailResponse
+    {
+        public decimal FederalTaxAmount { get; set; }
+
+        public decimal MunicipalityTaxAmount { get; set; }
+
+        public decimal StateTaxAmount { get; set; }
 
         public decimal ChurchTaxAmount { get; set; }
     }

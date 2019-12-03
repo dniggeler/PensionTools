@@ -147,7 +147,14 @@ namespace TaxCalculator.WebApi.Controllers
                 {
                     Name = taxPerson.Name,
                     CalculationYear = request.CalculationYear,
-                    TaxAmount = r.TotalTaxAmount,
+                    TotalTaxAmount = r.TotalTaxAmount,
+                    TaxDetails = new TaxDetailResponse
+                    {
+                        ChurchTaxAmount = r.StateResult.ChurchTaxAmount,
+                        FederalTaxAmount = r.FederalResult.TaxAmount,
+                        MunicipalityTaxAmount = r.StateResult.MunicipalityTaxAmount,
+                        StateTaxAmount = r.StateResult.CantonTaxAmount,
+                    },
                 };
             }
 
