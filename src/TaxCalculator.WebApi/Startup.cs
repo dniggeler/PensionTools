@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,7 +29,9 @@ namespace TaxCalculator.WebApi
                 .AddDbContextCheck<FederalTaxTariffDbContext>()
                 .AddDbContextCheck<TaxTariffDbContext>()
                 .AddDbContextCheck<TaxRateDbContext>();
-            services.AddControllers();
+            services.AddControllersWithViews()
+                .AddJsonOptions(options =>
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             services.AddTaxData(this.Configuration);
             services.AddTaxCalculators();
             services.AddSwaggerExamplesFromAssemblyOf<Examples.CapitalBenefitTaxRequestExample>();
