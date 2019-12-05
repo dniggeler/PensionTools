@@ -24,7 +24,7 @@ steps:
     repository: 'malagueta/pensiontools'
     dockerfile: 'src/TaxCalculator.WebApi/Dockerfile'
     containerRegistry: 'kDocker Registery'
-    tags: ¦
+    tags: |
       0.0.$(Build.BuildId)
 
 - script: dotnet restore $(webProject)
