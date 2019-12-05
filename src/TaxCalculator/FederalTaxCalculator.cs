@@ -5,6 +5,7 @@ using FluentValidation.Results;
 using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data;
 using Tax.Data.Abstractions.Models;
 

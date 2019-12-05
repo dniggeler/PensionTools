@@ -1,8 +1,7 @@
-﻿using System.Runtime.InteropServices;
-using LanguageExt;
+﻿using LanguageExt;
 
 
-namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
+namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person
 {
     public class TaxPerson
     {
