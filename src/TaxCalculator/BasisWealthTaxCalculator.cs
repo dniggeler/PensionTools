@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data.Abstractions;
 using Tax.Data.Abstractions.Models;
 
@@ -37,7 +39,7 @@ namespace TaxCalculator
                 this.tariffData.Get(new TaxFilterModel
                 {
                     Year = calculationYear,
-                    Canton = person.Canton,
+                    Canton = person.Canton.ToString(),
                 })
                     .OrderBy(item => item.TaxAmount);
 

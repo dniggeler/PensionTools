@@ -11,7 +11,7 @@ namespace TaxCalculator
     public class PollTaxCalculator : IPollTaxCalculator
     {
         private const decimal PollTaxAmount = 24M;
-        private static readonly string[] CantonsWithPollTax = { "ZH", "LU", "SO" };
+        private static readonly Canton[] CantonsWithPollTax = { Canton.ZH, Canton.LU, Canton.SO };
         private readonly IValidator<PollTaxPerson> personValidator;
 
         public PollTaxCalculator(IValidator<PollTaxPerson> personValidator)
@@ -55,7 +55,7 @@ namespace TaxCalculator
             };
         }
 
-        private bool HasPollTax(string canton)
+        private bool HasPollTax(Canton canton)
         {
             return CantonsWithPollTax.Contains(canton);
         }

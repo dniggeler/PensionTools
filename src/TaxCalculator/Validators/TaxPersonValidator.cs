@@ -1,6 +1,5 @@
-﻿using System.Linq;
-using FluentValidation;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+﻿using FluentValidation;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
 namespace TaxCalculator.Validators
 {

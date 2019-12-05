@@ -6,6 +6,7 @@ using FluentValidation;
 using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data;
 
 namespace TaxCalculator
@@ -56,7 +57,7 @@ namespace TaxCalculator
             using (var dbContext = this.rateDbContextFunc())
             {
                 var taxRate = dbContext.Rates
-                    .Single(item => item.Canton == person.Canton &&
+                    .Single(item => item.Canton == person.Canton.ToString() &&
                                     item.Year == calculationYear &&
                                     item.Municipality == person.Municipality);
 

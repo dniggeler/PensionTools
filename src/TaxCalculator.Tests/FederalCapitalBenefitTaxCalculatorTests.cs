@@ -35,11 +35,11 @@ namespace TaxCalculator.Tests
             decimal capitalBenefitAmount = Convert.ToDecimal(capitalBenefitAsDouble);
             CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
 
-            var taxPerson = new FederalCapitalBenefitTaxPerson
+            var taxPerson = new FederalTaxPerson
             {
                 Name = name,
                 CivilStatus = status,
-                TaxableBenefits = capitalBenefitAmount,
+                TaxableAmount = capitalBenefitAmount,
             };
 
             // when

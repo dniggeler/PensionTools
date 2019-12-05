@@ -1,11 +1,12 @@
 ﻿using System.Linq;
 using FluentValidation;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
 namespace TaxCalculator.Validators
 {
-    public class CantonValidator : AbstractValidator<string>
+    public class CantonValidator : AbstractValidator<Canton>
     {
-        private readonly string[] supportedCantons = { "ZH" };
+        private readonly Canton[] supportedCantons = { Canton.ZH };
 
         public CantonValidator()
         {

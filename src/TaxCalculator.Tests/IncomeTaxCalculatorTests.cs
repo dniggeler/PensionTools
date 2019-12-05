@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;
 using Xunit;
 
@@ -24,7 +25,7 @@ namespace TaxCalculator.Tests
             var calculationYear = 2018;
             var taxPerson = new TaxPerson
             {
-                Canton = "ZH",
+                Canton = Canton.ZH,
                 CivilStatus = CivilStatus.Married,
                 ReligiousGroupType = ReligiousGroupType.Protestant,
                 Municipality = "Zürich",

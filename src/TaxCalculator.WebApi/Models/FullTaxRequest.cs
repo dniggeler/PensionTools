@@ -15,8 +15,7 @@ namespace TaxCalculator.WebApi.Models
         [Range(2018, 2099, ErrorMessage = "Valid tax years start from 2018")]
         public int CalculationYear { get; set; }
 
-        [MaxLength(2)]
-        public string Canton { get; set; }
+        public Canton Canton { get; set; }
 
         public CivilStatus CivilStatus { get; set; }
 

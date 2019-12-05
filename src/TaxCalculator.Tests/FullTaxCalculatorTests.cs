@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;
 using Xunit;
 
@@ -33,7 +34,7 @@ namespace TaxCalculator.Tests
         {
             // given
             string name = "Burli";
-            string canton = "ZH";
+            Canton canton = Canton.ZH;
             decimal income = Convert.ToDecimal(stateIncomeAsDouble);
             decimal federalIncome = Convert.ToDecimal(federalIncomeAsDouble);
             decimal wealth = Convert.ToDecimal(wealthAsDouble);

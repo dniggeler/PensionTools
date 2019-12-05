@@ -49,7 +49,7 @@ namespace Tax.AppConsole
             {
                 var taxPerson = new CapitalBenefitTaxPerson
                 {
-                    Canton = "ZH",
+                    Canton = Canton.ZH,
                     Name = "Burli",
                     CivilStatus = CivilStatus.Single,
                     ReligiousGroupType = ReligiousGroupType.Protestant,

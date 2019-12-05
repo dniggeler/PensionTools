@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;
 using Xunit;
 
@@ -27,7 +28,7 @@ namespace TaxCalculator.Tests
             string civilStatusCode)
         {
             // given
-            string canton = "ZH";
+            Canton canton = Canton.ZH;
             decimal wealth = Convert.ToDecimal(wealthAsDouble);
             CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
 

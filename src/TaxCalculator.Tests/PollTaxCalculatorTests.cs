@@ -34,7 +34,7 @@ namespace TaxCalculator.Tests
             var taxPerson = new PollTaxPerson
             {
                 Name = name,
-                Canton = canton,
+                Canton = Enum.Parse<Canton>(canton),
                 CivilStatus = status,
             };
 

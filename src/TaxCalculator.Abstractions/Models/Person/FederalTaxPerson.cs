@@ -2,10 +2,10 @@
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person
 {
-    public class FederalCapitalBenefitTaxPerson
+    public class FederalTaxPerson
     {
         public string Name { get; set; }
         public Option<CivilStatus> CivilStatus { get; set; }
-        public decimal TaxableBenefits { get; set; } 
+        public decimal TaxableAmount { get; set; } 
     }
 }
