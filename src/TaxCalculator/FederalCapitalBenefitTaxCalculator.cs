@@ -26,7 +26,7 @@
 
         /// <inheritdoc />
         public async Task<Either<string, BasisTaxResult>> CalculateAsync(
-            int calculationYear, FederalCapitalBenefitTaxPerson capitalBenefitTaxPerson)
+            int calculationYear, FederalTaxPerson capitalBenefitTaxPerson)
         {
             const decimal scaleFactor = 0.2M;
             FederalTaxPerson taxPerson = this.mapper.Map<FederalTaxPerson>(capitalBenefitTaxPerson);

@@ -44,7 +44,7 @@ namespace TaxCalculator
                     .Where(item => item.Year == calculationYear)
                     .Where(item => item.TariffType == (int)typeId)
                     .ToList()
-                    .Where(item => item.IncomeLevel <= person.TaxableIncome)
+                    .Where(item => item.IncomeLevel <= person.TaxableAmount)
                     .OrderByDescending(item => item.IncomeLevel)
                     .DefaultIfEmpty(new FederalTaxTariffModel())
                     .First())
@@ -57,7 +57,7 @@ namespace TaxCalculator
         private BasisTaxResult CalculateTax(FederalTaxPerson person, FederalTaxTariffModel tariff)
         {
             var referenceTaxableIncome =
-                person.TaxableIncome - (person.TaxableIncome % tariff.IncomeIncrement);
+                person.TaxableAmount - (person.TaxableAmount % tariff.IncomeIncrement);
 
             var incrementMultiplier = (referenceTaxableIncome - tariff.IncomeLevel) / tariff.IncomeIncrement;
 

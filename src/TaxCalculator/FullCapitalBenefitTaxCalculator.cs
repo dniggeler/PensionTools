@@ -38,7 +38,7 @@ namespace TaxCalculator
                 this.stateCalculator.CalculateAsync(calculationYear, capitalBenefitTaxPerson);
 
             var federalTaxPerson =
-                this.mapper.Map<FederalCapitalBenefitTaxPerson>(capitalBenefitTaxPerson);
+                this.mapper.Map<FederalTaxPerson>(capitalBenefitTaxPerson);
 
             var federalTaxResultTask =
                 this.federalCalculator.CalculateAsync(calculationYear, federalTaxPerson);

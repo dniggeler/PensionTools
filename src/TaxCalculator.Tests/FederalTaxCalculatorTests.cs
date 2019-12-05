@@ -34,7 +34,7 @@ namespace TaxCalculator.Tests
             {
                 Name = "Burli",
                 CivilStatus = status,
-                TaxableIncome = income
+                TaxableAmount = income
             };
 
             // when

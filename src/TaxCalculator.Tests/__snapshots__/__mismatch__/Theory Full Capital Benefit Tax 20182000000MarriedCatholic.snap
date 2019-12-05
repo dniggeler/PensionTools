@@ -1,0 +1,33 @@
+﻿[
+  {
+    "State": "IsRight",
+    "Right": {
+      "StateResult": {
+        "BasisTax": {
+          "DeterminingFactorTaxableAmount": 2000000.0,
+          "TaxAmount": 139640.0
+        },
+        "ChurchTax": {
+          "TaxAmount": [
+            9774.800
+          ],
+          "TaxAmountPartner": [
+            6982.00
+          ]
+        },
+        "CantonRate": 100.0,
+        "MunicipalityRate": 119.0,
+        "MunicipalityTaxAmount": 166171.60,
+        "CantonTaxAmount": 139640.0,
+        "ChurchTaxAmount": 16756.800,
+        "TotalTaxAmount": 322568.400
+      },
+      "FederalResult": {
+        "DeterminingFactorTaxableAmount": 0.0,
+        "TaxAmount": 0.0
+      },
+      "TotalTaxAmount": 322568.400
+    },
+    "Left": null
+  }
+]
