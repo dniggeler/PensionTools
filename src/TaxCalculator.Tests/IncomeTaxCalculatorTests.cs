@@ -25,7 +25,7 @@ namespace TaxCalculator.Tests
             var calculationYear = 2018;
             var taxPerson = new TaxPerson
             {
-                Canton = "ZH",
+                Canton = Canton.ZH,
                 CivilStatus = CivilStatus.Married,
                 ReligiousGroupType = ReligiousGroupType.Protestant,
                 Municipality = "Zürich",

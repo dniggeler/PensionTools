@@ -14,10 +14,12 @@ namespace TaxCalculator.Mapping
 
             this.CreateMap<TaxPerson, BasisTaxPerson>()
                 .ForMember(d => d.TaxableAmount, m => m.MapFrom(s => s.TaxableIncome));
-            
+
             this.CreateMap<TaxPerson, FederalTaxPerson>()
                 .ForMember(d => d.TaxableAmount, m => m.MapFrom(s => s.TaxableIncome));
+
             this.CreateMap<TaxPerson, PollTaxPerson>();
+
             this.CreateMap<TaxPerson, ChurchTaxPerson>()
                 .ForMember(d => d.ReligiousGroup, m => m.MapFrom(s => s.ReligiousGroupType))
                 .ForMember(d => d.PartnerReligiousGroup, m => m.MapFrom(s => s.PartnerReligiousGroupType));

@@ -40,7 +40,7 @@ namespace TaxCalculator
                 this.tariffData.Get(new TaxFilterModel
                     {
                         Year = calculationYear,
-                        Canton = person.Canton,
+                        Canton = person.Canton.ToString(),
                     })
                     .OrderBy(item => item.TaxAmount);
 

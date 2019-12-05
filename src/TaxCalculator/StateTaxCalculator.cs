@@ -55,7 +55,7 @@ namespace TaxCalculator
             var pollTaxResult = await pollTaxResultTask;
 
             Option<TaxRateModel> taxRate = this.dbContext.Rates
-                .FirstOrDefault(item => item.Canton == person.Canton &&
+                .FirstOrDefault(item => item.Canton == person.Canton.ToString() &&
                                         item.Year == calculationYear &&
                                         item.Municipality == person.Municipality);
 

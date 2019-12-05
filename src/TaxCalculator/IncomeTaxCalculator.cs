@@ -57,7 +57,7 @@ namespace TaxCalculator
             using (var dbContext = this.rateDbContextFunc())
             {
                 var taxRate = dbContext.Rates
-                    .Single(item => item.Canton == person.Canton &&
+                    .Single(item => item.Canton == person.Canton.ToString() &&
                                     item.Year == calculationYear &&
                                     item.Municipality == person.Municipality);
 

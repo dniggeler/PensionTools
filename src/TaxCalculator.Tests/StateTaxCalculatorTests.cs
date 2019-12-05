@@ -32,7 +32,7 @@ namespace TaxCalculator.Tests
         {
             // given
             string name = "Burli";
-            string canton = "ZH";
+            Canton canton = Canton.ZH;
             decimal income = Convert.ToDecimal(incomeAsDouble);
             decimal wealth = Convert.ToDecimal(wealthAsDouble);
             CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);

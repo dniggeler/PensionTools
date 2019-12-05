@@ -34,7 +34,7 @@ namespace TaxCalculator.Tests
         {
             // given
             string name = "Burli";
-            string canton = "ZH";
+            Canton canton = Canton.ZH;
             decimal income = Convert.ToDecimal(stateIncomeAsDouble);
             decimal federalIncome = Convert.ToDecimal(federalIncomeAsDouble);
             decimal wealth = Convert.ToDecimal(wealthAsDouble);

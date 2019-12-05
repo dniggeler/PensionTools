@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using LanguageExt;
@@ -38,7 +39,7 @@ namespace TaxCalculator
                 this.tariffData.Get(new TaxFilterModel
                 {
                     Year = calculationYear,
-                    Canton = person.Canton,
+                    Canton = person.Canton.ToString(),
                 })
                     .OrderBy(item => item.TaxAmount);
 

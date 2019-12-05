@@ -26,7 +26,7 @@ namespace TaxCalculator.Tests
 
             var taxPerson = new TaxPerson
             {
-                Canton = "ZH",
+                Canton = Canton.ZH,
                 Name = "Burli",
                 CivilStatus = CivilStatus.Married,
                 ReligiousGroupType = ReligiousGroupType.Protestant,

@@ -87,7 +87,7 @@ namespace TaxCalculator
 
             Option<TaxRateModel> taxRateModel = this.taxRateContext.Rates
                 .FirstOrDefault(item => item.Year == calculationYear
-                                && item.Canton == person.Canton
+                                && item.Canton == person.Canton.ToString()
                                 && item.Municipality == person.Municipality);
 
             return
