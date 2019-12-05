@@ -6,6 +6,6 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person
     {
         public string Name { get; set; }
         public Option<CivilStatus> CivilStatus { get; set; }
-        public decimal TaxableIncome { get; set; } 
+        public decimal TaxableAmount { get; set; } 
     }
 }
