@@ -1,0 +1,2213 @@
+HistId	Kanton	Bezirksnummer	Bezirksname	BfsId	Gemeindename	DateOfRegistration
+13256	ZH	101	Affoltern	1	Aeugst am Albis	15.11.1976
+11742	ZH	101	Affoltern	2	Affoltern am Albis	01.01.1960
+11801	ZH	101	Affoltern	3	Bonstetten	01.01.1960
+11992	ZH	101	Affoltern	4	Hausen am Albis	01.01.1960
+12249	ZH	101	Affoltern	5	Hedingen	01.01.1960
+12671	ZH	101	Affoltern	6	Kappel am Albis	01.01.1960
+12674	ZH	101	Affoltern	7	Knonau	01.01.1960
+12738	ZH	101	Affoltern	8	Maschwanden	01.01.1960
+12433	ZH	101	Affoltern	9	Mettmenstetten	01.01.1960
+12497	ZH	101	Affoltern	10	Obfelden	01.01.1960
+13124	ZH	101	Affoltern	11	Ottenbach	01.01.1960
+12891	ZH	101	Affoltern	12	Rifferswil	01.01.1960
+10575	ZH	101	Affoltern	13	Stallikon	01.01.1960
+13255	ZH	101	Affoltern	14	Wettswil am Albis	15.11.1976
+11735	ZH	102	Andelfingen	21	Adlikon	01.01.1960
+11862	ZH	102	Andelfingen	22	Benken (ZH)	01.01.1960
+11855	ZH	102	Andelfingen	23	Berg am Irchel	01.01.1960
+15513	ZH	102	Andelfingen	24	Buch am Irchel	01.01.2013
+11573	ZH	102	Andelfingen	25	Dachsen	01.01.1960
+12182	ZH	102	Andelfingen	26	Dorf	01.01.1960
+11973	ZH	102	Andelfingen	27	Feuerthalen	01.01.1960
+11997	ZH	102	Andelfingen	28	Flaach	01.01.1960
+11935	ZH	102	Andelfingen	29	Flurlingen	01.01.1960
+13214	ZH	102	Andelfingen	30	Andelfingen	01.01.1970
+12240	ZH	102	Andelfingen	31	Henggart	01.01.1960
+12173	ZH	102	Andelfingen	32	Humlikon	01.01.1960
+12699	ZH	102	Andelfingen	33	Kleinandelfingen	01.01.1960
+12635	ZH	102	Andelfingen	34	Laufen-Uhwiesen	01.01.1960
+12742	ZH	102	Andelfingen	35	Marthalen	01.01.1960
+13128	ZH	102	Andelfingen	37	Ossingen	01.01.1960
+12912	ZH	102	Andelfingen	38	Rheinau	01.01.1960
+10563	ZH	102	Andelfingen	39	Thalheim an der Thur	01.01.1960
+10898	ZH	102	Andelfingen	40	Trüllikon	01.01.1960
+10899	ZH	102	Andelfingen	41	Truttikon	01.01.1960
+10365	ZH	102	Andelfingen	43	Volken	01.01.1960
+11683	ZH	103	Bülach	51	Bachenbülach	01.01.1960
+11685	ZH	103	Bülach	52	Bassersdorf	01.01.1960
+11461	ZH	103	Bülach	53	Bülach	01.01.1960
+11563	ZH	103	Bülach	54	Dietlikon	01.01.1960
+12168	ZH	103	Bülach	55	Eglisau	01.01.1960
+12292	ZH	103	Bülach	56	Embrach	01.01.1960
+11960	ZH	103	Bülach	57	Freienstein-Teufen	01.01.1960
+12056	ZH	103	Bülach	58	Glattfelden	01.01.1960
+12166	ZH	103	Bülach	59	Hochfelden	01.01.1960
+12220	ZH	103	Bülach	60	Höri	01.01.1960
+12178	ZH	103	Bülach	61	Hüntwangen	01.01.1960
+12673	ZH	103	Bülach	62	Kloten	01.01.1960
+12720	ZH	103	Bülach	63	Lufingen	01.01.1960
+12547	ZH	103	Bülach	64	Nürensdorf	01.01.1960
+12524	ZH	103	Bülach	65	Oberembrach	01.01.1960
+12483	ZH	103	Bülach	66	Opfikon	01.01.1960
+13090	ZH	103	Bülach	67	Rafz	01.01.1960
+12919	ZH	103	Bülach	68	Rorbas	01.01.1960
+10451	ZH	103	Bülach	69	Wallisellen	01.01.1960
+10443	ZH	103	Bülach	70	Wasterkingen	01.01.1960
+10268	ZH	103	Bülach	71	Wil (ZH)	01.01.1960
+10331	ZH	103	Bülach	72	Winkel	01.01.1960
+11704	ZH	104	Dielsdorf	81	Bachs	01.01.1960
+11786	ZH	104	Dielsdorf	82	Boppelsen	01.01.1960
+11456	ZH	104	Dielsdorf	83	Buchs (ZH)	01.01.1960
+11578	ZH	104	Dielsdorf	84	Dällikon	01.01.1960
+11581	ZH	104	Dielsdorf	85	Dänikon	01.01.1960
+11567	ZH	104	Dielsdorf	86	Dielsdorf	01.01.1960
+12181	ZH	104	Dielsdorf	87	Hüttikon	01.01.1960
+12537	ZH	104	Dielsdorf	88	Neerach	01.01.1960
+12534	ZH	104	Dielsdorf	89	Niederglatt	01.01.1960
+12560	ZH	104	Dielsdorf	90	Niederhasli	01.01.1960
+12568	ZH	104	Dielsdorf	91	Niederweningen	01.01.1960
+12469	ZH	104	Dielsdorf	92	Oberglatt	01.01.1960
+12447	ZH	104	Dielsdorf	93	Oberweningen	01.01.1960
+13126	ZH	104	Dielsdorf	94	Otelfingen	01.01.1960
+13166	ZH	104	Dielsdorf	95	Regensberg	01.01.1960
+13168	ZH	104	Dielsdorf	96	Regensdorf	01.01.1960
+12834	ZH	104	Dielsdorf	97	Rümlang	01.01.1960
+13046	ZH	104	Dielsdorf	98	Schleinikon	01.01.1960
+13037	ZH	104	Dielsdorf	99	Schöfflisdorf	01.01.1960
+10383	ZH	104	Dielsdorf	100	Stadel	01.01.1960
+10597	ZH	104	Dielsdorf	101	Steinmaur	01.01.1960
+10448	ZH	104	Dielsdorf	102	Weiach	01.01.1960
+11709	ZH	105	Hinwil	111	Bäretswil	01.01.1960
+11478	ZH	105	Hinwil	112	Bubikon	01.01.1960
+12159	ZH	105	Hinwil	113	Dürnten	01.01.1960
+12002	ZH	105	Hinwil	114	Fischenthal	01.01.1960
+12023	ZH	105	Hinwil	115	Gossau (ZH)	01.01.1960
+11970	ZH	105	Hinwil	116	Grüningen	01.01.1960
+12156	ZH	105	Hinwil	117	Hinwil	01.01.1960
+12883	ZH	105	Hinwil	118	Rüti (ZH)	01.01.1960
+12951	ZH	105	Hinwil	119	Seegräben	01.01.1960
+10459	ZH	105	Hinwil	120	Wald (ZH)	01.01.1960
+10277	ZH	105	Hinwil	121	Wetzikon (ZH)	01.01.1960
+11745	ZH	106	Horgen	131	Adliswil	01.01.1960
+12701	ZH	106	Horgen	135	Kilchberg (ZH)	01.01.1960
+12637	ZH	106	Horgen	136	Langnau am Albis	01.01.1960
+12461	ZH	106	Horgen	137	Oberrieden	01.01.1960
+12907	ZH	106	Horgen	138	Richterswil	01.01.1960
+12832	ZH	106	Horgen	139	Rüschlikon	01.01.1960
+10691	ZH	106	Horgen	141	Thalwil	01.01.1960
+12301	ZH	107	Meilen	151	Erlenbach (ZH)	01.01.1960
+12316	ZH	107	Meilen	152	Herrliberg	01.01.1960
+12143	ZH	107	Meilen	153	Hombrechtikon	01.01.1960
+12592	ZH	107	Meilen	154	Küsnacht (ZH)	01.01.1960
+12754	ZH	107	Meilen	155	Männedorf	01.01.1960
+12408	ZH	107	Meilen	156	Meilen	01.01.1960
+12501	ZH	107	Meilen	157	Oetwil am See	01.01.1960
+10363	ZH	107	Meilen	158	Stäfa	01.01.1960
+13259	ZH	107	Meilen	159	Uetikon am See	10.03.1977
+10326	ZH	107	Meilen	160	Zumikon	01.01.1960
+13683	ZH	107	Meilen	161	Zollikon	01.01.1986
+11989	ZH	108	Pfäffikon	172	Fehraltorf	01.01.1960
+12161	ZH	108	Pfäffikon	173	Hittnau	01.01.1960
+12821	ZH	108	Pfäffikon	176	Lindau	01.01.1960
+13137	ZH	108	Pfäffikon	177	Pfäffikon	01.01.1960
+12831	ZH	108	Pfäffikon	178	Russikon	01.01.1960
+10389	ZH	108	Pfäffikon	180	Weisslingen	01.01.1960
+10242	ZH	108	Pfäffikon	181	Wila	01.01.1960
+10334	ZH	108	Pfäffikon	182	Wildberg	01.01.1960
+12205	ZH	109	Uster	191	Dübendorf	01.01.1960
+12123	ZH	109	Uster	192	Egg	01.01.1960
+12248	ZH	109	Uster	193	Fällanden	01.01.1960
+12073	ZH	109	Uster	194	Greifensee	01.01.1960
+12620	ZH	109	Uster	195	Maur	01.01.1960
+12427	ZH	109	Uster	196	Mönchaltorf	01.01.1960
+12956	ZH	109	Uster	197	Schwerzenbach	01.01.1960
+10940	ZH	109	Uster	198	Uster	01.01.1960
+10368	ZH	109	Uster	199	Volketswil	01.01.1960
+13250	ZH	109	Uster	200	Wangen-Brüttisellen	01.01.1976
+11777	ZH	110	Winterthur	211	Altikon	01.01.1960
+11467	ZH	110	Winterthur	213	Brütten	01.01.1960
+11574	ZH	110	Winterthur	214	Dägerlen	01.01.1960
+11583	ZH	110	Winterthur	215	Dättlikon	01.01.1960
+11565	ZH	110	Winterthur	216	Dinhard	01.01.1960
+12144	ZH	110	Winterthur	218	Ellikon an der Thur	01.01.1960
+12294	ZH	110	Winterthur	219	Elsau	01.01.1960
+12001	ZH	110	Winterthur	220	Hagenbuch	01.01.1960
+12283	ZH	110	Winterthur	221	Hettlingen	01.01.1960
+15514	ZH	110	Winterthur	223	Neftenbach	01.01.2013
+13145	ZH	110	Winterthur	224	Pfungen	01.01.1960
+12889	ZH	110	Winterthur	225	Rickenbach (ZH)	01.01.1960
+14120	ZH	110	Winterthur	226	Schlatt (ZH)	01.01.1999
+12977	ZH	110	Winterthur	227	Seuzach	01.01.1960
+10857	ZH	110	Winterthur	228	Turbenthal	01.01.1960
+10347	ZH	110	Winterthur	230	Winterthur	01.01.1960
+10312	ZH	110	Winterthur	231	Zell (ZH)	01.01.1960
+14365	ZH	111	Dietikon	241	Aesch (ZH)	01.01.2003
+13690	ZH	111	Dietikon	242	Birmensdorf (ZH)	01.01.1990
+13691	ZH	111	Dietikon	243	Dietikon	01.01.1990
+13692	ZH	111	Dietikon	244	Geroldswil	01.01.1990
+13693	ZH	111	Dietikon	245	Oberengstringen	01.01.1990
+13694	ZH	111	Dietikon	246	Oetwil an der Limmat	01.01.1990
+13695	ZH	111	Dietikon	247	Schlieren	01.01.1990
+13696	ZH	111	Dietikon	248	Uitikon	01.01.1990
+13697	ZH	111	Dietikon	249	Unterengstringen	01.01.1990
+13698	ZH	111	Dietikon	250	Urdorf	01.01.1990
+13699	ZH	111	Dietikon	251	Weiningen (ZH)	01.01.1990
+13688	ZH	112	Zürich	261	Zürich	01.01.1990
+16122	ZH	102	Andelfingen	292	Stammheim	01.01.2019
+16123	ZH	106	Horgen	293	Wädenswil	01.01.2019
+16081	ZH	110	Winterthur	294	Elgg	01.01.2018
+16080	ZH	106	Horgen	295	Horgen	01.01.2018
+15671	ZH	108	Pfäffikon	296	Illnau-Effretikon	01.01.2016
+15653	ZH	108	Pfäffikon	297	Bauma	01.01.2015
+15631	ZH	110	Winterthur	298	Wiesendangen	01.01.2014
+14995	BE	243	Seeland	301	Aarberg	01.01.2010
+14996	BE	243	Seeland	302	Bargen (BE)	01.01.2010
+14997	BE	243	Seeland	303	Grossaffoltern	01.01.2010
+16124	BE	243	Seeland	304	Kallnach	01.01.2019
+14999	BE	243	Seeland	305	Kappelen	01.01.2010
+15474	BE	243	Seeland	306	Lyss	01.01.2011
+15001	BE	246	Bern-Mittelland	307	Meikirch	01.01.2010
+15003	BE	243	Seeland	309	Radelfingen	01.01.2010
+15672	BE	243	Seeland	310	Rapperswil (BE)	01.01.2016
+15005	BE	243	Seeland	311	Schüpfen	01.01.2010
+15006	BE	243	Seeland	312	Seedorf (BE)	01.01.2010
+15007	BE	244	Oberaargau	321	Aarwangen	01.01.2010
+15008	BE	244	Oberaargau	322	Auswil	01.01.2010
+15009	BE	244	Oberaargau	323	Bannwil	01.01.2010
+15010	BE	244	Oberaargau	324	Bleienbach	01.01.2010
+15011	BE	244	Oberaargau	325	Busswil bei Melchnau	01.01.2010
+15012	BE	244	Oberaargau	326	Gondiswil	01.01.2010
+14975	BE	244	Oberaargau	329	Langenthal	01.01.2010
+15015	BE	244	Oberaargau	331	Lotzwil	01.01.2010
+15475	BE	244	Oberaargau	332	Madiswil	01.01.2011
+15017	BE	244	Oberaargau	333	Melchnau	01.01.2010
+15018	BE	244	Oberaargau	334	Obersteckholz	01.01.2010
+15019	BE	244	Oberaargau	335	Oeschenbach	01.01.2010
+15020	BE	244	Oberaargau	336	Reisiswil	01.01.2010
+15021	BE	244	Oberaargau	337	Roggwil (BE)	01.01.2010
+15022	BE	244	Oberaargau	338	Rohrbach	01.01.2010
+15023	BE	244	Oberaargau	339	Rohrbachgraben	01.01.2010
+15024	BE	244	Oberaargau	340	Rütschelen	01.01.2010
+15025	BE	244	Oberaargau	341	Schwarzhäusern	01.01.2010
+15026	BE	244	Oberaargau	342	Thunstetten	01.01.2010
+15027	BE	244	Oberaargau	344	Ursenbach	01.01.2010
+15028	BE	244	Oberaargau	345	Wynau	01.01.2010
+15029	BE	246	Bern-Mittelland	351	Bern	01.01.2010
+15030	BE	246	Bern-Mittelland	352	Bolligen	01.01.2010
+15031	BE	246	Bern-Mittelland	353	Bremgarten bei Bern	01.01.2010
+15032	BE	246	Bern-Mittelland	354	Kirchlindach	01.01.2010
+15033	BE	246	Bern-Mittelland	355	Köniz	01.01.2010
+15034	BE	246	Bern-Mittelland	356	Muri bei Bern	01.01.2010
+15035	BE	246	Bern-Mittelland	357	Oberbalm	01.01.2010
+15036	BE	246	Bern-Mittelland	358	Stettlen	01.01.2010
+15037	BE	246	Bern-Mittelland	359	Vechigen	01.01.2010
+15038	BE	246	Bern-Mittelland	360	Wohlen bei Bern	01.01.2010
+15039	BE	246	Bern-Mittelland	361	Zollikofen	01.01.2010
+15040	BE	246	Bern-Mittelland	362	Ittigen	01.01.2010
+15041	BE	246	Bern-Mittelland	363	Ostermundigen	01.01.2010
+15042	BE	242	Biel/Bienne	371	Biel/Bienne	01.01.2010
+15043	BE	242	Biel/Bienne	372	Evilard	01.01.2010
+15044	BE	243	Seeland	381	Arch	01.01.2010
+15045	BE	243	Seeland	382	Büetigen	01.01.2010
+15046	BE	243	Seeland	383	Büren an der Aare	01.01.2010
+15048	BE	243	Seeland	385	Diessbach bei Büren	01.01.2010
+15049	BE	243	Seeland	386	Dotzigen	01.01.2010
+15050	BE	242	Biel/Bienne	387	Lengnau (BE)	01.01.2010
+15051	BE	243	Seeland	388	Leuzigen	01.01.2010
+15052	BE	243	Seeland	389	Meienried	01.01.2010
+15053	BE	242	Biel/Bienne	390	Meinisberg	01.01.2010
+15054	BE	243	Seeland	391	Oberwil bei Büren	01.01.2010
+15055	BE	242	Biel/Bienne	392	Pieterlen	01.01.2010
+15056	BE	243	Seeland	393	Rüti bei Büren	01.01.2010
+15057	BE	243	Seeland	394	Wengi	01.01.2010
+15058	BE	245	Emmental	401	Aefligen	01.01.2010
+15059	BE	245	Emmental	402	Alchenstorf	01.01.2010
+15060	BE	246	Bern-Mittelland	403	Bäriswil	01.01.2010
+15061	BE	245	Emmental	404	Burgdorf	01.01.2010
+15673	BE	245	Emmental	405	Ersigen	01.01.2016
+15063	BE	245	Emmental	406	Hasle bei Burgdorf	01.01.2010
+15064	BE	245	Emmental	407	Heimiswil	01.01.2010
+15065	BE	245	Emmental	408	Hellsau	01.01.2010
+15066	BE	245	Emmental	409	Hindelbank	01.01.2010
+15067	BE	245	Emmental	410	Höchstetten	01.01.2010
+15068	BE	245	Emmental	411	Kernenried	01.01.2010
+15069	BE	245	Emmental	412	Kirchberg (BE)	01.01.2010
+15070	BE	245	Emmental	413	Koppigen	01.01.2010
+15071	BE	245	Emmental	414	Krauchthal	01.01.2010
+15072	BE	245	Emmental	415	Lyssach	01.01.2010
+15073	BE	245	Emmental	416	Mötschwil	01.01.2010
+15075	BE	245	Emmental	418	Oberburg	01.01.2010
+15077	BE	245	Emmental	420	Rüdtligen-Alchenflüh	01.01.2010
+15078	BE	245	Emmental	421	Rumendingen	01.01.2010
+15079	BE	245	Emmental	422	Rüti bei Lyssach	01.01.2010
+15080	BE	245	Emmental	423	Willadingen	01.01.2010
+15081	BE	245	Emmental	424	Wynigen	01.01.2010
+15082	BE	241	Jura bernois	431	Corgémont	01.01.2010
+15083	BE	241	Jura bernois	432	Cormoret	01.01.2010
+15084	BE	241	Jura bernois	433	Cortébert	01.01.2010
+15085	BE	241	Jura bernois	434	Courtelary	01.01.2010
+15086	BE	241	Jura bernois	435	La Ferrière	01.01.2010
+15088	BE	241	Jura bernois	437	Mont-Tramelan	01.01.2010
+15089	BE	241	Jura bernois	438	Orvin	01.01.2010
+15092	BE	241	Jura bernois	441	Renan (BE)	01.01.2010
+15093	BE	241	Jura bernois	442	Romont (BE)	01.01.2010
+15094	BE	241	Jura bernois	443	Saint-Imier	01.01.2010
+15095	BE	241	Jura bernois	444	Sonceboz-Sombeval	01.01.2010
+15096	BE	241	Jura bernois	445	Sonvilier	01.01.2010
+15097	BE	241	Jura bernois	446	Tramelan	01.01.2010
+15099	BE	241	Jura bernois	448	Villeret	01.01.2010
+15632	BE	241	Jura bernois	449	Sauge	01.01.2014
+15658	BE	241	Jura bernois	450	Péry-La Heutte	01.01.2015
+15100	BE	243	Seeland	491	Brüttelen	01.01.2010
+15101	BE	243	Seeland	492	Erlach	01.01.2010
+15102	BE	243	Seeland	493	Finsterhennen	01.01.2010
+15103	BE	243	Seeland	494	Gals	01.01.2010
+15104	BE	243	Seeland	495	Gampelen	01.01.2010
+15105	BE	243	Seeland	496	Ins	01.01.2010
+15106	BE	243	Seeland	497	Lüscherz	01.01.2010
+15107	BE	243	Seeland	498	Müntschemier	01.01.2010
+15108	BE	243	Seeland	499	Siselen	01.01.2010
+15109	BE	243	Seeland	500	Treiten	01.01.2010
+15110	BE	243	Seeland	501	Tschugg	01.01.2010
+15111	BE	243	Seeland	502	Vinelz	01.01.2010
+15113	BE	245	Emmental	533	Bätterkinden	01.01.2010
+15115	BE	246	Bern-Mittelland	535	Deisswil bei Münchenbuchsee	01.01.2010
+15116	BE	246	Bern-Mittelland	536	Diemerswil	01.01.2010
+15633	BE	246	Bern-Mittelland	538	Fraubrunnen	01.01.2014
+15634	BE	246	Bern-Mittelland	540	Jegenstorf	01.01.2014
+15120	BE	246	Bern-Mittelland	541	Iffwil	01.01.2010
+15122	BE	246	Bern-Mittelland	543	Mattstetten	01.01.2010
+15123	BE	246	Bern-Mittelland	544	Moosseedorf	01.01.2010
+15125	BE	246	Bern-Mittelland	546	Münchenbuchsee	01.01.2010
+15130	BE	246	Bern-Mittelland	551	Urtenen-Schönbühl	01.01.2010
+15131	BE	245	Emmental	552	Utzenstorf	01.01.2010
+15132	BE	246	Bern-Mittelland	553	Wiggiswil	01.01.2010
+15133	BE	245	Emmental	554	Wiler bei Utzenstorf	01.01.2010
+15135	BE	245	Emmental	556	Zielebach	01.01.2010
+15136	BE	246	Bern-Mittelland	557	Zuzwil (BE)	01.01.2010
+15137	BE	249	Frutigen-Niedersimmental	561	Adelboden	01.01.2010
+15138	BE	249	Frutigen-Niedersimmental	562	Aeschi bei Spiez	01.01.2010
+15139	BE	249	Frutigen-Niedersimmental	563	Frutigen	01.01.2010
+15140	BE	249	Frutigen-Niedersimmental	564	Kandergrund	01.01.2010
+15141	BE	249	Frutigen-Niedersimmental	565	Kandersteg	01.01.2010
+15142	BE	249	Frutigen-Niedersimmental	566	Krattigen	01.01.2010
+15143	BE	249	Frutigen-Niedersimmental	567	Reichenbach im Kandertal	01.01.2010
+15144	BE	250	Interlaken-Oberhasli	571	Beatenberg	01.01.2010
+15145	BE	250	Interlaken-Oberhasli	572	Bönigen	01.01.2010
+15146	BE	250	Interlaken-Oberhasli	573	Brienz (BE)	01.01.2010
+15147	BE	250	Interlaken-Oberhasli	574	Brienzwiler	01.01.2010
+15148	BE	250	Interlaken-Oberhasli	575	Därligen	01.01.2010
+15149	BE	250	Interlaken-Oberhasli	576	Grindelwald	01.01.2010
+15150	BE	250	Interlaken-Oberhasli	577	Gsteigwiler	01.01.2010
+15151	BE	250	Interlaken-Oberhasli	578	Gündlischwand	01.01.2010
+15152	BE	250	Interlaken-Oberhasli	579	Habkern	01.01.2010
+15153	BE	250	Interlaken-Oberhasli	580	Hofstetten bei Brienz	01.01.2010
+15154	BE	250	Interlaken-Oberhasli	581	Interlaken	01.01.2010
+15155	BE	250	Interlaken-Oberhasli	582	Iseltwald	01.01.2010
+15156	BE	250	Interlaken-Oberhasli	584	Lauterbrunnen	01.01.2010
+15157	BE	250	Interlaken-Oberhasli	585	Leissigen	01.01.2010
+15158	BE	250	Interlaken-Oberhasli	586	Lütschental	01.01.2010
+15159	BE	250	Interlaken-Oberhasli	587	Matten bei Interlaken	01.01.2010
+15160	BE	250	Interlaken-Oberhasli	588	Niederried bei Interlaken	01.01.2010
+15161	BE	250	Interlaken-Oberhasli	589	Oberried am Brienzersee	01.01.2010
+15162	BE	250	Interlaken-Oberhasli	590	Ringgenberg (BE)	01.01.2010
+15163	BE	250	Interlaken-Oberhasli	591	Saxeten	01.01.2010
+15164	BE	250	Interlaken-Oberhasli	592	Schwanden bei Brienz	01.01.2010
+15165	BE	250	Interlaken-Oberhasli	593	Unterseen	01.01.2010
+15166	BE	250	Interlaken-Oberhasli	594	Wilderswil	01.01.2010
+15167	BE	246	Bern-Mittelland	602	Arni (BE)	01.01.2010
+15168	BE	246	Bern-Mittelland	603	Biglen	01.01.2010
+15170	BE	246	Bern-Mittelland	605	Bowil	01.01.2010
+15171	BE	246	Bern-Mittelland	606	Brenzikofen	01.01.2010
+15172	BE	246	Bern-Mittelland	607	Freimettigen	01.01.2010
+16082	BE	246	Bern-Mittelland	608	Grosshöchstetten	01.01.2018
+15174	BE	246	Bern-Mittelland	609	Häutligen	01.01.2010
+15175	BE	246	Bern-Mittelland	610	Herbligen	01.01.2010
+15176	BE	246	Bern-Mittelland	611	Kiesen	01.01.2010
+15177	BE	246	Bern-Mittelland	612	Konolfingen	01.01.2010
+15178	BE	246	Bern-Mittelland	613	Landiswil	01.01.2010
+15179	BE	246	Bern-Mittelland	614	Linden	01.01.2010
+15180	BE	246	Bern-Mittelland	615	Mirchel	01.01.2010
+15688	BE	246	Bern-Mittelland	616	Münsingen	01.01.2017
+15182	BE	246	Bern-Mittelland	617	Niederhünigen	01.01.2010
+15635	BE	246	Bern-Mittelland	619	Oberdiessbach	01.01.2014
+15183	BE	246	Bern-Mittelland	620	Oberthal	01.01.2010
+15184	BE	246	Bern-Mittelland	622	Oppligen	01.01.2010
+15185	BE	246	Bern-Mittelland	623	Rubigen	01.01.2010
+15188	BE	246	Bern-Mittelland	626	Walkringen	01.01.2010
+15189	BE	246	Bern-Mittelland	627	Worb	01.01.2010
+15190	BE	246	Bern-Mittelland	628	Zäziwil	01.01.2010
+15191	BE	246	Bern-Mittelland	629	Oberhünigen	01.01.2010
+15192	BE	246	Bern-Mittelland	630	Allmendingen	01.01.2010
+15194	BE	246	Bern-Mittelland	632	Wichtrach	01.01.2010
+15195	BE	246	Bern-Mittelland	661	Clavaleyres	01.01.2010
+15196	BE	246	Bern-Mittelland	662	Ferenbalm	01.01.2010
+15197	BE	246	Bern-Mittelland	663	Frauenkappelen	01.01.2010
+15199	BE	246	Bern-Mittelland	665	Gurbrü	01.01.2010
+15200	BE	246	Bern-Mittelland	666	Kriechenwil	01.01.2010
+15201	BE	246	Bern-Mittelland	667	Laupen	01.01.2010
+15202	BE	246	Bern-Mittelland	668	Mühleberg	01.01.2010
+15203	BE	246	Bern-Mittelland	669	Münchenwiler	01.01.2010
+15204	BE	246	Bern-Mittelland	670	Neuenegg	01.01.2010
+15205	BE	246	Bern-Mittelland	671	Wileroltigen	01.01.2010
+15206	BE	241	Jura bernois	681	Belprahon	01.01.2010
+15208	BE	241	Jura bernois	683	Champoz	01.01.2010
+15210	BE	241	Jura bernois	687	Corcelles (BE)	01.01.2010
+15211	BE	241	Jura bernois	690	Court	01.01.2010
+15212	BE	241	Jura bernois	691	Crémines	01.01.2010
+15213	BE	241	Jura bernois	692	Eschert	01.01.2010
+15214	BE	241	Jura bernois	694	Grandval	01.01.2010
+15215	BE	241	Jura bernois	696	Loveresse	01.01.2010
+15218	BE	241	Jura bernois	700	Moutier	01.01.2010
+15219	BE	241	Jura bernois	701	Perrefitte	01.01.2010
+15221	BE	241	Jura bernois	703	Reconvilier	01.01.2010
+15222	BE	241	Jura bernois	704	Roches (BE)	01.01.2010
+15223	BE	241	Jura bernois	706	Saicourt	01.01.2010
+15224	BE	241	Jura bernois	707	Saules (BE)	01.01.2010
+15225	BE	241	Jura bernois	708	Schelten	01.01.2010
+15226	BE	241	Jura bernois	709	Seehof	01.01.2010
+15228	BE	241	Jura bernois	711	Sorvilier	01.01.2010
+15230	BE	241	Jura bernois	713	Tavannes	01.01.2010
+15231	BE	241	Jura bernois	715	Rebévelier	01.01.2010
+15662	BE	241	Jura bernois	716	Petit-Val	01.01.2015
+15661	BE	241	Jura bernois	717	Valbirse	01.01.2015
+15234	BE	241	Jura bernois	723	La Neuveville	01.01.2010
+15235	BE	241	Jura bernois	724	Nods	01.01.2010
+15636	BE	241	Jura bernois	726	Plateau de Diesse	01.01.2014
+15237	BE	242	Biel/Bienne	731	Aegerten	01.01.2010
+15238	BE	242	Biel/Bienne	732	Bellmund	01.01.2010
+15239	BE	242	Biel/Bienne	733	Brügg	01.01.2010
+15240	BE	243	Seeland	734	Bühl	01.01.2010
+15241	BE	243	Seeland	735	Epsach	01.01.2010
+15242	BE	243	Seeland	736	Hagneck	01.01.2010
+15243	BE	243	Seeland	737	Hermrigen	01.01.2010
+15244	BE	243	Seeland	738	Jens	01.01.2010
+15245	BE	242	Biel/Bienne	739	Ipsach	01.01.2010
+15246	BE	242	Biel/Bienne	740	Ligerz	01.01.2010
+15247	BE	243	Seeland	741	Merzligen	01.01.2010
+15248	BE	242	Biel/Bienne	742	Mörigen	01.01.2010
+15249	BE	242	Biel/Bienne	743	Nidau	01.01.2010
+15250	BE	242	Biel/Bienne	744	Orpund	01.01.2010
+15251	BE	242	Biel/Bienne	745	Port	01.01.2010
+15252	BE	242	Biel/Bienne	746	Safnern	01.01.2010
+15253	BE	242	Biel/Bienne	747	Scheuren	01.01.2010
+15254	BE	242	Biel/Bienne	748	Schwadernau	01.01.2010
+15255	BE	243	Seeland	749	Studen (BE)	01.01.2010
+15256	BE	242	Biel/Bienne	750	Sutz-Lattrigen	01.01.2010
+15257	BE	243	Seeland	751	Täuffelen	01.01.2010
+15258	BE	243	Seeland	754	Walperswil	01.01.2010
+15259	BE	243	Seeland	755	Worben	01.01.2010
+14978	BE	242	Biel/Bienne	756	Twann-Tüscherz	01.01.2010
+15260	BE	249	Frutigen-Niedersimmental	761	Därstetten	01.01.2010
+15261	BE	249	Frutigen-Niedersimmental	762	Diemtigen	01.01.2010
+15262	BE	249	Frutigen-Niedersimmental	763	Erlenbach im Simmental	01.01.2010
+15265	BE	249	Frutigen-Niedersimmental	766	Oberwil im Simmental	01.01.2010
+15266	BE	247	Thun	767	Reutigen	01.01.2010
+15267	BE	249	Frutigen-Niedersimmental	768	Spiez	01.01.2010
+15268	BE	249	Frutigen-Niedersimmental	769	Wimmis	01.01.2010
+15637	BE	247	Thun	770	Stocken-Höfen	01.01.2014
+15270	BE	250	Interlaken-Oberhasli	782	Guttannen	01.01.2010
+15271	BE	250	Interlaken-Oberhasli	783	Hasliberg	01.01.2010
+15638	BE	250	Interlaken-Oberhasli	784	Innertkirchen	01.01.2014
+15273	BE	250	Interlaken-Oberhasli	785	Meiringen	01.01.2010
+15274	BE	250	Interlaken-Oberhasli	786	Schattenhalb	01.01.2010
+15275	BE	248	Obersimmental-Saanen	791	Boltigen	01.01.2010
+15276	BE	248	Obersimmental-Saanen	792	Lenk	01.01.2010
+15277	BE	248	Obersimmental-Saanen	793	St. Stephan	01.01.2010
+15278	BE	248	Obersimmental-Saanen	794	Zweisimmen	01.01.2010
+15279	BE	248	Obersimmental-Saanen	841	Gsteig	01.01.2010
+15280	BE	248	Obersimmental-Saanen	842	Lauenen	01.01.2010
+15281	BE	248	Obersimmental-Saanen	843	Saanen	01.01.2010
+15283	BE	246	Bern-Mittelland	852	Guggisberg	01.01.2010
+15284	BE	246	Bern-Mittelland	853	Rüschegg	01.01.2010
+15476	BE	246	Bern-Mittelland	855	Schwarzenburg	01.01.2011
+15498	BE	246	Bern-Mittelland	861	Belp	01.01.2012
+15288	BE	247	Thun	863	Burgistein	01.01.2010
+15290	BE	246	Bern-Mittelland	866	Gerzensee	01.01.2010
+15291	BE	247	Thun	867	Gurzelen	01.01.2010
+15292	BE	246	Bern-Mittelland	868	Jaberg	01.01.2010
+15293	BE	246	Bern-Mittelland	869	Kaufdorf	01.01.2010
+15294	BE	246	Bern-Mittelland	870	Kehrsatz	01.01.2010
+16083	BE	246	Bern-Mittelland	872	Kirchdorf (BE)	01.01.2018
+15297	BE	246	Bern-Mittelland	873	Kirchenthurnen	01.01.2010
+15298	BE	246	Bern-Mittelland	874	Lohnstorf	01.01.2010
+15300	BE	246	Bern-Mittelland	876	Mühlethurnen	01.01.2010
+15301	BE	246	Bern-Mittelland	877	Niedermuhlern	01.01.2010
+15303	BE	246	Bern-Mittelland	879	Riggisberg	01.01.2010
+15304	BE	246	Bern-Mittelland	880	Rüeggisberg	01.01.2010
+15305	BE	246	Bern-Mittelland	881	Rümligen	01.01.2010
+15306	BE	247	Thun	883	Seftigen	01.01.2010
+15307	BE	246	Bern-Mittelland	884	Toffen	01.01.2010
+15639	BE	247	Thun	885	Uttigen	01.01.2014
+15309	BE	247	Thun	886	Wattenwil	01.01.2010
+15310	BE	246	Bern-Mittelland	888	Wald (BE)	01.01.2010
+15311	BE	245	Emmental	901	Eggiwil	01.01.2010
+15312	BE	245	Emmental	902	Langnau im Emmental	01.01.2010
+15313	BE	245	Emmental	903	Lauperswil	01.01.2010
+15314	BE	245	Emmental	904	Röthenbach im Emmental	01.01.2010
+15315	BE	245	Emmental	905	Rüderswil	01.01.2010
+15316	BE	245	Emmental	906	Schangnau	01.01.2010
+15317	BE	245	Emmental	907	Signau	01.01.2010
+15318	BE	245	Emmental	908	Trub	01.01.2010
+15319	BE	245	Emmental	909	Trubschachen	01.01.2010
+15320	BE	247	Thun	921	Amsoldingen	01.01.2010
+15321	BE	247	Thun	922	Blumenstein	01.01.2010
+15322	BE	247	Thun	923	Buchholterberg	01.01.2010
+15323	BE	247	Thun	924	Eriz	01.01.2010
+15324	BE	247	Thun	925	Fahrni	01.01.2010
+15325	BE	247	Thun	927	Heiligenschwendi	01.01.2010
+15326	BE	247	Thun	928	Heimberg	01.01.2010
+15327	BE	247	Thun	929	Hilterfingen	01.01.2010
+15329	BE	247	Thun	931	Homberg	01.01.2010
+15330	BE	247	Thun	932	Horrenbach-Buchen	01.01.2010
+15331	BE	247	Thun	934	Oberhofen am Thunersee	01.01.2010
+15332	BE	247	Thun	935	Oberlangenegg	01.01.2010
+15333	BE	247	Thun	936	Pohlern	01.01.2010
+15334	BE	247	Thun	937	Schwendibach	01.01.2010
+15335	BE	247	Thun	938	Sigriswil	01.01.2010
+15336	BE	247	Thun	939	Steffisburg	01.01.2010
+15337	BE	247	Thun	940	Teuffenthal (BE)	01.01.2010
+15338	BE	247	Thun	941	Thierachern	01.01.2010
+15339	BE	247	Thun	942	Thun	01.01.2010
+15340	BE	247	Thun	943	Uebeschi	01.01.2010
+15341	BE	247	Thun	944	Uetendorf	01.01.2010
+15342	BE	247	Thun	945	Unterlangenegg	01.01.2010
+15343	BE	247	Thun	946	Wachseldorn	01.01.2010
+15344	BE	247	Thun	947	Zwieselberg	01.01.2010
+15345	BE	247	Thun	948	Forst-Längenbühl	01.01.2010
+15346	BE	245	Emmental	951	Affoltern im Emmental	01.01.2010
+15347	BE	245	Emmental	952	Dürrenroth	01.01.2010
+15348	BE	244	Oberaargau	953	Eriswil	01.01.2010
+15349	BE	244	Oberaargau	954	Huttwil	01.01.2010
+15350	BE	245	Emmental	955	Lützelflüh	01.01.2010
+15351	BE	245	Emmental	956	Rüegsau	01.01.2010
+15352	BE	245	Emmental	957	Sumiswald	01.01.2010
+15353	BE	245	Emmental	958	Trachselwald	01.01.2010
+15354	BE	244	Oberaargau	959	Walterswil (BE)	01.01.2010
+15355	BE	244	Oberaargau	960	Wyssachen	01.01.2010
+15356	BE	244	Oberaargau	971	Attiswil	01.01.2010
+15357	BE	244	Oberaargau	972	Berken	01.01.2010
+15477	BE	244	Oberaargau	973	Bettenhausen	01.01.2011
+15360	BE	244	Oberaargau	975	Farnern	01.01.2010
+15361	BE	244	Oberaargau	976	Graben	01.01.2010
+15362	BE	244	Oberaargau	977	Heimenhausen	01.01.2010
+15364	BE	244	Oberaargau	979	Herzogenbuchsee	01.01.2010
+15365	BE	244	Oberaargau	980	Inkwil	01.01.2010
+15366	BE	244	Oberaargau	981	Niederbipp	01.01.2010
+15367	BE	244	Oberaargau	982	Niederönz	01.01.2010
+15368	BE	244	Oberaargau	983	Oberbipp	01.01.2010
+15369	BE	244	Oberaargau	985	Ochlenberg	01.01.2010
+15370	BE	244	Oberaargau	987	Rumisberg	01.01.2010
+15674	BE	244	Oberaargau	988	Seeberg	01.01.2016
+15372	BE	244	Oberaargau	989	Thörigen	01.01.2010
+15373	BE	244	Oberaargau	990	Walliswil bei Niederbipp	01.01.2010
+15374	BE	244	Oberaargau	991	Walliswil bei Wangen	01.01.2010
+15375	BE	244	Oberaargau	992	Wangen an der Aare	01.01.2010
+15376	BE	244	Oberaargau	993	Wangenried	01.01.2010
+15377	BE	244	Oberaargau	995	Wiedlisbach	01.01.2010
+15378	BE	244	Oberaargau	996	Wolfisberg	01.01.2010
+15557	LU	316	Entlebuch	1001	Doppleschwand	01.01.2013
+15561	LU	316	Entlebuch	1002	Entlebuch	01.01.2013
+15543	LU	316	Entlebuch	1004	Flühli	01.01.2013
+15547	LU	316	Entlebuch	1005	Hasle (LU)	01.01.2013
+15582	LU	316	Entlebuch	1007	Romoos	01.01.2013
+15585	LU	316	Entlebuch	1008	Schüpfheim	01.01.2013
+15522	LU	316	Entlebuch	1009	Werthenstein	01.01.2013
+15518	LU	316	Entlebuch	1010	Escholzmatt-Marbach	01.01.2013
+15539	LU	313	Hochdorf	1021	Aesch (LU)	01.01.2013
+15542	LU	313	Hochdorf	1022	Altwis	01.01.2013
+15536	LU	313	Hochdorf	1023	Ballwil	01.01.2013
+15563	LU	313	Hochdorf	1024	Emmen	01.01.2013
+15564	LU	313	Hochdorf	1025	Ermensee	01.01.2013
+15560	LU	313	Hochdorf	1026	Eschenbach (LU)	01.01.2013
+15598	LU	313	Hochdorf	1030	Hitzkirch	01.01.2013
+15556	LU	313	Hochdorf	1031	Hochdorf	01.01.2013
+15597	LU	313	Hochdorf	1032	Hohenrain	01.01.2013
+15574	LU	313	Hochdorf	1033	Inwil	01.01.2013
+15590	LU	313	Hochdorf	1037	Rain	01.01.2013
+15592	LU	313	Hochdorf	1039	Römerswil	01.01.2013
+15579	LU	313	Hochdorf	1040	Rothenburg	01.01.2013
+15586	LU	313	Hochdorf	1041	Schongau	01.01.2013
+15538	LU	312	Luzern-Land	1051	Adligenswil	01.01.2013
+15532	LU	312	Luzern-Land	1052	Buchrain	01.01.2013
+15535	LU	312	Luzern-Land	1053	Dierikon	01.01.2013
+15552	LU	312	Luzern-Land	1054	Ebikon	01.01.2013
+15550	LU	312	Luzern-Land	1055	Gisikon	01.01.2013
+15551	LU	312	Luzern-Land	1056	Greppen	01.01.2013
+15558	LU	312	Luzern-Land	1057	Honau	01.01.2013
+15559	LU	312	Luzern-Land	1058	Horw	01.01.2013
+15576	LU	312	Luzern-Land	1059	Kriens	01.01.2013
+15600	LU	311	Luzern-Stadt	1061	Luzern	01.01.2013
+15578	LU	312	Luzern-Land	1062	Malters	01.01.2013
+15568	LU	312	Luzern-Land	1063	Meggen	01.01.2013
+15567	LU	312	Luzern-Land	1064	Meierskappel	01.01.2013
+15581	LU	312	Luzern-Land	1065	Root	01.01.2013
+15584	LU	312	Luzern-Land	1066	Schwarzenberg	01.01.2013
+15530	LU	312	Luzern-Land	1067	Udligenswil	01.01.2013
+15526	LU	312	Luzern-Land	1068	Vitznau	01.01.2013
+15528	LU	312	Luzern-Land	1069	Weggis	01.01.2013
+15663	LU	314	Sursee	1081	Beromünster	01.01.2015
+15534	LU	314	Sursee	1082	Büron	01.01.2013
+15533	LU	314	Sursee	1083	Buttisholz	01.01.2013
+15554	LU	314	Sursee	1084	Eich	01.01.2013
+15548	LU	314	Sursee	1085	Geuensee	01.01.2013
+15545	LU	314	Sursee	1086	Grosswangen	01.01.2013
+15562	LU	314	Sursee	1088	Hildisrieden	01.01.2013
+15575	LU	314	Sursee	1089	Knutwil	01.01.2013
+15573	LU	314	Sursee	1091	Mauensee	01.01.2013
+15570	LU	314	Sursee	1093	Neuenkirch	01.01.2013
+15572	LU	314	Sursee	1094	Nottwil	01.01.2013
+15569	LU	314	Sursee	1095	Oberkirch	01.01.2013
+15520	LU	314	Sursee	1097	Rickenbach (LU)	01.01.2013
+15580	LU	314	Sursee	1098	Ruswil	01.01.2013
+15664	LU	314	Sursee	1099	Schenkon	01.01.2015
+15588	LU	314	Sursee	1100	Schlierbach	01.01.2013
+15587	LU	314	Sursee	1102	Sempach	01.01.2013
+15529	LU	314	Sursee	1103	Sursee	01.01.2013
+15599	LU	314	Sursee	1104	Triengen	01.01.2013
+15525	LU	316	Entlebuch	1107	Wolhusen	01.01.2013
+15537	LU	315	Willisau	1121	Alberswil	01.01.2013
+15540	LU	315	Willisau	1122	Altbüron	01.01.2013
+15541	LU	315	Willisau	1123	Altishofen	01.01.2013
+15593	LU	315	Willisau	1125	Dagmersellen	01.01.2013
+15553	LU	315	Willisau	1126	Ebersecken	01.01.2013
+15555	LU	315	Willisau	1127	Egolzwil	01.01.2013
+15594	LU	315	Willisau	1128	Ettiswil	01.01.2013
+15546	LU	315	Willisau	1129	Fischbach	01.01.2013
+15549	LU	315	Willisau	1130	Gettnau	01.01.2013
+15544	LU	315	Willisau	1131	Grossdietwil	01.01.2013
+15565	LU	315	Willisau	1132	Hergiswil bei Willisau	01.01.2013
+15577	LU	315	Willisau	1135	Luthern	01.01.2013
+15566	LU	315	Willisau	1136	Menznau	01.01.2013
+15571	LU	315	Willisau	1137	Nebikon	01.01.2013
+15591	LU	315	Willisau	1139	Pfaffnau	01.01.2013
+15596	LU	315	Willisau	1140	Reiden	01.01.2013
+15583	LU	315	Willisau	1142	Roggliswil	01.01.2013
+15521	LU	315	Willisau	1143	Schötz	01.01.2013
+15531	LU	315	Willisau	1145	Ufhusen	01.01.2013
+15527	LU	315	Willisau	1146	Wauwil	01.01.2013
+15523	LU	315	Willisau	1147	Wikon	01.01.2013
+15524	LU	315	Willisau	1150	Zell (LU)	01.01.2013
+15595	LU	315	Willisau	1151	Willisau	01.01.2013
+11773	UR	400	Kt. Uri	1201	Altdorf (UR)	01.01.1960
+11784	UR	400	Kt. Uri	1202	Andermatt	01.01.1960
+11678	UR	400	Kt. Uri	1203	Attinghausen	01.01.1960
+11697	UR	400	Kt. Uri	1204	Bauen	01.01.1960
+11506	UR	400	Kt. Uri	1205	Bürglen (UR)	01.01.1960
+12238	UR	400	Kt. Uri	1206	Erstfeld	01.01.1960
+11940	UR	400	Kt. Uri	1207	Flüelen	01.01.1960
+12032	UR	400	Kt. Uri	1208	Göschenen	01.01.1960
+11941	UR	400	Kt. Uri	1209	Gurtnellen	01.01.1960
+12213	UR	400	Kt. Uri	1210	Hospental	01.01.1960
+12661	UR	400	Kt. Uri	1211	Isenthal	01.01.1960
+13165	UR	400	Kt. Uri	1212	Realp	01.01.1960
+13055	UR	400	Kt. Uri	1213	Schattdorf	01.01.1960
+12952	UR	400	Kt. Uri	1214	Seedorf (UR)	01.01.1960
+12950	UR	400	Kt. Uri	1215	Seelisberg	01.01.1960
+12985	UR	400	Kt. Uri	1216	Silenen	01.01.1960
+12981	UR	400	Kt. Uri	1217	Sisikon	01.01.1960
+10364	UR	400	Kt. Uri	1218	Spiringen	01.01.1960
+10869	UR	400	Kt. Uri	1219	Unterschächen	01.01.1960
+10442	UR	400	Kt. Uri	1220	Wassen	01.01.1960
+12152	SZ	501	Einsiedeln	1301	Einsiedeln	01.01.1960
+12033	SZ	502	Gersau	1311	Gersau	01.01.1960
+12007	SZ	503	Höfe	1321	Feusisberg	01.01.1960
+11961	SZ	503	Höfe	1322	Freienbach	01.01.1960
+10314	SZ	503	Höfe	1323	Wollerau	01.01.1960
+14470	SZ	504	Küssnacht (SZ)	1331	Küssnacht (SZ)	01.01.2004
+11774	SZ	505	March	1341	Altendorf	01.01.1960
+12075	SZ	505	March	1342	Galgenen	01.01.1960
+12658	SZ	505	March	1343	Innerthal	01.01.1960
+12607	SZ	505	March	1344	Lachen	01.01.1960
+13181	SZ	505	March	1345	Reichenburg	01.01.1960
+12968	SZ	505	March	1346	Schübelbach	01.01.1960
+10859	SZ	505	March	1347	Tuggen	01.01.1960
+10371	SZ	505	March	1348	Vorderthal	01.01.1960
+10471	SZ	505	March	1349	Wangen (SZ)	01.01.1960
+11778	SZ	506	Schwyz	1361	Alpthal	01.01.1960
+11670	SZ	506	Schwyz	1362	Arth	01.01.1960
+12192	SZ	506	Schwyz	1363	Illgau	01.01.1960
+12657	SZ	506	Schwyz	1364	Ingenbohl	01.01.1960
+12634	SZ	506	Schwyz	1365	Lauerz	01.01.1960
+12371	SZ	506	Schwyz	1366	Morschach	01.01.1960
+12362	SZ	506	Schwyz	1367	Muotathal	01.01.1960
+12475	SZ	506	Schwyz	1368	Oberiberg	01.01.1960
+12894	SZ	506	Schwyz	1369	Riemenstalden	01.01.1960
+12853	SZ	506	Schwyz	1370	Rothenthurm	01.01.1960
+13022	SZ	506	Schwyz	1371	Sattel	01.01.1960
+12955	SZ	506	Schwyz	1372	Schwyz	01.01.1960
+10594	SZ	506	Schwyz	1373	Steinen	01.01.1960
+10571	SZ	506	Schwyz	1374	Steinerberg	01.01.1960
+10865	SZ	506	Schwyz	1375	Unteriberg	01.01.1960
+11753	OW	600	Kt. Obwalden	1401	Alpnach	01.01.1960
+12287	OW	600	Kt. Obwalden	1402	Engelberg	01.01.1960
+12063	OW	600	Kt. Obwalden	1403	Giswil	01.01.1960
+12688	OW	600	Kt. Obwalden	1404	Kerns	01.01.1960
+12718	OW	600	Kt. Obwalden	1405	Lungern	01.01.1960
+12859	OW	600	Kt. Obwalden	1406	Sachseln	01.01.1960
+13009	OW	600	Kt. Obwalden	1407	Sarnen	01.01.1960
+11792	NW	700	Kt. Nidwalden	1501	Beckenried	01.01.1960
+11465	NW	700	Kt. Nidwalden	1502	Buochs	01.01.1960
+11568	NW	700	Kt. Nidwalden	1503	Dallenwil	01.01.1960
+12290	NW	700	Kt. Nidwalden	1504	Emmetten	01.01.1960
+12276	NW	700	Kt. Nidwalden	1505	Ennetbürgen	01.01.1960
+12275	NW	700	Kt. Nidwalden	1506	Ennetmoos	01.01.1960
+12300	NW	700	Kt. Nidwalden	1507	Hergiswil (NW)	01.01.1960
+12556	NW	700	Kt. Nidwalden	1508	Oberdorf (NW)	01.01.1960
+10576	NW	700	Kt. Nidwalden	1509	Stans	01.01.1960
+10577	NW	700	Kt. Nidwalden	1510	Stansstad	01.01.1960
+10357	NW	700	Kt. Nidwalden	1511	Wolfenschiessen	01.01.1960
+15479	GL	800	Kt. Glarus	1630	Glarus Nord	01.01.2011
+15478	GL	800	Kt. Glarus	1631	Glarus Süd	01.01.2011
+15480	GL	800	Kt. Glarus	1632	Glarus	01.01.2011
+11711	ZG	900	Kt. Zug	1701	Baar	01.01.1960
+11397	ZG	900	Kt. Zug	1702	Cham	01.01.1960
+12176	ZG	900	Kt. Zug	1703	Hünenberg	01.01.1960
+12389	ZG	900	Kt. Zug	1704	Menzingen	01.01.1960
+12517	ZG	900	Kt. Zug	1705	Neuheim	01.01.1960
+12551	ZG	900	Kt. Zug	1706	Oberägeri	01.01.1960
+12931	ZG	900	Kt. Zug	1707	Risch	01.01.1960
+10598	ZG	900	Kt. Zug	1708	Steinhausen	01.01.1960
+10844	ZG	900	Kt. Zug	1709	Unterägeri	01.01.1960
+10457	ZG	900	Kt. Zug	1710	Walchwil	01.01.1960
+10323	ZG	900	Kt. Zug	1711	Zug	01.01.1960
+11419	FR	1001	La Broye	2008	Châtillon (FR)	01.01.1960
+14509	FR	1001	La Broye	2009	Cheiry	01.01.2005
+14510	FR	1001	La Broye	2011	Cugy (FR)	01.01.2005
+11974	FR	1001	La Broye	2016	Fétigny	01.01.1960
+12055	FR	1001	La Broye	2022	Gletterens	01.01.1960
+14526	FR	1001	La Broye	2025	Lully (FR)	01.01.2006
+12387	FR	1001	La Broye	2027	Ménières	01.01.1960
+14475	FR	1001	La Broye	2029	Montagny (FR)	01.01.2004
+12549	FR	1001	La Broye	2035	Nuvilly	01.01.1960
+13105	FR	1001	La Broye	2038	Prévondavaux	01.01.1960
+13702	FR	1001	La Broye	2041	Saint-Aubin (FR)	01.01.1991
+12991	FR	1001	La Broye	2043	Sévaz	01.01.1960
+15691	FR	1001	La Broye	2044	Surpierre	01.01.2017
+10944	FR	1001	La Broye	2045	Vallon	01.01.1960
+14474	FR	1001	La Broye	2050	Les Montets	01.01.2004
+14511	FR	1001	La Broye	2051	Delley-Portalban	01.01.2005
+15675	FR	1001	La Broye	2053	Belmont-Broye	01.01.2016
+15689	FR	1001	La Broye	2054	Estavayer	01.01.2017
+15690	FR	1001	La Broye	2055	Cheyres-Châbles	01.01.2017
+11680	FR	1002	La Glâne	2061	Auboranges	01.01.1960
+14103	FR	1002	La Glâne	2063	Billens-Hennens	01.01.1998
+11444	FR	1002	La Glâne	2066	Chapelle (Glâne)	01.01.1960
+12611	FR	1002	La Glâne	2067	Le Châtelard	01.01.1960
+11420	FR	1002	La Glâne	2068	Châtonnaye	01.01.1960
+13211	FR	1002	La Glâne	2072	Ecublens (FR)	01.03.1969
+12113	FR	1002	La Glâne	2079	Grangettes	01.01.1960
+12734	FR	1002	La Glâne	2086	Massonnens	01.01.1960
+14476	FR	1002	La Glâne	2087	Mézières (FR)	01.01.2004
+12340	FR	1002	La Glâne	2089	Montet (Glâne)	01.01.1960
+13663	FR	1002	La Glâne	2096	Romont (FR)	01.01.1981
+14140	FR	1002	La Glâne	2097	Rue	01.01.2001
+14477	FR	1002	La Glâne	2099	Siviriez	01.01.2004
+15500	FR	1002	La Glâne	2102	Ursy	01.01.2012
+13268	FR	1002	La Glâne	2111	Villaz-Saint-Pierre	01.01.1978
+14480	FR	1002	La Glâne	2113	Vuisternens-devant-Romont	01.01.2004
+14137	FR	1002	La Glâne	2114	Villorsonnens	01.01.2001
+14478	FR	1002	La Glâne	2115	Torny	01.01.2004
+14513	FR	1002	La Glâne	2116	La Folliaz	01.01.2005
+14362	FR	1003	La Gruyère	2121	Haut-Intyamon	01.01.2002
+14368	FR	1003	La Gruyère	2122	Pont-en-Ogoz	01.01.2003
+14530	FR	1003	La Gruyère	2123	Botterens	01.01.2006
+11871	FR	1003	La Gruyère	2124	Broc	01.01.1960
+14528	FR	1003	La Gruyère	2125	Bulle	01.01.2006
+11424	FR	1003	La Gruyère	2128	Châtel-sur-Montsalvens	01.01.1960
+15481	FR	1003	La Gruyère	2129	Corbières	01.01.2011
+11533	FR	1003	La Gruyère	2130	Crésuz	01.01.1960
+12135	FR	1003	La Gruyère	2131	Echarlens	01.01.1960
+12106	FR	1003	La Gruyère	2134	Grandvillard	01.01.1960
+11958	FR	1003	La Gruyère	2135	Gruyères	01.01.1960
+12247	FR	1003	La Gruyère	2137	Hauteville	01.01.1960
+12668	FR	1003	La Gruyère	2138	Jaun	01.01.1960
+14135	FR	1003	La Gruyère	2140	Marsens	01.01.2001
+12369	FR	1003	La Gruyère	2143	Morlon	01.01.1960
+12618	FR	1003	La Gruyère	2145	Le Pâquier (FR)	01.01.1960
+13080	FR	1003	La Gruyère	2147	Pont-la-Ville	01.01.1960
+12909	FR	1003	La Gruyère	2148	Riaz	01.01.1960
+12574	FR	1003	La Gruyère	2149	La Roche	01.01.1960
+14138	FR	1003	La Gruyère	2152	Sâles	01.01.2001
+10416	FR	1003	La Gruyère	2153	Sorens	01.01.1960
+10906	FR	1003	La Gruyère	2155	Vaulruz	01.01.1960
+10373	FR	1003	La Gruyère	2160	Vuadens	01.01.1960
+14479	FR	1003	La Gruyère	2162	Bas-Intyamon	01.01.2004
+15640	FR	1003	La Gruyère	2163	Val-de-Charmey	01.01.2014
+11762	FR	1004	La Sarine	2171	Arconciel	01.01.1960
+11657	FR	1004	La Sarine	2173	Autigny	01.01.1960
+14143	FR	1004	La Sarine	2174	Avry	01.01.2001
+15676	FR	1004	La Sarine	2175	Belfaux	01.01.2016
+11502	FR	1004	La Sarine	2177	Chénens	01.01.1960
+15692	FR	1004	La Sarine	2183	Corminboeuf	01.01.2017
+11633	FR	1004	La Sarine	2185	Corserey	01.01.1960
+11540	FR	1004	La Sarine	2186	Cottens (FR)	01.01.1960
+13257	FR	1004	La Sarine	2189	Ependes (FR)	01.01.1977
+11978	FR	1004	La Sarine	2194	Ferpicloz	01.01.1960
+11954	FR	1004	La Sarine	2196	Fribourg	01.01.1960
+12060	FR	1004	La Sarine	2197	Givisiez	01.01.1960
+12111	FR	1004	La Sarine	2198	Granges-Paccot	01.01.1960
+14129	FR	1004	La Sarine	2200	Grolley	01.01.2000
+13249	FR	1004	La Sarine	2206	Marly	01.01.1976
+12744	FR	1004	La Sarine	2208	Matran	01.01.1960
+12521	FR	1004	La Sarine	2211	Neyruz (FR)	01.01.1960
+12550	FR	1004	La Sarine	2213	Noréaz	01.01.1960
+13141	FR	1004	La Sarine	2216	Pierrafortscha	01.01.1960
+13662	FR	1004	La Sarine	2217	Ponthaux	01.01.1981
+14369	FR	1004	La Sarine	2220	Le Mouret	01.01.2003
+13103	FR	1004	La Sarine	2221	Prez-vers-Noréaz	01.01.1960
+12997	FR	1004	La Sarine	2225	Senèdes	01.01.1960
+10889	FR	1004	La Sarine	2226	Treyvaux	01.01.1960
+10162	FR	1004	La Sarine	2228	Villars-sur-Glâne	01.01.1960
+10165	FR	1004	La Sarine	2230	Villarsel-sur-Marly	01.01.1960
+14141	FR	1004	La Sarine	2233	Hauterive (FR)	01.01.2001
+14136	FR	1004	La Sarine	2234	La Brillaz	01.01.2001
+14481	FR	1004	La Sarine	2235	La Sonnaz	01.01.2004
+15677	FR	1004	La Sarine	2236	Gibloux	01.01.2016
+11534	FR	1005	See / Lac	2250	Courgevaux	01.01.1960
+15693	FR	1005	See / Lac	2254	Courtepin	01.01.2017
+11522	FR	1005	See / Lac	2257	Cressier (FR)	01.01.1960
+11969	FR	1005	See / Lac	2258	Fräschels	01.01.1960
+12107	FR	1005	See / Lac	2259	Galmiz	01.01.1960
+12102	FR	1005	See / Lac	2260	Gempenach	01.01.1960
+12078	FR	1005	See / Lac	2261	Greng	01.01.1960
+14514	FR	1005	See / Lac	2262	Gurmels	01.01.2005
+12689	FR	1005	See / Lac	2265	Kerzers	01.01.1960
+12700	FR	1005	See / Lac	2266	Kleinbösingen	01.01.1960
+12437	FR	1005	See / Lac	2271	Meyriez	01.01.1960
+14096	FR	1005	See / Lac	2272	Misery-Courtion	01.01.1997
+12361	FR	1005	See / Lac	2274	Muntelier	01.01.1960
+15678	FR	1005	See / Lac	2275	Murten	01.01.2016
+14529	FR	1005	See / Lac	2276	Ried bei Kerzers	01.01.2006
+10856	FR	1005	See / Lac	2278	Ulmiz	01.01.1960
+15679	FR	1005	See / Lac	2284	Mont-Vully	01.01.2016
+11775	FR	1006	Sense	2291	Alterswil	01.01.1960
+11473	FR	1006	Sense	2292	Brünisried	01.01.1960
+12204	FR	1006	Sense	2293	Düdingen	01.01.1960
+12024	FR	1006	Sense	2294	Giffers	01.01.1960
+13193	FR	1006	Sense	2295	Bösingen	01.01.1962
+12260	FR	1006	Sense	2296	Heitenried	01.01.1960
+15694	FR	1006	Sense	2299	Plaffeien	01.01.2017
+13218	FR	1006	Sense	2300	Plasselb	01.01.1971
+13175	FR	1006	Sense	2301	Rechthalten	01.01.1960
+10367	FR	1006	Sense	2302	St. Antoni	01.01.1960
+10378	FR	1006	Sense	2303	St. Silvester	01.01.1960
+10380	FR	1006	Sense	2304	St. Ursen	01.01.1960
+13041	FR	1006	Sense	2305	Schmitten (FR)	01.01.1960
+10549	FR	1006	Sense	2306	Tafers	01.01.1960
+10559	FR	1006	Sense	2307	Tentlingen	01.01.1960
+10848	FR	1006	Sense	2308	Ueberstorf	01.01.1960
+13232	FR	1006	Sense	2309	Wünnewil-Flamatt	01.01.1974
+11676	FR	1007	La Veveyse	2321	Attalens	01.01.1960
+11799	FR	1007	La Veveyse	2323	Bossonnens	01.01.1960
+11426	FR	1007	La Veveyse	2325	Châtel-Saint-Denis	01.01.1960
+12120	FR	1007	La Veveyse	2328	Granges (Veveyse)	01.01.1960
+13172	FR	1007	La Veveyse	2333	Remaufens	01.01.1960
+14484	FR	1007	La Veveyse	2335	Saint-Martin (FR)	01.01.2004
+13207	FR	1007	La Veveyse	2336	Semsales	01.01.1968
+14482	FR	1007	La Veveyse	2337	Le Flon	01.01.2004
+14483	FR	1007	La Veveyse	2338	La Verrerie	01.01.2004
+13703	SO	1101	Gäu	2401	Egerkingen	01.01.1991
+13704	SO	1101	Gäu	2402	Härkingen	01.01.1991
+13705	SO	1101	Gäu	2403	Kestenholz	01.01.1991
+13706	SO	1101	Gäu	2404	Neuendorf	01.01.1991
+13707	SO	1101	Gäu	2405	Niederbuchsiten	01.01.1991
+13708	SO	1101	Gäu	2406	Oberbuchsiten	01.01.1991
+13709	SO	1101	Gäu	2407	Oensingen	01.01.1991
+13710	SO	1101	Gäu	2408	Wolfwil	01.01.1991
+13711	SO	1102	Thal	2421	Aedermannsdorf	01.01.1991
+13712	SO	1102	Thal	2422	Balsthal	01.01.1991
+13713	SO	1102	Thal	2423	Gänsbrunnen	01.01.1991
+13714	SO	1102	Thal	2424	Herbetswil	01.01.1991
+13715	SO	1102	Thal	2425	Holderbank (SO)	01.01.1991
+13716	SO	1102	Thal	2426	Laupersdorf	01.01.1991
+13717	SO	1102	Thal	2427	Matzendorf	01.01.1991
+13718	SO	1102	Thal	2428	Mümliswil-Ramiswil	01.01.1991
+13719	SO	1102	Thal	2429	Welschenrohr	01.01.1991
+11911	SO	1103	Bucheggberg	2445	Biezwil	01.01.1960
+13187	SO	1103	Bucheggberg	2455	Lüterkofen-Ichertswil	01.01.1961
+14067	SO	1103	Bucheggberg	2456	Lüterswil-Gächliwil	01.01.1995
+15380	SO	1103	Bucheggberg	2457	Messen	01.01.2010
+13039	SO	1103	Bucheggberg	2461	Schnottwil	01.01.1960
+10868	SO	1103	Bucheggberg	2463	Unterramsern	01.01.1960
+15602	SO	1103	Bucheggberg	2464	Lüsslingen-Nennigkofen	01.01.2013
+15642	SO	1103	Bucheggberg	2465	Buchegg	01.01.2014
+11696	SO	1104	Dorneck	2471	Bättwil	01.01.1960
+11510	SO	1104	Dorneck	2472	Büren (SO)	01.01.1960
+12219	SO	1104	Dorneck	2473	Dornach	01.01.1960
+12103	SO	1104	Dorneck	2474	Gempen	01.01.1960
+12134	SO	1104	Dorneck	2475	Hochwald	01.01.1960
+13684	SO	1104	Dorneck	2476	Hofstetten-Flüh	01.01.1986
+14469	SO	1104	Dorneck	2477	Metzerlen-Mariastein	01.01.2004
+12545	SO	1104	Dorneck	2478	Nuglar-St. Pantaleon	01.01.1960
+12940	SO	1104	Dorneck	2479	Rodersdorf	01.01.1960
+12990	SO	1104	Dorneck	2480	Seewen	01.01.1960
+10352	SO	1104	Dorneck	2481	Witterswil	01.01.1960
+11985	SO	1105	Gösgen	2491	Hauenstein-Ifenthal	01.01.1960
+12691	SO	1105	Gösgen	2492	Kienberg	01.01.1960
+12808	SO	1105	Gösgen	2493	Lostorf	01.01.1960
+12559	SO	1105	Gösgen	2495	Niedergösgen	01.01.1960
+12462	SO	1105	Gösgen	2497	Obergösgen	01.01.1960
+12935	SO	1105	Gösgen	2498	Rohr (SO)	01.01.1960
+10588	SO	1105	Gösgen	2499	Stüsslingen	01.01.1960
+10894	SO	1105	Gösgen	2500	Trimbach	01.01.1960
+10348	SO	1105	Gösgen	2501	Winznau	01.01.1960
+10349	SO	1105	Gösgen	2502	Wisen (SO)	01.01.1960
+14531	SO	1105	Gösgen	2503	Erlinsbach (SO)	01.01.2006
+15508	SO	1106	Wasseramt	2511	Aeschi (SO)	01.01.2012
+13722	SO	1106	Wasseramt	2513	Biberist	01.01.1991
+13723	SO	1106	Wasseramt	2514	Bolken	01.01.1991
+13725	SO	1106	Wasseramt	2516	Deitingen	01.01.1991
+13726	SO	1106	Wasseramt	2517	Derendingen	01.01.1991
+13727	SO	1106	Wasseramt	2518	Etziken	01.01.1991
+13728	SO	1106	Wasseramt	2519	Gerlafingen	01.01.1991
+13729	SO	1106	Wasseramt	2520	Halten	01.01.1991
+13732	SO	1106	Wasseramt	2523	Horriwil	01.01.1991
+13733	SO	1106	Wasseramt	2524	Hüniken	01.01.1991
+13734	SO	1106	Wasseramt	2525	Kriegstetten	01.01.1991
+13752	SO	1106	Wasseramt	2526	Lohn-Ammannsegg	01.01.1993
+13736	SO	1106	Wasseramt	2527	Luterbach	01.01.1991
+13737	SO	1106	Wasseramt	2528	Obergerlafingen	01.01.1991
+13738	SO	1106	Wasseramt	2529	Oekingen	01.01.1991
+13739	SO	1106	Wasseramt	2530	Recherswil	01.01.1991
+13741	SO	1106	Wasseramt	2532	Subingen	01.01.1991
+13743	SO	1106	Wasseramt	2534	Zuchwil	01.01.1991
+15603	SO	1106	Wasseramt	2535	Drei Höfe	01.01.2013
+11702	SO	1107	Lebern	2541	Balm bei Günsberg	01.01.1960
+11878	SO	1107	Lebern	2542	Bellach	01.01.1960
+11908	SO	1107	Lebern	2543	Bettlach	01.01.1960
+11986	SO	1107	Lebern	2544	Feldbrunnen-St. Niklaus	01.01.1960
+11937	SO	1107	Lebern	2545	Flumenthal	01.01.1960
+12076	SO	1107	Lebern	2546	Grenchen	01.01.1960
+11923	SO	1107	Lebern	2547	Günsberg	01.01.1960
+12215	SO	1107	Lebern	2548	Hubersdorf	01.01.1960
+12650	SO	1107	Lebern	2549	Kammersrohr	01.01.1960
+12626	SO	1107	Lebern	2550	Langendorf	01.01.1960
+12803	SO	1107	Lebern	2551	Lommiswil	01.01.1960
+12502	SO	1107	Lebern	2553	Oberdorf (SO)	01.01.1960
+15482	SO	1107	Lebern	2554	Riedholz	01.01.2011
+12879	SO	1107	Lebern	2555	Rüttenen	01.01.1960
+13003	SO	1107	Lebern	2556	Selzach	01.01.1960
+11789	SO	1108	Olten	2571	Boningen	01.01.1960
+11580	SO	1108	Olten	2572	Däniken	01.01.1960
+12199	SO	1108	Olten	2573	Dulliken	01.01.1960
+12309	SO	1108	Olten	2574	Eppenberg-Wöschnau	01.01.1960
+12092	SO	1108	Olten	2575	Fulenbach	01.01.1960
+13230	SO	1108	Olten	2576	Gretzenbach	01.01.1973
+11936	SO	1108	Olten	2578	Gunzgen	01.01.1960
+12003	SO	1108	Olten	2579	Hägendorf	01.01.1960
+12651	SO	1108	Olten	2580	Kappel (SO)	01.01.1960
+12486	SO	1108	Olten	2581	Olten	01.01.1960
+12905	SO	1108	Olten	2582	Rickenbach (SO)	01.01.1960
+12971	SO	1108	Olten	2583	Schönenwerd	01.01.1960
+10578	SO	1108	Olten	2584	Starrkirch-Wil	01.01.1960
+10469	SO	1108	Olten	2585	Walterswil (SO)	01.01.1960
+10472	SO	1108	Olten	2586	Wangen bei Olten	01.01.1960
+10384	SO	1109	Solothurn	2601	Solothurn	01.01.1960
+11690	SO	1110	Thierstein	2611	Bärschwil	01.01.1960
+11876	SO	1110	Thierstein	2612	Beinwil (SO)	01.01.1960
+11822	SO	1110	Thierstein	2613	Breitenbach	01.01.1960
+11511	SO	1110	Thierstein	2614	Büsserach	01.01.1960
+12274	SO	1110	Thierstein	2615	Erschwil	01.01.1960
+11988	SO	1110	Thierstein	2616	Fehren	01.01.1960
+12009	SO	1110	Thierstein	2617	Grindel	01.01.1960
+12154	SO	1110	Thierstein	2618	Himmelried	01.01.1960
+12692	SO	1110	Thierstein	2619	Kleinlützel	01.01.1960
+12385	SO	1110	Thierstein	2620	Meltingen	01.01.1960
+12546	SO	1110	Thierstein	2621	Nunningen	01.01.1960
+10324	SO	1110	Thierstein	2622	Zullwil	01.01.1960
+11693	BS	1200	Kt. Basel-Stadt	2701	Basel	01.01.1960
+11907	BS	1200	Kt. Basel-Stadt	2702	Bettingen	01.01.1960
+12895	BS	1200	Kt. Basel-Stadt	2703	Riehen	01.01.1960
+13824	BL	1301	Arlesheim	2761	Aesch (BL)	01.01.1994
+13825	BL	1301	Arlesheim	2762	Allschwil	01.01.1994
+13826	BL	1301	Arlesheim	2763	Arlesheim	01.01.1994
+13827	BL	1301	Arlesheim	2764	Biel-Benken	01.01.1994
+13828	BL	1301	Arlesheim	2765	Binningen	01.01.1994
+13829	BL	1301	Arlesheim	2766	Birsfelden	01.01.1994
+13830	BL	1301	Arlesheim	2767	Bottmingen	01.01.1994
+13831	BL	1301	Arlesheim	2768	Ettingen	01.01.1994
+13832	BL	1301	Arlesheim	2769	Münchenstein	01.01.1994
+13833	BL	1301	Arlesheim	2770	Muttenz	01.01.1994
+13834	BL	1301	Arlesheim	2771	Oberwil (BL)	01.01.1994
+13835	BL	1301	Arlesheim	2772	Pfeffingen	01.01.1994
+13836	BL	1301	Arlesheim	2773	Reinach (BL)	01.01.1994
+13837	BL	1301	Arlesheim	2774	Schönenbuch	01.01.1994
+13838	BL	1301	Arlesheim	2775	Therwil	01.01.1994
+13839	BL	1302	Laufen	2781	Blauen	01.01.1994
+13840	BL	1302	Laufen	2782	Brislach	01.01.1994
+13841	BL	1302	Laufen	2783	Burg im Leimental	01.01.1994
+13842	BL	1302	Laufen	2784	Dittingen	01.01.1994
+13843	BL	1302	Laufen	2785	Duggingen	01.01.1994
+13844	BL	1302	Laufen	2786	Grellingen	01.01.1994
+13845	BL	1302	Laufen	2787	Laufen	01.01.1994
+13846	BL	1302	Laufen	2788	Liesberg	01.01.1994
+13847	BL	1302	Laufen	2789	Nenzlingen	01.01.1994
+13848	BL	1302	Laufen	2790	Roggenburg	01.01.1994
+13849	BL	1302	Laufen	2791	Röschenz	01.01.1994
+13850	BL	1302	Laufen	2792	Wahlen	01.01.1994
+13851	BL	1302	Laufen	2793	Zwingen	01.01.1994
+13766	BL	1303	Liestal	2821	Arisdorf	01.01.1994
+13767	BL	1303	Liestal	2822	Augst	01.01.1994
+13768	BL	1303	Liestal	2823	Bubendorf	01.01.1994
+13769	BL	1303	Liestal	2824	Frenkendorf	01.01.1994
+13770	BL	1303	Liestal	2825	Füllinsdorf	01.01.1994
+13771	BL	1303	Liestal	2826	Giebenach	01.01.1994
+13772	BL	1303	Liestal	2827	Hersberg	01.01.1994
+13773	BL	1303	Liestal	2828	Lausen	01.01.1994
+13774	BL	1303	Liestal	2829	Liestal	01.01.1994
+13775	BL	1303	Liestal	2830	Lupsingen	01.01.1994
+13776	BL	1303	Liestal	2831	Pratteln	01.01.1994
+13777	BL	1303	Liestal	2832	Ramlinsburg	01.01.1994
+13778	BL	1303	Liestal	2833	Seltisberg	01.01.1994
+13779	BL	1303	Liestal	2834	Ziefen	01.01.1994
+13780	BL	1304	Sissach	2841	Anwil	01.01.1994
+13781	BL	1304	Sissach	2842	Böckten	01.01.1994
+13782	BL	1304	Sissach	2843	Buckten	01.01.1994
+13783	BL	1304	Sissach	2844	Buus	01.01.1994
+13784	BL	1304	Sissach	2845	Diepflingen	01.01.1994
+13785	BL	1304	Sissach	2846	Gelterkinden	01.01.1994
+13786	BL	1304	Sissach	2847	Häfelfingen	01.01.1994
+13787	BL	1304	Sissach	2848	Hemmiken	01.01.1994
+13788	BL	1304	Sissach	2849	Itingen	01.01.1994
+13789	BL	1304	Sissach	2850	Känerkinden	01.01.1994
+13790	BL	1304	Sissach	2851	Kilchberg (BL)	01.01.1994
+13791	BL	1304	Sissach	2852	Läufelfingen	01.01.1994
+13792	BL	1304	Sissach	2853	Maisprach	01.01.1994
+13793	BL	1304	Sissach	2854	Nusshof	01.01.1994
+13794	BL	1304	Sissach	2855	Oltingen	01.01.1994
+13795	BL	1304	Sissach	2856	Ormalingen	01.01.1994
+13796	BL	1304	Sissach	2857	Rickenbach (BL)	01.01.1994
+13797	BL	1304	Sissach	2858	Rothenfluh	01.01.1994
+13798	BL	1304	Sissach	2859	Rümlingen	01.01.1994
+13799	BL	1304	Sissach	2860	Rünenberg	01.01.1994
+13800	BL	1304	Sissach	2861	Sissach	01.01.1994
+13801	BL	1304	Sissach	2862	Tecknau	01.01.1994
+13802	BL	1304	Sissach	2863	Tenniken	01.01.1994
+13803	BL	1304	Sissach	2864	Thürnen	01.01.1994
+13804	BL	1304	Sissach	2865	Wenslingen	01.01.1994
+13805	BL	1304	Sissach	2866	Wintersingen	01.01.1994
+13806	BL	1304	Sissach	2867	Wittinsburg	01.01.1994
+13807	BL	1304	Sissach	2868	Zeglingen	01.01.1994
+13808	BL	1304	Sissach	2869	Zunzgen	01.01.1994
+13809	BL	1305	Waldenburg	2881	Arboldswil	01.01.1994
+13810	BL	1305	Waldenburg	2882	Bennwil	01.01.1994
+13811	BL	1305	Waldenburg	2883	Bretzwil	01.01.1994
+13812	BL	1305	Waldenburg	2884	Diegten	01.01.1994
+13813	BL	1305	Waldenburg	2885	Eptingen	01.01.1994
+13814	BL	1305	Waldenburg	2886	Hölstein	01.01.1994
+13815	BL	1305	Waldenburg	2887	Lampenberg	01.01.1994
+13816	BL	1305	Waldenburg	2888	Langenbruck	01.01.1994
+13817	BL	1305	Waldenburg	2889	Lauwil	01.01.1994
+13818	BL	1305	Waldenburg	2890	Liedertswil	01.01.1994
+13819	BL	1305	Waldenburg	2891	Niederdorf	01.01.1994
+13820	BL	1305	Waldenburg	2892	Oberdorf (BL)	01.01.1994
+13821	BL	1305	Waldenburg	2893	Reigoldswil	01.01.1994
+13822	BL	1305	Waldenburg	2894	Titterten	01.01.1994
+13823	BL	1305	Waldenburg	2895	Waldenburg	01.01.1994
+12071	SH	1401	Oberklettgau	2901	Gächlingen	01.01.1960
+12801	SH	1401	Oberklettgau	2903	Löhningen	01.01.1960
+12519	SH	1401	Oberklettgau	2904	Neunkirch	01.01.1960
+11486	SH	1402	Reiat	2914	Büttenhardt	01.01.1960
+12184	SH	1402	Reiat	2915	Dörflingen	01.01.1960
+12800	SH	1402	Reiat	2917	Lohn (SH)	01.01.1960
+10586	SH	1402	Reiat	2919	Stetten (SH)	01.01.1960
+14948	SH	1402	Reiat	2920	Thayngen	01.01.2009
+11688	SH	1403	Schaffhausen	2931	Bargen (SH)	01.01.1960
+15604	SH	1403	Schaffhausen	2932	Beringen	01.01.2013
+11474	SH	1403	Schaffhausen	2933	Buchberg	01.01.1960
+12395	SH	1403	Schaffhausen	2936	Merishausen	01.01.1960
+12525	SH	1403	Schaffhausen	2937	Neuhausen am Rheinfall	01.01.1960
+12846	SH	1403	Schaffhausen	2938	Rüdlingen	01.01.1960
+14949	SH	1403	Schaffhausen	2939	Schaffhausen	01.01.2009
+11873	SH	1404	Schleitheim	2951	Beggingen	01.01.1960
+13045	SH	1404	Schleitheim	2952	Schleitheim	01.01.1960
+12989	SH	1404	Schleitheim	2953	Siblingen	01.01.1960
+11479	SH	1405	Stein	2961	Buch (SH)	01.01.1960
+12233	SH	1405	Stein	2962	Hemishofen	01.01.1960
+13170	SH	1405	Stein	2963	Ramsen	01.01.1960
+10592	SH	1405	Stein	2964	Stein am Rhein	01.01.1960
+12020	SH	1406	Unterklettgau	2971	Hallau	01.01.1960
+12471	SH	1406	Unterklettgau	2972	Oberhallau	01.01.1960
+10882	SH	1406	Unterklettgau	2973	Trasadingen	01.01.1960
+14515	SH	1406	Unterklettgau	2974	Wilchingen	01.01.2005
+12304	AR	1501	Hinterland	3001	Herisau	01.01.1960
+12175	AR	1501	Hinterland	3002	Hundwil	01.01.1960
+12972	AR	1501	Hinterland	3003	Schönengrund	01.01.1960
+12957	AR	1501	Hinterland	3004	Schwellbrunn	01.01.1960
+10583	AR	1501	Hinterland	3005	Stein (AR)	01.01.1960
+10946	AR	1501	Hinterland	3006	Urnäsch	01.01.1960
+10461	AR	1501	Hinterland	3007	Waldstatt	01.01.1960
+11451	AR	1502	Mittelland	3021	Bühler	01.01.1960
+12077	AR	1502	Mittelland	3022	Gais	01.01.1960
+10157	AR	1502	Mittelland	3023	Speicher	01.01.1960
+10561	AR	1502	Mittelland	3024	Teufen (AR)	01.01.1960
+10895	AR	1502	Mittelland	3025	Trogen	01.01.1960
+11956	AR	1503	Vorderland	3031	Grub (AR)	01.01.1960
+12253	AR	1503	Vorderland	3032	Heiden	01.01.1960
+12705	AR	1503	Vorderland	3033	Lutzenberg	01.01.1960
+13169	AR	1503	Vorderland	3034	Rehetobel	01.01.1960
+12915	AR	1503	Vorderland	3035	Reute (AR)	01.01.1960
+10458	AR	1503	Vorderland	3036	Wald (AR)	01.01.1960
+10470	AR	1503	Vorderland	3037	Walzenhausen	01.01.1960
+10358	AR	1503	Vorderland	3038	Wolfhalden	01.01.1960
+14097	AI	1600	Kt. Appenzell i.Rh.	3101	Appenzell	01.01.1997
+14098	AI	1600	Kt. Appenzell i.Rh.	3102	Gonten	01.01.1997
+14099	AI	1600	Kt. Appenzell i.Rh.	3103	Rüte	01.01.1997
+14100	AI	1600	Kt. Appenzell i.Rh.	3104	Schlatt-Haslen	01.01.1997
+14101	AI	1600	Kt. Appenzell i.Rh.	3105	Schwende	01.01.1997
+14102	AI	1600	Kt. Appenzell i.Rh.	3111	Oberegg	01.01.1997
+14378	SG	1721	St. Gallen	3201	Häggenschwil	01.01.2003
+14379	SG	1721	St. Gallen	3202	Muolen	01.01.2003
+14380	SG	1721	St. Gallen	3203	St. Gallen	01.01.2003
+14381	SG	1721	St. Gallen	3204	Wittenbach	01.01.2003
+14382	SG	1722	Rorschach	3211	Berg (SG)	01.01.2003
+14383	SG	1721	St. Gallen	3212	Eggersriet	01.01.2003
+14384	SG	1722	Rorschach	3213	Goldach	01.01.2003
+14385	SG	1722	Rorschach	3214	Mörschwil	01.01.2003
+14386	SG	1722	Rorschach	3215	Rorschach	01.01.2003
+14387	SG	1722	Rorschach	3216	Rorschacherberg	01.01.2003
+14388	SG	1722	Rorschach	3217	Steinach	01.01.2003
+14389	SG	1722	Rorschach	3218	Tübach	01.01.2003
+14390	SG	1722	Rorschach	3219	Untereggen	01.01.2003
+14391	SG	1723	Rheintal	3231	Au (SG)	01.01.2003
+14392	SG	1723	Rheintal	3232	Balgach	01.01.2003
+14393	SG	1723	Rheintal	3233	Berneck	01.01.2003
+14394	SG	1723	Rheintal	3234	Diepoldsau	01.01.2003
+14395	SG	1723	Rheintal	3235	Rheineck	01.01.2003
+14396	SG	1723	Rheintal	3236	St. Margrethen	01.01.2003
+14397	SG	1722	Rorschach	3237	Thal	01.01.2003
+14398	SG	1723	Rheintal	3238	Widnau	01.01.2003
+14399	SG	1723	Rheintal	3251	Altstätten	01.01.2003
+14400	SG	1723	Rheintal	3252	Eichberg	01.01.2003
+14401	SG	1723	Rheintal	3253	Marbach (SG)	01.01.2003
+14402	SG	1723	Rheintal	3254	Oberriet (SG)	01.01.2003
+14403	SG	1723	Rheintal	3255	Rebstein	01.01.2003
+14404	SG	1723	Rheintal	3256	Rüthi (SG)	01.01.2003
+14405	SG	1724	Werdenberg	3271	Buchs (SG)	01.01.2003
+14406	SG	1724	Werdenberg	3272	Gams	01.01.2003
+14407	SG	1724	Werdenberg	3273	Grabs	01.01.2003
+14408	SG	1724	Werdenberg	3274	Sennwald	01.01.2003
+14409	SG	1724	Werdenberg	3275	Sevelen	01.01.2003
+14410	SG	1724	Werdenberg	3276	Wartau	01.01.2003
+14411	SG	1725	Sarganserland	3291	Bad Ragaz	01.01.2003
+14412	SG	1725	Sarganserland	3292	Flums	01.01.2003
+14413	SG	1725	Sarganserland	3293	Mels	01.01.2003
+14414	SG	1725	Sarganserland	3294	Pfäfers	01.01.2003
+14415	SG	1725	Sarganserland	3295	Quarten	01.01.2003
+14416	SG	1725	Sarganserland	3296	Sargans	01.01.2003
+14417	SG	1725	Sarganserland	3297	Vilters-Wangs	01.01.2003
+14418	SG	1725	Sarganserland	3298	Walenstadt	01.01.2003
+14419	SG	1726	See-Gaster	3311	Amden	01.01.2003
+14420	SG	1726	See-Gaster	3312	Benken (SG)	01.01.2003
+14421	SG	1726	See-Gaster	3313	Kaltbrunn	01.01.2003
+14423	SG	1726	See-Gaster	3315	Schänis	01.01.2003
+14424	SG	1726	See-Gaster	3316	Weesen	01.01.2003
+14432	SG	1726	See-Gaster	3338	Schmerikon	01.01.2003
+14433	SG	1726	See-Gaster	3339	Uznach	01.01.2003
+14925	SG	1726	See-Gaster	3340	Rapperswil-Jona	01.01.2007
+15605	SG	1726	See-Gaster	3341	Gommiswald	01.01.2013
+15606	SG	1726	See-Gaster	3342	Eschenbach (SG)	01.01.2013
+14435	SG	1727	Toggenburg	3352	Ebnat-Kappel	01.01.2003
+15381	SG	1727	Toggenburg	3359	Wildhaus-Alt St. Johann	01.01.2010
+15607	SG	1727	Toggenburg	3360	Nesslau	01.01.2013
+14441	SG	1727	Toggenburg	3372	Hemberg	01.01.2003
+14443	SG	1727	Toggenburg	3374	Lichtensteig	01.01.2003
+14444	SG	1727	Toggenburg	3375	Oberhelfenschwil	01.01.2003
+14950	SG	1727	Toggenburg	3378	Neckertal	01.01.2009
+15608	SG	1727	Toggenburg	3379	Wattwil	01.01.2013
+14448	SG	1727	Toggenburg	3392	Kirchberg (SG)	01.01.2003
+14449	SG	1727	Toggenburg	3393	Lütisburg	01.01.2003
+14450	SG	1727	Toggenburg	3394	Mosnang	01.01.2003
+15609	SG	1727	Toggenburg	3395	Bütschwil-Ganterschwil	01.01.2013
+14451	SG	1728	Wil	3401	Degersheim	01.01.2003
+14452	SG	1728	Wil	3402	Flawil	01.01.2003
+14454	SG	1728	Wil	3405	Jonschwil	01.01.2003
+14456	SG	1728	Wil	3407	Oberuzwil	01.01.2003
+14457	SG	1728	Wil	3408	Uzwil	01.01.2003
+14459	SG	1728	Wil	3422	Niederbüren	01.01.2003
+14460	SG	1728	Wil	3423	Niederhelfenschwil	01.01.2003
+14461	SG	1728	Wil	3424	Oberbüren	01.01.2003
+14463	SG	1728	Wil	3426	Zuzwil (SG)	01.01.2003
+15610	SG	1728	Wil	3427	Wil (SG)	01.01.2013
+14464	SG	1721	St. Gallen	3441	Andwil (SG)	01.01.2003
+14465	SG	1721	St. Gallen	3442	Gaiserwald	01.01.2003
+14466	SG	1721	St. Gallen	3443	Gossau (SG)	01.01.2003
+14467	SG	1721	St. Gallen	3444	Waldkirch	01.01.2003
+15962	GR	1841	Albula	3506	Vaz/Obervaz	01.01.2017
+15963	GR	1841	Albula	3513	Lantsch/Lenz	01.01.2017
+15964	GR	1841	Albula	3514	Schmitten (GR)	01.01.2017
+16062	GR	1841	Albula	3542	Albula/Alvra	01.01.2017
+16068	GR	1841	Albula	3543	Surses	01.01.2017
+16085	GR	1841	Albula	3544	Bergün Filisur	01.01.2018
+15967	GR	1842	Bernina	3551	Brusio	01.01.2017
+15968	GR	1842	Bernina	3561	Poschiavo	01.01.2017
+15969	GR	1850	Surselva	3572	Falera	01.01.2017
+15970	GR	1850	Surselva	3575	Laax	01.01.2017
+15971	GR	1850	Surselva	3581	Sagogn	01.01.2017
+15972	GR	1850	Surselva	3582	Schluein	01.01.2017
+16063	GR	1850	Surselva	3603	Vals	01.01.2017
+16058	GR	1850	Surselva	3618	Lumnezia	01.01.2017
+16061	GR	1850	Surselva	3619	Ilanz/Glion	01.01.2017
+15975	GR	1851	Viamala	3633	Fürstenau	01.01.2017
+15976	GR	1851	Viamala	3637	Rothenbrunnen	01.01.2017
+15977	GR	1851	Viamala	3638	Scharans	01.01.2017
+15978	GR	1851	Viamala	3640	Sils im Domleschg	01.01.2017
+16051	GR	1851	Viamala	3661	Cazis	01.01.2017
+15979	GR	1851	Viamala	3662	Flerden	01.01.2017
+15980	GR	1851	Viamala	3663	Masein	01.01.2017
+16084	GR	1851	Viamala	3668	Thusis	01.01.2018
+15982	GR	1851	Viamala	3669	Tschappina	01.01.2017
+15983	GR	1851	Viamala	3670	Urmein	01.01.2017
+16057	GR	1850	Surselva	3672	Safiental	01.01.2017
+16064	GR	1851	Viamala	3673	Domleschg	01.01.2017
+15984	GR	1851	Viamala	3681	Avers	01.01.2017
+15987	GR	1851	Viamala	3695	Sufers	01.01.2017
+16048	GR	1851	Viamala	3701	Andeer	01.01.2017
+15988	GR	1851	Viamala	3703	Casti-Wergenstein	01.01.2017
+16043	GR	1851	Viamala	3705	Donat	01.01.2017
+15989	GR	1851	Viamala	3707	Lohn (GR)	01.01.2017
+15990	GR	1851	Viamala	3708	Mathon	01.01.2017
+15991	GR	1851	Viamala	3711	Rongellen	01.01.2017
+15992	GR	1851	Viamala	3712	Zillis-Reischen	01.01.2017
+16045	GR	1851	Viamala	3713	Ferrera	01.01.2017
+16125	GR	1851	Viamala	3714	Rheinwald	01.01.2019
+15993	GR	1844	Imboden	3721	Bonaduz	01.01.2017
+15994	GR	1844	Imboden	3722	Domat/Ems	01.01.2017
+15995	GR	1844	Imboden	3723	Rhäzüns	01.01.2017
+15996	GR	1844	Imboden	3731	Felsberg	01.01.2017
+15997	GR	1844	Imboden	3732	Flims	01.01.2017
+15998	GR	1844	Imboden	3733	Tamins	01.01.2017
+15999	GR	1844	Imboden	3734	Trin	01.01.2017
+16066	GR	1843	Engiadina B./Val Müstair	3746	Zernez	01.01.2017
+16000	GR	1843	Engiadina B./Val Müstair	3752	Samnaun	01.01.2017
+16065	GR	1843	Engiadina B./Val Müstair	3762	Scuol	01.01.2017
+16059	GR	1843	Engiadina B./Val Müstair	3764	Valsot	01.01.2017
+16001	GR	1846	Maloja	3781	Bever	01.01.2017
+16002	GR	1846	Maloja	3782	Celerina/Schlarigna	01.01.2017
+16003	GR	1846	Maloja	3783	Madulain	01.01.2017
+16004	GR	1846	Maloja	3784	Pontresina	01.01.2017
+16005	GR	1846	Maloja	3785	La Punt-Chamues-ch	01.01.2017
+16006	GR	1846	Maloja	3786	Samedan	01.01.2017
+16007	GR	1846	Maloja	3787	St. Moritz	01.01.2017
+16008	GR	1846	Maloja	3788	S-chanf	01.01.2017
+16009	GR	1846	Maloja	3789	Sils im Engadin/Segl	01.01.2017
+16010	GR	1846	Maloja	3790	Silvaplana	01.01.2017
+16011	GR	1846	Maloja	3791	Zuoz	01.01.2017
+16052	GR	1846	Maloja	3792	Bregaglia	01.01.2017
+16012	GR	1847	Moesa	3804	Buseno	01.01.2017
+16013	GR	1847	Moesa	3805	Castaneda	01.01.2017
+16014	GR	1847	Moesa	3808	Rossa	01.01.2017
+16015	GR	1847	Moesa	3810	Santa Maria in Calanca	01.01.2017
+16016	GR	1847	Moesa	3821	Lostallo	01.01.2017
+16017	GR	1847	Moesa	3822	Mesocco	01.01.2017
+16018	GR	1847	Moesa	3823	Soazza	01.01.2017
+16019	GR	1847	Moesa	3831	Cama	01.01.2017
+15695	GR	1847	Moesa	3832	Grono	01.01.2017
+16020	GR	1847	Moesa	3834	Roveredo (GR)	01.01.2017
+16021	GR	1847	Moesa	3835	San Vittore	01.01.2017
+16067	GR	1847	Moesa	3837	Calanca	01.01.2017
+16049	GR	1843	Engiadina B./Val Müstair	3847	Val Müstair	01.01.2017
+16047	GR	1849	Prättigau / Davos	3851	Davos	01.01.2017
+16022	GR	1849	Prättigau / Davos	3861	Fideris	01.01.2017
+16023	GR	1849	Prättigau / Davos	3862	Furna	01.01.2017
+16024	GR	1849	Prättigau / Davos	3863	Jenaz	01.01.2017
+16070	GR	1849	Prättigau / Davos	3871	Klosters-Serneus	01.01.2017
+16025	GR	1849	Prättigau / Davos	3881	Conters im Prättigau	01.01.2017
+16026	GR	1849	Prättigau / Davos	3882	Küblis	01.01.2017
+16071	GR	1849	Prättigau / Davos	3891	Luzein	01.01.2017
+16027	GR	1848	Plessur	3901	Chur	01.01.2017
+16053	GR	1848	Plessur	3911	Churwalden	01.01.2017
+16060	GR	1848	Plessur	3921	Arosa	01.01.2017
+16028	GR	1848	Plessur	3926	Maladers	01.01.2017
+16050	GR	1848	Plessur	3932	Tschiertschen-Praden	01.01.2017
+16029	GR	1848	Plessur	3941	Haldenstein	01.01.2017
+16046	GR	1845	Landquart	3945	Trimmis	01.01.2017
+16030	GR	1845	Landquart	3946	Untervaz	01.01.2017
+16031	GR	1845	Landquart	3947	Zizers	01.01.2017
+16032	GR	1845	Landquart	3951	Fläsch	01.01.2017
+16033	GR	1845	Landquart	3952	Jenins	01.01.2017
+16034	GR	1845	Landquart	3953	Maienfeld	01.01.2017
+16035	GR	1845	Landquart	3954	Malans	01.01.2017
+16055	GR	1845	Landquart	3955	Landquart	01.01.2017
+16054	GR	1849	Prättigau / Davos	3961	Grüsch	01.01.2017
+16036	GR	1849	Prättigau / Davos	3962	Schiers	01.01.2017
+16037	GR	1849	Prättigau / Davos	3972	Seewis im Prättigau	01.01.2017
+16086	GR	1850	Surselva	3981	Breil/Brigels	01.01.2018
+16039	GR	1850	Surselva	3982	Disentis/Mustér	01.01.2017
+16040	GR	1850	Surselva	3983	Medel (Lucmagn)	01.01.2017
+16041	GR	1850	Surselva	3985	Sumvitg	01.01.2017
+16042	GR	1850	Surselva	3986	Tujetsch	01.01.2017
+16056	GR	1850	Surselva	3987	Trun	01.01.2017
+16069	GR	1850	Surselva	3988	Obersaxen Mundaun	01.01.2017
+15385	AG	1901	Aarau	4001	Aarau	01.01.2010
+11916	AG	1901	Aarau	4002	Biberstein	01.01.1960
+11454	AG	1901	Aarau	4003	Buchs (AG)	01.01.1960
+11556	AG	1901	Aarau	4004	Densbüren	01.01.1960
+14533	AG	1901	Aarau	4005	Erlinsbach (AG)	01.01.2006
+12115	AG	1901	Aarau	4006	Gränichen	01.01.1960
+12158	AG	1901	Aarau	4007	Hirschthal	01.01.1960
+12594	AG	1901	Aarau	4008	Küttigen	01.01.1960
+12380	AG	1901	Aarau	4009	Muhen	01.01.1960
+12465	AG	1901	Aarau	4010	Oberentfelden	01.01.1960
+10585	AG	1901	Aarau	4012	Suhr	01.01.1960
+10888	AG	1901	Aarau	4013	Unterentfelden	01.01.1960
+13189	AG	1902	Baden	4021	Baden	01.01.1962
+11881	AG	1902	Baden	4022	Bellikon	01.01.1960
+11856	AG	1902	Baden	4023	Bergdietikon	01.01.1960
+11899	AG	1902	Baden	4024	Birmenstorf (AG)	01.01.1960
+12277	AG	1902	Baden	4026	Ennetbaden	01.01.1960
+11998	AG	1902	Baden	4027	Fislisbach	01.01.1960
+11946	AG	1902	Baden	4028	Freienwil	01.01.1960
+12110	AG	1902	Baden	4029	Gebenstorf	01.01.1960
+12693	AG	1902	Baden	4030	Killwangen	01.01.1960
+12652	AG	1902	Baden	4031	Künten	01.01.1960
+12712	AG	1902	Baden	4032	Mägenwil	01.01.1960
+12384	AG	1902	Baden	4033	Mellingen	01.01.1960
+12514	AG	1902	Baden	4034	Neuenhof	01.01.1960
+12565	AG	1902	Baden	4035	Niederrohrdorf	01.01.1960
+12453	AG	1902	Baden	4037	Oberrohrdorf	01.01.1960
+12456	AG	1902	Baden	4038	Obersiggenthal	01.01.1960
+13164	AG	1902	Baden	4039	Remetschwil	01.01.1960
+10366	AG	1902	Baden	4040	Spreitenbach	01.01.1960
+10595	AG	1902	Baden	4041	Stetten (AG)	01.01.1960
+10886	AG	1902	Baden	4042	Turgi	01.01.1960
+10871	AG	1902	Baden	4044	Untersiggenthal	01.01.1960
+10275	AG	1902	Baden	4045	Wettingen	01.01.1960
+10356	AG	1902	Baden	4046	Wohlenschwil	01.01.1960
+10344	AG	1902	Baden	4047	Würenlingen	01.01.1960
+10303	AG	1902	Baden	4048	Würenlos	01.01.1960
+14534	AG	1902	Baden	4049	Ehrendingen	01.01.2006
+13668	AG	1903	Bremgarten	4061	Arni (AG)	01.01.1983
+11857	AG	1903	Bremgarten	4062	Berikon	01.01.1960
+15644	AG	1903	Bremgarten	4063	Bremgarten (AG)	01.01.2014
+11488	AG	1903	Bremgarten	4064	Büttikon	01.01.1960
+12217	AG	1903	Bremgarten	4065	Dottikon	01.01.1960
+12157	AG	1903	Bremgarten	4066	Eggenwil	01.01.1960
+12006	AG	1903	Bremgarten	4067	Fischbach-Göslikon	01.01.1960
+12004	AG	1903	Bremgarten	4068	Hägglingen	01.01.1960
+12644	AG	1903	Bremgarten	4071	Jonen	01.01.1960
+12569	AG	1903	Bremgarten	4072	Niederwil (AG)	01.01.1960
+12452	AG	1903	Bremgarten	4073	Oberlunkhofen	01.01.1960
+13681	AG	1903	Bremgarten	4074	Oberwil-Lieli	01.01.1984
+12830	AG	1903	Bremgarten	4075	Rudolfstetten-Friedlisberg	01.01.1960
+13010	AG	1903	Bremgarten	4076	Sarmenstorf	01.01.1960
+10550	AG	1903	Bremgarten	4077	Tägerig	01.01.1960
+10853	AG	1903	Bremgarten	4078	Uezwil	01.01.1960
+10867	AG	1903	Bremgarten	4079	Unterlunkhofen	01.01.1960
+15386	AG	1903	Bremgarten	4080	Villmergen	01.01.2010
+10278	AG	1903	Bremgarten	4081	Widen	01.01.1960
+10354	AG	1903	Bremgarten	4082	Wohlen (AG)	01.01.1960
+10322	AG	1903	Bremgarten	4083	Zufikon	01.01.1960
+13669	AG	1903	Bremgarten	4084	Islisberg	01.01.1983
+11681	AG	1904	Brugg	4091	Auenstein	01.01.1960
+11901	AG	1904	Brugg	4092	Birr	01.01.1960
+11837	AG	1904	Brugg	4093	Birrhard	01.01.1960
+11851	AG	1904	Brugg	4094	Bözen	01.01.1960
+15387	AG	1904	Brugg	4095	Brugg	01.01.2010
+12126	AG	1904	Brugg	4096	Effingen	01.01.1960
+12243	AG	1904	Brugg	4097	Elfingen	01.01.1960
+12000	AG	1904	Brugg	4099	Habsburg	01.01.1960
+14375	AG	1904	Brugg	4100	Hausen (AG)	01.01.2003
+16087	AG	1904	Brugg	4104	Lupfig	01.01.2018
+12753	AG	1904	Brugg	4105	Mandach	01.01.1960
+12321	AG	1904	Brugg	4106	Mönthal	01.01.1960
+12354	AG	1904	Brugg	4107	Mülligen	01.01.1960
+13161	AG	1904	Brugg	4110	Remigen	01.01.1960
+12890	AG	1904	Brugg	4111	Riniken	01.01.1960
+12838	AG	1904	Brugg	4112	Rüfenach	01.01.1960
+14376	AG	1904	Brugg	4114	Schinznach-Bad	01.01.2003
+10760	AG	1904	Brugg	4117	Thalheim (AG)	01.01.1960
+10911	AG	1904	Brugg	4120	Veltheim (AG)	01.01.1960
+14535	AG	1904	Brugg	4121	Villigen	01.01.2006
+10009	AG	1904	Brugg	4122	Villnachern	01.01.1960
+10360	AG	1904	Brugg	4123	Windisch	01.01.1960
+15615	AG	1904	Brugg	4124	Bözberg	01.01.2013
+15645	AG	1904	Brugg	4125	Schinznach	01.01.2014
+11886	AG	1905	Kulm	4131	Beinwil am See	01.01.1960
+11913	AG	1905	Kulm	4132	Birrwil	01.01.1960
+11503	AG	1905	Kulm	4133	Burg (AG)	01.01.1960
+12122	AG	1905	Kulm	4134	Dürrenäsch	01.01.1960
+12047	AG	1905	Kulm	4135	Gontenschwil	01.01.1960
+12140	AG	1905	Kulm	4136	Holziken	01.01.1960
+12783	AG	1905	Kulm	4137	Leimbach (AG)	01.01.1960
+12778	AG	1905	Kulm	4138	Leutwil	01.01.1960
+12397	AG	1905	Kulm	4139	Menziken	01.01.1960
+12454	AG	1905	Kulm	4140	Oberkulm	01.01.1960
+13174	AG	1905	Kulm	4141	Reinach (AG)	01.01.1960
+13043	AG	1905	Kulm	4142	Schlossrued	01.01.1960
+13042	AG	1905	Kulm	4143	Schmiedrued	01.01.1960
+13005	AG	1905	Kulm	4144	Schöftland	01.01.1960
+10562	AG	1905	Kulm	4145	Teufenthal (AG)	01.01.1960
+10866	AG	1905	Kulm	4146	Unterkulm	01.01.1960
+10301	AG	1905	Kulm	4147	Zetzwil	01.01.1960
+12170	AG	1906	Laufenburg	4161	Eiken	01.01.1960
+11953	AG	1906	Laufenburg	4163	Frick	01.01.1960
+12114	AG	1906	Laufenburg	4164	Gansingen	01.01.1960
+12065	AG	1906	Laufenburg	4165	Gipf-Oberfrick	01.01.1960
+12317	AG	1906	Laufenburg	4166	Herznach	01.01.1960
+12211	AG	1906	Laufenburg	4167	Hornussen	01.01.1960
+15389	AG	1906	Laufenburg	4169	Kaisten	01.01.2010
+15390	AG	1906	Laufenburg	4170	Laufenburg	01.01.2010
+12357	AG	1906	Laufenburg	4172	Münchwilen (AG)	01.01.1960
+12472	AG	1906	Laufenburg	4173	Oberhof	01.01.1960
+12509	AG	1906	Laufenburg	4175	Oeschgen	01.01.1960
+12964	AG	1906	Laufenburg	4176	Schwaderloch	01.01.1960
+12980	AG	1906	Laufenburg	4177	Sisseln	01.01.1960
+10849	AG	1906	Laufenburg	4179	Ueken	01.01.1960
+10353	AG	1906	Laufenburg	4181	Wittnau	01.01.1960
+10359	AG	1906	Laufenburg	4182	Wölflinswil	01.01.1960
+10309	AG	1906	Laufenburg	4183	Zeihen	01.01.1960
+15388	AG	1906	Laufenburg	4184	Mettauertal	01.01.2010
+11783	AG	1907	Lenzburg	4191	Ammerswil	01.01.1960
+11790	AG	1907	Lenzburg	4192	Boniswil	01.01.1960
+11472	AG	1907	Lenzburg	4193	Brunegg	01.01.1960
+11566	AG	1907	Lenzburg	4194	Dintikon	01.01.1960
+12167	AG	1907	Lenzburg	4195	Egliswil	01.01.1960
+12252	AG	1907	Lenzburg	4196	Fahrwangen	01.01.1960
+11996	AG	1907	Lenzburg	4197	Hallwil	01.01.1960
+12235	AG	1907	Lenzburg	4198	Hendschiken	01.01.1960
+12139	AG	1907	Lenzburg	4199	Holderbank (AG)	01.01.1960
+12179	AG	1907	Lenzburg	4200	Hunzenschwil	01.01.1960
+12782	AG	1907	Lenzburg	4201	Lenzburg	01.01.1960
+12411	AG	1907	Lenzburg	4202	Meisterschwanden	01.01.1960
+12367	AG	1907	Lenzburg	4203	Möriken-Wildegg	01.01.1960
+12561	AG	1907	Lenzburg	4204	Niederlenz	01.01.1960
+13113	AG	1907	Lenzburg	4205	Othmarsingen	01.01.1960
+12833	AG	1907	Lenzburg	4206	Rupperswil	01.01.1960
+13056	AG	1907	Lenzburg	4207	Schafisheim	01.01.1960
+12949	AG	1907	Lenzburg	4208	Seengen	01.01.1960
+12996	AG	1907	Lenzburg	4209	Seon	01.01.1960
+10579	AG	1907	Lenzburg	4210	Staufen	01.01.1960
+11741	AG	1908	Muri	4221	Abtwil	01.01.1960
+11764	AG	1908	Muri	4222	Aristau	01.01.1960
+11659	AG	1908	Muri	4223	Auw	01.01.1960
+11875	AG	1908	Muri	4224	Beinwil (Freiamt)	01.01.1960
+11888	AG	1908	Muri	4226	Besenbüren	01.01.1960
+11910	AG	1908	Muri	4227	Bettwil	01.01.1960
+11800	AG	1908	Muri	4228	Boswil	01.01.1960
+11464	AG	1908	Muri	4229	Bünzen	01.01.1960
+11490	AG	1908	Muri	4230	Buttwil	01.01.1960
+11564	AG	1908	Muri	4231	Dietwil	01.01.1960
+12104	AG	1908	Muri	4232	Geltwil	01.01.1960
+12638	AG	1908	Muri	4233	Kallern	01.01.1960
+15503	AG	1908	Muri	4234	Merenschwand	01.01.2012
+12358	AG	1908	Muri	4235	Mühlau	01.01.1960
+12438	AG	1908	Muri	4236	Muri (AG)	01.01.1960
+12446	AG	1908	Muri	4237	Oberrüti	01.01.1960
+12851	AG	1908	Muri	4238	Rottenschwil	01.01.1960
+12983	AG	1908	Muri	4239	Sins	01.01.1960
+10468	AG	1908	Muri	4240	Waltenschwil	01.01.1960
+12228	AG	1909	Rheinfelden	4251	Hellikon	01.01.1960
+12643	AG	1909	Rheinfelden	4252	Kaiseraugst	01.01.1960
+12711	AG	1909	Rheinfelden	4253	Magden	01.01.1960
+12429	AG	1909	Rheinfelden	4254	Möhlin	01.01.1960
+12355	AG	1909	Rheinfelden	4255	Mumpf	01.01.1960
+12468	AG	1909	Rheinfelden	4256	Obermumpf	01.01.1960
+12508	AG	1909	Rheinfelden	4257	Olsberg	01.01.1960
+12911	AG	1909	Rheinfelden	4258	Rheinfelden	01.01.1960
+12967	AG	1909	Rheinfelden	4259	Schupfart	01.01.1960
+10582	AG	1909	Rheinfelden	4260	Stein (AG)	01.01.1960
+10462	AG	1909	Rheinfelden	4261	Wallbach	01.01.1960
+10446	AG	1909	Rheinfelden	4262	Wegenstetten	01.01.1960
+10310	AG	1909	Rheinfelden	4263	Zeiningen	01.01.1960
+10329	AG	1909	Rheinfelden	4264	Zuzgen	01.01.1960
+11738	AG	1910	Zofingen	4271	Aarburg	01.01.1960
+11845	AG	1910	Zofingen	4273	Bottenwil	01.01.1960
+11636	AG	1910	Zofingen	4274	Brittnau	01.01.1960
+12696	AG	1910	Zofingen	4275	Kirchleerau	01.01.1960
+12677	AG	1910	Zofingen	4276	Kölliken	01.01.1960
+12328	AG	1910	Zofingen	4277	Moosleerau	01.01.1960
+12335	AG	1910	Zofingen	4279	Murgenthal	01.01.1960
+12494	AG	1910	Zofingen	4280	Oftringen	01.01.1960
+16126	AG	1910	Zofingen	4281	Reitnau	01.01.2019
+12852	AG	1910	Zofingen	4282	Rothrist	01.01.1960
+12873	AG	1910	Zofingen	4283	Safenwil	01.01.1960
+10707	AG	1910	Zofingen	4284	Staffelbach	01.01.1960
+10590	AG	1910	Zofingen	4285	Strengelbach	01.01.1960
+10850	AG	1910	Zofingen	4286	Uerkheim	01.01.1960
+10370	AG	1910	Zofingen	4287	Vordemwald	01.01.1960
+10338	AG	1910	Zofingen	4288	Wiliberg	01.01.1960
+14361	AG	1910	Zofingen	4289	Zofingen	01.01.2002
+11706	AG	1911	Zurzach	4301	Baldingen	01.01.1960
+11814	AG	1911	Zurzach	4302	Böbikon	01.01.1960
+11840	AG	1911	Zurzach	4303	Böttstein	01.01.1960
+12210	AG	1911	Zurzach	4304	Döttingen	01.01.1960
+15646	AG	1911	Zurzach	4305	Endingen	01.01.2014
+11999	AG	1911	Zurzach	4306	Fisibach	01.01.1960
+12091	AG	1911	Zurzach	4307	Full-Reuenthal	01.01.1960
+12653	AG	1911	Zurzach	4308	Kaiserstuhl	01.01.1960
+12672	AG	1911	Zurzach	4309	Klingnau	01.01.1960
+12685	AG	1911	Zurzach	4310	Koblenz	01.01.1960
+12694	AG	1911	Zurzach	4311	Leibstadt	01.01.1960
+12786	AG	1911	Zurzach	4312	Lengnau (AG)	01.01.1960
+12775	AG	1911	Zurzach	4313	Leuggern	01.01.1960
+12404	AG	1911	Zurzach	4314	Mellikon	01.01.1960
+13183	AG	1911	Zurzach	4315	Rekingen (AG)	01.01.1960
+12893	AG	1911	Zurzach	4316	Rietheim	01.01.1960
+12835	AG	1911	Zurzach	4317	Rümikon	01.01.1960
+13040	AG	1911	Zurzach	4318	Schneisingen	01.01.1960
+12987	AG	1911	Zurzach	4319	Siglistorf	01.01.1960
+10541	AG	1911	Zurzach	4320	Tegerfelden	01.01.1960
+10350	AG	1911	Zurzach	4322	Wislikofen	01.01.1960
+14920	AG	1911	Zurzach	4323	Bad Zurzach	01.12.2006
+15456	TG	2011	Arbon	4401	Arbon	01.01.2011
+15403	TG	2011	Arbon	4406	Dozwil	01.01.2011
+15402	TG	2011	Arbon	4411	Egnach	01.01.2011
+15406	TG	2011	Arbon	4416	Hefenhofen	01.01.2011
+15404	TG	2011	Arbon	4421	Horn	01.01.2011
+15409	TG	2011	Arbon	4426	Kesswil	01.01.2011
+15412	TG	2011	Arbon	4431	Roggwil (TG)	01.01.2011
+15411	TG	2011	Arbon	4436	Romanshorn	01.01.2011
+15413	TG	2011	Arbon	4441	Salmsach	01.01.2011
+15417	TG	2011	Arbon	4446	Sommeri	01.01.2011
+15397	TG	2011	Arbon	4451	Uttwil	01.01.2011
+15451	TG	2011	Arbon	4461	Amriswil	01.01.2011
+15449	TG	2015	Weinfelden	4471	Bischofszell	01.01.2011
+15427	TG	2015	Weinfelden	4476	Erlen	01.01.2011
+15446	TG	2015	Weinfelden	4486	Hauptwil-Gottshaus	01.01.2011
+15466	TG	2015	Weinfelden	4495	Hohentannen	01.01.2011
+15448	TG	2015	Weinfelden	4501	Kradolf-Schönenberg	01.01.2011
+15450	TG	2015	Weinfelden	4506	Sulgen	01.01.2011
+15452	TG	2015	Weinfelden	4511	Zihlschlacht-Sitterdorf	01.01.2011
+15468	TG	2012	Frauenfeld	4536	Basadingen-Schlattingen	01.01.2011
+15473	TG	2012	Frauenfeld	4545	Diessenhofen	01.01.2011
+15467	TG	2012	Frauenfeld	4546	Schlatt (TG)	01.01.2011
+15442	TG	2014	Münchwilen	4551	Aadorf	01.01.2011
+15423	TG	2012	Frauenfeld	4561	Felben-Wellhausen	01.01.2011
+15458	TG	2012	Frauenfeld	4566	Frauenfeld	01.01.2011
+15457	TG	2012	Frauenfeld	4571	Gachnang	01.01.2011
+15469	TG	2012	Frauenfeld	4590	Hüttlingen	01.01.2011
+15410	TG	2012	Frauenfeld	4591	Matzingen	01.01.2011
+15447	TG	2012	Frauenfeld	4601	Neunforn	01.01.2011
+15396	TG	2012	Frauenfeld	4606	Stettfurt	01.01.2011
+15429	TG	2012	Frauenfeld	4611	Thundorf	01.01.2011
+15431	TG	2012	Frauenfeld	4616	Uesslingen-Buch	01.01.2011
+15430	TG	2012	Frauenfeld	4621	Warth-Weiningen	01.01.2011
+15398	TG	2013	Kreuzlingen	4641	Altnau	01.01.2011
+15425	TG	2013	Kreuzlingen	4643	Bottighofen	01.01.2011
+15421	TG	2013	Kreuzlingen	4646	Ermatingen	01.01.2011
+15401	TG	2013	Kreuzlingen	4651	Gottlieben	01.01.2011
+15400	TG	2013	Kreuzlingen	4656	Güttingen	01.01.2011
+15445	TG	2013	Kreuzlingen	4666	Kemmental	01.01.2011
+15408	TG	2013	Kreuzlingen	4671	Kreuzlingen	01.01.2011
+15459	TG	2013	Kreuzlingen	4681	Langrickenbach	01.01.2011
+15460	TG	2013	Kreuzlingen	4683	Lengwil	01.01.2011
+15426	TG	2013	Kreuzlingen	4691	Münsterlingen	01.01.2011
+15394	TG	2013	Kreuzlingen	4696	Tägerwilen	01.01.2011
+15432	TG	2013	Kreuzlingen	4701	Wäldi	01.01.2011
+15433	TG	2015	Weinfelden	4711	Affeltrangen	01.01.2011
+15434	TG	2014	Münchwilen	4716	Bettwiesen	01.01.2011
+15443	TG	2014	Münchwilen	4721	Bichelsee-Balterswil	01.01.2011
+15470	TG	2014	Münchwilen	4723	Braunau	01.01.2011
+15454	TG	2014	Münchwilen	4724	Eschlikon	01.01.2011
+15419	TG	2014	Münchwilen	4726	Fischingen	01.01.2011
+15435	TG	2014	Münchwilen	4741	Lommis	01.01.2011
+15407	TG	2014	Münchwilen	4746	Münchwilen (TG)	01.01.2011
+15463	TG	2014	Münchwilen	4751	Rickenbach (TG)	01.01.2011
+15415	TG	2015	Weinfelden	4756	Schönholzerswilen	01.01.2011
+15453	TG	2014	Münchwilen	4761	Sirnach	01.01.2011
+15471	TG	2014	Münchwilen	4776	Tobel-Tägerschen	01.01.2011
+15441	TG	2014	Münchwilen	4781	Wängi	01.01.2011
+15462	TG	2014	Münchwilen	4786	Wilen (TG)	01.01.2011
+15418	TG	2015	Weinfelden	4791	Wuppenau	01.01.2011
+15399	TG	2012	Frauenfeld	4801	Berlingen	01.01.2011
+15405	TG	2012	Frauenfeld	4806	Eschenz	01.01.2011
+15464	TG	2012	Frauenfeld	4811	Herdern	01.01.2011
+15472	TG	2012	Frauenfeld	4816	Homburg	01.01.2011
+15455	TG	2012	Frauenfeld	4821	Hüttwilen	01.01.2011
+15424	TG	2012	Frauenfeld	4826	Mammern	01.01.2011
+15416	TG	2012	Frauenfeld	4831	Müllheim	01.01.2011
+15465	TG	2012	Frauenfeld	4841	Pfyn	01.01.2011
+15414	TG	2013	Kreuzlingen	4846	Raperswilen	01.01.2011
+15422	TG	2013	Kreuzlingen	4851	Salenstein	01.01.2011
+15395	TG	2012	Frauenfeld	4864	Steckborn	01.01.2011
+15440	TG	2012	Frauenfeld	4871	Wagenhausen	01.01.2011
+15436	TG	2015	Weinfelden	4881	Amlikon-Bissegg	01.01.2011
+15461	TG	2015	Weinfelden	4891	Berg (TG)	01.01.2011
+15438	TG	2015	Weinfelden	4901	Birwinken	01.01.2011
+15428	TG	2015	Weinfelden	4911	Bürglen (TG)	01.01.2011
+15444	TG	2015	Weinfelden	4921	Bussnang	01.01.2011
+15420	TG	2015	Weinfelden	4941	Märstetten	01.01.2011
+15437	TG	2015	Weinfelden	4946	Weinfelden	01.01.2011
+15439	TG	2015	Weinfelden	4951	Wigoltingen	01.01.2011
+11768	TI	2101	Bellinzona	5001	Arbedo-Castione	01.01.1960
+16078	TI	2101	Bellinzona	5002	Bellinzona	02.04.2017
+14518	TI	2101	Bellinzona	5003	Cadenazzo	13.03.2005
+12665	TI	2101	Bellinzona	5009	Isone	01.01.1960
+12725	TI	2101	Bellinzona	5010	Lumino	01.01.1960
+13012	TI	2101	Bellinzona	5017	Sant'Antonino	01.01.1960
+14492	TI	2102	Blenio	5048	Acquarossa	04.04.2004
+14918	TI	2102	Blenio	5049	Blenio	22.10.2006
+15509	TI	2102	Blenio	5050	Serravalle	01.04.2012
+11719	TI	2103	Leventina	5061	Airolo	01.01.1960
+11872	TI	2103	Leventina	5063	Bedretto	01.01.1960
+11815	TI	2103	Leventina	5064	Bodio	01.01.1960
+11579	TI	2103	Leventina	5071	Dalpe	01.01.1960
+15685	TI	2103	Leventina	5072	Faido	10.04.2016
+12066	TI	2103	Leventina	5073	Giornico	01.01.1960
+13153	TI	2103	Leventina	5076	Personico	01.01.1960
+13084	TI	2103	Leventina	5077	Pollegio	01.01.1960
+13099	TI	2103	Leventina	5078	Prato (Leventina)	01.01.1960
+13092	TI	2103	Leventina	5079	Quinto	01.01.1960
+11673	TI	2104	Locarno	5091	Ascona	01.01.1960
+11831	TI	2104	Locarno	5095	Brione (Verzasca)	01.01.1960
+11832	TI	2104	Locarno	5096	Brione sopra Minusio	01.01.1960
+11833	TI	2104	Locarno	5097	Brissago	01.01.1960
+11622	TI	2104	Locarno	5102	Corippo	01.01.1960
+11968	TI	2104	Locarno	5105	Frasco	01.01.1960
+12051	TI	2104	Locarno	5108	Gordola	01.01.1960
+12612	TI	2104	Locarno	5112	Lavertezzo	01.01.1960
+12828	TI	2104	Locarno	5113	Locarno	01.01.1960
+12807	TI	2104	Locarno	5115	Losone	01.01.1960
+12393	TI	2104	Locarno	5117	Mergoscia	01.01.1960
+12436	TI	2104	Locarno	5118	Minusio	01.01.1960
+12463	TI	2104	Locarno	5120	Muralto	01.01.1960
+13135	TI	2104	Locarno	5121	Orselina	01.01.1960
+12922	TI	2104	Locarno	5125	Ronco sopra Ascona	01.01.1960
+10409	TI	2104	Locarno	5129	Sonogno	01.01.1960
+10558	TI	2104	Locarno	5131	Tenero-Contra	01.01.1960
+10404	TI	2104	Locarno	5135	Vogorno	01.01.1960
+15686	TI	2104	Locarno	5136	Onsernone	10.04.2016
+14936	TI	2104	Locarno	5138	Cugnasco-Gerra	20.04.2008
+11722	TI	2105	Lugano	5141	Agno	01.01.1960
+11757	TI	2105	Lugano	5143	Aranno	01.01.1960
+11703	TI	2105	Lugano	5144	Arogno	01.01.1960
+11684	TI	2105	Lugano	5146	Astano	01.01.1960
+11902	TI	2105	Lugano	5148	Bedano	01.01.1960
+11770	TI	2105	Lugano	5149	Bedigliora	01.01.1960
+14939	TI	2105	Lugano	5151	Bioggio	20.04.2008
+11806	TI	2105	Lugano	5154	Bissone	01.01.1960
+11475	TI	2105	Lugano	5160	Brusino Arsizio	01.01.1960
+11492	TI	2105	Lugano	5161	Cademario	01.01.1960
+11484	TI	2105	Lugano	5162	Cadempino	01.01.1960
+11404	TI	2105	Lugano	5167	Canobbio	01.01.1960
+11413	TI	2105	Lugano	5171	Caslano	01.01.1960
+11616	TI	2105	Lugano	5176	Comano	01.01.1960
+13252	TI	2105	Lugano	5178	Croglio	04.04.1976
+11570	TI	2105	Lugano	5180	Cureglia	01.01.1960
+11571	TI	2105	Lugano	5181	Curio	01.01.1960
+12042	TI	2105	Lugano	5186	Grancia	01.01.1960
+12118	TI	2105	Lugano	5187	Gravesano	01.01.1960
+12623	TI	2105	Lugano	5189	Lamone	01.01.1960
+15628	TI	2105	Lugano	5192	Lugano	14.04.2013
+12714	TI	2105	Lugano	5193	Magliaso	01.01.1960
+12765	TI	2105	Lugano	5194	Manno	01.01.1960
+12762	TI	2105	Lugano	5195	Maroggia	01.01.1960
+12749	TI	2105	Lugano	5196	Massagno	01.01.1960
+12412	TI	2105	Lugano	5197	Melano	01.01.1960
+12388	TI	2105	Lugano	5198	Melide	01.01.1960
+12442	TI	2105	Lugano	5199	Mezzovico-Vira	01.01.1960
+12420	TI	2105	Lugano	5200	Miglieglia	01.01.1960
+12326	TI	2105	Lugano	5202	Monteggio	01.01.1960
+12331	TI	2105	Lugano	5203	Morcote	01.01.1960
+12531	TI	2105	Lugano	5205	Muzzano	01.01.1960
+12539	TI	2105	Lugano	5206	Neggio	01.01.1960
+12564	TI	2105	Lugano	5207	Novaggio	01.01.1960
+12488	TI	2105	Lugano	5208	Origlio	01.01.1960
+13116	TI	2105	Lugano	5210	Paradiso	01.01.1960
+13138	TI	2105	Lugano	5212	Ponte Capriasca	01.01.1960
+13066	TI	2105	Lugano	5213	Ponte Tresa	01.01.1960
+13073	TI	2105	Lugano	5214	Porza	01.01.1960
+13093	TI	2105	Lugano	5216	Pura	01.01.1960
+12848	TI	2105	Lugano	5219	Rovio	01.01.1960
+13059	TI	2105	Lugano	5221	Savosa	01.01.1960
+12993	TI	2105	Lugano	5222	Sessa	01.01.1960
+10415	TI	2105	Lugano	5225	Sorengo	01.01.1960
+14938	TI	2105	Lugano	5226	Capriasca	20.04.2008
+10880	TI	2105	Lugano	5227	Torricella-Taverne	01.01.1960
+10916	TI	2105	Lugano	5230	Vernate	01.01.1960
+10943	TI	2105	Lugano	5231	Vezia	01.01.1960
+10755	TI	2105	Lugano	5233	Vico Morcote	01.01.1960
+15512	TI	2105	Lugano	5236	Collina d'Oro	01.04.2012
+14519	TI	2105	Lugano	5237	Alto Malcantone	13.03.2005
+15392	TI	2105	Lugano	5238	Monteceneri	21.11.2010
+11707	TI	2106	Mendrisio	5242	Balerna	01.01.1960
+14499	TI	2106	Mendrisio	5249	Castel San Pietro	04.04.2004
+13251	TI	2106	Mendrisio	5250	Chiasso	04.04.1976
+11594	TI	2106	Mendrisio	5251	Coldrerio	01.01.1960
+15630	TI	2106	Mendrisio	5254	Mendrisio	14.04.2013
+12329	TI	2106	Mendrisio	5257	Morbio Inferiore	01.01.1960
+12544	TI	2106	Mendrisio	5260	Novazzano	01.01.1960
+12904	TI	2106	Mendrisio	5263	Riva San Vitale	01.01.1960
+10381	TI	2106	Mendrisio	5266	Stabio	01.01.1960
+10930	TI	2106	Mendrisio	5268	Vacallo	01.01.1960
+14974	TI	2106	Mendrisio	5269	Breggia	25.10.2009
+11904	TI	2107	Riviera	5281	Biasca	01.01.1960
+16079	TI	2107	Riviera	5287	Riviera	02.04.2017
+11798	TI	2108	Vallemaggia	5304	Bosco/Gurin	01.01.1960
+11402	TI	2108	Vallemaggia	5307	Campo (Vallemaggia)	01.01.1960
+11388	TI	2108	Vallemaggia	5309	Cerentino	01.01.1960
+14919	TI	2108	Vallemaggia	5310	Cevio	22.10.2006
+12814	TI	2108	Vallemaggia	5315	Linescio	01.01.1960
+14495	TI	2108	Vallemaggia	5317	Maggia	04.04.2004
+14497	TI	2108	Vallemaggia	5323	Lavizzara	04.04.2004
+14940	TI	2108	Vallemaggia	5324	Avegno Gordevio	20.04.2008
+15627	TI	2104	Locarno	5396	Terre di Pedemonte	14.04.2013
+14973	TI	2104	Locarno	5397	Centovalli	25.10.2009
+15391	TI	2104	Locarno	5398	Gambarogno	25.04.2010
+14540	VD	2221	Aigle	5401	Aigle	01.09.2006
+14541	VD	2221	Aigle	5402	Bex	01.09.2006
+14808	VD	2221	Aigle	5403	Chessel	01.09.2006
+14793	VD	2221	Aigle	5404	Corbeyrier	01.09.2006
+14747	VD	2221	Aigle	5405	Gryon	01.09.2006
+14645	VD	2221	Aigle	5406	Lavey-Morcles	01.09.2006
+14625	VD	2221	Aigle	5407	Leysin	01.09.2006
+14620	VD	2221	Aigle	5408	Noville	01.09.2006
+14663	VD	2221	Aigle	5409	Ollon	01.09.2006
+14670	VD	2221	Aigle	5410	Ormont-Dessous	01.09.2006
+14669	VD	2221	Aigle	5411	Ormont-Dessus	01.09.2006
+14616	VD	2221	Aigle	5412	Rennaz	01.09.2006
+14603	VD	2221	Aigle	5413	Roche (VD)	01.09.2006
+14914	VD	2221	Aigle	5414	Villeneuve (VD)	01.09.2006
+14911	VD	2221	Aigle	5415	Yvorne	01.09.2006
+14780	VD	2227	Morges	5421	Apples	01.09.2006
+15486	VD	2227	Morges	5422	Aubonne	01.07.2011
+14784	VD	2227	Morges	5423	Ballens	01.09.2006
+14763	VD	2227	Morges	5424	Berolle	01.09.2006
+14757	VD	2227	Morges	5425	Bière	01.09.2006
+14764	VD	2227	Morges	5426	Bougy-Villars	01.09.2006
+14743	VD	2227	Morges	5427	Féchy	01.09.2006
+14730	VD	2227	Morges	5428	Gimel	01.09.2006
+14624	VD	2228	Nyon	5429	Longirod	01.09.2006
+14631	VD	2228	Nyon	5430	Marchissy	01.09.2006
+14679	VD	2227	Morges	5431	Mollens (VD)	01.09.2006
+14696	VD	2227	Morges	5432	Montherod	01.09.2006
+14615	VD	2228	Nyon	5434	Saint-George	01.09.2006
+14601	VD	2227	Morges	5435	Saint-Livres	01.09.2006
+14586	VD	2227	Morges	5436	Saint-Oyens	01.09.2006
+14583	VD	2227	Morges	5437	Saubraz	01.09.2006
+15487	VD	2222	Broye-Vully	5451	Avenches	01.07.2011
+14546	VD	2222	Broye-Vully	5456	Cudrefin	01.09.2006
+14749	VD	2222	Broye-Vully	5458	Faoug	01.09.2006
+15488	VD	2222	Broye-Vully	5464	Vully-les-Lacs	01.07.2011
+14755	VD	2223	Gros-de-Vaud	5471	Bettens	01.09.2006
+14766	VD	2223	Gros-de-Vaud	5472	Bournens	01.09.2006
+14765	VD	2223	Gros-de-Vaud	5473	Boussens	01.09.2006
+14651	VD	2227	Morges	5474	La Chaux (Cossonay)	01.09.2006
+14853	VD	2227	Morges	5475	Chavannes-le-Veyron	01.09.2006
+14814	VD	2227	Morges	5476	Chevilly	01.09.2006
+14828	VD	2227	Morges	5477	Cossonay	01.09.2006
+14826	VD	2227	Morges	5478	Cottens (VD)	01.09.2006
+14830	VD	2227	Morges	5479	Cuarnens	01.09.2006
+14819	VD	2223	Gros-de-Vaud	5480	Daillens	01.09.2006
+14854	VD	2227	Morges	5481	Dizy	01.09.2006
+14716	VD	2227	Morges	5482	Eclépens	01.09.2006
+14746	VD	2227	Morges	5483	Ferreyres	01.09.2006
+14734	VD	2227	Morges	5484	Gollion	01.09.2006
+14736	VD	2227	Morges	5485	Grancy	01.09.2006
+14652	VD	2227	Morges	5486	L'Isle	01.09.2006
+14547	VD	2223	Gros-de-Vaud	5487	Lussery-Villars	01.09.2006
+14683	VD	2227	Morges	5488	Mauraz	01.09.2006
+14676	VD	2223	Gros-de-Vaud	5489	Mex (VD)	01.09.2006
+14681	VD	2227	Morges	5490	Moiry	01.09.2006
+14686	VD	2227	Morges	5491	Mont-la-Ville	01.09.2006
+14695	VD	2227	Morges	5492	Montricher	01.09.2006
+14668	VD	2227	Morges	5493	Orny	01.09.2006
+14567	VD	2227	Morges	5494	Pampigny	01.09.2006
+14555	VD	2223	Gros-de-Vaud	5495	Penthalaz	01.09.2006
+14556	VD	2223	Gros-de-Vaud	5496	Penthaz	01.09.2006
+14578	VD	2227	Morges	5497	Pompaples	01.09.2006
+14657	VD	2227	Morges	5498	La Sarraz	01.09.2006
+14594	VD	2227	Morges	5499	Senarclens	01.09.2006
+14593	VD	2227	Morges	5500	Sévery	01.09.2006
+14900	VD	2223	Gros-de-Vaud	5501	Sullens	01.09.2006
+14908	VD	2223	Gros-de-Vaud	5503	Vufflens-la-Ville	01.09.2006
+14957	VD	2223	Gros-de-Vaud	5511	Assens	01.01.2009
+14552	VD	2223	Gros-de-Vaud	5512	Bercher	01.09.2006
+14758	VD	2223	Gros-de-Vaud	5513	Bioley-Orjulaz	01.09.2006
+14771	VD	2223	Gros-de-Vaud	5514	Bottens	01.09.2006
+14772	VD	2223	Gros-de-Vaud	5515	Bretigny-sur-Morrens	01.09.2006
+14825	VD	2223	Gros-de-Vaud	5516	Cugy (VD)	01.09.2006
+14717	VD	2223	Gros-de-Vaud	5518	Echallens	01.09.2006
+14708	VD	2223	Gros-de-Vaud	5520	Essertines-sur-Yverdon	01.09.2006
+14702	VD	2223	Gros-de-Vaud	5521	Etagnières	01.09.2006
+14744	VD	2223	Gros-de-Vaud	5522	Fey	01.09.2006
+14748	VD	2223	Gros-de-Vaud	5523	Froideville	01.09.2006
+14687	VD	2223	Gros-de-Vaud	5527	Morrens (VD)	01.09.2006
+14562	VD	2223	Gros-de-Vaud	5529	Oulens-sous-Echallens	01.09.2006
+14565	VD	2223	Gros-de-Vaud	5530	Pailly	01.09.2006
+14557	VD	2223	Gros-de-Vaud	5531	Penthéréaz	01.09.2006
+14577	VD	2223	Gros-de-Vaud	5533	Poliez-Pittet	01.09.2006
+14619	VD	2223	Gros-de-Vaud	5534	Rueyres	01.09.2006
+14612	VD	2223	Gros-de-Vaud	5535	Saint-Barthélemy (VD)	01.09.2006
+14887	VD	2223	Gros-de-Vaud	5537	Villars-le-Terroir	01.09.2006
+14910	VD	2223	Gros-de-Vaud	5539	Vuarrens	01.09.2006
+15489	VD	2223	Gros-de-Vaud	5540	Montilliez	01.07.2011
+15490	VD	2223	Gros-de-Vaud	5541	Goumoëns	01.07.2011
+14777	VD	2224	Jura-Nord vaudois	5551	Bonvillars	01.09.2006
+14843	VD	2224	Jura-Nord vaudois	5552	Bullet	01.09.2006
+14848	VD	2224	Jura-Nord vaudois	5553	Champagne	01.09.2006
+14798	VD	2224	Jura-Nord vaudois	5554	Concise	01.09.2006
+14804	VD	2224	Jura-Nord vaudois	5555	Corcelles-près-Concise	01.09.2006
+14742	VD	2224	Jura-Nord vaudois	5556	Fiez	01.09.2006
+14751	VD	2224	Jura-Nord vaudois	5557	Fontaines-sur-Grandson	01.09.2006
+14741	VD	2224	Jura-Nord vaudois	5559	Giez	01.09.2006
+14732	VD	2224	Jura-Nord vaudois	5560	Grandevent	01.09.2006
+14725	VD	2224	Jura-Nord vaudois	5561	Grandson	01.09.2006
+14633	VD	2224	Jura-Nord vaudois	5562	Mauborget	01.09.2006
+14661	VD	2224	Jura-Nord vaudois	5563	Mutrux	01.09.2006
+14617	VD	2224	Jura-Nord vaudois	5564	Novalles	01.09.2006
+14672	VD	2224	Jura-Nord vaudois	5565	Onnens (VD)	01.09.2006
+14572	VD	2224	Jura-Nord vaudois	5566	Provence	01.09.2006
+14591	VD	2224	Jura-Nord vaudois	5568	Sainte-Croix	01.09.2006
+15492	VD	2224	Jura-Nord vaudois	5571	Tévenon	01.07.2011
+14760	VD	2226	Lavaux-Oron	5581	Belmont-sur-Lausanne	01.09.2006
+14810	VD	2225	Lausanne	5582	Cheseaux-sur-Lausanne	01.09.2006
+14832	VD	2229	Ouest lausannois	5583	Crissier	01.09.2006
+14701	VD	2225	Lausanne	5584	Epalinges	01.09.2006
+14644	VD	2225	Lausanne	5585	Jouxtens-Mézery	01.09.2006
+14649	VD	2225	Lausanne	5586	Lausanne	01.09.2006
+14647	VD	2225	Lausanne	5587	Le Mont-sur-Lausanne	01.09.2006
+14568	VD	2226	Lavaux-Oron	5588	Paudex	01.09.2006
+14575	VD	2229	Ouest lausannois	5589	Prilly	01.09.2006
+14574	VD	2226	Lavaux-Oron	5590	Pully	01.09.2006
+14580	VD	2229	Ouest lausannois	5591	Renens (VD)	01.09.2006
+14605	VD	2225	Lausanne	5592	Romanel-sur-Lausanne	01.09.2006
+14806	VD	2226	Lavaux-Oron	5601	Chexbres	01.09.2006
+14753	VD	2226	Lavaux-Oron	5604	Forel (Lavaux)	01.09.2006
+14640	VD	2226	Lavaux-Oron	5606	Lutry	01.09.2006
+14573	VD	2226	Lavaux-Oron	5607	Puidoux	01.09.2006
+14602	VD	2226	Lavaux-Oron	5609	Rivaz	01.09.2006
+14588	VD	2226	Lavaux-Oron	5610	Saint-Saphorin (Lavaux)	01.09.2006
+14584	VD	2226	Lavaux-Oron	5611	Savigny	01.09.2006
+15493	VD	2226	Lavaux-Oron	5613	Bourg-en-Lavaux	01.07.2011
+14781	VD	2227	Morges	5621	Aclens	01.09.2006
+14770	VD	2227	Morges	5622	Bremblens	01.09.2006
+14844	VD	2227	Morges	5623	Buchillon	01.09.2006
+15651	VD	2229	Ouest lausannois	5624	Bussigny	01.05.2014
+14551	VD	2227	Morges	5625	Bussy-Chardonney	01.09.2006
+14860	VD	2229	Ouest lausannois	5627	Chavannes-près-Renens	01.09.2006
+14815	VD	2227	Morges	5628	Chigny	01.09.2006
+14816	VD	2227	Morges	5629	Clarmont	01.09.2006
+14824	VD	2227	Morges	5631	Denens	01.09.2006
+14822	VD	2227	Morges	5632	Denges	01.09.2006
+14718	VD	2227	Morges	5633	Echandens	01.09.2006
+15494	VD	2227	Morges	5634	Echichens	01.07.2011
+14721	VD	2229	Ouest lausannois	5635	Ecublens (VD)	01.09.2006
+14703	VD	2227	Morges	5636	Etoy	01.09.2006
+14650	VD	2227	Morges	5637	Lavigny	01.09.2006
+14622	VD	2227	Morges	5638	Lonay	01.09.2006
+14636	VD	2227	Morges	5639	Lully (VD)	01.09.2006
+14637	VD	2227	Morges	5640	Lussy-sur-Morges	01.09.2006
+14690	VD	2227	Morges	5642	Morges	01.09.2006
+14570	VD	2227	Morges	5643	Préverenges	01.09.2006
+14608	VD	2227	Morges	5644	Reverolle	01.09.2006
+14606	VD	2227	Morges	5645	Romanel-sur-Morges	01.09.2006
+14587	VD	2227	Morges	5646	Saint-Prex	01.09.2006
+14590	VD	2229	Ouest lausannois	5648	Saint-Sulpice (VD)	01.09.2006
+14880	VD	2227	Morges	5649	Tolochenaz	01.09.2006
+14874	VD	2227	Morges	5650	Vaux-sur-Morges	01.09.2006
+14885	VD	2229	Ouest lausannois	5651	Villars-Sainte-Croix	01.09.2006
+14882	VD	2227	Morges	5652	Villars-sous-Yens	01.09.2006
+14907	VD	2227	Morges	5653	Vufflens-le-Château	01.09.2006
+14901	VD	2227	Morges	5654	Vullierens	01.09.2006
+14913	VD	2227	Morges	5655	Yens	01.09.2006
+14767	VD	2223	Gros-de-Vaud	5661	Boulens	01.09.2006
+14841	VD	2222	Broye-Vully	5663	Bussy-sur-Moudon	01.09.2006
+14856	VD	2222	Broye-Vully	5665	Chavannes-sur-Moudon	01.09.2006
+14821	VD	2222	Broye-Vully	5669	Curtilles	01.09.2006
+14715	VD	2222	Broye-Vully	5671	Dompierre (VD)	01.09.2006
+14698	VD	2222	Broye-Vully	5673	Hermenches	01.09.2006
+14623	VD	2222	Broye-Vully	5674	Lovatens	01.09.2006
+16073	VD	2222	Broye-Vully	5675	Lucens	01.01.2017
+14685	VD	2222	Broye-Vully	5678	Moudon	01.09.2006
+14665	VD	2223	Gros-de-Vaud	5680	Ogens	01.09.2006
+14571	VD	2222	Broye-Vully	5683	Prévonloup	01.09.2006
+14611	VD	2222	Broye-Vully	5684	Rossenges	01.09.2006
+14898	VD	2222	Broye-Vully	5688	Syens	01.09.2006
+14888	VD	2222	Broye-Vully	5690	Villars-le-Comte	01.09.2006
+14909	VD	2222	Broye-Vully	5692	Vucherens	01.09.2006
+15616	VD	2223	Gros-de-Vaud	5693	Montanaire	01.01.2013
+14779	VD	2228	Nyon	5701	Arnex-sur-Nyon	01.09.2006
+15652	VD	2228	Nyon	5702	Arzier-Le Muids	01.05.2014
+14788	VD	2228	Nyon	5703	Bassins	01.09.2006
+14761	VD	2228	Nyon	5704	Begnins	01.09.2006
+14776	VD	2228	Nyon	5705	Bogis-Bossey	01.09.2006
+14775	VD	2228	Nyon	5706	Borex	01.09.2006
+14859	VD	2228	Nyon	5707	Chavannes-de-Bogis	01.09.2006
+14858	VD	2228	Nyon	5708	Chavannes-des-Bois	01.09.2006
+14809	VD	2228	Nyon	5709	Chéserex	01.09.2006
+14817	VD	2228	Nyon	5710	Coinsins	01.09.2006
+14799	VD	2228	Nyon	5711	Commugny	01.09.2006
+14794	VD	2228	Nyon	5712	Coppet	01.09.2006
+14827	VD	2228	Nyon	5713	Crans-près-Céligny	01.09.2006
+14835	VD	2228	Nyon	5714	Crassier	01.09.2006
+14711	VD	2228	Nyon	5715	Duillier	01.09.2006
+14706	VD	2228	Nyon	5716	Eysins	01.09.2006
+14750	VD	2228	Nyon	5717	Founex	01.09.2006
+14726	VD	2228	Nyon	5718	Genolier	01.09.2006
+14731	VD	2228	Nyon	5719	Gingins	01.09.2006
+14735	VD	2228	Nyon	5720	Givrins	01.09.2006
+14733	VD	2228	Nyon	5721	Gland	01.09.2006
+14728	VD	2228	Nyon	5722	Grens	01.09.2006
+14680	VD	2228	Nyon	5723	Mies	01.09.2006
+14659	VD	2228	Nyon	5724	Nyon	01.09.2006
+14582	VD	2228	Nyon	5725	Prangins	01.09.2006
+14658	VD	2228	Nyon	5726	La Rippe	01.09.2006
+14613	VD	2228	Nyon	5727	Saint-Cergue	01.09.2006
+14598	VD	2228	Nyon	5728	Signy-Avenex	01.09.2006
+14897	VD	2228	Nyon	5729	Tannay	01.09.2006
+14879	VD	2228	Nyon	5730	Trélex	01.09.2006
+14639	VD	2228	Nyon	5731	Le Vaud	01.09.2006
+14892	VD	2228	Nyon	5732	Vich	01.09.2006
+14653	VD	2224	Jura-Nord vaudois	5741	L'Abergement	01.09.2006
+14783	VD	2224	Jura-Nord vaudois	5742	Agiez	01.09.2006
+14778	VD	2224	Jura-Nord vaudois	5743	Arnex-sur-Orbe	01.09.2006
+14785	VD	2224	Jura-Nord vaudois	5744	Ballaigues	01.09.2006
+14787	VD	2224	Jura-Nord vaudois	5745	Baulmes	01.09.2006
+14786	VD	2224	Jura-Nord vaudois	5746	Bavois	01.09.2006
+14773	VD	2224	Jura-Nord vaudois	5747	Bofflens	01.09.2006
+14769	VD	2224	Jura-Nord vaudois	5748	Bretonnières	01.09.2006
+16074	VD	2224	Jura-Nord vaudois	5749	Chavornay	01.01.2017
+14627	VD	2224	Jura-Nord vaudois	5750	Les Clées	01.09.2006
+14831	VD	2224	Jura-Nord vaudois	5752	Croy	01.09.2006
+14643	VD	2224	Jura-Nord vaudois	5754	Juriens	01.09.2006
+14621	VD	2224	Jura-Nord vaudois	5755	Lignerolle	01.09.2006
+14689	VD	2224	Jura-Nord vaudois	5756	Montcherand	01.09.2006
+14673	VD	2224	Jura-Nord vaudois	5757	Orbe	01.09.2006
+14655	VD	2224	Jura-Nord vaudois	5758	La Praz	01.09.2006
+14569	VD	2224	Jura-Nord vaudois	5759	Premier	01.09.2006
+14553	VD	2224	Jura-Nord vaudois	5760	Rances	01.09.2006
+14549	VD	2224	Jura-Nord vaudois	5761	Romainmôtier-Envy	01.09.2006
+14595	VD	2224	Jura-Nord vaudois	5762	Sergey	01.09.2006
+14868	VD	2224	Jura-Nord vaudois	5763	Valeyres-sous-Rances	01.09.2006
+14866	VD	2224	Jura-Nord vaudois	5764	Vallorbe	01.09.2006
+14873	VD	2224	Jura-Nord vaudois	5765	Vaulion	01.09.2006
+14903	VD	2224	Jura-Nord vaudois	5766	Vuiteboeuf	01.09.2006
+14792	VD	2222	Broye-Vully	5785	Corcelles-le-Jorat	01.09.2006
+14705	VD	2226	Lavaux-Oron	5788	Essertes	01.09.2006
+14545	VD	2226	Lavaux-Oron	5790	Maracon	01.09.2006
+14697	VD	2226	Lavaux-Oron	5792	Montpreveyres	01.09.2006
+14607	VD	2222	Broye-Vully	5798	Ropraz	01.09.2006
+15505	VD	2226	Lavaux-Oron	5799	Servion	01.01.2012
+14902	VD	2222	Broye-Vully	5803	Vulliens	01.09.2006
+15491	VD	2223	Gros-de-Vaud	5804	Jorat-Menthue	01.07.2011
+15504	VD	2226	Lavaux-Oron	5805	Oron	01.01.2012
+15687	VD	2226	Lavaux-Oron	5806	Jorat-Mézières	01.07.2016
+14852	VD	2222	Broye-Vully	5812	Champtauroz	01.09.2006
+14807	VD	2222	Broye-Vully	5813	Chevroux	01.09.2006
+14805	VD	2222	Broye-Vully	5816	Corcelles-près-Payerne	01.09.2006
+14729	VD	2222	Broye-Vully	5817	Grandcour	01.09.2006
+14707	VD	2222	Broye-Vully	5819	Henniez	01.09.2006
+14682	VD	2222	Broye-Vully	5821	Missy	01.09.2006
+14560	VD	2222	Broye-Vully	5822	Payerne	01.09.2006
+14877	VD	2222	Broye-Vully	5827	Trey	01.09.2006
+14881	VD	2222	Broye-Vully	5828	Treytorrens (Payerne)	01.09.2006
+14542	VD	2222	Broye-Vully	5830	Villarzel	01.09.2006
+15496	VD	2222	Broye-Vully	5831	Valbroye	01.07.2011
+14845	VD	2230	Riviera-Pays-d'Enhaut	5841	Château-d'Oex	01.09.2006
+14609	VD	2230	Riviera-Pays-d'Enhaut	5842	Rossinière	01.09.2006
+14618	VD	2230	Riviera-Pays-d'Enhaut	5843	Rougemont	01.09.2006
+14782	VD	2227	Morges	5851	Allaman	01.09.2006
+14837	VD	2228	Nyon	5852	Bursinel	01.09.2006
+14840	VD	2228	Nyon	5853	Bursins	01.09.2006
+14842	VD	2228	Nyon	5854	Burtigny	01.09.2006
+14712	VD	2228	Nyon	5855	Dully	01.09.2006
+14704	VD	2228	Nyon	5856	Essertines-sur-Rolle	01.09.2006
+14739	VD	2228	Nyon	5857	Gilly	01.09.2006
+14638	VD	2228	Nyon	5858	Luins	01.09.2006
+14694	VD	2228	Nyon	5859	Mont-sur-Rolle	01.09.2006
+14558	VD	2228	Nyon	5860	Perroy	01.09.2006
+14604	VD	2228	Nyon	5861	Rolle	01.09.2006
+14894	VD	2228	Nyon	5862	Tartegnin	01.09.2006
+14916	VD	2228	Nyon	5863	Vinzel	01.09.2006
+14654	VD	2224	Jura-Nord vaudois	5871	L'Abbaye	01.09.2006
+14646	VD	2224	Jura-Nord vaudois	5872	Le Chenit	01.09.2006
+14648	VD	2224	Jura-Nord vaudois	5873	Le Lieu	01.09.2006
+14774	VD	2230	Riviera-Pays-d'Enhaut	5881	Blonay	01.09.2006
+14846	VD	2230	Riviera-Pays-d'Enhaut	5882	Chardonne	01.09.2006
+14802	VD	2230	Riviera-Pays-d'Enhaut	5883	Corseaux	01.09.2006
+14833	VD	2230	Riviera-Pays-d'Enhaut	5884	Corsier-sur-Vevey	01.09.2006
+14642	VD	2230	Riviera-Pays-d'Enhaut	5885	Jongny	01.09.2006
+14550	VD	2230	Riviera-Pays-d'Enhaut	5886	Montreux	01.09.2006
+14599	VD	2230	Riviera-Pays-d'Enhaut	5888	Saint-Légier-La Chiésaz	01.09.2006
+14656	VD	2230	Riviera-Pays-d'Enhaut	5889	La Tour-de-Peilz	01.09.2006
+14872	VD	2230	Riviera-Pays-d'Enhaut	5890	Vevey	01.09.2006
+14876	VD	2230	Riviera-Pays-d'Enhaut	5891	Veytaux	01.09.2006
+14759	VD	2224	Jura-Nord vaudois	5902	Belmont-sur-Yverdon	01.09.2006
+14756	VD	2224	Jura-Nord vaudois	5903	Bioley-Magnoux	01.09.2006
+14864	VD	2224	Jura-Nord vaudois	5904	Chamblon	01.09.2006
+15506	VD	2224	Jura-Nord vaudois	5905	Champvent	01.01.2012
+14857	VD	2224	Jura-Nord vaudois	5907	Chavannes-le-Chêne	01.09.2006
+14862	VD	2224	Jura-Nord vaudois	5908	Chêne-Pâquier	01.09.2006
+14811	VD	2224	Jura-Nord vaudois	5909	Cheseaux-Noréaz	01.09.2006
+14836	VD	2224	Jura-Nord vaudois	5910	Cronay	01.09.2006
+14829	VD	2224	Jura-Nord vaudois	5911	Cuarny	01.09.2006
+14820	VD	2224	Jura-Nord vaudois	5912	Démoret	01.09.2006
+15507	VD	2224	Jura-Nord vaudois	5913	Donneloye	01.01.2012
+14699	VD	2224	Jura-Nord vaudois	5914	Ependes (VD)	01.09.2006
+14634	VD	2224	Jura-Nord vaudois	5919	Mathod	01.09.2006
+14678	VD	2224	Jura-Nord vaudois	5921	Molondin	01.09.2006
+14691	VD	2224	Jura-Nord vaudois	5922	Montagny-près-Yverdon	01.09.2006
+14666	VD	2223	Gros-de-Vaud	5923	Oppens	01.09.2006
+14671	VD	2224	Jura-Nord vaudois	5924	Orges	01.09.2006
+14563	VD	2224	Jura-Nord vaudois	5925	Orzens	01.09.2006
+14579	VD	2224	Jura-Nord vaudois	5926	Pomy	01.09.2006
+14544	VD	2224	Jura-Nord vaudois	5928	Rovray	01.09.2006
+14896	VD	2224	Jura-Nord vaudois	5929	Suchy	01.09.2006
+14899	VD	2224	Jura-Nord vaudois	5930	Suscévaz	01.09.2006
+14878	VD	2224	Jura-Nord vaudois	5931	Treycovagnes	01.09.2006
+14870	VD	2224	Jura-Nord vaudois	5932	Ursins	01.09.2006
+14869	VD	2224	Jura-Nord vaudois	5933	Valeyres-sous-Montagny	01.09.2006
+14871	VD	2224	Jura-Nord vaudois	5934	Valeyres-sous-Ursins	01.09.2006
+14883	VD	2224	Jura-Nord vaudois	5935	Villars-Epeney	01.09.2006
+14906	VD	2224	Jura-Nord vaudois	5937	Vugelles-La Mothe	01.09.2006
+15497	VD	2224	Jura-Nord vaudois	5938	Yverdon-les-Bains	01.07.2011
+14912	VD	2224	Jura-Nord vaudois	5939	Yvonand	01.09.2006
+13228	VS	2301	Brig	6002	Brig-Glis	01.10.1972
+12132	VS	2301	Brig	6004	Eggerberg	01.01.1960
+15617	VS	2301	Brig	6007	Naters	01.01.2013
+13759	VS	2301	Brig	6008	Ried-Brig	01.01.1994
+12984	VS	2301	Brig	6009	Simplon	01.01.1960
+10560	VS	2301	Brig	6010	Termen	01.01.1960
+10159	VS	2301	Brig	6011	Zwischbergen	01.01.1960
+11763	VS	2302	Conthey	6021	Ardon	01.01.1960
+11418	VS	2302	Conthey	6022	Chamoson	01.01.1960
+11635	VS	2302	Conthey	6023	Conthey	01.01.1960
+12518	VS	2302	Conthey	6024	Nendaz	01.01.1960
+10923	VS	2302	Conthey	6025	Vétroz	01.01.1960
+11705	VS	2303	Entremont	6031	Bagnes	01.01.1960
+11846	VS	2303	Entremont	6032	Bourg-Saint-Pierre	01.01.1960
+12790	VS	2303	Entremont	6033	Liddes	01.01.1960
+13134	VS	2303	Entremont	6034	Orsières	01.01.1960
+13002	VS	2303	Entremont	6035	Sembrancher	01.01.1960
+10369	VS	2303	Entremont	6036	Vollèges	01.01.1960
+11883	VS	2304	Goms	6052	Bellwald	01.01.1960
+11892	VS	2304	Goms	6054	Binn	01.01.1960
+14504	VS	2304	Goms	6056	Ernen	01.10.2004
+12018	VS	2304	Goms	6057	Fiesch	01.01.1960
+12017	VS	2304	Goms	6058	Fieschertal	01.01.1960
+12609	VS	2304	Goms	6061	Lax	01.01.1960
+14958	VS	2304	Goms	6076	Obergoms	01.01.2009
+16075	VS	2304	Goms	6077	Goms	01.01.2017
+11666	VS	2305	Hérens	6082	Ayent	01.01.1960
+12255	VS	2305	Hérens	6083	Evolène	01.01.1960
+12298	VS	2305	Hérens	6084	Hérémence	01.01.1960
+13032	VS	2305	Hérens	6087	Saint-Martin (VS)	01.01.1960
+10925	VS	2305	Hérens	6089	Vex	01.01.1960
+15485	VS	2305	Hérens	6090	Mont-Noble	01.01.2011
+11720	VS	2306	Leuk	6101	Agarn	01.01.1960
+11730	VS	2306	Leuk	6102	Albinen	01.01.1960
+12307	VS	2306	Leuk	6104	Ergisch	01.01.1960
+12656	VS	2306	Leuk	6109	Inden	01.01.1960
+15618	VS	2306	Leuk	6110	Leuk	01.01.2013
+12777	VS	2306	Leuk	6111	Leukerbad	01.01.1960
+12464	VS	2306	Leuk	6112	Oberems	01.01.1960
+13035	VS	2306	Leuk	6113	Salgesch	01.01.1960
+10938	VS	2306	Leuk	6116	Varen	01.01.1960
+14133	VS	2306	Leuk	6117	Guttet-Feschel	01.10.2000
+14959	VS	2306	Leuk	6118	Gampel-Bratsch	01.01.2009
+15619	VS	2306	Leuk	6119	Turtmann-Unterems	01.01.2013
+11850	VS	2307	Martigny	6131	Bovernier	01.01.1960
+11448	VS	2307	Martigny	6132	Charrat	01.01.1960
+12089	VS	2307	Martigny	6133	Fully	01.01.1960
+12663	VS	2307	Martigny	6134	Isérables	01.01.1960
+12767	VS	2307	Martigny	6135	Leytron	01.01.1960
+13200	VS	2307	Martigny	6136	Martigny	01.08.1964
+12756	VS	2307	Martigny	6137	Martigny-Combe	01.01.1960
+12917	VS	2307	Martigny	6139	Riddes	01.01.1960
+12871	VS	2307	Martigny	6140	Saillon	01.01.1960
+13058	VS	2307	Martigny	6141	Saxon	01.01.1960
+10891	VS	2307	Martigny	6142	Trient	01.01.1960
+11415	VS	2308	Monthey	6151	Champéry	01.01.1960
+11596	VS	2308	Monthey	6152	Collombey-Muraz	01.01.1960
+12323	VS	2308	Monthey	6153	Monthey	01.01.1960
+13075	VS	2308	Monthey	6154	Port-Valais	01.01.1960
+12863	VS	2308	Monthey	6155	Saint-Gingolph	01.01.1960
+10897	VS	2308	Monthey	6156	Troistorrents	01.01.1960
+10933	VS	2308	Monthey	6157	Val-d'Illiez	01.01.1960
+10078	VS	2308	Monthey	6158	Vionnaz	01.01.1960
+10372	VS	2308	Monthey	6159	Vouvry	01.01.1960
+11807	VS	2309	Raron	6172	Bister	01.01.1960
+11808	VS	2309	Raron	6173	Bitsch	01.01.1960
+12079	VS	2309	Raron	6177	Grengiols	01.01.1960
+14468	VS	2309	Raron	6181	Riederalp	01.11.2003
+11675	VS	2309	Raron	6191	Ausserberg	01.01.1960
+11818	VS	2309	Raron	6192	Blatten	01.01.1960
+11485	VS	2309	Raron	6193	Bürchen	01.01.1960
+12151	VS	2309	Raron	6194	Eischoll	01.01.1960
+11995	VS	2309	Raron	6195	Ferden	01.01.1960
+12686	VS	2309	Raron	6197	Kippel	01.01.1960
+12511	VS	2309	Raron	6198	Niedergesteln	01.01.1960
+13162	VS	2309	Raron	6199	Raron	01.01.1960
+10860	VS	2309	Raron	6201	Unterbäch	01.01.1960
+10337	VS	2309	Raron	6202	Wiler (Lötschen)	01.01.1960
+14960	VS	2309	Raron	6203	Mörel-Filet	01.01.2009
+14961	VS	2309	Raron	6204	Steg-Hohtenn	01.01.2009
+15649	VS	2309	Raron	6205	Bettmeralp	01.01.2014
+11598	VS	2310	Saint-Maurice	6211	Collonges	01.01.1960
+12207	VS	2310	Saint-Maurice	6212	Dorénaz	01.01.1960
+12256	VS	2310	Saint-Maurice	6213	Evionnaz	01.01.1960
+12010	VS	2310	Saint-Maurice	6214	Finhaut	01.01.1960
+12741	VS	2310	Saint-Maurice	6215	Massongex	01.01.1960
+15620	VS	2310	Saint-Maurice	6217	Saint-Maurice	01.01.2013
+13016	VS	2310	Saint-Maurice	6218	Salvan	01.01.1960
+10917	VS	2310	Saint-Maurice	6219	Vernayaz	01.01.1960
+10919	VS	2310	Saint-Maurice	6220	Vérossaz	01.01.1960
+11396	VS	2311	Sierre	6232	Chalais	01.01.1960
+11610	VS	2311	Sierre	6235	Chippis	01.01.1960
+12044	VS	2311	Sierre	6238	Grône	01.01.1960
+12187	VS	2311	Sierre	6239	Icogne	01.01.1960
+12797	VS	2311	Sierre	6240	Lens	01.01.1960
+12444	VS	2311	Sierre	6241	Miège	01.01.1960
+12857	VS	2311	Sierre	6246	Saint-Léonard	01.01.1960
+13227	VS	2311	Sierre	6248	Sierre	01.10.1972
+10912	VS	2311	Sierre	6249	Venthône	01.01.1960
+10926	VS	2311	Sierre	6250	Veyras	01.01.1960
+14962	VS	2311	Sierre	6252	Anniviers	01.01.2009
+16077	VS	2311	Sierre	6253	Crans-Montana	01.01.2017
+11758	VS	2312	Sion	6261	Arbaz	01.01.1960
+12094	VS	2312	Sion	6263	Grimisuat	01.01.1960
+13061	VS	2312	Sion	6265	Savièse	01.01.1960
+16076	VS	2312	Sion	6266	Sion	01.01.2017
+10907	VS	2312	Sion	6267	Veysonnaz	01.01.1960
+11714	VS	2313	Visp	6281	Baltschieder	01.01.1960
+12150	VS	2313	Visp	6282	Eisten	01.01.1960
+12293	VS	2313	Visp	6283	Embd	01.01.1960
+12040	VS	2313	Visp	6285	Grächen	01.01.1960
+12598	VS	2313	Visp	6286	Lalden	01.01.1960
+13180	VS	2313	Visp	6287	Randa	01.01.1960
+14927	VS	2313	Visp	6288	Saas-Almagell	01.01.2007
+14928	VS	2313	Visp	6289	Saas-Balen	01.01.2007
+14929	VS	2313	Visp	6290	Saas-Fee	01.01.2007
+14930	VS	2313	Visp	6291	Saas-Grund	01.01.2007
+10375	VS	2313	Visp	6292	St. Niklaus	01.01.1960
+10573	VS	2313	Visp	6293	Stalden (VS)	01.01.1960
+10574	VS	2313	Visp	6294	Staldenried	01.01.1960
+10555	VS	2313	Visp	6295	Täsch	01.01.1960
+10877	VS	2313	Visp	6296	Törbel	01.01.1960
+13226	VS	2313	Visp	6297	Visp	01.10.1972
+10419	VS	2313	Visp	6298	Visperterminen	01.01.1960
+10330	VS	2313	Visp	6299	Zeneggen	01.01.1960
+10315	VS	2313	Visp	6300	Zermatt	01.01.1960
+16089	NE	2400	Cant. de Neuchâtel	6404	Boudry	01.01.2018
+16090	NE	2400	Cant. de Neuchâtel	6407	Corcelles-Cormondrèche	01.01.2018
+16091	NE	2400	Cant. de Neuchâtel	6408	Cortaillod	01.01.2018
+16092	NE	2400	Cant. de Neuchâtel	6412	Peseux	01.01.2018
+16093	NE	2400	Cant. de Neuchâtel	6413	Rochefort	01.01.2018
+16094	NE	2400	Cant. de Neuchâtel	6416	Milvignes	01.01.2018
+16121	NE	2400	Cant. de Neuchâtel	6417	La Grande Béroche	01.04.2018
+16095	NE	2400	Cant. de Neuchâtel	6421	La Chaux-de-Fonds	01.01.2018
+16096	NE	2400	Cant. de Neuchâtel	6422	Les Planchettes	01.01.2018
+16097	NE	2400	Cant. de Neuchâtel	6423	La Sagne	01.01.2018
+16098	NE	2400	Cant. de Neuchâtel	6431	Les Brenets	01.01.2018
+16099	NE	2400	Cant. de Neuchâtel	6432	La Brévine	01.01.2018
+16100	NE	2400	Cant. de Neuchâtel	6433	Brot-Plamboz	01.01.2018
+16101	NE	2400	Cant. de Neuchâtel	6434	Le Cerneux-Péquignot	01.01.2018
+16102	NE	2400	Cant. de Neuchâtel	6435	La Chaux-du-Milieu	01.01.2018
+16103	NE	2400	Cant. de Neuchâtel	6436	Le Locle	01.01.2018
+16104	NE	2400	Cant. de Neuchâtel	6437	Les Ponts-de-Martel	01.01.2018
+16105	NE	2400	Cant. de Neuchâtel	6451	Cornaux	01.01.2018
+16106	NE	2400	Cant. de Neuchâtel	6452	Cressier (NE)	01.01.2018
+16107	NE	2400	Cant. de Neuchâtel	6453	Enges	01.01.2018
+16108	NE	2400	Cant. de Neuchâtel	6454	Hauterive (NE)	01.01.2018
+16109	NE	2400	Cant. de Neuchâtel	6455	Le Landeron	01.01.2018
+16110	NE	2400	Cant. de Neuchâtel	6456	Lignières	01.01.2018
+16111	NE	2400	Cant. de Neuchâtel	6458	Neuchâtel	01.01.2018
+16112	NE	2400	Cant. de Neuchâtel	6459	Saint-Blaise	01.01.2018
+16113	NE	2400	Cant. de Neuchâtel	6461	La Tène	01.01.2018
+16114	NE	2400	Cant. de Neuchâtel	6485	Valangin	01.01.2018
+16115	NE	2400	Cant. de Neuchâtel	6487	Val-de-Ruz	01.01.2018
+16116	NE	2400	Cant. de Neuchâtel	6504	La Côte-aux-Fées	01.01.2018
+16117	NE	2400	Cant. de Neuchâtel	6511	Les Verrières	01.01.2018
+16118	NE	2400	Cant. de Neuchâtel	6512	Val-de-Travers	01.01.2018
+11726	GE	2500	Cant. de Genève	6601	Aire-la-Ville	01.01.1960
+11776	GE	2500	Cant. de Genève	6602	Anières	01.01.1960
+11664	GE	2500	Cant. de Genève	6603	Avully	01.01.1960
+11665	GE	2500	Cant. de Genève	6604	Avusy	01.01.1960
+11692	GE	2500	Cant. de Genève	6605	Bardonnex	01.01.1960
+11880	GE	2500	Cant. de Genève	6606	Bellevue	01.01.1960
+11853	GE	2500	Cant. de Genève	6607	Bernex	01.01.1960
+11400	GE	2500	Cant. de Genève	6608	Carouge (GE)	01.01.1960
+11411	GE	2500	Cant. de Genève	6609	Cartigny	01.01.1960
+11387	GE	2500	Cant. de Genève	6610	Céligny	01.01.1960
+11439	GE	2500	Cant. de Genève	6611	Chancy	01.01.1960
+11431	GE	2500	Cant. de Genève	6612	Chêne-Bougeries	01.01.1960
+11535	GE	2500	Cant. de Genève	6613	Chêne-Bourg	01.01.1960
+11586	GE	2500	Cant. de Genève	6614	Choulex	01.01.1960
+11595	GE	2500	Cant. de Genève	6615	Collex-Bossy	01.01.1960
+11597	GE	2500	Cant. de Genève	6616	Collonge-Bellerive	01.01.1960
+11599	GE	2500	Cant. de Genève	6617	Cologny	01.01.1960
+11651	GE	2500	Cant. de Genève	6618	Confignon	01.01.1960
+11569	GE	2500	Cant. de Genève	6619	Corsier (GE)	01.01.1960
+11582	GE	2500	Cant. de Genève	6620	Dardagny	01.01.1960
+12099	GE	2500	Cant. de Genève	6621	Genève	01.01.1960
+12097	GE	2500	Cant. de Genève	6622	Genthod	01.01.1960
+12606	GE	2500	Cant. de Genève	6623	Le Grand-Saconnex	01.01.1960
+11959	GE	2500	Cant. de Genève	6624	Gy	01.01.1960
+12296	GE	2500	Cant. de Genève	6625	Hermance	01.01.1960
+12642	GE	2500	Cant. de Genève	6626	Jussy	01.01.1960
+12575	GE	2500	Cant. de Genève	6627	Laconnex	01.01.1960
+12624	GE	2500	Cant. de Genève	6628	Lancy	01.01.1960
+12409	GE	2500	Cant. de Genève	6629	Meinier	01.01.1960
+12430	GE	2500	Cant. de Genève	6630	Meyrin	01.01.1960
+12484	GE	2500	Cant. de Genève	6631	Onex	01.01.1960
+13155	GE	2500	Cant. de Genève	6632	Perly-Certoux	01.01.1960
+13114	GE	2500	Cant. de Genève	6633	Plan-les-Ouates	01.01.1960
+13110	GE	2500	Cant. de Genève	6634	Pregny-Chambésy	01.01.1960
+13107	GE	2500	Cant. de Genève	6635	Presinge	01.01.1960
+13094	GE	2500	Cant. de Genève	6636	Puplinge	01.01.1960
+12872	GE	2500	Cant. de Genève	6637	Russin	01.01.1960
+13051	GE	2500	Cant. de Genève	6638	Satigny	01.01.1960
+10414	GE	2500	Cant. de Genève	6639	Soral	01.01.1960
+10569	GE	2500	Cant. de Genève	6640	Thônex	01.01.1960
+10896	GE	2500	Cant. de Genève	6641	Troinex	01.01.1960
+10942	GE	2500	Cant. de Genève	6642	Vandoeuvres	01.01.1960
+10918	GE	2500	Cant. de Genève	6643	Vernier	01.01.1960
+10921	GE	2500	Cant. de Genève	6644	Versoix	01.01.1960
+10902	GE	2500	Cant. de Genève	6645	Veyrier	01.01.1960
+13273	JU	2601	Delémont	6702	Boécourt	01.01.1979
+13274	JU	2601	Delémont	6703	Bourrignon	01.01.1979
+13275	JU	2601	Delémont	6704	Châtillon (JU)	01.01.1979
+13277	JU	2601	Delémont	6706	Courchapoix	01.01.1979
+16127	JU	2601	Delémont	6708	Courrendlin	01.01.2019
+13280	JU	2601	Delémont	6709	Courroux	01.01.1979
+13281	JU	2601	Delémont	6710	Courtételle	01.01.1979
+13282	JU	2601	Delémont	6711	Delémont	01.01.1979
+13283	JU	2601	Delémont	6712	Develier	01.01.1979
+13284	JU	2601	Delémont	6713	Ederswiler	01.01.1979
+13286	JU	2601	Delémont	6715	Mervelier	01.01.1979
+13680	JU	2601	Delémont	6716	Mettembert	01.01.1984
+13289	JU	2601	Delémont	6718	Movelier	01.01.1979
+13290	JU	2601	Delémont	6719	Pleigne	01.01.1979
+13292	JU	2601	Delémont	6721	Rossemaison	01.01.1979
+13293	JU	2601	Delémont	6722	Saulcy	01.01.1979
+13295	JU	2601	Delémont	6724	Soyhières	01.01.1979
+15624	JU	2601	Delémont	6729	Haute-Sorne	01.01.2013
+16119	JU	2601	Delémont	6730	Val Terbi	01.01.2018
+13299	JU	2602	Les Franches-Montagnes	6741	Le Bémont (JU)	01.01.1979
+13300	JU	2602	Les Franches-Montagnes	6742	Les Bois	01.01.1979
+13301	JU	2602	Les Franches-Montagnes	6743	Les Breuleux	01.01.1979
+13302	JU	2602	Les Franches-Montagnes	6744	La Chaux-des-Breuleux	01.01.1979
+13303	JU	2602	Les Franches-Montagnes	6745	Les Enfers	01.01.1979
+13306	JU	2602	Les Franches-Montagnes	6748	Les Genevez (JU)	01.01.1979
+13308	JU	2602	Les Franches-Montagnes	6750	Lajoux (JU)	01.01.1979
+14967	JU	2602	Les Franches-Montagnes	6751	Montfaucon	01.01.2009
+14968	JU	2602	Les Franches-Montagnes	6753	Muriaux	01.01.2009
+13312	JU	2602	Les Franches-Montagnes	6754	Le Noirmont	01.01.1979
+14966	JU	2602	Les Franches-Montagnes	6757	Saignelégier	01.01.2009
+13316	JU	2602	Les Franches-Montagnes	6758	Saint-Brais	01.01.1979
+13317	JU	2602	Les Franches-Montagnes	6759	Soubey	01.01.1979
+13318	JU	2603	Porrentruy	6771	Alle	01.01.1979
+13320	JU	2603	Porrentruy	6773	Beurnevésin	01.01.1979
+13321	JU	2603	Porrentruy	6774	Boncourt	01.01.1979
+13322	JU	2603	Porrentruy	6775	Bonfol	01.01.1979
+13325	JU	2603	Porrentruy	6778	Bure	01.01.1979
+13328	JU	2603	Porrentruy	6781	Coeuve	01.01.1979
+13329	JU	2603	Porrentruy	6782	Cornol	01.01.1979
+13330	JU	2603	Porrentruy	6783	Courchavon	01.01.1979
+13331	JU	2603	Porrentruy	6784	Courgenay	01.01.1979
+13332	JU	2603	Porrentruy	6785	Courtedoux	01.01.1979
+13334	JU	2603	Porrentruy	6787	Damphreux	01.01.1979
+13336	JU	2603	Porrentruy	6789	Fahy	01.01.1979
+15626	JU	2603	Porrentruy	6790	Fontenais	01.01.2013
+13339	JU	2603	Porrentruy	6792	Grandfontaine	01.01.1979
+13340	JU	2603	Porrentruy	6793	Lugnez	01.01.1979
+13347	JU	2603	Porrentruy	6800	Porrentruy	01.01.1979
+13353	JU	2603	Porrentruy	6806	Vendlincourt	01.01.1979
+14970	JU	2603	Porrentruy	6807	Basse-Allaine	01.01.2009
+14965	JU	2603	Porrentruy	6808	Clos du Doubs	01.01.2009
+16120	JU	2603	Porrentruy	6809	Haute-Ajoie	01.01.2018
+14969	JU	2603	Porrentruy	6810	La Baroche	01.01.2009
