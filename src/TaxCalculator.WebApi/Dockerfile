@@ -21,6 +21,4 @@ COPY --from=publish /app/publish .
 RUN chown -R www-data:www-data /app
 USER www-data
 
-ENV ASPNETCORE_URLS=http://+:5000
-
-ENTRYPOINT ["dotnet", "TaxCalculator.WebApi.dll"]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet TaxCalculator.WebApi.dll
