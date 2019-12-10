@@ -27,17 +27,4 @@ steps:
     tags: |
       0.0.$(Build.BuildId)
 
-- script: dotnet restore $(webProject)
-  displayName: 'dotnet restore'
-
-- script: dotnet build $(webProject) --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
-
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet test $(buildConfiguration)'
-  inputs:
-    command: test
-    projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --logger="console"'  
-
     
