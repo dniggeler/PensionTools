@@ -26,5 +26,6 @@ steps:
     containerRegistry: 'kDocker Registery'
     tags: |
       0.0.$(Build.BuildId)
+      latest
 
     
