@@ -17,4 +17,9 @@ FROM base AS final
 WORKDIR /app
 COPY ["Tax.Data/files/TaxDb.db", "/data/TaxDb.db"]
 COPY --from=publish /app/publish .
+
+# Do not run as root user
+RUN chown -R www-data:www-data /app
+USER www-data
+
 ENTRYPOINT ["dotnet", "TaxCalculator.WebApi.dll"]
