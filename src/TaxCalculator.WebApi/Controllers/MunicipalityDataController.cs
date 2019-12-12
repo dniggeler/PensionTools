@@ -22,6 +22,10 @@ namespace TaxCalculator.WebApi.Controllers
             this.logger = logger;
         }
 
+        /// <summary>
+        /// Gets municipality data supported by the calculators.
+        /// </summary>
+        /// <returns>A list of municipalities.</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<string>> Get()
@@ -38,6 +42,11 @@ namespace TaxCalculator.WebApi.Controllers
                     Left: this.BadRequest);
         }
 
+        /// <summary>
+        /// Gets a municipality by its BFS id.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Detailed municipality data.</returns>
         [HttpGet("{id}", Name = "Get")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<string> Get(int id)
