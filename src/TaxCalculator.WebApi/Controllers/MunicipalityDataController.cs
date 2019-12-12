@@ -26,6 +26,9 @@ namespace TaxCalculator.WebApi.Controllers
         /// Gets municipality data supported by the calculators.
         /// </summary>
         /// <returns>A list of municipalities.</returns>
+        /// <remarks>
+        /// tbd. detailierte Beschreibung auf Deutsch.
+        /// </remarks>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<string>> Get()
@@ -47,6 +50,9 @@ namespace TaxCalculator.WebApi.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>Detailed municipality data.</returns>
+        /// <remarks>
+        /// tbd. detailierte Beschreibung auf Deutsch.
+        /// </remarks>
         [HttpGet("{id}", Name = "Get")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<string> Get(int id)
