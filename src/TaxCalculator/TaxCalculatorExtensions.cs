@@ -1,14 +1,14 @@
-﻿namespace TaxCalculator
-{
-    using AutoMapper;
-    using FluentValidation;
-    using Microsoft.Extensions.DependencyInjection;
-    using PensionCoach.Tools.TaxCalculator.Abstractions;
-    using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-    using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
-    using TaxCalculator.Mapping;
-    using TaxCalculator.Validators;
+﻿using AutoMapper;
+using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
+using PensionCoach.Tools.TaxCalculator.Abstractions;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
+using TaxCalculator.Mapping;
+using TaxCalculator.Validators;
 
+namespace TaxCalculator
+{
     public static class TaxCalculatorExtensions
     {
         public static void AddTaxCalculators(this IServiceCollection collection)

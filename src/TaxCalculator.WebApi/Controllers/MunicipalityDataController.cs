@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
 namespace TaxCalculator.WebApi.Controllers
 {
@@ -33,10 +34,20 @@ namespace TaxCalculator.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<string>> Get()
         {
-            Either<string, IEnumerable<string>> result = new List<string>
+            Either<string, IEnumerable<MunicipalityModel>> result = new List<MunicipalityModel>
             {
-                "Langnau a.A.",
-                "Zürich",
+                new MunicipalityModel
+                {
+                    BfsNumber = 261,
+                    Canton = Canton.ZH,
+                    Name = "Zürich",
+                },
+                new MunicipalityModel
+                {
+                    BfsNumber = 3,
+                    Canton = Canton.ZH,
+                    Name = "Langnau a.A.",
+                },
             };
 
             return result
@@ -55,9 +66,15 @@ namespace TaxCalculator.WebApi.Controllers
         /// </remarks>
         [HttpGet("{id}", Name = "Get")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<string> Get(int id)
+        public ActionResult<MunicipalityModel> Get(int id)
         {
-            Either<string, string> result = Prelude.Right<string>("Langnau a.A.");
+            Either<string, MunicipalityModel> result =
+                Prelude.Right<MunicipalityModel>(new MunicipalityModel
+                {
+                    BfsNumber = 261,
+                    Canton = Canton.ZH,
+                    Name = "Zürich",
+                });
 
             return result
                 .Match<ActionResult>(
