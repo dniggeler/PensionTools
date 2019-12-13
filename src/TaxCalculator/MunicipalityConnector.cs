@@ -23,7 +23,7 @@ namespace TaxCalculator
             this.municipalityDbContextFunc = municipalityDbContextFunc;
         }
 
-        public Task<IEnumerable<MunicipalityModel>> GetAll()
+        public Task<IEnumerable<MunicipalityModel>> GetAllAsync()
         {
             using (var ctxt = this.municipalityDbContextFunc())
             {
@@ -32,7 +32,7 @@ namespace TaxCalculator
             }
         }
 
-        public Task<Either<string, MunicipalityModel>> Get(int bfsNumber)
+        public Task<Either<string, MunicipalityModel>> GetAsync(int bfsNumber)
         {
             using (var ctxt = this.municipalityDbContextFunc())
             {

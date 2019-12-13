@@ -25,6 +25,9 @@ namespace Tax.Data
             collection.AddSingleton<Func<FederalTaxTariffDbContext>>(provider =>
                 provider.GetRequiredService<FederalTaxTariffDbContext>);
 
+            collection.AddSingleton<Func<MunicipalityDbContext>>(provider =>
+                provider.GetRequiredService<MunicipalityDbContext>);
+
             collection.AddScoped<ITaxTariffData,TaxTariffData>();
         }
     }

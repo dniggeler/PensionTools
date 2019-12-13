@@ -13,13 +13,14 @@ namespace TaxCalculator.WebApi.Controllers
     [Route("api/data/municipality")]
     public class MunicipalityDataController : ControllerBase
     {
+        private readonly IMunicipalityConnector municipalityConnector;
         private readonly ILogger<MunicipalityDataController> logger;
 
         public MunicipalityDataController(
-            IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator,
-            IFullTaxCalculator fullTaxCalculator,
+            IMunicipalityConnector municipalityConnector,
             ILogger<MunicipalityDataController> logger)
         {
+            this.municipalityConnector = municipalityConnector;
             this.logger = logger;
         }
 
@@ -34,26 +35,7 @@ namespace TaxCalculator.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<string>> Get()
         {
-            Either<string, IEnumerable<MunicipalityModel>> result = new List<MunicipalityModel>
-            {
-                new MunicipalityModel
-                {
-                    BfsNumber = 261,
-                    Canton = Canton.ZH,
-                    Name = "Zürich",
-                },
-                new MunicipalityModel
-                {
-                    BfsNumber = 3,
-                    Canton = Canton.ZH,
-                    Name = "Langnau a.A.",
-                },
-            };
-
-            return result
-                .Match<ActionResult>(
-                    Right: r => this.Ok(r),
-                    Left: this.BadRequest);
+            return this.Ok(this.municipalityConnector.GetAllAsync());
         }
 
         /// <summary>

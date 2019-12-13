@@ -1,0 +1,11062 @@
+﻿[
+  {
+    "BfsNumber": 1,
+    "Name": "Aeugst am Albis",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 2,
+    "Name": "Affoltern am Albis",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 3,
+    "Name": "Bonstetten",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 4,
+    "Name": "Hausen am Albis",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 5,
+    "Name": "Hedingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 6,
+    "Name": "Kappel am Albis",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 7,
+    "Name": "Knonau",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 8,
+    "Name": "Maschwanden",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 9,
+    "Name": "Mettmenstetten",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 10,
+    "Name": "Obfelden",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 11,
+    "Name": "Ottenbach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 12,
+    "Name": "Rifferswil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 13,
+    "Name": "Stallikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 14,
+    "Name": "Wettswil am Albis",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 21,
+    "Name": "Adlikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 22,
+    "Name": "Benken (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 23,
+    "Name": "Berg am Irchel",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 24,
+    "Name": "Buch am Irchel",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 25,
+    "Name": "Dachsen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 26,
+    "Name": "Dorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 27,
+    "Name": "Feuerthalen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 28,
+    "Name": "Flaach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 29,
+    "Name": "Flurlingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 30,
+    "Name": "Andelfingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 31,
+    "Name": "Henggart",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 32,
+    "Name": "Humlikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 33,
+    "Name": "Kleinandelfingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 34,
+    "Name": "Laufen-Uhwiesen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 35,
+    "Name": "Marthalen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 37,
+    "Name": "Ossingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 38,
+    "Name": "Rheinau",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 39,
+    "Name": "Thalheim an der Thur",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 40,
+    "Name": "Trüllikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 41,
+    "Name": "Truttikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 43,
+    "Name": "Volken",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 51,
+    "Name": "Bachenbülach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 52,
+    "Name": "Bassersdorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 53,
+    "Name": "Bülach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 54,
+    "Name": "Dietlikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 55,
+    "Name": "Eglisau",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 56,
+    "Name": "Embrach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 57,
+    "Name": "Freienstein-Teufen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 58,
+    "Name": "Glattfelden",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 59,
+    "Name": "Hochfelden",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 60,
+    "Name": "Höri",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 61,
+    "Name": "Hüntwangen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 62,
+    "Name": "Kloten",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 63,
+    "Name": "Lufingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 64,
+    "Name": "Nürensdorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 65,
+    "Name": "Oberembrach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 66,
+    "Name": "Opfikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 67,
+    "Name": "Rafz",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 68,
+    "Name": "Rorbas",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 69,
+    "Name": "Wallisellen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 70,
+    "Name": "Wasterkingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 71,
+    "Name": "Wil (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 72,
+    "Name": "Winkel",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 81,
+    "Name": "Bachs",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 82,
+    "Name": "Boppelsen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 83,
+    "Name": "Buchs (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 84,
+    "Name": "Dällikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 85,
+    "Name": "Dänikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 86,
+    "Name": "Dielsdorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 87,
+    "Name": "Hüttikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 88,
+    "Name": "Neerach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 89,
+    "Name": "Niederglatt",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 90,
+    "Name": "Niederhasli",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 91,
+    "Name": "Niederweningen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 92,
+    "Name": "Oberglatt",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 93,
+    "Name": "Oberweningen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 94,
+    "Name": "Otelfingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 95,
+    "Name": "Regensberg",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 96,
+    "Name": "Regensdorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 97,
+    "Name": "Rümlang",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 98,
+    "Name": "Schleinikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 99,
+    "Name": "Schöfflisdorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 100,
+    "Name": "Stadel",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 101,
+    "Name": "Steinmaur",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 102,
+    "Name": "Weiach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 111,
+    "Name": "Bäretswil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 112,
+    "Name": "Bubikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 113,
+    "Name": "Dürnten",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 114,
+    "Name": "Fischenthal",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 115,
+    "Name": "Gossau (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 116,
+    "Name": "Grüningen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 117,
+    "Name": "Hinwil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 118,
+    "Name": "Rüti (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 119,
+    "Name": "Seegräben",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 120,
+    "Name": "Wald (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 121,
+    "Name": "Wetzikon (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 131,
+    "Name": "Adliswil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 135,
+    "Name": "Kilchberg (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 136,
+    "Name": "Langnau am Albis",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 137,
+    "Name": "Oberrieden",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 138,
+    "Name": "Richterswil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 139,
+    "Name": "Rüschlikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 141,
+    "Name": "Thalwil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 151,
+    "Name": "Erlenbach (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 152,
+    "Name": "Herrliberg",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 153,
+    "Name": "Hombrechtikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 154,
+    "Name": "Küsnacht (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 155,
+    "Name": "Männedorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 156,
+    "Name": "Meilen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 157,
+    "Name": "Oetwil am See",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 158,
+    "Name": "Stäfa",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 159,
+    "Name": "Uetikon am See",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 160,
+    "Name": "Zumikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 161,
+    "Name": "Zollikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 172,
+    "Name": "Fehraltorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 173,
+    "Name": "Hittnau",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 176,
+    "Name": "Lindau",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 177,
+    "Name": "Pfäffikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 178,
+    "Name": "Russikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 180,
+    "Name": "Weisslingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 181,
+    "Name": "Wila",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 182,
+    "Name": "Wildberg",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 191,
+    "Name": "Dübendorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 192,
+    "Name": "Egg",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 193,
+    "Name": "Fällanden",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 194,
+    "Name": "Greifensee",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 195,
+    "Name": "Maur",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 196,
+    "Name": "Mönchaltorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 197,
+    "Name": "Schwerzenbach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 198,
+    "Name": "Uster",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 199,
+    "Name": "Volketswil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 200,
+    "Name": "Wangen-Brüttisellen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 211,
+    "Name": "Altikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 213,
+    "Name": "Brütten",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 214,
+    "Name": "Dägerlen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 215,
+    "Name": "Dättlikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 216,
+    "Name": "Dinhard",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 218,
+    "Name": "Ellikon an der Thur",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 219,
+    "Name": "Elsau",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 220,
+    "Name": "Hagenbuch",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 221,
+    "Name": "Hettlingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 223,
+    "Name": "Neftenbach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 224,
+    "Name": "Pfungen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 225,
+    "Name": "Rickenbach (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 226,
+    "Name": "Schlatt (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 227,
+    "Name": "Seuzach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 228,
+    "Name": "Turbenthal",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 230,
+    "Name": "Winterthur",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 231,
+    "Name": "Zell (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 241,
+    "Name": "Aesch (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 242,
+    "Name": "Birmensdorf (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 243,
+    "Name": "Dietikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 244,
+    "Name": "Geroldswil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 245,
+    "Name": "Oberengstringen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 246,
+    "Name": "Oetwil an der Limmat",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 247,
+    "Name": "Schlieren",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 248,
+    "Name": "Uitikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 249,
+    "Name": "Unterengstringen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 250,
+    "Name": "Urdorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 251,
+    "Name": "Weiningen (ZH)",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 261,
+    "Name": "Zürich",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 292,
+    "Name": "Stammheim",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 293,
+    "Name": "Wädenswil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 294,
+    "Name": "Elgg",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 295,
+    "Name": "Horgen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 296,
+    "Name": "Illnau-Effretikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 297,
+    "Name": "Bauma",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 298,
+    "Name": "Wiesendangen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 301,
+    "Name": "Aarberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 302,
+    "Name": "Bargen (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 303,
+    "Name": "Grossaffoltern",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 304,
+    "Name": "Kallnach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 305,
+    "Name": "Kappelen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 306,
+    "Name": "Lyss",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 307,
+    "Name": "Meikirch",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 309,
+    "Name": "Radelfingen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 310,
+    "Name": "Rapperswil (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 311,
+    "Name": "Schüpfen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 312,
+    "Name": "Seedorf (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 321,
+    "Name": "Aarwangen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 322,
+    "Name": "Auswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 323,
+    "Name": "Bannwil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 324,
+    "Name": "Bleienbach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 325,
+    "Name": "Busswil bei Melchnau",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 326,
+    "Name": "Gondiswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 329,
+    "Name": "Langenthal",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 331,
+    "Name": "Lotzwil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 332,
+    "Name": "Madiswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 333,
+    "Name": "Melchnau",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 334,
+    "Name": "Obersteckholz",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 335,
+    "Name": "Oeschenbach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 336,
+    "Name": "Reisiswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 337,
+    "Name": "Roggwil (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 338,
+    "Name": "Rohrbach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 339,
+    "Name": "Rohrbachgraben",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 340,
+    "Name": "Rütschelen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 341,
+    "Name": "Schwarzhäusern",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 342,
+    "Name": "Thunstetten",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 344,
+    "Name": "Ursenbach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 345,
+    "Name": "Wynau",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 351,
+    "Name": "Bern",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 352,
+    "Name": "Bolligen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 353,
+    "Name": "Bremgarten bei Bern",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 354,
+    "Name": "Kirchlindach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 355,
+    "Name": "Köniz",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 356,
+    "Name": "Muri bei Bern",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 357,
+    "Name": "Oberbalm",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 358,
+    "Name": "Stettlen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 359,
+    "Name": "Vechigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 360,
+    "Name": "Wohlen bei Bern",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 361,
+    "Name": "Zollikofen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 362,
+    "Name": "Ittigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 363,
+    "Name": "Ostermundigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 371,
+    "Name": "Biel/Bienne",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 372,
+    "Name": "Evilard",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 381,
+    "Name": "Arch",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 382,
+    "Name": "Büetigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 383,
+    "Name": "Büren an der Aare",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 385,
+    "Name": "Diessbach bei Büren",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 386,
+    "Name": "Dotzigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 387,
+    "Name": "Lengnau (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 388,
+    "Name": "Leuzigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 389,
+    "Name": "Meienried",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 390,
+    "Name": "Meinisberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 391,
+    "Name": "Oberwil bei Büren",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 392,
+    "Name": "Pieterlen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 393,
+    "Name": "Rüti bei Büren",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 394,
+    "Name": "Wengi",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 401,
+    "Name": "Aefligen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 402,
+    "Name": "Alchenstorf",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 403,
+    "Name": "Bäriswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 404,
+    "Name": "Burgdorf",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 405,
+    "Name": "Ersigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 406,
+    "Name": "Hasle bei Burgdorf",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 407,
+    "Name": "Heimiswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 408,
+    "Name": "Hellsau",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 409,
+    "Name": "Hindelbank",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 410,
+    "Name": "Höchstetten",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 411,
+    "Name": "Kernenried",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 412,
+    "Name": "Kirchberg (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 413,
+    "Name": "Koppigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 414,
+    "Name": "Krauchthal",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 415,
+    "Name": "Lyssach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 416,
+    "Name": "Mötschwil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 418,
+    "Name": "Oberburg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 420,
+    "Name": "Rüdtligen-Alchenflüh",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 421,
+    "Name": "Rumendingen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 422,
+    "Name": "Rüti bei Lyssach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 423,
+    "Name": "Willadingen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 424,
+    "Name": "Wynigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 431,
+    "Name": "Corgémont",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 432,
+    "Name": "Cormoret",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 433,
+    "Name": "Cortébert",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 434,
+    "Name": "Courtelary",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 435,
+    "Name": "La Ferrière",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 437,
+    "Name": "Mont-Tramelan",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 438,
+    "Name": "Orvin",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 441,
+    "Name": "Renan (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 442,
+    "Name": "Romont (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 443,
+    "Name": "Saint-Imier",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 444,
+    "Name": "Sonceboz-Sombeval",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 445,
+    "Name": "Sonvilier",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 446,
+    "Name": "Tramelan",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 448,
+    "Name": "Villeret",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 449,
+    "Name": "Sauge",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 450,
+    "Name": "Péry-La Heutte",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 491,
+    "Name": "Brüttelen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 492,
+    "Name": "Erlach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 493,
+    "Name": "Finsterhennen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 494,
+    "Name": "Gals",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 495,
+    "Name": "Gampelen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 496,
+    "Name": "Ins",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 497,
+    "Name": "Lüscherz",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 498,
+    "Name": "Müntschemier",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 499,
+    "Name": "Siselen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 500,
+    "Name": "Treiten",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 501,
+    "Name": "Tschugg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 502,
+    "Name": "Vinelz",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 533,
+    "Name": "Bätterkinden",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 535,
+    "Name": "Deisswil bei Münchenbuchsee",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 536,
+    "Name": "Diemerswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 538,
+    "Name": "Fraubrunnen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 540,
+    "Name": "Jegenstorf",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 541,
+    "Name": "Iffwil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 543,
+    "Name": "Mattstetten",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 544,
+    "Name": "Moosseedorf",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 546,
+    "Name": "Münchenbuchsee",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 551,
+    "Name": "Urtenen-Schönbühl",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 552,
+    "Name": "Utzenstorf",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 553,
+    "Name": "Wiggiswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 554,
+    "Name": "Wiler bei Utzenstorf",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 556,
+    "Name": "Zielebach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 557,
+    "Name": "Zuzwil (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 561,
+    "Name": "Adelboden",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 562,
+    "Name": "Aeschi bei Spiez",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 563,
+    "Name": "Frutigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 564,
+    "Name": "Kandergrund",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 565,
+    "Name": "Kandersteg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 566,
+    "Name": "Krattigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 567,
+    "Name": "Reichenbach im Kandertal",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 571,
+    "Name": "Beatenberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 572,
+    "Name": "Bönigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 573,
+    "Name": "Brienz (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 574,
+    "Name": "Brienzwiler",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 575,
+    "Name": "Därligen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 576,
+    "Name": "Grindelwald",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 577,
+    "Name": "Gsteigwiler",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 578,
+    "Name": "Gündlischwand",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 579,
+    "Name": "Habkern",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 580,
+    "Name": "Hofstetten bei Brienz",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 581,
+    "Name": "Interlaken",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 582,
+    "Name": "Iseltwald",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 584,
+    "Name": "Lauterbrunnen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 585,
+    "Name": "Leissigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 586,
+    "Name": "Lütschental",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 587,
+    "Name": "Matten bei Interlaken",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 588,
+    "Name": "Niederried bei Interlaken",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 589,
+    "Name": "Oberried am Brienzersee",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 590,
+    "Name": "Ringgenberg (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 591,
+    "Name": "Saxeten",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 592,
+    "Name": "Schwanden bei Brienz",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 593,
+    "Name": "Unterseen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 594,
+    "Name": "Wilderswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 602,
+    "Name": "Arni (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 603,
+    "Name": "Biglen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 605,
+    "Name": "Bowil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 606,
+    "Name": "Brenzikofen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 607,
+    "Name": "Freimettigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 608,
+    "Name": "Grosshöchstetten",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 609,
+    "Name": "Häutligen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 610,
+    "Name": "Herbligen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 611,
+    "Name": "Kiesen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 612,
+    "Name": "Konolfingen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 613,
+    "Name": "Landiswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 614,
+    "Name": "Linden",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 615,
+    "Name": "Mirchel",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 616,
+    "Name": "Münsingen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 617,
+    "Name": "Niederhünigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 619,
+    "Name": "Oberdiessbach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 620,
+    "Name": "Oberthal",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 622,
+    "Name": "Oppligen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 623,
+    "Name": "Rubigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 626,
+    "Name": "Walkringen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 627,
+    "Name": "Worb",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 628,
+    "Name": "Zäziwil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 629,
+    "Name": "Oberhünigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 630,
+    "Name": "Allmendingen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 632,
+    "Name": "Wichtrach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 661,
+    "Name": "Clavaleyres",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 662,
+    "Name": "Ferenbalm",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 663,
+    "Name": "Frauenkappelen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 665,
+    "Name": "Gurbrü",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 666,
+    "Name": "Kriechenwil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 667,
+    "Name": "Laupen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 668,
+    "Name": "Mühleberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 669,
+    "Name": "Münchenwiler",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 670,
+    "Name": "Neuenegg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 671,
+    "Name": "Wileroltigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 681,
+    "Name": "Belprahon",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 683,
+    "Name": "Champoz",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 687,
+    "Name": "Corcelles (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 690,
+    "Name": "Court",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 691,
+    "Name": "Crémines",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 692,
+    "Name": "Eschert",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 694,
+    "Name": "Grandval",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 696,
+    "Name": "Loveresse",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 700,
+    "Name": "Moutier",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 701,
+    "Name": "Perrefitte",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 703,
+    "Name": "Reconvilier",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 704,
+    "Name": "Roches (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 706,
+    "Name": "Saicourt",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 707,
+    "Name": "Saules (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 708,
+    "Name": "Schelten",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 709,
+    "Name": "Seehof",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 711,
+    "Name": "Sorvilier",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 713,
+    "Name": "Tavannes",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 715,
+    "Name": "Rebévelier",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 716,
+    "Name": "Petit-Val",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 717,
+    "Name": "Valbirse",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 723,
+    "Name": "La Neuveville",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 724,
+    "Name": "Nods",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 726,
+    "Name": "Plateau de Diesse",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 731,
+    "Name": "Aegerten",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 732,
+    "Name": "Bellmund",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 733,
+    "Name": "Brügg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 734,
+    "Name": "Bühl",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 735,
+    "Name": "Epsach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 736,
+    "Name": "Hagneck",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 737,
+    "Name": "Hermrigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 738,
+    "Name": "Jens",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 739,
+    "Name": "Ipsach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 740,
+    "Name": "Ligerz",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 741,
+    "Name": "Merzligen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 742,
+    "Name": "Mörigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 743,
+    "Name": "Nidau",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 744,
+    "Name": "Orpund",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 745,
+    "Name": "Port",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 746,
+    "Name": "Safnern",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 747,
+    "Name": "Scheuren",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 748,
+    "Name": "Schwadernau",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 749,
+    "Name": "Studen (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 750,
+    "Name": "Sutz-Lattrigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 751,
+    "Name": "Täuffelen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 754,
+    "Name": "Walperswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 755,
+    "Name": "Worben",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 756,
+    "Name": "Twann-Tüscherz",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 761,
+    "Name": "Därstetten",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 762,
+    "Name": "Diemtigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 763,
+    "Name": "Erlenbach im Simmental",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 766,
+    "Name": "Oberwil im Simmental",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 767,
+    "Name": "Reutigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 768,
+    "Name": "Spiez",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 769,
+    "Name": "Wimmis",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 770,
+    "Name": "Stocken-Höfen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 782,
+    "Name": "Guttannen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 783,
+    "Name": "Hasliberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 784,
+    "Name": "Innertkirchen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 785,
+    "Name": "Meiringen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 786,
+    "Name": "Schattenhalb",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 791,
+    "Name": "Boltigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 792,
+    "Name": "Lenk",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 793,
+    "Name": "St. Stephan",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 794,
+    "Name": "Zweisimmen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 841,
+    "Name": "Gsteig",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 842,
+    "Name": "Lauenen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 843,
+    "Name": "Saanen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 852,
+    "Name": "Guggisberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 853,
+    "Name": "Rüschegg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 855,
+    "Name": "Schwarzenburg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 861,
+    "Name": "Belp",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 863,
+    "Name": "Burgistein",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 866,
+    "Name": "Gerzensee",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 867,
+    "Name": "Gurzelen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 868,
+    "Name": "Jaberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 869,
+    "Name": "Kaufdorf",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 870,
+    "Name": "Kehrsatz",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 872,
+    "Name": "Kirchdorf (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 873,
+    "Name": "Kirchenthurnen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 874,
+    "Name": "Lohnstorf",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 876,
+    "Name": "Mühlethurnen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 877,
+    "Name": "Niedermuhlern",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 879,
+    "Name": "Riggisberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 880,
+    "Name": "Rüeggisberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 881,
+    "Name": "Rümligen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 883,
+    "Name": "Seftigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 884,
+    "Name": "Toffen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 885,
+    "Name": "Uttigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 886,
+    "Name": "Wattenwil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 888,
+    "Name": "Wald (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 901,
+    "Name": "Eggiwil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 902,
+    "Name": "Langnau im Emmental",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 903,
+    "Name": "Lauperswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 904,
+    "Name": "Röthenbach im Emmental",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 905,
+    "Name": "Rüderswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 906,
+    "Name": "Schangnau",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 907,
+    "Name": "Signau",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 908,
+    "Name": "Trub",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 909,
+    "Name": "Trubschachen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 921,
+    "Name": "Amsoldingen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 922,
+    "Name": "Blumenstein",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 923,
+    "Name": "Buchholterberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 924,
+    "Name": "Eriz",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 925,
+    "Name": "Fahrni",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 927,
+    "Name": "Heiligenschwendi",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 928,
+    "Name": "Heimberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 929,
+    "Name": "Hilterfingen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 931,
+    "Name": "Homberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 932,
+    "Name": "Horrenbach-Buchen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 934,
+    "Name": "Oberhofen am Thunersee",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 935,
+    "Name": "Oberlangenegg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 936,
+    "Name": "Pohlern",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 937,
+    "Name": "Schwendibach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 938,
+    "Name": "Sigriswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 939,
+    "Name": "Steffisburg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 940,
+    "Name": "Teuffenthal (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 941,
+    "Name": "Thierachern",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 942,
+    "Name": "Thun",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 943,
+    "Name": "Uebeschi",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 944,
+    "Name": "Uetendorf",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 945,
+    "Name": "Unterlangenegg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 946,
+    "Name": "Wachseldorn",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 947,
+    "Name": "Zwieselberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 948,
+    "Name": "Forst-Längenbühl",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 951,
+    "Name": "Affoltern im Emmental",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 952,
+    "Name": "Dürrenroth",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 953,
+    "Name": "Eriswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 954,
+    "Name": "Huttwil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 955,
+    "Name": "Lützelflüh",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 956,
+    "Name": "Rüegsau",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 957,
+    "Name": "Sumiswald",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 958,
+    "Name": "Trachselwald",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 959,
+    "Name": "Walterswil (BE)",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 960,
+    "Name": "Wyssachen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 971,
+    "Name": "Attiswil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 972,
+    "Name": "Berken",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 973,
+    "Name": "Bettenhausen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 975,
+    "Name": "Farnern",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 976,
+    "Name": "Graben",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 977,
+    "Name": "Heimenhausen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 979,
+    "Name": "Herzogenbuchsee",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 980,
+    "Name": "Inkwil",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 981,
+    "Name": "Niederbipp",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 982,
+    "Name": "Niederönz",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 983,
+    "Name": "Oberbipp",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 985,
+    "Name": "Ochlenberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 987,
+    "Name": "Rumisberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 988,
+    "Name": "Seeberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 989,
+    "Name": "Thörigen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 990,
+    "Name": "Walliswil bei Niederbipp",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 991,
+    "Name": "Walliswil bei Wangen",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 992,
+    "Name": "Wangen an der Aare",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 993,
+    "Name": "Wangenried",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 995,
+    "Name": "Wiedlisbach",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 996,
+    "Name": "Wolfisberg",
+    "Canton": "BE"
+  },
+  {
+    "BfsNumber": 1001,
+    "Name": "Doppleschwand",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1002,
+    "Name": "Entlebuch",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1004,
+    "Name": "Flühli",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1005,
+    "Name": "Hasle (LU)",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1007,
+    "Name": "Romoos",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1008,
+    "Name": "Schüpfheim",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1009,
+    "Name": "Werthenstein",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1010,
+    "Name": "Escholzmatt-Marbach",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1021,
+    "Name": "Aesch (LU)",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1022,
+    "Name": "Altwis",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1023,
+    "Name": "Ballwil",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1024,
+    "Name": "Emmen",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1025,
+    "Name": "Ermensee",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1026,
+    "Name": "Eschenbach (LU)",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1030,
+    "Name": "Hitzkirch",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1031,
+    "Name": "Hochdorf",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1032,
+    "Name": "Hohenrain",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1033,
+    "Name": "Inwil",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1037,
+    "Name": "Rain",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1039,
+    "Name": "Römerswil",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1040,
+    "Name": "Rothenburg",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1041,
+    "Name": "Schongau",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1051,
+    "Name": "Adligenswil",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1052,
+    "Name": "Buchrain",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1053,
+    "Name": "Dierikon",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1054,
+    "Name": "Ebikon",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1055,
+    "Name": "Gisikon",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1056,
+    "Name": "Greppen",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1057,
+    "Name": "Honau",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1058,
+    "Name": "Horw",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1059,
+    "Name": "Kriens",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1061,
+    "Name": "Luzern",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1062,
+    "Name": "Malters",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1063,
+    "Name": "Meggen",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1064,
+    "Name": "Meierskappel",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1065,
+    "Name": "Root",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1066,
+    "Name": "Schwarzenberg",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1067,
+    "Name": "Udligenswil",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1068,
+    "Name": "Vitznau",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1069,
+    "Name": "Weggis",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1081,
+    "Name": "Beromünster",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1082,
+    "Name": "Büron",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1083,
+    "Name": "Buttisholz",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1084,
+    "Name": "Eich",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1085,
+    "Name": "Geuensee",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1086,
+    "Name": "Grosswangen",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1088,
+    "Name": "Hildisrieden",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1089,
+    "Name": "Knutwil",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1091,
+    "Name": "Mauensee",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1093,
+    "Name": "Neuenkirch",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1094,
+    "Name": "Nottwil",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1095,
+    "Name": "Oberkirch",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1097,
+    "Name": "Rickenbach (LU)",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1098,
+    "Name": "Ruswil",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1099,
+    "Name": "Schenkon",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1100,
+    "Name": "Schlierbach",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1102,
+    "Name": "Sempach",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1103,
+    "Name": "Sursee",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1104,
+    "Name": "Triengen",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1107,
+    "Name": "Wolhusen",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1121,
+    "Name": "Alberswil",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1122,
+    "Name": "Altbüron",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1123,
+    "Name": "Altishofen",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1125,
+    "Name": "Dagmersellen",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1126,
+    "Name": "Ebersecken",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1127,
+    "Name": "Egolzwil",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1128,
+    "Name": "Ettiswil",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1129,
+    "Name": "Fischbach",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1130,
+    "Name": "Gettnau",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1131,
+    "Name": "Grossdietwil",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1132,
+    "Name": "Hergiswil bei Willisau",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1135,
+    "Name": "Luthern",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1136,
+    "Name": "Menznau",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1137,
+    "Name": "Nebikon",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1139,
+    "Name": "Pfaffnau",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1140,
+    "Name": "Reiden",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1142,
+    "Name": "Roggliswil",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1143,
+    "Name": "Schötz",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1145,
+    "Name": "Ufhusen",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1146,
+    "Name": "Wauwil",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1147,
+    "Name": "Wikon",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1150,
+    "Name": "Zell (LU)",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1151,
+    "Name": "Willisau",
+    "Canton": "LU"
+  },
+  {
+    "BfsNumber": 1201,
+    "Name": "Altdorf (UR)",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1202,
+    "Name": "Andermatt",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1203,
+    "Name": "Attinghausen",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1204,
+    "Name": "Bauen",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1205,
+    "Name": "Bürglen (UR)",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1206,
+    "Name": "Erstfeld",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1207,
+    "Name": "Flüelen",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1208,
+    "Name": "Göschenen",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1209,
+    "Name": "Gurtnellen",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1210,
+    "Name": "Hospental",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1211,
+    "Name": "Isenthal",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1212,
+    "Name": "Realp",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1213,
+    "Name": "Schattdorf",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1214,
+    "Name": "Seedorf (UR)",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1215,
+    "Name": "Seelisberg",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1216,
+    "Name": "Silenen",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1217,
+    "Name": "Sisikon",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1218,
+    "Name": "Spiringen",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1219,
+    "Name": "Unterschächen",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1220,
+    "Name": "Wassen",
+    "Canton": "UR"
+  },
+  {
+    "BfsNumber": 1301,
+    "Name": "Einsiedeln",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1311,
+    "Name": "Gersau",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1321,
+    "Name": "Feusisberg",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1322,
+    "Name": "Freienbach",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1323,
+    "Name": "Wollerau",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1331,
+    "Name": "Küssnacht (SZ)",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1341,
+    "Name": "Altendorf",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1342,
+    "Name": "Galgenen",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1343,
+    "Name": "Innerthal",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1344,
+    "Name": "Lachen",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1345,
+    "Name": "Reichenburg",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1346,
+    "Name": "Schübelbach",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1347,
+    "Name": "Tuggen",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1348,
+    "Name": "Vorderthal",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1349,
+    "Name": "Wangen (SZ)",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1361,
+    "Name": "Alpthal",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1362,
+    "Name": "Arth",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1363,
+    "Name": "Illgau",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1364,
+    "Name": "Ingenbohl",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1365,
+    "Name": "Lauerz",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1366,
+    "Name": "Morschach",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1367,
+    "Name": "Muotathal",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1368,
+    "Name": "Oberiberg",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1369,
+    "Name": "Riemenstalden",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1370,
+    "Name": "Rothenthurm",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1371,
+    "Name": "Sattel",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1372,
+    "Name": "Schwyz",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1373,
+    "Name": "Steinen",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1374,
+    "Name": "Steinerberg",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1375,
+    "Name": "Unteriberg",
+    "Canton": "SZ"
+  },
+  {
+    "BfsNumber": 1401,
+    "Name": "Alpnach",
+    "Canton": "OW"
+  },
+  {
+    "BfsNumber": 1402,
+    "Name": "Engelberg",
+    "Canton": "OW"
+  },
+  {
+    "BfsNumber": 1403,
+    "Name": "Giswil",
+    "Canton": "OW"
+  },
+  {
+    "BfsNumber": 1404,
+    "Name": "Kerns",
+    "Canton": "OW"
+  },
+  {
+    "BfsNumber": 1405,
+    "Name": "Lungern",
+    "Canton": "OW"
+  },
+  {
+    "BfsNumber": 1406,
+    "Name": "Sachseln",
+    "Canton": "OW"
+  },
+  {
+    "BfsNumber": 1407,
+    "Name": "Sarnen",
+    "Canton": "OW"
+  },
+  {
+    "BfsNumber": 1501,
+    "Name": "Beckenried",
+    "Canton": "NW"
+  },
+  {
+    "BfsNumber": 1502,
+    "Name": "Buochs",
+    "Canton": "NW"
+  },
+  {
+    "BfsNumber": 1503,
+    "Name": "Dallenwil",
+    "Canton": "NW"
+  },
+  {
+    "BfsNumber": 1504,
+    "Name": "Emmetten",
+    "Canton": "NW"
+  },
+  {
+    "BfsNumber": 1505,
+    "Name": "Ennetbürgen",
+    "Canton": "NW"
+  },
+  {
+    "BfsNumber": 1506,
+    "Name": "Ennetmoos",
+    "Canton": "NW"
+  },
+  {
+    "BfsNumber": 1507,
+    "Name": "Hergiswil (NW)",
+    "Canton": "NW"
+  },
+  {
+    "BfsNumber": 1508,
+    "Name": "Oberdorf (NW)",
+    "Canton": "NW"
+  },
+  {
+    "BfsNumber": 1509,
+    "Name": "Stans",
+    "Canton": "NW"
+  },
+  {
+    "BfsNumber": 1510,
+    "Name": "Stansstad",
+    "Canton": "NW"
+  },
+  {
+    "BfsNumber": 1511,
+    "Name": "Wolfenschiessen",
+    "Canton": "NW"
+  },
+  {
+    "BfsNumber": 1630,
+    "Name": "Glarus Nord",
+    "Canton": "GL"
+  },
+  {
+    "BfsNumber": 1631,
+    "Name": "Glarus Süd",
+    "Canton": "GL"
+  },
+  {
+    "BfsNumber": 1632,
+    "Name": "Glarus",
+    "Canton": "GL"
+  },
+  {
+    "BfsNumber": 1701,
+    "Name": "Baar",
+    "Canton": "ZG"
+  },
+  {
+    "BfsNumber": 1702,
+    "Name": "Cham",
+    "Canton": "ZG"
+  },
+  {
+    "BfsNumber": 1703,
+    "Name": "Hünenberg",
+    "Canton": "ZG"
+  },
+  {
+    "BfsNumber": 1704,
+    "Name": "Menzingen",
+    "Canton": "ZG"
+  },
+  {
+    "BfsNumber": 1705,
+    "Name": "Neuheim",
+    "Canton": "ZG"
+  },
+  {
+    "BfsNumber": 1706,
+    "Name": "Oberägeri",
+    "Canton": "ZG"
+  },
+  {
+    "BfsNumber": 1707,
+    "Name": "Risch",
+    "Canton": "ZG"
+  },
+  {
+    "BfsNumber": 1708,
+    "Name": "Steinhausen",
+    "Canton": "ZG"
+  },
+  {
+    "BfsNumber": 1709,
+    "Name": "Unterägeri",
+    "Canton": "ZG"
+  },
+  {
+    "BfsNumber": 1710,
+    "Name": "Walchwil",
+    "Canton": "ZG"
+  },
+  {
+    "BfsNumber": 1711,
+    "Name": "Zug",
+    "Canton": "ZG"
+  },
+  {
+    "BfsNumber": 2008,
+    "Name": "Châtillon (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2009,
+    "Name": "Cheiry",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2011,
+    "Name": "Cugy (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2016,
+    "Name": "Fétigny",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2022,
+    "Name": "Gletterens",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2025,
+    "Name": "Lully (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2027,
+    "Name": "Ménières",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2029,
+    "Name": "Montagny (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2035,
+    "Name": "Nuvilly",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2038,
+    "Name": "Prévondavaux",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2041,
+    "Name": "Saint-Aubin (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2043,
+    "Name": "Sévaz",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2044,
+    "Name": "Surpierre",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2045,
+    "Name": "Vallon",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2050,
+    "Name": "Les Montets",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2051,
+    "Name": "Delley-Portalban",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2053,
+    "Name": "Belmont-Broye",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2054,
+    "Name": "Estavayer",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2055,
+    "Name": "Cheyres-Châbles",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2061,
+    "Name": "Auboranges",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2063,
+    "Name": "Billens-Hennens",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2066,
+    "Name": "Chapelle (Glâne)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2067,
+    "Name": "Le Châtelard",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2068,
+    "Name": "Châtonnaye",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2072,
+    "Name": "Ecublens (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2079,
+    "Name": "Grangettes",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2086,
+    "Name": "Massonnens",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2087,
+    "Name": "Mézières (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2089,
+    "Name": "Montet (Glâne)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2096,
+    "Name": "Romont (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2097,
+    "Name": "Rue",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2099,
+    "Name": "Siviriez",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2102,
+    "Name": "Ursy",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2111,
+    "Name": "Villaz-Saint-Pierre",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2113,
+    "Name": "Vuisternens-devant-Romont",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2114,
+    "Name": "Villorsonnens",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2115,
+    "Name": "Torny",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2116,
+    "Name": "La Folliaz",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2121,
+    "Name": "Haut-Intyamon",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2122,
+    "Name": "Pont-en-Ogoz",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2123,
+    "Name": "Botterens",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2124,
+    "Name": "Broc",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2125,
+    "Name": "Bulle",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2128,
+    "Name": "Châtel-sur-Montsalvens",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2129,
+    "Name": "Corbières",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2130,
+    "Name": "Crésuz",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2131,
+    "Name": "Echarlens",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2134,
+    "Name": "Grandvillard",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2135,
+    "Name": "Gruyères",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2137,
+    "Name": "Hauteville",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2138,
+    "Name": "Jaun",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2140,
+    "Name": "Marsens",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2143,
+    "Name": "Morlon",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2145,
+    "Name": "Le Pâquier (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2147,
+    "Name": "Pont-la-Ville",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2148,
+    "Name": "Riaz",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2149,
+    "Name": "La Roche",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2152,
+    "Name": "Sâles",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2153,
+    "Name": "Sorens",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2155,
+    "Name": "Vaulruz",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2160,
+    "Name": "Vuadens",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2162,
+    "Name": "Bas-Intyamon",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2163,
+    "Name": "Val-de-Charmey",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2171,
+    "Name": "Arconciel",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2173,
+    "Name": "Autigny",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2174,
+    "Name": "Avry",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2175,
+    "Name": "Belfaux",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2177,
+    "Name": "Chénens",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2183,
+    "Name": "Corminboeuf",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2185,
+    "Name": "Corserey",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2186,
+    "Name": "Cottens (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2189,
+    "Name": "Ependes (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2194,
+    "Name": "Ferpicloz",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2196,
+    "Name": "Fribourg",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2197,
+    "Name": "Givisiez",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2198,
+    "Name": "Granges-Paccot",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2200,
+    "Name": "Grolley",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2206,
+    "Name": "Marly",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2208,
+    "Name": "Matran",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2211,
+    "Name": "Neyruz (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2213,
+    "Name": "Noréaz",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2216,
+    "Name": "Pierrafortscha",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2217,
+    "Name": "Ponthaux",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2220,
+    "Name": "Le Mouret",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2221,
+    "Name": "Prez-vers-Noréaz",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2225,
+    "Name": "Senèdes",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2226,
+    "Name": "Treyvaux",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2228,
+    "Name": "Villars-sur-Glâne",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2230,
+    "Name": "Villarsel-sur-Marly",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2233,
+    "Name": "Hauterive (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2234,
+    "Name": "La Brillaz",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2235,
+    "Name": "La Sonnaz",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2236,
+    "Name": "Gibloux",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2250,
+    "Name": "Courgevaux",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2254,
+    "Name": "Courtepin",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2257,
+    "Name": "Cressier (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2258,
+    "Name": "Fräschels",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2259,
+    "Name": "Galmiz",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2260,
+    "Name": "Gempenach",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2261,
+    "Name": "Greng",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2262,
+    "Name": "Gurmels",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2265,
+    "Name": "Kerzers",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2266,
+    "Name": "Kleinbösingen",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2271,
+    "Name": "Meyriez",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2272,
+    "Name": "Misery-Courtion",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2274,
+    "Name": "Muntelier",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2275,
+    "Name": "Murten",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2276,
+    "Name": "Ried bei Kerzers",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2278,
+    "Name": "Ulmiz",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2284,
+    "Name": "Mont-Vully",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2291,
+    "Name": "Alterswil",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2292,
+    "Name": "Brünisried",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2293,
+    "Name": "Düdingen",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2294,
+    "Name": "Giffers",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2295,
+    "Name": "Bösingen",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2296,
+    "Name": "Heitenried",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2299,
+    "Name": "Plaffeien",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2300,
+    "Name": "Plasselb",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2301,
+    "Name": "Rechthalten",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2302,
+    "Name": "St. Antoni",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2303,
+    "Name": "St. Silvester",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2304,
+    "Name": "St. Ursen",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2305,
+    "Name": "Schmitten (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2306,
+    "Name": "Tafers",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2307,
+    "Name": "Tentlingen",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2308,
+    "Name": "Ueberstorf",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2309,
+    "Name": "Wünnewil-Flamatt",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2321,
+    "Name": "Attalens",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2323,
+    "Name": "Bossonnens",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2325,
+    "Name": "Châtel-Saint-Denis",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2328,
+    "Name": "Granges (Veveyse)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2333,
+    "Name": "Remaufens",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2335,
+    "Name": "Saint-Martin (FR)",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2336,
+    "Name": "Semsales",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2337,
+    "Name": "Le Flon",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2338,
+    "Name": "La Verrerie",
+    "Canton": "FR"
+  },
+  {
+    "BfsNumber": 2401,
+    "Name": "Egerkingen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2402,
+    "Name": "Härkingen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2403,
+    "Name": "Kestenholz",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2404,
+    "Name": "Neuendorf",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2405,
+    "Name": "Niederbuchsiten",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2406,
+    "Name": "Oberbuchsiten",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2407,
+    "Name": "Oensingen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2408,
+    "Name": "Wolfwil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2421,
+    "Name": "Aedermannsdorf",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2422,
+    "Name": "Balsthal",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2423,
+    "Name": "Gänsbrunnen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2424,
+    "Name": "Herbetswil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2425,
+    "Name": "Holderbank (SO)",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2426,
+    "Name": "Laupersdorf",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2427,
+    "Name": "Matzendorf",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2428,
+    "Name": "Mümliswil-Ramiswil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2429,
+    "Name": "Welschenrohr",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2445,
+    "Name": "Biezwil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2455,
+    "Name": "Lüterkofen-Ichertswil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2456,
+    "Name": "Lüterswil-Gächliwil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2457,
+    "Name": "Messen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2461,
+    "Name": "Schnottwil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2463,
+    "Name": "Unterramsern",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2464,
+    "Name": "Lüsslingen-Nennigkofen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2465,
+    "Name": "Buchegg",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2471,
+    "Name": "Bättwil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2472,
+    "Name": "Büren (SO)",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2473,
+    "Name": "Dornach",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2474,
+    "Name": "Gempen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2475,
+    "Name": "Hochwald",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2476,
+    "Name": "Hofstetten-Flüh",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2477,
+    "Name": "Metzerlen-Mariastein",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2478,
+    "Name": "Nuglar-St. Pantaleon",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2479,
+    "Name": "Rodersdorf",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2480,
+    "Name": "Seewen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2481,
+    "Name": "Witterswil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2491,
+    "Name": "Hauenstein-Ifenthal",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2492,
+    "Name": "Kienberg",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2493,
+    "Name": "Lostorf",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2495,
+    "Name": "Niedergösgen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2497,
+    "Name": "Obergösgen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2498,
+    "Name": "Rohr (SO)",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2499,
+    "Name": "Stüsslingen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2500,
+    "Name": "Trimbach",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2501,
+    "Name": "Winznau",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2502,
+    "Name": "Wisen (SO)",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2503,
+    "Name": "Erlinsbach (SO)",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2511,
+    "Name": "Aeschi (SO)",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2513,
+    "Name": "Biberist",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2514,
+    "Name": "Bolken",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2516,
+    "Name": "Deitingen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2517,
+    "Name": "Derendingen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2518,
+    "Name": "Etziken",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2519,
+    "Name": "Gerlafingen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2520,
+    "Name": "Halten",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2523,
+    "Name": "Horriwil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2524,
+    "Name": "Hüniken",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2525,
+    "Name": "Kriegstetten",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2526,
+    "Name": "Lohn-Ammannsegg",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2527,
+    "Name": "Luterbach",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2528,
+    "Name": "Obergerlafingen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2529,
+    "Name": "Oekingen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2530,
+    "Name": "Recherswil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2532,
+    "Name": "Subingen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2534,
+    "Name": "Zuchwil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2535,
+    "Name": "Drei Höfe",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2541,
+    "Name": "Balm bei Günsberg",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2542,
+    "Name": "Bellach",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2543,
+    "Name": "Bettlach",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2544,
+    "Name": "Feldbrunnen-St. Niklaus",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2545,
+    "Name": "Flumenthal",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2546,
+    "Name": "Grenchen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2547,
+    "Name": "Günsberg",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2548,
+    "Name": "Hubersdorf",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2549,
+    "Name": "Kammersrohr",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2550,
+    "Name": "Langendorf",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2551,
+    "Name": "Lommiswil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2553,
+    "Name": "Oberdorf (SO)",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2554,
+    "Name": "Riedholz",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2555,
+    "Name": "Rüttenen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2556,
+    "Name": "Selzach",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2571,
+    "Name": "Boningen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2572,
+    "Name": "Däniken",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2573,
+    "Name": "Dulliken",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2574,
+    "Name": "Eppenberg-Wöschnau",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2575,
+    "Name": "Fulenbach",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2576,
+    "Name": "Gretzenbach",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2578,
+    "Name": "Gunzgen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2579,
+    "Name": "Hägendorf",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2580,
+    "Name": "Kappel (SO)",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2581,
+    "Name": "Olten",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2582,
+    "Name": "Rickenbach (SO)",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2583,
+    "Name": "Schönenwerd",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2584,
+    "Name": "Starrkirch-Wil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2585,
+    "Name": "Walterswil (SO)",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2586,
+    "Name": "Wangen bei Olten",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2601,
+    "Name": "Solothurn",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2611,
+    "Name": "Bärschwil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2612,
+    "Name": "Beinwil (SO)",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2613,
+    "Name": "Breitenbach",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2614,
+    "Name": "Büsserach",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2615,
+    "Name": "Erschwil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2616,
+    "Name": "Fehren",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2617,
+    "Name": "Grindel",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2618,
+    "Name": "Himmelried",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2619,
+    "Name": "Kleinlützel",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2620,
+    "Name": "Meltingen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2621,
+    "Name": "Nunningen",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2622,
+    "Name": "Zullwil",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 2701,
+    "Name": "Basel",
+    "Canton": "BS"
+  },
+  {
+    "BfsNumber": 2702,
+    "Name": "Bettingen",
+    "Canton": "BS"
+  },
+  {
+    "BfsNumber": 2703,
+    "Name": "Riehen",
+    "Canton": "BS"
+  },
+  {
+    "BfsNumber": 2761,
+    "Name": "Aesch (BL)",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2762,
+    "Name": "Allschwil",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2763,
+    "Name": "Arlesheim",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2764,
+    "Name": "Biel-Benken",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2765,
+    "Name": "Binningen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2766,
+    "Name": "Birsfelden",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2767,
+    "Name": "Bottmingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2768,
+    "Name": "Ettingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2769,
+    "Name": "Münchenstein",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2770,
+    "Name": "Muttenz",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2771,
+    "Name": "Oberwil (BL)",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2772,
+    "Name": "Pfeffingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2773,
+    "Name": "Reinach (BL)",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2774,
+    "Name": "Schönenbuch",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2775,
+    "Name": "Therwil",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2781,
+    "Name": "Blauen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2782,
+    "Name": "Brislach",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2783,
+    "Name": "Burg im Leimental",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2784,
+    "Name": "Dittingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2785,
+    "Name": "Duggingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2786,
+    "Name": "Grellingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2787,
+    "Name": "Laufen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2788,
+    "Name": "Liesberg",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2789,
+    "Name": "Nenzlingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2790,
+    "Name": "Roggenburg",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2791,
+    "Name": "Röschenz",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2792,
+    "Name": "Wahlen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2793,
+    "Name": "Zwingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2821,
+    "Name": "Arisdorf",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2822,
+    "Name": "Augst",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2823,
+    "Name": "Bubendorf",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2824,
+    "Name": "Frenkendorf",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2825,
+    "Name": "Füllinsdorf",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2826,
+    "Name": "Giebenach",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2827,
+    "Name": "Hersberg",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2828,
+    "Name": "Lausen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2829,
+    "Name": "Liestal",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2830,
+    "Name": "Lupsingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2831,
+    "Name": "Pratteln",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2832,
+    "Name": "Ramlinsburg",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2833,
+    "Name": "Seltisberg",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2834,
+    "Name": "Ziefen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2841,
+    "Name": "Anwil",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2842,
+    "Name": "Böckten",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2843,
+    "Name": "Buckten",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2844,
+    "Name": "Buus",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2845,
+    "Name": "Diepflingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2846,
+    "Name": "Gelterkinden",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2847,
+    "Name": "Häfelfingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2848,
+    "Name": "Hemmiken",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2849,
+    "Name": "Itingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2850,
+    "Name": "Känerkinden",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2851,
+    "Name": "Kilchberg (BL)",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2852,
+    "Name": "Läufelfingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2853,
+    "Name": "Maisprach",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2854,
+    "Name": "Nusshof",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2855,
+    "Name": "Oltingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2856,
+    "Name": "Ormalingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2857,
+    "Name": "Rickenbach (BL)",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2858,
+    "Name": "Rothenfluh",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2859,
+    "Name": "Rümlingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2860,
+    "Name": "Rünenberg",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2861,
+    "Name": "Sissach",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2862,
+    "Name": "Tecknau",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2863,
+    "Name": "Tenniken",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2864,
+    "Name": "Thürnen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2865,
+    "Name": "Wenslingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2866,
+    "Name": "Wintersingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2867,
+    "Name": "Wittinsburg",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2868,
+    "Name": "Zeglingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2869,
+    "Name": "Zunzgen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2881,
+    "Name": "Arboldswil",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2882,
+    "Name": "Bennwil",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2883,
+    "Name": "Bretzwil",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2884,
+    "Name": "Diegten",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2885,
+    "Name": "Eptingen",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2886,
+    "Name": "Hölstein",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2887,
+    "Name": "Lampenberg",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2888,
+    "Name": "Langenbruck",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2889,
+    "Name": "Lauwil",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2890,
+    "Name": "Liedertswil",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2891,
+    "Name": "Niederdorf",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2892,
+    "Name": "Oberdorf (BL)",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2893,
+    "Name": "Reigoldswil",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2894,
+    "Name": "Titterten",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2895,
+    "Name": "Waldenburg",
+    "Canton": "BL"
+  },
+  {
+    "BfsNumber": 2901,
+    "Name": "Gächlingen",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2903,
+    "Name": "Löhningen",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2904,
+    "Name": "Neunkirch",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2914,
+    "Name": "Büttenhardt",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2915,
+    "Name": "Dörflingen",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2917,
+    "Name": "Lohn (SH)",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2919,
+    "Name": "Stetten (SH)",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2920,
+    "Name": "Thayngen",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2931,
+    "Name": "Bargen (SH)",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2932,
+    "Name": "Beringen",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2933,
+    "Name": "Buchberg",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2936,
+    "Name": "Merishausen",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2937,
+    "Name": "Neuhausen am Rheinfall",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2938,
+    "Name": "Rüdlingen",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2939,
+    "Name": "Schaffhausen",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2951,
+    "Name": "Beggingen",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2952,
+    "Name": "Schleitheim",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2953,
+    "Name": "Siblingen",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2961,
+    "Name": "Buch (SH)",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2962,
+    "Name": "Hemishofen",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2963,
+    "Name": "Ramsen",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2964,
+    "Name": "Stein am Rhein",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2971,
+    "Name": "Hallau",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2972,
+    "Name": "Oberhallau",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2973,
+    "Name": "Trasadingen",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 2974,
+    "Name": "Wilchingen",
+    "Canton": "SH"
+  },
+  {
+    "BfsNumber": 3001,
+    "Name": "Herisau",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3002,
+    "Name": "Hundwil",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3003,
+    "Name": "Schönengrund",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3004,
+    "Name": "Schwellbrunn",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3005,
+    "Name": "Stein (AR)",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3006,
+    "Name": "Urnäsch",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3007,
+    "Name": "Waldstatt",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3021,
+    "Name": "Bühler",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3022,
+    "Name": "Gais",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3023,
+    "Name": "Speicher",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3024,
+    "Name": "Teufen (AR)",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3025,
+    "Name": "Trogen",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3031,
+    "Name": "Grub (AR)",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3032,
+    "Name": "Heiden",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3033,
+    "Name": "Lutzenberg",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3034,
+    "Name": "Rehetobel",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3035,
+    "Name": "Reute (AR)",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3036,
+    "Name": "Wald (AR)",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3037,
+    "Name": "Walzenhausen",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3038,
+    "Name": "Wolfhalden",
+    "Canton": "AR"
+  },
+  {
+    "BfsNumber": 3101,
+    "Name": "Appenzell",
+    "Canton": "AI"
+  },
+  {
+    "BfsNumber": 3102,
+    "Name": "Gonten",
+    "Canton": "AI"
+  },
+  {
+    "BfsNumber": 3103,
+    "Name": "Rüte",
+    "Canton": "AI"
+  },
+  {
+    "BfsNumber": 3104,
+    "Name": "Schlatt-Haslen",
+    "Canton": "AI"
+  },
+  {
+    "BfsNumber": 3105,
+    "Name": "Schwende",
+    "Canton": "AI"
+  },
+  {
+    "BfsNumber": 3111,
+    "Name": "Oberegg",
+    "Canton": "AI"
+  },
+  {
+    "BfsNumber": 3201,
+    "Name": "Häggenschwil",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3202,
+    "Name": "Muolen",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3203,
+    "Name": "St. Gallen",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3204,
+    "Name": "Wittenbach",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3211,
+    "Name": "Berg (SG)",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3212,
+    "Name": "Eggersriet",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3213,
+    "Name": "Goldach",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3214,
+    "Name": "Mörschwil",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3215,
+    "Name": "Rorschach",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3216,
+    "Name": "Rorschacherberg",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3217,
+    "Name": "Steinach",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3218,
+    "Name": "Tübach",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3219,
+    "Name": "Untereggen",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3231,
+    "Name": "Au (SG)",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3232,
+    "Name": "Balgach",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3233,
+    "Name": "Berneck",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3234,
+    "Name": "Diepoldsau",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3235,
+    "Name": "Rheineck",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3236,
+    "Name": "St. Margrethen",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3237,
+    "Name": "Thal",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3238,
+    "Name": "Widnau",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3251,
+    "Name": "Altstätten",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3252,
+    "Name": "Eichberg",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3253,
+    "Name": "Marbach (SG)",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3254,
+    "Name": "Oberriet (SG)",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3255,
+    "Name": "Rebstein",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3256,
+    "Name": "Rüthi (SG)",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3271,
+    "Name": "Buchs (SG)",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3272,
+    "Name": "Gams",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3273,
+    "Name": "Grabs",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3274,
+    "Name": "Sennwald",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3275,
+    "Name": "Sevelen",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3276,
+    "Name": "Wartau",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3291,
+    "Name": "Bad Ragaz",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3292,
+    "Name": "Flums",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3293,
+    "Name": "Mels",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3294,
+    "Name": "Pfäfers",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3295,
+    "Name": "Quarten",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3296,
+    "Name": "Sargans",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3297,
+    "Name": "Vilters-Wangs",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3298,
+    "Name": "Walenstadt",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3311,
+    "Name": "Amden",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3312,
+    "Name": "Benken (SG)",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3313,
+    "Name": "Kaltbrunn",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3315,
+    "Name": "Schänis",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3316,
+    "Name": "Weesen",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3338,
+    "Name": "Schmerikon",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3339,
+    "Name": "Uznach",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3340,
+    "Name": "Rapperswil-Jona",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3341,
+    "Name": "Gommiswald",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3342,
+    "Name": "Eschenbach (SG)",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3352,
+    "Name": "Ebnat-Kappel",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3359,
+    "Name": "Wildhaus-Alt St. Johann",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3360,
+    "Name": "Nesslau",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3372,
+    "Name": "Hemberg",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3374,
+    "Name": "Lichtensteig",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3375,
+    "Name": "Oberhelfenschwil",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3378,
+    "Name": "Neckertal",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3379,
+    "Name": "Wattwil",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3392,
+    "Name": "Kirchberg (SG)",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3393,
+    "Name": "Lütisburg",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3394,
+    "Name": "Mosnang",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3395,
+    "Name": "Bütschwil-Ganterschwil",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3401,
+    "Name": "Degersheim",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3402,
+    "Name": "Flawil",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3405,
+    "Name": "Jonschwil",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3407,
+    "Name": "Oberuzwil",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3408,
+    "Name": "Uzwil",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3422,
+    "Name": "Niederbüren",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3423,
+    "Name": "Niederhelfenschwil",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3424,
+    "Name": "Oberbüren",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3426,
+    "Name": "Zuzwil (SG)",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3427,
+    "Name": "Wil (SG)",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3441,
+    "Name": "Andwil (SG)",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3442,
+    "Name": "Gaiserwald",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3443,
+    "Name": "Gossau (SG)",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3444,
+    "Name": "Waldkirch",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 3506,
+    "Name": "Vaz/Obervaz",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3513,
+    "Name": "Lantsch/Lenz",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3514,
+    "Name": "Schmitten (GR)",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3542,
+    "Name": "Albula/Alvra",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3543,
+    "Name": "Surses",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3544,
+    "Name": "Bergün Filisur",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3551,
+    "Name": "Brusio",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3561,
+    "Name": "Poschiavo",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3572,
+    "Name": "Falera",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3575,
+    "Name": "Laax",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3581,
+    "Name": "Sagogn",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3582,
+    "Name": "Schluein",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3603,
+    "Name": "Vals",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3618,
+    "Name": "Lumnezia",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3619,
+    "Name": "Ilanz/Glion",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3633,
+    "Name": "Fürstenau",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3637,
+    "Name": "Rothenbrunnen",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3638,
+    "Name": "Scharans",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3640,
+    "Name": "Sils im Domleschg",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3661,
+    "Name": "Cazis",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3662,
+    "Name": "Flerden",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3663,
+    "Name": "Masein",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3668,
+    "Name": "Thusis",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3669,
+    "Name": "Tschappina",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3670,
+    "Name": "Urmein",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3672,
+    "Name": "Safiental",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3673,
+    "Name": "Domleschg",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3681,
+    "Name": "Avers",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3695,
+    "Name": "Sufers",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3701,
+    "Name": "Andeer",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3703,
+    "Name": "Casti-Wergenstein",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3705,
+    "Name": "Donat",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3707,
+    "Name": "Lohn (GR)",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3708,
+    "Name": "Mathon",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3711,
+    "Name": "Rongellen",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3712,
+    "Name": "Zillis-Reischen",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3713,
+    "Name": "Ferrera",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3714,
+    "Name": "Rheinwald",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3721,
+    "Name": "Bonaduz",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3722,
+    "Name": "Domat/Ems",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3723,
+    "Name": "Rhäzüns",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3731,
+    "Name": "Felsberg",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3732,
+    "Name": "Flims",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3733,
+    "Name": "Tamins",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3734,
+    "Name": "Trin",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3746,
+    "Name": "Zernez",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3752,
+    "Name": "Samnaun",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3762,
+    "Name": "Scuol",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3764,
+    "Name": "Valsot",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3781,
+    "Name": "Bever",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3782,
+    "Name": "Celerina/Schlarigna",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3783,
+    "Name": "Madulain",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3784,
+    "Name": "Pontresina",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3785,
+    "Name": "La Punt-Chamues-ch",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3786,
+    "Name": "Samedan",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3787,
+    "Name": "St. Moritz",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3788,
+    "Name": "S-chanf",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3789,
+    "Name": "Sils im Engadin/Segl",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3790,
+    "Name": "Silvaplana",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3791,
+    "Name": "Zuoz",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3792,
+    "Name": "Bregaglia",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3804,
+    "Name": "Buseno",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3805,
+    "Name": "Castaneda",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3808,
+    "Name": "Rossa",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3810,
+    "Name": "Santa Maria in Calanca",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3821,
+    "Name": "Lostallo",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3822,
+    "Name": "Mesocco",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3823,
+    "Name": "Soazza",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3831,
+    "Name": "Cama",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3832,
+    "Name": "Grono",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3834,
+    "Name": "Roveredo (GR)",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3835,
+    "Name": "San Vittore",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3837,
+    "Name": "Calanca",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3847,
+    "Name": "Val Müstair",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3851,
+    "Name": "Davos",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3861,
+    "Name": "Fideris",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3862,
+    "Name": "Furna",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3863,
+    "Name": "Jenaz",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3871,
+    "Name": "Klosters-Serneus",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3881,
+    "Name": "Conters im Prättigau",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3882,
+    "Name": "Küblis",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3891,
+    "Name": "Luzein",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3901,
+    "Name": "Chur",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3911,
+    "Name": "Churwalden",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3921,
+    "Name": "Arosa",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3926,
+    "Name": "Maladers",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3932,
+    "Name": "Tschiertschen-Praden",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3941,
+    "Name": "Haldenstein",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3945,
+    "Name": "Trimmis",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3946,
+    "Name": "Untervaz",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3947,
+    "Name": "Zizers",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3951,
+    "Name": "Fläsch",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3952,
+    "Name": "Jenins",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3953,
+    "Name": "Maienfeld",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3954,
+    "Name": "Malans",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3955,
+    "Name": "Landquart",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3961,
+    "Name": "Grüsch",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3962,
+    "Name": "Schiers",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3972,
+    "Name": "Seewis im Prättigau",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3981,
+    "Name": "Breil/Brigels",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3982,
+    "Name": "Disentis/Mustér",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3983,
+    "Name": "Medel (Lucmagn)",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3985,
+    "Name": "Sumvitg",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3986,
+    "Name": "Tujetsch",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3987,
+    "Name": "Trun",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 3988,
+    "Name": "Obersaxen Mundaun",
+    "Canton": "GR"
+  },
+  {
+    "BfsNumber": 4001,
+    "Name": "Aarau",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4002,
+    "Name": "Biberstein",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4003,
+    "Name": "Buchs (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4004,
+    "Name": "Densbüren",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4005,
+    "Name": "Erlinsbach (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4006,
+    "Name": "Gränichen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4007,
+    "Name": "Hirschthal",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4008,
+    "Name": "Küttigen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4009,
+    "Name": "Muhen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4010,
+    "Name": "Oberentfelden",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4012,
+    "Name": "Suhr",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4013,
+    "Name": "Unterentfelden",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4021,
+    "Name": "Baden",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4022,
+    "Name": "Bellikon",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4023,
+    "Name": "Bergdietikon",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4024,
+    "Name": "Birmenstorf (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4026,
+    "Name": "Ennetbaden",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4027,
+    "Name": "Fislisbach",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4028,
+    "Name": "Freienwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4029,
+    "Name": "Gebenstorf",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4030,
+    "Name": "Killwangen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4031,
+    "Name": "Künten",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4032,
+    "Name": "Mägenwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4033,
+    "Name": "Mellingen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4034,
+    "Name": "Neuenhof",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4035,
+    "Name": "Niederrohrdorf",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4037,
+    "Name": "Oberrohrdorf",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4038,
+    "Name": "Obersiggenthal",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4039,
+    "Name": "Remetschwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4040,
+    "Name": "Spreitenbach",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4041,
+    "Name": "Stetten (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4042,
+    "Name": "Turgi",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4044,
+    "Name": "Untersiggenthal",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4045,
+    "Name": "Wettingen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4046,
+    "Name": "Wohlenschwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4047,
+    "Name": "Würenlingen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4048,
+    "Name": "Würenlos",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4049,
+    "Name": "Ehrendingen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4061,
+    "Name": "Arni (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4062,
+    "Name": "Berikon",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4063,
+    "Name": "Bremgarten (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4064,
+    "Name": "Büttikon",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4065,
+    "Name": "Dottikon",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4066,
+    "Name": "Eggenwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4067,
+    "Name": "Fischbach-Göslikon",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4068,
+    "Name": "Hägglingen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4071,
+    "Name": "Jonen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4072,
+    "Name": "Niederwil (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4073,
+    "Name": "Oberlunkhofen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4074,
+    "Name": "Oberwil-Lieli",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4075,
+    "Name": "Rudolfstetten-Friedlisberg",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4076,
+    "Name": "Sarmenstorf",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4077,
+    "Name": "Tägerig",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4078,
+    "Name": "Uezwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4079,
+    "Name": "Unterlunkhofen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4080,
+    "Name": "Villmergen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4081,
+    "Name": "Widen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4082,
+    "Name": "Wohlen (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4083,
+    "Name": "Zufikon",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4084,
+    "Name": "Islisberg",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4091,
+    "Name": "Auenstein",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4092,
+    "Name": "Birr",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4093,
+    "Name": "Birrhard",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4094,
+    "Name": "Bözen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4095,
+    "Name": "Brugg",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4096,
+    "Name": "Effingen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4097,
+    "Name": "Elfingen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4099,
+    "Name": "Habsburg",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4100,
+    "Name": "Hausen (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4104,
+    "Name": "Lupfig",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4105,
+    "Name": "Mandach",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4106,
+    "Name": "Mönthal",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4107,
+    "Name": "Mülligen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4110,
+    "Name": "Remigen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4111,
+    "Name": "Riniken",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4112,
+    "Name": "Rüfenach",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4114,
+    "Name": "Schinznach-Bad",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4117,
+    "Name": "Thalheim (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4120,
+    "Name": "Veltheim (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4121,
+    "Name": "Villigen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4122,
+    "Name": "Villnachern",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4123,
+    "Name": "Windisch",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4124,
+    "Name": "Bözberg",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4125,
+    "Name": "Schinznach",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4131,
+    "Name": "Beinwil am See",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4132,
+    "Name": "Birrwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4133,
+    "Name": "Burg (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4134,
+    "Name": "Dürrenäsch",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4135,
+    "Name": "Gontenschwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4136,
+    "Name": "Holziken",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4137,
+    "Name": "Leimbach (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4138,
+    "Name": "Leutwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4139,
+    "Name": "Menziken",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4140,
+    "Name": "Oberkulm",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4141,
+    "Name": "Reinach (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4142,
+    "Name": "Schlossrued",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4143,
+    "Name": "Schmiedrued",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4144,
+    "Name": "Schöftland",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4145,
+    "Name": "Teufenthal (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4146,
+    "Name": "Unterkulm",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4147,
+    "Name": "Zetzwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4161,
+    "Name": "Eiken",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4163,
+    "Name": "Frick",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4164,
+    "Name": "Gansingen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4165,
+    "Name": "Gipf-Oberfrick",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4166,
+    "Name": "Herznach",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4167,
+    "Name": "Hornussen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4169,
+    "Name": "Kaisten",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4170,
+    "Name": "Laufenburg",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4172,
+    "Name": "Münchwilen (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4173,
+    "Name": "Oberhof",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4175,
+    "Name": "Oeschgen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4176,
+    "Name": "Schwaderloch",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4177,
+    "Name": "Sisseln",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4179,
+    "Name": "Ueken",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4181,
+    "Name": "Wittnau",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4182,
+    "Name": "Wölflinswil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4183,
+    "Name": "Zeihen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4184,
+    "Name": "Mettauertal",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4191,
+    "Name": "Ammerswil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4192,
+    "Name": "Boniswil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4193,
+    "Name": "Brunegg",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4194,
+    "Name": "Dintikon",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4195,
+    "Name": "Egliswil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4196,
+    "Name": "Fahrwangen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4197,
+    "Name": "Hallwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4198,
+    "Name": "Hendschiken",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4199,
+    "Name": "Holderbank (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4200,
+    "Name": "Hunzenschwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4201,
+    "Name": "Lenzburg",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4202,
+    "Name": "Meisterschwanden",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4203,
+    "Name": "Möriken-Wildegg",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4204,
+    "Name": "Niederlenz",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4205,
+    "Name": "Othmarsingen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4206,
+    "Name": "Rupperswil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4207,
+    "Name": "Schafisheim",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4208,
+    "Name": "Seengen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4209,
+    "Name": "Seon",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4210,
+    "Name": "Staufen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4221,
+    "Name": "Abtwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4222,
+    "Name": "Aristau",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4223,
+    "Name": "Auw",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4224,
+    "Name": "Beinwil (Freiamt)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4226,
+    "Name": "Besenbüren",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4227,
+    "Name": "Bettwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4228,
+    "Name": "Boswil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4229,
+    "Name": "Bünzen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4230,
+    "Name": "Buttwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4231,
+    "Name": "Dietwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4232,
+    "Name": "Geltwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4233,
+    "Name": "Kallern",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4234,
+    "Name": "Merenschwand",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4235,
+    "Name": "Mühlau",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4236,
+    "Name": "Muri (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4237,
+    "Name": "Oberrüti",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4238,
+    "Name": "Rottenschwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4239,
+    "Name": "Sins",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4240,
+    "Name": "Waltenschwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4251,
+    "Name": "Hellikon",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4252,
+    "Name": "Kaiseraugst",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4253,
+    "Name": "Magden",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4254,
+    "Name": "Möhlin",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4255,
+    "Name": "Mumpf",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4256,
+    "Name": "Obermumpf",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4257,
+    "Name": "Olsberg",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4258,
+    "Name": "Rheinfelden",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4259,
+    "Name": "Schupfart",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4260,
+    "Name": "Stein (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4261,
+    "Name": "Wallbach",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4262,
+    "Name": "Wegenstetten",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4263,
+    "Name": "Zeiningen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4264,
+    "Name": "Zuzgen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4271,
+    "Name": "Aarburg",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4273,
+    "Name": "Bottenwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4274,
+    "Name": "Brittnau",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4275,
+    "Name": "Kirchleerau",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4276,
+    "Name": "Kölliken",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4277,
+    "Name": "Moosleerau",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4279,
+    "Name": "Murgenthal",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4280,
+    "Name": "Oftringen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4281,
+    "Name": "Reitnau",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4282,
+    "Name": "Rothrist",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4283,
+    "Name": "Safenwil",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4284,
+    "Name": "Staffelbach",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4285,
+    "Name": "Strengelbach",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4286,
+    "Name": "Uerkheim",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4287,
+    "Name": "Vordemwald",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4288,
+    "Name": "Wiliberg",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4289,
+    "Name": "Zofingen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4301,
+    "Name": "Baldingen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4302,
+    "Name": "Böbikon",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4303,
+    "Name": "Böttstein",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4304,
+    "Name": "Döttingen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4305,
+    "Name": "Endingen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4306,
+    "Name": "Fisibach",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4307,
+    "Name": "Full-Reuenthal",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4308,
+    "Name": "Kaiserstuhl",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4309,
+    "Name": "Klingnau",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4310,
+    "Name": "Koblenz",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4311,
+    "Name": "Leibstadt",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4312,
+    "Name": "Lengnau (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4313,
+    "Name": "Leuggern",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4314,
+    "Name": "Mellikon",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4315,
+    "Name": "Rekingen (AG)",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4316,
+    "Name": "Rietheim",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4317,
+    "Name": "Rümikon",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4318,
+    "Name": "Schneisingen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4319,
+    "Name": "Siglistorf",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4320,
+    "Name": "Tegerfelden",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4322,
+    "Name": "Wislikofen",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4323,
+    "Name": "Bad Zurzach",
+    "Canton": "AG"
+  },
+  {
+    "BfsNumber": 4401,
+    "Name": "Arbon",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4406,
+    "Name": "Dozwil",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4411,
+    "Name": "Egnach",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4416,
+    "Name": "Hefenhofen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4421,
+    "Name": "Horn",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4426,
+    "Name": "Kesswil",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4431,
+    "Name": "Roggwil (TG)",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4436,
+    "Name": "Romanshorn",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4441,
+    "Name": "Salmsach",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4446,
+    "Name": "Sommeri",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4451,
+    "Name": "Uttwil",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4461,
+    "Name": "Amriswil",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4471,
+    "Name": "Bischofszell",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4476,
+    "Name": "Erlen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4486,
+    "Name": "Hauptwil-Gottshaus",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4495,
+    "Name": "Hohentannen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4501,
+    "Name": "Kradolf-Schönenberg",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4506,
+    "Name": "Sulgen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4511,
+    "Name": "Zihlschlacht-Sitterdorf",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4536,
+    "Name": "Basadingen-Schlattingen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4545,
+    "Name": "Diessenhofen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4546,
+    "Name": "Schlatt (TG)",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4551,
+    "Name": "Aadorf",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4561,
+    "Name": "Felben-Wellhausen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4566,
+    "Name": "Frauenfeld",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4571,
+    "Name": "Gachnang",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4590,
+    "Name": "Hüttlingen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4591,
+    "Name": "Matzingen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4601,
+    "Name": "Neunforn",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4606,
+    "Name": "Stettfurt",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4611,
+    "Name": "Thundorf",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4616,
+    "Name": "Uesslingen-Buch",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4621,
+    "Name": "Warth-Weiningen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4641,
+    "Name": "Altnau",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4643,
+    "Name": "Bottighofen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4646,
+    "Name": "Ermatingen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4651,
+    "Name": "Gottlieben",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4656,
+    "Name": "Güttingen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4666,
+    "Name": "Kemmental",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4671,
+    "Name": "Kreuzlingen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4681,
+    "Name": "Langrickenbach",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4683,
+    "Name": "Lengwil",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4691,
+    "Name": "Münsterlingen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4696,
+    "Name": "Tägerwilen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4701,
+    "Name": "Wäldi",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4711,
+    "Name": "Affeltrangen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4716,
+    "Name": "Bettwiesen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4721,
+    "Name": "Bichelsee-Balterswil",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4723,
+    "Name": "Braunau",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4724,
+    "Name": "Eschlikon",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4726,
+    "Name": "Fischingen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4741,
+    "Name": "Lommis",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4746,
+    "Name": "Münchwilen (TG)",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4751,
+    "Name": "Rickenbach (TG)",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4756,
+    "Name": "Schönholzerswilen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4761,
+    "Name": "Sirnach",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4776,
+    "Name": "Tobel-Tägerschen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4781,
+    "Name": "Wängi",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4786,
+    "Name": "Wilen (TG)",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4791,
+    "Name": "Wuppenau",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4801,
+    "Name": "Berlingen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4806,
+    "Name": "Eschenz",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4811,
+    "Name": "Herdern",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4816,
+    "Name": "Homburg",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4821,
+    "Name": "Hüttwilen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4826,
+    "Name": "Mammern",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4831,
+    "Name": "Müllheim",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4841,
+    "Name": "Pfyn",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4846,
+    "Name": "Raperswilen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4851,
+    "Name": "Salenstein",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4864,
+    "Name": "Steckborn",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4871,
+    "Name": "Wagenhausen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4881,
+    "Name": "Amlikon-Bissegg",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4891,
+    "Name": "Berg (TG)",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4901,
+    "Name": "Birwinken",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4911,
+    "Name": "Bürglen (TG)",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4921,
+    "Name": "Bussnang",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4941,
+    "Name": "Märstetten",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4946,
+    "Name": "Weinfelden",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 4951,
+    "Name": "Wigoltingen",
+    "Canton": "TG"
+  },
+  {
+    "BfsNumber": 5001,
+    "Name": "Arbedo-Castione",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5002,
+    "Name": "Bellinzona",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5003,
+    "Name": "Cadenazzo",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5009,
+    "Name": "Isone",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5010,
+    "Name": "Lumino",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5017,
+    "Name": "Sant'Antonino",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5048,
+    "Name": "Acquarossa",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5049,
+    "Name": "Blenio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5050,
+    "Name": "Serravalle",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5061,
+    "Name": "Airolo",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5063,
+    "Name": "Bedretto",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5064,
+    "Name": "Bodio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5071,
+    "Name": "Dalpe",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5072,
+    "Name": "Faido",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5073,
+    "Name": "Giornico",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5076,
+    "Name": "Personico",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5077,
+    "Name": "Pollegio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5078,
+    "Name": "Prato (Leventina)",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5079,
+    "Name": "Quinto",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5091,
+    "Name": "Ascona",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5095,
+    "Name": "Brione (Verzasca)",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5096,
+    "Name": "Brione sopra Minusio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5097,
+    "Name": "Brissago",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5102,
+    "Name": "Corippo",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5105,
+    "Name": "Frasco",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5108,
+    "Name": "Gordola",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5112,
+    "Name": "Lavertezzo",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5113,
+    "Name": "Locarno",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5115,
+    "Name": "Losone",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5117,
+    "Name": "Mergoscia",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5118,
+    "Name": "Minusio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5120,
+    "Name": "Muralto",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5121,
+    "Name": "Orselina",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5125,
+    "Name": "Ronco sopra Ascona",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5129,
+    "Name": "Sonogno",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5131,
+    "Name": "Tenero-Contra",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5135,
+    "Name": "Vogorno",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5136,
+    "Name": "Onsernone",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5138,
+    "Name": "Cugnasco-Gerra",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5141,
+    "Name": "Agno",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5143,
+    "Name": "Aranno",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5144,
+    "Name": "Arogno",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5146,
+    "Name": "Astano",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5148,
+    "Name": "Bedano",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5149,
+    "Name": "Bedigliora",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5151,
+    "Name": "Bioggio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5154,
+    "Name": "Bissone",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5160,
+    "Name": "Brusino Arsizio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5161,
+    "Name": "Cademario",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5162,
+    "Name": "Cadempino",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5167,
+    "Name": "Canobbio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5171,
+    "Name": "Caslano",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5176,
+    "Name": "Comano",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5178,
+    "Name": "Croglio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5180,
+    "Name": "Cureglia",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5181,
+    "Name": "Curio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5186,
+    "Name": "Grancia",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5187,
+    "Name": "Gravesano",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5189,
+    "Name": "Lamone",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5192,
+    "Name": "Lugano",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5193,
+    "Name": "Magliaso",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5194,
+    "Name": "Manno",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5195,
+    "Name": "Maroggia",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5196,
+    "Name": "Massagno",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5197,
+    "Name": "Melano",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5198,
+    "Name": "Melide",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5199,
+    "Name": "Mezzovico-Vira",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5200,
+    "Name": "Miglieglia",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5202,
+    "Name": "Monteggio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5203,
+    "Name": "Morcote",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5205,
+    "Name": "Muzzano",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5206,
+    "Name": "Neggio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5207,
+    "Name": "Novaggio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5208,
+    "Name": "Origlio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5210,
+    "Name": "Paradiso",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5212,
+    "Name": "Ponte Capriasca",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5213,
+    "Name": "Ponte Tresa",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5214,
+    "Name": "Porza",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5216,
+    "Name": "Pura",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5219,
+    "Name": "Rovio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5221,
+    "Name": "Savosa",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5222,
+    "Name": "Sessa",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5225,
+    "Name": "Sorengo",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5226,
+    "Name": "Capriasca",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5227,
+    "Name": "Torricella-Taverne",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5230,
+    "Name": "Vernate",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5231,
+    "Name": "Vezia",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5233,
+    "Name": "Vico Morcote",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5236,
+    "Name": "Collina d'Oro",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5237,
+    "Name": "Alto Malcantone",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5238,
+    "Name": "Monteceneri",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5242,
+    "Name": "Balerna",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5249,
+    "Name": "Castel San Pietro",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5250,
+    "Name": "Chiasso",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5251,
+    "Name": "Coldrerio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5254,
+    "Name": "Mendrisio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5257,
+    "Name": "Morbio Inferiore",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5260,
+    "Name": "Novazzano",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5263,
+    "Name": "Riva San Vitale",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5266,
+    "Name": "Stabio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5268,
+    "Name": "Vacallo",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5269,
+    "Name": "Breggia",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5281,
+    "Name": "Biasca",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5287,
+    "Name": "Riviera",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5304,
+    "Name": "Bosco/Gurin",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5307,
+    "Name": "Campo (Vallemaggia)",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5309,
+    "Name": "Cerentino",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5310,
+    "Name": "Cevio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5315,
+    "Name": "Linescio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5317,
+    "Name": "Maggia",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5323,
+    "Name": "Lavizzara",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5324,
+    "Name": "Avegno Gordevio",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5396,
+    "Name": "Terre di Pedemonte",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5397,
+    "Name": "Centovalli",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5398,
+    "Name": "Gambarogno",
+    "Canton": "TI"
+  },
+  {
+    "BfsNumber": 5401,
+    "Name": "Aigle",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5402,
+    "Name": "Bex",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5403,
+    "Name": "Chessel",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5404,
+    "Name": "Corbeyrier",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5405,
+    "Name": "Gryon",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5406,
+    "Name": "Lavey-Morcles",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5407,
+    "Name": "Leysin",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5408,
+    "Name": "Noville",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5409,
+    "Name": "Ollon",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5410,
+    "Name": "Ormont-Dessous",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5411,
+    "Name": "Ormont-Dessus",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5412,
+    "Name": "Rennaz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5413,
+    "Name": "Roche (VD)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5414,
+    "Name": "Villeneuve (VD)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5415,
+    "Name": "Yvorne",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5421,
+    "Name": "Apples",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5422,
+    "Name": "Aubonne",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5423,
+    "Name": "Ballens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5424,
+    "Name": "Berolle",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5425,
+    "Name": "Bière",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5426,
+    "Name": "Bougy-Villars",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5427,
+    "Name": "Féchy",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5428,
+    "Name": "Gimel",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5429,
+    "Name": "Longirod",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5430,
+    "Name": "Marchissy",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5431,
+    "Name": "Mollens (VD)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5432,
+    "Name": "Montherod",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5434,
+    "Name": "Saint-George",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5435,
+    "Name": "Saint-Livres",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5436,
+    "Name": "Saint-Oyens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5437,
+    "Name": "Saubraz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5451,
+    "Name": "Avenches",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5456,
+    "Name": "Cudrefin",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5458,
+    "Name": "Faoug",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5464,
+    "Name": "Vully-les-Lacs",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5471,
+    "Name": "Bettens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5472,
+    "Name": "Bournens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5473,
+    "Name": "Boussens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5474,
+    "Name": "La Chaux (Cossonay)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5475,
+    "Name": "Chavannes-le-Veyron",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5476,
+    "Name": "Chevilly",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5477,
+    "Name": "Cossonay",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5478,
+    "Name": "Cottens (VD)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5479,
+    "Name": "Cuarnens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5480,
+    "Name": "Daillens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5481,
+    "Name": "Dizy",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5482,
+    "Name": "Eclépens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5483,
+    "Name": "Ferreyres",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5484,
+    "Name": "Gollion",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5485,
+    "Name": "Grancy",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5486,
+    "Name": "L'Isle",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5487,
+    "Name": "Lussery-Villars",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5488,
+    "Name": "Mauraz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5489,
+    "Name": "Mex (VD)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5490,
+    "Name": "Moiry",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5491,
+    "Name": "Mont-la-Ville",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5492,
+    "Name": "Montricher",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5493,
+    "Name": "Orny",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5494,
+    "Name": "Pampigny",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5495,
+    "Name": "Penthalaz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5496,
+    "Name": "Penthaz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5497,
+    "Name": "Pompaples",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5498,
+    "Name": "La Sarraz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5499,
+    "Name": "Senarclens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5500,
+    "Name": "Sévery",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5501,
+    "Name": "Sullens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5503,
+    "Name": "Vufflens-la-Ville",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5511,
+    "Name": "Assens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5512,
+    "Name": "Bercher",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5513,
+    "Name": "Bioley-Orjulaz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5514,
+    "Name": "Bottens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5515,
+    "Name": "Bretigny-sur-Morrens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5516,
+    "Name": "Cugy (VD)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5518,
+    "Name": "Echallens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5520,
+    "Name": "Essertines-sur-Yverdon",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5521,
+    "Name": "Etagnières",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5522,
+    "Name": "Fey",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5523,
+    "Name": "Froideville",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5527,
+    "Name": "Morrens (VD)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5529,
+    "Name": "Oulens-sous-Echallens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5530,
+    "Name": "Pailly",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5531,
+    "Name": "Penthéréaz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5533,
+    "Name": "Poliez-Pittet",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5534,
+    "Name": "Rueyres",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5535,
+    "Name": "Saint-Barthélemy (VD)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5537,
+    "Name": "Villars-le-Terroir",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5539,
+    "Name": "Vuarrens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5540,
+    "Name": "Montilliez",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5541,
+    "Name": "Goumoëns",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5551,
+    "Name": "Bonvillars",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5552,
+    "Name": "Bullet",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5553,
+    "Name": "Champagne",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5554,
+    "Name": "Concise",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5555,
+    "Name": "Corcelles-près-Concise",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5556,
+    "Name": "Fiez",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5557,
+    "Name": "Fontaines-sur-Grandson",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5559,
+    "Name": "Giez",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5560,
+    "Name": "Grandevent",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5561,
+    "Name": "Grandson",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5562,
+    "Name": "Mauborget",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5563,
+    "Name": "Mutrux",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5564,
+    "Name": "Novalles",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5565,
+    "Name": "Onnens (VD)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5566,
+    "Name": "Provence",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5568,
+    "Name": "Sainte-Croix",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5571,
+    "Name": "Tévenon",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5581,
+    "Name": "Belmont-sur-Lausanne",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5582,
+    "Name": "Cheseaux-sur-Lausanne",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5583,
+    "Name": "Crissier",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5584,
+    "Name": "Epalinges",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5585,
+    "Name": "Jouxtens-Mézery",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5586,
+    "Name": "Lausanne",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5587,
+    "Name": "Le Mont-sur-Lausanne",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5588,
+    "Name": "Paudex",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5589,
+    "Name": "Prilly",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5590,
+    "Name": "Pully",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5591,
+    "Name": "Renens (VD)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5592,
+    "Name": "Romanel-sur-Lausanne",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5601,
+    "Name": "Chexbres",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5604,
+    "Name": "Forel (Lavaux)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5606,
+    "Name": "Lutry",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5607,
+    "Name": "Puidoux",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5609,
+    "Name": "Rivaz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5610,
+    "Name": "Saint-Saphorin (Lavaux)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5611,
+    "Name": "Savigny",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5613,
+    "Name": "Bourg-en-Lavaux",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5621,
+    "Name": "Aclens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5622,
+    "Name": "Bremblens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5623,
+    "Name": "Buchillon",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5624,
+    "Name": "Bussigny",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5625,
+    "Name": "Bussy-Chardonney",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5627,
+    "Name": "Chavannes-près-Renens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5628,
+    "Name": "Chigny",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5629,
+    "Name": "Clarmont",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5631,
+    "Name": "Denens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5632,
+    "Name": "Denges",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5633,
+    "Name": "Echandens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5634,
+    "Name": "Echichens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5635,
+    "Name": "Ecublens (VD)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5636,
+    "Name": "Etoy",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5637,
+    "Name": "Lavigny",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5638,
+    "Name": "Lonay",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5639,
+    "Name": "Lully (VD)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5640,
+    "Name": "Lussy-sur-Morges",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5642,
+    "Name": "Morges",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5643,
+    "Name": "Préverenges",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5644,
+    "Name": "Reverolle",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5645,
+    "Name": "Romanel-sur-Morges",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5646,
+    "Name": "Saint-Prex",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5648,
+    "Name": "Saint-Sulpice (VD)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5649,
+    "Name": "Tolochenaz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5650,
+    "Name": "Vaux-sur-Morges",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5651,
+    "Name": "Villars-Sainte-Croix",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5652,
+    "Name": "Villars-sous-Yens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5653,
+    "Name": "Vufflens-le-Château",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5654,
+    "Name": "Vullierens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5655,
+    "Name": "Yens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5661,
+    "Name": "Boulens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5663,
+    "Name": "Bussy-sur-Moudon",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5665,
+    "Name": "Chavannes-sur-Moudon",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5669,
+    "Name": "Curtilles",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5671,
+    "Name": "Dompierre (VD)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5673,
+    "Name": "Hermenches",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5674,
+    "Name": "Lovatens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5675,
+    "Name": "Lucens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5678,
+    "Name": "Moudon",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5680,
+    "Name": "Ogens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5683,
+    "Name": "Prévonloup",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5684,
+    "Name": "Rossenges",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5688,
+    "Name": "Syens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5690,
+    "Name": "Villars-le-Comte",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5692,
+    "Name": "Vucherens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5693,
+    "Name": "Montanaire",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5701,
+    "Name": "Arnex-sur-Nyon",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5702,
+    "Name": "Arzier-Le Muids",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5703,
+    "Name": "Bassins",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5704,
+    "Name": "Begnins",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5705,
+    "Name": "Bogis-Bossey",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5706,
+    "Name": "Borex",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5707,
+    "Name": "Chavannes-de-Bogis",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5708,
+    "Name": "Chavannes-des-Bois",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5709,
+    "Name": "Chéserex",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5710,
+    "Name": "Coinsins",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5711,
+    "Name": "Commugny",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5712,
+    "Name": "Coppet",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5713,
+    "Name": "Crans-près-Céligny",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5714,
+    "Name": "Crassier",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5715,
+    "Name": "Duillier",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5716,
+    "Name": "Eysins",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5717,
+    "Name": "Founex",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5718,
+    "Name": "Genolier",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5719,
+    "Name": "Gingins",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5720,
+    "Name": "Givrins",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5721,
+    "Name": "Gland",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5722,
+    "Name": "Grens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5723,
+    "Name": "Mies",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5724,
+    "Name": "Nyon",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5725,
+    "Name": "Prangins",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5726,
+    "Name": "La Rippe",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5727,
+    "Name": "Saint-Cergue",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5728,
+    "Name": "Signy-Avenex",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5729,
+    "Name": "Tannay",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5730,
+    "Name": "Trélex",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5731,
+    "Name": "Le Vaud",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5732,
+    "Name": "Vich",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5741,
+    "Name": "L'Abergement",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5742,
+    "Name": "Agiez",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5743,
+    "Name": "Arnex-sur-Orbe",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5744,
+    "Name": "Ballaigues",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5745,
+    "Name": "Baulmes",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5746,
+    "Name": "Bavois",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5747,
+    "Name": "Bofflens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5748,
+    "Name": "Bretonnières",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5749,
+    "Name": "Chavornay",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5750,
+    "Name": "Les Clées",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5752,
+    "Name": "Croy",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5754,
+    "Name": "Juriens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5755,
+    "Name": "Lignerolle",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5756,
+    "Name": "Montcherand",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5757,
+    "Name": "Orbe",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5758,
+    "Name": "La Praz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5759,
+    "Name": "Premier",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5760,
+    "Name": "Rances",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5761,
+    "Name": "Romainmôtier-Envy",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5762,
+    "Name": "Sergey",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5763,
+    "Name": "Valeyres-sous-Rances",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5764,
+    "Name": "Vallorbe",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5765,
+    "Name": "Vaulion",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5766,
+    "Name": "Vuiteboeuf",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5785,
+    "Name": "Corcelles-le-Jorat",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5788,
+    "Name": "Essertes",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5790,
+    "Name": "Maracon",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5792,
+    "Name": "Montpreveyres",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5798,
+    "Name": "Ropraz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5799,
+    "Name": "Servion",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5803,
+    "Name": "Vulliens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5804,
+    "Name": "Jorat-Menthue",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5805,
+    "Name": "Oron",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5806,
+    "Name": "Jorat-Mézières",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5812,
+    "Name": "Champtauroz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5813,
+    "Name": "Chevroux",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5816,
+    "Name": "Corcelles-près-Payerne",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5817,
+    "Name": "Grandcour",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5819,
+    "Name": "Henniez",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5821,
+    "Name": "Missy",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5822,
+    "Name": "Payerne",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5827,
+    "Name": "Trey",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5828,
+    "Name": "Treytorrens (Payerne)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5830,
+    "Name": "Villarzel",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5831,
+    "Name": "Valbroye",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5841,
+    "Name": "Château-d'Oex",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5842,
+    "Name": "Rossinière",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5843,
+    "Name": "Rougemont",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5851,
+    "Name": "Allaman",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5852,
+    "Name": "Bursinel",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5853,
+    "Name": "Bursins",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5854,
+    "Name": "Burtigny",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5855,
+    "Name": "Dully",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5856,
+    "Name": "Essertines-sur-Rolle",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5857,
+    "Name": "Gilly",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5858,
+    "Name": "Luins",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5859,
+    "Name": "Mont-sur-Rolle",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5860,
+    "Name": "Perroy",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5861,
+    "Name": "Rolle",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5862,
+    "Name": "Tartegnin",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5863,
+    "Name": "Vinzel",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5871,
+    "Name": "L'Abbaye",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5872,
+    "Name": "Le Chenit",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5873,
+    "Name": "Le Lieu",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5881,
+    "Name": "Blonay",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5882,
+    "Name": "Chardonne",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5883,
+    "Name": "Corseaux",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5884,
+    "Name": "Corsier-sur-Vevey",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5885,
+    "Name": "Jongny",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5886,
+    "Name": "Montreux",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5888,
+    "Name": "Saint-Légier-La Chiésaz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5889,
+    "Name": "La Tour-de-Peilz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5890,
+    "Name": "Vevey",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5891,
+    "Name": "Veytaux",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5902,
+    "Name": "Belmont-sur-Yverdon",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5903,
+    "Name": "Bioley-Magnoux",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5904,
+    "Name": "Chamblon",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5905,
+    "Name": "Champvent",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5907,
+    "Name": "Chavannes-le-Chêne",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5908,
+    "Name": "Chêne-Pâquier",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5909,
+    "Name": "Cheseaux-Noréaz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5910,
+    "Name": "Cronay",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5911,
+    "Name": "Cuarny",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5912,
+    "Name": "Démoret",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5913,
+    "Name": "Donneloye",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5914,
+    "Name": "Ependes (VD)",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5919,
+    "Name": "Mathod",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5921,
+    "Name": "Molondin",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5922,
+    "Name": "Montagny-près-Yverdon",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5923,
+    "Name": "Oppens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5924,
+    "Name": "Orges",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5925,
+    "Name": "Orzens",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5926,
+    "Name": "Pomy",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5928,
+    "Name": "Rovray",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5929,
+    "Name": "Suchy",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5930,
+    "Name": "Suscévaz",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5931,
+    "Name": "Treycovagnes",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5932,
+    "Name": "Ursins",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5933,
+    "Name": "Valeyres-sous-Montagny",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5934,
+    "Name": "Valeyres-sous-Ursins",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5935,
+    "Name": "Villars-Epeney",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5937,
+    "Name": "Vugelles-La Mothe",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5938,
+    "Name": "Yverdon-les-Bains",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 5939,
+    "Name": "Yvonand",
+    "Canton": "VD"
+  },
+  {
+    "BfsNumber": 6002,
+    "Name": "Brig-Glis",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6004,
+    "Name": "Eggerberg",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6007,
+    "Name": "Naters",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6008,
+    "Name": "Ried-Brig",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6009,
+    "Name": "Simplon",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6010,
+    "Name": "Termen",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6011,
+    "Name": "Zwischbergen",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6021,
+    "Name": "Ardon",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6022,
+    "Name": "Chamoson",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6023,
+    "Name": "Conthey",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6024,
+    "Name": "Nendaz",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6025,
+    "Name": "Vétroz",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6031,
+    "Name": "Bagnes",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6032,
+    "Name": "Bourg-Saint-Pierre",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6033,
+    "Name": "Liddes",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6034,
+    "Name": "Orsières",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6035,
+    "Name": "Sembrancher",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6036,
+    "Name": "Vollèges",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6052,
+    "Name": "Bellwald",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6054,
+    "Name": "Binn",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6056,
+    "Name": "Ernen",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6057,
+    "Name": "Fiesch",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6058,
+    "Name": "Fieschertal",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6061,
+    "Name": "Lax",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6076,
+    "Name": "Obergoms",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6077,
+    "Name": "Goms",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6082,
+    "Name": "Ayent",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6083,
+    "Name": "Evolène",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6084,
+    "Name": "Hérémence",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6087,
+    "Name": "Saint-Martin (VS)",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6089,
+    "Name": "Vex",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6090,
+    "Name": "Mont-Noble",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6101,
+    "Name": "Agarn",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6102,
+    "Name": "Albinen",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6104,
+    "Name": "Ergisch",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6109,
+    "Name": "Inden",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6110,
+    "Name": "Leuk",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6111,
+    "Name": "Leukerbad",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6112,
+    "Name": "Oberems",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6113,
+    "Name": "Salgesch",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6116,
+    "Name": "Varen",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6117,
+    "Name": "Guttet-Feschel",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6118,
+    "Name": "Gampel-Bratsch",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6119,
+    "Name": "Turtmann-Unterems",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6131,
+    "Name": "Bovernier",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6132,
+    "Name": "Charrat",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6133,
+    "Name": "Fully",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6134,
+    "Name": "Isérables",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6135,
+    "Name": "Leytron",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6136,
+    "Name": "Martigny",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6137,
+    "Name": "Martigny-Combe",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6139,
+    "Name": "Riddes",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6140,
+    "Name": "Saillon",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6141,
+    "Name": "Saxon",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6142,
+    "Name": "Trient",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6151,
+    "Name": "Champéry",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6152,
+    "Name": "Collombey-Muraz",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6153,
+    "Name": "Monthey",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6154,
+    "Name": "Port-Valais",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6155,
+    "Name": "Saint-Gingolph",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6156,
+    "Name": "Troistorrents",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6157,
+    "Name": "Val-d'Illiez",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6158,
+    "Name": "Vionnaz",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6159,
+    "Name": "Vouvry",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6172,
+    "Name": "Bister",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6173,
+    "Name": "Bitsch",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6177,
+    "Name": "Grengiols",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6181,
+    "Name": "Riederalp",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6191,
+    "Name": "Ausserberg",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6192,
+    "Name": "Blatten",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6193,
+    "Name": "Bürchen",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6194,
+    "Name": "Eischoll",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6195,
+    "Name": "Ferden",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6197,
+    "Name": "Kippel",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6198,
+    "Name": "Niedergesteln",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6199,
+    "Name": "Raron",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6201,
+    "Name": "Unterbäch",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6202,
+    "Name": "Wiler (Lötschen)",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6203,
+    "Name": "Mörel-Filet",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6204,
+    "Name": "Steg-Hohtenn",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6205,
+    "Name": "Bettmeralp",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6211,
+    "Name": "Collonges",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6212,
+    "Name": "Dorénaz",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6213,
+    "Name": "Evionnaz",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6214,
+    "Name": "Finhaut",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6215,
+    "Name": "Massongex",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6217,
+    "Name": "Saint-Maurice",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6218,
+    "Name": "Salvan",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6219,
+    "Name": "Vernayaz",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6220,
+    "Name": "Vérossaz",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6232,
+    "Name": "Chalais",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6235,
+    "Name": "Chippis",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6238,
+    "Name": "Grône",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6239,
+    "Name": "Icogne",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6240,
+    "Name": "Lens",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6241,
+    "Name": "Miège",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6246,
+    "Name": "Saint-Léonard",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6248,
+    "Name": "Sierre",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6249,
+    "Name": "Venthône",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6250,
+    "Name": "Veyras",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6252,
+    "Name": "Anniviers",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6253,
+    "Name": "Crans-Montana",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6261,
+    "Name": "Arbaz",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6263,
+    "Name": "Grimisuat",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6265,
+    "Name": "Savièse",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6266,
+    "Name": "Sion",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6267,
+    "Name": "Veysonnaz",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6281,
+    "Name": "Baltschieder",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6282,
+    "Name": "Eisten",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6283,
+    "Name": "Embd",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6285,
+    "Name": "Grächen",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6286,
+    "Name": "Lalden",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6287,
+    "Name": "Randa",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6288,
+    "Name": "Saas-Almagell",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6289,
+    "Name": "Saas-Balen",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6290,
+    "Name": "Saas-Fee",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6291,
+    "Name": "Saas-Grund",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6292,
+    "Name": "St. Niklaus",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6293,
+    "Name": "Stalden (VS)",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6294,
+    "Name": "Staldenried",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6295,
+    "Name": "Täsch",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6296,
+    "Name": "Törbel",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6297,
+    "Name": "Visp",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6298,
+    "Name": "Visperterminen",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6299,
+    "Name": "Zeneggen",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6300,
+    "Name": "Zermatt",
+    "Canton": "VS"
+  },
+  {
+    "BfsNumber": 6404,
+    "Name": "Boudry",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6407,
+    "Name": "Corcelles-Cormondrèche",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6408,
+    "Name": "Cortaillod",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6412,
+    "Name": "Peseux",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6413,
+    "Name": "Rochefort",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6416,
+    "Name": "Milvignes",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6417,
+    "Name": "La Grande Béroche",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6421,
+    "Name": "La Chaux-de-Fonds",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6422,
+    "Name": "Les Planchettes",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6423,
+    "Name": "La Sagne",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6431,
+    "Name": "Les Brenets",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6432,
+    "Name": "La Brévine",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6433,
+    "Name": "Brot-Plamboz",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6434,
+    "Name": "Le Cerneux-Péquignot",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6435,
+    "Name": "La Chaux-du-Milieu",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6436,
+    "Name": "Le Locle",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6437,
+    "Name": "Les Ponts-de-Martel",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6451,
+    "Name": "Cornaux",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6452,
+    "Name": "Cressier (NE)",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6453,
+    "Name": "Enges",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6454,
+    "Name": "Hauterive (NE)",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6455,
+    "Name": "Le Landeron",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6456,
+    "Name": "Lignières",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6458,
+    "Name": "Neuchâtel",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6459,
+    "Name": "Saint-Blaise",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6461,
+    "Name": "La Tène",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6485,
+    "Name": "Valangin",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6487,
+    "Name": "Val-de-Ruz",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6504,
+    "Name": "La Côte-aux-Fées",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6511,
+    "Name": "Les Verrières",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6512,
+    "Name": "Val-de-Travers",
+    "Canton": "NE"
+  },
+  {
+    "BfsNumber": 6601,
+    "Name": "Aire-la-Ville",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6602,
+    "Name": "Anières",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6603,
+    "Name": "Avully",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6604,
+    "Name": "Avusy",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6605,
+    "Name": "Bardonnex",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6606,
+    "Name": "Bellevue",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6607,
+    "Name": "Bernex",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6608,
+    "Name": "Carouge (GE)",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6609,
+    "Name": "Cartigny",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6610,
+    "Name": "Céligny",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6611,
+    "Name": "Chancy",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6612,
+    "Name": "Chêne-Bougeries",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6613,
+    "Name": "Chêne-Bourg",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6614,
+    "Name": "Choulex",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6615,
+    "Name": "Collex-Bossy",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6616,
+    "Name": "Collonge-Bellerive",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6617,
+    "Name": "Cologny",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6618,
+    "Name": "Confignon",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6619,
+    "Name": "Corsier (GE)",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6620,
+    "Name": "Dardagny",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6621,
+    "Name": "Genève",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6622,
+    "Name": "Genthod",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6623,
+    "Name": "Le Grand-Saconnex",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6624,
+    "Name": "Gy",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6625,
+    "Name": "Hermance",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6626,
+    "Name": "Jussy",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6627,
+    "Name": "Laconnex",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6628,
+    "Name": "Lancy",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6629,
+    "Name": "Meinier",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6630,
+    "Name": "Meyrin",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6631,
+    "Name": "Onex",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6632,
+    "Name": "Perly-Certoux",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6633,
+    "Name": "Plan-les-Ouates",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6634,
+    "Name": "Pregny-Chambésy",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6635,
+    "Name": "Presinge",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6636,
+    "Name": "Puplinge",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6637,
+    "Name": "Russin",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6638,
+    "Name": "Satigny",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6639,
+    "Name": "Soral",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6640,
+    "Name": "Thônex",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6641,
+    "Name": "Troinex",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6642,
+    "Name": "Vandoeuvres",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6643,
+    "Name": "Vernier",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6644,
+    "Name": "Versoix",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6645,
+    "Name": "Veyrier",
+    "Canton": "GE"
+  },
+  {
+    "BfsNumber": 6702,
+    "Name": "Boécourt",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6703,
+    "Name": "Bourrignon",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6704,
+    "Name": "Châtillon (JU)",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6706,
+    "Name": "Courchapoix",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6708,
+    "Name": "Courrendlin",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6709,
+    "Name": "Courroux",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6710,
+    "Name": "Courtételle",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6711,
+    "Name": "Delémont",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6712,
+    "Name": "Develier",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6713,
+    "Name": "Ederswiler",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6715,
+    "Name": "Mervelier",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6716,
+    "Name": "Mettembert",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6718,
+    "Name": "Movelier",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6719,
+    "Name": "Pleigne",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6721,
+    "Name": "Rossemaison",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6722,
+    "Name": "Saulcy",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6724,
+    "Name": "Soyhières",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6729,
+    "Name": "Haute-Sorne",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6730,
+    "Name": "Val Terbi",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6741,
+    "Name": "Le Bémont (JU)",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6742,
+    "Name": "Les Bois",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6743,
+    "Name": "Les Breuleux",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6744,
+    "Name": "La Chaux-des-Breuleux",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6745,
+    "Name": "Les Enfers",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6748,
+    "Name": "Les Genevez (JU)",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6750,
+    "Name": "Lajoux (JU)",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6751,
+    "Name": "Montfaucon",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6753,
+    "Name": "Muriaux",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6754,
+    "Name": "Le Noirmont",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6757,
+    "Name": "Saignelégier",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6758,
+    "Name": "Saint-Brais",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6759,
+    "Name": "Soubey",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6771,
+    "Name": "Alle",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6773,
+    "Name": "Beurnevésin",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6774,
+    "Name": "Boncourt",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6775,
+    "Name": "Bonfol",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6778,
+    "Name": "Bure",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6781,
+    "Name": "Coeuve",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6782,
+    "Name": "Cornol",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6783,
+    "Name": "Courchavon",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6784,
+    "Name": "Courgenay",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6785,
+    "Name": "Courtedoux",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6787,
+    "Name": "Damphreux",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6789,
+    "Name": "Fahy",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6790,
+    "Name": "Fontenais",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6792,
+    "Name": "Grandfontaine",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6793,
+    "Name": "Lugnez",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6800,
+    "Name": "Porrentruy",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6806,
+    "Name": "Vendlincourt",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6807,
+    "Name": "Basse-Allaine",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6808,
+    "Name": "Clos du Doubs",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6809,
+    "Name": "Haute-Ajoie",
+    "Canton": "JU"
+  },
+  {
+    "BfsNumber": 6810,
+    "Name": "La Baroche",
+    "Canton": "JU"
+  }
+]

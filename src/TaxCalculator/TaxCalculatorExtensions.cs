@@ -23,6 +23,8 @@ namespace TaxCalculator
             collection.AddTransient<IFullTaxCalculator, FullTaxCalculator>();
             collection.AddTransient<IFullCapitalBenefitTaxCalculator, FullCapitalBenefitTaxCalculator>();
 
+            collection.AddTransient<IMunicipalityConnector, MunicipalityConnector>();
+
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());

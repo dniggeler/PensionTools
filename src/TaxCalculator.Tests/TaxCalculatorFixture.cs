@@ -18,6 +18,8 @@ namespace TaxCalculator.Tests
 
         public T Calculator { get; }
 
+        public T Service { get; }
+
         public TaxCalculatorFixture()
         {
             var projectPath = Assembly.GetExecutingAssembly()
@@ -43,6 +45,8 @@ namespace TaxCalculator.Tests
             Provider = coll.BuildServiceProvider();
 
             Calculator = Provider.GetRequiredService<T>();
+
+            Service = Provider.GetRequiredService<T>();
         }
     }
 }
