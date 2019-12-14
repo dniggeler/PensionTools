@@ -1,0 +1,11 @@
+﻿[
+  {
+    "State": "IsRight",
+    "Right": {
+      "BfsNumber": 261,
+      "Name": "Zürich",
+      "Canton": "ZH"
+    },
+    "Left": null
+  }
+]

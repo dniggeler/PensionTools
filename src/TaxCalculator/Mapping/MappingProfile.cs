@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
+using Tax.Data.Abstractions.Models;
 
 namespace TaxCalculator.Mapping
 {
@@ -7,6 +9,8 @@ namespace TaxCalculator.Mapping
     {
         public MappingProfile()
         {
+            this.CreateMap<MunicipalityEntity, MunicipalityModel>();
+
             this.CreateMap<CapitalBenefitTaxPerson, TaxPerson>();
 
             this.CreateMap<CapitalBenefitTaxPerson, FederalTaxPerson>()

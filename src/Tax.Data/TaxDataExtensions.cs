@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Tax.Data.Abstractions;
 
-
 namespace Tax.Data
 {
     public static class TaxDataExtensions
@@ -17,6 +16,7 @@ namespace Tax.Data
             collection.AddDbContext<FederalTaxTariffDbContext>(opt => opt.UseSqlite(connectionString));
             collection.AddDbContext<TaxTariffDbContext>(opt => opt.UseSqlite(connectionString));
             collection.AddDbContext<TaxRateDbContext>(opt => opt.UseSqlite(connectionString));
+            collection.AddDbContext<MunicipalityDbContext>(opt => opt.UseSqlite(connectionString));
 
             collection.AddSingleton<Func<TaxTariffDbContext>>(provider =>
                 provider.GetRequiredService<TaxTariffDbContext>);
@@ -24,6 +24,9 @@ namespace Tax.Data
                 provider.GetRequiredService<TaxRateDbContext>);
             collection.AddSingleton<Func<FederalTaxTariffDbContext>>(provider =>
                 provider.GetRequiredService<FederalTaxTariffDbContext>);
+
+            collection.AddSingleton<Func<MunicipalityDbContext>>(provider =>
+                provider.GetRequiredService<MunicipalityDbContext>);
 
             collection.AddScoped<ITaxTariffData,TaxTariffData>();
         }

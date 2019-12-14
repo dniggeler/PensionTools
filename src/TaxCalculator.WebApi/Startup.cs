@@ -28,7 +28,9 @@ namespace TaxCalculator.WebApi
             services.AddHealthChecks()
                 .AddDbContextCheck<FederalTaxTariffDbContext>()
                 .AddDbContextCheck<TaxTariffDbContext>()
-                .AddDbContextCheck<TaxRateDbContext>();
+                .AddDbContextCheck<TaxRateDbContext>()
+                .AddDbContextCheck<MunicipalityDbContext>();
+
             services.AddControllersWithViews()
                 .AddJsonOptions(options =>
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));

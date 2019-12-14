@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using LanguageExt;
-using LanguageExt.ClassInstances.Pred;
-using LanguageExt.TypeClasses;
+﻿using System.ComponentModel.DataAnnotations;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
 namespace TaxCalculator.WebApi.Models

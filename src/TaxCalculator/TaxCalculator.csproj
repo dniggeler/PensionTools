@@ -7,8 +7,8 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
-    <PackageReference Include="FluentValidation" Version="8.5.0" />
-    <PackageReference Include="LanguageExt.Core" Version="3.3.28" />
+    <PackageReference Include="FluentValidation" Version="8.6.0" />
+    <PackageReference Include="LanguageExt.Core" Version="3.3.45" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
