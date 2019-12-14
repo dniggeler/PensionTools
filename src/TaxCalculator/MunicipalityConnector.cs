@@ -9,43 +9,38 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using Tax.Data;
 using Tax.Data.Abstractions.Models;
 
-
 namespace TaxCalculator
 {
     public class MunicipalityConnector : IMunicipalityConnector
     {
         private readonly IMapper mapper;
-        private readonly Func<MunicipalityDbContext> municipalityDbContextFunc;
+        private readonly MunicipalityDbContext municipalityDbContext;
 
-        public MunicipalityConnector(IMapper mapper, Func<MunicipalityDbContext> municipalityDbContextFunc)
+        public MunicipalityConnector(
+            IMapper mapper, MunicipalityDbContext municipalityDbContext)
         {
             this.mapper = mapper;
-            this.municipalityDbContextFunc = municipalityDbContextFunc;
+            this.municipalityDbContext = municipalityDbContext;
         }
 
         public Task<IEnumerable<MunicipalityModel>> GetAllAsync()
         {
-            using (var ctxt = this.municipalityDbContextFunc())
-            {
-                return Task.FromResult(
-                    this.mapper.Map<IEnumerable<MunicipalityModel>>(ctxt.MunicipalityEntities.ToList()));
-            }
+            return Task.FromResult(
+                this.mapper.Map<IEnumerable<MunicipalityModel>>(
+                    this.municipalityDbContext.MunicipalityEntities.ToList()));
         }
 
         public Task<Either<string, MunicipalityModel>> GetAsync(int bfsNumber)
         {
-            using (var ctxt = this.municipalityDbContextFunc())
-            {
-                Option<MunicipalityEntity> entity =
-                    ctxt.MunicipalityEntities
-                        .FirstOrDefault(item => item.BfsNumber == bfsNumber);
+            Option<MunicipalityEntity> entity =
+                this.municipalityDbContext.MunicipalityEntities
+                    .FirstOrDefault(item => item.BfsNumber == bfsNumber);
 
-                return entity
-                    .Match<Either<string, MunicipalityModel>>(
-                        Some: item => this.mapper.Map<MunicipalityModel>(item),
-                        None: () => $"Municipality by BFS number {bfsNumber} not found")
-                    .AsTask();
-            }
+            return entity
+                .Match<Either<string, MunicipalityModel>>(
+                    Some: item => this.mapper.Map<MunicipalityModel>(item),
+                    None: () => $"Municipality by BFS number {bfsNumber} not found")
+                .AsTask();
         }
     }
 }

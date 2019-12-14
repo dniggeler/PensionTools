@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using LanguageExt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,13 +30,13 @@ namespace TaxCalculator.WebApi.Controllers
         /// </summary>
         /// <returns>A list of municipalities.</returns>
         /// <remarks>
-        /// tbd. detailierte Beschreibung auf Deutsch.
+        /// Holt die vollständige Gemeindeliste.
         /// </remarks>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<IEnumerable<string>>> Get()
         {
-            return this.Ok(this.municipalityConnector.GetAllAsync());
+            return this.Ok(await this.municipalityConnector.GetAllAsync());
         }
 
         /// <summary>
@@ -44,24 +45,19 @@ namespace TaxCalculator.WebApi.Controllers
         /// <param name="id">The identifier.</param>
         /// <returns>Detailed municipality data.</returns>
         /// <remarks>
-        /// tbd. detailierte Beschreibung auf Deutsch.
+        /// Holt Steuerdetails der Gemeinde. Als Schlüssel dient
+        /// die BFS-Gemeindenummer.
         /// </remarks>
         [HttpGet("{id}", Name = "Get")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<MunicipalityModel> Get(int id)
+        public async Task<ActionResult<MunicipalityModel>> Get(int id)
         {
-            Either<string, MunicipalityModel> result =
-                Prelude.Right<MunicipalityModel>(new MunicipalityModel
-                {
-                    BfsNumber = 261,
-                    Canton = Canton.ZH,
-                    Name = "Zürich",
-                });
+            Either<string, MunicipalityModel> result = await this.municipalityConnector.GetAsync(id);
 
             return result
                 .Match<ActionResult>(
                     Right: r => this.Ok(r),
-                    Left: this.BadRequest);
+                    Left: this.NotFound);
         }
     }
 }

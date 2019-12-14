@@ -29,5 +29,17 @@ namespace TaxCalculator.Tests
 
             Snapshot.Match(result,$"Get All Municipalities");
         }
+
+        [Fact(DisplayName = "Get Municipality")]
+        public async Task ShouldReturnMunicipalityByBfsNumber()
+        {
+            // given
+            int bfsNumber = 261;
+
+            // when
+            var result = await _fixture.Service.GetAsync(bfsNumber);
+
+            Snapshot.Match(result, $"Get Municipality {bfsNumber}");
+        }
     }
 }

@@ -3,7 +3,6 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data.Abstractions.Models;
 
-
 namespace TaxCalculator.Mapping
 {
     public class MappingProfile : Profile
