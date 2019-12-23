@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Municipality;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;
 using Xunit;
@@ -28,6 +29,22 @@ namespace TaxCalculator.Tests
             var result = await _fixture.Service.GetAllAsync();
 
             Snapshot.Match(result,$"Get All Municipalities");
+        }
+
+        [Fact(DisplayName = "Search")]
+        public async Task ShouldSearchMunicipalitiesByFilter()
+        {
+            // given
+            var filter = new MunicipalitySearchFilter
+            {
+                Canton = Canton.BE,
+                Name = "Zuzwil"
+            };
+
+            // when
+            var result = await _fixture.Service.SearchAsync(filter);
+
+            Snapshot.Match(result, $"Search Municipalities");
         }
 
         [Fact(DisplayName = "Get Municipality")]
