@@ -11,7 +11,7 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions
     {
         Task<IEnumerable<MunicipalityModel>> GetAllAsync();
 
-        Task<IEnumerable<MunicipalityModel>> SearchAsync(MunicipalitySearchFilter searchFilter);
+        IEnumerable<MunicipalityModel> Search(MunicipalitySearchFilter searchFilter);
 
         Task<Either<string, MunicipalityModel>> GetAsync(int bfsNumber);
     }

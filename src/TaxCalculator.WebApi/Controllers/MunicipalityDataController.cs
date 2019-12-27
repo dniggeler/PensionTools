@@ -73,7 +73,7 @@ namespace TaxCalculator.WebApi.Controllers
         [Route("search")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<MunicipalityModel>>> Search(MunicipalitySearchFilter filter)
+        public ActionResult<IEnumerable<MunicipalityModel>> Search(MunicipalitySearchFilter filter)
         {
             if (filter == null)
             {
@@ -81,7 +81,7 @@ namespace TaxCalculator.WebApi.Controllers
             }
 
             IEnumerable<MunicipalityModel> result =
-                await this.municipalityConnector.SearchAsync(filter);
+                this.municipalityConnector.Search(filter);
 
             return this.Ok(result);
         }

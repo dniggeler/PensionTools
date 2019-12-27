@@ -1,10 +1,7 @@
-using System;
 using System.Threading.Tasks;
-using FluentAssertions;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Municipality;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;
 using Xunit;
 
@@ -32,7 +29,7 @@ namespace TaxCalculator.Tests
         }
 
         [Fact(DisplayName = "Search")]
-        public async Task ShouldSearchMunicipalitiesByFilter()
+        public void ShouldSearchMunicipalitiesByFilter()
         {
             // given
             var filter = new MunicipalitySearchFilter
@@ -42,7 +39,7 @@ namespace TaxCalculator.Tests
             };
 
             // when
-            var result = await _fixture.Service.SearchAsync(filter);
+            var result = _fixture.Service.Search(filter);
 
             Snapshot.Match(result, $"Search Municipalities");
         }

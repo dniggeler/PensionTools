@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using LanguageExt;
-using Microsoft.EntityFrameworkCore;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Municipality;
@@ -32,7 +31,7 @@ namespace TaxCalculator
                     this.municipalityDbContext.MunicipalityEntities.ToList()));
         }
 
-        public Task<IEnumerable<MunicipalityModel>> SearchAsync(MunicipalitySearchFilter searchFilter)
+        public IEnumerable<MunicipalityModel> Search(MunicipalitySearchFilter searchFilter)
         {
             IQueryable<MunicipalityEntity> result = this.municipalityDbContext.MunicipalityEntities;
 
@@ -47,8 +46,10 @@ namespace TaxCalculator
                     result.Where(item => item.Name.Contains(searchFilter.Name));
             }
 
-            return Task.FromResult(
-                this.mapper.Map<IEnumerable<MunicipalityModel>>(result.ToList()));
+            foreach (MunicipalityEntity entity in result)
+            {
+                yield return this.mapper.Map<MunicipalityModel>(entity);
+            }
         }
 
         public Task<Either<string, MunicipalityModel>> GetAsync(int bfsNumber)

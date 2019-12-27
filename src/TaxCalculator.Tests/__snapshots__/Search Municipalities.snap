@@ -1,17 +1,26 @@
 ﻿[
   {
-    "BfsNumber": 1203,
-    "Name": "Attinghausen",
-    "Canton": "UR"
+    "BfsNumber": 557,
+    "Name": "Zuzwil (BE)",
+    "Canton": "BE",
+    "DateOfMutation": "1978-12-31T00:00:00",
+    "MutationId": 1000,
+    "SuccessorId": 1206
   },
   {
-    "BfsNumber": 1201,
-    "Name": "Altdorf (UR)",
-    "Canton": "UR"
+    "BfsNumber": 557,
+    "Name": "Zuzwil (BE)",
+    "Canton": "BE",
+    "DateOfMutation": "2009-12-31T00:00:00",
+    "MutationId": 1206,
+    "SuccessorId": 3014
   },
   {
-    "BfsNumber": 1202,
-    "Name": "Andermatt",
-    "Canton": "UR"
+    "BfsNumber": 557,
+    "Name": "Zuzwil (BE)",
+    "Canton": "BE",
+    "DateOfMutation": null,
+    "MutationId": 3014,
+    "SuccessorId": 0
   }
 ]
