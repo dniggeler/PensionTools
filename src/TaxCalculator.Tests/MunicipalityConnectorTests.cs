@@ -35,7 +35,8 @@ namespace TaxCalculator.Tests
             var filter = new MunicipalitySearchFilter
             {
                 Canton = Canton.BE,
-                Name = "Zuzwil"
+                Name = "Zuzwil",
+                YearOfValidity = 2008
             };
 
             // when

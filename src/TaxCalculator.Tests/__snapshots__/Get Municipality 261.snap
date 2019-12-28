@@ -4,7 +4,10 @@
     "Right": {
       "BfsNumber": 261,
       "Name": "Zürich",
-      "Canton": "ZH"
+      "Canton": "ZH",
+      "DateOfMutation": null,
+      "MutationId": 1498,
+      "SuccessorId": 0
     },
     "Left": null
   }

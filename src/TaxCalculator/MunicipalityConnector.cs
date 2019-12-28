@@ -48,7 +48,23 @@ namespace TaxCalculator
 
             foreach (MunicipalityEntity entity in result)
             {
-                yield return this.mapper.Map<MunicipalityModel>(entity);
+                var model = this.mapper.Map<MunicipalityModel>(entity);
+
+                if (searchFilter.YearOfValidity.HasValue)
+                {
+                    if (!model.DateOfMutation.HasValue)
+                    {
+                        yield return model;
+                    }
+                    else if(model.DateOfMutation.Value.Year > searchFilter.YearOfValidity)
+                    {
+                        yield return model;
+                    }
+                }
+                else
+                {
+                    yield return model;
+                }
             }
         }
 
