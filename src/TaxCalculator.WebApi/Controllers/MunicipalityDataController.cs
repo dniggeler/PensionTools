@@ -63,11 +63,12 @@ namespace TaxCalculator.WebApi.Controllers
         }
 
         /// <summary>
-        /// Search the municipality directory including its history.
+        /// Search the municipality directory including its history
+        /// matching filter values.
         /// </summary>
         /// <returns>A list of municipalities.</returns>
         /// <remarks>
-        /// Durchsucht das Gemeindeverzeichnis.
+        /// Durchsucht das Gemeindeverzeichnis gemäss Filterwerte.
         /// </remarks>
         [HttpPost]
         [Route("search")]

@@ -31,6 +31,11 @@ namespace TaxCalculator
                     this.municipalityDbContext.MunicipalityEntities.ToList()));
         }
 
+        /// <summary>
+        /// Searches the specified search filter.
+        /// </summary>
+        /// <param name="searchFilter">The search filter.</param>
+        /// <returns>List of municipalities.</returns>
         public IEnumerable<MunicipalityModel> Search(MunicipalitySearchFilter searchFilter)
         {
             IQueryable<MunicipalityEntity> result = this.municipalityDbContext.MunicipalityEntities;
