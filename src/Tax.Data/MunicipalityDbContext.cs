@@ -13,8 +13,8 @@ namespace Tax.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MunicipalityEntity>().ToTable("Gemeinde");
-            modelBuilder.Entity<MunicipalityEntity>().HasKey(m => m.BfsNumber);
+            modelBuilder.Entity<MunicipalityEntity>().ToTable("HistGemeindestand");
+            modelBuilder.Entity<MunicipalityEntity>().HasKey(m => new {m.BfsNumber, m.MutationId});
             
             base.OnModelCreating(modelBuilder);
         }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Municipality;
 
 namespace TaxCalculator.WebApi.Controllers
 {
@@ -46,7 +47,8 @@ namespace TaxCalculator.WebApi.Controllers
         /// <returns>Detailed municipality data.</returns>
         /// <remarks>
         /// Holt Steuerdetails der Gemeinde. Als Schlüssel dient
-        /// die BFS-Gemeindenummer.
+        /// die BFS-Gemeindenummer. Diese Nummer kann für eine Gemeinde
+        /// über die Zeit ändern.
         /// </remarks>
         [HttpGet("{id}", Name = "Get")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -58,6 +60,31 @@ namespace TaxCalculator.WebApi.Controllers
                 .Match<ActionResult>(
                     Right: r => this.Ok(r),
                     Left: this.NotFound);
+        }
+
+        /// <summary>
+        /// Search the municipality directory including its history
+        /// matching filter values.
+        /// </summary>
+        /// <returns>A list of municipalities.</returns>
+        /// <remarks>
+        /// Durchsucht das Gemeindeverzeichnis gemäss Filterwerte.
+        /// </remarks>
+        [HttpPost]
+        [Route("search")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<IEnumerable<MunicipalityModel>> Search(MunicipalitySearchFilter filter)
+        {
+            if (filter == null)
+            {
+                return this.BadRequest("Search filter is null");
+            }
+
+            IEnumerable<MunicipalityModel> result =
+                this.municipalityConnector.Search(filter);
+
+            return this.Ok(result);
         }
     }
 }

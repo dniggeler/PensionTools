@@ -1,4 +1,5 @@
-﻿using System.Xml.Schema;
+﻿using System;
+using System.Xml.Schema;
 
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
@@ -10,5 +11,11 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
         public string Name { get; set; }
 
         public Canton Canton { get; set; }
+
+        public DateTime? DateOfMutation { get; set; }
+
+        public int MutationId { get; set; }
+
+        public int? SuccessorId { get; set; }
     }
 }

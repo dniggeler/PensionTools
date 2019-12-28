@@ -1,0 +1,18 @@
+﻿[
+  {
+    "BfsNumber": 557,
+    "Name": "Zuzwil (BE)",
+    "Canton": "BE",
+    "DateOfMutation": "2009-12-31T00:00:00",
+    "MutationId": 1206,
+    "SuccessorId": 3014
+  },
+  {
+    "BfsNumber": 557,
+    "Name": "Zuzwil (BE)",
+    "Canton": "BE",
+    "DateOfMutation": null,
+    "MutationId": 3014,
+    "SuccessorId": 0
+  }
+]
