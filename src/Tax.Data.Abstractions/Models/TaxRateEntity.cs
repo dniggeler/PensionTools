@@ -23,13 +23,16 @@ namespace Tax.Data.Abstractions.Models
         [Column("SteuerfussGemeinde")]
         public decimal TaxRateMunicipality { get; set; }
 
-        [Column("KircheRoemischKatholisch")]
+        [Column("KircheKath")]
         public decimal RomanChurchTaxRate { get; set; }
 
-        [Column("KircheReformiert")]
+        [Column("KircheRef")]
         public decimal ProtestantChurchTaxRate { get; set; }
 
-        [Column("KircheChristKatholisch")]
+        [Column("KircheChristKath")]
         public decimal CatholicChurchTaxRate { get; set; }
+
+        [Column("SteuerfussJuristPerson")]
+        public decimal TaxRateCompany { get; set; }
     }
 }

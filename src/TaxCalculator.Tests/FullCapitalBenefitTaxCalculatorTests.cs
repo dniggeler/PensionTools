@@ -20,20 +20,19 @@ namespace TaxCalculator.Tests
         }
 
         [Theory(DisplayName = "Full Capital Benefit Tax")]
-        [InlineData(2018, 2_000_000, "Single", "Protestant", "Zürich")]
-        [InlineData(2018, 1_000_000, "Single", "Protestant", "Zürich")]
-        [InlineData(2018, 2_000_000, "Married", "Catholic", "Zürich")]
-        [InlineData(2018, 0, "Married", "Protestant", "Zürich")]
+        [InlineData(2018, 2_000_000, "Single", "Protestant", 261)]
+        [InlineData(2018, 1_000_000, "Single", "Protestant", 261)]
+        [InlineData(2018, 2_000_000, "Married", "Catholic", 261)]
+        [InlineData(2018, 0, "Married", "Protestant", 261)]
         public async Task ShouldCalculateFullCapitalBenefitTax(
             int calculationYear, 
             double capitalBenefitAsDouble, 
             string civilStatusCode,
             string religiousGroupCode,
-            string municipality)
+            int municipalityId)
         {
             // given
             string name = "Burli";
-            Canton canton = Canton.ZH;
             decimal capitalBenefitAmount = Convert.ToDecimal(capitalBenefitAsDouble);
             CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
 
@@ -45,17 +44,16 @@ namespace TaxCalculator.Tests
 
             var taxPerson = new CapitalBenefitTaxPerson
             {
-                Canton = canton,
                 Name = name,
                 CivilStatus = status,
-                Municipality = municipality,
                 ReligiousGroupType = religiousGroup,
                 PartnerReligiousGroupType = partnerReligiousGroup,
                 TaxableBenefits = capitalBenefitAmount,
             };
 
             // when
-            var result = await _fixture.Calculator.CalculateAsync(calculationYear, taxPerson);
+            var result = await _fixture.Calculator.CalculateAsync(
+                calculationYear, municipalityId, taxPerson);
 
             Snapshot.Match(
                 result,

@@ -44,7 +44,8 @@ namespace TaxCalculator.WebApi.Controllers
         [Route("full/incomeandwealth")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<FullTaxResponse>> CalculateFullTax(FullTaxRequest request)
+        public async Task<ActionResult<FullTaxResponse>> CalculateFullTax(
+            FullTaxRequest request)
         {
             if (request == null)
             {
@@ -56,6 +57,7 @@ namespace TaxCalculator.WebApi.Controllers
             Either<string, FullTaxResult> result =
                 await this.fullTaxCalculator.CalculateAsync(
                     request.CalculationYear,
+                    request.BfsMunicipalityId,
                     taxPerson);
 
             return result
@@ -90,9 +92,7 @@ namespace TaxCalculator.WebApi.Controllers
                 return new TaxPerson
                 {
                     Name = name,
-                    Canton = request.Canton,
                     CivilStatus = request.CivilStatus,
-                    Municipality = request.Municipality,
                     ReligiousGroupType = request.ReligiousGroup,
                     PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
                     NumberOfChildren = 0,
@@ -133,6 +133,7 @@ namespace TaxCalculator.WebApi.Controllers
             Either<string, FullCapitalBenefitTaxResult> result =
                 await this.fullCapitalBenefitTaxCalculator.CalculateAsync(
                     request.CalculationYear,
+                    request.BfsMunicipalityId,
                     taxPerson);
 
             return result
@@ -167,9 +168,7 @@ namespace TaxCalculator.WebApi.Controllers
                 return new CapitalBenefitTaxPerson
                 {
                     Name = name,
-                    Canton = request.Canton,
                     CivilStatus = request.CivilStatus,
-                    Municipality = request.Municipality,
                     ReligiousGroupType = request.ReligiousGroup,
                     PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
                     NumberOfChildren = 0,

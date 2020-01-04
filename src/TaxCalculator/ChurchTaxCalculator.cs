@@ -85,13 +85,13 @@ namespace TaxCalculator
                      c, r, rp))
                 .IfNone(0M);
 
-            Option<TaxRateModel> taxRateModel = this.taxRateContext.Rates
+            Option<TaxRateEntity> taxRateEntity = this.taxRateContext.Rates
                 .FirstOrDefault(item => item.Year == calculationYear
                                 && item.Canton == person.Canton.ToString()
-                                && item.Municipality == person.Municipality);
+                                && item.MunicipalityName == person.Municipality);
 
             return
-                (from m in taxRateModel
+                (from m in taxRateEntity
                     from ratePerson in person.ReligiousGroup.Map(type => GetTaxRate(type, m))
                     from ratePartner in religiousGroupPartner.Map(type => GetTaxRate(type, m))
                     select new ChurchTaxResult
@@ -104,13 +104,13 @@ namespace TaxCalculator
                     None: () => "No rate for church tax found")
                 .AsTask();
 
-            decimal GetTaxRate(ReligiousGroupType religiousGroupType, TaxRateModel rateModel)
+            decimal GetTaxRate(ReligiousGroupType religiousGroupType, TaxRateEntity rateEntity)
             {
                 return religiousGroupType switch
                 {
-                    ReligiousGroupType.Roman => rateModel.RomanChurchTaxRate,
-                    ReligiousGroupType.Protestant => rateModel.ProtestantChurchTaxRate,
-                    ReligiousGroupType.Catholic => rateModel.CatholicChurchTaxRate,
+                    ReligiousGroupType.Roman => rateEntity.RomanChurchTaxRate,
+                    ReligiousGroupType.Protestant => rateEntity.ProtestantChurchTaxRate,
+                    ReligiousGroupType.Catholic => rateEntity.CatholicChurchTaxRate,
                     _ => 0M
                 };
             }

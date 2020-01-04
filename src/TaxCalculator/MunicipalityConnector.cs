@@ -61,7 +61,7 @@ namespace TaxCalculator
                     {
                         yield return model;
                     }
-                    else if(model.DateOfMutation.Value.Year > searchFilter.YearOfValidity)
+                    else if (model.DateOfMutation.Value.Year > searchFilter.YearOfValidity)
                     {
                         yield return model;
                     }

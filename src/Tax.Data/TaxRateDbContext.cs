@@ -5,7 +5,7 @@ namespace Tax.Data
 {
     public class TaxRateDbContext : DbContext
     {
-        public DbSet<TaxRateModel> Rates { get; set; }
+        public DbSet<TaxRateEntity> Rates { get; set; }
 
         public TaxRateDbContext(DbContextOptions<TaxRateDbContext> options)
         :base(options)
@@ -13,8 +13,8 @@ namespace Tax.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TaxRateModel>().ToTable("Steuerfuss");
-            modelBuilder.Entity<TaxRateModel>().HasNoKey();
+            modelBuilder.Entity<TaxRateEntity>().ToTable("SteuerfussZH");
+            modelBuilder.Entity<TaxRateEntity>().HasNoKey();
             
             base.OnModelCreating(modelBuilder);
         }

@@ -23,17 +23,17 @@ namespace TaxCalculator.Tests
         {
             // given
             var calculationYear = 2018;
+            var municipalityId = 261;
             var taxPerson = new TaxPerson
             {
-                Canton = Canton.ZH,
                 CivilStatus = CivilStatus.Married,
                 ReligiousGroupType = ReligiousGroupType.Protestant,
-                Municipality = "Zürich",
                 TaxableIncome = 99995
             };
 
             // when
-            var result = await _fixture.Calculator.CalculateAsync(calculationYear, taxPerson);
+            var result = await _fixture.Calculator.CalculateAsync(
+                calculationYear, municipalityId, taxPerson);
 
             result.IsRight.Should().BeTrue();
             Snapshot.Match(result);

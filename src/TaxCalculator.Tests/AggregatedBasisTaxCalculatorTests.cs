@@ -26,17 +26,16 @@ namespace TaxCalculator.Tests
 
             var taxPerson = new TaxPerson
             {
-                Canton = Canton.ZH,
                 Name = "Burli",
                 CivilStatus = CivilStatus.Married,
                 ReligiousGroupType = ReligiousGroupType.Protestant,
-                Municipality = "Zürich",
                 TaxableIncome = 99995,
                 TaxableWealth = 522000
             };
 
             // when
-            var result = await _fixture.Calculator.CalculateAsync(calculationYear, taxPerson);
+            var result = await _fixture.Calculator.CalculateAsync(
+                calculationYear, taxPerson);
 
             result.IsRight.Should().BeTrue();
             Snapshot.Match(result);

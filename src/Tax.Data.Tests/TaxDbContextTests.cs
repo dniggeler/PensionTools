@@ -46,7 +46,7 @@ namespace Tax.Data.Tests
             // then
             result.Should().NotBeNullOrEmpty();
 
-            IEnumerable<TaxRateModel> GetRates()
+            IEnumerable<TaxRateEntity> GetRates()
             {
                 using var dbContext = _fixture.Provider.GetService<TaxRateDbContext>();
                 return dbContext.Rates.Where(item => item.Canton == "ZH" &&

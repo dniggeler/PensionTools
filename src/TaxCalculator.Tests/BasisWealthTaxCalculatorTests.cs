@@ -34,13 +34,13 @@ namespace TaxCalculator.Tests
 
             var taxPerson = new BasisTaxPerson
             {
-                Canton = canton,
                 CivilStatus = status,
-                TaxableAmount = wealth
+                TaxableAmount = wealth,
             };
 
             // when
-            var result = await _fixture.Calculator.CalculateAsync(calculationYear, taxPerson);
+            var result = await _fixture.Calculator.CalculateAsync(
+                calculationYear, canton, taxPerson);
 
             result.IsRight.Should().BeTrue();
             Snapshot.Match(result, $"Theory Basis Wealth Tax {calculationYear}{wealthAsDouble}{civilStatusCode}");

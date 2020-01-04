@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using LanguageExt;
@@ -34,7 +33,7 @@ namespace TaxCalculator
         }
 
         public async Task<Either<string, StateTaxResult>> CalculateAsync(
-            int calculationYear, TaxPerson person)
+            int calculationYear, int bfsMunicipalityId, TaxPerson person)
         {
             var aggregatedTaxResultTask =
                  this.basisTaxCalculator.CalculateAsync(calculationYear, person);
@@ -54,10 +53,9 @@ namespace TaxCalculator
 
             var pollTaxResult = await pollTaxResultTask;
 
-            Option<TaxRateModel> taxRate = this.dbContext.Rates
-                .FirstOrDefault(item => item.Canton == person.Canton.ToString() &&
-                                        item.Year == calculationYear &&
-                                        item.Municipality == person.Municipality);
+            Option<TaxRateEntity> taxRate = this.dbContext.Rates
+                .FirstOrDefault(item => item.BfsId == bfsMunicipalityId
+                                        && item.Year == calculationYear);
 
             var stateTaxResult = new StateTaxResult();
 

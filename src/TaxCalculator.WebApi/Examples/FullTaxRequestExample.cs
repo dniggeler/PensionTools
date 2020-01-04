@@ -14,7 +14,7 @@ namespace TaxCalculator.WebApi.Examples
                 CalculationYear = 2018,
                 Canton = Canton.ZH,
                 CivilStatus = CivilStatus.Single,
-                Municipality = "Zürich",
+                BfsMunicipalityId = 261,
                 ReligiousGroup = ReligiousGroupType.Other,
                 TaxableIncome = 99995M,
                 TaxableFederalIncome = 99995M,
