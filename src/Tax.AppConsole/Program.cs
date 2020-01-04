@@ -53,7 +53,6 @@ namespace Tax.AppConsole
                     Name = "Burli",
                     CivilStatus = CivilStatus.Single,
                     ReligiousGroupType = ReligiousGroupType.Protestant,
-                    Municipality = "Zürich",
                     TaxableBenefits = amount,
                 };
 

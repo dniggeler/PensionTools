@@ -28,11 +28,15 @@ namespace TaxCalculator
 
         /// <inheritdoc />
         public Task<Either<string, ChurchTaxResult>> CalculateAsync(
-            int calculationYear, ChurchTaxPerson person, AggregatedBasisTaxResult taxResult)
+            int calculationYear,
+            int municipalityId,
+            ChurchTaxPerson person,
+            AggregatedBasisTaxResult taxResult)
         {
             return this
                 .Validate(person, taxResult)
-                .BindAsync(r => this.CalculateInternalAsync(calculationYear, person, taxResult));
+                .BindAsync(r => this.CalculateInternalAsync(
+                    calculationYear, municipalityId, person, taxResult));
         }
 
         private Either<string, bool> Validate(
@@ -72,7 +76,10 @@ namespace TaxCalculator
         }
 
         private Task<Either<string, ChurchTaxResult>> CalculateInternalAsync(
-            int calculationYear, ChurchTaxPerson person, AggregatedBasisTaxResult taxResult)
+            int calculationYear,
+            int municipalityId,
+            ChurchTaxPerson person,
+            AggregatedBasisTaxResult taxResult)
         {
             Option<ReligiousGroupType> religiousGroupPartner =
                 person.PartnerReligiousGroup.IfNone(ReligiousGroupType.Other);
@@ -87,8 +94,7 @@ namespace TaxCalculator
 
             Option<TaxRateEntity> taxRateEntity = this.taxRateContext.Rates
                 .FirstOrDefault(item => item.Year == calculationYear
-                                && item.Canton == person.Canton.ToString()
-                                && item.MunicipalityName == person.Municipality);
+                                && item.BfsId == municipalityId);
 
             return
                 (from m in taxRateEntity

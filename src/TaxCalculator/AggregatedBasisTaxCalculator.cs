@@ -22,7 +22,7 @@ namespace TaxCalculator
             this.basisIncomeTaxCalculator = basisIncomeTaxCalculator;
             this.basisWealthTaxCalculator = basisWealthTaxCalculator;
         }
-        
+
         public async Task<Either<string, AggregatedBasisTaxResult>> CalculateAsync(int calculationYear, TaxPerson person)
         {
             Canton canton = Canton.ZH;

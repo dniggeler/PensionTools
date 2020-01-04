@@ -33,14 +33,17 @@ namespace TaxCalculator
         }
 
         public async Task<Either<string, StateTaxResult>> CalculateAsync(
-            int calculationYear, int bfsMunicipalityId, TaxPerson person)
+            int calculationYear, int municipalityId, TaxPerson person)
         {
+            Canton canton = Canton.ZH;
+
             var aggregatedTaxResultTask =
                  this.basisTaxCalculator.CalculateAsync(calculationYear, person);
 
             var pollTaxPerson = this.mapper.Map<PollTaxPerson>(person);
             var pollTaxResultTask =
-                this.pollTaxCalculator.CalculateAsync(calculationYear, pollTaxPerson);
+                this.pollTaxCalculator.CalculateAsync(
+                    calculationYear, canton, pollTaxPerson);
 
             var churchTaxPerson = this.mapper.Map<ChurchTaxPerson>(person);
 
@@ -49,12 +52,12 @@ namespace TaxCalculator
             Either<string, AggregatedBasisTaxResult> aggregatedTaxResult = await aggregatedTaxResultTask;
             Either<string, ChurchTaxResult> churchTaxResult = await aggregatedTaxResult
                 .BindAsync(r => this.churchTaxCalculator.CalculateAsync(
-                        calculationYear, churchTaxPerson, r));
+                        calculationYear, municipalityId, churchTaxPerson, r));
 
             var pollTaxResult = await pollTaxResultTask;
 
             Option<TaxRateEntity> taxRate = this.dbContext.Rates
-                .FirstOrDefault(item => item.BfsId == bfsMunicipalityId
+                .FirstOrDefault(item => item.BfsId == municipalityId
                                         && item.Year == calculationYear);
 
             var stateTaxResult = new StateTaxResult();

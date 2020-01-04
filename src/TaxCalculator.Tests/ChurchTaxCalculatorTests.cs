@@ -19,20 +19,19 @@ namespace TaxCalculator.Tests
         }
 
         [Theory(DisplayName = "Church Tax")]
-        [InlineData(2018, 4877,252, "Married", "Protestant", "Zürich")]
-        [InlineData(2018, 4877,252, "Married", "Catholic", "Zürich")]
-        [InlineData(2018, 0,0, "Married", "Protestant", "Zürich")]
+        [InlineData(2018, 4877,252, "Married", "Protestant", 261)]
+        [InlineData(2018, 4877,252, "Married", "Catholic", 261)]
+        [InlineData(2018, 0,0, "Married", "Protestant", 261)]
         public async Task ShouldCalculateChurchTax(
             int calculationYear, 
             double incomeTaxAsDouble, 
             double wealthTaxAsDouble, 
             string civilStatusCode,
             string religiousGroupCode,
-            string municipality)
+            int municipalityId)
         {
             // given
             string name = "Burli";
-            Canton canton = Canton.ZH;
             decimal incomeTax = Convert.ToDecimal(incomeTaxAsDouble);
             decimal wealthTax = Convert.ToDecimal(wealthTaxAsDouble);
             CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
@@ -45,12 +44,10 @@ namespace TaxCalculator.Tests
 
             var taxPerson = new ChurchTaxPerson
             {
-                Canton = canton,
                 Name = name,
                 CivilStatus = status,
                 ReligiousGroup = religiousGroup,
                 PartnerReligiousGroup = partnerReligiousGroup,
-                Municipality = municipality,
             };
 
             var taxResult = new AggregatedBasisTaxResult
@@ -66,11 +63,11 @@ namespace TaxCalculator.Tests
             };
 
             // when
-            var result = await _fixture.Calculator.CalculateAsync(calculationYear, taxPerson, taxResult);
+            var result = await _fixture.Calculator.CalculateAsync(
+                calculationYear, municipalityId, taxPerson, taxResult);
 
             Snapshot.Match(
-                result,
-                $"Theory Church Tax {calculationYear}{incomeTax}{wealthTax}{civilStatusCode}{religiousGroupCode}");
+                result,$"Theory Church Tax {calculationYear}{incomeTax}{wealthTax}{civilStatusCode}{religiousGroupCode}");
 
         }
     }

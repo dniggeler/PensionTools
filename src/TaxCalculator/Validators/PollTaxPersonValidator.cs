@@ -10,7 +10,6 @@ namespace TaxCalculator.Validators
         {
             this.RuleFor(x => x.Name).NotNull().NotEmpty();
             this.RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
-            this.RuleFor(x => x.Canton).NotNull().NotEmpty();
         }
     }
 }
