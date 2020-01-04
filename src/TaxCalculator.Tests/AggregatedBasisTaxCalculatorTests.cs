@@ -23,6 +23,7 @@ namespace TaxCalculator.Tests
         {
             // given
             int calculationYear = 2018;
+            Canton canton = Canton.ZH;
 
             var taxPerson = new TaxPerson
             {
@@ -35,7 +36,7 @@ namespace TaxCalculator.Tests
 
             // when
             var result = await _fixture.Calculator.CalculateAsync(
-                calculationYear, taxPerson);
+                calculationYear, canton, taxPerson);
 
             result.IsRight.Should().BeTrue();
             Snapshot.Match(result);

@@ -23,10 +23,9 @@ namespace TaxCalculator
             this.basisWealthTaxCalculator = basisWealthTaxCalculator;
         }
 
-        public async Task<Either<string, AggregatedBasisTaxResult>> CalculateAsync(int calculationYear, TaxPerson person)
+        public async Task<Either<string, AggregatedBasisTaxResult>> CalculateAsync(
+            int calculationYear, Canton canton, TaxPerson person)
         {
-            Canton canton = Canton.ZH;
-
             var basisTaxPerson = this.mapper.Map<BasisTaxPerson>(person);
 
             var incomeTaxResultTask =

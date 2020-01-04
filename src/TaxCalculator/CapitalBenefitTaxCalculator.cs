@@ -29,6 +29,7 @@ namespace TaxCalculator
         public async Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(
             int calculationYear,
             int municipalityId,
+            Canton canton,
             CapitalBenefitTaxPerson capitalBenefitTaxPerson)
         {
             var validationResult = this.validator.Validate(capitalBenefitTaxPerson);
@@ -48,6 +49,7 @@ namespace TaxCalculator
             var stateTaxResult = await this.stateTaxCalculator.CalculateAsync(
                 calculationYear,
                 municipalityId,
+                canton,
                 taxPerson);
 
             return stateTaxResult

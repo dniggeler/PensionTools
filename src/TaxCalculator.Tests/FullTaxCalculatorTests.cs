@@ -35,6 +35,7 @@ namespace TaxCalculator.Tests
             // given
             string name = "Burli";
             int municipalityId = 261;
+            Canton canton = Canton.ZH;
             decimal income = Convert.ToDecimal(stateIncomeAsDouble);
             decimal federalIncome = Convert.ToDecimal(federalIncomeAsDouble);
             decimal wealth = Convert.ToDecimal(wealthAsDouble);
@@ -54,7 +55,7 @@ namespace TaxCalculator.Tests
 
             // when
             var result = await _fixture.Calculator.CalculateAsync(
-                calculationYear, municipalityId, taxPerson);
+                calculationYear, municipalityId, canton, taxPerson);
 
             result.IsRight.Should().BeTrue();
             Snapshot.Match(result, $"Theory Full Tax {calculationYear}{stateIncomeAsDouble}{wealthAsDouble}{civilStatusCode}");

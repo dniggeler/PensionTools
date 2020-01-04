@@ -33,6 +33,7 @@ namespace TaxCalculator.Tests
         {
             // given
             string name = "Burli";
+            Canton canton = Canton.ZH;
             decimal capitalBenefitAmount = Convert.ToDecimal(capitalBenefitAsDouble);
             CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
 
@@ -53,7 +54,7 @@ namespace TaxCalculator.Tests
 
             // when
             var result = await _fixture.Calculator.CalculateAsync(
-                calculationYear, municipalityId, taxPerson);
+                calculationYear, municipalityId, canton, taxPerson);
 
             Snapshot.Match(
                 result,

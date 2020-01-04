@@ -54,10 +54,13 @@ namespace TaxCalculator.WebApi.Controllers
 
             var taxPerson = MapRequest();
 
+            Canton canton = Canton.ZH;
+
             Either<string, FullTaxResult> result =
                 await this.fullTaxCalculator.CalculateAsync(
                     request.CalculationYear,
                     request.BfsMunicipalityId,
+                    canton,
                     taxPerson);
 
             return result
@@ -130,10 +133,13 @@ namespace TaxCalculator.WebApi.Controllers
 
             var taxPerson = MapRequest();
 
+            Canton canton = Canton.ZH;
+
             Either<string, FullCapitalBenefitTaxResult> result =
                 await this.fullCapitalBenefitTaxCalculator.CalculateAsync(
                     request.CalculationYear,
                     request.BfsMunicipalityId,
+                    canton,
                     taxPerson);
 
             return result

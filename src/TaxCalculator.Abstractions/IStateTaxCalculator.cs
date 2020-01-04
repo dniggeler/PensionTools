@@ -13,11 +13,13 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions
         /// </summary>
         /// <param name="calculationYear">The calculation year.</param>
         /// <param name="municipalityId">The BFS municipality identifier.</param>
+        /// <param name="canton">The canton.</param>
         /// <param name="person">The person.</param>
         /// <returns></returns>
         Task<Either<string,StateTaxResult>> CalculateAsync(
             int calculationYear,
             int municipalityId,
+            Canton canton,
             TaxPerson person);
     }
 }

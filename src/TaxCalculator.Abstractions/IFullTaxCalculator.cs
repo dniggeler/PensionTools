@@ -8,6 +8,6 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions
     public interface IFullTaxCalculator
     {
         Task<Either<string,FullTaxResult>> CalculateAsync(
-            int calculationYear, int municipalityId, TaxPerson person);
+            int calculationYear, int municipalityId, Canton canton, TaxPerson person);
     }
 }

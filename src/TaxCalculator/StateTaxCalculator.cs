@@ -33,12 +33,14 @@ namespace TaxCalculator
         }
 
         public async Task<Either<string, StateTaxResult>> CalculateAsync(
-            int calculationYear, int municipalityId, TaxPerson person)
+            int calculationYear,
+            int municipalityId,
+            Canton canton,
+            TaxPerson person)
         {
-            Canton canton = Canton.ZH;
 
             var aggregatedTaxResultTask =
-                 this.basisTaxCalculator.CalculateAsync(calculationYear, person);
+                 this.basisTaxCalculator.CalculateAsync(calculationYear, canton, person);
 
             var pollTaxPerson = this.mapper.Map<PollTaxPerson>(person);
             var pollTaxResultTask =

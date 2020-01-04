@@ -43,6 +43,7 @@ namespace Tax.AppConsole
             var calculator = provider.GetService<ICapitalBenefitTaxCalculator>();
             int calculationYear = 2018;
             int municipalityId = 261;
+            Canton canton = Canton.ZH;
 
             decimal[] incomes = {0M, 1000, 10000, 20000, 40000, 70000, 90000, 99995, 120000,150000,200000,300000,500000,800000,1000000,1500000,2000000,4000000};
 
@@ -57,7 +58,7 @@ namespace Tax.AppConsole
                 };
 
                 var r = await calculator.CalculateAsync(
-                    calculationYear, municipalityId, taxPerson);
+                    calculationYear, municipalityId, canton, taxPerson);
                 Console.WriteLine(
                     $"Benefits: {amount}, Total tax: {r.IfRight(v => v.TotalTaxAmount.ToString(CultureInfo.InvariantCulture))}");
             });
