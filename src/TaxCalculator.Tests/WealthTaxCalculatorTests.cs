@@ -25,6 +25,7 @@ namespace TaxCalculator.Tests
             // given
             var calculationYear = 2018;
             var municipalityId = 261;
+            Canton canton = Canton.ZH;
             var taxPerson = new TaxPerson
             {
                 CivilStatus = CivilStatus.Married,
@@ -36,7 +37,7 @@ namespace TaxCalculator.Tests
             // when
             Either<string, SingleTaxResult> result = 
                 await _fixture.Calculator.CalculateAsync(
-                    calculationYear, municipalityId, taxPerson);
+                    calculationYear, municipalityId, canton, taxPerson);
 
             result.IsRight.Should().BeTrue();
             Snapshot.Match(result);

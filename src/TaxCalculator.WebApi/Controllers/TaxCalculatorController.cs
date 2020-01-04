@@ -18,15 +18,18 @@ namespace TaxCalculator.WebApi.Controllers
     {
         private readonly IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator;
         private readonly IFullTaxCalculator fullTaxCalculator;
+        private readonly IMunicipalityConnector municipalityResolver;
         private readonly ILogger<TaxCalculatorController> logger;
 
         public TaxCalculatorController(
             IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator,
             IFullTaxCalculator fullTaxCalculator,
+            IMunicipalityConnector municipalityResolver,
             ILogger<TaxCalculatorController> logger)
         {
             this.fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;
             this.fullTaxCalculator = fullTaxCalculator;
+            this.municipalityResolver = municipalityResolver;
             this.logger = logger;
         }
 
@@ -54,14 +57,15 @@ namespace TaxCalculator.WebApi.Controllers
 
             var taxPerson = MapRequest();
 
-            Canton canton = Canton.ZH;
+            Either<string, MunicipalityModel> municipalityData =
+                await this.municipalityResolver.GetAsync(request.BfsMunicipalityId);
 
-            Either<string, FullTaxResult> result =
-                await this.fullTaxCalculator.CalculateAsync(
+            Either<string, FullTaxResult> result = await municipalityData
+                .BindAsync(m => this.fullTaxCalculator.CalculateAsync(
                     request.CalculationYear,
                     request.BfsMunicipalityId,
-                    canton,
-                    taxPerson);
+                    m.Canton,
+                    taxPerson));
 
             return result
                 .Match<ActionResult>(
@@ -133,14 +137,16 @@ namespace TaxCalculator.WebApi.Controllers
 
             var taxPerson = MapRequest();
 
-            Canton canton = Canton.ZH;
+            Either<string, MunicipalityModel> municipalityData =
+                await this.municipalityResolver.GetAsync(request.BfsMunicipalityId);
 
-            Either<string, FullCapitalBenefitTaxResult> result =
-                await this.fullCapitalBenefitTaxCalculator.CalculateAsync(
+            var result =
+                await municipalityData
+                    .BindAsync(m => this.fullCapitalBenefitTaxCalculator.CalculateAsync(
                     request.CalculationYear,
                     request.BfsMunicipalityId,
-                    canton,
-                    taxPerson);
+                    m.Canton,
+                    taxPerson));
 
             return result
                 .Match<ActionResult>(

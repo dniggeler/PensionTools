@@ -31,7 +31,7 @@ namespace TaxCalculator
         }
 
         public async Task<Either<string, SingleTaxResult>> CalculateAsync(
-            int calculationYear, int municipalityId, TaxPerson person)
+            int calculationYear, int municipalityId, Canton canton, TaxPerson person)
         {
             var validationResult = this.taxPersonValidator.Validate(person);
             if (!validationResult.IsValid)
@@ -39,8 +39,6 @@ namespace TaxCalculator
                 var errorMessageLine = string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
                 return $"validation failed: {errorMessageLine}";
             }
-
-            Canton canton = Canton.ZH;
 
             var basisTaxPerson = this.mapper.Map<BasisTaxPerson>(person);
 
