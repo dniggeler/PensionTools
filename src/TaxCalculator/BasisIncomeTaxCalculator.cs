@@ -26,9 +26,11 @@ namespace TaxCalculator
             this.tariffData = tariffData;
         }
 
-        public Task<Either<string, BasisTaxResult>> CalculateAsync(int calculationYear, BasisTaxPerson person)
+        public Task<Either<string, BasisTaxResult>> CalculateAsync(
+            int calculationYear, Canton canton, BasisTaxPerson person)
         {
-            Option<ValidationResult> validationResult = this.taxPersonValidator.Validate(person);
+            Option<ValidationResult> validationResult =
+                this.taxPersonValidator.Validate(person);
 
             var tariffType = validationResult
                 .Where(v => !v.IsValid)
@@ -40,7 +42,7 @@ namespace TaxCalculator
                 this.tariffData.Get(new TaxFilterModel
                     {
                         Year = calculationYear,
-                        Canton = person.Canton.ToString(),
+                        Canton = canton.ToString(),
                     })
                     .OrderBy(item => item.TaxAmount);
 

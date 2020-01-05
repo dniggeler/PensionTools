@@ -20,7 +20,7 @@ namespace TaxCalculator
         }
 
         public Task<Either<string, Option<decimal>>> CalculateAsync(
-            int calculationYear, PollTaxPerson person)
+            int calculationYear, Canton canton, PollTaxPerson person)
         {
             var validationResult = this.personValidator.Validate(person);
             if (!validationResult.IsValid)
@@ -31,7 +31,7 @@ namespace TaxCalculator
                     .FromResult<Either<string, Option<decimal>>>($"validation failed: {errorMessageLine}");
             }
 
-            if (!this.HasPollTax(person.Canton))
+            if (!this.HasPollTax(canton))
             {
                 return Task.FromResult<Either<string, Option<decimal>>>(Option<decimal>.None);
             }

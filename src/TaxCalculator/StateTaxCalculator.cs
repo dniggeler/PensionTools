@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using LanguageExt;
@@ -34,14 +33,19 @@ namespace TaxCalculator
         }
 
         public async Task<Either<string, StateTaxResult>> CalculateAsync(
-            int calculationYear, TaxPerson person)
+            int calculationYear,
+            int municipalityId,
+            Canton canton,
+            TaxPerson person)
         {
+
             var aggregatedTaxResultTask =
-                 this.basisTaxCalculator.CalculateAsync(calculationYear, person);
+                 this.basisTaxCalculator.CalculateAsync(calculationYear, canton, person);
 
             var pollTaxPerson = this.mapper.Map<PollTaxPerson>(person);
             var pollTaxResultTask =
-                this.pollTaxCalculator.CalculateAsync(calculationYear, pollTaxPerson);
+                this.pollTaxCalculator.CalculateAsync(
+                    calculationYear, canton, pollTaxPerson);
 
             var churchTaxPerson = this.mapper.Map<ChurchTaxPerson>(person);
 
@@ -50,14 +54,13 @@ namespace TaxCalculator
             Either<string, AggregatedBasisTaxResult> aggregatedTaxResult = await aggregatedTaxResultTask;
             Either<string, ChurchTaxResult> churchTaxResult = await aggregatedTaxResult
                 .BindAsync(r => this.churchTaxCalculator.CalculateAsync(
-                        calculationYear, churchTaxPerson, r));
+                        calculationYear, municipalityId, churchTaxPerson, r));
 
             var pollTaxResult = await pollTaxResultTask;
 
-            Option<TaxRateModel> taxRate = this.dbContext.Rates
-                .FirstOrDefault(item => item.Canton == person.Canton.ToString() &&
-                                        item.Year == calculationYear &&
-                                        item.Municipality == person.Municipality);
+            Option<TaxRateEntity> taxRate = this.dbContext.Rates
+                .FirstOrDefault(item => item.BfsId == municipalityId
+                                        && item.Year == calculationYear);
 
             var stateTaxResult = new StateTaxResult();
 

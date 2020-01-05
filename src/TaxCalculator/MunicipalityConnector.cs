@@ -61,7 +61,7 @@ namespace TaxCalculator
                     {
                         yield return model;
                     }
-                    else if(model.DateOfMutation.Value.Year > searchFilter.YearOfValidity)
+                    else if (model.DateOfMutation.Value.Year > searchFilter.YearOfValidity)
                     {
                         yield return model;
                     }
@@ -73,11 +73,13 @@ namespace TaxCalculator
             }
         }
 
-        public Task<Either<string, MunicipalityModel>> GetAsync(int bfsNumber)
+        public Task<Either<string, MunicipalityModel>> GetAsync(
+            int bfsNumber, int year)
         {
             Option<MunicipalityEntity> entity =
                 this.municipalityDbContext.MunicipalityEntities
-                    .FirstOrDefault(item => item.BfsNumber == bfsNumber);
+                    .FirstOrDefault(item => item.BfsNumber == bfsNumber
+                                            && string.IsNullOrEmpty(item.DateOfMutation));
 
             return entity
                 .Match<Either<string, MunicipalityModel>>(

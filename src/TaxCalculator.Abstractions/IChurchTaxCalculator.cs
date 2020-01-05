@@ -9,6 +9,9 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions
     public interface IChurchTaxCalculator
     {
         Task<Either<string,ChurchTaxResult>> CalculateAsync(
-            int calculationYear, ChurchTaxPerson person, AggregatedBasisTaxResult taxResult);
+            int calculationYear,
+            int municipality,
+            ChurchTaxPerson person,
+            AggregatedBasisTaxResult taxResult);
     }
 }

@@ -39,6 +39,8 @@ namespace Tax.Data.Tests
         public void ShouldReturnTaxRateForMunicipality()
         {
             // given
+            int calculationYear = 2019;
+            string canton = "ZH";
 
             // when
             var result = GetRates();
@@ -46,11 +48,11 @@ namespace Tax.Data.Tests
             // then
             result.Should().NotBeNullOrEmpty();
 
-            IEnumerable<TaxRateModel> GetRates()
+            IEnumerable<TaxRateEntity> GetRates()
             {
                 using var dbContext = _fixture.Provider.GetService<TaxRateDbContext>();
-                return dbContext.Rates.Where(item => item.Canton == "ZH" &&
-                                                     item.Year == 2018)
+                return dbContext.Rates.Where(item => item.Canton == canton &&
+                                                     item.Year == calculationYear)
                     .ToList();
             }
         }
@@ -59,7 +61,7 @@ namespace Tax.Data.Tests
         public void ShouldReturnFederalTaxTariff()
         {
             // given
-            int calculationYear = 2018;
+            int calculationYear = 2019;
 
             // when
             var result = GetTariffs();
@@ -81,6 +83,8 @@ namespace Tax.Data.Tests
         public void ShouldReturnTaxTariff()
         {
             // given
+            int calculationYear = 2019;
+            string canton = "ZH";
 
             // when
             var result = GetTariffs();
@@ -91,8 +95,8 @@ namespace Tax.Data.Tests
             IEnumerable<TaxTariffModel> GetTariffs()
             {
                 using var dbContext = _fixture.Provider.GetService<TaxTariffDbContext>();
-                return dbContext.Tariffs.Where(item => item.Canton == "ZH" &&
-                                                       item.Year == 2018)
+                return dbContext.Tariffs.Where(item => item.Canton == canton
+                                                       && item.Year == calculationYear)
                     .ToList();
             }
         }

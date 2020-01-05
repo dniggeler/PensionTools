@@ -32,10 +32,14 @@ namespace TaxCalculator
 
         /// <inheritdoc />
         public async Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
-            int calculationYear, CapitalBenefitTaxPerson capitalBenefitTaxPerson)
+            int calculationYear,
+            int municipalityId,
+            Canton canton,
+            CapitalBenefitTaxPerson capitalBenefitTaxPerson)
         {
             var stateTaxResultTask =
-                this.stateCalculator.CalculateAsync(calculationYear, capitalBenefitTaxPerson);
+                this.stateCalculator.CalculateAsync(
+                    calculationYear, municipalityId, canton, capitalBenefitTaxPerson);
 
             var federalTaxPerson =
                 this.mapper.Map<FederalTaxPerson>(capitalBenefitTaxPerson);

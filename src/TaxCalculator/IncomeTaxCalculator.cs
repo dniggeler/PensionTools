@@ -30,7 +30,11 @@ namespace TaxCalculator
             this.mapper = mapper;
         }
 
-        public async Task<Either<string, SingleTaxResult>> CalculateAsync(int calculationYear, TaxPerson person)
+        public async Task<Either<string, SingleTaxResult>> CalculateAsync(
+            int calculationYear,
+            int municipalityId,
+            Canton canton,
+            TaxPerson person)
         {
             var validationResult = this.taxPersonValidator.Validate(person);
             if (!validationResult.IsValid)
@@ -41,25 +45,27 @@ namespace TaxCalculator
 
             var basisPerson = this.mapper.Map<BasisTaxPerson>(person);
             Either<string, BasisTaxResult> incomeTaxResult =
-                await this.basisIncomeTaxCalculator.CalculateAsync(calculationYear, basisPerson);
+                await this.basisIncomeTaxCalculator.CalculateAsync(
+                    calculationYear, canton, basisPerson);
 
             return incomeTaxResult
                 .Match<Either<string, SingleTaxResult>>(
-                    Right: r => this.CalculateIncomeTax(calculationYear, person, r),
+                    Right: r => this.CalculateIncomeTax(
+                        calculationYear, municipalityId, person, r),
                     Left: msg => msg);
         }
 
         private SingleTaxResult CalculateIncomeTax(
             int calculationYear,
+            int municipalityId,
             TaxPerson person,
             BasisTaxResult basisTaxResult)
         {
             using (var dbContext = this.rateDbContextFunc())
             {
                 var taxRate = dbContext.Rates
-                    .Single(item => item.Canton == person.Canton.ToString() &&
-                                    item.Year == calculationYear &&
-                                    item.Municipality == person.Municipality);
+                    .Single(item => item.Year == calculationYear
+                                    && item.BfsId == municipalityId);
 
                 return new SingleTaxResult
                 {

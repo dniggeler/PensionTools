@@ -19,7 +19,8 @@ namespace Tax.Data
         public IReadOnlyCollection<TaxTariffModel> Get(TaxFilterModel filter)
         {
             return _dbContext.Tariffs
-                .Where(item => item.Canton == filter.Canton && item.Year == filter.Year)
+                .Where(item => item.Canton == filter.Canton
+                               && item.Year == filter.Year)
                 .ToList();
         }
     }

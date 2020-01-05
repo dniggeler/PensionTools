@@ -24,12 +24,18 @@ namespace TaxCalculator
         }
 
         public async Task<Either<string, FullTaxResult>> CalculateAsync(
-            int calculationYear, TaxPerson person)
+            int calculationYear,
+            int municipalityId,
+            Canton canton,
+            TaxPerson person)
         {
             var federalTaxPerson = this.mapper.Map<FederalTaxPerson>(person);
 
-            var stateTaxResultTask = this.stateTaxCalculator.CalculateAsync(calculationYear, person);
-            var federalTaxResultTask = this.federalTaxCalculator.CalculateAsync(calculationYear, federalTaxPerson);
+            var stateTaxResultTask =
+                this.stateTaxCalculator
+                    .CalculateAsync(calculationYear, municipalityId, canton, person);
+            var federalTaxResultTask =
+                this.federalTaxCalculator.CalculateAsync(calculationYear, federalTaxPerson);
 
             await Task.WhenAll(stateTaxResultTask, federalTaxResultTask);
 

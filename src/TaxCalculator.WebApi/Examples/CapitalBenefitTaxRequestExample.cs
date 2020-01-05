@@ -12,9 +12,8 @@ namespace TaxCalculator.WebApi.Examples
             {
                 Name = "Test",
                 CalculationYear = 2018,
-                Canton = Canton.ZH,
+                BfsMunicipalityId = 261,
                 CivilStatus = CivilStatus.Single,
-                Municipality = "Zürich",
                 ReligiousGroup = ReligiousGroupType.Other,
                 TaxableBenefits = 1000_000,
             };

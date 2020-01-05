@@ -24,22 +24,23 @@ namespace TaxCalculator.Tests
         [InlineData(2018, "Married", "BE")]
         [InlineData(2018, "Single", "ZH")]
         [InlineData(2018, "Single", "BE")]
-        public async Task ShouldCalculatePollTax(int calculationYear, string civilStatusCode, 
-            string canton)
+        public async Task ShouldCalculatePollTax(
+            int calculationYear, string civilStatusCode, string cantonAsStr)
         {
             // given
             string name = "Burli";
             CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
+            Canton canton = Enum.Parse<Canton>(cantonAsStr);
 
             var taxPerson = new PollTaxPerson
             {
                 Name = name,
-                Canton = Enum.Parse<Canton>(canton),
                 CivilStatus = status,
             };
 
             // when
-            var result = await _fixture.Calculator.CalculateAsync(calculationYear, taxPerson);
+            var result = await _fixture.Calculator.CalculateAsync(
+                calculationYear, canton, taxPerson);
 
             result.IsRight.Should().BeTrue();
             Snapshot.Match(result,$"Theory Poll Tax {calculationYear}{civilStatusCode}{canton}");

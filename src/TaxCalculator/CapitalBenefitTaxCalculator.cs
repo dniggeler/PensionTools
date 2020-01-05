@@ -1,14 +1,14 @@
-﻿namespace TaxCalculator
-{
-    using System.Linq;
-    using System.Threading.Tasks;
-    using AutoMapper;
-    using FluentValidation;
-    using LanguageExt;
-    using PensionCoach.Tools.TaxCalculator.Abstractions;
-    using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-    using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
+using FluentValidation;
+using LanguageExt;
+using PensionCoach.Tools.TaxCalculator.Abstractions;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
+namespace TaxCalculator
+{
     public class CapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
     {
         private readonly IStateTaxCalculator stateTaxCalculator;
@@ -27,7 +27,10 @@
 
         /// <inheritdoc />
         public async Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(
-            int calculationYear, CapitalBenefitTaxPerson capitalBenefitTaxPerson)
+            int calculationYear,
+            int municipalityId,
+            Canton canton,
+            CapitalBenefitTaxPerson capitalBenefitTaxPerson)
         {
             var validationResult = this.validator.Validate(capitalBenefitTaxPerson);
             if (!validationResult.IsValid)
@@ -43,7 +46,11 @@
 
             taxPerson.TaxableIncome = capitalBenefitTaxPerson.TaxableBenefits / annuitizeFactor;
 
-            var stateTaxResult = await this.stateTaxCalculator.CalculateAsync(calculationYear, taxPerson);
+            var stateTaxResult = await this.stateTaxCalculator.CalculateAsync(
+                calculationYear,
+                municipalityId,
+                canton,
+                taxPerson);
 
             return stateTaxResult
                 .Map(r => this.Scale(r, annuitizeFactor));

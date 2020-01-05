@@ -18,15 +18,18 @@ namespace TaxCalculator.WebApi.Controllers
     {
         private readonly IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator;
         private readonly IFullTaxCalculator fullTaxCalculator;
+        private readonly IMunicipalityConnector municipalityResolver;
         private readonly ILogger<TaxCalculatorController> logger;
 
         public TaxCalculatorController(
             IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator,
             IFullTaxCalculator fullTaxCalculator,
+            IMunicipalityConnector municipalityResolver,
             ILogger<TaxCalculatorController> logger)
         {
             this.fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;
             this.fullTaxCalculator = fullTaxCalculator;
+            this.municipalityResolver = municipalityResolver;
             this.logger = logger;
         }
 
@@ -44,7 +47,8 @@ namespace TaxCalculator.WebApi.Controllers
         [Route("full/incomeandwealth")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<FullTaxResponse>> CalculateFullTax(FullTaxRequest request)
+        public async Task<ActionResult<FullTaxResponse>> CalculateFullTax(
+            FullTaxRequest request)
         {
             if (request == null)
             {
@@ -53,10 +57,15 @@ namespace TaxCalculator.WebApi.Controllers
 
             var taxPerson = MapRequest();
 
-            Either<string, FullTaxResult> result =
-                await this.fullTaxCalculator.CalculateAsync(
+            Either<string, MunicipalityModel> municipalityData =
+                await this.municipalityResolver.GetAsync(request.BfsMunicipalityId, request.CalculationYear);
+
+            Either<string, FullTaxResult> result = await municipalityData
+                .BindAsync(m => this.fullTaxCalculator.CalculateAsync(
                     request.CalculationYear,
-                    taxPerson);
+                    request.BfsMunicipalityId,
+                    m.Canton,
+                    taxPerson));
 
             return result
                 .Match<ActionResult>(
@@ -90,9 +99,7 @@ namespace TaxCalculator.WebApi.Controllers
                 return new TaxPerson
                 {
                     Name = name,
-                    Canton = request.Canton,
                     CivilStatus = request.CivilStatus,
-                    Municipality = request.Municipality,
                     ReligiousGroupType = request.ReligiousGroup,
                     PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
                     NumberOfChildren = 0,
@@ -130,10 +137,16 @@ namespace TaxCalculator.WebApi.Controllers
 
             var taxPerson = MapRequest();
 
-            Either<string, FullCapitalBenefitTaxResult> result =
-                await this.fullCapitalBenefitTaxCalculator.CalculateAsync(
-                    request.CalculationYear,
-                    taxPerson);
+            Either<string, MunicipalityModel> municipalityData =
+                await this.municipalityResolver.GetAsync(request.BfsMunicipalityId, request.CalculationYear);
+
+            var result =
+                await municipalityData
+                    .BindAsync(m => this.fullCapitalBenefitTaxCalculator.CalculateAsync(
+                        request.CalculationYear,
+                        request.BfsMunicipalityId,
+                        m.Canton,
+                        taxPerson));
 
             return result
                 .Match<ActionResult>(
@@ -167,9 +180,7 @@ namespace TaxCalculator.WebApi.Controllers
                 return new CapitalBenefitTaxPerson
                 {
                     Name = name,
-                    Canton = request.Canton,
                     CivilStatus = request.CivilStatus,
-                    Municipality = request.Municipality,
                     ReligiousGroupType = request.ReligiousGroup,
                     PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
                     NumberOfChildren = 0,

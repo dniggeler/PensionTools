@@ -28,11 +28,15 @@ namespace TaxCalculator
 
         /// <inheritdoc />
         public Task<Either<string, ChurchTaxResult>> CalculateAsync(
-            int calculationYear, ChurchTaxPerson person, AggregatedBasisTaxResult taxResult)
+            int calculationYear,
+            int municipalityId,
+            ChurchTaxPerson person,
+            AggregatedBasisTaxResult taxResult)
         {
             return this
                 .Validate(person, taxResult)
-                .BindAsync(r => this.CalculateInternalAsync(calculationYear, person, taxResult));
+                .BindAsync(r => this.CalculateInternalAsync(
+                    calculationYear, municipalityId, person, taxResult));
         }
 
         private Either<string, bool> Validate(
@@ -72,7 +76,10 @@ namespace TaxCalculator
         }
 
         private Task<Either<string, ChurchTaxResult>> CalculateInternalAsync(
-            int calculationYear, ChurchTaxPerson person, AggregatedBasisTaxResult taxResult)
+            int calculationYear,
+            int municipalityId,
+            ChurchTaxPerson person,
+            AggregatedBasisTaxResult taxResult)
         {
             Option<ReligiousGroupType> religiousGroupPartner =
                 person.PartnerReligiousGroup.IfNone(ReligiousGroupType.Other);
@@ -85,13 +92,12 @@ namespace TaxCalculator
                      c, r, rp))
                 .IfNone(0M);
 
-            Option<TaxRateModel> taxRateModel = this.taxRateContext.Rates
+            Option<TaxRateEntity> taxRateEntity = this.taxRateContext.Rates
                 .FirstOrDefault(item => item.Year == calculationYear
-                                && item.Canton == person.Canton.ToString()
-                                && item.Municipality == person.Municipality);
+                                && item.BfsId == municipalityId);
 
             return
-                (from m in taxRateModel
+                (from m in taxRateEntity
                     from ratePerson in person.ReligiousGroup.Map(type => GetTaxRate(type, m))
                     from ratePartner in religiousGroupPartner.Map(type => GetTaxRate(type, m))
                     select new ChurchTaxResult
@@ -104,13 +110,13 @@ namespace TaxCalculator
                     None: () => "No rate for church tax found")
                 .AsTask();
 
-            decimal GetTaxRate(ReligiousGroupType religiousGroupType, TaxRateModel rateModel)
+            decimal GetTaxRate(ReligiousGroupType religiousGroupType, TaxRateEntity rateEntity)
             {
                 return religiousGroupType switch
                 {
-                    ReligiousGroupType.Roman => rateModel.RomanChurchTaxRate,
-                    ReligiousGroupType.Protestant => rateModel.ProtestantChurchTaxRate,
-                    ReligiousGroupType.Catholic => rateModel.CatholicChurchTaxRate,
+                    ReligiousGroupType.Roman => rateEntity.RomanChurchTaxRate,
+                    ReligiousGroupType.Protestant => rateEntity.ProtestantChurchTaxRate,
+                    ReligiousGroupType.Catholic => rateEntity.CatholicChurchTaxRate,
                     _ => 0M
                 };
             }

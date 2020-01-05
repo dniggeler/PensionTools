@@ -9,8 +9,6 @@ namespace TaxCalculator.Validators
         {
             this.RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
             this.RuleFor(x => x.ReligiousGroupType).Must(x => x.IsSome);
-            this.RuleFor(x => x.Canton)
-                .SetValidator(new CantonValidator());
         }
     }
 }

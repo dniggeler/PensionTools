@@ -30,7 +30,8 @@ namespace TaxCalculator
             this.mapper = mapper;
         }
 
-        public async Task<Either<string, SingleTaxResult>> CalculateAsync(int calculationYear, TaxPerson person)
+        public async Task<Either<string, SingleTaxResult>> CalculateAsync(
+            int calculationYear, int municipalityId, Canton canton, TaxPerson person)
         {
             var validationResult = this.taxPersonValidator.Validate(person);
             if (!validationResult.IsValid)
@@ -44,22 +45,23 @@ namespace TaxCalculator
             basisTaxPerson.TaxableAmount = person.TaxableWealth;
 
             var basisTaxResult =
-                await this.basisWealthTaxCalculator.CalculateAsync(calculationYear, basisTaxPerson);
+                await this.basisWealthTaxCalculator.CalculateAsync(
+                    calculationYear, canton, basisTaxPerson);
 
             return basisTaxResult
                 .Match<Either<string, SingleTaxResult>>(
-                    Right: r => this.CalculateTax(calculationYear, person, r),
+                    Right: r => this.CalculateTax(calculationYear, municipalityId, r),
                     Left: msg => msg);
         }
 
-        private SingleTaxResult CalculateTax(int calculationYear, TaxPerson person, BasisTaxResult basisTaxResult)
+        private SingleTaxResult CalculateTax(
+            int calculationYear, int municipalityId, BasisTaxResult basisTaxResult)
         {
             using (var dbContext = this.rateDbContextFunc())
             {
                 var taxRate = dbContext.Rates
-                    .Single(item => item.Canton == person.Canton.ToString() &&
-                                    item.Year == calculationYear &&
-                                    item.Municipality == person.Municipality);
+                    .Single(item => item.BfsId == municipalityId
+                                    && item.Year == calculationYear);
 
                 return new SingleTaxResult
                 {

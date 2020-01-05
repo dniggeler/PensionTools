@@ -3,16 +3,19 @@
 
 namespace Tax.Data.Abstractions.Models
 {
-    public class TaxRateModel
+    public class TaxRateEntity
     {
-        [Column("Kanton")]
-        public string Canton { get; set; }
+        [Column("BfsId")] 
+        public int BfsId { get; set; }
 
         [Column("Jahr")]
         public int Year { get; set; }
 
-        [Column("Gemeinde")]
-        public string Municipality { get; set; }
+        [Column("Kanton")]
+        public string Canton { get; set; }
+
+        [Column("Gemeindename")]
+        public string MunicipalityName { get; set; }
         
         [Column("SteuerfussKanton")]
         public decimal TaxRateCanton { get; set; }
@@ -28,5 +31,8 @@ namespace Tax.Data.Abstractions.Models
 
         [Column("KircheChristKath")]
         public decimal CatholicChurchTaxRate { get; set; }
+
+        [Column("SteuerfussJuristPerson")]
+        public decimal TaxRateCompany { get; set; }
     }
 }

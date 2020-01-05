@@ -4,7 +4,6 @@ using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Municipality;
 
-
 namespace PensionCoach.Tools.TaxCalculator.Abstractions
 {
     public interface IMunicipalityConnector
@@ -13,6 +12,6 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions
 
         IEnumerable<MunicipalityModel> Search(MunicipalitySearchFilter searchFilter);
 
-        Task<Either<string, MunicipalityModel>> GetAsync(int bfsNumber);
+        Task<Either<string, MunicipalityModel>> GetAsync(int bfsNumber, int year);
     }
 }

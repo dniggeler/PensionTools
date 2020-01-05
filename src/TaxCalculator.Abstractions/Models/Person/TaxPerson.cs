@@ -6,8 +6,6 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person
     public class TaxPerson
     {
         public string Name { get; set; }
-        public string Municipality { get; set; }
-        public Canton Canton { get; set; }
         public Option<CivilStatus> CivilStatus { get; set; }
         public decimal TaxableIncome { get; set; } 
         public decimal TaxableFederalIncome { get; set; } 

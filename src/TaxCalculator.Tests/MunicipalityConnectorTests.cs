@@ -50,9 +50,10 @@ namespace TaxCalculator.Tests
         {
             // given
             int bfsNumber = 261;
+            int year = 2019;
 
             // when
-            var result = await _fixture.Service.GetAsync(bfsNumber);
+            var result = await _fixture.Service.GetAsync(bfsNumber, year);
 
             Snapshot.Match(result, $"Get Municipality {bfsNumber}");
         }

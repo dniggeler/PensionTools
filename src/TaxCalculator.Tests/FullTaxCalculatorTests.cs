@@ -34,6 +34,7 @@ namespace TaxCalculator.Tests
         {
             // given
             string name = "Burli";
+            int municipalityId = 261;
             Canton canton = Canton.ZH;
             decimal income = Convert.ToDecimal(stateIncomeAsDouble);
             decimal federalIncome = Convert.ToDecimal(federalIncomeAsDouble);
@@ -43,19 +44,18 @@ namespace TaxCalculator.Tests
 
             var taxPerson = new TaxPerson
             {
-                Canton = canton,
                 Name = name,
                 CivilStatus = status,
                 ReligiousGroupType = religiousGroupType,
                 PartnerReligiousGroupType = ReligiousGroupType.Protestant,
-                Municipality = "Zürich",
                 TaxableIncome = income,
                 TaxableFederalIncome = federalIncome,
                 TaxableWealth = wealth
             };
 
             // when
-            var result = await _fixture.Calculator.CalculateAsync(calculationYear, taxPerson);
+            var result = await _fixture.Calculator.CalculateAsync(
+                calculationYear, municipalityId, canton, taxPerson);
 
             result.IsRight.Should().BeTrue();
             Snapshot.Match(result, $"Theory Full Tax {calculationYear}{stateIncomeAsDouble}{wealthAsDouble}{civilStatusCode}");
