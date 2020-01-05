@@ -73,11 +73,13 @@ namespace TaxCalculator
             }
         }
 
-        public Task<Either<string, MunicipalityModel>> GetAsync(int bfsNumber)
+        public Task<Either<string, MunicipalityModel>> GetAsync(
+            int bfsNumber, int year)
         {
             Option<MunicipalityEntity> entity =
                 this.municipalityDbContext.MunicipalityEntities
-                    .FirstOrDefault(item => item.BfsNumber == bfsNumber);
+                    .FirstOrDefault(item => item.BfsNumber == bfsNumber
+                                            && string.IsNullOrEmpty(item.DateOfMutation));
 
             return entity
                 .Match<Either<string, MunicipalityModel>>(

@@ -44,21 +44,23 @@ namespace TaxCalculator.WebApi.Controllers
         /// Gets a municipality by its BFS id.
         /// </summary>
         /// <param name="id">BFS municipality number, e.g. 261 for city of Zurich.</param>
+        /// <param name="year">Year of validity.</param>
         /// <returns>Detailed municipality data.</returns>
         /// <remarks>
         /// Holt Steuerdetails der Gemeinde. Als Schlüssel dient
         /// die BFS-Gemeindenummer. Diese Nummer kann für eine Gemeinde
         /// über die Zeit ändern.
         /// </remarks>
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{year}/{id}", Name = "Get")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<MunicipalityModel>> Get(int id)
+        public async Task<ActionResult<MunicipalityModel>> Get(int year, int id)
         {
-            Either<string, MunicipalityModel> result = await this.municipalityConnector.GetAsync(id);
+            Either<string, MunicipalityModel> result =
+                await this.municipalityConnector.GetAsync(id, year);
 
             return result
                 .Match<ActionResult>(
-                    Right: r => this.Ok(r),
+                    Right: this.Ok,
                     Left: this.NotFound);
         }
 
