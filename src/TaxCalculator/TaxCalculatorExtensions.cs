@@ -54,7 +54,7 @@ namespace TaxCalculator
             collection.AddTransient<IChurchTaxCalculator, ChurchTaxCalculator>();
             collection.AddTransient<IPollTaxCalculator, PollTaxCalculator>();
             collection.AddTransient<IBasisIncomeTaxCalculator, DefaultBasisIncomeTaxCalculator>();
-            collection.AddTransient<IBasisWealthTaxCalculator, BasisWealthTaxCalculator>();
+            collection.AddTransient<IBasisWealthTaxCalculator, DefaultBasisWealthTaxCalculator>();
             collection.AddTransient<ICapitalBenefitTaxCalculator, CapitalBenefitTaxCalculator>();
         }
     }

@@ -11,14 +11,14 @@ using Tax.Data.Abstractions.Models;
 
 namespace TaxCalculator.Basis.Wealth
 {
-    public class BasisWealthTaxCalculator : IBasisWealthTaxCalculator
+    public class DefaultBasisWealthTaxCalculator : IBasisWealthTaxCalculator
     {
         private const int TaxTypeId = (int)TaxType.Wealth;
 
         private readonly IValidator<BasisTaxPerson> taxPersonValidator;
         private readonly ITaxTariffData tariffData;
 
-        public BasisWealthTaxCalculator(
+        public DefaultBasisWealthTaxCalculator(
             IValidator<BasisTaxPerson> taxPersonValidator,
             ITaxTariffData tariffData)
         {
