@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
+using TaxCalculator.Basis.Income;
+using TaxCalculator.Basis.Wealth;
 using TaxCalculator.Mapping;
 using TaxCalculator.Validators;
 
@@ -51,7 +53,7 @@ namespace TaxCalculator
         {
             collection.AddTransient<IChurchTaxCalculator, ChurchTaxCalculator>();
             collection.AddTransient<IPollTaxCalculator, PollTaxCalculator>();
-            collection.AddTransient<IBasisIncomeTaxCalculator, BasisIncomeTaxCalculator>();
+            collection.AddTransient<IBasisIncomeTaxCalculator, DefaultBasisIncomeTaxCalculator>();
             collection.AddTransient<IBasisWealthTaxCalculator, BasisWealthTaxCalculator>();
             collection.AddTransient<ICapitalBenefitTaxCalculator, CapitalBenefitTaxCalculator>();
         }

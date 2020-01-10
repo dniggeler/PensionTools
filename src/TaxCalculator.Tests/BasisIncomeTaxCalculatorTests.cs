@@ -20,15 +20,19 @@ namespace TaxCalculator.Tests
         }
 
         [Theory(DisplayName = "Basis Income Tax")]
-        [InlineData(2018, 500_000, "Married")]
-        [InlineData(2018, 0, "Married")]
-        [InlineData(2018, 99995, "Married")]
-        [InlineData(2018, 99995, "Single")]
-        public async Task ShouldCalculateBasisIncomeTax(int calculationYear, double wealthAsDouble,
-            string civilStatusCode)
+        [InlineData(2018, 500_000, "Married", "ZH")]
+        [InlineData(2018, 0, "Married", "ZH")]
+        [InlineData(2018, 99995, "Married", "ZH")]
+        [InlineData(2018, 99995, "Single", "ZH")]
+        [InlineData(2019, 100000, "Single", "SG")]
+        public async Task ShouldCalculateBasisIncomeTax(
+            int calculationYear,
+            double wealthAsDouble,
+            string civilStatusCode,
+            string cantonAsStr)
         {
             // given
-            Canton canton = Canton.ZH;
+            Canton canton = Enum.Parse<Canton>(cantonAsStr);
             decimal wealth = Convert.ToDecimal(wealthAsDouble);
             CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
 
@@ -43,7 +47,7 @@ namespace TaxCalculator.Tests
                 calculationYear, canton, taxPerson);
 
             result.IsRight.Should().BeTrue();
-            Snapshot.Match(result,$"Theory Basis Income Tax {calculationYear}{wealthAsDouble}{civilStatusCode}");
+            Snapshot.Match(result,$"Theory Basis Income Tax {calculationYear}{cantonAsStr}{wealthAsDouble}{civilStatusCode}");
         }
     }
 }
