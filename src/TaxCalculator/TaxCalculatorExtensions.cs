@@ -43,6 +43,7 @@ namespace TaxCalculator
         private static void AddCantonBasisTaxCalculatorFactory(this IServiceCollection collection)
         {
             collection.AddTransient<SGBasisIncomeTaxCalculator>();
+            collection.AddTransient<MissingBasisIncomeTaxCalculator>();
 
             collection.AddSingleton<Func<Canton, IBasisIncomeTaxCalculator>>(ctx =>
                 canton => canton switch {

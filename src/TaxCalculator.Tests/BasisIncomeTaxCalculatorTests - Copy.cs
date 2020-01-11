@@ -10,8 +10,8 @@ using Xunit;
 namespace TaxCalculator.Tests
 {
     [Trait("Calculator", "Canton Basis Income Tax Calculators")]
-    public class CantonBasisIncomeTaxCalculatorTests 
-        : IClassFixture<TaxCalculatorFixture<Func<Canton,IBasisIncomeTaxCalculator>>>
+    public class CantonBasisIncomeTaxCalculatorTests
+        : IClassFixture<TaxCalculatorFixture<Func<Canton, IBasisIncomeTaxCalculator>>>
     {
         private readonly TaxCalculatorFixture<Func<Canton, IBasisIncomeTaxCalculator>> _fixture;
 
@@ -47,8 +47,31 @@ namespace TaxCalculator.Tests
                     calculationYear, canton, taxPerson);
 
             result.IsRight.Should().BeTrue();
-            Snapshot.Match(result,$"Canton Basis Income Tax {calculationYear}{cantonAsStr}{incomeAsDouble}{civilStatusCode}");
+            Snapshot.Match(result,
+                $"Canton Basis Income Tax {calculationYear}{cantonAsStr}{incomeAsDouble}{civilStatusCode}");
         }
 
+        [Fact(DisplayName = "Null Tax calculator for missing canton")]
+        public async Task ShouldReturnMissingBasisIncomeTaxCalculator()
+        {
+            // given
+            int calculationYear = 2019;
+            Canton canton = Canton.VS;
+            decimal income = 0;
+            CivilStatus status = CivilStatus.Married;
+
+            var taxPerson = new BasisTaxPerson
+            {
+                CivilStatus = status,
+                TaxableAmount = income
+            };
+
+            // when
+            var result =
+                await _fixture.Calculator(canton).CalculateAsync(
+                    calculationYear, canton, taxPerson);
+
+            result.IsLeft.Should().BeTrue();
+        }
     }
 }
