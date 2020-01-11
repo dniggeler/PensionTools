@@ -38,9 +38,11 @@ namespace TaxCalculator
             collection.AddValidators();
             collection.AddBasisCalculators();
             collection.AddCantonBasisTaxCalculatorFactory();
+            collection.AddCantonBasisWealthTaxCalculatorFactory();
         }
 
-        private static void AddCantonBasisTaxCalculatorFactory(this IServiceCollection collection)
+        private static void AddCantonBasisTaxCalculatorFactory(
+            this IServiceCollection collection)
         {
             collection.AddTransient<SGBasisIncomeTaxCalculator>();
             collection.AddTransient<MissingBasisIncomeTaxCalculator>();
@@ -50,6 +52,20 @@ namespace TaxCalculator
                     Canton.SG => ctx.GetRequiredService<SGBasisIncomeTaxCalculator>(),
                     Canton.ZH => ctx.GetRequiredService<IDefaultBasisIncomeTaxCalculator>(),
                     _ => ctx.GetRequiredService<MissingBasisIncomeTaxCalculator>()
+                });
+        }
+
+        private static void AddCantonBasisWealthTaxCalculatorFactory(
+            this IServiceCollection collection)
+        {
+            collection.AddTransient<SGBasisWealthTaxCalculator>();
+            collection.AddTransient<MissingBasisWealthTaxCalculator>();
+
+            collection.AddSingleton<Func<Canton, IBasisWealthTaxCalculator>>(ctx =>
+                canton => canton switch {
+                    Canton.SG => ctx.GetRequiredService<SGBasisWealthTaxCalculator>(),
+                    Canton.ZH => ctx.GetRequiredService<ZHBasisWealthTaxCalculator>(),
+                    _ => ctx.GetRequiredService<MissingBasisWealthTaxCalculator>()
                 });
         }
 
@@ -69,7 +85,7 @@ namespace TaxCalculator
             collection.AddTransient<IChurchTaxCalculator, ChurchTaxCalculator>();
             collection.AddTransient<IPollTaxCalculator, PollTaxCalculator>();
             collection.AddTransient<IDefaultBasisIncomeTaxCalculator, DefaultBasisIncomeTaxCalculator>();
-            collection.AddTransient<IBasisWealthTaxCalculator, DefaultBasisWealthTaxCalculator>();
+            collection.AddTransient<IBasisWealthTaxCalculator, ZHBasisWealthTaxCalculator>();
             collection.AddTransient<ICapitalBenefitTaxCalculator, CapitalBenefitTaxCalculator>();
         }
     }

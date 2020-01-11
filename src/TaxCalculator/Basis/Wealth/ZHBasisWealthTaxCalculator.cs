@@ -11,17 +11,17 @@ using Tax.Data.Abstractions.Models;
 namespace TaxCalculator.Basis.Wealth
 {
     /// <summary>
-    /// Default wealth tax calculator.
+    /// Wealth tax calculator for ZH.
     /// </summary>
     /// <seealso cref="PensionCoach.Tools.TaxCalculator.Abstractions.IBasisWealthTaxCalculator" />
-    public class DefaultBasisWealthTaxCalculator : IBasisWealthTaxCalculator
+    public class ZHBasisWealthTaxCalculator : IBasisWealthTaxCalculator
     {
         private const int TaxTypeId = (int)TaxType.Wealth;
 
         private readonly IValidator<BasisTaxPerson> taxPersonValidator;
         private readonly ITaxTariffData tariffData;
 
-        public DefaultBasisWealthTaxCalculator(
+        public ZHBasisWealthTaxCalculator(
             IValidator<BasisTaxPerson> taxPersonValidator,
             ITaxTariffData tariffData)
         {

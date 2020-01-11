@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AutoMapper;
 using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
@@ -10,16 +11,16 @@ namespace TaxCalculator
     public class AggregatedBasisTaxCalculator : IAggregatedBasisTaxCalculator
     {
         private readonly IMapper mapper;
-        private readonly IDefaultBasisIncomeTaxCalculator basisIncomeTaxCalculator;
+        private readonly Func<Canton, IBasisIncomeTaxCalculator> basisIncomeTaxCalculatorFunc;
         private readonly IBasisWealthTaxCalculator basisWealthTaxCalculator;
 
         public AggregatedBasisTaxCalculator(
             IMapper mapper,
-            IDefaultBasisIncomeTaxCalculator basisIncomeTaxCalculator,
+            Func<Canton, IBasisIncomeTaxCalculator> basisIncomeTaxCalculatorFunc,
             IBasisWealthTaxCalculator basisWealthTaxCalculator)
         {
             this.mapper = mapper;
-            this.basisIncomeTaxCalculator = basisIncomeTaxCalculator;
+            this.basisIncomeTaxCalculatorFunc = basisIncomeTaxCalculatorFunc;
             this.basisWealthTaxCalculator = basisWealthTaxCalculator;
         }
 
@@ -29,7 +30,7 @@ namespace TaxCalculator
             var basisTaxPerson = this.mapper.Map<BasisTaxPerson>(person);
 
             var incomeTaxResultTask =
-                this.basisIncomeTaxCalculator.CalculateAsync(
+                this.basisIncomeTaxCalculatorFunc(canton).CalculateAsync(
                     calculationYear, canton, basisTaxPerson);
 
             basisTaxPerson.TaxableAmount = person.TaxableWealth;

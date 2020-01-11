@@ -5,17 +5,16 @@ using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
-namespace TaxCalculator.Basis.Income
+namespace TaxCalculator.Basis.Wealth
 {
     /// <summary>
-    /// Null basis income calculator for missing cantons.
+    /// Null calculator for missing wealth calculators.
     /// </summary>
-    /// <seealso cref="PensionCoach.Tools.TaxCalculator.Abstractions.IBasisIncomeTaxCalculator" />
-    public class MissingBasisIncomeTaxCalculator : IBasisIncomeTaxCalculator
+    public class MissingBasisWealthTaxCalculator : IBasisWealthTaxCalculator
     {
-        private readonly ILogger<MissingBasisIncomeTaxCalculator> logger;
+        private readonly ILogger<MissingBasisWealthTaxCalculator> logger;
 
-        public MissingBasisIncomeTaxCalculator(ILogger<MissingBasisIncomeTaxCalculator> logger)
+        public MissingBasisWealthTaxCalculator(ILogger<MissingBasisWealthTaxCalculator> logger)
         {
             this.logger = logger;
         }
@@ -23,7 +22,7 @@ namespace TaxCalculator.Basis.Income
         public Task<Either<string, BasisTaxResult>> CalculateAsync(
             int calculationYear, Canton canton, BasisTaxPerson person)
         {
-            string msg = $"No income tax calculator for canton {canton.ToString()} available";
+            string msg = $"No wealth tax calculator for canton {canton.ToString()} available";
 
             Either<string, BasisTaxResult> result = msg;
 
