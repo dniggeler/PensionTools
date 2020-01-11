@@ -9,17 +9,19 @@ using Xunit;
 
 namespace TaxCalculator.Tests
 {
-    [Trait("Calculator", "Basis Tax")]
-    public class BasisIncomeTaxCalculatorTests : IClassFixture<TaxCalculatorFixture<IBasisIncomeTaxCalculator>>
+    [Trait("Calculator", "Default Basis Income Tax")]
+    public class DefaultBasisIncomeTaxCalculatorTests 
+        : IClassFixture<TaxCalculatorFixture<IDefaultBasisIncomeTaxCalculator>>
     {
-        private readonly TaxCalculatorFixture<IBasisIncomeTaxCalculator> _fixture;
+        private readonly TaxCalculatorFixture<IDefaultBasisIncomeTaxCalculator> _fixture;
 
-        public BasisIncomeTaxCalculatorTests(TaxCalculatorFixture<IBasisIncomeTaxCalculator> fixture)
+        public DefaultBasisIncomeTaxCalculatorTests(
+            TaxCalculatorFixture<IDefaultBasisIncomeTaxCalculator> fixture)
         {
             _fixture = fixture;
         }
 
-        [Theory(DisplayName = "Basis Income Tax")]
+        [Theory(DisplayName = "Default Basis Income Tax")]
         [InlineData(2018, 500_000, "Married", "ZH")]
         [InlineData(2018, 0, "Married", "ZH")]
         [InlineData(2018, 99995, "Married", "ZH")]
@@ -27,19 +29,19 @@ namespace TaxCalculator.Tests
         [InlineData(2019, 100000, "Single", "SG")]
         public async Task ShouldCalculateBasisIncomeTax(
             int calculationYear,
-            double wealthAsDouble,
+            double incomeAsDouble,
             string civilStatusCode,
             string cantonAsStr)
         {
             // given
             Canton canton = Enum.Parse<Canton>(cantonAsStr);
-            decimal wealth = Convert.ToDecimal(wealthAsDouble);
+            decimal income = Convert.ToDecimal(incomeAsDouble);
             CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
 
             var taxPerson = new BasisTaxPerson
             {
                 CivilStatus = status,
-                TaxableAmount = wealth
+                TaxableAmount = income
             };
 
             // when
@@ -47,7 +49,7 @@ namespace TaxCalculator.Tests
                 calculationYear, canton, taxPerson);
 
             result.IsRight.Should().BeTrue();
-            Snapshot.Match(result,$"Theory Basis Income Tax {calculationYear}{cantonAsStr}{wealthAsDouble}{civilStatusCode}");
+            Snapshot.Match(result,$"Default Basis Income Tax {calculationYear}{cantonAsStr}{incomeAsDouble}{civilStatusCode}");
         }
     }
 }

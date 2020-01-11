@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
@@ -36,6 +37,19 @@ namespace TaxCalculator
 
             collection.AddValidators();
             collection.AddBasisCalculators();
+            collection.AddCantonBasisTaxCalculatorFactory();
+        }
+
+        private static void AddCantonBasisTaxCalculatorFactory(this IServiceCollection collection)
+        {
+            collection.AddTransient<SGBasisIncomeTaxCalculator>();
+
+            collection.AddSingleton<Func<Canton, IBasisIncomeTaxCalculator>>(ctx =>
+                canton => canton switch {
+                    Canton.SG => ctx.GetRequiredService<SGBasisIncomeTaxCalculator>(),
+                    Canton.ZH => ctx.GetRequiredService<IDefaultBasisIncomeTaxCalculator>(),
+                    _ => ctx.GetRequiredService<MissingBasisIncomeTaxCalculator>()
+                });
         }
 
         private static void AddValidators(this IServiceCollection collection)
@@ -53,7 +67,7 @@ namespace TaxCalculator
         {
             collection.AddTransient<IChurchTaxCalculator, ChurchTaxCalculator>();
             collection.AddTransient<IPollTaxCalculator, PollTaxCalculator>();
-            collection.AddTransient<IBasisIncomeTaxCalculator, DefaultBasisIncomeTaxCalculator>();
+            collection.AddTransient<IDefaultBasisIncomeTaxCalculator, DefaultBasisIncomeTaxCalculator>();
             collection.AddTransient<IBasisWealthTaxCalculator, DefaultBasisWealthTaxCalculator>();
             collection.AddTransient<ICapitalBenefitTaxCalculator, CapitalBenefitTaxCalculator>();
         }

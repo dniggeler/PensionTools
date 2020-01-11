@@ -38,7 +38,6 @@ namespace TaxCalculator
             Canton canton,
             TaxPerson person)
         {
-
             var aggregatedTaxResultTask =
                  this.basisTaxCalculator.CalculateAsync(calculationYear, canton, person);
 

@@ -8,9 +8,12 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data.Abstractions;
 using Tax.Data.Abstractions.Models;
 
-
 namespace TaxCalculator.Basis.Wealth
 {
+    /// <summary>
+    /// Default wealth tax calculator.
+    /// </summary>
+    /// <seealso cref="PensionCoach.Tools.TaxCalculator.Abstractions.IBasisWealthTaxCalculator" />
     public class DefaultBasisWealthTaxCalculator : IBasisWealthTaxCalculator
     {
         private const int TaxTypeId = (int)TaxType.Wealth;

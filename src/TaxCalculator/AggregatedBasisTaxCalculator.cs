@@ -10,12 +10,12 @@ namespace TaxCalculator
     public class AggregatedBasisTaxCalculator : IAggregatedBasisTaxCalculator
     {
         private readonly IMapper mapper;
-        private readonly IBasisIncomeTaxCalculator basisIncomeTaxCalculator;
+        private readonly IDefaultBasisIncomeTaxCalculator basisIncomeTaxCalculator;
         private readonly IBasisWealthTaxCalculator basisWealthTaxCalculator;
 
         public AggregatedBasisTaxCalculator(
             IMapper mapper,
-            IBasisIncomeTaxCalculator basisIncomeTaxCalculator,
+            IDefaultBasisIncomeTaxCalculator basisIncomeTaxCalculator,
             IBasisWealthTaxCalculator basisWealthTaxCalculator)
         {
             this.mapper = mapper;

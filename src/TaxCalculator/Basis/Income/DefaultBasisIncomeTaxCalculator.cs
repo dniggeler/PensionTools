@@ -11,7 +11,11 @@ using Tax.Data.Abstractions.Models;
 
 namespace TaxCalculator.Basis.Income
 {
-    public class DefaultBasisIncomeTaxCalculator : IBasisIncomeTaxCalculator
+    /// <summary>
+    /// Default income tax calculator which is the same for ZH.
+    /// </summary>
+    /// <seealso cref="PensionCoach.Tools.TaxCalculator.Abstractions.IBasisIncomeTaxCalculator" />
+    public class DefaultBasisIncomeTaxCalculator : IDefaultBasisIncomeTaxCalculator
     {
         private const int IncomeTaxTypeId = (int)TaxType.Income;
 
