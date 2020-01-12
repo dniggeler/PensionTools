@@ -26,7 +26,7 @@ namespace TaxCalculator.Tests
         [InlineData(2018, 0, "Married", "ZH")]
         [InlineData(2018, 522000, "Married", "ZH")]
         [InlineData(2018, 522000, "Single", "ZH")]
-        [InlineData(2019, 400000, "Single", "SG")]
+        [InlineData(2019, 500000, "Single", "SG")]
         public async Task ShouldCalculateBasisWealthTax(
             int calculationYear, double wealthAsDouble, string civilStatusCode, string cantonStr)
         {

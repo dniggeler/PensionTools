@@ -59,6 +59,7 @@ namespace TaxCalculator
             this IServiceCollection collection)
         {
             collection.AddTransient<SGBasisWealthTaxCalculator>();
+            collection.AddTransient<ZHBasisWealthTaxCalculator>();
             collection.AddTransient<MissingBasisWealthTaxCalculator>();
 
             collection.AddSingleton<Func<Canton, IBasisWealthTaxCalculator>>(ctx =>
