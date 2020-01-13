@@ -4,13 +4,13 @@
     "Right": {
       "BasisTaxAmount": {
         "DeterminingFactorTaxableAmount": 522000.0,
-        "TaxAmount": 610.74000
+        "TaxAmount": 887.4000
       },
       "CantonRate": 115.0,
       "MunicipalityRate": 87.0,
-      "MunicipalityTaxAmount": 531.3438000,
-      "CantonTaxAmount": 702.3510000,
-      "TotalTaxAmount": 1233.6948000
+      "MunicipalityTaxAmount": 772.038000,
+      "CantonTaxAmount": 1020.510000,
+      "TotalTaxAmount": 1792.548000
     },
     "Left": null
   }

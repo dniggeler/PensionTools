@@ -3,7 +3,7 @@
     "State": "IsRight",
     "Right": {
       "DeterminingFactorTaxableAmount": 500000.0,
-      "TaxAmount": 585.00000
+      "TaxAmount": 850.0000
     },
     "Left": null
   }
