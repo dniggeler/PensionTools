@@ -9,7 +9,7 @@ namespace TaxCalculator.Basis.Wealth
 {
     public class SGBasisWealthTaxCalculator : IBasisWealthTaxCalculator
     {
-        private const decimal TaxRate = 1.17M / 1000M;
+        private const decimal TaxRate = 1.7M / 1000M;
         private const decimal MinLevel = 1000M;
 
         public Task<Either<string, BasisTaxResult>> CalculateAsync(int calculationYear, Canton canton, BasisTaxPerson person)
@@ -23,8 +23,8 @@ namespace TaxCalculator.Basis.Wealth
 
             taxResult.IfRight(r =>
             {
-                r.TaxAmount = r.TaxAmount * TaxRate;
-                r.DeterminingFactorTaxableAmount = r.TaxAmount;
+                r.TaxAmount = person.TaxableAmount * TaxRate;
+                r.DeterminingFactorTaxableAmount = person.TaxableAmount;
             });
 
             return taxResult.AsTask();

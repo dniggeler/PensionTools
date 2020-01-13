@@ -15,18 +15,18 @@ namespace TaxCalculator
     {
         private readonly IValidator<TaxPerson> taxPersonValidator;
         private readonly Func<TaxRateDbContext> rateDbContextFunc;
-        private readonly IBasisWealthTaxCalculator basisWealthTaxCalculator;
+        private readonly Func<Canton, IBasisWealthTaxCalculator> basisWealthTaxCalculatorFunc;
         private readonly IMapper mapper;
 
         public WealthTaxCalculator(
             IValidator<TaxPerson> taxPersonValidator,
             Func<TaxRateDbContext> rateDbContextFunc,
-            IBasisWealthTaxCalculator basisWealthTaxCalculator,
+            Func<Canton, IBasisWealthTaxCalculator> basisWealthTaxCalculatorFunc,
             IMapper mapper)
         {
             this.taxPersonValidator = taxPersonValidator;
             this.rateDbContextFunc = rateDbContextFunc;
-            this.basisWealthTaxCalculator = basisWealthTaxCalculator;
+            this.basisWealthTaxCalculatorFunc = basisWealthTaxCalculatorFunc;
             this.mapper = mapper;
         }
 
@@ -45,7 +45,7 @@ namespace TaxCalculator
             basisTaxPerson.TaxableAmount = person.TaxableWealth;
 
             var basisTaxResult =
-                await this.basisWealthTaxCalculator.CalculateAsync(
+                await this.basisWealthTaxCalculatorFunc(canton).CalculateAsync(
                     calculationYear, canton, basisTaxPerson);
 
             return basisTaxResult
@@ -57,19 +57,17 @@ namespace TaxCalculator
         private SingleTaxResult CalculateTax(
             int calculationYear, int municipalityId, BasisTaxResult basisTaxResult)
         {
-            using (var dbContext = this.rateDbContextFunc())
-            {
-                var taxRate = dbContext.Rates
-                    .Single(item => item.BfsId == municipalityId
-                                    && item.Year == calculationYear);
+            var dbContext = this.rateDbContextFunc();
+            var taxRate = dbContext.Rates
+                .Single(item => item.BfsId == municipalityId
+                                && item.Year == calculationYear);
 
-                return new SingleTaxResult
-                {
-                    BasisTaxAmount = basisTaxResult,
-                    MunicipalityRate = taxRate.TaxRateMunicipality,
-                    CantonRate = taxRate.TaxRateCanton,
-                };
-            }
+            return new SingleTaxResult
+            {
+                BasisTaxAmount = basisTaxResult,
+                MunicipalityRate = taxRate.TaxRateMunicipality,
+                CantonRate = taxRate.TaxRateCanton,
+            };
         }
     }
 }

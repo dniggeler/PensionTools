@@ -47,7 +47,7 @@ namespace TaxCalculator.Tests
                     calculationYear, canton, taxPerson);
 
             result.IsRight.Should().BeTrue();
-            Snapshot.Match(result, $"Theory Basis Wealth Tax {calculationYear}{wealthAsDouble}{civilStatusCode}");
+            Snapshot.Match(result, $"Theory Basis Wealth Tax {calculationYear}{wealthAsDouble}{civilStatusCode}{cantonStr}");
         }
     }
 }

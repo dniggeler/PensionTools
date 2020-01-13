@@ -14,7 +14,8 @@ namespace TaxCalculator.Tests
     {
         private readonly TaxCalculatorFixture<ICapitalBenefitTaxCalculator> _fixture;
 
-        public CapitalBenefitTaxCalculatorTests(TaxCalculatorFixture<ICapitalBenefitTaxCalculator> fixture)
+        public CapitalBenefitTaxCalculatorTests(
+            TaxCalculatorFixture<ICapitalBenefitTaxCalculator> fixture)
         {
             _fixture = fixture;
         }

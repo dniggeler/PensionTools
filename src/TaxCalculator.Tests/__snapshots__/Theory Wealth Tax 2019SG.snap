@@ -1,0 +1,17 @@
+﻿[
+  {
+    "State": "IsRight",
+    "Right": {
+      "BasisTaxAmount": {
+        "DeterminingFactorTaxableAmount": 522000.0,
+        "TaxAmount": 610.74000
+      },
+      "CantonRate": 115.0,
+      "MunicipalityRate": 87.0,
+      "MunicipalityTaxAmount": 531.3438000,
+      "CantonTaxAmount": 702.3510000,
+      "TotalTaxAmount": 1233.6948000
+    },
+    "Left": null
+  }
+]
