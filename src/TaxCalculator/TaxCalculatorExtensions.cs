@@ -40,6 +40,7 @@ namespace TaxCalculator
             collection.AddBasisCalculators();
             collection.AddCantonBasisTaxCalculatorFactory();
             collection.AddCantonBasisWealthTaxCalculatorFactory();
+            collection.AddCantonBasisCapitalBenefitTaxCalculatorFactory();
         }
 
         private static void AddCantonBasisTaxCalculatorFactory(
@@ -53,6 +54,21 @@ namespace TaxCalculator
                     Canton.SG => ctx.GetRequiredService<SGBasisIncomeTaxCalculator>(),
                     Canton.ZH => ctx.GetRequiredService<IDefaultBasisIncomeTaxCalculator>(),
                     _ => ctx.GetRequiredService<MissingBasisIncomeTaxCalculator>()
+                });
+        }
+
+        private static void AddCantonBasisCapitalBenefitTaxCalculatorFactory(
+            this IServiceCollection collection)
+        {
+            collection.AddTransient<SGCapitalBenefitTaxCalculator>();
+            collection.AddTransient<ZHCapitalBenefitTaxCalculator>();
+            collection.AddTransient<MissingCapitalBenefitTaxCalculator>();
+
+            collection.AddSingleton<Func<Canton, ICapitalBenefitTaxCalculator>>(ctx =>
+                canton => canton switch {
+                    Canton.SG => ctx.GetRequiredService<SGCapitalBenefitTaxCalculator>(),
+                    Canton.ZH => ctx.GetRequiredService<ZHCapitalBenefitTaxCalculator>(),
+                    _ => ctx.GetRequiredService<MissingCapitalBenefitTaxCalculator>()
                 });
         }
 
@@ -87,7 +103,6 @@ namespace TaxCalculator
             collection.AddTransient<IChurchTaxCalculator, ChurchTaxCalculator>();
             collection.AddTransient<IPollTaxCalculator, PollTaxCalculator>();
             collection.AddTransient<IDefaultBasisIncomeTaxCalculator, DefaultBasisIncomeTaxCalculator>();
-            collection.AddTransient<ICapitalBenefitTaxCalculator, ZHCapitalBenefitTaxCalculator>();
         }
     }
 }
