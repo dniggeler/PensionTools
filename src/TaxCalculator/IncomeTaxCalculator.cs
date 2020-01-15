@@ -8,6 +8,7 @@ using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data;
+using Tax.Data.Abstractions.Models;
 
 namespace TaxCalculator
 {
@@ -63,7 +64,7 @@ namespace TaxCalculator
         {
             using (var dbContext = this.rateDbContextFunc())
             {
-                var taxRate = dbContext.Rates
+                TaxRateEntity taxRate = dbContext.Rates
                     .Single(item => item.Year == calculationYear
                                     && item.BfsId == municipalityId);
 

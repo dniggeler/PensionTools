@@ -5,17 +5,22 @@ using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
+using Tax.Data;
+using Tax.Data.Abstractions.Models;
 
 namespace TaxCalculator.Basis.CapitalBenefit
 {
     public class SGCapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
     {
         private readonly IValidator<CapitalBenefitTaxPerson> validator;
+        private readonly TaxRateDbContext dbContext;
 
         public SGCapitalBenefitTaxCalculator(
-            IValidator<CapitalBenefitTaxPerson> validator)
+            IValidator<CapitalBenefitTaxPerson> validator,
+            TaxRateDbContext dbContext)
         {
             this.validator = validator;
+            this.dbContext = dbContext;
         }
 
         /// <inheritdoc />
@@ -37,8 +42,22 @@ namespace TaxCalculator.Basis.CapitalBenefit
                 return errorMessageLine.AsTask();
             }
 
-            Option<CapitalBenefitTaxResult> result = capitalBenefitTaxPerson.CivilStatus
-                .Map(status => GetTaxAmount(status))
+            var taxRateEntity = this.dbContext.Rates
+                .FirstOrDefault(item => item.BfsId == municipalityId && item.Year == calculationYear);
+
+            if (taxRateEntity == null)
+            {
+                Either<string, CapitalBenefitTaxResult> r =
+                    $"No tax rate available for municipality { municipalityId} and year { calculationYear}";
+
+                return r.AsTask();
+            }
+
+            Option<CapitalBenefitTaxResult> result =
+                (from s in capitalBenefitTaxPerson.CivilStatus
+                from r in capitalBenefitTaxPerson.ReligiousGroupType
+                from rPartner in capitalBenefitTaxPerson.ReligiousGroupType
+                select GetTaxAmount(s, r, rPartner, taxRateEntity))
                 .Map(v => new CapitalBenefitTaxResult
                 {
                     BasisTax = new BasisTaxResult
@@ -59,16 +78,21 @@ namespace TaxCalculator.Basis.CapitalBenefit
                     None: () => "Calculation failed")
                 .AsTask();
 
-            decimal GetTaxAmount(CivilStatus status)
+            decimal GetTaxAmount(
+                CivilStatus status,
+                ReligiousGroupType taxPerson,
+                ReligiousGroupType partner,
+                TaxRateEntity taxRateEntity)
             {
-                return status switch
-                {
-                    CivilStatus.Single =>
-                    capitalBenefitTaxPerson.TaxableBenefits * taxRateForSingle,
-                    CivilStatus.Married =>
-                    capitalBenefitTaxPerson.TaxableBenefits * taxRateForMarried,
-                    _ => 0M,
-                };
+                return (taxRateEntity.TaxRateCanton + taxRateEntity.TaxRateMunicipality) / 100
+                       * status switch
+                       {
+                           CivilStatus.Single =>
+                           capitalBenefitTaxPerson.TaxableBenefits * taxRateForSingle,
+                           CivilStatus.Married =>
+                           capitalBenefitTaxPerson.TaxableBenefits * taxRateForMarried,
+                           _ => 0M,
+                       };
             }
         }
     }
