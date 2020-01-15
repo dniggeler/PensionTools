@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using FluentValidation;
 using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
@@ -12,18 +11,15 @@ namespace TaxCalculator.Basis.CapitalBenefit
     public class SGCapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
     {
         private readonly IValidator<CapitalBenefitTaxPerson> validator;
-        private readonly IMapper mapper;
 
         public SGCapitalBenefitTaxCalculator(
-            IValidator<CapitalBenefitTaxPerson> validator,
-            IMapper mapper)
+            IValidator<CapitalBenefitTaxPerson> validator)
         {
             this.validator = validator;
-            this.mapper = mapper;
         }
 
         /// <inheritdoc />
-        public async Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(
+        public Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(
             int calculationYear,
             int municipalityId,
             Canton canton,
@@ -35,10 +31,10 @@ namespace TaxCalculator.Basis.CapitalBenefit
             var validationResult = this.validator.Validate(capitalBenefitTaxPerson);
             if (!validationResult.IsValid)
             {
-                var errorMessageLine =
+                Either<string, CapitalBenefitTaxResult> errorMessageLine =
                     string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
 
-                return errorMessageLine;
+                return errorMessageLine.AsTask();
             }
 
             Option<CapitalBenefitTaxResult> result = capitalBenefitTaxPerson.CivilStatus
@@ -50,12 +46,18 @@ namespace TaxCalculator.Basis.CapitalBenefit
                         DeterminingFactorTaxableAmount = capitalBenefitTaxPerson.TaxableBenefits,
                         TaxAmount = v,
                     },
+                    ChurchTax = new ChurchTaxResult
+                    {
+                        TaxAmount = 0M,
+                        TaxAmountPartner = 0M,
+                    },
                 });
 
             return result
                 .Match<Either<string, CapitalBenefitTaxResult>>(
                     Some: r => r,
-                    None: () => "Calculation failed");
+                    None: () => "Calculation failed")
+                .AsTask();
 
             decimal GetTaxAmount(CivilStatus status)
             {

@@ -38,12 +38,12 @@ namespace TaxCalculator
 
             collection.AddValidators();
             collection.AddBasisCalculators();
-            collection.AddCantonBasisTaxCalculatorFactory();
-            collection.AddCantonBasisWealthTaxCalculatorFactory();
-            collection.AddCantonBasisCapitalBenefitTaxCalculatorFactory();
+            collection.AddCantonIncomeTaxCalculatorFactory();
+            collection.AddCantonWealthTaxCalculatorFactory();
+            collection.AddCantonCapitalBenefitTaxCalculatorFactory();
         }
 
-        private static void AddCantonBasisTaxCalculatorFactory(
+        private static void AddCantonIncomeTaxCalculatorFactory(
             this IServiceCollection collection)
         {
             collection.AddTransient<SGBasisIncomeTaxCalculator>();
@@ -57,7 +57,7 @@ namespace TaxCalculator
                 });
         }
 
-        private static void AddCantonBasisCapitalBenefitTaxCalculatorFactory(
+        private static void AddCantonCapitalBenefitTaxCalculatorFactory(
             this IServiceCollection collection)
         {
             collection.AddTransient<SGCapitalBenefitTaxCalculator>();
@@ -72,7 +72,7 @@ namespace TaxCalculator
                 });
         }
 
-        private static void AddCantonBasisWealthTaxCalculatorFactory(
+        private static void AddCantonWealthTaxCalculatorFactory(
             this IServiceCollection collection)
         {
             collection.AddTransient<SGBasisWealthTaxCalculator>();
