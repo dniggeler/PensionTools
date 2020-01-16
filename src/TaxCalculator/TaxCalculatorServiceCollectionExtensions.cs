@@ -13,7 +13,7 @@ using TaxCalculator.Validators;
 
 namespace TaxCalculator
 {
-    public static class TaxCalculatorExtensions
+    public static class TaxCalculatorServiceCollectionExtensions
     {
         public static void AddTaxCalculators(this IServiceCollection collection)
         {
