@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FluentValidation;
 using LanguageExt;
+using Microsoft.EntityFrameworkCore;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -49,14 +50,14 @@ namespace TaxCalculator.Basis.CapitalBenefit
 
             await using (var ctxt = this.dbContext())
             {
-                var taxRateEntity = ctxt.Rates
+                var taxRateEntity = ctxt.Rates.AsNoTracking()
                     .FirstOrDefault(item => item.BfsId == municipalityId
                                             && item.Year == calculationYear);
 
                 if (taxRateEntity == null)
                 {
                     return
-                        $"No tax rate available for municipality { municipalityId} and year { calculationYear}";
+                        $"No tax rate available for municipality {municipalityId} and year { calculationYear}";
                 }
 
                 BasisTaxResult basisTaxResult = GetBasisCapitalBenefitTaxAmount(capitalBenefitTaxPerson);

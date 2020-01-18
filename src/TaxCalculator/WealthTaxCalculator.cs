@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FluentValidation;
 using LanguageExt;
+using Microsoft.EntityFrameworkCore;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -57,17 +58,19 @@ namespace TaxCalculator
         private SingleTaxResult CalculateTax(
             int calculationYear, int municipalityId, BasisTaxResult basisTaxResult)
         {
-            var dbContext = this.rateDbContextFunc();
-            var taxRate = dbContext.Rates
-                .Single(item => item.BfsId == municipalityId
-                                && item.Year == calculationYear);
-
-            return new SingleTaxResult
+            using (var dbContext = this.rateDbContextFunc())
             {
-                BasisTaxAmount = basisTaxResult,
-                MunicipalityRate = taxRate.TaxRateMunicipality,
-                CantonRate = taxRate.TaxRateCanton,
-            };
+                var taxRate = dbContext.Rates.AsNoTracking()
+                    .Single(item => item.BfsId == municipalityId
+                                    && item.Year == calculationYear);
+
+                return new SingleTaxResult
+                {
+                    BasisTaxAmount = basisTaxResult,
+                    MunicipalityRate = taxRate.TaxRateMunicipality,
+                    CantonRate = taxRate.TaxRateCanton,
+                };
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using LanguageExt;
+using Microsoft.EntityFrameworkCore;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -61,7 +62,7 @@ namespace TaxCalculator
                 var pollTaxResult = await pollTaxResultTask;
 
 
-                Option<TaxRateEntity> taxRate = ctxt.Rates
+                Option<TaxRateEntity> taxRate = ctxt.Rates.AsNoTracking()
                     .FirstOrDefault(item => item.BfsId == municipalityId
                                             && item.Year == calculationYear);
 

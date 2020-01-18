@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FluentValidation;
 using LanguageExt;
+using Microsoft.EntityFrameworkCore;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -64,7 +65,7 @@ namespace TaxCalculator
         {
             using (var dbContext = this.rateDbContextFunc())
             {
-                TaxRateEntity taxRate = dbContext.Rates
+                TaxRateEntity taxRate = dbContext.Rates.AsNoTracking()
                     .Single(item => item.Year == calculationYear
                                     && item.BfsId == municipalityId);
 
