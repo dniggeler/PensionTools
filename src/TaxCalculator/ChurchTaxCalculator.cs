@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using LanguageExt;
@@ -14,12 +15,12 @@ namespace TaxCalculator
     {
         private readonly IValidator<ChurchTaxPerson> churchTaxPersonValidator;
         private readonly IValidator<AggregatedBasisTaxResult> taxResultValidator;
-        private readonly TaxRateDbContext taxRateContext;
+        private readonly Func<TaxRateDbContext> taxRateContext;
 
         public ChurchTaxCalculator(
             IValidator<ChurchTaxPerson> churchTaxPersonValidator,
             IValidator<AggregatedBasisTaxResult> basisTaxResultValidator,
-            TaxRateDbContext taxRateContext)
+            Func<TaxRateDbContext> taxRateContext)
         {
             this.churchTaxPersonValidator = churchTaxPersonValidator;
             this.taxResultValidator = basisTaxResultValidator;
@@ -33,21 +34,24 @@ namespace TaxCalculator
             ChurchTaxPerson person,
             AggregatedBasisTaxResult taxResult)
         {
-            TaxRateEntity taxRateEntity = this.taxRateContext.Rates
-                .FirstOrDefault(item => item.Year == calculationYear
-                                        && item.BfsId == municipalityId);
-            if (taxRateEntity == null)
+            using (var ctxt = this.taxRateContext())
             {
-                Either<string, ChurchTaxResult> msg =
-                    $"No tax rate found for municipality {municipalityId} and year {calculationYear}";
+                TaxRateEntity taxRateEntity = ctxt.Rates
+                    .FirstOrDefault(item => item.Year == calculationYear
+                                            && item.BfsId == municipalityId);
+                if (taxRateEntity == null)
+                {
+                    Either<string, ChurchTaxResult> msg =
+                        $"No tax rate found for municipality {municipalityId} and year {calculationYear}";
 
-                return msg.AsTask();
+                    return msg.AsTask();
+                }
+
+                return this
+                    .Validate(person, taxResult)
+                    .BindAsync(r => this.CalculateInternalAsync(
+                        person, taxRateEntity, taxResult));
             }
-
-            return this
-                .Validate(person, taxResult)
-                .BindAsync(r => this.CalculateInternalAsync(
-                    person, taxRateEntity, taxResult));
         }
 
         public Task<Either<string, ChurchTaxResult>> CalculateAsync(

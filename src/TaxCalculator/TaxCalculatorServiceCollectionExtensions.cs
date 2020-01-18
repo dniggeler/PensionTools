@@ -65,7 +65,8 @@ namespace TaxCalculator
             collection.AddTransient<MissingCapitalBenefitTaxCalculator>();
 
             collection.AddSingleton<Func<Canton, ICapitalBenefitTaxCalculator>>(ctx =>
-                canton => canton switch {
+                canton => canton switch
+                {
                     Canton.SG => ctx.GetRequiredService<SGCapitalBenefitTaxCalculator>(),
                     Canton.ZH => ctx.GetRequiredService<ZHCapitalBenefitTaxCalculator>(),
                     _ => ctx.GetRequiredService<MissingCapitalBenefitTaxCalculator>()

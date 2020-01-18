@@ -13,10 +13,10 @@ namespace Tax.Data
         {
             var connectionString = "Filename="+configuration.GetConnectionString("TaxDb");
 
-            collection.AddDbContext<FederalTaxTariffDbContext>(opt => opt.UseSqlite(connectionString));
-            collection.AddDbContext<TaxTariffDbContext>(opt => opt.UseSqlite(connectionString));
-            collection.AddDbContext<TaxRateDbContext>(opt => opt.UseSqlite(connectionString));
-            collection.AddDbContext<MunicipalityDbContext>(opt => opt.UseSqlite(connectionString));
+            collection.AddDbContext<FederalTaxTariffDbContext>(opt => opt.UseSqlite(connectionString), ServiceLifetime.Transient);
+            collection.AddDbContext<TaxTariffDbContext>(opt => opt.UseSqlite(connectionString), ServiceLifetime.Transient);
+            collection.AddDbContext<TaxRateDbContext>(opt => opt.UseSqlite(connectionString), ServiceLifetime.Transient);
+            collection.AddDbContext<MunicipalityDbContext>(opt => opt.UseSqlite(connectionString), ServiceLifetime.Transient);
 
             collection.AddSingleton<Func<TaxTariffDbContext>>(provider =>
                 provider.GetRequiredService<TaxTariffDbContext>);
@@ -28,7 +28,7 @@ namespace Tax.Data
             collection.AddSingleton<Func<MunicipalityDbContext>>(provider =>
                 provider.GetRequiredService<MunicipalityDbContext>);
 
-            collection.AddScoped<ITaxTariffData,TaxTariffData>();
+            collection.AddSingleton<ITaxTariffData,TaxTariffData>();
         }
     }
 }

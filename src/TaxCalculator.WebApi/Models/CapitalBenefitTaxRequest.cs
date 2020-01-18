@@ -18,7 +18,7 @@ namespace TaxCalculator.WebApi.Models
         public ReligiousGroupType? PartnerReligiousGroup { get; set; }
 
         [Required]
-        [Range(typeof(int), "0", "1000", ErrorMessage = "BFS number not valid")]
+        [Range(typeof(int), "0", "10000", ErrorMessage = "BFS number not valid")]
         public int BfsMunicipalityId { get; set; }
 
         [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]

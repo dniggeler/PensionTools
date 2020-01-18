@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using FluentValidation;
@@ -7,7 +8,6 @@ using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data;
-using Tax.Data.Abstractions.Models;
 
 namespace TaxCalculator.Basis.CapitalBenefit
 {
@@ -16,13 +16,13 @@ namespace TaxCalculator.Basis.CapitalBenefit
         private readonly IMapper mapper;
         private readonly IValidator<CapitalBenefitTaxPerson> validator;
         private readonly IChurchTaxCalculator churchTaxCalculator;
-        private readonly TaxRateDbContext dbContext;
+        private readonly Func<TaxRateDbContext> dbContext;
 
         public SGCapitalBenefitTaxCalculator(
             IMapper mapper,
             IValidator<CapitalBenefitTaxPerson> validator,
             IChurchTaxCalculator churchTaxCalculator,
-            TaxRateDbContext dbContext)
+            Func<TaxRateDbContext> dbContext)
         {
             this.mapper = mapper;
             this.validator = validator;
@@ -47,62 +47,68 @@ namespace TaxCalculator.Basis.CapitalBenefit
                     string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
             }
 
-            var taxRateEntity = this.dbContext.Rates
-                .FirstOrDefault(item => item.BfsId == municipalityId && item.Year == calculationYear);
-
-            if (taxRateEntity == null)
+            await using (var ctxt = this.dbContext())
             {
-                return
-                    $"No tax rate available for municipality { municipalityId} and year { calculationYear}";
-            }
+                var taxRateEntity = ctxt.Rates
+                    .FirstOrDefault(item => item.BfsId == municipalityId
+                                            && item.Year == calculationYear);
 
-            BasisTaxResult basisTaxResult = GetBasisCapitalBenefitTaxAmount(capitalBenefitTaxPerson);
-
-            ChurchTaxPerson churchTaxPerson = this.mapper.Map<ChurchTaxPerson>(capitalBenefitTaxPerson);
-
-            Either<string, ChurchTaxResult> churchTaxResult =
-                await this.churchTaxCalculator.CalculateAsync(
-                    churchTaxPerson,
-                    taxRateEntity,
-                    new AggregatedBasisTaxResult
-                    {
-                        IncomeTax = basisTaxResult,
-                        WealthTax = new BasisTaxResult(),
-                    });
-
-            return churchTaxResult.Map(Update);
-
-            CapitalBenefitTaxResult Update(ChurchTaxResult churchResult)
-            {
-                return new CapitalBenefitTaxResult
+                if (taxRateEntity == null)
                 {
-                    BasisTax = basisTaxResult,
-                    ChurchTax = churchResult,
-                    CantonRate = taxRateEntity.TaxRateCanton,
-                    MunicipalityRate = taxRateEntity.TaxRateMunicipality,
-                };
-            }
+                    return
+                        $"No tax rate available for municipality { municipalityId} and year { calculationYear}";
+                }
 
-            BasisTaxResult GetBasisCapitalBenefitTaxAmount(CapitalBenefitTaxPerson person)
-            {
-                var amount = person.CivilStatus
-                    .Match(
-                        Some: status => status switch
+                BasisTaxResult basisTaxResult = GetBasisCapitalBenefitTaxAmount(capitalBenefitTaxPerson);
+
+                ChurchTaxPerson churchTaxPerson = this.mapper.Map<ChurchTaxPerson>(capitalBenefitTaxPerson);
+
+                Either<string, ChurchTaxResult> churchTaxResult =
+                    await this.churchTaxCalculator.CalculateAsync(
+                        churchTaxPerson,
+                        taxRateEntity,
+                        new AggregatedBasisTaxResult
                         {
-                            CivilStatus.Single =>
-                            capitalBenefitTaxPerson.TaxableBenefits * taxRateForSingle,
-                            CivilStatus.Married =>
-                            capitalBenefitTaxPerson.TaxableBenefits * taxRateForMarried,
-                            _ => 0M,
-                        },
-                        None: () => 0);
+                            IncomeTax = basisTaxResult,
+                            WealthTax = new BasisTaxResult(),
+                        });
 
-                return new BasisTaxResult
+                return churchTaxResult.Map(Update);
+
+                CapitalBenefitTaxResult Update(ChurchTaxResult churchResult)
                 {
-                    DeterminingFactorTaxableAmount = amount,
-                    TaxAmount = amount,
-                };
+                    return new CapitalBenefitTaxResult
+                    {
+                        BasisTax = basisTaxResult,
+                        ChurchTax = churchResult,
+                        CantonRate = taxRateEntity.TaxRateCanton,
+                        MunicipalityRate = taxRateEntity.TaxRateMunicipality,
+                    };
+                }
+
+                BasisTaxResult GetBasisCapitalBenefitTaxAmount(CapitalBenefitTaxPerson person)
+                {
+                    var amount = person.CivilStatus
+                        .Match(
+                            Some: status => status switch
+                            {
+                                CivilStatus.Single =>
+                                capitalBenefitTaxPerson.TaxableBenefits * taxRateForSingle,
+                                CivilStatus.Married =>
+                                capitalBenefitTaxPerson.TaxableBenefits * taxRateForMarried,
+                                _ => 0M,
+                            },
+                            None: () => 0);
+
+                    return new BasisTaxResult
+                    {
+                        DeterminingFactorTaxableAmount = amount,
+                        TaxAmount = amount,
+                    };
+                }
+
             }
+
         }
     }
 }
