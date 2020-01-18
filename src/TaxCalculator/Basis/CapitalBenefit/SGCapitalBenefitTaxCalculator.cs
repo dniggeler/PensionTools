@@ -56,63 +56,52 @@ namespace TaxCalculator.Basis.CapitalBenefit
                     $"No tax rate available for municipality { municipalityId} and year { calculationYear}";
             }
 
-            Either<string, CapitalBenefitTaxResult> capitalBenefitTaxResult =
-                (from s in capitalBenefitTaxPerson.CivilStatus
-                from r in capitalBenefitTaxPerson.ReligiousGroupType
-                from rPartner in capitalBenefitTaxPerson.ReligiousGroupType
-                select GetTaxAmount(s, r, rPartner))
-                .Map(v => new CapitalBenefitTaxResult
-                {
-                    BasisTax = new BasisTaxResult
+            BasisTaxResult basisTaxResult = GetBasisCapitalBenefitTaxAmount(capitalBenefitTaxPerson);
+
+            ChurchTaxPerson churchTaxPerson = this.mapper.Map<ChurchTaxPerson>(capitalBenefitTaxPerson);
+
+            Either<string, ChurchTaxResult> churchTaxResult =
+                await this.churchTaxCalculator.CalculateAsync(
+                    churchTaxPerson,
+                    taxRateEntity,
+                    new AggregatedBasisTaxResult
                     {
-                        DeterminingFactorTaxableAmount = capitalBenefitTaxPerson.TaxableBenefits,
-                        TaxAmount = v,
-                    },
+                        IncomeTax = basisTaxResult,
+                        WealthTax = new BasisTaxResult(),
+                    });
+
+            return churchTaxResult.Map(Update);
+
+            CapitalBenefitTaxResult Update(ChurchTaxResult churchResult)
+            {
+                return new CapitalBenefitTaxResult
+                {
+                    BasisTax = basisTaxResult,
+                    ChurchTax = churchResult,
                     CantonRate = taxRateEntity.TaxRateCanton,
                     MunicipalityRate = taxRateEntity.TaxRateMunicipality,
-                })
-                .ToEither("Basis capital benefit calculation failed");
-
-            var churchTaxPerson = this.mapper.Map<ChurchTaxPerson>(capitalBenefitTaxPerson);
-
-            var churchTaxResult =
-                await capitalBenefitTaxResult
-                    .Map(r => new AggregatedBasisTaxResult
-                    {
-                        IncomeTax = r.BasisTax,
-                        WealthTax = new BasisTaxResult(),
-                    })
-                    .MapAsync(r =>
-                        this.churchTaxCalculator.CalculateAsync(churchTaxPerson, taxRateEntity, r));
-
-            return
-                from ct in churchTaxResult.Flatten()
-                from ir in capitalBenefitTaxResult
-                select Update(ir, ct);
-
-            CapitalBenefitTaxResult Update(
-                CapitalBenefitTaxResult benefitTaxResult,
-                ChurchTaxResult churchResult)
-            {
-                benefitTaxResult.ChurchTax = churchResult;
-
-                return benefitTaxResult;
+                };
             }
 
-            decimal GetTaxAmount(
-                CivilStatus status,
-                ReligiousGroupType taxPerson,
-                ReligiousGroupType partner)
+            BasisTaxResult GetBasisCapitalBenefitTaxAmount(CapitalBenefitTaxPerson person)
             {
-                return (taxRateEntity.TaxRateCanton + taxRateEntity.TaxRateMunicipality) / 100
-                       * status switch
-                       {
-                           CivilStatus.Single =>
-                           capitalBenefitTaxPerson.TaxableBenefits * taxRateForSingle,
-                           CivilStatus.Married =>
-                           capitalBenefitTaxPerson.TaxableBenefits * taxRateForMarried,
-                           _ => 0M,
-                       };
+                var amount = person.CivilStatus
+                    .Match(
+                        Some: status => status switch
+                        {
+                            CivilStatus.Single =>
+                            capitalBenefitTaxPerson.TaxableBenefits * taxRateForSingle,
+                            CivilStatus.Married =>
+                            capitalBenefitTaxPerson.TaxableBenefits * taxRateForMarried,
+                            _ => 0M,
+                        },
+                        None: () => 0);
+
+                return new BasisTaxResult
+                {
+                    DeterminingFactorTaxableAmount = amount,
+                    TaxAmount = amount,
+                };
             }
         }
     }
