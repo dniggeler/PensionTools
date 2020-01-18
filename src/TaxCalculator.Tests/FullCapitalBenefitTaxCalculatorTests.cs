@@ -25,6 +25,8 @@ namespace TaxCalculator.Tests
         [InlineData(2018, 2_000_000, "Married", "Catholic", 261, "ZH")]
         [InlineData(2018, 0, "Married", "Protestant", 261, "ZH")]
         [InlineData(2019, 2_000_000, "Married", "Protestant", 3426, "SG")]
+        [InlineData(2019, 2_000_000, "Single", "Protestant", 3426, "SG")]
+        [InlineData(2019, 0, "Single", "Protestant", 3426, "SG")]
         public async Task ShouldCalculateFullCapitalBenefitTax(
             int calculationYear, 
             double capitalBenefitAsDouble, 
