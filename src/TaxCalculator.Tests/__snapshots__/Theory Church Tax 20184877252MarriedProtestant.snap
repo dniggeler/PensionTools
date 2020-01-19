@@ -7,7 +7,8 @@
       ],
       "TaxAmountPartner": [
         256.45
-      ]
+      ],
+      "TaxRate": 10.0
     },
     "Left": null
   }

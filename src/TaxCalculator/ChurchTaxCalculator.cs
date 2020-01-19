@@ -123,6 +123,7 @@ namespace TaxCalculator
                     {
                         TaxAmount = ratePerson / 100M * taxResult.Total * splitFactor,
                         TaxAmountPartner = ratePartner / 100M * taxResult.Total * (1M - splitFactor),
+                        TaxRate = ratePerson,
                     })
                 .Match<Either<string, ChurchTaxResult>>(
                     Some: r => r,
