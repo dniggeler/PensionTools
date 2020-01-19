@@ -10,25 +10,28 @@ using Xunit;
 namespace TaxCalculator.Tests
 {
     [Trait("Calculator", "Basis Tax")]
-    public class BasisWealthTaxCalculatorTests : IClassFixture<TaxCalculatorFixture<IBasisWealthTaxCalculator>>
+    public class BasisWealthTaxCalculatorTests 
+        : IClassFixture<TaxCalculatorFixture<Func<Canton, IBasisWealthTaxCalculator>>>
     {
-        private readonly TaxCalculatorFixture<IBasisWealthTaxCalculator> _fixture;
+        private readonly TaxCalculatorFixture<Func<Canton, IBasisWealthTaxCalculator>> _fixture;
 
-        public BasisWealthTaxCalculatorTests(TaxCalculatorFixture<IBasisWealthTaxCalculator> fixture)
+        public BasisWealthTaxCalculatorTests(
+            TaxCalculatorFixture<Func<Canton, IBasisWealthTaxCalculator>> fixture)
         {
             _fixture = fixture;
         }
 
         [Theory(DisplayName = "Basis Wealth Tax")]
-        [InlineData(2018, 4_000_000, "Married")]
-        [InlineData(2018, 0, "Married")]
-        [InlineData(2018, 522000, "Married")]
-        [InlineData(2018, 522000, "Single")]
-        public async Task ShouldCalculateBasisWealthTax(int calculationYear, double wealthAsDouble,
-            string civilStatusCode)
+        [InlineData(2018, 4_000_000, "Married", "ZH")]
+        [InlineData(2018, 0, "Married", "ZH")]
+        [InlineData(2018, 522000, "Married", "ZH")]
+        [InlineData(2018, 522000, "Single", "ZH")]
+        [InlineData(2019, 500000, "Single", "SG")]
+        public async Task ShouldCalculateBasisWealthTax(
+            int calculationYear, double wealthAsDouble, string civilStatusCode, string cantonStr)
         {
             // given
-            Canton canton = Canton.ZH;
+            Canton canton = Enum.Parse<Canton>(cantonStr);
             decimal wealth = Convert.ToDecimal(wealthAsDouble);
             CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
 
@@ -39,11 +42,12 @@ namespace TaxCalculator.Tests
             };
 
             // when
-            var result = await _fixture.Calculator.CalculateAsync(
-                calculationYear, canton, taxPerson);
+            var result =
+                await _fixture.Calculator(canton).CalculateAsync(
+                    calculationYear, canton, taxPerson);
 
             result.IsRight.Should().BeTrue();
-            Snapshot.Match(result, $"Theory Basis Wealth Tax {calculationYear}{wealthAsDouble}{civilStatusCode}");
+            Snapshot.Match(result, $"Theory Basis Wealth Tax {calculationYear}{wealthAsDouble}{civilStatusCode}{cantonStr}");
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using LanguageExt;
@@ -9,16 +8,20 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data.Abstractions;
 using Tax.Data.Abstractions.Models;
 
-namespace TaxCalculator
+namespace TaxCalculator.Basis.Wealth
 {
-    public class BasisWealthTaxCalculator : IBasisWealthTaxCalculator
+    /// <summary>
+    /// Wealth tax calculator for ZH.
+    /// </summary>
+    /// <seealso cref="PensionCoach.Tools.TaxCalculator.Abstractions.IBasisWealthTaxCalculator" />
+    public class ZHBasisWealthTaxCalculator : IBasisWealthTaxCalculator
     {
         private const int TaxTypeId = (int)TaxType.Wealth;
 
         private readonly IValidator<BasisTaxPerson> taxPersonValidator;
         private readonly ITaxTariffData tariffData;
 
-        public BasisWealthTaxCalculator(
+        public ZHBasisWealthTaxCalculator(
             IValidator<BasisTaxPerson> taxPersonValidator,
             ITaxTariffData tariffData)
         {

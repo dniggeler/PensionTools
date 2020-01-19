@@ -84,7 +84,7 @@ namespace TaxCalculator
             return entity
                 .Match<Either<string, MunicipalityModel>>(
                     Some: item => this.mapper.Map<MunicipalityModel>(item),
-                    None: () => $"Municipality by BFS number {bfsNumber} not found")
+                    None: () => $"Municipality by ReligiousGroupType.Protestant {bfsNumber} not found")
                 .AsTask();
         }
     }

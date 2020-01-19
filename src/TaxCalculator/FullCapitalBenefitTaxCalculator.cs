@@ -1,32 +1,27 @@
-﻿using System.ComponentModel;
+﻿using System;
 using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
+using LanguageExt;
+using PensionCoach.Tools.TaxCalculator.Abstractions;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
 namespace TaxCalculator
 {
-    using System.Threading.Tasks;
-    using AutoMapper;
-    using FluentValidation;
-    using LanguageExt;
-    using PensionCoach.Tools.TaxCalculator.Abstractions;
-    using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-    using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
-
     public class FullCapitalBenefitTaxCalculator : IFullCapitalBenefitTaxCalculator
     {
-        private readonly ICapitalBenefitTaxCalculator stateCalculator;
+        private readonly Func<Canton, ICapitalBenefitTaxCalculator> capitalBenefitCalculatorFunc;
         private readonly IFederalCapitalBenefitTaxCalculator federalCalculator;
-        private readonly IValidator<CapitalBenefitTaxPerson> validator;
         private readonly IMapper mapper;
 
         public FullCapitalBenefitTaxCalculator(
-            ICapitalBenefitTaxCalculator stateCalculator,
+            Func<Canton, ICapitalBenefitTaxCalculator> capitalBenefitCalculatorFunc,
             IFederalCapitalBenefitTaxCalculator federalCalculator,
-            IValidator<CapitalBenefitTaxPerson> validator,
             IMapper mapper)
         {
-            this.stateCalculator = stateCalculator;
+            this.capitalBenefitCalculatorFunc = capitalBenefitCalculatorFunc;
             this.federalCalculator = federalCalculator;
-            this.validator = validator;
             this.mapper = mapper;
         }
 
@@ -37,9 +32,9 @@ namespace TaxCalculator
             Canton canton,
             CapitalBenefitTaxPerson capitalBenefitTaxPerson)
         {
-            var stateTaxResultTask =
-                this.stateCalculator.CalculateAsync(
-                    calculationYear, municipalityId, canton, capitalBenefitTaxPerson);
+            var capitalBenefitTaxResultTask =
+                this.capitalBenefitCalculatorFunc(canton)
+                    .CalculateAsync(calculationYear, municipalityId, canton, capitalBenefitTaxPerson);
 
             var federalTaxPerson =
                 this.mapper.Map<FederalTaxPerson>(capitalBenefitTaxPerson);
@@ -47,11 +42,11 @@ namespace TaxCalculator
             var federalTaxResultTask =
                 this.federalCalculator.CalculateAsync(calculationYear, federalTaxPerson);
 
-            await Task.WhenAll(stateTaxResultTask, federalTaxResultTask);
+            await Task.WhenAll(capitalBenefitTaxResultTask, federalTaxResultTask);
 
             StringBuilder sb = new StringBuilder();
 
-            Either<string, CapitalBenefitTaxResult> stateTaxResult = await stateTaxResultTask;
+            Either<string, CapitalBenefitTaxResult> stateTaxResult = await capitalBenefitTaxResultTask;
             Either<string, BasisTaxResult> federalTaxResult = await federalTaxResultTask;
 
             stateTaxResult.MapLeft(r => sb.AppendLine(r));
@@ -71,33 +66,5 @@ namespace TaxCalculator
                     Some: r => r,
                     None: () => sb.ToString());
         }
-
-        private CapitalBenefitTaxResult Scale(StateTaxResult intermediateResult, decimal scaleFactor)
-        {
-            var result = new CapitalBenefitTaxResult
-            {
-                BasisTax = new BasisTaxResult
-                {
-                    DeterminingFactorTaxableAmount =
-                        intermediateResult.BasisIncomeTax.DeterminingFactorTaxableAmount * scaleFactor,
-                    TaxAmount =
-                        intermediateResult.BasisIncomeTax.TaxAmount * scaleFactor,
-                },
-                ChurchTax = new ChurchTaxResult
-                {
-                    TaxAmount = intermediateResult.ChurchTax.TaxAmount.Match(
-                        Some: r => r * scaleFactor,
-                        None: () => Option<decimal>.None),
-
-                    TaxAmountPartner = intermediateResult.ChurchTax.TaxAmountPartner.Match(
-                        Some: r => r * scaleFactor,
-                        None: () => Option<decimal>.None),
-                },
-                CantonRate = intermediateResult.CantonRate,
-                MunicipalityRate = intermediateResult.MunicipalityRate,
-            };
-
-            return result;
-        }
-    }
+     }
 }

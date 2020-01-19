@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FluentValidation;
 using LanguageExt;
+using Microsoft.EntityFrameworkCore;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -15,18 +16,18 @@ namespace TaxCalculator
     {
         private readonly IValidator<TaxPerson> taxPersonValidator;
         private readonly Func<TaxRateDbContext> rateDbContextFunc;
-        private readonly IBasisWealthTaxCalculator basisWealthTaxCalculator;
+        private readonly Func<Canton, IBasisWealthTaxCalculator> basisWealthTaxCalculatorFunc;
         private readonly IMapper mapper;
 
         public WealthTaxCalculator(
             IValidator<TaxPerson> taxPersonValidator,
             Func<TaxRateDbContext> rateDbContextFunc,
-            IBasisWealthTaxCalculator basisWealthTaxCalculator,
+            Func<Canton, IBasisWealthTaxCalculator> basisWealthTaxCalculatorFunc,
             IMapper mapper)
         {
             this.taxPersonValidator = taxPersonValidator;
             this.rateDbContextFunc = rateDbContextFunc;
-            this.basisWealthTaxCalculator = basisWealthTaxCalculator;
+            this.basisWealthTaxCalculatorFunc = basisWealthTaxCalculatorFunc;
             this.mapper = mapper;
         }
 
@@ -45,7 +46,7 @@ namespace TaxCalculator
             basisTaxPerson.TaxableAmount = person.TaxableWealth;
 
             var basisTaxResult =
-                await this.basisWealthTaxCalculator.CalculateAsync(
+                await this.basisWealthTaxCalculatorFunc(canton).CalculateAsync(
                     calculationYear, canton, basisTaxPerson);
 
             return basisTaxResult
@@ -59,7 +60,7 @@ namespace TaxCalculator
         {
             using (var dbContext = this.rateDbContextFunc())
             {
-                var taxRate = dbContext.Rates
+                var taxRate = dbContext.Rates.AsNoTracking()
                     .Single(item => item.BfsId == municipalityId
                                     && item.Year == calculationYear);
 

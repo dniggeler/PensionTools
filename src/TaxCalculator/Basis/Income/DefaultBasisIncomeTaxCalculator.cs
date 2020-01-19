@@ -9,16 +9,20 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data.Abstractions;
 using Tax.Data.Abstractions.Models;
 
-namespace TaxCalculator
+namespace TaxCalculator.Basis.Income
 {
-    public class BasisIncomeTaxCalculator : IBasisIncomeTaxCalculator
+    /// <summary>
+    /// Default income tax calculator which is the same for ZH.
+    /// </summary>
+    /// <seealso cref="PensionCoach.Tools.TaxCalculator.Abstractions.IBasisIncomeTaxCalculator" />
+    public class DefaultBasisIncomeTaxCalculator : IDefaultBasisIncomeTaxCalculator
     {
         private const int IncomeTaxTypeId = (int)TaxType.Income;
 
         private readonly IValidator<BasisTaxPerson> taxPersonValidator;
         private readonly ITaxTariffData tariffData;
 
-        public BasisIncomeTaxCalculator(
+        public DefaultBasisIncomeTaxCalculator(
             IValidator<BasisTaxPerson> taxPersonValidator,
             ITaxTariffData tariffData)
         {
