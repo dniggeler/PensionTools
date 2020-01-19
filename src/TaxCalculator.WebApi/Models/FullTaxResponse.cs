@@ -6,9 +6,7 @@
 
         public int CalculationYear { get; set; }
 
-        public decimal CantonRate { get; set; }
-
-        public decimal MunicipalityRate { get; set; }
+        public TaxRateDetails TaxRateDetails { get; set; }
 
         public decimal TotalTaxAmount { get; set; }
 

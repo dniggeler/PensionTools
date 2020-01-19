@@ -22,7 +22,7 @@ namespace TaxCalculator.Basis.CapitalBenefit
 
         public Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(int calculationYear, int municipalityId, Canton canton, CapitalBenefitTaxPerson person)
         {
-            string msg = $"No wealth tax calculator for canton {canton.ToString()} available";
+            string msg = $"No capital benefit tax calculator for canton {canton.ToString()} available";
 
             Either<string, CapitalBenefitTaxResult> result = msg;
 

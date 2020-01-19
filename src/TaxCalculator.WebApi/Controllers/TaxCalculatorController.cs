@@ -85,8 +85,12 @@ namespace TaxCalculator.WebApi.Controllers
                     MunicipalityTaxAmount = r.StateTaxResult.MunicipalityTaxAmount,
                     ChurchTaxAmount = r.StateTaxResult.ChurchTaxAmount,
                     PollTaxAmount = r.StateTaxResult.PollTaxAmount.IfNone(0),
-                    CantonRate = r.StateTaxResult.CantonRate,
-                    MunicipalityRate = r.StateTaxResult.MunicipalityRate,
+                    TaxRateDetails = new TaxRateDetails
+                    {
+                        CantonRate = r.StateTaxResult.CantonRate,
+                        MunicipalityRate = r.StateTaxResult.MunicipalityRate,
+                        ChurchTaxRate = r.StateTaxResult.ChurchTax.TaxRate,
+                    },
                 };
             }
 
@@ -161,12 +165,12 @@ namespace TaxCalculator.WebApi.Controllers
                     Name = taxPerson.Name,
                     CalculationYear = request.CalculationYear,
                     TotalTaxAmount = r.TotalTaxAmount,
-                    TaxDetails = new TaxDetailResponse
+                    TaxDetails = new TaxAmountDetail
                     {
                         ChurchTaxAmount = r.StateResult.ChurchTaxAmount,
                         FederalTaxAmount = r.FederalResult.TaxAmount,
                         MunicipalityTaxAmount = r.StateResult.MunicipalityTaxAmount,
-                        StateTaxAmount = r.StateResult.CantonTaxAmount,
+                        CantonTaxAmount = r.StateResult.CantonTaxAmount,
                     },
                 };
             }
