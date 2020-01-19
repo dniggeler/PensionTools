@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using FluentAssertions;
 using LanguageExt;
@@ -19,13 +20,15 @@ namespace TaxCalculator.Tests
             _fixture = fixture;
         }
 
-        [Fact(DisplayName = "Wealth Tax")]
-        public async Task ShouldCalculateWealthTax()
+        [Theory(DisplayName = "Wealth Tax")]
+        [InlineData(2018,261,"ZH")]
+        [InlineData(2019,3426,"SG")]
+        public async Task ShouldCalculateWealthTax(
+            int calculationYear, int municipalityId, string cantonStr)
         {
             // given
-            var calculationYear = 2018;
-            var municipalityId = 261;
-            Canton canton = Canton.ZH;
+            Canton canton = Enum.Parse<Canton>(cantonStr);
+
             var taxPerson = new TaxPerson
             {
                 CivilStatus = CivilStatus.Married,
@@ -40,7 +43,7 @@ namespace TaxCalculator.Tests
                     calculationYear, municipalityId, canton, taxPerson);
 
             result.IsRight.Should().BeTrue();
-            Snapshot.Match(result);
+            Snapshot.Match(result,$"Theory Wealth Tax {calculationYear}{cantonStr}");
         }
     }
 }

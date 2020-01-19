@@ -10,11 +10,12 @@ namespace TaxCalculator.Tests
 {
     [Trait("Calculator", "Capital Benefit Tax")]
     public class CapitalBenefitTaxCalculatorTests 
-        : IClassFixture<TaxCalculatorFixture<ICapitalBenefitTaxCalculator>>
+        : IClassFixture<TaxCalculatorFixture<Func<Canton, ICapitalBenefitTaxCalculator>>>
     {
-        private readonly TaxCalculatorFixture<ICapitalBenefitTaxCalculator> _fixture;
+        private readonly TaxCalculatorFixture<Func<Canton, ICapitalBenefitTaxCalculator>> _fixture;
 
-        public CapitalBenefitTaxCalculatorTests(TaxCalculatorFixture<ICapitalBenefitTaxCalculator> fixture)
+        public CapitalBenefitTaxCalculatorTests(
+            TaxCalculatorFixture<Func<Canton, ICapitalBenefitTaxCalculator>> fixture)
         {
             _fixture = fixture;
         }
@@ -53,8 +54,9 @@ namespace TaxCalculator.Tests
             };
 
             // when
-            var result = await _fixture.Calculator.CalculateAsync(
-                calculationYear, municipalityId, canton, taxPerson);
+            var result =
+                await _fixture.Calculator(canton).CalculateAsync(
+                    calculationYear, municipalityId, canton, taxPerson);
 
             Snapshot.Match(
                 result,

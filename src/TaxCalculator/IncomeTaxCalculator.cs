@@ -4,10 +4,12 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FluentValidation;
 using LanguageExt;
+using Microsoft.EntityFrameworkCore;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data;
+using Tax.Data.Abstractions.Models;
 
 namespace TaxCalculator
 {
@@ -15,18 +17,18 @@ namespace TaxCalculator
     {
         private readonly IValidator<TaxPerson> taxPersonValidator;
         private readonly Func<TaxRateDbContext> rateDbContextFunc;
-        private readonly IBasisIncomeTaxCalculator basisIncomeTaxCalculator;
+        private readonly Func<Canton, IBasisIncomeTaxCalculator> basisIncomeTaxCalculatorFunc;
         private readonly IMapper mapper;
 
         public IncomeTaxCalculator(
             IValidator<TaxPerson> taxPersonValidator,
             Func<TaxRateDbContext> rateDbContextFunc,
-            IBasisIncomeTaxCalculator basisIncomeTaxCalculator,
+            Func<Canton, IBasisIncomeTaxCalculator> basisIncomeTaxCalculatorFunc,
             IMapper mapper)
         {
             this.taxPersonValidator = taxPersonValidator;
             this.rateDbContextFunc = rateDbContextFunc;
-            this.basisIncomeTaxCalculator = basisIncomeTaxCalculator;
+            this.basisIncomeTaxCalculatorFunc = basisIncomeTaxCalculatorFunc;
             this.mapper = mapper;
         }
 
@@ -44,26 +46,26 @@ namespace TaxCalculator
             }
 
             var basisPerson = this.mapper.Map<BasisTaxPerson>(person);
+
             Either<string, BasisTaxResult> incomeTaxResult =
-                await this.basisIncomeTaxCalculator.CalculateAsync(
-                    calculationYear, canton, basisPerson);
+                await this.basisIncomeTaxCalculatorFunc(canton)
+                    .CalculateAsync(calculationYear, canton, basisPerson);
 
             return incomeTaxResult
                 .Match<Either<string, SingleTaxResult>>(
                     Right: r => this.CalculateIncomeTax(
-                        calculationYear, municipalityId, person, r),
+                        calculationYear, municipalityId, r),
                     Left: msg => msg);
         }
 
         private SingleTaxResult CalculateIncomeTax(
             int calculationYear,
             int municipalityId,
-            TaxPerson person,
             BasisTaxResult basisTaxResult)
         {
             using (var dbContext = this.rateDbContextFunc())
             {
-                var taxRate = dbContext.Rates
+                TaxRateEntity taxRate = dbContext.Rates.AsNoTracking()
                     .Single(item => item.Year == calculationYear
                                     && item.BfsId == municipalityId);
 

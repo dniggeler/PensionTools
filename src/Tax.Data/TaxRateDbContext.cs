@@ -8,8 +8,9 @@ namespace Tax.Data
         public DbSet<TaxRateEntity> Rates { get; set; }
 
         public TaxRateDbContext(DbContextOptions<TaxRateDbContext> options)
-        :base(options)
-        {}
+            : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

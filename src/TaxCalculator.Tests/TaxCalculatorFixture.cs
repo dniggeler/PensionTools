@@ -39,6 +39,7 @@ namespace TaxCalculator.Tests
 
             ServiceCollection coll = new ServiceCollection();
 
+            coll.AddLogging();
             coll.AddTaxData(configuration);
             coll.AddTaxCalculators();
 

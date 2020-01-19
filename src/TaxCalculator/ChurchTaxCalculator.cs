@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using LanguageExt;
+using Microsoft.EntityFrameworkCore;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -14,12 +16,12 @@ namespace TaxCalculator
     {
         private readonly IValidator<ChurchTaxPerson> churchTaxPersonValidator;
         private readonly IValidator<AggregatedBasisTaxResult> taxResultValidator;
-        private readonly TaxRateDbContext taxRateContext;
+        private readonly Func<TaxRateDbContext> taxRateContext;
 
         public ChurchTaxCalculator(
             IValidator<ChurchTaxPerson> churchTaxPersonValidator,
             IValidator<AggregatedBasisTaxResult> basisTaxResultValidator,
-            TaxRateDbContext taxRateContext)
+            Func<TaxRateDbContext> taxRateContext)
         {
             this.churchTaxPersonValidator = churchTaxPersonValidator;
             this.taxResultValidator = basisTaxResultValidator;
@@ -33,10 +35,33 @@ namespace TaxCalculator
             ChurchTaxPerson person,
             AggregatedBasisTaxResult taxResult)
         {
+            using (var ctxt = this.taxRateContext())
+            {
+                TaxRateEntity taxRateEntity = ctxt.Rates.AsNoTracking()
+                    .FirstOrDefault(item => item.Year == calculationYear
+                                            && item.BfsId == municipalityId);
+                if (taxRateEntity == null)
+                {
+                    Either<string, ChurchTaxResult> msg =
+                        $"No tax rate found for municipality {municipalityId} and year {calculationYear}";
+
+                    return msg.AsTask();
+                }
+
+                return this
+                    .Validate(person, taxResult)
+                    .BindAsync(r => this.CalculateInternalAsync(
+                        person, taxRateEntity, taxResult));
+            }
+        }
+
+        public Task<Either<string, ChurchTaxResult>> CalculateAsync(
+            ChurchTaxPerson person, TaxRateEntity taxRateEntity, AggregatedBasisTaxResult taxResult)
+        {
             return this
                 .Validate(person, taxResult)
                 .BindAsync(r => this.CalculateInternalAsync(
-                    calculationYear, municipalityId, person, taxResult));
+                    person, taxRateEntity, taxResult));
         }
 
         private Either<string, bool> Validate(
@@ -76,9 +101,8 @@ namespace TaxCalculator
         }
 
         private Task<Either<string, ChurchTaxResult>> CalculateInternalAsync(
-            int calculationYear,
-            int municipalityId,
             ChurchTaxPerson person,
+            TaxRateEntity taxRateEntity,
             AggregatedBasisTaxResult taxResult)
         {
             Option<ReligiousGroupType> religiousGroupPartner =
@@ -92,18 +116,14 @@ namespace TaxCalculator
                      c, r, rp))
                 .IfNone(0M);
 
-            Option<TaxRateEntity> taxRateEntity = this.taxRateContext.Rates
-                .FirstOrDefault(item => item.Year == calculationYear
-                                && item.BfsId == municipalityId);
-
             return
-                (from m in taxRateEntity
-                    from ratePerson in person.ReligiousGroup.Map(type => GetTaxRate(type, m))
-                    from ratePartner in religiousGroupPartner.Map(type => GetTaxRate(type, m))
+                (from ratePerson in person.ReligiousGroup.Map(type => GetTaxRate(type, taxRateEntity))
+                    from ratePartner in religiousGroupPartner.Map(type => GetTaxRate(type, taxRateEntity))
                     select new ChurchTaxResult
                     {
                         TaxAmount = ratePerson / 100M * taxResult.Total * splitFactor,
                         TaxAmountPartner = ratePartner / 100M * taxResult.Total * (1M - splitFactor),
+                        TaxRate = ratePerson,
                     })
                 .Match<Either<string, ChurchTaxResult>>(
                     Some: r => r,

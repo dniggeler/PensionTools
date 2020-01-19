@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AutoMapper;
 using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
@@ -10,17 +11,17 @@ namespace TaxCalculator
     public class AggregatedBasisTaxCalculator : IAggregatedBasisTaxCalculator
     {
         private readonly IMapper mapper;
-        private readonly IBasisIncomeTaxCalculator basisIncomeTaxCalculator;
-        private readonly IBasisWealthTaxCalculator basisWealthTaxCalculator;
+        private readonly Func<Canton, IBasisIncomeTaxCalculator> basisIncomeTaxCalculatorFunc;
+        private readonly Func<Canton, IBasisWealthTaxCalculator> basisWealthTaxCalculatorFunc;
 
         public AggregatedBasisTaxCalculator(
             IMapper mapper,
-            IBasisIncomeTaxCalculator basisIncomeTaxCalculator,
-            IBasisWealthTaxCalculator basisWealthTaxCalculator)
+            Func<Canton, IBasisIncomeTaxCalculator> basisIncomeTaxCalculatorFunc,
+            Func<Canton, IBasisWealthTaxCalculator> basisWealthTaxCalculatorFunc)
         {
             this.mapper = mapper;
-            this.basisIncomeTaxCalculator = basisIncomeTaxCalculator;
-            this.basisWealthTaxCalculator = basisWealthTaxCalculator;
+            this.basisIncomeTaxCalculatorFunc = basisIncomeTaxCalculatorFunc;
+            this.basisWealthTaxCalculatorFunc = basisWealthTaxCalculatorFunc;
         }
 
         public async Task<Either<string, AggregatedBasisTaxResult>> CalculateAsync(
@@ -29,13 +30,13 @@ namespace TaxCalculator
             var basisTaxPerson = this.mapper.Map<BasisTaxPerson>(person);
 
             var incomeTaxResultTask =
-                this.basisIncomeTaxCalculator.CalculateAsync(
-                    calculationYear, canton, basisTaxPerson);
+                this.basisIncomeTaxCalculatorFunc(canton)
+                    .CalculateAsync(calculationYear, canton, basisTaxPerson);
 
             basisTaxPerson.TaxableAmount = person.TaxableWealth;
             var wealthTaxResultTask =
-                this.basisWealthTaxCalculator.CalculateAsync(
-                    calculationYear, canton, basisTaxPerson);
+                this.basisWealthTaxCalculatorFunc(canton)
+                    .CalculateAsync(calculationYear, canton, basisTaxPerson);
 
             await Task.WhenAll(incomeTaxResultTask, wealthTaxResultTask);
 

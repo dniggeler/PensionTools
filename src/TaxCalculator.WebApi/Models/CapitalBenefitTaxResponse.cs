@@ -8,6 +8,6 @@
 
         public decimal TotalTaxAmount { get; set; }
 
-        public TaxDetailResponse TaxDetails { get; set; }
+        public TaxAmountDetail TaxDetails { get; set; }
     }
 }

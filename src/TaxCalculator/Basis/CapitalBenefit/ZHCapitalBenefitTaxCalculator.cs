@@ -7,15 +7,15 @@ using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
-namespace TaxCalculator
+namespace TaxCalculator.Basis.CapitalBenefit
 {
-    public class CapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
+    public class ZHCapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
     {
         private readonly IStateTaxCalculator stateTaxCalculator;
         private readonly IValidator<CapitalBenefitTaxPerson> validator;
         private readonly IMapper mapper;
 
-        public CapitalBenefitTaxCalculator(
+        public ZHCapitalBenefitTaxCalculator(
             IStateTaxCalculator stateTaxCalculator,
             IValidator<CapitalBenefitTaxPerson> validator,
             IMapper mapper)

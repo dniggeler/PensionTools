@@ -20,20 +20,24 @@ namespace TaxCalculator.Tests
         }
 
         [Theory(DisplayName = "Full Capital Benefit Tax")]
-        [InlineData(2018, 2_000_000, "Single", "Protestant", 261)]
-        [InlineData(2018, 1_000_000, "Single", "Protestant", 261)]
-        [InlineData(2018, 2_000_000, "Married", "Catholic", 261)]
-        [InlineData(2018, 0, "Married", "Protestant", 261)]
+        [InlineData(2018, 2_000_000, "Single", "Protestant", 261, "ZH")]
+        [InlineData(2018, 1_000_000, "Single", "Protestant", 261, "ZH")]
+        [InlineData(2018, 2_000_000, "Married", "Catholic", 261, "ZH")]
+        [InlineData(2018, 0, "Married", "Protestant", 261, "ZH")]
+        [InlineData(2019, 2_000_000, "Married", "Protestant", 3426, "SG")]
+        [InlineData(2019, 2_000_000, "Single", "Protestant", 3426, "SG")]
+        [InlineData(2019, 0, "Single", "Protestant", 3426, "SG")]
         public async Task ShouldCalculateFullCapitalBenefitTax(
             int calculationYear, 
             double capitalBenefitAsDouble, 
             string civilStatusCode,
             string religiousGroupCode,
-            int municipalityId)
+            int municipalityId,
+            string cantonStr)
         {
             // given
             string name = "Burli";
-            Canton canton = Canton.ZH;
+            Canton canton = Enum.Parse<Canton>(cantonStr);
             decimal capitalBenefitAmount = Convert.ToDecimal(capitalBenefitAsDouble);
             CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
 
@@ -58,7 +62,7 @@ namespace TaxCalculator.Tests
 
             Snapshot.Match(
                 result,
-                $"Theory Full Capital Benefit Tax {calculationYear}{capitalBenefitAmount}{civilStatusCode}{religiousGroupCode}");
+                $"Theory Full Capital Benefit Tax {calculationYear}-{municipalityId}{capitalBenefitAmount}{civilStatusCode}{religiousGroupCode}");
         }
     }
 }

@@ -16,7 +16,8 @@
         ],
         "TaxAmountPartner": [
           2910.375
-        ]
+        ],
+        "TaxRate": 10.0
       },
       "CantonRate": 100.0,
       "MunicipalityRate": 119.0,
