@@ -47,10 +47,12 @@ namespace TaxCalculator
             this IServiceCollection collection)
         {
             collection.AddTransient<SGBasisIncomeTaxCalculator>();
+            collection.AddTransient<SOBasisIncomeTaxCalculator>();
             collection.AddTransient<MissingBasisIncomeTaxCalculator>();
 
             collection.AddSingleton<Func<Canton, IBasisIncomeTaxCalculator>>(ctx =>
                 canton => canton switch {
+                    Canton.SO => ctx.GetRequiredService<SOBasisIncomeTaxCalculator>(),
                     Canton.SG => ctx.GetRequiredService<SGBasisIncomeTaxCalculator>(),
                     Canton.ZH => ctx.GetRequiredService<IDefaultBasisIncomeTaxCalculator>(),
                     _ => ctx.GetRequiredService<MissingBasisIncomeTaxCalculator>()
@@ -76,12 +78,14 @@ namespace TaxCalculator
         private static void AddCantonWealthTaxCalculatorFactory(
             this IServiceCollection collection)
         {
+            collection.AddTransient<SOBasisWealthTaxCalculator>();
             collection.AddTransient<SGBasisWealthTaxCalculator>();
             collection.AddTransient<ZHBasisWealthTaxCalculator>();
             collection.AddTransient<MissingBasisWealthTaxCalculator>();
 
             collection.AddSingleton<Func<Canton, IBasisWealthTaxCalculator>>(ctx =>
                 canton => canton switch {
+                    Canton.SO => ctx.GetRequiredService<SOBasisWealthTaxCalculator>(),
                     Canton.SG => ctx.GetRequiredService<SGBasisWealthTaxCalculator>(),
                     Canton.ZH => ctx.GetRequiredService<ZHBasisWealthTaxCalculator>(),
                     _ => ctx.GetRequiredService<MissingBasisWealthTaxCalculator>()
