@@ -73,7 +73,7 @@ namespace TaxCalculator.Basis.Wealth
 
             var incrementMultiplier = (referenceTaxableIncome - tariff.IncomeLevel) / tariff.IncomeIncrement;
 
-            var baseTaxAmount = (incrementMultiplier * tariff.TaxIncrement) + tariff.TaxAmount;
+            var baseTaxAmount = (incrementMultiplier * tariff.TaxTariffRatePercent) + tariff.TaxAmount;
 
             return new BasisTaxResult
             {

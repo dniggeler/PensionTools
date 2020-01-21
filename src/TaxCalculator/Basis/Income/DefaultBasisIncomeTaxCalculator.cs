@@ -70,9 +70,10 @@ namespace TaxCalculator.Basis.Income
         {
             var referenceTaxableIncome = person.TaxableAmount - (person.TaxableAmount % tariff.IncomeIncrement);
 
-            var incrementMultiplier = (referenceTaxableIncome - tariff.IncomeLevel) / tariff.IncomeIncrement;
+            var incrementMultiplier = referenceTaxableIncome - tariff.IncomeLevel;
 
-            var baseTaxAmount = (incrementMultiplier * tariff.TaxIncrement) + tariff.TaxAmount;
+            var baseTaxAmount =
+                (incrementMultiplier * tariff.TaxTariffRatePercent / 100M) + tariff.TaxAmount;
 
             return new BasisTaxResult
             {
