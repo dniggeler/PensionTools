@@ -51,7 +51,7 @@ namespace TaxCalculator.Basis.Wealth
 
                 // get all income level candidate
                 .Map(typeId => tariffItems
-                    .Where(item => item.TariffType == (int)typeId)
+                    .Where(item => item.TariffType == (int)TariffType.Base)
                     .Where(item => item.TaxType == TaxTypeId)
                     .Where(item => item.IncomeLevel <= person.TaxableAmount)
                     .OrderByDescending(item => item.IncomeLevel)
@@ -73,7 +73,7 @@ namespace TaxCalculator.Basis.Wealth
 
             var incrementMultiplier = (referenceTaxableIncome - tariff.IncomeLevel) / tariff.IncomeIncrement;
 
-            var baseTaxAmount = (incrementMultiplier * tariff.TaxTariffRatePercent) + tariff.TaxAmount;
+            var baseTaxAmount = (incrementMultiplier * tariff.TaxTariffRatePercent/1000m) + tariff.TaxAmount;
 
             return new BasisTaxResult
             {

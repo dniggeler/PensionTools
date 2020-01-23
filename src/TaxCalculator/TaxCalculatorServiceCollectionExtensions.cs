@@ -62,6 +62,7 @@ namespace TaxCalculator
         private static void AddCantonCapitalBenefitTaxCalculatorFactory(
             this IServiceCollection collection)
         {
+            collection.AddTransient<SOCapitalBenefitTaxCalculator>();
             collection.AddTransient<SGCapitalBenefitTaxCalculator>();
             collection.AddTransient<ZHCapitalBenefitTaxCalculator>();
             collection.AddTransient<MissingCapitalBenefitTaxCalculator>();
@@ -69,6 +70,7 @@ namespace TaxCalculator
             collection.AddSingleton<Func<Canton, ICapitalBenefitTaxCalculator>>(ctx =>
                 canton => canton switch
                 {
+                    Canton.SO => ctx.GetRequiredService<SOCapitalBenefitTaxCalculator>(),
                     Canton.SG => ctx.GetRequiredService<SGCapitalBenefitTaxCalculator>(),
                     Canton.ZH => ctx.GetRequiredService<ZHCapitalBenefitTaxCalculator>(),
                     _ => ctx.GetRequiredService<MissingCapitalBenefitTaxCalculator>()
