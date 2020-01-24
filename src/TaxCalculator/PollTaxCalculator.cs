@@ -20,12 +20,12 @@ namespace TaxCalculator
             this.personValidator = personValidator;
         }
 
-        public Task<Either<string, Option<decimal>>> CalculateAsync(
+        public Task<Either<string, PollTaxResult>> CalculateAsync(
             int calculationYear, int municipalityId, Canton canton, PollTaxPerson person)
         {
             if (!this.HasPollTax(canton))
             {
-                return Task.FromResult<Either<string, Option<decimal>>>(Option<decimal>.None);
+                return Task.FromResult<Either<string, PollTaxResult>>(new PollTaxResult());
             }
 
             var validationResult = this.personValidator.Validate(person);
@@ -34,20 +34,23 @@ namespace TaxCalculator
                 var errorMessageLine = string.Join(";", validationResult.Errors
                     .Select(x => x.ErrorMessage));
                 return Task
-                    .FromResult<Either<string, Option<decimal>>>(
+                    .FromResult<Either<string, PollTaxResult>>(
                         $"validation failed: {errorMessageLine}");
             }
 
             return (from status in person.CivilStatus
                     from nbrOfPolls in this.GetNumberOfPolls(status)
                     select nbrOfPolls * PollTaxAmount)
-                .Match<Either<string, Option<decimal>>>(
-                    Some: r => Prelude.Right<Option<decimal>>(r),
+                .Match<Either<string, PollTaxResult>>(
+                    Some: r => new PollTaxResult
+                    {
+                        CantonTaxAmount = r,
+                    },
                     None: () => "No tax available")
                 .AsTask();
         }
 
-        public Task<Either<string, Option<decimal>>> CalculateAsync(int calculationYear, Canton canton, PollTaxPerson person, TaxRateEntity taxRateEntity)
+        public Task<Either<string, PollTaxResult>> CalculateAsync(int calculationYear, Canton canton, PollTaxPerson person, TaxRateEntity taxRateEntity)
         {
             if (!this.HasPollTax(canton))
             {

@@ -8,13 +8,13 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions
 {
     public interface IPollTaxCalculator
     {
-        Task<Either<string, Option<decimal>>> CalculateAsync(
+        Task<Either<string, PollTaxResult>> CalculateAsync(
             int calculationYear,
             int municipalityId,
             Canton canton,
             PollTaxPerson person);
 
-        Task<Either<string, Option<decimal>>> CalculateAsync(
+        Task<Either<string, PollTaxResult>> CalculateAsync(
             int calculationYear,
             Canton canton,
             PollTaxPerson person,
