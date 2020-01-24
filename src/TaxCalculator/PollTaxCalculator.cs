@@ -5,6 +5,8 @@ using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
+using Tax.Data.Abstractions.Models;
+
 
 namespace TaxCalculator
 {
@@ -28,7 +30,8 @@ namespace TaxCalculator
                 var errorMessageLine = string.Join(";", validationResult.Errors
                     .Select(x => x.ErrorMessage));
                 return Task
-                    .FromResult<Either<string, Option<decimal>>>($"validation failed: {errorMessageLine}");
+                    .FromResult<Either<string, Option<decimal>>>(
+                        $"validation failed: {errorMessageLine}");
             }
 
             if (!this.HasPollTax(canton))
@@ -43,6 +46,11 @@ namespace TaxCalculator
                     Some: r => Prelude.Right<Option<decimal>>(r),
                     None: () => "No tax available")
                 .AsTask();
+        }
+
+        public Task<Either<string, Option<decimal>>> CalculateAsync(int calculationYear, Canton canton, PollTaxPerson person, TaxRateEntity taxRateEntity)
+        {
+            throw new System.NotImplementedException();
         }
 
         private Option<int> GetNumberOfPolls(CivilStatus status)

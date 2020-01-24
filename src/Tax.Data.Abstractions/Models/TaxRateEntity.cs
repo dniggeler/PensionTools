@@ -34,5 +34,8 @@ namespace Tax.Data.Abstractions.Models
 
         [Column("SteuerfussJuristPerson")]
         public decimal TaxRateCompany { get; set; }
+
+        [Column("Personensteuer")]
+        public decimal? PollTaxAmount { get; set; }
     }
 }
