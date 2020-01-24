@@ -24,6 +24,11 @@ namespace TaxCalculator
         public Task<Either<string, Option<decimal>>> CalculateAsync(
             int calculationYear, Canton canton, PollTaxPerson person)
         {
+            if (!this.HasPollTax(canton))
+            {
+                return Task.FromResult<Either<string, Option<decimal>>>(Option<decimal>.None);
+            }
+
             var validationResult = this.personValidator.Validate(person);
             if (!validationResult.IsValid)
             {
@@ -32,11 +37,6 @@ namespace TaxCalculator
                 return Task
                     .FromResult<Either<string, Option<decimal>>>(
                         $"validation failed: {errorMessageLine}");
-            }
-
-            if (!this.HasPollTax(canton))
-            {
-                return Task.FromResult<Either<string, Option<decimal>>>(Option<decimal>.None);
             }
 
             return (from status in person.CivilStatus
@@ -50,7 +50,35 @@ namespace TaxCalculator
 
         public Task<Either<string, Option<decimal>>> CalculateAsync(int calculationYear, Canton canton, PollTaxPerson person, TaxRateEntity taxRateEntity)
         {
-            throw new System.NotImplementedException();
+            if (!this.HasPollTax(canton))
+            {
+                return Task.FromResult<Either<string, Option<decimal>>>(Option<decimal>.None);
+            }
+
+            Either<string,Option<decimal>> result = Prelude.Some(0M);
+
+            return result.AsTask();
+        }
+
+        public Either<string, Option<decimal>> CalculateInternal(
+            int calculationYear, Canton canton, PollTaxPerson person)
+        {
+            if (!this.HasPollTax(canton))
+            {
+                return Option<decimal>.None;
+            }
+
+            var validationResult = this.personValidator.Validate(person);
+            if (!validationResult.IsValid)
+            {
+                var errMsg = string
+                    .Join(";", validationResult.Errors
+                    .Select(x => x.ErrorMessage));
+
+                return $"validation failed: {errMsg}";
+            }
+
+            return "none";
         }
 
         private Option<int> GetNumberOfPolls(CivilStatus status)
