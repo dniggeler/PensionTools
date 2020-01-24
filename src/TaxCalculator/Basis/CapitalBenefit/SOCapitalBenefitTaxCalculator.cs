@@ -81,7 +81,6 @@ namespace TaxCalculator.Basis.CapitalBenefit
                     },
                     CantonRate = intermediateResult.CantonRate,
                     MunicipalityRate = intermediateResult.MunicipalityRate,
-
                 };
             }
         }

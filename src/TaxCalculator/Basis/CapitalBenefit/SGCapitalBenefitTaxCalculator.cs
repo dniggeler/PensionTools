@@ -57,7 +57,7 @@ namespace TaxCalculator.Basis.CapitalBenefit
                 if (taxRateEntity == null)
                 {
                     return
-                        $"No tax rate available for municipality {municipalityId} and year { calculationYear}";
+                        $"No tax rate available for municipality {municipalityId} and year {calculationYear}";
                 }
 
                 BasisTaxResult basisTaxResult = GetBasisCapitalBenefitTaxAmount(capitalBenefitTaxPerson);
@@ -107,9 +107,7 @@ namespace TaxCalculator.Basis.CapitalBenefit
                         TaxAmount = amount,
                     };
                 }
-
             }
-
         }
     }
 }

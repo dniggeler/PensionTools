@@ -7,7 +7,6 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data.Abstractions.Models;
 
-
 namespace TaxCalculator
 {
     public class PollTaxCalculator : IPollTaxCalculator
@@ -22,7 +21,7 @@ namespace TaxCalculator
         }
 
         public Task<Either<string, Option<decimal>>> CalculateAsync(
-            int calculationYear, Canton canton, PollTaxPerson person)
+            int calculationYear, int municipalityId, Canton canton, PollTaxPerson person)
         {
             if (!this.HasPollTax(canton))
             {
@@ -55,7 +54,7 @@ namespace TaxCalculator
                 return Task.FromResult<Either<string, Option<decimal>>>(Option<decimal>.None);
             }
 
-            Either<string,Option<decimal>> result = Prelude.Some(0M);
+            Either<string, Option<decimal>> result = Prelude.Some(0M);
 
             return result.AsTask();
         }

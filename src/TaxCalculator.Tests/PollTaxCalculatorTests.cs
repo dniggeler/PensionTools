@@ -20,12 +20,14 @@ namespace TaxCalculator.Tests
         }
 
         [Theory(DisplayName = "Poll Tax")]
-        [InlineData(2018, "Married", "ZH")]
-        [InlineData(2018, "Married", "BE")]
-        [InlineData(2018, "Single", "ZH")]
-        [InlineData(2018, "Single", "BE")]
+        [InlineData(2018, "Married", "ZH", 261)]
+        [InlineData(2018, "Married", "BE", 557)]
+        [InlineData(2018, "Single", "ZH", 261)]
+        [InlineData(2018, "Single", "BE", 557)]
+        [InlineData(2019, "Single", "SO", 2526)]
+        [InlineData(2019, "Married", "SO", 2526)]
         public async Task ShouldCalculatePollTax(
-            int calculationYear, string civilStatusCode, string cantonAsStr)
+            int calculationYear, string civilStatusCode, string cantonAsStr, int municipalityId)
         {
             // given
             string name = "Burli";
@@ -40,7 +42,7 @@ namespace TaxCalculator.Tests
 
             // when
             var result = await _fixture.Calculator.CalculateAsync(
-                calculationYear, canton, taxPerson);
+                calculationYear, municipalityId, canton, taxPerson);
 
             result.IsRight.Should().BeTrue();
             Snapshot.Match(result,$"Theory Poll Tax {calculationYear}{civilStatusCode}{canton}");

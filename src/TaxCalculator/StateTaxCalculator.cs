@@ -48,7 +48,7 @@ namespace TaxCalculator
                 var pollTaxPerson = this.mapper.Map<PollTaxPerson>(person);
                 var pollTaxResultTask =
                     this.pollTaxCalculator.CalculateAsync(
-                        calculationYear, canton, pollTaxPerson);
+                        calculationYear, municipalityId, canton, pollTaxPerson);
 
                 var churchTaxPerson = this.mapper.Map<ChurchTaxPerson>(person);
 
@@ -60,7 +60,6 @@ namespace TaxCalculator
                         calculationYear, municipalityId, churchTaxPerson, r));
 
                 var pollTaxResult = await pollTaxResultTask;
-
 
                 Option<TaxRateEntity> taxRate = ctxt.Rates.AsNoTracking()
                     .FirstOrDefault(item => item.BfsId == municipalityId
