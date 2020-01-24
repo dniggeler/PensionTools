@@ -25,16 +25,16 @@
         "MunicipalityTaxAmount": 7136.8900000000000000000000000,
         "CantonTaxAmount": 7422.3656000000000000000000000,
         "ChurchTaxAmount": 1106.2179500000000000000000000,
-        "TotalTaxAmount": 15713.473550000000000000000000,
+        "TotalTaxAmount": 15745.473550000000000000000000,
         "PollTaxAmount": [
-          48.0
+          80.0
         ]
       },
       "FederalTaxResult": {
         "DeterminingFactorTaxableAmount": 100000.0,
         "TaxAmount": 1968.0
       },
-      "TotalTaxAmount": 17681.473550000000000000000000
+      "TotalTaxAmount": 17713.473550000000000000000000
     },
     "Left": null
   }

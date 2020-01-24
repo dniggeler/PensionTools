@@ -83,7 +83,10 @@ namespace TaxCalculator
                     })
                     .Bind(r =>
                     {
-                        stateTaxResult.PollTaxAmount = r;
+                        stateTaxResult.PollTaxAmount =
+                            from cTax in r.CantonTaxAmount
+                            from mTax in r.MunicipalityTaxAmount
+                            select cTax + mTax;
 
                         return taxRate.ToEither("No tax rate found");
                     })
