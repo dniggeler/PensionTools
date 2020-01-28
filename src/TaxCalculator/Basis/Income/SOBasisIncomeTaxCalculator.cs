@@ -58,8 +58,7 @@ namespace TaxCalculator.Basis.Income
                 .IfRight(r =>
                 {
                     r.TaxAmount = r.TaxAmount * adaptedTaxData.Multiplier;
-                    r.DeterminingFactorTaxableAmount =
-                        r.DeterminingFactorTaxableAmount * adaptedTaxData.Multiplier;
+                    r.DeterminingFactorTaxableAmount = person.TaxableAmount;
                 });
 
             return taxResult;

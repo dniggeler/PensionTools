@@ -4,7 +4,7 @@
     "Right": {
       "StateTaxResult": {
         "BasisIncomeTax": {
-          "DeterminingFactorTaxableAmount": 99998.90000000000000000000000,
+          "DeterminingFactorTaxableAmount": 100000.0,
           "TaxAmount": 6636.8900000000000000000000000
         },
         "BasisWealthTax": {
