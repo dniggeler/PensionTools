@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using LanguageExt;
 using Microsoft.AspNetCore.Http;
@@ -191,6 +193,14 @@ namespace TaxCalculator.WebApi.Controllers
                     TaxableBenefits = request.TaxableBenefits,
                 };
             }
+        }
+
+        [HttpGet]
+        [Route("municipality")]
+        public async Task<ActionResult<IEnumerable<string>>> GetSupportedMunicipalities()
+        {
+            var list = new List<string>();
+            return await Task.FromResult(this.Ok(list));
         }
     }
 }
