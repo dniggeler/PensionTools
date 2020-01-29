@@ -1,0 +1,832 @@
+﻿[
+  {
+    "BfsNumber": 21,
+    "Name": "Adlikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 131,
+    "Name": "Adliswil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 241,
+    "Name": "Aesch",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 1,
+    "Name": "Aeugst a.A.",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 2,
+    "Name": "Affoltern a.A.",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 211,
+    "Name": "Altikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 30,
+    "Name": "Andelfingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 51,
+    "Name": "Bachenbülach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 81,
+    "Name": "Bachs",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 52,
+    "Name": "Bassersdorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 297,
+    "Name": "Bauma",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 22,
+    "Name": "Benken",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 23,
+    "Name": "Berg a.I.",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 242,
+    "Name": "Birmensdorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 3,
+    "Name": "Bonstetten",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 82,
+    "Name": "Boppelsen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 213,
+    "Name": "Brütten",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 112,
+    "Name": "Bubikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 24,
+    "Name": "Buch a.I.",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 83,
+    "Name": "Buchs",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 111,
+    "Name": "Bäretswil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 53,
+    "Name": "Bülach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 25,
+    "Name": "Dachsen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 86,
+    "Name": "Dielsdorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 243,
+    "Name": "Dietikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 54,
+    "Name": "Dietlikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 216,
+    "Name": "Dinhard",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 26,
+    "Name": "Dorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 214,
+    "Name": "Dägerlen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 84,
+    "Name": "Dällikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 85,
+    "Name": "Dänikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 215,
+    "Name": "Dättlikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 191,
+    "Name": "Dübendorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 113,
+    "Name": "Dürnten",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 192,
+    "Name": "Egg",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 55,
+    "Name": "Eglisau",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 294,
+    "Name": "Elgg",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 218,
+    "Name": "Ellikon a.d.Th.",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 219,
+    "Name": "Elsau",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 56,
+    "Name": "Embrach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 151,
+    "Name": "Erlenbach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 172,
+    "Name": "Fehraltorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 27,
+    "Name": "Feuerthalen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 114,
+    "Name": "Fischenthal",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 28,
+    "Name": "Flaach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 29,
+    "Name": "Flurlingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 57,
+    "Name": "Freienstein-Teufen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 193,
+    "Name": "Fällanden",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 244,
+    "Name": "Geroldswil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 58,
+    "Name": "Glattfelden",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 115,
+    "Name": "Gossau",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 194,
+    "Name": "Greifensee",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 116,
+    "Name": "Grüningen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 220,
+    "Name": "Hagenbuch",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 4,
+    "Name": "Hausen a.A.",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 5,
+    "Name": "Hedingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 31,
+    "Name": "Henggart",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 152,
+    "Name": "Herrliberg",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 221,
+    "Name": "Hettlingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 117,
+    "Name": "Hinwil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 173,
+    "Name": "Hittnau",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 59,
+    "Name": "Hochfelden",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 153,
+    "Name": "Hombrechtikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 295,
+    "Name": "Horgen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 32,
+    "Name": "Humlikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 60,
+    "Name": "Höri",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 61,
+    "Name": "Hüntwangen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 87,
+    "Name": "Hüttikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 296,
+    "Name": "Illnau-Effretikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 6,
+    "Name": "Kappel a.A.",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 135,
+    "Name": "Kilchberg",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 33,
+    "Name": "Kleinandelfingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 62,
+    "Name": "Kloten",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 7,
+    "Name": "Knonau",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 154,
+    "Name": "Küsnacht",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 136,
+    "Name": "Langnau a.A.",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 34,
+    "Name": "Laufen-Uhwiesen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 176,
+    "Name": "Lindau",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 2526,
+    "Name": "Lohn-Ammannsegg",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 63,
+    "Name": "Lufingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 35,
+    "Name": "Marthalen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 8,
+    "Name": "Maschwanden",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 195,
+    "Name": "Maur",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 156,
+    "Name": "Meilen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 9,
+    "Name": "Mettmenstetten",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 155,
+    "Name": "Männedorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 196,
+    "Name": "Mönchaltorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 88,
+    "Name": "Neerach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 223,
+    "Name": "Neftenbach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 89,
+    "Name": "Niederglatt",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 90,
+    "Name": "Niederhasli",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 91,
+    "Name": "Niederweningen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 64,
+    "Name": "Nürensdorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 65,
+    "Name": "Oberembrach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 245,
+    "Name": "Oberengstringen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 92,
+    "Name": "Oberglatt",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 137,
+    "Name": "Oberrieden",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 93,
+    "Name": "Oberweningen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 10,
+    "Name": "Obfelden",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 157,
+    "Name": "Oetwil a.S.",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 246,
+    "Name": "Oetwil a.d.L.",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 66,
+    "Name": "Opfikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 37,
+    "Name": "Ossingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 94,
+    "Name": "Otelfingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 11,
+    "Name": "Ottenbach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 224,
+    "Name": "Pfungen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 177,
+    "Name": "Pfäffikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 67,
+    "Name": "Rafz",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 95,
+    "Name": "Regensberg",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 96,
+    "Name": "Regensdorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 38,
+    "Name": "Rheinau",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 138,
+    "Name": "Richterswil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 225,
+    "Name": "Rickenbach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 12,
+    "Name": "Rifferswil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 68,
+    "Name": "Rorbas",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 178,
+    "Name": "Russikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 97,
+    "Name": "Rümlang",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 139,
+    "Name": "Rüschlikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 118,
+    "Name": "Rüti",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 226,
+    "Name": "Schlatt",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 98,
+    "Name": "Schleinikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 247,
+    "Name": "Schlieren",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 197,
+    "Name": "Schwerzenbach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 99,
+    "Name": "Schöfflisdorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 119,
+    "Name": "Seegräben",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 227,
+    "Name": "Seuzach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 2601,
+    "Name": "Solothurn",
+    "Canton": "SO"
+  },
+  {
+    "BfsNumber": 3203,
+    "Name": "St.Gallen",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 100,
+    "Name": "Stadel",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 13,
+    "Name": "Stallikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 292,
+    "Name": "Stammheim",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 101,
+    "Name": "Steinmaur",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 158,
+    "Name": "Stäfa",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 39,
+    "Name": "Thalheim a.d.Th.",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 141,
+    "Name": "Thalwil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 41,
+    "Name": "Truttikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 40,
+    "Name": "Trüllikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 228,
+    "Name": "Turbenthal",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 159,
+    "Name": "Uetikon a.S.",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 248,
+    "Name": "Uitikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 249,
+    "Name": "Unterengstringen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 250,
+    "Name": "Urdorf",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 198,
+    "Name": "Uster",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 43,
+    "Name": "Volken",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 199,
+    "Name": "Volketswil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 120,
+    "Name": "Wald",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 69,
+    "Name": "Wallisellen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 200,
+    "Name": "Wangen-Brüttisellen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 70,
+    "Name": "Wasterkingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 102,
+    "Name": "Weiach",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 251,
+    "Name": "Weiningen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 180,
+    "Name": "Weisslingen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 14,
+    "Name": "Wettswil a.A.",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 121,
+    "Name": "Wetzikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 298,
+    "Name": "Wiesendangen",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 71,
+    "Name": "Wil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 181,
+    "Name": "Wila",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 182,
+    "Name": "Wildberg",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 72,
+    "Name": "Winkel",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 230,
+    "Name": "Winterthur",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 293,
+    "Name": "Wädenswil",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 231,
+    "Name": "Zell",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 161,
+    "Name": "Zollikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 160,
+    "Name": "Zumikon",
+    "Canton": "ZH"
+  },
+  {
+    "BfsNumber": 3426,
+    "Name": "Zuzwil",
+    "Canton": "SG"
+  },
+  {
+    "BfsNumber": 261,
+    "Name": "Zürich",
+    "Canton": "ZH"
+  }
+]

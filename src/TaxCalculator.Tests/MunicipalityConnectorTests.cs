@@ -57,5 +57,18 @@ namespace TaxCalculator.Tests
 
             Snapshot.Match(result, $"Get Municipality {bfsNumber}");
         }
+
+        [Fact(DisplayName = "Get All Supporting Tax Calculation")]
+        public async Task ShouldReturnAllMunicipalitiesSupportingTaxCalculation()
+        {
+            // given
+            int year = 2019;
+
+            // when
+            var result =
+                await _fixture.Service.GetAllSupportTaxCalculationAsync(year);
+
+            Snapshot.Match(result, "SupportTaxCalculation");
+        }
     }
 }
