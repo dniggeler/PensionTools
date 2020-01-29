@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
-using FluentValidation.Results;
 using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
@@ -9,20 +8,20 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data.Abstractions;
 using Tax.Data.Abstractions.Models;
 
-namespace TaxCalculator.Basis.Income
+namespace TaxCalculator.Basis.Wealth
 {
     /// <summary>
-    /// Default income tax calculator which is the same for ZH.
+    /// Wealth tax calculator for SO.
     /// </summary>
-    /// <seealso cref="PensionCoach.Tools.TaxCalculator.Abstractions.IBasisIncomeTaxCalculator" />
-    public class DefaultBasisIncomeTaxCalculator : IDefaultBasisIncomeTaxCalculator
+    /// <seealso cref="PensionCoach.Tools.TaxCalculator.Abstractions.IBasisWealthTaxCalculator" />
+    public class SOBasisWealthTaxCalculator : IBasisWealthTaxCalculator
     {
-        private const int IncomeTaxTypeId = (int)TaxType.Income;
+        private const int TaxTypeId = (int)TaxType.Wealth;
 
         private readonly IValidator<BasisTaxPerson> taxPersonValidator;
         private readonly ITaxTariffData tariffData;
 
-        public DefaultBasisIncomeTaxCalculator(
+        public SOBasisWealthTaxCalculator(
             IValidator<BasisTaxPerson> taxPersonValidator,
             ITaxTariffData tariffData)
         {
@@ -33,29 +32,27 @@ namespace TaxCalculator.Basis.Income
         public Task<Either<string, BasisTaxResult>> CalculateAsync(
             int calculationYear, Canton canton, BasisTaxPerson person)
         {
-            Option<ValidationResult> validationResult =
-                this.taxPersonValidator.Validate(person);
-
-            var tariffType = validationResult
-                .Where(v => !v.IsValid)
-                .Map<Either<string, bool>>(r => string.Join(";", r.Errors.Select(x => x.ErrorMessage)))
-                .IfNone(true)
-                .Bind(_ => this.Map(person.CivilStatus));
+            var validationResult = this.taxPersonValidator.Validate(person);
+            if (!validationResult.IsValid)
+            {
+                var errorMessageLine = string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
+                return Task.FromResult<Either<string, BasisTaxResult>>($"validation failed: {errorMessageLine}");
+            }
 
             var tariffItems =
                 this.tariffData.Get(new TaxFilterModel
-                    {
-                        Year = calculationYear,
-                        Canton = canton.ToString(),
-                    })
+                {
+                    Year = calculationYear,
+                    Canton = canton.ToString(),
+                })
                     .OrderBy(item => item.TaxAmount);
 
-            return tariffType
+            return this.Map(person.CivilStatus)
 
                 // get all income level candidate
                 .Map(typeId => tariffItems
-                    .Where(item => item.TariffType == (int)typeId)
-                    .Where(item => item.TaxType == IncomeTaxTypeId)
+                    .Where(item => item.TariffType == (int)TariffType.Base)
+                    .Where(item => item.TaxType == TaxTypeId)
                     .Where(item => item.IncomeLevel <= person.TaxableAmount)
                     .OrderByDescending(item => item.IncomeLevel)
                     .DefaultIfEmpty(new TaxTariffModel())
@@ -63,17 +60,20 @@ namespace TaxCalculator.Basis.Income
 
                 // calculate result
                 .Map(tariff => this.CalculateIncomeTax(person, tariff))
+                .Match<Either<string, BasisTaxResult>>(
+                    Some: r => r,
+                    None: () => "Tariff not available")
                 .AsTask();
         }
 
         private BasisTaxResult CalculateIncomeTax(BasisTaxPerson person, TaxTariffModel tariff)
         {
-            var referenceTaxableIncome = person.TaxableAmount - (person.TaxableAmount % tariff.IncomeIncrement);
+            var referenceTaxableIncome =
+                person.TaxableAmount - (person.TaxableAmount % tariff.IncomeIncrement);
 
-            var incrementMultiplier = referenceTaxableIncome - tariff.IncomeLevel;
+            var incrementMultiplier = (referenceTaxableIncome - tariff.IncomeLevel) / tariff.IncomeIncrement;
 
-            var baseTaxAmount =
-                (incrementMultiplier * tariff.TaxTariffRatePercent / 100M) + tariff.TaxAmount;
+            var baseTaxAmount = (incrementMultiplier * tariff.TaxTariffRatePercent / 1000m) + tariff.TaxAmount;
 
             return new BasisTaxResult
             {
@@ -82,7 +82,7 @@ namespace TaxCalculator.Basis.Income
             };
         }
 
-        private Either<string, TariffType> Map(Option<CivilStatus> status)
+        private Option<TariffType> Map(Option<CivilStatus> status)
         {
             return status.Match(
                 Some: s => s switch
@@ -92,8 +92,7 @@ namespace TaxCalculator.Basis.Income
                     CivilStatus.Married => TariffType.Married,
                     _ => Option<TariffType>.None
                 },
-                None: () => Option<TariffType>.None)
-                .ToEither("Civil status unknown");
+                None: () => Option<TariffType>.None);
         }
     }
 }

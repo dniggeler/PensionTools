@@ -3,10 +3,10 @@
     "State": "IsRight",
     "Right": {
       "CantonTaxAmount": [
-        24.0
+        60.0
       ],
       "MunicipalityTaxAmount": [
-        0.0
+        20.0
       ]
     },
     "Left": null

@@ -21,20 +21,22 @@ namespace TaxCalculator.Tests
         }
 
         [Theory(DisplayName = "Capital Benefit Tax")]
-        [InlineData(2018, 2_000_000, "Single", "Protestant", 261)]
-        [InlineData(2018, 1_000_000, "Single", "Protestant", 261)]
-        [InlineData(2018, 2_000_000, "Married", "Catholic", 261)]
-        [InlineData(2018, 0, "Married", "Protestant", 261)]
+        [InlineData(2018, 2_000_000, "Single", "Protestant", 261, "ZH")]
+        [InlineData(2018, 1_000_000, "Single", "Protestant", 261, "ZH")]
+        [InlineData(2018, 2_000_000, "Married", "Catholic", 261, "ZH")]
+        [InlineData(2018, 0, "Married", "Protestant", 261, "ZH")]
+        [InlineData(2019, 2_000_000, "Single", "Protestant", 2526, "SO")]
         public async Task ShouldCalculateCapitalBenefitTax(
             int calculationYear, 
             double capitalBenefitAsDouble, 
             string civilStatusCode,
             string religiousGroupCode,
-            int municipalityId)
+            int municipalityId,
+            string cantonStr)
         {
             // given
             string name = "Burli";
-            Canton canton = Canton.ZH;
+            Canton canton = Enum.Parse<Canton>(cantonStr);
             decimal capitalBenefitAmount = Convert.ToDecimal(capitalBenefitAsDouble);
             CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
 

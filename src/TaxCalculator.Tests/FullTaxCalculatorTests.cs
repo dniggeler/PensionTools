@@ -25,6 +25,7 @@ namespace TaxCalculator.Tests
         [InlineData(2018, 99995, 96000, 522000, "Married", "Catholic", 261, "ZH")]
         [InlineData(2018, 99995, 99995, 522000, "Single", "Protestant", 261, "ZH")]
         [InlineData(2019, 99995, 99995, 522000, "Single", "Other", 3426, "SG")]
+        [InlineData(2019, 100_000, 100_000, 500000, "Married", "Protestant", 2526, "SO")]
         public async Task ShouldCalculateOverallTax(
             int calculationYear,
             double stateIncomeAsDouble,

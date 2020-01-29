@@ -1,0 +1,41 @@
+﻿[
+  {
+    "State": "IsRight",
+    "Right": {
+      "StateTaxResult": {
+        "BasisIncomeTax": {
+          "DeterminingFactorTaxableAmount": 100000.0,
+          "TaxAmount": 6636.8900000000000000000000000
+        },
+        "BasisWealthTax": {
+          "DeterminingFactorTaxableAmount": 500000.0,
+          "TaxAmount": 500.0
+        },
+        "ChurchTax": {
+          "TaxAmount": [
+            553.10897500000000000000000000
+          ],
+          "TaxAmountPartner": [
+            553.10897500000000000000000000
+          ],
+          "TaxRate": 15.5
+        },
+        "CantonRate": 104.0,
+        "MunicipalityRate": 100.0,
+        "MunicipalityTaxAmount": 7136.8900000000000000000000000,
+        "CantonTaxAmount": 7422.3656000000000000000000000,
+        "ChurchTaxAmount": 1106.2179500000000000000000000,
+        "TotalTaxAmount": 15745.473550000000000000000000,
+        "PollTaxAmount": [
+          80.0
+        ]
+      },
+      "FederalTaxResult": {
+        "DeterminingFactorTaxableAmount": 100000.0,
+        "TaxAmount": 1968.0
+      },
+      "TotalTaxAmount": 17713.473550000000000000000000
+    },
+    "Left": null
+  }
+]

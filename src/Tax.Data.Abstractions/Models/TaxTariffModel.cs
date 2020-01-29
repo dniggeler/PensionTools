@@ -18,7 +18,7 @@ namespace Tax.Data.Abstractions.Models
         public int Year { get; set; }
 
         [Column("Steuerinkrement")]
-        public decimal TaxIncrement { get; set; }
+        public decimal TaxTariffRatePercent { get; set; }
 
         [Column("Einkommensinkrement")] 
         public decimal IncomeIncrement { get; set; } = 1000;

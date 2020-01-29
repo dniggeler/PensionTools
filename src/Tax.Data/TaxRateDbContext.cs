@@ -14,7 +14,7 @@ namespace Tax.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TaxRateEntity>().ToTable("SteuerfussZH");
+            modelBuilder.Entity<TaxRateEntity>().ToTable("Steuerfuss");
             modelBuilder.Entity<TaxRateEntity>().HasNoKey();
             
             base.OnModelCreating(modelBuilder);

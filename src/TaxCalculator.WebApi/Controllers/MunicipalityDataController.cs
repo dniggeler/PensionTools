@@ -43,8 +43,8 @@ namespace TaxCalculator.WebApi.Controllers
         /// <summary>
         /// Gets a municipality by its BFS id.
         /// </summary>
-        /// <param name="id">BFS municipality number, e.g. 261 for city of Zurich.</param>
         /// <param name="year">Year of validity.</param>
+        /// <param name="id">BFS municipality number, e.g. 261 for city of Zurich.</param>
         /// <returns>Detailed municipality data.</returns>
         /// <remarks>
         /// Holt Steuerdetails der Gemeinde. Als Schlüssel dient
