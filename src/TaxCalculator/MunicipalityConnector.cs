@@ -16,12 +16,16 @@ namespace TaxCalculator
     {
         private readonly IMapper mapper;
         private readonly MunicipalityDbContext municipalityDbContext;
+        private readonly Func<TaxRateDbContext> dbContext;
 
         public MunicipalityConnector(
-            IMapper mapper, MunicipalityDbContext municipalityDbContext)
+            IMapper mapper,
+            MunicipalityDbContext municipalityDbContext,
+            Func<TaxRateDbContext> dbContext)
         {
             this.mapper = mapper;
             this.municipalityDbContext = municipalityDbContext;
+            this.dbContext = dbContext;
         }
 
         public Task<IEnumerable<MunicipalityModel>> GetAllAsync()
@@ -86,6 +90,27 @@ namespace TaxCalculator
                     Some: item => this.mapper.Map<MunicipalityModel>(item),
                     None: () => $"Municipality by ReligiousGroupType.Protestant {bfsNumber} not found")
                 .AsTask();
+        }
+
+        public Task<IReadOnlyCollection<TaxSupportedMunicipalityModel>> GetAllSupportTaxCalculationAsync(int year)
+        {
+            using (var ctx = this.dbContext())
+            {
+                IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities =
+                    ctx.Rates
+                        .Where(
+                            item => item.Year == year)
+                        .OrderBy(item => item.MunicipalityName)
+                        .Select(item => new TaxSupportedMunicipalityModel
+                        {
+                            BfsNumber = item.BfsId,
+                            Name = item.MunicipalityName,
+                            Canton = Enum.Parse<Canton>(item.Canton),
+                        })
+                        .ToList();
+
+                return Task.FromResult(municipalities);
+            }
         }
     }
 }
