@@ -25,7 +25,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{782F68B3-D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaxCalculators.Tests", "TaxCalculators.Tests", "{6BF8BD0F-9F88-4D41-B1E0-F4E3D84330A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxCalculator.WebApi", "TaxCalculator.WebApi\TaxCalculator.WebApi.csproj", "{19811879-AEFC-4F75-BF52-10CB8471F5CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.WebApi", "TaxCalculator.WebApi\TaxCalculator.WebApi.csproj", "{19811879-AEFC-4F75-BF52-10CB8471F5CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tax.Tools.Comparison", "Tax.Tools.Comparison", "{BF9972ED-AFAC-4E39-9AAD-89F46338CED1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.Tools.Comparison", "Tax.Tools.Comparison\Tax.Tools.Comparison\Tax.Tools.Comparison.csproj", "{7F3959D0-0998-41D0-B362-2A1366CA1270}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,10 @@ Global
 		{19811879-AEFC-4F75-BF52-10CB8471F5CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19811879-AEFC-4F75-BF52-10CB8471F5CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19811879-AEFC-4F75-BF52-10CB8471F5CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F3959D0-0998-41D0-B362-2A1366CA1270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F3959D0-0998-41D0-B362-2A1366CA1270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F3959D0-0998-41D0-B362-2A1366CA1270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F3959D0-0998-41D0-B362-2A1366CA1270}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +89,7 @@ Global
 		{38D1A086-2A5D-4654-B465-04C662DDEA1A} = {6BF8BD0F-9F88-4D41-B1E0-F4E3D84330A3}
 		{1A039171-DE86-4DCE-8D47-8626666004E3} = {6BF8BD0F-9F88-4D41-B1E0-F4E3D84330A3}
 		{782F68B3-D4DB-4AAD-94D0-28DA73B5BBDE} = {3B665A6F-1CE9-48B9-9736-A5C05C49335D}
+		{7F3959D0-0998-41D0-B362-2A1366CA1270} = {BF9972ED-AFAC-4E39-9AAD-89F46338CED1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB937E37-4C08-4EB0-86F7-87F74A7F6C44}
