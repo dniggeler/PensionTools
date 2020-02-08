@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Tools.Comparison", "Tax
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.Tools.Comparison.Abstractions", "Tax.Tools.Comparison\Tax.Tools.Comparison.Abstractions\Tax.Tools.Comparison.Abstractions.csproj", "{9354F5AC-21E6-4FE9-AF2E-4D80972ACE29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.Tools.Comparison.Tests", "Tax.Tools.Comparison\Tax.Tools.Comparison.Tests\Tax.Tools.Comparison.Tests.csproj", "{71DD068D-41A9-4084-8808-5190BB4D1AC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{9354F5AC-21E6-4FE9-AF2E-4D80972ACE29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9354F5AC-21E6-4FE9-AF2E-4D80972ACE29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9354F5AC-21E6-4FE9-AF2E-4D80972ACE29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71DD068D-41A9-4084-8808-5190BB4D1AC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71DD068D-41A9-4084-8808-5190BB4D1AC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71DD068D-41A9-4084-8808-5190BB4D1AC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71DD068D-41A9-4084-8808-5190BB4D1AC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +103,7 @@ Global
 		{782F68B3-D4DB-4AAD-94D0-28DA73B5BBDE} = {3B665A6F-1CE9-48B9-9736-A5C05C49335D}
 		{7F3959D0-0998-41D0-B362-2A1366CA1270} = {BF9972ED-AFAC-4E39-9AAD-89F46338CED1}
 		{9354F5AC-21E6-4FE9-AF2E-4D80972ACE29} = {BF9972ED-AFAC-4E39-9AAD-89F46338CED1}
+		{71DD068D-41A9-4084-8808-5190BB4D1AC0} = {BF9972ED-AFAC-4E39-9AAD-89F46338CED1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB937E37-4C08-4EB0-86F7-87F74A7F6C44}
