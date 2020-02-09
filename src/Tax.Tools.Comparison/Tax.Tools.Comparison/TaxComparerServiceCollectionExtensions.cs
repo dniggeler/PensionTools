@@ -6,7 +6,7 @@ namespace Tax.Tools.Comparison
 {
     public static class TaxComparerServiceCollectionExtensions
     {
-        public static void AddTaxCalculators(this IServiceCollection collection)
+        public static void AddTaxComparers(this IServiceCollection collection)
         {
             collection.AddTransient<ITaxComparer, TaxComparer>();
         }

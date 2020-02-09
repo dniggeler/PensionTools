@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\TaxCalculator\TaxCalculator.csproj" />
     <ProjectReference Include="..\Tax.Tools.Comparison.Abstractions\Tax.Tools.Comparison.Abstractions.csproj" />
     <ProjectReference Include="..\Tax.Tools.Comparison\Tax.Tools.Comparison.csproj" />
   </ItemGroup>

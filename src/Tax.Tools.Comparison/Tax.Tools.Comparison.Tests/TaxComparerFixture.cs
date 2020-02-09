@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Tax.Data;
+using TaxCalculator;
 
 
 namespace Tax.Tools.Comparison.Tests
@@ -39,6 +41,8 @@ namespace Tax.Tools.Comparison.Tests
 
             coll.AddLogging();
             coll.AddTaxCalculators();
+            coll.AddTaxData(configuration);
+            coll.AddTaxComparers();
 
             Provider = coll.BuildServiceProvider();
 

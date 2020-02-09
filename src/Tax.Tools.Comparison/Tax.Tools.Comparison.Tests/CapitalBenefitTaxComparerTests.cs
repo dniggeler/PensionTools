@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
+using Snapshooter.Xunit;
 using Tax.Tools.Comparison.Abstractions;
 using Xunit;
 
@@ -41,6 +42,9 @@ namespace Tax.Tools.Comparison.Tests
             Either<string, IReadOnlyCollection<FullCapitalBenefitTaxResult>> result =
                 await fixture.Calculator.CompareCapitalBenefitTaxAsync(
                     calculationYear, 0, canton, taxPerson);
+
+            // then
+            Snapshot.Match(result);
         }
     }
 }
