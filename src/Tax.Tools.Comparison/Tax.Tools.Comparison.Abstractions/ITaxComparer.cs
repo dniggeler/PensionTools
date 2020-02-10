@@ -9,7 +9,7 @@ namespace Tax.Tools.Comparison.Abstractions
 {
     public interface ITaxComparer
     {
-        Task<Either<string,IReadOnlyCollection<FullCapitalBenefitTaxResult>>> CompareCapitalBenefitTaxAsync(
+        Task<Either<string,Dictionary<int, FullCapitalBenefitTaxResult>>> CompareCapitalBenefitTaxAsync(
             int calculationYear, int municipalityId, Canton canton, CapitalBenefitTaxPerson person);
     }
 }

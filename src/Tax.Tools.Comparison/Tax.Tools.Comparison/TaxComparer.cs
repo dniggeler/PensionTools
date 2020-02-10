@@ -2,6 +2,7 @@
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Tax.Tools.Comparison.Abstractions;
@@ -11,36 +12,39 @@ namespace Tax.Tools.Comparison
     public class TaxComparer : ITaxComparer
     {
         private readonly IFullCapitalBenefitTaxCalculator capitalBenefitCalculator;
+        private readonly IMunicipalityConnector municipalityConnector;
 
-        public TaxComparer(IFullCapitalBenefitTaxCalculator capitalBenefitCalculator)
+        public TaxComparer(
+            IFullCapitalBenefitTaxCalculator capitalBenefitCalculator,
+            IMunicipalityConnector municipalityConnector)
         {
             this.capitalBenefitCalculator = capitalBenefitCalculator;
+            this.municipalityConnector = municipalityConnector;
         }
 
-        public async Task<Either<string, IReadOnlyCollection<FullCapitalBenefitTaxResult>>> CompareCapitalBenefitTaxAsync(int calculationYear, int municipalityId, Canton canton, CapitalBenefitTaxPerson person)
+        public async Task<Either<string, Dictionary<int ,FullCapitalBenefitTaxResult>>> CompareCapitalBenefitTaxAsync(int calculationYear, int municipalityId, Canton canton, CapitalBenefitTaxPerson person)
         {
-            Dictionary<int, Canton> allMunicipalities
-                = new Dictionary<int, Canton>
-                {
-                    { 2526, Canton.SO },
-                    { 261, Canton.ZH },
-                };
+            IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities =
+                await this.municipalityConnector
+                    .GetAllSupportTaxCalculationAsync(calculationYear);
 
-            List<FullCapitalBenefitTaxResult> resultList =
-                new List<FullCapitalBenefitTaxResult>();
+            var resultList =
+                new Dictionary<int, FullCapitalBenefitTaxResult>();
 
-            foreach (var kp in allMunicipalities)
+            foreach (var municipality in municipalities
+                .Where(item => item.BfsNumber != municipalityId))
             {
                 var result =
                     await this.capitalBenefitCalculator
                         .CalculateAsync(
                             calculationYear,
-                            kp.Key,
-                            kp.Value,
+                            municipality.BfsNumber,
+                            municipality.Canton,
                             person);
 
                 result
-                    .IfRight(r => resultList.Add(r));
+                    .IfRight(r =>
+                        resultList.Add(municipality.BfsNumber, r));
             }
 
             return resultList;
