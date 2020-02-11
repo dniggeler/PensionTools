@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
@@ -45,7 +46,16 @@ namespace Tax.Tools.Comparison.Tests
                     calculationYear, municipalityId, canton, taxPerson);
 
             // then
-            Snapshot.Match(result);
+            Assert.True(result.IsRight);
+            result.IfRight(r =>
+            {
+                var sortedResult =
+                    r.OrderBy(pair => pair.Key.BfsNumber)
+                        .Select(pair => pair.Value)
+                        .ToList();
+                
+                Snapshot.Match(sortedResult);
+            });
         }
     }
 }

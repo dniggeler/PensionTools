@@ -22,14 +22,14 @@ namespace Tax.Tools.Comparison
             this.municipalityConnector = municipalityConnector;
         }
 
-        public async Task<Either<string, Dictionary<int ,FullCapitalBenefitTaxResult>>> CompareCapitalBenefitTaxAsync(int calculationYear, int municipalityId, Canton canton, CapitalBenefitTaxPerson person)
+        public async Task<Either<string, Dictionary<TaxSupportedMunicipalityModel, FullCapitalBenefitTaxResult>>> CompareCapitalBenefitTaxAsync(int calculationYear, int municipalityId, Canton canton, CapitalBenefitTaxPerson person)
         {
             IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities =
                 await this.municipalityConnector
                     .GetAllSupportTaxCalculationAsync(calculationYear);
 
             var resultList =
-                new Dictionary<int, FullCapitalBenefitTaxResult>();
+                new Dictionary<TaxSupportedMunicipalityModel, FullCapitalBenefitTaxResult>();
 
             foreach (var municipality in municipalities
                 .Where(item => item.BfsNumber != municipalityId))
@@ -44,7 +44,7 @@ namespace Tax.Tools.Comparison
 
                 result
                     .IfRight(r =>
-                        resultList.Add(municipality.BfsNumber, r));
+                        resultList.Add(municipality, r));
             }
 
             return resultList;
