@@ -4,8 +4,11 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LanguageExt.ClassInstances;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Tax.Tools.Comparison.Abstractions;
+using Tax.Tools.Comparison.Abstractions.Models;
+
 
 namespace Tax.Tools.Comparison
 {
@@ -22,17 +25,16 @@ namespace Tax.Tools.Comparison
             this.municipalityConnector = municipalityConnector;
         }
 
-        public async Task<Either<string, Dictionary<TaxSupportedMunicipalityModel, FullCapitalBenefitTaxResult>>> CompareCapitalBenefitTaxAsync(int calculationYear, int municipalityId, Canton canton, CapitalBenefitTaxPerson person)
+        public async Task<Either<string, IReadOnlyCollection<CapitalBenefitTaxComparerResult>>> CompareCapitalBenefitTaxAsync(
+            int calculationYear, CapitalBenefitTaxPerson person)
         {
             IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities =
                 await this.municipalityConnector
                     .GetAllSupportTaxCalculationAsync(calculationYear);
 
-            var resultList =
-                new Dictionary<TaxSupportedMunicipalityModel, FullCapitalBenefitTaxResult>();
+            var resultList = new List<CapitalBenefitTaxComparerResult>();
 
-            foreach (var municipality in municipalities
-                .Where(item => item.BfsNumber != municipalityId))
+            foreach (var municipality in municipalities)
             {
                 var result =
                     await this.capitalBenefitCalculator
@@ -43,8 +45,15 @@ namespace Tax.Tools.Comparison
                             person);
 
                 result
+                    .Map(r => new CapitalBenefitTaxComparerResult
+                    {
+                        MunicipalityId = municipality.BfsNumber,
+                        MunicipalityName = municipality.Name,
+                        Canton = municipality.Canton,
+                        MunicipalityTaxResult = r,
+                    })
                     .IfRight(r =>
-                        resultList.Add(municipality, r));
+                        resultList.Add(r));
             }
 
             return resultList;

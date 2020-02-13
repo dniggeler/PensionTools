@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;
@@ -27,8 +25,6 @@ namespace Tax.Tools.Comparison.Tests
             // given
             string name = "Burli";
             int calculationYear = 2019;
-            int municipalityId = 261;
-            Canton canton = Canton.ZH;
             CivilStatus status = CivilStatus.Single;
             ReligiousGroupType religiousGroup = ReligiousGroupType.Protestant;
 
@@ -43,19 +39,11 @@ namespace Tax.Tools.Comparison.Tests
             // when
             var result =
                 await fixture.Calculator.CompareCapitalBenefitTaxAsync(
-                    calculationYear, municipalityId, canton, taxPerson);
+                    calculationYear, taxPerson);
 
             // then
             Assert.True(result.IsRight);
-            result.IfRight(r =>
-            {
-                var sortedResult =
-                    r.OrderBy(pair => pair.Key.BfsNumber)
-                        .Select(pair => pair.Value)
-                        .ToList();
-                
-                Snapshot.Match(sortedResult);
-            });
+            Snapshot.Match(result);
         }
     }
 }

@@ -10,6 +10,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using Tax.Data;
+using Tax.Tools.Comparison;
+
 
 namespace TaxCalculator.WebApi
 {
@@ -36,6 +38,7 @@ namespace TaxCalculator.WebApi
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             services.AddTaxData(this.Configuration);
             services.AddTaxCalculators();
+            services.AddTaxComparers();
             services.AddSwaggerExamplesFromAssemblyOf<Examples.CapitalBenefitTaxRequestExample>();
             services.AddSwaggerGen(opt =>
             {
