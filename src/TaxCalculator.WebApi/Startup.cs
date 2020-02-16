@@ -12,7 +12,6 @@ using Swashbuckle.AspNetCore.Filters;
 using Tax.Data;
 using Tax.Tools.Comparison;
 
-
 namespace TaxCalculator.WebApi
 {
     public class Startup

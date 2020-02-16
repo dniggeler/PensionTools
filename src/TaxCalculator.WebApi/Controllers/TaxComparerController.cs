@@ -32,8 +32,8 @@ namespace TaxCalculator.WebApi.Controllers
         }
 
         /// <summary>
-        /// Calculates the overall capital benefit tax including state, municipality and
-        /// federal tax amounts.
+        /// Calculates the overall capital benefit tax for all available municipalities
+        /// for a given calculations year.
         /// </summary>
         /// <param name="request">The request includes details about the tax person and the taxable amount.</param>
         /// <returns>Calculation results.</returns>
@@ -42,7 +42,8 @@ namespace TaxCalculator.WebApi.Controllers
         /// If request is incomplete or cannot be validated. The calculator may also not support all cantons.
         /// </response>
         /// <remarks>
-        /// Steuerrechner für Bundes-, Staats- und Gemeindesteuern auf Kapitalleistungen (Kapitalbezugssteuer).
+        /// Berechnet die Bundes-, Staats- und Gemeindesteuern auf Kapitalleistungen (Kapitalbezugssteuer) für alle Gemeinden in der Datenbasis
+        /// für ein vorgegebenes Steuerjahr.
         /// </remarks>
         [HttpPost]
         [Route("capitalbenefit")]
