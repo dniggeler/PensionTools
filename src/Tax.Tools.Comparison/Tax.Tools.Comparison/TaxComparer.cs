@@ -1,26 +1,28 @@
 ﻿using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using LanguageExt.ClassInstances;
+using FluentValidation;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Tax.Tools.Comparison.Abstractions;
 using Tax.Tools.Comparison.Abstractions.Models;
-
 
 namespace Tax.Tools.Comparison
 {
     public class TaxComparer : ITaxComparer
     {
+        private readonly IValidator<CapitalBenefitTaxPerson> taxPersonValidator;
         private readonly IFullCapitalBenefitTaxCalculator capitalBenefitCalculator;
         private readonly IMunicipalityConnector municipalityConnector;
 
         public TaxComparer(
+            IValidator<CapitalBenefitTaxPerson> taxPersonValidator,
             IFullCapitalBenefitTaxCalculator capitalBenefitCalculator,
             IMunicipalityConnector municipalityConnector)
         {
+            this.taxPersonValidator = taxPersonValidator;
             this.capitalBenefitCalculator = capitalBenefitCalculator;
             this.municipalityConnector = municipalityConnector;
         }
@@ -28,6 +30,14 @@ namespace Tax.Tools.Comparison
         public async Task<Either<string, IReadOnlyCollection<CapitalBenefitTaxComparerResult>>> CompareCapitalBenefitTaxAsync(
             int calculationYear, CapitalBenefitTaxPerson person)
         {
+            var validationResult = this.taxPersonValidator.Validate(person);
+            if (!validationResult.IsValid)
+            {
+                var errorMessageLine =
+                    string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
+                return $"validation failed: {errorMessageLine}";
+            }
+
             IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities =
                 await this.municipalityConnector
                     .GetAllSupportTaxCalculationAsync(calculationYear);
