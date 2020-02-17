@@ -1,0 +1,5486 @@
+﻿[
+  {
+    "State": "IsRight",
+    "Right": [
+      {
+        "MunicipalityId": 21,
+        "MunicipalityName": "Adlikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 130.0,
+            "MunicipalityTaxAmount": 220701.0,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 410843.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 456843.400
+        }
+      },
+      {
+        "MunicipalityId": 131,
+        "MunicipalityName": "Adliswil",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 100.0,
+            "MunicipalityTaxAmount": 169770.0,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 356517.00
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 402517.00
+        }
+      },
+      {
+        "MunicipalityId": 241,
+        "MunicipalityName": "Aesch",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 87.0,
+            "MunicipalityTaxAmount": 147699.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 336144.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 382144.600
+        }
+      },
+      {
+        "MunicipalityId": 1,
+        "MunicipalityName": "Aeugst a.A.",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                22070.100
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 95.0,
+            "MunicipalityTaxAmount": 161281.50,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 22070.100,
+            "TotalTaxAmount": 353121.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 399121.600
+        }
+      },
+      {
+        "MunicipalityId": 2,
+        "MunicipalityName": "Affoltern a.A.",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                22070.100
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 124.0,
+            "MunicipalityTaxAmount": 210514.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 22070.100,
+            "TotalTaxAmount": 402354.900
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 448354.900
+        }
+      },
+      {
+        "MunicipalityId": 211,
+        "MunicipalityName": "Altikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 114.0,
+            "MunicipalityTaxAmount": 193537.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 387075.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 433075.600
+        }
+      },
+      {
+        "MunicipalityId": 30,
+        "MunicipalityName": "Andelfingen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 112.0,
+            "MunicipalityTaxAmount": 190142.40,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 380284.800
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 426284.800
+        }
+      },
+      {
+        "MunicipalityId": 51,
+        "MunicipalityName": "Bachenbülach",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 106.0,
+            "MunicipalityTaxAmount": 179956.20,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 366703.20
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 412703.20
+        }
+      },
+      {
+        "MunicipalityId": 81,
+        "MunicipalityName": "Bachs",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 127.0,
+            "MunicipalityTaxAmount": 215607.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 409145.700
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 455145.700
+        }
+      },
+      {
+        "MunicipalityId": 52,
+        "MunicipalityName": "Bassersdorf",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 109.0,
+            "MunicipalityTaxAmount": 185049.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 375191.700
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 421191.700
+        }
+      },
+      {
+        "MunicipalityId": 297,
+        "MunicipalityName": "Bauma",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 120.0,
+            "MunicipalityTaxAmount": 203724.0,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 397261.800
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 443261.800
+        }
+      },
+      {
+        "MunicipalityId": 22,
+        "MunicipalityName": "Benken",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 118.0,
+            "MunicipalityTaxAmount": 200328.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 393866.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 439866.400
+        }
+      },
+      {
+        "MunicipalityId": 23,
+        "MunicipalityName": "Berg a.I.",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 98.0,
+            "MunicipalityTaxAmount": 166374.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 356517.000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 402517.000
+        }
+      },
+      {
+        "MunicipalityId": 242,
+        "MunicipalityName": "Birmensdorf",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 110.0,
+            "MunicipalityTaxAmount": 186747.0,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 375191.700
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 421191.700
+        }
+      },
+      {
+        "MunicipalityId": 3,
+        "MunicipalityName": "Bonstetten",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                22070.100
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 109.0,
+            "MunicipalityTaxAmount": 185049.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 22070.100,
+            "TotalTaxAmount": 376889.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 422889.400
+        }
+      },
+      {
+        "MunicipalityId": 82,
+        "MunicipalityName": "Boppelsen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                22070.100
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 91.0,
+            "MunicipalityTaxAmount": 154490.70,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 22070.100,
+            "TotalTaxAmount": 346330.800
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 392330.800
+        }
+      },
+      {
+        "MunicipalityId": 213,
+        "MunicipalityName": "Brütten",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                22070.100
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 89.0,
+            "MunicipalityTaxAmount": 151095.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 22070.100,
+            "TotalTaxAmount": 342935.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 388935.400
+        }
+      },
+      {
+        "MunicipalityId": 112,
+        "MunicipalityName": "Bubikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 112.0,
+            "MunicipalityTaxAmount": 190142.40,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 380284.800
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 426284.800
+        }
+      },
+      {
+        "MunicipalityId": 24,
+        "MunicipalityName": "Buch a.I.",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 106.0,
+            "MunicipalityTaxAmount": 179956.20,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 370098.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 416098.600
+        }
+      },
+      {
+        "MunicipalityId": 83,
+        "MunicipalityName": "Buchs",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 111.0,
+            "MunicipalityTaxAmount": 188444.70,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 376889.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 422889.400
+        }
+      },
+      {
+        "MunicipalityId": 111,
+        "MunicipalityName": "Bäretswil",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 105.0,
+            "MunicipalityTaxAmount": 178258.50,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 371796.300
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 417796.300
+        }
+      },
+      {
+        "MunicipalityId": 53,
+        "MunicipalityName": "Bülach",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 110.0,
+            "MunicipalityTaxAmount": 186747.0,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 373494.00
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 419494.00
+        }
+      },
+      {
+        "MunicipalityId": 25,
+        "MunicipalityName": "Dachsen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 109.0,
+            "MunicipalityTaxAmount": 185049.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 375191.700
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 421191.700
+        }
+      },
+      {
+        "MunicipalityId": 86,
+        "MunicipalityName": "Dielsdorf",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 105.0,
+            "MunicipalityTaxAmount": 178258.50,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 366703.200
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 412703.200
+        }
+      },
+      {
+        "MunicipalityId": 243,
+        "MunicipalityName": "Dietikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 123.0,
+            "MunicipalityTaxAmount": 208817.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 398959.500
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 444959.500
+        }
+      },
+      {
+        "MunicipalityId": 54,
+        "MunicipalityName": "Dietlikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 92.0,
+            "MunicipalityTaxAmount": 156188.40,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 344633.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 390633.100
+        }
+      },
+      {
+        "MunicipalityId": 216,
+        "MunicipalityName": "Dinhard",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 89.0,
+            "MunicipalityTaxAmount": 151095.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 344633.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 390633.100
+        }
+      },
+      {
+        "MunicipalityId": 26,
+        "MunicipalityName": "Dorf",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 109.0,
+            "MunicipalityTaxAmount": 185049.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 378587.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 424587.100
+        }
+      },
+      {
+        "MunicipalityId": 214,
+        "MunicipalityName": "Dägerlen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 119.0,
+            "MunicipalityTaxAmount": 202026.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 395564.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 441564.100
+        }
+      },
+      {
+        "MunicipalityId": 84,
+        "MunicipalityName": "Dällikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 109.0,
+            "MunicipalityTaxAmount": 185049.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 373494.000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 419494.000
+        }
+      },
+      {
+        "MunicipalityId": 85,
+        "MunicipalityName": "Dänikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 114.0,
+            "MunicipalityTaxAmount": 193537.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 381982.500
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 427982.500
+        }
+      },
+      {
+        "MunicipalityId": 215,
+        "MunicipalityName": "Dättlikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 114.0,
+            "MunicipalityTaxAmount": 193537.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 387075.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 433075.600
+        }
+      },
+      {
+        "MunicipalityId": 191,
+        "MunicipalityName": "Dübendorf",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 99.0,
+            "MunicipalityTaxAmount": 168072.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 356517.000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 402517.000
+        }
+      },
+      {
+        "MunicipalityId": 113,
+        "MunicipalityName": "Dürnten",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 115.0,
+            "MunicipalityTaxAmount": 195235.50,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 388773.300
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 434773.300
+        }
+      },
+      {
+        "MunicipalityId": 192,
+        "MunicipalityName": "Egg",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 98.0,
+            "MunicipalityTaxAmount": 166374.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 356517.000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 402517.000
+        }
+      },
+      {
+        "MunicipalityId": 55,
+        "MunicipalityName": "Eglisau",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 113.0,
+            "MunicipalityTaxAmount": 191840.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 385377.900
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 431377.900
+        }
+      },
+      {
+        "MunicipalityId": 294,
+        "MunicipalityName": "Elgg",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 117.0,
+            "MunicipalityTaxAmount": 198630.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 392168.700
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 438168.700
+        }
+      },
+      {
+        "MunicipalityId": 218,
+        "MunicipalityName": "Ellikon a.d.Th.",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 121.0,
+            "MunicipalityTaxAmount": 205421.70,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 398959.500
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 444959.500
+        }
+      },
+      {
+        "MunicipalityId": 219,
+        "MunicipalityName": "Elsau",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 121.0,
+            "MunicipalityTaxAmount": 205421.70,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 398959.500
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 444959.500
+        }
+      },
+      {
+        "MunicipalityId": 56,
+        "MunicipalityName": "Embrach",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 118.0,
+            "MunicipalityTaxAmount": 200328.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 390471.000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 436471.000
+        }
+      },
+      {
+        "MunicipalityId": 151,
+        "MunicipalityName": "Erlenbach",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 79.0,
+            "MunicipalityTaxAmount": 134118.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 320865.30
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 366865.30
+        }
+      },
+      {
+        "MunicipalityId": 172,
+        "MunicipalityName": "Fehraltorf",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                22070.100
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 107.0,
+            "MunicipalityTaxAmount": 181653.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 22070.100,
+            "TotalTaxAmount": 373494.000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 419494.000
+        }
+      },
+      {
+        "MunicipalityId": 27,
+        "MunicipalityName": "Feuerthalen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 114.0,
+            "MunicipalityTaxAmount": 193537.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 387075.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 433075.600
+        }
+      },
+      {
+        "MunicipalityId": 114,
+        "MunicipalityName": "Fischenthal",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 124.0,
+            "MunicipalityTaxAmount": 210514.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 404052.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 450052.600
+        }
+      },
+      {
+        "MunicipalityId": 28,
+        "MunicipalityName": "Flaach",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 107.0,
+            "MunicipalityTaxAmount": 181653.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 371796.300
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 417796.300
+        }
+      },
+      {
+        "MunicipalityId": 29,
+        "MunicipalityName": "Flurlingen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 112.0,
+            "MunicipalityTaxAmount": 190142.40,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 380284.800
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 426284.800
+        }
+      },
+      {
+        "MunicipalityId": 57,
+        "MunicipalityName": "Freienstein-Teufen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 99.0,
+            "MunicipalityTaxAmount": 168072.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 361610.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 407610.100
+        }
+      },
+      {
+        "MunicipalityId": 193,
+        "MunicipalityName": "Fällanden",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 103.0,
+            "MunicipalityTaxAmount": 174863.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 361610.10
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 407610.10
+        }
+      },
+      {
+        "MunicipalityId": 244,
+        "MunicipalityName": "Geroldswil",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 111.0,
+            "MunicipalityTaxAmount": 188444.70,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 376889.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 422889.400
+        }
+      },
+      {
+        "MunicipalityId": 58,
+        "MunicipalityName": "Glattfelden",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 115.0,
+            "MunicipalityTaxAmount": 195235.50,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 388773.300
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 434773.300
+        }
+      },
+      {
+        "MunicipalityId": 115,
+        "MunicipalityName": "Gossau",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 119.0,
+            "MunicipalityTaxAmount": 202026.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 395564.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 441564.100
+        }
+      },
+      {
+        "MunicipalityId": 194,
+        "MunicipalityName": "Greifensee",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 94.0,
+            "MunicipalityTaxAmount": 159583.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 348028.500
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 394028.500
+        }
+      },
+      {
+        "MunicipalityId": 116,
+        "MunicipalityName": "Grüningen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 113.0,
+            "MunicipalityTaxAmount": 191840.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 385377.900
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 431377.900
+        }
+      },
+      {
+        "MunicipalityId": 220,
+        "MunicipalityName": "Hagenbuch",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 112.0,
+            "MunicipalityTaxAmount": 190142.40,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 383680.200
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 429680.200
+        }
+      },
+      {
+        "MunicipalityId": 4,
+        "MunicipalityName": "Hausen a.A.",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 112.0,
+            "MunicipalityTaxAmount": 190142.40,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 383680.200
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 429680.200
+        }
+      },
+      {
+        "MunicipalityId": 5,
+        "MunicipalityName": "Hedingen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 105.0,
+            "MunicipalityTaxAmount": 178258.50,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 368400.900
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 414400.900
+        }
+      },
+      {
+        "MunicipalityId": 31,
+        "MunicipalityName": "Henggart",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 104.0,
+            "MunicipalityTaxAmount": 176560.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 366703.200
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 412703.200
+        }
+      },
+      {
+        "MunicipalityId": 152,
+        "MunicipalityName": "Herrliberg",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                15279.300
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 78.0,
+            "MunicipalityTaxAmount": 132420.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 15279.300,
+            "TotalTaxAmount": 317469.900
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 363469.900
+        }
+      },
+      {
+        "MunicipalityId": 221,
+        "MunicipalityName": "Hettlingen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                22070.100
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 98.0,
+            "MunicipalityTaxAmount": 166374.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 22070.100,
+            "TotalTaxAmount": 358214.700
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 404214.700
+        }
+      },
+      {
+        "MunicipalityId": 117,
+        "MunicipalityName": "Hinwil",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 114.0,
+            "MunicipalityTaxAmount": 193537.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 383680.200
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 429680.200
+        }
+      },
+      {
+        "MunicipalityId": 173,
+        "MunicipalityName": "Hittnau",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 119.0,
+            "MunicipalityTaxAmount": 202026.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 395564.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 441564.100
+        }
+      },
+      {
+        "MunicipalityId": 59,
+        "MunicipalityName": "Hochfelden",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 116.0,
+            "MunicipalityTaxAmount": 196933.20,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 383680.20
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 429680.20
+        }
+      },
+      {
+        "MunicipalityId": 153,
+        "MunicipalityName": "Hombrechtikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 119.0,
+            "MunicipalityTaxAmount": 202026.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 395564.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 441564.100
+        }
+      },
+      {
+        "MunicipalityId": 295,
+        "MunicipalityName": "Horgen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 84.0,
+            "MunicipalityTaxAmount": 142606.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 329353.80
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 375353.80
+        }
+      },
+      {
+        "MunicipalityId": 32,
+        "MunicipalityName": "Humlikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 123.0,
+            "MunicipalityTaxAmount": 208817.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 398959.500
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 444959.500
+        }
+      },
+      {
+        "MunicipalityId": 60,
+        "MunicipalityName": "Höri",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 117.0,
+            "MunicipalityTaxAmount": 198630.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 385377.90
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 431377.90
+        }
+      },
+      {
+        "MunicipalityId": 61,
+        "MunicipalityName": "Hüntwangen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 104.0,
+            "MunicipalityTaxAmount": 176560.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 370098.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 416098.600
+        }
+      },
+      {
+        "MunicipalityId": 87,
+        "MunicipalityName": "Hüttikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                22070.100
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 116.0,
+            "MunicipalityTaxAmount": 196933.20,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 22070.100,
+            "TotalTaxAmount": 388773.300
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 434773.300
+        }
+      },
+      {
+        "MunicipalityId": 296,
+        "MunicipalityName": "Illnau-Effretikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                22070.100
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 113.0,
+            "MunicipalityTaxAmount": 191840.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 22070.100,
+            "TotalTaxAmount": 383680.200
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 429680.200
+        }
+      },
+      {
+        "MunicipalityId": 6,
+        "MunicipalityName": "Kappel a.A.",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 102.0,
+            "MunicipalityTaxAmount": 173165.40,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 366703.200
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 412703.200
+        }
+      },
+      {
+        "MunicipalityId": 135,
+        "MunicipalityName": "Kilchberg",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                15279.300
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 72.0,
+            "MunicipalityTaxAmount": 122234.40,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 15279.300,
+            "TotalTaxAmount": 307283.700
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 353283.700
+        }
+      },
+      {
+        "MunicipalityId": 33,
+        "MunicipalityName": "Kleinandelfingen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 110.0,
+            "MunicipalityTaxAmount": 186747.0,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 376889.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 422889.400
+        }
+      },
+      {
+        "MunicipalityId": 62,
+        "MunicipalityName": "Kloten",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 103.0,
+            "MunicipalityTaxAmount": 174863.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 361610.10
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 407610.10
+        }
+      },
+      {
+        "MunicipalityId": 7,
+        "MunicipalityName": "Knonau",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 110.0,
+            "MunicipalityTaxAmount": 186747.0,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 380284.800
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 426284.800
+        }
+      },
+      {
+        "MunicipalityId": 154,
+        "MunicipalityName": "Küsnacht",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                11883.900
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 77.0,
+            "MunicipalityTaxAmount": 130722.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 11883.900,
+            "TotalTaxAmount": 312376.800
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 358376.800
+        }
+      },
+      {
+        "MunicipalityId": 136,
+        "MunicipalityName": "Langnau a.A.",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 106.0,
+            "MunicipalityTaxAmount": 179956.20,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 370098.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 416098.600
+        }
+      },
+      {
+        "MunicipalityId": 34,
+        "MunicipalityName": "Laufen-Uhwiesen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 106.0,
+            "MunicipalityTaxAmount": 179956.20,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 370098.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 416098.600
+        }
+      },
+      {
+        "MunicipalityId": 176,
+        "MunicipalityName": "Lindau",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 110.0,
+            "MunicipalityTaxAmount": 186747.0,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 376889.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 422889.400
+        }
+      },
+      {
+        "MunicipalityId": 2526,
+        "MunicipalityName": "Lohn-Ammannsegg",
+        "Canton": "SO",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 500000.00,
+              "TaxAmount": 52500.000
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                8137.50000000
+              ],
+              "TaxAmountPartner": [
+                0.00000
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 104.0,
+            "MunicipalityRate": 100.0,
+            "MunicipalityTaxAmount": 52500.000,
+            "CantonTaxAmount": 54600.00000,
+            "ChurchTaxAmount": 8137.50000000,
+            "TotalTaxAmount": 115237.50000000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 161237.50000000
+        }
+      },
+      {
+        "MunicipalityId": 63,
+        "MunicipalityName": "Lufingen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 89.0,
+            "MunicipalityTaxAmount": 151095.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 344633.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 390633.100
+        }
+      },
+      {
+        "MunicipalityId": 35,
+        "MunicipalityName": "Marthalen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 113.0,
+            "MunicipalityTaxAmount": 191840.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 385377.900
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 431377.900
+        }
+      },
+      {
+        "MunicipalityId": 8,
+        "MunicipalityName": "Maschwanden",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 130.0,
+            "MunicipalityTaxAmount": 220701.0,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 414238.800
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 460238.800
+        }
+      },
+      {
+        "MunicipalityId": 195,
+        "MunicipalityName": "Maur",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                15279.300
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 87.0,
+            "MunicipalityTaxAmount": 147699.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 15279.300,
+            "TotalTaxAmount": 332749.200
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 378749.200
+        }
+      },
+      {
+        "MunicipalityId": 156,
+        "MunicipalityName": "Meilen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                13581.600
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 84.0,
+            "MunicipalityTaxAmount": 142606.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 13581.600,
+            "TotalTaxAmount": 325958.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 371958.400
+        }
+      },
+      {
+        "MunicipalityId": 9,
+        "MunicipalityName": "Mettmenstetten",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 100.0,
+            "MunicipalityTaxAmount": 169770.0,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 359912.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 405912.400
+        }
+      },
+      {
+        "MunicipalityId": 155,
+        "MunicipalityName": "Männedorf",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 95.0,
+            "MunicipalityTaxAmount": 161281.50,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 351423.900
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 397423.900
+        }
+      },
+      {
+        "MunicipalityId": 196,
+        "MunicipalityName": "Mönchaltorf",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                22070.100
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 111.0,
+            "MunicipalityTaxAmount": 188444.70,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 22070.100,
+            "TotalTaxAmount": 380284.800
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 426284.800
+        }
+      },
+      {
+        "MunicipalityId": 88,
+        "MunicipalityName": "Neerach",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 76.0,
+            "MunicipalityTaxAmount": 129025.20,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 319167.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 365167.600
+        }
+      },
+      {
+        "MunicipalityId": 223,
+        "MunicipalityName": "Neftenbach",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                15279.300
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 109.0,
+            "MunicipalityTaxAmount": 185049.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 15279.300,
+            "TotalTaxAmount": 370098.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 416098.600
+        }
+      },
+      {
+        "MunicipalityId": 89,
+        "MunicipalityName": "Niederglatt",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                22070.100
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 107.0,
+            "MunicipalityTaxAmount": 181653.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 22070.100,
+            "TotalTaxAmount": 373494.000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 419494.000
+        }
+      },
+      {
+        "MunicipalityId": 90,
+        "MunicipalityName": "Niederhasli",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                22070.100
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 116.0,
+            "MunicipalityTaxAmount": 196933.20,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 22070.100,
+            "TotalTaxAmount": 388773.300
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 434773.300
+        }
+      },
+      {
+        "MunicipalityId": 91,
+        "MunicipalityName": "Niederweningen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 104.0,
+            "MunicipalityTaxAmount": 176560.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 363307.80
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 409307.80
+        }
+      },
+      {
+        "MunicipalityId": 64,
+        "MunicipalityName": "Nürensdorf",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 90.0,
+            "MunicipalityTaxAmount": 152793.0,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 342935.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 388935.400
+        }
+      },
+      {
+        "MunicipalityId": 65,
+        "MunicipalityName": "Oberembrach",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 117.0,
+            "MunicipalityTaxAmount": 198630.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 388773.300
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 434773.300
+        }
+      },
+      {
+        "MunicipalityId": 245,
+        "MunicipalityName": "Oberengstringen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 112.0,
+            "MunicipalityTaxAmount": 190142.40,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 376889.40
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 422889.40
+        }
+      },
+      {
+        "MunicipalityId": 92,
+        "MunicipalityName": "Oberglatt",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 122.0,
+            "MunicipalityTaxAmount": 207119.40,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 397261.800
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 443261.800
+        }
+      },
+      {
+        "MunicipalityId": 137,
+        "MunicipalityName": "Oberrieden",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 88.0,
+            "MunicipalityTaxAmount": 149397.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 339540.000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 385540.000
+        }
+      },
+      {
+        "MunicipalityId": 93,
+        "MunicipalityName": "Oberweningen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 100.0,
+            "MunicipalityTaxAmount": 169770.0,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 356517.00
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 402517.00
+        }
+      },
+      {
+        "MunicipalityId": 10,
+        "MunicipalityName": "Obfelden",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 121.0,
+            "MunicipalityTaxAmount": 205421.70,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 395564.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 441564.100
+        }
+      },
+      {
+        "MunicipalityId": 157,
+        "MunicipalityName": "Oetwil a.S.",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 119.0,
+            "MunicipalityTaxAmount": 202026.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 395564.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 441564.100
+        }
+      },
+      {
+        "MunicipalityId": 246,
+        "MunicipalityName": "Oetwil a.d.L.",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 103.0,
+            "MunicipalityTaxAmount": 174863.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 363307.800
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 409307.800
+        }
+      },
+      {
+        "MunicipalityId": 66,
+        "MunicipalityName": "Opfikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                13581.600
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 94.0,
+            "MunicipalityTaxAmount": 159583.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 13581.600,
+            "TotalTaxAmount": 342935.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 388935.400
+        }
+      },
+      {
+        "MunicipalityId": 37,
+        "MunicipalityName": "Ossingen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 104.0,
+            "MunicipalityTaxAmount": 176560.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 370098.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 416098.600
+        }
+      },
+      {
+        "MunicipalityId": 94,
+        "MunicipalityName": "Otelfingen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                22070.100
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 107.0,
+            "MunicipalityTaxAmount": 181653.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 22070.100,
+            "TotalTaxAmount": 373494.000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 419494.000
+        }
+      },
+      {
+        "MunicipalityId": 11,
+        "MunicipalityName": "Ottenbach",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 117.0,
+            "MunicipalityTaxAmount": 198630.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 392168.700
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 438168.700
+        }
+      },
+      {
+        "MunicipalityId": 224,
+        "MunicipalityName": "Pfungen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 117.0,
+            "MunicipalityTaxAmount": 198630.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 387075.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 433075.600
+        }
+      },
+      {
+        "MunicipalityId": 177,
+        "MunicipalityName": "Pfäffikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 110.0,
+            "MunicipalityTaxAmount": 186747.0,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 376889.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 422889.400
+        }
+      },
+      {
+        "MunicipalityId": 67,
+        "MunicipalityName": "Rafz",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 113.0,
+            "MunicipalityTaxAmount": 191840.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 385377.900
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 431377.900
+        }
+      },
+      {
+        "MunicipalityId": 95,
+        "MunicipalityName": "Regensberg",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 108.0,
+            "MunicipalityTaxAmount": 183351.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 376889.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 422889.400
+        }
+      },
+      {
+        "MunicipalityId": 96,
+        "MunicipalityName": "Regensdorf",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 118.0,
+            "MunicipalityTaxAmount": 200328.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 388773.300
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 434773.300
+        }
+      },
+      {
+        "MunicipalityId": 38,
+        "MunicipalityName": "Rheinau",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 126.0,
+            "MunicipalityTaxAmount": 213910.20,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 407448.000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 453448.000
+        }
+      },
+      {
+        "MunicipalityId": 138,
+        "MunicipalityName": "Richterswil",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 101.0,
+            "MunicipalityTaxAmount": 171467.70,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 361610.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 407610.100
+        }
+      },
+      {
+        "MunicipalityId": 225,
+        "MunicipalityName": "Rickenbach",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 106.0,
+            "MunicipalityTaxAmount": 179956.20,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 370098.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 416098.600
+        }
+      },
+      {
+        "MunicipalityId": 12,
+        "MunicipalityName": "Rifferswil",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 128.0,
+            "MunicipalityTaxAmount": 217305.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 410843.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 456843.400
+        }
+      },
+      {
+        "MunicipalityId": 68,
+        "MunicipalityName": "Rorbas",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 103.0,
+            "MunicipalityTaxAmount": 174863.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 368400.900
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 414400.900
+        }
+      },
+      {
+        "MunicipalityId": 178,
+        "MunicipalityName": "Russikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 113.0,
+            "MunicipalityTaxAmount": 191840.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 381982.500
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 427982.500
+        }
+      },
+      {
+        "MunicipalityId": 97,
+        "MunicipalityName": "Rümlang",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 107.0,
+            "MunicipalityTaxAmount": 181653.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 375191.700
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 421191.700
+        }
+      },
+      {
+        "MunicipalityId": 139,
+        "MunicipalityName": "Rüschlikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 73.0,
+            "MunicipalityTaxAmount": 123932.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 310679.10
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 356679.10
+        }
+      },
+      {
+        "MunicipalityId": 118,
+        "MunicipalityName": "Rüti",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 121.0,
+            "MunicipalityTaxAmount": 205421.70,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 398959.500
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 444959.500
+        }
+      },
+      {
+        "MunicipalityId": 226,
+        "MunicipalityName": "Schlatt",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 128.0,
+            "MunicipalityTaxAmount": 217305.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 410843.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 456843.400
+        }
+      },
+      {
+        "MunicipalityId": 98,
+        "MunicipalityName": "Schleinikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 110.0,
+            "MunicipalityTaxAmount": 186747.0,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 373494.00
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 419494.00
+        }
+      },
+      {
+        "MunicipalityId": 247,
+        "MunicipalityName": "Schlieren",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 114.0,
+            "MunicipalityTaxAmount": 193537.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 381982.500
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 427982.500
+        }
+      },
+      {
+        "MunicipalityId": 197,
+        "MunicipalityName": "Schwerzenbach",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 99.0,
+            "MunicipalityTaxAmount": 168072.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 356517.000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 402517.000
+        }
+      },
+      {
+        "MunicipalityId": 99,
+        "MunicipalityName": "Schöfflisdorf",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 104.0,
+            "MunicipalityTaxAmount": 176560.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 363307.80
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 409307.80
+        }
+      },
+      {
+        "MunicipalityId": 119,
+        "MunicipalityName": "Seegräben",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 113.0,
+            "MunicipalityTaxAmount": 191840.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 381982.500
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 427982.500
+        }
+      },
+      {
+        "MunicipalityId": 227,
+        "MunicipalityName": "Seuzach",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 101.0,
+            "MunicipalityTaxAmount": 171467.70,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 361610.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 407610.100
+        }
+      },
+      {
+        "MunicipalityId": 2601,
+        "MunicipalityName": "Solothurn",
+        "Canton": "SO",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 500000.00,
+              "TaxAmount": 52500.000
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                8400.0000000
+              ],
+              "TaxAmountPartner": [
+                0.00000
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 104.0,
+            "MunicipalityRate": 110.0,
+            "MunicipalityTaxAmount": 57750.0000,
+            "CantonTaxAmount": 54600.00000,
+            "ChurchTaxAmount": 8400.0000000,
+            "TotalTaxAmount": 120750.0000000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 166750.0000000
+        }
+      },
+      {
+        "MunicipalityId": 3203,
+        "MunicipalityName": "St.Gallen",
+        "Canton": "SG",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 44000.000,
+              "TaxAmount": 44000.000
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                11000.000000
+              ],
+              "TaxAmountPartner": [
+                0.0000
+              ],
+              "TaxRate": 25.0
+            },
+            "CantonRate": 115.0,
+            "MunicipalityRate": 141.0,
+            "MunicipalityTaxAmount": 62040.00000,
+            "CantonTaxAmount": 50600.00000,
+            "ChurchTaxAmount": 11000.000000,
+            "TotalTaxAmount": 123640.000000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 169640.000000
+        }
+      },
+      {
+        "MunicipalityId": 100,
+        "MunicipalityName": "Stadel",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 113.0,
+            "MunicipalityTaxAmount": 191840.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 385377.900
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 431377.900
+        }
+      },
+      {
+        "MunicipalityId": 13,
+        "MunicipalityName": "Stallikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                13581.600
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 101.0,
+            "MunicipalityTaxAmount": 171467.70,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 13581.600,
+            "TotalTaxAmount": 354819.300
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 400819.300
+        }
+      },
+      {
+        "MunicipalityId": 292,
+        "MunicipalityName": "Stammheim",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 124.0,
+            "MunicipalityTaxAmount": 210514.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 404052.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 450052.600
+        }
+      },
+      {
+        "MunicipalityId": 101,
+        "MunicipalityName": "Steinmaur",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 114.0,
+            "MunicipalityTaxAmount": 193537.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 383680.200
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 429680.200
+        }
+      },
+      {
+        "MunicipalityId": 158,
+        "MunicipalityName": "Stäfa",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 88.0,
+            "MunicipalityTaxAmount": 149397.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 337842.300
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 383842.300
+        }
+      },
+      {
+        "MunicipalityId": 39,
+        "MunicipalityName": "Thalheim a.d.Th.",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 105.0,
+            "MunicipalityTaxAmount": 178258.50,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 371796.300
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 417796.300
+        }
+      },
+      {
+        "MunicipalityId": 141,
+        "MunicipalityName": "Thalwil",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 85.0,
+            "MunicipalityTaxAmount": 144304.50,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 332749.200
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 378749.200
+        }
+      },
+      {
+        "MunicipalityId": 41,
+        "MunicipalityName": "Truttikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 124.0,
+            "MunicipalityTaxAmount": 210514.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 404052.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 450052.600
+        }
+      },
+      {
+        "MunicipalityId": 40,
+        "MunicipalityName": "Trüllikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 114.0,
+            "MunicipalityTaxAmount": 193537.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 387075.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 433075.600
+        }
+      },
+      {
+        "MunicipalityId": 228,
+        "MunicipalityName": "Turbenthal",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 122.0,
+            "MunicipalityTaxAmount": 207119.40,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 400657.200
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 446657.200
+        }
+      },
+      {
+        "MunicipalityId": 159,
+        "MunicipalityName": "Uetikon a.S.",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 87.0,
+            "MunicipalityTaxAmount": 147699.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 336144.600
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 382144.600
+        }
+      },
+      {
+        "MunicipalityId": 248,
+        "MunicipalityName": "Uitikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 82.0,
+            "MunicipalityTaxAmount": 139211.40,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 325958.40
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 371958.40
+        }
+      },
+      {
+        "MunicipalityId": 249,
+        "MunicipalityName": "Unterengstringen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 102.0,
+            "MunicipalityTaxAmount": 173165.40,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 361610.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 407610.100
+        }
+      },
+      {
+        "MunicipalityId": 250,
+        "MunicipalityName": "Urdorf",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 118.0,
+            "MunicipalityTaxAmount": 200328.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 387075.60
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 433075.60
+        }
+      },
+      {
+        "MunicipalityId": 198,
+        "MunicipalityName": "Uster",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 109.0,
+            "MunicipalityTaxAmount": 185049.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 371796.30
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 417796.30
+        }
+      },
+      {
+        "MunicipalityId": 43,
+        "MunicipalityName": "Volken",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 111.0,
+            "MunicipalityTaxAmount": 188444.70,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 378587.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 424587.100
+        }
+      },
+      {
+        "MunicipalityId": 199,
+        "MunicipalityName": "Volketswil",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                15279.300
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 103.0,
+            "MunicipalityTaxAmount": 174863.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 15279.300,
+            "TotalTaxAmount": 359912.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 405912.400
+        }
+      },
+      {
+        "MunicipalityId": 120,
+        "MunicipalityName": "Wald",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 122.0,
+            "MunicipalityTaxAmount": 207119.40,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 400657.200
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 446657.200
+        }
+      },
+      {
+        "MunicipalityId": 69,
+        "MunicipalityName": "Wallisellen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                13581.600
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 97.0,
+            "MunicipalityTaxAmount": 164676.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 13581.600,
+            "TotalTaxAmount": 348028.500
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 394028.500
+        }
+      },
+      {
+        "MunicipalityId": 200,
+        "MunicipalityName": "Wangen-Brüttisellen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 98.0,
+            "MunicipalityTaxAmount": 166374.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 354819.300
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 400819.300
+        }
+      },
+      {
+        "MunicipalityId": 70,
+        "MunicipalityName": "Wasterkingen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 116.0,
+            "MunicipalityTaxAmount": 196933.20,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 390471.000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 436471.000
+        }
+      },
+      {
+        "MunicipalityId": 102,
+        "MunicipalityName": "Weiach",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 89.0,
+            "MunicipalityTaxAmount": 151095.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 339540.000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 385540.000
+        }
+      },
+      {
+        "MunicipalityId": 251,
+        "MunicipalityName": "Weiningen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                18674.700
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 103.0,
+            "MunicipalityTaxAmount": 174863.10,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 18674.700,
+            "TotalTaxAmount": 363307.800
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 409307.800
+        }
+      },
+      {
+        "MunicipalityId": 180,
+        "MunicipalityName": "Weisslingen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                22070.100
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 106.0,
+            "MunicipalityTaxAmount": 179956.20,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 22070.100,
+            "TotalTaxAmount": 371796.300
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 417796.300
+        }
+      },
+      {
+        "MunicipalityId": 14,
+        "MunicipalityName": "Wettswil a.A.",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                13581.600
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 88.0,
+            "MunicipalityTaxAmount": 149397.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 13581.600,
+            "TotalTaxAmount": 332749.200
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 378749.200
+        }
+      },
+      {
+        "MunicipalityId": 121,
+        "MunicipalityName": "Wetzikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 119.0,
+            "MunicipalityTaxAmount": 202026.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 395564.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 441564.100
+        }
+      },
+      {
+        "MunicipalityId": 298,
+        "MunicipalityName": "Wiesendangen",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 90.0,
+            "MunicipalityTaxAmount": 152793.0,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 346330.800
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 392330.800
+        }
+      },
+      {
+        "MunicipalityId": 71,
+        "MunicipalityName": "Wil",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 106.0,
+            "MunicipalityTaxAmount": 179956.20,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 373494.000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 419494.000
+        }
+      },
+      {
+        "MunicipalityId": 181,
+        "MunicipalityName": "Wila",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 127.0,
+            "MunicipalityTaxAmount": 215607.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 409145.700
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 455145.700
+        }
+      },
+      {
+        "MunicipalityId": 182,
+        "MunicipalityName": "Wildberg",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 127.0,
+            "MunicipalityTaxAmount": 215607.90,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 409145.700
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 455145.700
+        }
+      },
+      {
+        "MunicipalityId": 72,
+        "MunicipalityName": "Winkel",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 76.0,
+            "MunicipalityTaxAmount": 129025.20,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 315772.20
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 361772.20
+        }
+      },
+      {
+        "MunicipalityId": 230,
+        "MunicipalityName": "Winterthur",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                20372.400
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 122.0,
+            "MunicipalityTaxAmount": 207119.40,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 20372.400,
+            "TotalTaxAmount": 397261.800
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 443261.800
+        }
+      },
+      {
+        "MunicipalityId": 293,
+        "MunicipalityName": "Wädenswil",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 104.0,
+            "MunicipalityTaxAmount": 176560.80,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 363307.80
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 409307.80
+        }
+      },
+      {
+        "MunicipalityId": 231,
+        "MunicipalityName": "Zell",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                23767.800
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 118.0,
+            "MunicipalityTaxAmount": 200328.60,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 23767.800,
+            "TotalTaxAmount": 393866.400
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 439866.400
+        }
+      },
+      {
+        "MunicipalityId": 161,
+        "MunicipalityName": "Zollikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                13581.600
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 85.0,
+            "MunicipalityTaxAmount": 144304.50,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 13581.600,
+            "TotalTaxAmount": 327656.100
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 373656.100
+        }
+      },
+      {
+        "MunicipalityId": 160,
+        "MunicipalityName": "Zumikon",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                15279.300
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 85.0,
+            "MunicipalityTaxAmount": 144304.50,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 15279.300,
+            "TotalTaxAmount": 329353.800
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 375353.800
+        }
+      },
+      {
+        "MunicipalityId": 3426,
+        "MunicipalityName": "Zuzwil",
+        "Canton": "SG",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 44000.000,
+              "TaxAmount": 44000.000
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                10120.000000
+              ],
+              "TaxAmountPartner": [
+                0.0000
+              ],
+              "TaxRate": 23.0
+            },
+            "CantonRate": 115.0,
+            "MunicipalityRate": 87.0,
+            "MunicipalityTaxAmount": 38280.00000,
+            "CantonTaxAmount": 50600.00000,
+            "ChurchTaxAmount": 10120.000000,
+            "TotalTaxAmount": 99000.000000
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 145000.000000
+        }
+      },
+      {
+        "MunicipalityId": 261,
+        "MunicipalityName": "Zürich",
+        "Canton": "ZH",
+        "MunicipalityTaxResult": {
+          "StateResult": {
+            "BasisTax": {
+              "DeterminingFactorTaxableAmount": 2000000.0,
+              "TaxAmount": 169770.0
+            },
+            "ChurchTax": {
+              "TaxAmount": [
+                16977.00
+              ],
+              "TaxAmountPartner": [
+                0.0
+              ],
+              "TaxRate": 0.0
+            },
+            "CantonRate": 100.0,
+            "MunicipalityRate": 119.0,
+            "MunicipalityTaxAmount": 202026.30,
+            "CantonTaxAmount": 169770.0,
+            "ChurchTaxAmount": 16977.00,
+            "TotalTaxAmount": 388773.30
+          },
+          "FederalResult": {
+            "DeterminingFactorTaxableAmount": 2000000.0,
+            "TaxAmount": 46000.00
+          },
+          "TotalTaxAmount": 434773.30
+        }
+      }
+    ],
+    "Left": null
+  }
+]

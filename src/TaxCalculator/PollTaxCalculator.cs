@@ -17,9 +17,9 @@ namespace TaxCalculator
     {
         private static readonly Dictionary<Canton, decimal> AllCantonsWithPollTax = new Dictionary<Canton, decimal>
         {
-            {Canton.ZH, 24M},
-            {Canton.LU, 24M},
-            {Canton.SO, 30M},
+            { Canton.ZH, 24M },
+            { Canton.LU, 24M },
+            { Canton.SO, 30M },
         };
 
         private readonly IValidator<PollTaxPerson> personValidator;
