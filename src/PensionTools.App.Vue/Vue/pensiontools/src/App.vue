@@ -1,19 +1,41 @@
 <template>
   <div id="app">
     <header>
-      <span>Vue.js PWA</span>
+      <b-navbar toggleable="md" type="light" variant="light">
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <b-navbar-brand to="/">Swiss Tax and Pension Tools</b-navbar-brand>
+        <b-collapse is-nav id="nav-collapse">
+          <b-navbar-nav>
+            <b-nav-item href="#" @click.prevent="login" v-if="!user">Login</b-nav-item>
+            <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar>
     </header>
     <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
       <router-view></router-view>
     </main>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+
+  export default {
+    name: 'app',
+    data () {
+      return {
+        user: null
+      }
+    },
+    methods: {
+      login () {
+
+      },
+      async logout () {
+
+      }
+    }
+  }
 </script>
 
 <style>
@@ -37,7 +59,7 @@ header {
   margin: 0;
   height: 56px;
   padding: 0 16px 0 24px;
-  background-color: #35495E;
+  background-color: #f8f9fa;
   color: #ffffff;
 }
 
