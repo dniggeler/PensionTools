@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="start">
 	<h1>{{ title }}</h1>
 	<h2>Collection of litte tools to analyze your financial situation</h2>
   </div>
