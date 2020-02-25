@@ -16,6 +16,8 @@ namespace TaxCalculator.WebApi
 {
     public class Startup
     {
+        private readonly string myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             this.Configuration = configuration;
@@ -26,6 +28,12 @@ namespace TaxCalculator.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+                options.AddPolicy(this.myAllowSpecificOrigins, builder =>
+                {
+                    builder.WithOrigins("http://localhost:8080");
+                }));
+
             services.AddHealthChecks()
                 .AddDbContextCheck<FederalTaxTariffDbContext>()
                 .AddDbContextCheck<TaxTariffDbContext>()
@@ -68,6 +76,7 @@ namespace TaxCalculator.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(this.myAllowSpecificOrigins);
             app.UseRouting();
             app.UseAuthorization();
             app.UseHealthChecks("/");

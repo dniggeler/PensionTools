@@ -6,9 +6,7 @@
         <b-navbar-brand to="/">Swiss Tax and Pension Tools</b-navbar-brand>
         <b-collapse is-nav id="nav-collapse">
           <b-navbar-nav>
-            <b-nav-item href="#" @click.prevent="login" v-if="!user">Login</b-nav-item>
-            <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>
-          </b-navbar-nav>
+            <b-nav-item to="/municipalities">Municipalities</b-nav-item></b-navbar-nav>
         </b-collapse>
       </b-navbar>
     </header>
@@ -27,14 +25,7 @@
         user: null
       }
     },
-    methods: {
-      login () {
-
-      },
-      async logout () {
-
-      }
-    }
+    methods: {}
   }
 </script>
 

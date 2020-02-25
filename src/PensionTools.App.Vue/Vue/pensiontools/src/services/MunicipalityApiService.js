@@ -2,7 +2,7 @@ import Vue from 'vue'
 import axios from 'axios'
 
 const client = axios.create({
-  baseURL: 'https://pensiontools.herokuapp.com',
+  baseURL: 'http://localhost:54405/',//'https://pensiontools.herokuapp.com',
   json: true
 })
 
