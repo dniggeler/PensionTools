@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid mt-4">
     <h1 class="h1">Supported Municipalities</h1>
-    <b-alert :show="loading" variant="info">Loading...</b-alert>
+    <v-alert :show="loading" variant="info">Loading...</v-alert>
     <b-row>
       <b-col>
         <table class="table table-striped">
