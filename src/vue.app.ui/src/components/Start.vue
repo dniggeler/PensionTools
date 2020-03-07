@@ -50,7 +50,7 @@ export default {
           'Tax Comparers',
           'Pension Calculators',
           'Scenario Analysis',
-          'Municipalities'
+          'Tax and Pension Data'
         ],
         descriptions: [
           'Calculators for various tax types.',
