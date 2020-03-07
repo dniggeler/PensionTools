@@ -5,15 +5,15 @@
         <v-toolbar-title>Swiss Tax and Pension Tools</v-toolbar-title>
 
         <v-toolbar-items>
-          <v-btn text>
+          <v-btn text to="/">
             <v-icon left>mdi-home</v-icon>
             <span>Home</span>
           </v-btn>
-          <v-btn text>
+          <v-btn text to="/tools">
             <v-icon left>mdi-hammer-screwdriver</v-icon>
             <span>Tools</span>
           </v-btn>
-          <v-btn text>
+          <v-btn text to="/municipalities">
             <v-icon left>mdi-database</v-icon>
             <span>Data</span>
           </v-btn>
