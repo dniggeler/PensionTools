@@ -197,7 +197,7 @@ namespace TaxCalculator.WebApi.Controllers
 
         [HttpGet]
         [Route("municipality/{year}")]
-        public async Task<ActionResult<IEnumerable<string>>> GetSupportedMunicipalities(int year)
+        public async Task<ActionResult<IEnumerable<TaxSupportedMunicipalityModel>>> GetSupportedMunicipalities(int year)
         {
             IReadOnlyCollection<TaxSupportedMunicipalityModel> list =
                 await this.municipalityResolver.GetAllSupportTaxCalculationAsync(year);
