@@ -15,19 +15,6 @@ variables:
   webProject: 'src/TaxCalculator.WebApi/TaxCalculator.WebApi.csproj'
 
 stages:
-  - stage: buid_and_deploy_ui
-    displayName: 'Build and deploy vue ui'
-    jobs:
-    - job: build_and_deploy
-      steps:
-      - task: NodeTool@0
-        inputs:
-          versionSpec: '10.x'
-        displayName: 'Install Node.js'
-      - task: Npm@1
-        inputs:
-          command: install
-          workingDir: $(Build.SourcesDirectory)/src/vue.ui.app
   - stage: build_and_deploy_webapi
     displayName: 'Build web api and deploy image to docker hub'
     jobs:
@@ -44,6 +31,22 @@ stages:
           tags: |
             0.0.$(Build.BuildId)
             latest
+            
+  - stage: buid_and_deploy_ui
+    displayName: 'Build and deploy vue ui'
+    jobs:
+    - job: build_and_deploy
+      steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '10.x'
+        displayName: 'Install Node.js'
+      - task: Npm@1
+        inputs:
+          command: install
+          workingDir: $(Build.SourcesDirectory)/src/vue.ui.app
+          
+
 
 
 
