@@ -39,9 +39,10 @@ stages:
       - task: NodeTool@0
         inputs:
           versionSpec: '10.x'
-          buildContext: $(Build.SourcesDirectory)/src/vue.app.ui
         displayName: 'Install Node.js'
-
+      - task: CmdLine@2
+        inputs:
+          script: cd src/vue.app.ui
       - script: |
           npm install
           npm run build
