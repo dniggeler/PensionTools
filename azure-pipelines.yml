@@ -42,7 +42,7 @@ stages:
       - task: Npm@1
         inputs:
           command: install
-          workingDir: $(Build.SourcesDirectory)/src/vue.ui.app
+          workingDir: src/vue.ui.app
       
           
 
