@@ -31,12 +31,6 @@ stages:
           tags: |
             0.0.$(Build.BuildId)
             latest
-            
-  - stage: buid_and_deploy_ui
-    displayName: 'Build and deploy vue ui'
-    jobs:
-    - job: build_and_deploy
-      steps:
       - task: NodeTool@0
         inputs:
           versionSpec: '10.x'
@@ -45,6 +39,7 @@ stages:
         inputs:
           command: install
           workingDir: $(Build.SourcesDirectory)/src/vue.ui.app
+      
           
 
 
