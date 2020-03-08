@@ -38,6 +38,7 @@ stages:
 
       - task: PowerShell@2
         inputs:
+          targetType: inline
           script: pwd
       - task: Npm@1
         inputs:
