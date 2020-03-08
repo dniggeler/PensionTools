@@ -1,7 +1,9 @@
 <template>
   <v-app>
     <v-app-bar app>
+
       <v-toolbar>
+        <v-app-bar-nav-icon @click="drawer=!drawer"/>
         <v-toolbar-title>Swiss Tax and Pension Tools</v-toolbar-title>
 
         <v-toolbar-items>
@@ -29,7 +31,13 @@
           <v-icon>mdi-github-circle</v-icon>
           </v-btn>
       </v-toolbar>
+
     </v-app-bar>
+      <v-navigation-drawer 
+        app
+        v-model="drawer"
+      >
+      </v-navigation-drawer>
     <router-view />
     <v-footer></v-footer>
   </v-app>
@@ -40,7 +48,7 @@ export default {
   name: "App",
 
   data: () => ({
-    drawer: false
+    drawer: true
   })
 };
 </script>

@@ -38,7 +38,7 @@ stages:
 
       - task: PowerShell@2
         inputs:
-          inline: pwd
+          script: pwd
       - task: Npm@1
         inputs:
           command: install
