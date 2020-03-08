@@ -35,6 +35,10 @@ stages:
         inputs:
           versionSpec: '10.x'
         displayName: 'Install Node.js'
+
+      - task: CmdLine@2
+        inputs:
+          script: dir
       - task: Npm@1
         inputs:
           command: install
