@@ -36,9 +36,9 @@ stages:
           versionSpec: '10.x'
         displayName: 'Install Node.js'
 
-      - task: CmdLine@2
+      - task: AzurePowerShell@4
         inputs:
-          script: dir
+          inline: pwd
       - task: Npm@1
         inputs:
           command: install
