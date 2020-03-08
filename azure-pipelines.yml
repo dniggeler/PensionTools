@@ -24,7 +24,7 @@ stages:
         inputs:
           versionSpec: '10.x'
         displayName: 'Install Node.js'
-      - task: Npm@2
+      - task: Npm@1
         inputs:
           command: install
           workingDir: $(Build.SourcesDirectory)/src/vue.ui.app
