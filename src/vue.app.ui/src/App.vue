@@ -38,6 +38,15 @@
         v-model="drawer"
       >
       </v-navigation-drawer>
+      <v-list>
+        <v-list-tile v-for="link in links" :key="link.text">
+          <v-list-tile-content>
+            <v-list-tile-title>
+              {{ link.text }}
+            </v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
     <router-view />
     <v-footer></v-footer>
   </v-app>
@@ -48,7 +57,10 @@ export default {
   name: "App",
 
   data: () => ({
-    drawer: true
+    drawer: true,
+    links: [
+      { text: 'Home', icon: 'mdi-home', route: '/' }
+    ]
   })
 };
 </script>
