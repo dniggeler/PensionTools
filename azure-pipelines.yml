@@ -39,7 +39,7 @@ stages:
       - task: PowerShell@2
         inputs:
           targetType: inline
-          script: pwd
+          script: dir src\vue.ui.app
       - task: Npm@1
         inputs:
           command: install
