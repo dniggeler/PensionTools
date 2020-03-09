@@ -40,12 +40,19 @@ stages:
         inputs:
           command: install
           workingDir: src/vue.app.ui
+        displayName: Install npm packages for project
 
       - task: Npm@1
         inputs:
           command: custom
           customCommand: run build
           workingDir: src/vue.app.ui
+        displayName: Build vue app
+      
+      - task: Powershell@2
+        inputs:
+          targetType: inline
+          script: dir srr/vue.app.au/dist
       
           
 
