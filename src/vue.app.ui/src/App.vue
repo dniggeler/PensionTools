@@ -38,7 +38,8 @@
       app
     >
       <v-list>
-        <v-list-item v-for="(link,i) in links" :key="i">
+        <v-subheader>Application</v-subheader>
+        <v-list-item v-for="(link,i) in links" :key="i" router :to="link.route">
           <v-list-item-action>
             <v-icon>
               {{ link.icon }}
@@ -51,7 +52,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      
+
     </v-navigation-drawer>
       
     <router-view />
@@ -67,7 +68,8 @@ export default {
     drawer: false,
     links: [
       { text: 'Home', icon: 'mdi-home', route: '/' },
-      { text: 'Tools', icon: 'mdi-hammer-screwdriver', route: '/tools' }
+      { text: 'Tools', icon: 'mdi-hammer-screwdriver', route: '/tools' },
+      { text: 'Data', icon: 'mdi-database', route: '/municipalities' }
     ]
   })
 };
