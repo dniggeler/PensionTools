@@ -52,7 +52,7 @@ stages:
       - task: Powershell@2
         inputs:
           targetType: inline
-          script: dir src/vue.app.au/dist
+          script: dir src/vue.app.ui/dist
       
           
 
