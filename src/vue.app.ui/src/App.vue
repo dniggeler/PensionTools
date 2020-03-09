@@ -34,10 +34,9 @@
 
     </v-app-bar>
     <v-navigation-drawer 
-      app
       v-model="drawer"
+      app
     >
-    </v-navigation-drawer>
       <v-list>
         <v-list-item v-for="(link,i) in links" :key="i">
           <v-list-item-action>
@@ -52,6 +51,9 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      
+    </v-navigation-drawer>
+      
     <router-view />
     <v-footer></v-footer>
   </v-app>
@@ -62,9 +64,10 @@ export default {
   name: "App",
 
   data: () => ({
-    drawer: true,
+    drawer: false,
     links: [
-      { text: 'Home', icon: 'mdi-home', route: '/' }
+      { text: 'Home', icon: 'mdi-home', route: '/' },
+      { text: 'Tools', icon: 'mdi-hammer-screwdriver', route: '/tools' }
     ]
   })
 };

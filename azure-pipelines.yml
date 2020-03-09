@@ -54,6 +54,7 @@ stages:
         inputs:
           command: buildAndPush
           buildContext: $(Build.SourcesDirectory)/src/vue.app.ui
+          repository: 'malagueta/pensiontools'
           dockerfile: 'src/vue.app.ui/Dockerfile'
           containerRegistry: 'kDocker Registery'
           tags: |
