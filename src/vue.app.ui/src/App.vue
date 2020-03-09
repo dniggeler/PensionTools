@@ -33,19 +33,24 @@
       </v-toolbar>
 
     </v-app-bar>
-      <v-navigation-drawer 
-        app
-        v-model="drawer"
-      >
-      </v-navigation-drawer>
+    <v-navigation-drawer 
+      app
+      v-model="drawer"
+    >
+    </v-navigation-drawer>
       <v-list>
-        <v-list-tile v-for="link in links" :key="link.text">
-          <v-list-tile-content>
-            <v-list-tile-title>
+        <v-list-item v-for="(link,i) in links" :key="i">
+          <v-list-item-action>
+            <v-icon>
+              {{ link.icon }}
+            </v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>
               {{ link.text }}
-            </v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     <router-view />
     <v-footer></v-footer>
