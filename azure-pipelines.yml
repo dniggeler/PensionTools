@@ -36,13 +36,15 @@ stages:
           versionSpec: '10.x'
         displayName: 'Install Node.js'
 
-      - task: PowerShell@2
-        inputs:
-          targetType: inline
-          script: dir src/vue.app.ui
       - task: Npm@1
         inputs:
           command: install
+          workingDir: src/vue.app.ui
+
+      - task: Npm@1
+        inputs:
+          command: custom
+          customCommand: run build
           workingDir: src/vue.app.ui
       
           
