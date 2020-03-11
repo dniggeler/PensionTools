@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const client = axios.create({
-  baseURL: 'http://localhost:54405/',//'https://pensiontools.herokuapp.com',
+  baseURL: process.env.VUE_APP_ROOTAPI,
   json: true
 })
 
@@ -16,6 +16,7 @@ export default {
       })
     },
     getAll() {
+      console.log(process.env);
       return this.execute('get', 'api/calculators/tax/municipality/2019')
     }
 }
