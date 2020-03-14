@@ -11,6 +11,19 @@
             <v-icon left>mdi-home</v-icon>
             <span>Home</span>
           </v-btn>
+          <v-menu offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn slot="activator" v-on="on">
+              <v-icon left>mdi-hammer-screwdriver</v-icon>
+              <span>Tools</span>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item v-for="link in links[1].sublinks" :key="link.key" @click="callback">
+                <v-list-item-title>{{ link.key }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
           <v-btn text to="/tools">
             <v-icon left>mdi-hammer-screwdriver</v-icon>
             <span>Tools</span>
@@ -38,7 +51,7 @@
       app
     >
       <v-list>
-        <v-subheader>Application</v-subheader>
+        <v-subheader class="title">Application</v-subheader>
         <v-list-item v-for="(link,i) in links" :key="i" router :to="link.route">
           <v-list-item-action>
             <v-icon>
@@ -50,6 +63,9 @@
               {{ link.text }}
             </v-list-item-title>
           </v-list-item-content>
+          <v-list-item-action>
+            <v-icon>mdi-menu-down</v-icon>
+          </v-list-item-action>
         </v-list-item>
       </v-list>
 
@@ -67,9 +83,11 @@ export default {
   data: () => ({
     drawer: false,
     links: [
-      { text: 'Home', icon: 'mdi-home', route: '/' },
-      { text: 'Tools', icon: 'mdi-hammer-screwdriver', route: '/tools' },
-      { text: 'Data', icon: 'mdi-database', route: '/municipalities' }
+      { text: 'Home', icon: 'mdi-home', sublinks: [], route: '/' },
+      { text: 'Tools', icon: 'mdi-hammer-screwdriver', sublinks: [
+        { key: 'IncomeTax', text: 'Income Tax' },
+        { key: 'BenefitTax', text: 'Benefit Tax' }], route: '/tools' },
+      { text: 'Data', icon: 'mdi-database', sublinks: [], route: '/municipalities' }
     ]
   })
 };
