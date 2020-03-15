@@ -10,19 +10,10 @@
             <v-icon left>mdi-home</v-icon>
             <span>Home</span>
           </v-btn>
-          <v-menu offset-y>
-            <template v-slot:activator="{ on }">
-              <v-btn slot="activator" v-on="on" to="/tools">
-                <v-icon left>mdi-hammer-screwdriver</v-icon>
-                <span>Tools</span>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item v-for="link in links[1].sublinks" :key="link.key">
-                <v-list-item-title>{{ link.text }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
+          <v-btn text to="/tools">
+            <v-icon left>mdi-hammer-screwdriver</v-icon>
+            <span>Tools</span>
+          </v-btn>
 
           <v-btn text to="/municipalities">
             <v-icon left>mdi-database</v-icon>
@@ -33,24 +24,21 @@
         <v-spacer />
 
         <v-btn icon right href="https://github.com/dniggeler/PensionTools" target="_blank">
-          <v-icon>mdi-github-circle</v-icon>
+          <v-icon>mdi-github</v-icon>
         </v-btn>
       </v-toolbar>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app>
-      <v-expansion-panels flat class="pr-1">
+      <v-expansion-panels flat :multiple="true" class="pr-1">
         <v-expansion-panel
-          :multiple="multiple"
-          tile="true"
-          expand
           focusable
-          :readonly="!link.sublinks"
           v-for="(link,i) in links"
           :key="i"
+          :tile="true"
           router
           :to="link.route"
         >
-          <v-expansion-panel-header>
+          <v-expansion-panel-header :hide-actions="!link.sublinks">
             <div>
               <v-icon class="pr-1">{{ link.icon }}</v-icon>
               <span>{{link.text}}</span>
@@ -59,7 +47,10 @@
           <v-expansion-panel-content>
             <v-list>
               <v-list-item v-for="(sublink,i) in link.sublinks" :key="i">
-                {{ sublink.text}}
+                <div>
+                  <v-icon class="pr-1">{{ sublink.icon }}</v-icon>
+                  <span>{{sublink.text}}</span>
+                </div>
               </v-list-item>
             </v-list>
           </v-expansion-panel-content>
@@ -86,8 +77,8 @@ export default {
         text: "Tools",
         icon: "mdi-hammer-screwdriver",
         sublinks: [
-          { key: "IncomeTax", text: "Income Tax" },
-          { key: "BenefitTax", text: "Benefit Tax" }
+          { key: "IncomeTax", text: "Income Tax", icon: "mdi-calculator" },
+          { key: "BenefitTax", text: "Benefit Tax", icon: "mdi-calculator" }
         ],
         route: "/tools"
       },
