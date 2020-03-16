@@ -3,7 +3,7 @@
     <v-app-bar app>
       <v-toolbar>
         <v-app-bar-nav-icon @click="drawer=!drawer" />
-        <v-toolbar-title>Swiss Tax and Pension Tools</v-toolbar-title>
+        <v-toolbar-title class="pa-4">Swiss Tax and Pension Tools</v-toolbar-title>
 
         <v-toolbar-items>
           <v-btn text to="/">
@@ -44,13 +44,13 @@
               <span>{{link.text}}</span>
             </div>
           </v-expansion-panel-header>
-          <v-expansion-panel-content>
-            <v-list>
+          <v-expansion-panel-content v-if="link.sublinks" class="pa-0">
+            <v-list flat dense class="pa-0">
               <v-list-item v-for="(sublink,i) in link.sublinks" :key="i">
-                <div>
-                  <v-icon class="pr-1">{{ sublink.icon }}</v-icon>
+                <v-btn text tile small :to="sublink.route">
+                  <v-icon small>{{ sublink.icon }}</v-icon>
                   <span>{{sublink.text}}</span>
-                </div>
+                </v-btn>
               </v-list-item>
             </v-list>
           </v-expansion-panel-content>
@@ -77,8 +77,8 @@ export default {
         text: "Tools",
         icon: "mdi-hammer-screwdriver",
         sublinks: [
-          { key: "IncomeTax", text: "Income Tax", icon: "mdi-calculator" },
-          { key: "BenefitTax", text: "Benefit Tax", icon: "mdi-calculator" }
+          { key: "IncomeTax", text: "Income Tax", icon: "mdi-calculator", route:"tools" },
+          { key: "BenefitTax", text: "Benefit Tax", icon: "mdi-calculator", route:"/" }
         ],
         route: "/tools"
       },
