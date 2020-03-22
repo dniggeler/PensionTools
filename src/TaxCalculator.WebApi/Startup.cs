@@ -31,8 +31,9 @@ namespace TaxCalculator.WebApi
             services.AddCors(options =>
                 options.AddPolicy(this.myAllowSpecificOrigins, builder =>
                 {
-                    builder.WithOrigins("http://localhost:8080");
-                    builder.WithOrigins("https://https://relaxed-bose-eb5bc2.netlify.com/");
+                    builder.WithOrigins(
+                        "http://localhost:8080",
+                        "https://relaxed-bose-eb5bc2.netlify.com");
                 }));
 
             services.AddHealthChecks()
