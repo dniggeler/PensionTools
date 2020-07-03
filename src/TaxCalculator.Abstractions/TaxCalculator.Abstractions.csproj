@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>PensionCoach.Tools.TaxCalculator.Abstractions</AssemblyName>
     <RootNamespace>PensionCoach.Tools.TaxCalculator.Abstractions</RootNamespace>
   </PropertyGroup>
@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CommonTypes\CommonTypes.csproj" />
     <ProjectReference Include="..\Tax.Data.Abstractions\Tax.Data.Abstractions.csproj" />
   </ItemGroup>
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PensionCoach.Tools.CommonTypes;
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
 {

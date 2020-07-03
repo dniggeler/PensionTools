@@ -31,9 +31,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tax.Tools.Comparison", "Tax
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Tools.Comparison", "Tax.Tools.Comparison\Tax.Tools.Comparison\Tax.Tools.Comparison.csproj", "{7F3959D0-0998-41D0-B362-2A1366CA1270}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.Tools.Comparison.Abstractions", "Tax.Tools.Comparison\Tax.Tools.Comparison.Abstractions\Tax.Tools.Comparison.Abstractions.csproj", "{9354F5AC-21E6-4FE9-AF2E-4D80972ACE29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Tools.Comparison.Abstractions", "Tax.Tools.Comparison\Tax.Tools.Comparison.Abstractions\Tax.Tools.Comparison.Abstractions.csproj", "{9354F5AC-21E6-4FE9-AF2E-4D80972ACE29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.Tools.Comparison.Tests", "Tax.Tools.Comparison\Tax.Tools.Comparison.Tests\Tax.Tools.Comparison.Tests.csproj", "{71DD068D-41A9-4084-8808-5190BB4D1AC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Tools.Comparison.Tests", "Tax.Tools.Comparison\Tax.Tools.Comparison.Tests\Tax.Tools.Comparison.Tests.csproj", "{71DD068D-41A9-4084-8808-5190BB4D1AC0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SpecialCalculators", "SpecialCalculators", "{4224614A-B5A0-4633-BF49-A485C0E61595}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BvgCalculator", "BvgCalculator\BvgCalculator.csproj", "{BEA34185-AC53-406B-8A57-F3E6C8F12636}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BvgCalculator.Abstractions", "BvgCalculator.Abstractions\BvgCalculator.Abstractions.csproj", "{CE0A3BC7-0EAC-4004-BDD3-4008C685C8EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTypes", "CommonTypes\CommonTypes.csproj", "{7432DA0D-73B2-45F8-B6D8-2FF7423DB6BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0F6FD2BA-85B0-4ABA-A3F9-A4F6BE4808B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +99,18 @@ Global
 		{71DD068D-41A9-4084-8808-5190BB4D1AC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71DD068D-41A9-4084-8808-5190BB4D1AC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71DD068D-41A9-4084-8808-5190BB4D1AC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEA34185-AC53-406B-8A57-F3E6C8F12636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA34185-AC53-406B-8A57-F3E6C8F12636}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEA34185-AC53-406B-8A57-F3E6C8F12636}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA34185-AC53-406B-8A57-F3E6C8F12636}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE0A3BC7-0EAC-4004-BDD3-4008C685C8EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE0A3BC7-0EAC-4004-BDD3-4008C685C8EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE0A3BC7-0EAC-4004-BDD3-4008C685C8EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE0A3BC7-0EAC-4004-BDD3-4008C685C8EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7432DA0D-73B2-45F8-B6D8-2FF7423DB6BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7432DA0D-73B2-45F8-B6D8-2FF7423DB6BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7432DA0D-73B2-45F8-B6D8-2FF7423DB6BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7432DA0D-73B2-45F8-B6D8-2FF7423DB6BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +126,9 @@ Global
 		{7F3959D0-0998-41D0-B362-2A1366CA1270} = {BF9972ED-AFAC-4E39-9AAD-89F46338CED1}
 		{9354F5AC-21E6-4FE9-AF2E-4D80972ACE29} = {BF9972ED-AFAC-4E39-9AAD-89F46338CED1}
 		{71DD068D-41A9-4084-8808-5190BB4D1AC0} = {BF9972ED-AFAC-4E39-9AAD-89F46338CED1}
+		{BEA34185-AC53-406B-8A57-F3E6C8F12636} = {4224614A-B5A0-4633-BF49-A485C0E61595}
+		{CE0A3BC7-0EAC-4004-BDD3-4008C685C8EE} = {4224614A-B5A0-4633-BF49-A485C0E61595}
+		{7432DA0D-73B2-45F8-B6D8-2FF7423DB6BA} = {0F6FD2BA-85B0-4ABA-A3F9-A4F6BE4808B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB937E37-4C08-4EB0-86F7-87F74A7F6C44}

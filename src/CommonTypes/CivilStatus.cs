@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using Newtonsoft.Json.Converters;
 
-namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
+namespace PensionCoach.Tools.CommonTypes
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum CivilStatus
