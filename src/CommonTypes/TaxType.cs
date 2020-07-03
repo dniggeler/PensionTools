@@ -1,4 +1,4 @@
-﻿namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
+﻿namespace PensionCoach.Tools.CommonTypes
 {
     public enum TaxType
     {
