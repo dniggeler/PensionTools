@@ -6,4 +6,12 @@
     <RootNamespace>PensionCoach.Tools.BvgCalculator</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="LanguageExt.Core" Version="3.1.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BvgCalculator.Abstractions\BvgCalculator.Abstractions.csproj" />
+  </ItemGroup>
+
 </Project>
