@@ -1,14 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using LanguageExt;
 using PensionCoach.Tools.BvgCalculator.Models;
+using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonUtils;
 
 namespace PensionCoach.Tools.BvgCalculator
 {
     public class BvgCalculator : IBvgCalculator
     {
-        public Task<BvgCalculationResult> CalculateAsync(DateTime dateOfProcess, BvgPerson person)
+        private readonly IBvgRetirementCredits RetirementCredits;
+
+        public BvgCalculator(IBvgRetirementCredits retirementCredits)
+        {
+            RetirementCredits = retirementCredits;
+        }
+
+        public Task<BvgCalculationResult> CalculateAsync(
+            BvgProcessActuarialReserve predecessorProcess, DateTime dateOfProcess, BvgPerson person)
         {
             BvgSalary salary = GetBvgSalary(dateOfProcess, person);
 
@@ -16,10 +27,10 @@ namespace PensionCoach.Tools.BvgCalculator
             decimal retirementCredit = GetRetirementCredit(person, salary.InsuredSalary, retirementCreditFactor);
 
             IReadOnlyCollection<RetirementCredit> retirementCreditSequence =
-                GetRetirementCreditSequence(person, dateOfProcess, salary, plan);
+                GetRetirementCreditSequence(person, dateOfProcess, salary);
 
-            IReadOnlyCollection<BvgRetirementCapitalElement> retirementCapitalSequence =
-                GetRetirementCapitalSequence(predecessorProcess, dateOfProcess, person, retirementCreditSequence, plan);
+            IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence =
+                GetRetirementCapitalSequence(predecessorProcess, dateOfProcess, person, retirementCreditSequence);
 
             decimal retirementCapitalEndOfYear =
                 GetRetirementCapitalEndOfYear(dateOfProcess, retirementCapitalSequence);
@@ -30,7 +41,7 @@ namespace PensionCoach.Tools.BvgCalculator
             decimal finalRetirementCapitalWithoutInterest =
                 GetFinalRetirementCapitalWithoutInterest(retirementCapitalSequence);
 
-            decimal retirementPension = GetRetirementPension(predecessorProcess, person, dateOfProcess, retirementCreditSequence, plan);
+            decimal retirementPension = GetRetirementPension(predecessorProcess, person, dateOfProcess, retirementCreditSequence);
 
             // reset risk benefits to 0 if below salary threshold
             decimal disabilityPension = 0;
@@ -40,15 +51,15 @@ namespace PensionCoach.Tools.BvgCalculator
 
             int year = dateOfProcess.Year;
 
-            if (salary.EffectiveSalary > Bvg.GetEntranceThreshold(Ahv.GetPensionMaximum(year)))
+            if (salary.EffectiveSalary > Bvg.GetEntranceThreshold(Bvg.GetPensionMaximum(year)))
             {
-                disabilityPension = GetDisabilityPension(retirementCapitalSequence, person, dateOfProcess, plan);
-                partnerPension = GetPartnerPension(retirementCapitalSequence, dateOfProcess, person, plan);
-                childPension = GetChildPensionForDisabled(retirementCapitalSequence, person, dateOfProcess, plan);
+                disabilityPension = GetDisabilityPension(retirementCapitalSequence, person, dateOfProcess);
+                partnerPension = GetPartnerPension(retirementCapitalSequence, dateOfProcess, person);
+                childPension = GetChildPensionForDisabled(retirementCapitalSequence, person, dateOfProcess);
                 orphanPension = childPension;
             }
 
-            BvgBenefitsCalculatorResult result = new BvgBenefitsCalculatorResult
+            BvgCalculationResult result = new BvgCalculationResult
             {
                 EffectiveSalary = salary.EffectiveSalary,
                 InsuredSalary = salary.InsuredSalary,
@@ -70,28 +81,54 @@ namespace PensionCoach.Tools.BvgCalculator
 
         }
 
+        public static bool IsRetired(BvgPerson person, DateTime dateOfProcess)
+        {
+            DateTime retiredAt = GetRetirementDate(person.DateOfBirth, person.Gender);
+
+            return (new DateTime(retiredAt.Year, retiredAt.Month, 1).AddDays(-1) < dateOfProcess.Date);
+        }
+
+        public static DateTime GetRetirementDate(DateTime dateOfBirth, Gender gender)
+        {
+            // FinalAgeByPlan BVG
+            int xsBvg = GetRetirementAge(gender);
+
+            // Date of retirement
+            return dateOfBirth.GetRetirementDate(xsBvg);
+        }
+
+        public static int GetRetirementAge(Gender typeOfGender)
+        {
+            return typeOfGender switch
+            {
+                Gender.Female => Bvg.RetirementAgeWomen,
+                Gender.Male => Bvg.RetirementAgeMen,
+                _ => throw new ArgumentException(nameof(typeOfGender))
+            };
+        }
+
         private static BvgSalary GetBvgSalary(DateTime dateOfProcess, BvgPerson person)
         {
             decimal workingAbilityDegree = decimal.One - person.DisabilityDegree;
 
             BvgSalary salary = new BvgSalary();
 
-            bool isRetired = plan.IsRetired(person, dateOfProcess);
+            bool isRetired = IsRetired(person, dateOfProcess);
 
             if (isRetired && person.DisabilityDegree == decimal.One)
             {
-                return BvgSalary;
+                return salary;
             }
 
-            BvgSalary.ReportedSalary = person.ReportedSalary;
-            BvgSalary.EffectiveSalary = person.ReportedSalary * workingAbilityDegree;
-            BvgSalary.InsuredSalary = (isRetired || plan.IsSeniorPlan) ? 0M : GetInsuredSalary(person, dateOfProcess);
+            salary.ReportedSalary = person.ReportedSalary;
+            salary.EffectiveSalary = person.ReportedSalary * workingAbilityDegree;
+            salary.InsuredSalary = isRetired ? 0M : GetInsuredSalary(person, dateOfProcess);
 
-            return BvgSalary;
+            return salary;
         }
 
         private decimal GetRetirementCapitalEndOfYear(DateTime dateOfProcess,
-            IReadOnlyCollection<BvgRetirementCapitalElement> retirementCapitalSequence)
+            IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence)
         {
             DateTime endOfYearDate = dateOfProcess.GetEndOfYearDate();
 
@@ -106,28 +143,21 @@ namespace PensionCoach.Tools.BvgCalculator
             BvgProcessActuarialReserve predecessorProcess,
             BvgPerson personDetails,
             DateTime dateOfProcess,
-            IReadOnlyCollection<RetirementCredit> retirementCreditSequence,
-            BvgPensionPlan plan)
+            IReadOnlyCollection<RetirementCredit> retirementCreditSequence)
         {
-            IEnumerable<BvgRetirementCapitalElement> retirementCapitalSequence =
-                GetRetirementCapitalSequence(predecessorProcess, dateOfProcess, personDetails, retirementCreditSequence, plan);
+            IEnumerable<BvgRetirementCapital> retirementCapitalSequence =
+                GetRetirementCapitalSequence(predecessorProcess, dateOfProcess, personDetails, retirementCreditSequence);
 
-            BvgRetirementCapitalElement latestElement = retirementCapitalSequence.First();
+            BvgRetirementCapital latestElement = retirementCapitalSequence.First();
 
-            return DigisMath.Round((latestElement.Value) * Bvg.GetUwsRateBvg(dateOfProcess.Year, personDetails.Gender));
+            return MathUtils.Round((latestElement.Value) * Bvg.GetUwsRateBvg(dateOfProcess.Year, personDetails.Gender));
         }
 
         private decimal GetPartnerPension(
-            IReadOnlyCollection<BvgRetirementCapitalElement> retirementCapitalSequence,
+            IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence,
             DateTime dateOfProcess,
-            BvgPerson personDetails,
-            BvgPensionPlan plan)
+            BvgPerson personDetails)
         {
-            if (plan.IsSeniorPlan)
-            {
-                return 0M;
-            }
-
             if (personDetails.HasStop && personDetails.HasStopWithRiskProtection == false)
             {
                 return 0M;
@@ -135,21 +165,15 @@ namespace PensionCoach.Tools.BvgCalculator
 
             decimal capital = GetFinalRetirementCapitalWithoutInterest(retirementCapitalSequence);
 
-            return DigisMath.Round(capital * Bvg.FactorPartnersPension *
+            return MathUtils.Round(capital * Bvg.FactorPartnersPension *
                                    Bvg.GetUwsRateBvg(dateOfProcess.Year, personDetails.Gender));
         }
 
         private decimal GetChildPensionForDisabled(
-            IReadOnlyCollection<BvgRetirementCapitalElement> retirementCapitalSequence,
+            IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence,
             BvgPerson personDetails,
-            DateTime dateOfProcess,
-            BvgPensionPlan plan)
+            DateTime dateOfProcess)
         {
-            if (plan.IsSeniorPlan)
-            {
-                return 0M;
-            }
-
             if (personDetails.HasStop && personDetails.HasStopWithRiskProtection == false)
             {
                 return 0M;
@@ -157,18 +181,13 @@ namespace PensionCoach.Tools.BvgCalculator
 
             decimal capital = GetFinalRetirementCapitalWithoutInterest(retirementCapitalSequence);
 
-            return DigisMath.Round(capital * Bvg.FactorChildPension *
+            return MathUtils.Round(capital * Bvg.FactorChildPension *
                                    Bvg.GetUwsRateBvg(dateOfProcess.Year, personDetails.Gender));
         }
 
-        private decimal GetDisabilityPension(IReadOnlyCollection<BvgRetirementCapitalElement> retirementCapitalSequence,
-            BvgPerson personDetails, DateTime dateOfProcess, BvgPensionPlan plan)
+        private decimal GetDisabilityPension(
+            IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence, BvgPerson personDetails, DateTime dateOfProcess)
         {
-            if (plan.IsSeniorPlan)
-            {
-                return 0M;
-            }
-
             if (personDetails.HasStop && personDetails.HasStopWithRiskProtection == false)
             {
                 return 0M;
@@ -176,40 +195,39 @@ namespace PensionCoach.Tools.BvgCalculator
 
             decimal capital = GetFinalRetirementCapitalWithoutInterest(retirementCapitalSequence);
 
-            return DigisMath.Round(capital * Bvg.GetUwsRateBvg(dateOfProcess.Year, personDetails.Gender));
+            return MathUtils.Round(capital * Bvg.GetUwsRateBvg(dateOfProcess.Year, personDetails.Gender));
         }
 
         private decimal GetFinalRetirementCapital(
-            IReadOnlyCollection<BvgRetirementCapitalElement> retirementCapitalSequence)
+            IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence)
         {
-            BvgRetirementCapitalElement final = retirementCapitalSequence.First();
+            BvgRetirementCapital final = retirementCapitalSequence.First();
 
-            return DigisMath.Round(final.Value);
+            return MathUtils.Round(final.Value);
         }
 
-        private decimal GetFinalRetirementCapitalWithoutInterest(IReadOnlyCollection<BvgRetirementCapitalElement> retirementCapitalSequence)
+        private decimal GetFinalRetirementCapitalWithoutInterest(IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence)
         {
-            BvgRetirementCapitalElement final = retirementCapitalSequence.First();
+            BvgRetirementCapital final = retirementCapitalSequence.First();
 
-            return DigisMath.Round(final.ValueWithoutInterest);
+            return MathUtils.Round(final.ValueWithoutInterest);
         }
 
-        private IReadOnlyCollection<BvgRetirementCapitalElement> GetRetirementCapitalSequence(
+        private IReadOnlyCollection<BvgRetirementCapital> GetRetirementCapitalSequence(
             BvgProcessActuarialReserve predecessorProcess,
             DateTime dateOfProcess,
             BvgPerson personDetails,
-            IReadOnlyCollection<RetirementCredit> retirementCreditSequence,
-            BvgPensionPlan plan)
+            IReadOnlyCollection<RetirementCredit> retirementCreditSequence)
         {
             // Date of retirement
-            DateTime dateOfRetirement = plan.GetRetirementDate(personDetails.DateOfBirth, personDetails.Gender);
+            DateTime dateOfRetirement = GetRetirementDate(personDetails.DateOfBirth, personDetails.Gender);
 
             // Interest rates
             decimal iBvg = Bvg.GetInterestRate(dateOfProcess.Year);
 
             // Retirement assets at end of insurance period Bvg portion
             int age = dateOfProcess.Year - personDetails.DateOfBirth.Year;
-            int retirementAgeBvg = plan.GetRetirementAge(personDetails.Gender);
+            int retirementAgeBvg = GetRetirementAge(personDetails.Gender);
 
             return BvgCapitalCalculationHelper.GetRetirementCapitalSequence(dateOfProcess,
                 dateOfRetirement,
@@ -223,10 +241,9 @@ namespace PensionCoach.Tools.BvgCalculator
         private IReadOnlyCollection<RetirementCredit> GetRetirementCreditSequence(
             BvgPerson personDetails,
             DateTime dateOfProcess,
-            BvgSalary BvgSalary,
-            BvgPensionPlan plan)
+            BvgSalary salary)
         {
-            return BvgCapitalCalculationHelper.GetRetirementCreditSequence(personDetails, dateOfProcess, BvgSalary, plan);
+            return BvgCapitalCalculationHelper.GetRetirementCreditSequence(personDetails, dateOfProcess, salary);
         }
 
         private decimal GetRetirementCredit(
@@ -242,16 +259,11 @@ namespace PensionCoach.Tools.BvgCalculator
             return insuredSalary * retirementCreditFactor;
         }
 
-        private static decimal GetRetirementCreditFactor(BvgPerson person, DateTime dateOfProcess)
+        private decimal GetRetirementCreditFactor(BvgPerson person, DateTime dateOfProcess)
         {
-            if (plan.IsSeniorPlan)
-            {
-                return decimal.Zero;
-            }
-
             int xBvg = dateOfProcess.Year - person.DateOfBirth.Year;
 
-            return CreditsTable.GetRate(xBvg);
+            return RetirementCredits.GetRate(xBvg);
         }
 
         private static decimal GetInsuredSalary(BvgPerson person, DateTime dateOfProcess)
@@ -276,28 +288,30 @@ namespace PensionCoach.Tools.BvgCalculator
                 insuredSalary = GetInsuredSalaryWhenNotDisabled();
             }
 
-            return DigisMath.Round5(insuredSalary.IfNone(0M));
+            return MathUtils.Round5(insuredSalary.IfNone(0M));
 
             Option<decimal> GetInsuredSalaryWhenNotDisabled()
             {
-                return toOption<decimal>(person.ReportedSalary)
+                decimal ahvMax = Bvg.GetPensionMaximum(year);
+
+                return Prelude.Some(person.ReportedSalary)
 
                     // check salary entrance level
-                    .Where(v => v > Bvg.GetEntranceThreshold(Ahv.GetPensionMaximum(year)))
+                    .Where(v => v > Bvg.GetEntranceThreshold(ahvMax))
 
                     // restrict by BVG salary max
-                    .Map(v => Math.Min(v, Bvg.GetMaximumSalary(Ahv.GetPensionMaximum(dateOfProcess.Year))))
+                    .Map(v => Math.Min(v, Bvg.GetMaximumSalary(ahvMax)))
 
                     // reduce by coordination deduction
                     .Map(v => v - GetCoordinationDeduction())
 
-                    .Map(v => Math.Max(v, Bvg.GetMinimumSalary(Ahv.GetPensionMaximum(year))))
+                    .Map(v => Math.Max(v, Bvg.GetMinimumSalary(ahvMax)))
                     .Map(v => Math.Round(v, 0, MidpointRounding.AwayFromZero));
             }
 
             Option<decimal> GetInsuredSalaryWhenDisabled()
             {
-                decimal minSalary = Bvg.GetMinimumSalary(Ahv.GetPensionMaximum(year));
+                decimal minSalary = Bvg.GetMinimumSalary(Bvg.GetPensionMaximum(year));
 
                 Option<decimal> disabilityDegree = person.DisabilityDegree;
 
@@ -309,9 +323,9 @@ namespace PensionCoach.Tools.BvgCalculator
                     .Map(v => person.ReportedSalary / v)
 
                     // check salary entrance level
-                    .Where(v => v > Bvg.GetEntranceThreshold(Ahv.GetPensionMaximum(year)))
+                    .Where(v => v > Bvg.GetEntranceThreshold(Bvg.GetPensionMaximum(year)))
 
-                    .Map(v => Math.Min(v, Bvg.GetMaximumSalary(Ahv.GetPensionMaximum(dateOfProcess.Year))))
+                    .Map(v => Math.Min(v, Bvg.GetMaximumSalary(Bvg.GetPensionMaximum(dateOfProcess.Year))))
 
                     // reduce by coordination deduction
                     .Map(v => v - GetCoordinationDeduction())
@@ -319,12 +333,12 @@ namespace PensionCoach.Tools.BvgCalculator
                     // restrict by BVG salary max
                     .Map(v => v * (fullEmployedDegree - person.DisabilityDegree))
                     .Map(v => v < minSalary ? minSalary : v)
-                    .Map(DigisMath.Round5);
+                    .Map(MathUtils.Round5);
             }
 
             decimal GetCoordinationDeduction()
             {
-                return Bvg.GetCoordinationDeduction(Ahv.GetPensionMaximum(year));
+                return Bvg.GetCoordinationDeduction(Bvg.GetPensionMaximum(year));
             }
         }
     }

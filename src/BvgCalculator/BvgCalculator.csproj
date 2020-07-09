@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BvgCalculator.Abstractions\BvgCalculator.Abstractions.csproj" />
+    <ProjectReference Include="..\CommonUtils\CommonUtils.csproj" />
   </ItemGroup>
 
 </Project>

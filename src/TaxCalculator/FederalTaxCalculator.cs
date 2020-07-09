@@ -28,7 +28,7 @@ namespace TaxCalculator
         /// <inheritdoc/>
         public Task<Either<string, BasisTaxResult>> CalculateAsync(int calculationYear, FederalTaxPerson person)
         {
-            Option<ValidationResult> validationResult = this.taxPersonValidator.Validate(person);
+            Option<ValidationResult> validationResult = taxPersonValidator.Validate(person);
 
             return validationResult
                 .Where(r => !r.IsValid)
@@ -38,10 +38,10 @@ namespace TaxCalculator
                     return $"validation failed: {errorMessageLine}";
                 })
                 .IfNone(true)
-                .Bind(_ => this.Map(person.CivilStatus))
+                .Bind(_ => Map(person.CivilStatus))
 
                 // get all income level candidate
-                .Map(typeId => this.federalDbContext.Tariffs
+                .Map(typeId => federalDbContext.Tariffs
                     .Where(item => item.Year == calculationYear)
                     .Where(item => item.TariffType == (int)typeId)
                     .ToList()
@@ -51,7 +51,7 @@ namespace TaxCalculator
                     .First())
 
                 // calculate result
-                .Map(tariff => this.CalculateTax(person, tariff))
+                .Map(tariff => CalculateTax(person, tariff))
                 .AsTask();
         }
 

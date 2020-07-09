@@ -26,7 +26,7 @@ namespace TaxCalculator.Basis.CapitalBenefit
 
             Either<string, CapitalBenefitTaxResult> result = msg;
 
-            this.logger.LogWarning(msg);
+            logger.LogWarning(msg);
 
             return Task.FromResult(result);
         }

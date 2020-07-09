@@ -41,64 +41,62 @@ namespace TaxCalculator
             Canton canton,
             TaxPerson person)
         {
-            await using (var ctxt = this.dbContext())
-            {
-                var aggregatedTaxResultTask =
-                    this.basisTaxCalculator.CalculateAsync(calculationYear, canton, person);
+            await using var ctxt = dbContext();
+            var aggregatedTaxResultTask =
+                basisTaxCalculator.CalculateAsync(calculationYear, canton, person);
 
-                var pollTaxPerson = this.mapper.Map<PollTaxPerson>(person);
-                var pollTaxResultTask =
-                    this.pollTaxCalculator.CalculateAsync(
-                        calculationYear, municipalityId, canton, pollTaxPerson);
+            var pollTaxPerson = mapper.Map<PollTaxPerson>(person);
+            var pollTaxResultTask =
+                pollTaxCalculator.CalculateAsync(
+                    calculationYear, municipalityId, canton, pollTaxPerson);
 
-                var churchTaxPerson = this.mapper.Map<ChurchTaxPerson>(person);
+            var churchTaxPerson = mapper.Map<ChurchTaxPerson>(person);
 
-                await Task.WhenAll(pollTaxResultTask, aggregatedTaxResultTask);
+            await Task.WhenAll(pollTaxResultTask, aggregatedTaxResultTask);
 
-                Either<string, AggregatedBasisTaxResult> aggregatedTaxResult = await aggregatedTaxResultTask;
-                Either<string, ChurchTaxResult> churchTaxResult = await aggregatedTaxResult
-                    .BindAsync(r => this.churchTaxCalculator.CalculateAsync(
-                        calculationYear, municipalityId, churchTaxPerson, r));
+            Either<string, AggregatedBasisTaxResult> aggregatedTaxResult = await aggregatedTaxResultTask;
+            Either<string, ChurchTaxResult> churchTaxResult = await aggregatedTaxResult
+                .BindAsync(r => churchTaxCalculator.CalculateAsync(
+                    calculationYear, municipalityId, churchTaxPerson, r));
 
-                var pollTaxResult = await pollTaxResultTask;
+            var pollTaxResult = await pollTaxResultTask;
 
-                Option<TaxRateEntity> taxRate = ctxt.Rates.AsNoTracking()
-                    .FirstOrDefault(item => item.BfsId == municipalityId
-                                            && item.Year == calculationYear);
+            Option<TaxRateEntity> taxRate = ctxt.Rates.AsNoTracking()
+                .FirstOrDefault(item => item.BfsId == municipalityId
+                                        && item.Year == calculationYear);
 
-                var stateTaxResult = new StateTaxResult();
+            var stateTaxResult = new StateTaxResult();
 
-                return aggregatedTaxResult
-                    .Bind(r =>
-                    {
-                        stateTaxResult.BasisIncomeTax = r.IncomeTax;
-                        stateTaxResult.BasisWealthTax = r.WealthTax;
+            return aggregatedTaxResult
+                .Bind(r =>
+                {
+                    stateTaxResult.BasisIncomeTax = r.IncomeTax;
+                    stateTaxResult.BasisWealthTax = r.WealthTax;
 
-                        return churchTaxResult;
-                    })
-                    .Bind(r =>
-                    {
-                        stateTaxResult.ChurchTax = r;
+                    return churchTaxResult;
+                })
+                .Bind(r =>
+                {
+                    stateTaxResult.ChurchTax = r;
 
-                        return pollTaxResult;
-                    })
-                    .Bind(r =>
-                    {
-                        stateTaxResult.PollTaxAmount =
-                            from cTax in r.CantonTaxAmount
-                            from mTax in r.MunicipalityTaxAmount
-                            select cTax + mTax;
+                    return pollTaxResult;
+                })
+                .Bind(r =>
+                {
+                    stateTaxResult.PollTaxAmount =
+                        from cTax in r.CantonTaxAmount
+                        from mTax in r.MunicipalityTaxAmount
+                        select cTax + mTax;
 
-                        return taxRate.ToEither("No tax rate found");
-                    })
-                    .Map(r =>
-                    {
-                        stateTaxResult.MunicipalityRate = r.TaxRateMunicipality;
-                        stateTaxResult.CantonRate = r.TaxRateCanton;
+                    return taxRate.ToEither("No tax rate found");
+                })
+                .Map(r =>
+                {
+                    stateTaxResult.MunicipalityRate = r.TaxRateMunicipality;
+                    stateTaxResult.CantonRate = r.TaxRateCanton;
 
-                        return stateTaxResult;
-                    });
-            }
+                    return stateTaxResult;
+                });
         }
     }
 }

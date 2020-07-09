@@ -30,13 +30,13 @@ namespace TaxCalculator
             Canton canton,
             TaxPerson person)
         {
-            var federalTaxPerson = this.mapper.Map<FederalTaxPerson>(person);
+            var federalTaxPerson = mapper.Map<FederalTaxPerson>(person);
 
             var stateTaxResultTask =
-                this.stateTaxCalculator
+                stateTaxCalculator
                     .CalculateAsync(calculationYear, municipalityId, canton, person);
             var federalTaxResultTask =
-                this.federalTaxCalculator.CalculateAsync(calculationYear, federalTaxPerson);
+                federalTaxCalculator.CalculateAsync(calculationYear, federalTaxPerson);
 
             await Task.WhenAll(stateTaxResultTask, federalTaxResultTask);
 

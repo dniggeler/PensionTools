@@ -1,4 +1,6 @@
-﻿namespace PensionCoach.Tools.BvgCalculator.Models
+﻿using System.Collections.Generic;
+
+namespace PensionCoach.Tools.BvgCalculator.Models
 {
     public class BvgCalculationResult
     {
@@ -14,5 +16,7 @@
         public decimal PartnerPension { get; set; }
         public decimal OrphanPension { get; set; }
         public decimal ChildPensionForDisabled { get; set; }
+        public IEnumerable<RetirementCredit> RetirementCreditSequence { get; set; }
+        public IEnumerable<BvgRetirementCapital> RetirementCapitalSequence { get; set; }
     }
 }

@@ -13,8 +13,6 @@ namespace TaxCalculator.Basis.Income
     /// <seealso cref="PensionCoach.Tools.TaxCalculator.Abstractions.IBasisIncomeTaxCalculator" />
     public class SOBasisIncomeTaxCalculator : IBasisIncomeTaxCalculator
     {
-        private const int IncomeTaxTypeId = (int)TaxType.Income;
-
         private readonly IDefaultBasisIncomeTaxCalculator defaultBasisIncomeTaxCalculator;
 
         public SOBasisIncomeTaxCalculator(
@@ -52,13 +50,13 @@ namespace TaxCalculator.Basis.Income
             };
 
             var taxResult =
-                await this.defaultBasisIncomeTaxCalculator
+                await defaultBasisIncomeTaxCalculator
                     .CalculateAsync(calculationYear, canton, tmpPerson);
 
             taxResult
                 .IfRight(r =>
                 {
-                    r.TaxAmount = r.TaxAmount * adaptedTaxData.Multiplier;
+                    r.TaxAmount *= adaptedTaxData.Multiplier;
                     r.DeterminingFactorTaxableAmount = person.TaxableAmount;
                 });
 

@@ -11,8 +11,8 @@ namespace TaxCalculator.Validators
 
         public CantonValidator()
         {
-            this.RuleFor(canton => canton)
-                .Must(c => this.supportedCantons.Contains(c))
+            RuleFor(canton => canton)
+                .Must(c => supportedCantons.Contains(c))
                 .WithMessage(c => $"Canton {c} is not yet supported");
         }
     }

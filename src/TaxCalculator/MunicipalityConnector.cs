@@ -32,8 +32,8 @@ namespace TaxCalculator
         public Task<IEnumerable<MunicipalityModel>> GetAllAsync()
         {
             return Task.FromResult(
-                this.mapper.Map<IEnumerable<MunicipalityModel>>(
-                    this.municipalityDbContext.MunicipalityEntities.ToList()));
+                mapper.Map<IEnumerable<MunicipalityModel>>(
+                    municipalityDbContext.MunicipalityEntities.ToList()));
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace TaxCalculator
         /// <returns>List of municipalities.</returns>
         public IEnumerable<MunicipalityModel> Search(MunicipalitySearchFilter searchFilter)
         {
-            IQueryable<MunicipalityEntity> result = this.municipalityDbContext.MunicipalityEntities;
+            IQueryable<MunicipalityEntity> result = municipalityDbContext.MunicipalityEntities;
 
             if (searchFilter.Canton != Canton.Undefined)
             {
@@ -58,7 +58,7 @@ namespace TaxCalculator
 
             foreach (MunicipalityEntity entity in result)
             {
-                var model = this.mapper.Map<MunicipalityModel>(entity);
+                var model = mapper.Map<MunicipalityModel>(entity);
 
                 if (searchFilter.YearOfValidity.HasValue)
                 {
@@ -82,36 +82,34 @@ namespace TaxCalculator
             int bfsNumber, int year)
         {
             Option<MunicipalityEntity> entity =
-                this.municipalityDbContext.MunicipalityEntities
+                municipalityDbContext.MunicipalityEntities
                     .FirstOrDefault(item => item.BfsNumber == bfsNumber
                                             && string.IsNullOrEmpty(item.DateOfMutation));
 
             return entity
                 .Match<Either<string, MunicipalityModel>>(
-                    Some: item => this.mapper.Map<MunicipalityModel>(item),
+                    Some: item => mapper.Map<MunicipalityModel>(item),
                     None: () => $"Municipality by ReligiousGroupType.Protestant {bfsNumber} not found")
                 .AsTask();
         }
 
         public Task<IReadOnlyCollection<TaxSupportedMunicipalityModel>> GetAllSupportTaxCalculationAsync(int year)
         {
-            using (var ctx = this.dbContext())
-            {
-                IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities =
-                    ctx.Rates
-                        .Where(
-                            item => item.Year == year)
-                        .OrderBy(item => item.MunicipalityName)
-                        .Select(item => new TaxSupportedMunicipalityModel
-                        {
-                            BfsNumber = item.BfsId,
-                            Name = item.MunicipalityName,
-                            Canton = Enum.Parse<Canton>(item.Canton),
-                        })
-                        .ToList();
+            using var ctx = dbContext();
+            IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities =
+                ctx.Rates
+                    .Where(
+                        item => item.Year == year)
+                    .OrderBy(item => item.MunicipalityName)
+                    .Select(item => new TaxSupportedMunicipalityModel
+                    {
+                        BfsNumber = item.BfsId,
+                        Name = item.MunicipalityName,
+                        Canton = Enum.Parse<Canton>(item.Canton),
+                    })
+                    .ToList();
 
-                return Task.FromResult(municipalities);
-            }
+            return Task.FromResult(municipalities);
         }
     }
 }

@@ -39,22 +39,22 @@ namespace TaxCalculator
             Canton canton,
             TaxPerson person)
         {
-            var validationResult = this.taxPersonValidator.Validate(person);
+            var validationResult = taxPersonValidator.Validate(person);
             if (!validationResult.IsValid)
             {
                 var errorMessageLine = string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
                 return $"validation failed: {errorMessageLine}";
             }
 
-            var basisPerson = this.mapper.Map<BasisTaxPerson>(person);
+            var basisPerson = mapper.Map<BasisTaxPerson>(person);
 
             Either<string, BasisTaxResult> incomeTaxResult =
-                await this.basisIncomeTaxCalculatorFunc(canton)
+                await basisIncomeTaxCalculatorFunc(canton)
                     .CalculateAsync(calculationYear, canton, basisPerson);
 
             return incomeTaxResult
                 .Match<Either<string, SingleTaxResult>>(
-                    Right: r => this.CalculateIncomeTax(
+                    Right: r => CalculateIncomeTax(
                         calculationYear, municipalityId, r),
                     Left: msg => msg);
         }
@@ -64,19 +64,17 @@ namespace TaxCalculator
             int municipalityId,
             BasisTaxResult basisTaxResult)
         {
-            using (var dbContext = this.rateDbContextFunc())
-            {
-                TaxRateEntity taxRate = dbContext.Rates.AsNoTracking()
-                    .Single(item => item.Year == calculationYear
-                                    && item.BfsId == municipalityId);
+            using var dbContext = rateDbContextFunc();
+            TaxRateEntity taxRate = dbContext.Rates.AsNoTracking()
+                .Single(item => item.Year == calculationYear
+                                && item.BfsId == municipalityId);
 
-                return new SingleTaxResult
-                {
-                    BasisTaxAmount = basisTaxResult,
-                    MunicipalityRate = taxRate.TaxRateMunicipality,
-                    CantonRate = taxRate.TaxRateCanton,
-                };
-            }
+            return new SingleTaxResult
+            {
+                BasisTaxAmount = basisTaxResult,
+                MunicipalityRate = taxRate.TaxRateMunicipality,
+                CantonRate = taxRate.TaxRateCanton,
+            };
         }
     }
 }

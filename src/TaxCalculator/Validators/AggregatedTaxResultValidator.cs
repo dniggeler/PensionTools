@@ -8,8 +8,8 @@
     {
         public AggregatedTaxResultValidator()
         {
-            this.RuleFor(x => x.IncomeTax).NotNull();
-            this.RuleFor(x => x.WealthTax).NotNull();
+            RuleFor(x => x.IncomeTax).NotNull();
+            RuleFor(x => x.WealthTax).NotNull();
         }
     }
 }

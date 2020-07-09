@@ -9,9 +9,9 @@ namespace TaxCalculator.Validators
     {
         public CapitalBenefitsTaxPersonValidator()
         {
-            this.RuleFor(x => x.CivilStatus)
+            RuleFor(x => x.CivilStatus)
                 .Must(x => x.IfNone(CivilStatus.Undefined) != CivilStatus.Undefined);
-            this.RuleFor(x => x.ReligiousGroupType).Must(x => x.IsSome);
+            RuleFor(x => x.ReligiousGroupType).Must(x => x.IsSome);
         }
     }
 }

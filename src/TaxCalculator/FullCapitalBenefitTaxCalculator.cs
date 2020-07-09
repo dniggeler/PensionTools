@@ -34,14 +34,14 @@ namespace TaxCalculator
             CapitalBenefitTaxPerson capitalBenefitTaxPerson)
         {
             var capitalBenefitTaxResultTask =
-                this.capitalBenefitCalculatorFunc(canton)
+                capitalBenefitCalculatorFunc(canton)
                     .CalculateAsync(calculationYear, municipalityId, canton, capitalBenefitTaxPerson);
 
             var federalTaxPerson =
-                this.mapper.Map<FederalTaxPerson>(capitalBenefitTaxPerson);
+                mapper.Map<FederalTaxPerson>(capitalBenefitTaxPerson);
 
             var federalTaxResultTask =
-                this.federalCalculator.CalculateAsync(calculationYear, federalTaxPerson);
+                federalCalculator.CalculateAsync(calculationYear, federalTaxPerson);
 
             await Task.WhenAll(capitalBenefitTaxResultTask, federalTaxResultTask);
 

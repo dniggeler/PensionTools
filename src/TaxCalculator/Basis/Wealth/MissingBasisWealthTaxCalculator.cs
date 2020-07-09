@@ -27,7 +27,7 @@ namespace TaxCalculator.Basis.Wealth
 
             Either<string, BasisTaxResult> result = msg;
 
-            this.logger.LogWarning(msg);
+            logger.LogWarning(msg);
 
             return Task.FromResult(result);
         }

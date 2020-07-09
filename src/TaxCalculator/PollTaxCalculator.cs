@@ -36,12 +36,12 @@ namespace TaxCalculator
         public Task<Either<string, PollTaxResult>> CalculateAsync(
             int calculationYear, int municipalityId, Canton canton, PollTaxPerson person)
         {
-            if (!this.HasPollTax(canton))
+            if (!HasPollTax(canton))
             {
                 return Task.FromResult<Either<string, PollTaxResult>>(new PollTaxResult());
             }
 
-            var validationResult = this.personValidator.Validate(person);
+            var validationResult = personValidator.Validate(person);
             if (!validationResult.IsValid)
             {
                 var errorMessageLine = string.Join(";", validationResult.Errors
@@ -51,34 +51,32 @@ namespace TaxCalculator
                         $"validation failed: {errorMessageLine}");
             }
 
-            using (var dbContext = this.dbContextFunc())
-            {
-                Option<TaxRateEntity> taxRate = dbContext.Rates.AsNoTracking()
-                    .FirstOrDefault(item => item.BfsId == municipalityId
-                                            && item.Year == calculationYear);
+            using var dbContext = dbContextFunc();
+            Option<TaxRateEntity> taxRate = dbContext.Rates.AsNoTracking()
+                .FirstOrDefault(item => item.BfsId == municipalityId
+                                        && item.Year == calculationYear);
 
-                return (from status in person.CivilStatus
-                        from nbrOfPolls in this.GetNumberOfPolls(status)
-                        from rate in taxRate
-                        select new PollTaxResult
-                        {
-                            CantonTaxAmount = nbrOfPolls * AllCantonsWithPollTax[canton],
-                            MunicipalityTaxAmount = nbrOfPolls * rate.PollTaxAmount.IfNone(0),
-                        })
-                    .ToEither("No tax available")
-                    .AsTask();
-            }
+            return (from status in person.CivilStatus
+                    from nbrOfPolls in GetNumberOfPolls(status)
+                    from rate in taxRate
+                    select new PollTaxResult
+                    {
+                        CantonTaxAmount = nbrOfPolls * AllCantonsWithPollTax[canton],
+                        MunicipalityTaxAmount = nbrOfPolls * rate.PollTaxAmount.IfNone(0),
+                    })
+                .ToEither("No tax available")
+                .AsTask();
         }
 
         public Task<Either<string, PollTaxResult>> CalculateAsync(
             int calculationYear, Canton canton, PollTaxPerson person, TaxRateEntity taxRateEntity)
         {
-            if (!this.HasPollTax(canton))
+            if (!HasPollTax(canton))
             {
                 return Task.FromResult<Either<string, PollTaxResult>>(new PollTaxResult());
             }
 
-            var validationResult = this.personValidator.Validate(person);
+            var validationResult = personValidator.Validate(person);
             if (!validationResult.IsValid)
             {
                 var errorMessageLine = string.Join(";", validationResult.Errors
@@ -89,7 +87,7 @@ namespace TaxCalculator
             }
 
             return (from status in person.CivilStatus
-                    from nbrOfPolls in this.GetNumberOfPolls(status)
+                    from nbrOfPolls in GetNumberOfPolls(status)
                     select new PollTaxResult
                     {
                         CantonTaxAmount = nbrOfPolls * AllCantonsWithPollTax[canton],
@@ -102,12 +100,12 @@ namespace TaxCalculator
         public Either<string, PollTaxResult> CalculateInternal(
             int calculationYear, Canton canton, PollTaxPerson person)
         {
-            if (!this.HasPollTax(canton))
+            if (!HasPollTax(canton))
             {
                 return new PollTaxResult();
             }
 
-            var validationResult = this.personValidator.Validate(person);
+            var validationResult = personValidator.Validate(person);
             if (!validationResult.IsValid)
             {
                 var errMsg = string

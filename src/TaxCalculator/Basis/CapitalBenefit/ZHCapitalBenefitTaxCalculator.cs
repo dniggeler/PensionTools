@@ -33,7 +33,7 @@ namespace TaxCalculator.Basis.CapitalBenefit
             Canton canton,
             CapitalBenefitTaxPerson capitalBenefitTaxPerson)
         {
-            var validationResult = this.validator.Validate(capitalBenefitTaxPerson);
+            var validationResult = validator.Validate(capitalBenefitTaxPerson);
             if (!validationResult.IsValid)
             {
                 var errorMessageLine =
@@ -43,18 +43,18 @@ namespace TaxCalculator.Basis.CapitalBenefit
             }
 
             const decimal annuitizeFactor = 10;
-            TaxPerson taxPerson = this.mapper.Map<TaxPerson>(capitalBenefitTaxPerson);
+            TaxPerson taxPerson = mapper.Map<TaxPerson>(capitalBenefitTaxPerson);
 
             taxPerson.TaxableIncome = capitalBenefitTaxPerson.TaxableBenefits / annuitizeFactor;
 
-            var stateTaxResult = await this.stateTaxCalculator.CalculateAsync(
+            var stateTaxResult = await stateTaxCalculator.CalculateAsync(
                 calculationYear,
                 municipalityId,
                 canton,
                 taxPerson);
 
             return stateTaxResult
-                .Map(r => this.Scale(r, annuitizeFactor));
+                .Map(r => Scale(r, annuitizeFactor));
         }
 
         private CapitalBenefitTaxResult Scale(StateTaxResult intermediateResult, decimal scaleFactor)
