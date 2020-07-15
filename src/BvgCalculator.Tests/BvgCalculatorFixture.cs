@@ -34,6 +34,12 @@ namespace BvgCalculator.Tests
             };
         }
 
+        public BvgPerson GetTestPerson(
+            DateTime birthdate, decimal reportedSalary = 100_000, decimal partTimeDegree = 1)
+        {
+            return GetCurrentPersonDetails(birthdate, reportedSalary, partTimeDegree);
+        }
+
         public BvgPerson GetDefaultPerson()
         {
             BvgPerson personDetails = new BvgPerson
