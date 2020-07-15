@@ -48,7 +48,7 @@ namespace TaxCalculator
                 return msg.AsTask();
             }
 
-            return 
+            return
                 Validate(person, taxResult)
                     .BindAsync(r => CalculateInternalAsync(
                         person, taxRateEntity, taxResult));
@@ -57,7 +57,7 @@ namespace TaxCalculator
         public Task<Either<string, ChurchTaxResult>> CalculateAsync(
             ChurchTaxPerson person, TaxRateEntity taxRateEntity, AggregatedBasisTaxResult taxResult)
         {
-            return 
+            return
                 Validate(person, taxResult)
                 .BindAsync(r => CalculateInternalAsync(
                     person, taxRateEntity, taxResult));

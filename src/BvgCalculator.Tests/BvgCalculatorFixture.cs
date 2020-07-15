@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.BvgCalculator.Models;
 using PensionCoach.Tools.CommonTypes;
@@ -17,63 +17,6 @@ namespace BvgCalculator.Tests
             ServiceProvider provider = serviceCollection.BuildServiceProvider();
 
             _calculator = provider.GetRequiredService<IBvgCalculator>();
-        }
-
-        public async Task<BvgBaseFactorResult> GetBvgBaseFactorsAsync(BvgPerson person, DateTime processDate)
-        {
-            BvgProcessActuarialReserve predecessor =
-                await GetActuarialReserveAsync(processDate, person);
-
-            return await _calculator.CalculateAsync(predecessor, processDate, person);
-        }
-
-        public async Task<BvgCalculationResult> GetBvgBenefitsAsync(
-            BvgPerson person, DateTime processDate)
-        {
-            BvgProcessActuarialReserve predecessor =
-                await GetActuarialReserveAsync(processDate, person);
-
-            return await GetBvgBenefitsAsync(person, processDate, predecessor);
-        }
-
-        public async Task<BvgCalculationResult> GetBvgBenefitsAsync(
-            BvgPerson person, DateTime processDate, BvgProcessActuarialReserve actuarialReserve)
-        {
-            return await _calculator.CalculateRawValuesAsync(actuarialReserve, processDate, person);
-        }
-
-        public BvgPerson GetTestPerson(DateTime birthdate, decimal reportedSalary = 100_000, decimal partTimeDegree = 1)
-        {
-            return GetCurrentPersonDetails(birthdate, reportedSalary, partTimeDegree);
-        }
-
-        public BvgPerson GetTestPersonBelowSalaryThreshold()
-        {
-            BvgPerson personDetails = GetCurrentPersonDetails(new DateTime(1974, 8, 31), 20_000, 1M);
-
-            return personDetails;
-        }
-
-        private Task<BvgProcessActuarialReserve> GetActuarialReserveAsync(
-            DateTime processDate, BvgPerson person)
-        {
-            BvgProcessActuarialReserve predecessorProcess = new BvgProcessActuarialReserve();
-
-            return GetActuarialReserveAsync(processDate, person, predecessorProcess);
-        }
-
-        private async Task<BvgProcessActuarialReserve> GetActuarialReserveAsync(
-            DateTime processDate, BvgPerson person, BvgProcessActuarialReserve predecessorProcess)
-        {
-            (decimal CapitalBoY, decimal CapitalEoY) retirementCapitalCurrentYearTuple =
-                await _calculator.CalculateRetirementCapitalCurrentYearAsync(predecessorProcess, processDate, person);
-
-            return new BvgProcessActuarialReserve
-            {
-                DateOfProcess = processDate,
-                Dkx = retirementCapitalCurrentYearTuple.CapitalBoY,
-                Dkx1 = retirementCapitalCurrentYearTuple.CapitalEoY
-            };
         }
 
         private BvgPerson GetCurrentPersonDetails(DateTime birthdate, decimal salary, decimal partTimeDegree)

@@ -1,4 +1,5 @@
-﻿using PensionCoach.Tools.BvgCalculator;
+﻿using FluentAssertions;
+using PensionCoach.Tools.BvgCalculator;
 using Xunit;
 
 namespace BvgCalculator.Tests
@@ -6,19 +7,21 @@ namespace BvgCalculator.Tests
     [Trait("BVG", "Retirement Credit Table")]
     public class BvgRetirementCreditTableTests : IClassFixture<BvgCalculatorFixture>
     {
-        [Fact(DisplayName = "Retirement Credit Rate")]
-        public void ShouldReturnRetirementCreditRate()
+        [Theory(DisplayName = "Retirement Credit Rate")]
+        [InlineData(30, 0.07)]
+        [InlineData(65, 0.18)]
+        [InlineData(35, 0.10)]
+        [InlineData(24, 0.0)]
+        public void ShouldReturnRetirementCreditRate(int age, decimal expectedRate)
         {
             // given
-            int bvgAge = 30;
-            decimal expectedResult = 7M;
 
             // when
             BvgRetirementCreditsTable creditTable = new BvgRetirementCreditsTable();
-            decimal result = creditTable.GetRateInPercentage(bvgAge);
+            decimal result = creditTable.GetRateInPercentage(age);
 
             // then
-            result.Should().Be(expectedResult);
+            result.Should().Be(expectedRate);
         }
     }
 }

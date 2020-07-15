@@ -7,9 +7,7 @@ namespace PensionCoach.Tools.BvgCalculator
     {
         public decimal GetRateInPercentage(int bvgAge)
         {
-            const decimal percentageFactor = 100;
-
-            return GetRate(bvgAge) * percentageFactor;
+            return GetRate(bvgAge);
         }
 
         public decimal GetRate(int bvgAge)

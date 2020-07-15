@@ -39,7 +39,7 @@ namespace TaxCalculator
             Canton canton,
             TaxPerson person)
         {
-            var validationResult = taxPersonValidator.Validate(person);
+            var validationResult = await taxPersonValidator.ValidateAsync(person);
             if (!validationResult.IsValid)
             {
                 var errorMessageLine = string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
