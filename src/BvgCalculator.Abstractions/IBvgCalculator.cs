@@ -7,6 +7,6 @@ namespace PensionCoach.Tools.BvgCalculator
     public interface IBvgCalculator
     {
         Task<BvgCalculationResult> CalculateAsync(
-            BvgProcessActuarialReserve predecessor, DateTime dateOfProcess, BvgPerson person);
+            PredecessorRetirementCapital predecessor, DateTime dateOfProcess, BvgPerson person);
     }
 }

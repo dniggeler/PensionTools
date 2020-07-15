@@ -35,7 +35,7 @@ namespace BvgCalculator.Tests
 
             // when
             BvgCalculationResult result =
-                await _fixture.GetBvgBenefitsAsync(person, processDate);
+                await _fixture.GetBvgBenefitsAsync(0, person, processDate);
 
             // then
             result.RetirementCapitalSequence.Should().NotBeNullOrEmpty();
@@ -54,7 +54,7 @@ namespace BvgCalculator.Tests
 
             // when
             BvgCalculationResult result =
-                await _fixture.GetBvgBenefitsAsync(person, processDate);
+                await _fixture.GetBvgBenefitsAsync(0, person, processDate);
 
             // then
             result.RetirementCapitalSequence.Should().NotBeNullOrEmpty();
@@ -62,7 +62,7 @@ namespace BvgCalculator.Tests
             Snapshot.Match(result);
         }
 
-        [Fact(DisplayName = "Calculate Benefits for Default Contract")]
+        [Fact(DisplayName = "Calculate Benefits")]
         public async Task ShouldReturnBenefitsCalculationResult()
         {
             // given
@@ -90,7 +90,7 @@ namespace BvgCalculator.Tests
             // when
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            BvgCalculationResult result = await _fixture.GetBvgBenefitsAsync(person, processDate);
+            BvgCalculationResult result = await _fixture.GetBvgBenefitsAsync(9065, person, processDate);
             sw.Stop();
 
             _outputHelper.WriteLine(sw.ElapsedMilliseconds.ToString());
@@ -125,7 +125,7 @@ namespace BvgCalculator.Tests
             // when
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            BvgCalculationResult result = await _fixture.GetBvgBenefitsAsync(person, processDate);
+            BvgCalculationResult result = await _fixture.GetBvgBenefitsAsync(0, person, processDate);
             sw.Stop();
 
             _outputHelper.WriteLine(sw.ElapsedMilliseconds.ToString());

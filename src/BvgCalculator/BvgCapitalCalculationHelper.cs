@@ -20,7 +20,7 @@ namespace PensionCoach.Tools.BvgCalculator
         /// <param name="ageBvg">The age BVG.</param>
         /// <param name="retirementAgeBvg">The retirement age BVG.</param>
         /// <param name="iBvg">The i BVG.</param>
-        /// <param name="predecessorProcess">The actuarial reserve accounting year.</param>
+        /// <param name="predecessorCapital">The actuarial reserve accounting year.</param>
         /// <param name="retirementCreditSequence">The retirement credit sequence.</param>
         /// <returns></returns>
         public static IReadOnlyCollection<BvgRetirementCapital> GetRetirementCapitalSequence(
@@ -29,7 +29,7 @@ namespace PensionCoach.Tools.BvgCalculator
             int ageBvg,
             int retirementAgeBvg,
             decimal iBvg,
-            BvgProcessActuarialReserve predecessorProcess,
+            PredecessorRetirementCapital predecessorCapital,
             IReadOnlyCollection<RetirementCredit> retirementCreditSequence)
         {
             // Begin of financial year = January 1 fo the financial year
@@ -38,8 +38,8 @@ namespace PensionCoach.Tools.BvgCalculator
 
             if (retirementDate <= endOfFinancialYear)
             {
-                decimal aghBoYProRata = predecessorProcess.Dkx;
-                decimal aghEoYProRata = predecessorProcess.Dkx1;
+                decimal aghBoYProRata = predecessorCapital.BeginOfYearAmount;
+                decimal aghEoYProRata = predecessorCapital.EndOfYearAmount;
 
                 BvgRetirementCapital aghProRataBoY =
                     new BvgRetirementCapital(beginOfFinancialYear,
@@ -63,8 +63,8 @@ namespace PensionCoach.Tools.BvgCalculator
             BvgRetirementCapital retirementCapitalEndOfYear =
                 new BvgRetirementCapital(
                         endOfFinancialYear,
-                        predecessorProcess.Dkx1,
-                        predecessorProcess.Dkx1)
+                        predecessorCapital.EndOfYearAmount,
+                        predecessorCapital.EndOfYearAmount)
                     .Round();
 
             Lst<BvgRetirementCapital> retirementAssets = Prelude.List(retirementCapitalEndOfYear);

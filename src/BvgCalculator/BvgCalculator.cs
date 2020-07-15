@@ -19,7 +19,7 @@ namespace PensionCoach.Tools.BvgCalculator
         }
 
         public Task<BvgCalculationResult> CalculateAsync(
-            BvgProcessActuarialReserve predecessorProcess, DateTime dateOfProcess, BvgPerson person)
+            PredecessorRetirementCapital predecessorCapital, DateTime dateOfProcess, BvgPerson person)
         {
             BvgSalary salary = GetBvgSalary(dateOfProcess, person);
 
@@ -30,7 +30,7 @@ namespace PensionCoach.Tools.BvgCalculator
                 GetRetirementCreditSequence(person, dateOfProcess, salary);
 
             IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence =
-                GetRetirementCapitalSequence(predecessorProcess, dateOfProcess, person, retirementCreditSequence);
+                GetRetirementCapitalSequence(predecessorCapital, dateOfProcess, person, retirementCreditSequence);
 
             decimal retirementCapitalEndOfYear =
                 GetRetirementCapitalEndOfYear(dateOfProcess, retirementCapitalSequence);
@@ -41,7 +41,7 @@ namespace PensionCoach.Tools.BvgCalculator
             decimal finalRetirementCapitalWithoutInterest =
                 GetFinalRetirementCapitalWithoutInterest(retirementCapitalSequence);
 
-            decimal retirementPension = GetRetirementPension(predecessorProcess, person, dateOfProcess, retirementCreditSequence);
+            decimal retirementPension = GetRetirementPension(predecessorCapital, person, dateOfProcess, retirementCreditSequence);
 
             // reset risk benefits to 0 if below salary threshold
             decimal disabilityPension = 0;
@@ -140,13 +140,13 @@ namespace PensionCoach.Tools.BvgCalculator
         }
 
         private decimal GetRetirementPension(
-            BvgProcessActuarialReserve predecessorProcess,
+            PredecessorRetirementCapital predecessorCapital,
             BvgPerson personDetails,
             DateTime dateOfProcess,
             IReadOnlyCollection<RetirementCredit> retirementCreditSequence)
         {
             IEnumerable<BvgRetirementCapital> retirementCapitalSequence =
-                GetRetirementCapitalSequence(predecessorProcess, dateOfProcess, personDetails, retirementCreditSequence);
+                GetRetirementCapitalSequence(predecessorCapital, dateOfProcess, personDetails, retirementCreditSequence);
 
             BvgRetirementCapital latestElement = retirementCapitalSequence.First();
 
@@ -214,7 +214,7 @@ namespace PensionCoach.Tools.BvgCalculator
         }
 
         private IReadOnlyCollection<BvgRetirementCapital> GetRetirementCapitalSequence(
-            BvgProcessActuarialReserve predecessorProcess,
+            PredecessorRetirementCapital predecessorCapital,
             DateTime dateOfProcess,
             BvgPerson personDetails,
             IReadOnlyCollection<RetirementCredit> retirementCreditSequence)
@@ -234,7 +234,7 @@ namespace PensionCoach.Tools.BvgCalculator
                 age,
                 retirementAgeBvg,
                 iBvg,
-                predecessorProcess,
+                predecessorCapital,
                 retirementCreditSequence);
         }
 

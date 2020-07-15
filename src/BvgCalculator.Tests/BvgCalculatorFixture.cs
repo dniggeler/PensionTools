@@ -56,11 +56,18 @@ namespace BvgCalculator.Tests
             return personDetails;
         }
 
-        public async Task<BvgCalculationResult> GetBvgBenefitsAsync(BvgPerson person, DateTime processDate)
+        public async Task<BvgCalculationResult> GetBvgBenefitsAsync(
+            decimal currentRetirementCapital, BvgPerson person, DateTime processDate)
         {
-            BvgProcessActuarialReserve predecessorProcess = new BvgProcessActuarialReserve();
+            var predecessorCapital = new PredecessorRetirementCapital
+            {
+                DateOfProcess = processDate,
+                BeginOfYearAmount = 0,
+                CurrentAmount = 0,
+                EndOfYearAmount = currentRetirementCapital,
+            };
             
-            return await _calculator.CalculateAsync(predecessorProcess, processDate, person);
+            return await _calculator.CalculateAsync(predecessorCapital, processDate, person);
         }
     }
 }
