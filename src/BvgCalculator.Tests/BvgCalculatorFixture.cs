@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.BvgCalculator.Models;
@@ -19,7 +20,7 @@ namespace BvgCalculator.Tests
             _calculator = provider.GetRequiredService<IBvgCalculator>();
         }
 
-        private BvgPerson GetCurrentPersonDetails(DateTime birthdate, decimal salary, decimal partTimeDegree)
+        internal BvgPerson GetCurrentPersonDetails(DateTime birthdate, decimal salary, decimal partTimeDegree)
         {
             return new BvgPerson
             {
@@ -53,6 +54,13 @@ namespace BvgCalculator.Tests
             };
 
             return personDetails;
+        }
+
+        public async Task<BvgCalculationResult> GetBvgBenefitsAsync(BvgPerson person, DateTime processDate)
+        {
+            BvgProcessActuarialReserve predecessorProcess = new BvgProcessActuarialReserve();
+            
+            return await _calculator.CalculateAsync(predecessorProcess, processDate, person);
         }
     }
 }

@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Newtonsoft.Json;
 using PensionCoach.Tools.BvgCalculator.Models;
-using PensionCoach.Tools.CommonTypes;
 using Snapshooter.Xunit;
 using Xunit;
 using Xunit.Abstractions;
@@ -121,7 +120,7 @@ namespace BvgCalculator.Tests
 
             DateTime processDate = new DateTime(2019, 1, 1);
 
-            BvgPerson person = _fixture.GetTestPersonBelowSalaryThreshold();
+            BvgPerson person = _fixture.GetCurrentPersonDetails(new DateTime(1974, 8, 31), 20_000, 1M);
 
             // when
             Stopwatch sw = new Stopwatch();
@@ -139,40 +138,6 @@ namespace BvgCalculator.Tests
                  .Excluding(o => o.RetirementCreditSequence));
 
             _outputHelper.WriteLine(JsonConvert.SerializeObject(result));
-        }
-
-
-        [Fact(DisplayName = "After Final Retirement Age")]
-        public async Task ShouldCalculateWhenAfterRetirementAge()
-        {
-            // given
-            decimal reportedSalary = 61800;
-            DateTime dateOfProcess = new DateTime(2020, 1, 1);
-            DateTime birthdate = new DateTime(1955, 9, 19);
-
-            BvgPerson person = _fixture.GetTestPerson(birthdate);
-            person.ReportedSalary = reportedSalary;
-            person.Gender = Gender.Female;
-
-            BvgPensionPlan seniorPlan = _fixture.GetSeniorBvgPensionPlan();
-
-            BvgProcessActuarialReserve dk = new BvgProcessActuarialReserve
-            {
-                DateOfProcess = dateOfProcess,
-                Dkx = 37473,
-                ValueBeforeProcess = 37473,
-                ValueAfterProcess = 37473,
-                Dkx1 = 37848,
-            };
-
-            // when
-            BvgCalculationResult result =
-                await _fixture.GetBvgBenefitsAsync(person, dateOfProcess, dk, seniorPlan);
-
-            // then
-            result.RetirementCapitalSequence.Should().NotBeNullOrEmpty();
-
-            Snapshot.Match(result);
         }
     }
 }
