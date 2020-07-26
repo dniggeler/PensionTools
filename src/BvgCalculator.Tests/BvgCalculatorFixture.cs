@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using LanguageExt;
 using Microsoft.Extensions.DependencyInjection;
 using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.BvgCalculator.Models;
@@ -56,7 +57,7 @@ namespace BvgCalculator.Tests
             return personDetails;
         }
 
-        public async Task<BvgCalculationResult> GetBvgBenefitsAsync(
+        public Task<Either<string, BvgCalculationResult>> GetBvgBenefitsAsync(
             decimal currentRetirementCapital, BvgPerson person, DateTime processDate)
         {
             var predecessorCapital = new PredecessorRetirementCapital
@@ -67,7 +68,7 @@ namespace BvgCalculator.Tests
                 EndOfYearAmount = currentRetirementCapital,
             };
             
-            return await _calculator.CalculateAsync(predecessorCapital, processDate, person);
+            return _calculator.CalculateAsync(predecessorCapital, processDate, person);
         }
     }
 }

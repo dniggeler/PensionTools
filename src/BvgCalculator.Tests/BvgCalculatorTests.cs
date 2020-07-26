@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using FluentAssertions;
+using LanguageExt;
 using Newtonsoft.Json;
 using PensionCoach.Tools.BvgCalculator.Models;
 using Snapshooter.Xunit;
@@ -34,8 +34,10 @@ namespace BvgCalculator.Tests
             person.PartTimeDegree = 0.8M;
 
             // when
-            BvgCalculationResult result =
+            Either<string, BvgCalculationResult> response =
                 await _fixture.GetBvgBenefitsAsync(0, person, processDate);
+
+            BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
 
             // then
             result.RetirementCapitalSequence.Should().NotBeNullOrEmpty();
@@ -53,8 +55,10 @@ namespace BvgCalculator.Tests
             BvgPerson person = _fixture.GetTestPerson(birthdate);
 
             // when
-            BvgCalculationResult result =
+            var response =
                 await _fixture.GetBvgBenefitsAsync(0, person, processDate);
+
+            BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
 
             // then
             result.RetirementCapitalSequence.Should().NotBeNullOrEmpty();
@@ -88,12 +92,10 @@ namespace BvgCalculator.Tests
             BvgPerson person = _fixture.GetTestPerson(birthdate);
 
             // when
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            BvgCalculationResult result = await _fixture.GetBvgBenefitsAsync(9065, person, processDate);
-            sw.Stop();
+            var response =
+                await _fixture.GetBvgBenefitsAsync(9065, person, processDate);
 
-            _outputHelper.WriteLine(sw.ElapsedMilliseconds.ToString());
+            BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
 
             // then
             result.RetirementCapitalSequence.Should().NotBeNullOrEmpty();
@@ -123,12 +125,11 @@ namespace BvgCalculator.Tests
             BvgPerson person = _fixture.GetCurrentPersonDetails(new DateTime(1974, 8, 31), 20_000, 1M);
 
             // when
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            BvgCalculationResult result = await _fixture.GetBvgBenefitsAsync(0, person, processDate);
-            sw.Stop();
+            
+            var response =
+                await _fixture.GetBvgBenefitsAsync(0, person, processDate);
 
-            _outputHelper.WriteLine(sw.ElapsedMilliseconds.ToString());
+            BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
 
             // then
             result.RetirementCapitalSequence.Should().NotBeNullOrEmpty();

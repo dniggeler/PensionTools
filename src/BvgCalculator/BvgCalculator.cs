@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LanguageExt;
+using LanguageExt.SomeHelp;
 using PensionCoach.Tools.BvgCalculator.Models;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonUtils;
@@ -18,7 +19,7 @@ namespace PensionCoach.Tools.BvgCalculator
             RetirementCredits = retirementCredits;
         }
 
-        public Task<BvgCalculationResult> CalculateAsync(
+        public Task<Either<string, BvgCalculationResult>> CalculateAsync(
             PredecessorRetirementCapital predecessorCapital, DateTime dateOfProcess, BvgPerson person)
         {
             BvgSalary salary = GetBvgSalary(dateOfProcess, person);
@@ -59,7 +60,7 @@ namespace PensionCoach.Tools.BvgCalculator
                 orphanPension = childPension;
             }
 
-            BvgCalculationResult result = new BvgCalculationResult
+            Either<string, BvgCalculationResult> result = new BvgCalculationResult
             {
                 EffectiveSalary = salary.EffectiveSalary,
                 InsuredSalary = salary.InsuredSalary,
@@ -77,7 +78,7 @@ namespace PensionCoach.Tools.BvgCalculator
                 RetirementCapitalSequence = retirementCapitalSequence
             };
 
-            return Task.FromResult(result);
+            return result.AsTask();
 
         }
 
