@@ -175,16 +175,6 @@ namespace PensionCoach.Tools.BvgCalculator
             return BvgInterestRateDictionary.Match(year);
         }
 
-        /// <summary>
-        /// Projection interest rate by year (Projektionszins)
-        /// </summary>
-        /// <param name="year"></param>
-        /// <returns></returns>
-        public static decimal GetProjectionInterestRate(int year)
-        {
-            return ProjectionInterestRateDictionary.Match(year);
-        }
-
         public static decimal GetUwsRateBvg(int year, Gender gender)
         {
             if (gender == Gender.Male)
@@ -268,6 +258,7 @@ namespace PensionCoach.Tools.BvgCalculator
         private static readonly Dictionary<int, decimal?> BvgInterestRateDictionary =
             new Dictionary<int, decimal?>
             {
+                {1984, 0.0M},
                 {2003, 0.0400M},
                 {2004, 0.0325M},
                 {2005, 0.0225M},
@@ -278,16 +269,6 @@ namespace PensionCoach.Tools.BvgCalculator
                 {2016, 0.0175M},
                 {2017, 0.0125M},
                 {9999, 0.0100M},
-            };
-
-        private static readonly Dictionary<int, decimal?> ProjectionInterestRateDictionary =
-            new Dictionary<int, decimal?>
-            {
-                {2014, null},
-                {2016, 0.0225M},
-                {2017, 0.0175M},
-                {2020, 0.0150M},
-                {9999, 0.0125M},
             };
     }
 }
