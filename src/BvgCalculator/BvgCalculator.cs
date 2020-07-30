@@ -24,7 +24,7 @@ namespace PensionCoach.Tools.BvgCalculator
             BvgSalary salary = GetBvgSalary(dateOfProcess, person);
 
             decimal retirementCreditFactor = GetRetirementCreditFactor(person, dateOfProcess);
-            decimal retirementCredit = GetRetirementCredit(person, salary.InsuredSalary, retirementCreditFactor);
+            decimal retirementCredit = salary.InsuredSalary * retirementCreditFactor;
 
             IReadOnlyCollection<RetirementCredit> retirementCreditSequence =
                 GetRetirementCreditSequence(person, dateOfProcess, salary);
@@ -158,11 +158,6 @@ namespace PensionCoach.Tools.BvgCalculator
             DateTime dateOfProcess,
             BvgPerson personDetails)
         {
-            if (personDetails.HasStop && personDetails.HasStopWithRiskProtection == false)
-            {
-                return 0M;
-            }
-
             decimal capital = GetFinalRetirementCapitalWithoutInterest(retirementCapitalSequence);
 
             return MathUtils.Round(capital * Bvg.FactorPartnersPension *
@@ -174,11 +169,6 @@ namespace PensionCoach.Tools.BvgCalculator
             BvgPerson personDetails,
             DateTime dateOfProcess)
         {
-            if (personDetails.HasStop && personDetails.HasStopWithRiskProtection == false)
-            {
-                return 0M;
-            }
-
             decimal capital = GetFinalRetirementCapitalWithoutInterest(retirementCapitalSequence);
 
             return MathUtils.Round(capital * Bvg.FactorChildPension *
@@ -188,11 +178,6 @@ namespace PensionCoach.Tools.BvgCalculator
         private decimal GetDisabilityPension(
             IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence, BvgPerson personDetails, DateTime dateOfProcess)
         {
-            if (personDetails.HasStop && personDetails.HasStopWithRiskProtection == false)
-            {
-                return 0M;
-            }
-
             decimal capital = GetFinalRetirementCapitalWithoutInterest(retirementCapitalSequence);
 
             return MathUtils.Round(capital * Bvg.GetUwsRateBvg(dateOfProcess.Year, personDetails.Gender));
@@ -247,15 +232,9 @@ namespace PensionCoach.Tools.BvgCalculator
         }
 
         private decimal GetRetirementCredit(
-            BvgPerson personDetails,
             decimal insuredSalary,
             decimal retirementCreditFactor)
         {
-            if (personDetails.HasStop)
-            {
-                return 0M;
-            }
-
             return insuredSalary * retirementCreditFactor;
         }
 

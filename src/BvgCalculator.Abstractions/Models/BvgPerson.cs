@@ -30,22 +30,6 @@ namespace PensionCoach.Tools.BvgCalculator.Models
         public Gender Gender { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this person has a savings stop.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance has stop; otherwise, <c>false</c>.
-        /// </value>
-        public bool HasStop { get; set; }
-
-        /// <summary>
-        /// Gets or sets the has stop with risk protection.
-        /// </summary>
-        /// <value>
-        /// The has stop with risk protection.
-        /// </value>
-        public bool? HasStopWithRiskProtection { get; set; }
-
-        /// <summary>
         ///     Gets or sets the part time degree.
         /// </summary>
         /// <value>

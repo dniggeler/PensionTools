@@ -27,8 +27,6 @@ namespace BvgCalculator.Tests
             {
                 DateOfBirth = birthdate,
                 Gender = Gender.Male,
-                HasStop = false,
-                HasStopWithRiskProtection = false,
                 PartTimeDegree = partTimeDegree,
                 ReportedSalary = salary,
                 WorkingAbilityDegree = 1,
