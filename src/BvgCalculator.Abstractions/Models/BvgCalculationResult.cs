@@ -1,11 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
+
 
 namespace PensionCoach.Tools.BvgCalculator.Models
 {
     public class BvgCalculationResult
     {
+        public DateTime DateOfRetirement { get; set; }
+
         public decimal EffectiveSalary { get; set; }
+
         public decimal InsuredSalary { get; set; }
+
         public decimal RetirementCredit { get; set; }
         public decimal RetirementCreditFactor { get; set; }
         public decimal RetirementCapitalEndOfYear { get; set; }

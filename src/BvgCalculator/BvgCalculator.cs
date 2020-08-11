@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
+using FluentValidation.Results;
 using LanguageExt;
 using PensionCoach.Tools.BvgCalculator.Models;
 using PensionCoach.Tools.CommonTypes;
@@ -12,14 +14,33 @@ namespace PensionCoach.Tools.BvgCalculator
     public class BvgCalculator : IBvgCalculator
     {
         private readonly IBvgRetirementCredits RetirementCredits;
+        private readonly IValidator<BvgPerson> bvgPersonValidator;
 
-        public BvgCalculator(IBvgRetirementCredits retirementCredits)
+        public BvgCalculator(
+            IBvgRetirementCredits retirementCredits, IValidator<BvgPerson> bvgPersonValidator)
         {
             RetirementCredits = retirementCredits;
+            this.bvgPersonValidator = bvgPersonValidator;
         }
 
         public Task<Either<string, BvgCalculationResult>> CalculateAsync(
             PredecessorRetirementCapital predecessorCapital, DateTime dateOfProcess, BvgPerson person)
+        {
+            Option<ValidationResult> validationResult = bvgPersonValidator.Validate(person);
+
+            return validationResult
+                .Where(r => !r.IsValid)
+                .Map<Either<string, bool>>(r =>
+                {
+                    var errorMessageLine = string.Join(";", r.Errors.Select(x => x.ErrorMessage));
+                    return $"validation failed: {errorMessageLine}";
+                })
+                .IfNone(true)
+                .Bind(_ => CalculateInternal(predecessorCapital, dateOfProcess, person))
+                .AsTask();
+        }
+
+        private Either<string, BvgCalculationResult> CalculateInternal(PredecessorRetirementCapital predecessorCapital, in DateTime dateOfProcess, BvgPerson person)
         {
             BvgSalary salary = GetBvgSalary(dateOfProcess, person);
 
@@ -61,6 +82,7 @@ namespace PensionCoach.Tools.BvgCalculator
 
             Either<string, BvgCalculationResult> result = new BvgCalculationResult
             {
+                DateOfRetirement = GetRetirementDate(person.DateOfBirth, person.Gender),
                 EffectiveSalary = salary.EffectiveSalary,
                 InsuredSalary = salary.InsuredSalary,
                 RetirementCredit = retirementCredit,
@@ -77,8 +99,7 @@ namespace PensionCoach.Tools.BvgCalculator
                 RetirementCapitalSequence = retirementCapitalSequence
             };
 
-            return result.AsTask();
-
+            return result;
         }
 
         public static bool IsRetired(BvgPerson person, DateTime dateOfProcess)
@@ -229,13 +250,6 @@ namespace PensionCoach.Tools.BvgCalculator
             BvgSalary salary)
         {
             return BvgCapitalCalculationHelper.GetRetirementCreditSequence(personDetails, dateOfProcess, salary);
-        }
-
-        private decimal GetRetirementCredit(
-            decimal insuredSalary,
-            decimal retirementCreditFactor)
-        {
-            return insuredSalary * retirementCreditFactor;
         }
 
         private decimal GetRetirementCreditFactor(BvgPerson person, DateTime dateOfProcess)

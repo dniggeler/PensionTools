@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
+using PensionCoach.Tools.BvgCalculator.Models;
+using PensionCoach.Tools.BvgCalculator.Validators;
 
 
 namespace PensionCoach.Tools.BvgCalculator
@@ -9,6 +12,8 @@ namespace PensionCoach.Tools.BvgCalculator
         {
             serviceCollection.AddSingleton<IBvgRetirementCredits, BvgRetirementCreditsTable>();
             serviceCollection.AddSingleton<IBvgCalculator, BvgCalculator>();
+
+            serviceCollection.AddSingleton<IValidator<BvgPerson>, BvgPersonValidator>();
         }
     }
 }

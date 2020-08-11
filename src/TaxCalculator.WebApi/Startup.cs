@@ -21,7 +21,7 @@ namespace TaxCalculator.WebApi
 
         public Startup(IConfiguration configuration)
         {
-            this.Configuration = configuration;
+            Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -30,7 +30,7 @@ namespace TaxCalculator.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
-                options.AddPolicy(this.myAllowSpecificOrigins, builder =>
+                options.AddPolicy(myAllowSpecificOrigins, builder =>
                 {
                     builder.WithOrigins(
                         "http://localhost:8080",
@@ -46,7 +46,7 @@ namespace TaxCalculator.WebApi
             services.AddControllersWithViews()
                 .AddJsonOptions(options =>
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-            services.AddTaxData(this.Configuration);
+            services.AddTaxData(Configuration);
             services.AddTaxCalculators();
             services.AddTaxComparers();
             services.AddBvgCalculators();
@@ -80,7 +80,7 @@ namespace TaxCalculator.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(this.myAllowSpecificOrigins);
+            app.UseCors(myAllowSpecificOrigins);
             app.UseRouting();
             app.UseAuthorization();
             app.UseHealthChecks("/");

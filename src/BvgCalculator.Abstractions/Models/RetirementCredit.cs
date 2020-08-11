@@ -44,6 +44,11 @@ namespace PensionCoach.Tools.BvgCalculator.Models
         /// </value>
         public decimal AmountRounded100 => MathUtils.Round(AmountRaw);
 
+        public RetirementCredit()
+        {
+            
+        }
+
         public RetirementCredit(decimal amountRaw, int age)
         {
             AmountRaw = amountRaw;

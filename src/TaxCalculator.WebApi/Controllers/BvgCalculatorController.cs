@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.BvgCalculator.Models;
-using TaxCalculator.WebApi.Models;
 using TaxCalculator.WebApi.Models.Bvg;
 
 namespace TaxCalculator.WebApi.Controllers
@@ -32,17 +31,16 @@ namespace TaxCalculator.WebApi.Controllers
         /// <returns>Calculation results.</returns>
         /// <response code="200">If calculation is successful.</response>
         /// <response code="400">
-        /// If request is incomplete or cannot be validated. The calculator may also not support all cantons.
+        /// If request is incomplete or cannot be validated.
         /// </response>
         /// <remarks>
         /// Berechnet die BVG Leistungen zum ordentlichen Pensionierungsalter.
         /// </remarks>
         [HttpPost]
-        [Route("capitalbenefit")]
+        [Route("benefits")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<CapitalBenefitTaxComparerResponse>> Calculate(
-            BvgCalculationRequest request)
+        public async Task<ActionResult<BvgCalculationResult>> Calculate(BvgCalculationRequest request)
         {
             if (request == null)
             {

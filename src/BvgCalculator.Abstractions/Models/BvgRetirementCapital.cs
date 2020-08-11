@@ -14,7 +14,6 @@ namespace PensionCoach.Tools.BvgCalculator.Models
         /// </summary>
         public decimal Value { get; }
 
-
         /// <summary>
         /// Gets the value without interest BVG by raw retirement credits.
         /// </summary>
@@ -22,6 +21,11 @@ namespace PensionCoach.Tools.BvgCalculator.Models
         /// The value without interest BVG by raw retirement credits.
         /// </value>
         public decimal ValueWithoutInterest { get; }
+
+        public BvgRetirementCapital()
+        {
+            
+        }
 
         public BvgRetirementCapital(DateTime date, decimal value, decimal valueWithoutInterest)
         {
