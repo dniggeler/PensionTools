@@ -50,10 +50,10 @@ namespace TaxCalculator.WebApi.Controllers
             var bvgPerson = MapBvgPerson();
             var capital = new PredecessorRetirementCapital
             {
-                BeginOfYearAmount = request.AvailableCapitalAtCalculation,
+                BeginOfYearAmount = request.RetirementCapitalBeginOfYear,
                 DateOfProcess = request.DateOfCalculation,
-                CurrentAmount = request.AvailableCapitalAtCalculation,
-                EndOfYearAmount = request.AvailableCapitalAtCalculation,
+                CurrentAmount = request.RetirementCapitalBeginOfYear,
+                EndOfYearAmount = request.RetirementCapitalEndOfYear,
             };
 
             var result =
@@ -73,7 +73,6 @@ namespace TaxCalculator.WebApi.Controllers
                     ReportedSalary = request.Salary,
                     Gender = request.Gender,
                     PartTimeDegree = decimal.One,
-                    WorkingAbilityDegree = decimal.One,
                 };
             }
         }

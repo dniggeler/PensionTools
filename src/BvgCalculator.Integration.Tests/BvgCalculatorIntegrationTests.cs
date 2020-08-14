@@ -38,13 +38,22 @@ namespace BvgCalculator.Integration.Tests
         }
 
         [Theory(DisplayName = "Pension")]
-        [InlineData(100_000, 0, 13964)]
+        [InlineData(100_000, 0, 8966, "2020-01-01", "1974-08-31", 14698)]
+        [InlineData(100_000, 96287, 107202, "2017-01-01", "1969-03-17", 20610)]
         public async Task ShouldCalculateSuccessfullyPension(
-            decimal salary, decimal retirementCapital, decimal expectedPension)
+            decimal salary,
+            decimal retirementCapitalBeginOfYear,
+            decimal retirementCapitalEndOfYear,
+            string dateOfCalculationStr,
+            string dateOfBirthStr,
+            decimal expectedPension)
         {
             var request = GetBvgRequest();
             request.Salary = salary;
-            request.AvailableCapitalAtCalculation = retirementCapital;
+            request.RetirementCapitalBeginOfYear = retirementCapitalBeginOfYear;
+            request.RetirementCapitalEndOfYear = retirementCapitalEndOfYear;
+            request.DateOfCalculation = DateTime.Parse(dateOfCalculationStr);
+            request.DateOfBirth = DateTime.Parse(dateOfBirthStr);
 
             var response =
                 await client.PostAsJsonAsync("benefits", request);
@@ -64,7 +73,8 @@ namespace BvgCalculator.Integration.Tests
                 Gender = Gender.Male,
                 DateOfBirth = new DateTime(1974,8, 31),
                 DateOfCalculation = new DateTime(2020, 1,1),
-                AvailableCapitalAtCalculation = 168_000,
+                RetirementCapitalBeginOfYear = 168_000,
+                RetirementCapitalEndOfYear = 176_000,
                 Salary = 45000
             };
         }

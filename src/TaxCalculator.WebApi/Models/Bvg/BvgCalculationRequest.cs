@@ -13,7 +13,10 @@ namespace TaxCalculator.WebApi.Models.Bvg
         public DateTime DateOfCalculation { get; set; }
 
         [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
-        public decimal AvailableCapitalAtCalculation { get; set; }
+        public decimal RetirementCapitalBeginOfYear { get; set; }
+
+        [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
+        public decimal RetirementCapitalEndOfYear { get; set; }
 
         [Range(typeof(DateTime), "1/1/1900", "1/1/2099", ErrorMessage = "No valid birthdate")]
         public DateTime DateOfBirth { get; set; }

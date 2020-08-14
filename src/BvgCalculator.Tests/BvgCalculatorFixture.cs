@@ -29,7 +29,6 @@ namespace BvgCalculator.Tests
                 Gender = Gender.Male,
                 PartTimeDegree = partTimeDegree,
                 ReportedSalary = salary,
-                WorkingAbilityDegree = 1,
                 DisabilityDegree = 0,
             };
         }
@@ -45,10 +44,8 @@ namespace BvgCalculator.Tests
             BvgPerson personDetails = new BvgPerson
             {
                 DateOfBirth = new DateTime(1974, 8, 31),
-                DateOfAdmittance = new DateTime(2015, 1, 1),
                 Gender = Gender.Male,
                 PartTimeDegree = 1.0M,
-                WorkingAbilityDegree = 1.0M,
                 ReportedSalary = 100000,
             };
 

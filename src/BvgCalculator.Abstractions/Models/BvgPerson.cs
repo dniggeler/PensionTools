@@ -14,14 +14,6 @@ namespace PensionCoach.Tools.BvgCalculator.Models
         public DateTime DateOfBirth { get; set; }
 
         /// <summary>
-        /// Gets or sets the date of admittance.
-        /// </summary>
-        /// <value>
-        /// The date of admittance.
-        /// </value>
-        public DateTime DateOfAdmittance { get; set; }
-
-        /// <summary>
         /// Gets or sets the gender code.
         /// </summary>
         /// <value>
@@ -39,14 +31,6 @@ namespace PensionCoach.Tools.BvgCalculator.Models
         ///     TZGR
         /// </remarks>
         public decimal PartTimeDegree { get; set; }
-
-        /// <summary>
-        /// Gets or sets the working ability degree.
-        /// </summary>
-        /// <value>
-        /// The working ability degree.
-        /// </value>
-        public decimal WorkingAbilityDegree { get; set; }
 
         /// <summary>
         ///     Gets or sets the disability degree BVG.
