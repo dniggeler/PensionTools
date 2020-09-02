@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
-
 
 namespace PensionCoach.Tools.BvgCalculator.Models
 {
@@ -24,6 +22,6 @@ namespace PensionCoach.Tools.BvgCalculator.Models
         public decimal OrphanPension { get; set; }
         public decimal ChildPensionForDisabled { get; set; }
         public IEnumerable<RetirementCredit> RetirementCreditSequence { get; set; }
-        public IEnumerable<BvgRetirementCapital> RetirementCapitalSequence { get; set; }
+        public IEnumerable<RetirementCapital> RetirementCapitalSequence { get; set; }
     }
 }

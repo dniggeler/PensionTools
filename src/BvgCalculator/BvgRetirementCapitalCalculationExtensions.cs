@@ -6,32 +6,32 @@ namespace PensionCoach.Tools.BvgCalculator
 {
     public static class BvgCalculationExtensions
     {
-        public static BvgRetirementCapital Round60(this BvgRetirementCapital element)
+        public static RetirementCapital Round60(this RetirementCapital element)
         {
             return RoundBy(element, MathUtils.Round60);
         }
 
-        public static BvgRetirementCapital Round(this BvgRetirementCapital element)
+        public static RetirementCapital Round(this RetirementCapital element)
         {
             return RoundBy(element, MathUtils.Round);
         }
 
-        public static BvgRetirementCapital Interpolate(this BvgRetirementCapital element,
+        public static RetirementCapital Interpolate(this RetirementCapital element,
             bool isEndOfPeriod,
             DateTime date,
-            BvgRetirementCapital other)
+            RetirementCapital other)
         {
             decimal interpol = DateUtils.YearsBetween(element.Date, date) / DateUtils.YearsBetween(element.Date, other.Date);
 
-            return new BvgRetirementCapital(date,
+            return new RetirementCapital(date,
                 MathUtils.Interpol(element.Value, other.Value, interpol),
                 MathUtils.Interpol(element.ValueWithoutInterest, other.ValueWithoutInterest, interpol));
         }
 
-        private static BvgRetirementCapital RoundBy(BvgRetirementCapital element,
+        private static RetirementCapital RoundBy(RetirementCapital element,
             Func<decimal, decimal> roundMethod)
         {
-            return new BvgRetirementCapital(element.Date,
+            return new RetirementCapital(element.Date,
                 roundMethod(element.Value),
                 roundMethod(element.ValueWithoutInterest));
         }

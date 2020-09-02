@@ -50,7 +50,7 @@ namespace PensionCoach.Tools.BvgCalculator
             IReadOnlyCollection<RetirementCredit> retirementCreditSequence =
                 GetRetirementCreditSequence(person, dateOfProcess, salary);
 
-            IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence =
+            IReadOnlyCollection<RetirementCapital> retirementCapitalSequence =
                 GetRetirementCapitalSequence(predecessorCapital, dateOfProcess, person, retirementCreditSequence);
 
             decimal retirementCapitalEndOfYear =
@@ -149,7 +149,7 @@ namespace PensionCoach.Tools.BvgCalculator
         }
 
         private decimal GetRetirementCapitalEndOfYear(DateTime dateOfProcess,
-            IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence)
+            IReadOnlyCollection<RetirementCapital> retirementCapitalSequence)
         {
             DateTime endOfYearDate = dateOfProcess.GetEndOfYearDate();
 
@@ -166,16 +166,16 @@ namespace PensionCoach.Tools.BvgCalculator
             DateTime dateOfProcess,
             IReadOnlyCollection<RetirementCredit> retirementCreditSequence)
         {
-            IEnumerable<BvgRetirementCapital> retirementCapitalSequence =
+            IEnumerable<RetirementCapital> retirementCapitalSequence =
                 GetRetirementCapitalSequence(predecessorCapital, dateOfProcess, personDetails, retirementCreditSequence);
 
-            BvgRetirementCapital latestElement = retirementCapitalSequence.First();
+            RetirementCapital latestElement = retirementCapitalSequence.First();
 
             return MathUtils.Round((latestElement.Value) * Bvg.GetUwsRateBvg(dateOfProcess.Year, personDetails.Gender));
         }
 
         private decimal GetPartnerPension(
-            IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence,
+            IReadOnlyCollection<RetirementCapital> retirementCapitalSequence,
             DateTime dateOfProcess,
             BvgPerson personDetails)
         {
@@ -186,7 +186,7 @@ namespace PensionCoach.Tools.BvgCalculator
         }
 
         private decimal GetChildPensionForDisabled(
-            IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence,
+            IReadOnlyCollection<RetirementCapital> retirementCapitalSequence,
             BvgPerson personDetails,
             DateTime dateOfProcess)
         {
@@ -197,7 +197,7 @@ namespace PensionCoach.Tools.BvgCalculator
         }
 
         private decimal GetDisabilityPension(
-            IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence, BvgPerson personDetails, DateTime dateOfProcess)
+            IReadOnlyCollection<RetirementCapital> retirementCapitalSequence, BvgPerson personDetails, DateTime dateOfProcess)
         {
             decimal capital = GetFinalRetirementCapitalWithoutInterest(retirementCapitalSequence);
 
@@ -205,21 +205,21 @@ namespace PensionCoach.Tools.BvgCalculator
         }
 
         private decimal GetFinalRetirementCapital(
-            IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence)
+            IReadOnlyCollection<RetirementCapital> retirementCapitalSequence)
         {
-            BvgRetirementCapital final = retirementCapitalSequence.First();
+            RetirementCapital final = retirementCapitalSequence.First();
 
             return MathUtils.Round(final.Value);
         }
 
-        private decimal GetFinalRetirementCapitalWithoutInterest(IReadOnlyCollection<BvgRetirementCapital> retirementCapitalSequence)
+        private decimal GetFinalRetirementCapitalWithoutInterest(IReadOnlyCollection<RetirementCapital> retirementCapitalSequence)
         {
-            BvgRetirementCapital final = retirementCapitalSequence.First();
+            RetirementCapital final = retirementCapitalSequence.First();
 
             return MathUtils.Round(final.ValueWithoutInterest);
         }
 
-        private IReadOnlyCollection<BvgRetirementCapital> GetRetirementCapitalSequence(
+        private IReadOnlyCollection<RetirementCapital> GetRetirementCapitalSequence(
             PredecessorRetirementCapital predecessorCapital,
             DateTime dateOfProcess,
             BvgPerson personDetails,

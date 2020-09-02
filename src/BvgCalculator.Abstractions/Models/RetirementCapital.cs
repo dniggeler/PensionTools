@@ -2,7 +2,7 @@
 
 namespace PensionCoach.Tools.BvgCalculator.Models
 {
-    public class BvgRetirementCapital
+    public class RetirementCapital
     {
         /// <summary>
         /// Date of validity
@@ -22,12 +22,12 @@ namespace PensionCoach.Tools.BvgCalculator.Models
         /// </value>
         public decimal ValueWithoutInterest { get; }
 
-        public BvgRetirementCapital()
+        public RetirementCapital()
         {
             
         }
 
-        public BvgRetirementCapital(DateTime date, decimal value, decimal valueWithoutInterest)
+        public RetirementCapital(DateTime date, decimal value, decimal valueWithoutInterest)
         {
             Date = date;
             Value = value;

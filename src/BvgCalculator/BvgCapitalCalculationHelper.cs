@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using LanguageExt;
 using PensionCoach.Tools.BvgCalculator.Models;
 using PensionCoach.Tools.CommonUtils;
+using static LanguageExt.Prelude;
 
 namespace PensionCoach.Tools.BvgCalculator
 {
@@ -23,7 +23,7 @@ namespace PensionCoach.Tools.BvgCalculator
         /// <param name="predecessorCapital">The actuarial reserve accounting year.</param>
         /// <param name="retirementCreditSequence">The retirement credit sequence.</param>
         /// <returns></returns>
-        public static IReadOnlyCollection<BvgRetirementCapital> GetRetirementCapitalSequence(
+        public static IReadOnlyCollection<RetirementCapital> GetRetirementCapitalSequence(
             DateTime processDate,
             DateTime retirementDate,
             int ageBvg,
@@ -41,35 +41,35 @@ namespace PensionCoach.Tools.BvgCalculator
                 decimal aghBoYProRata = predecessorCapital.BeginOfYearAmount;
                 decimal aghEoYProRata = predecessorCapital.EndOfYearAmount;
 
-                BvgRetirementCapital aghProRataBoY =
-                    new BvgRetirementCapital(beginOfFinancialYear,
+                RetirementCapital aghProRataBoY =
+                    new RetirementCapital(beginOfFinancialYear,
                         aghBoYProRata,
                         aghBoYProRata);
-                BvgRetirementCapital aghProRataEoY =
-                    new BvgRetirementCapital(endOfFinancialYear,
+                RetirementCapital aghProRataEoY =
+                    new RetirementCapital(endOfFinancialYear,
                         aghEoYProRata,
                         aghEoYProRata);
 
-                BvgRetirementCapital aghProRataEndOfPeriod =
+                RetirementCapital aghProRataEndOfPeriod =
                     aghProRataBoY
                         .Interpolate(true, retirementDate, aghProRataEoY)
                         .Round60()
                         .Round();
 
-                return Prelude.List(aghProRataEndOfPeriod);
+                return List(aghProRataEndOfPeriod);
             }
 
 
-            BvgRetirementCapital retirementCapitalEndOfYear =
-                new BvgRetirementCapital(
+            RetirementCapital retirementCapitalEndOfYear =
+                new RetirementCapital(
                         endOfFinancialYear,
                         predecessorCapital.EndOfYearAmount,
                         predecessorCapital.EndOfYearAmount)
                     .Round();
 
-            Lst<BvgRetirementCapital> retirementAssets = Prelude.List(retirementCapitalEndOfYear);
+            var retirementAssets = List(retirementCapitalEndOfYear);
 
-            return retirementAssets.AddRange(
+            retirementAssets = retirementAssets.AddRange(
                     GetProjection(
                         ageBvg + 1,
                         retirementDate,
@@ -77,8 +77,9 @@ namespace PensionCoach.Tools.BvgCalculator
                         retirementCapitalEndOfYear,
                         iBvg,
                         retirementAgeBvg,
-                        retirementCreditSequence))
-                .Reverse();
+                        retirementCreditSequence));
+
+                return retirementAssets.Reverse();
         }
 
         /// <summary>
@@ -117,8 +118,6 @@ namespace PensionCoach.Tools.BvgCalculator
         /// <param name="personDetails">The person details.</param>
         /// <param name="processDate">The process date.</param>
         /// <param name="salaryDetails"></param>
-        /// <param name="plan"></param>
-        /// <returns></returns>
         /// <exception cref="ApplicationException">Process date {processDate} after date of retirement {dateOfRetirement}</exception>
         internal static IReadOnlyCollection<RetirementCredit> GetRetirementCreditSequence(
             BvgPerson personDetails,
@@ -136,18 +135,18 @@ namespace PensionCoach.Tools.BvgCalculator
                 .ToList();
         }
 
-        private static List<BvgRetirementCapital> GetProjection(
+        private static List<RetirementCapital> GetProjection(
             int age,
             DateTime dateOfRetirement,
             DateTime dateOfBeginOfPeriod,
-            BvgRetirementCapital retirementCapitalBoY,
+            RetirementCapital retirementCapitalBoY,
             decimal iProjection,
             int retirementAge,
             IReadOnlyCollection<RetirementCredit> retirementCreditSequence)
         {
-            List<BvgRetirementCapital> assets = new List<BvgRetirementCapital>();
+            List<RetirementCapital> assets = new List<RetirementCapital>();
 
-            BvgRetirementCapital newRetirementAssets = retirementCapitalBoY;
+            RetirementCapital newRetirementAssets = retirementCapitalBoY;
 
             for (int x = age; x < retirementAge; ++x)
             {
@@ -161,7 +160,7 @@ namespace PensionCoach.Tools.BvgCalculator
 
             RetirementCredit retirementCreditsRetirementYear = retirementCreditSequence.FirstOrDefault(c => c.Age == retirementAge);
 
-            BvgRetirementCapital oldRetirementAssets = newRetirementAssets;
+            RetirementCapital oldRetirementAssets = newRetirementAssets;
 
             newRetirementAssets = CalculateNewProjectedRetirementCapital(dateOfBeginOfPeriod.AddYears(retirementAge - age),
                 retirementCreditsRetirementYear, newRetirementAssets.Value, newRetirementAssets.ValueWithoutInterest, iProjection);
@@ -171,7 +170,7 @@ namespace PensionCoach.Tools.BvgCalculator
             return assets;
         }
 
-        private static BvgRetirementCapital CalculateNewProjectedRetirementCapital(
+        private static RetirementCapital CalculateNewProjectedRetirementCapital(
             DateTime beginOfPeriod,
             RetirementCredit retirementCredit,
             decimal xCapital,
@@ -186,7 +185,7 @@ namespace PensionCoach.Tools.BvgCalculator
             decimal x1Capital = xCapital * (1M + iProjection) + retirementCredit.AmountRounded10;
             decimal x1CapitalWoI = xCapitalWoI + retirementCredit.AmountRaw;
 
-            return new BvgRetirementCapital(
+            return new RetirementCapital(
                 beginOfPeriod.AddYears(1),
                 x1Capital,
                 x1CapitalWoI);
