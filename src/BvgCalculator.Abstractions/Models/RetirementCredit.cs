@@ -46,7 +46,6 @@ namespace PensionCoach.Tools.BvgCalculator.Models
 
         public RetirementCredit()
         {
-            
         }
 
         public RetirementCredit(decimal amountRaw, int age)

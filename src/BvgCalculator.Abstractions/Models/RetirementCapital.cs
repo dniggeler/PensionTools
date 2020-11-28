@@ -24,7 +24,6 @@ namespace PensionCoach.Tools.BvgCalculator.Models
 
         public RetirementCapital()
         {
-            
         }
 
         public RetirementCapital(DateTime date, decimal value, decimal valueWithoutInterest)

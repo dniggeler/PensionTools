@@ -13,6 +13,7 @@ using Xunit;
 
 namespace BvgCalculator.Integration.Tests
 {
+    [Trait("BVG", "Integration")]
     public class BvgCalculatorIntegrationTests : IClassFixture<WebApplicationFactory<Startup>>
     {
         private readonly HttpClient client;

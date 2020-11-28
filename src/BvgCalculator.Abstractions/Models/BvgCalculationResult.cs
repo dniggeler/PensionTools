@@ -21,7 +21,7 @@ namespace PensionCoach.Tools.BvgCalculator.Models
         public decimal PartnerPension { get; set; }
         public decimal OrphanPension { get; set; }
         public decimal ChildPensionForDisabled { get; set; }
-        public IEnumerable<RetirementCredit> RetirementCreditSequence { get; set; }
-        public IEnumerable<RetirementCapital> RetirementCapitalSequence { get; set; }
+        public IReadOnlyCollection<RetirementCredit> RetirementCreditSequence { get; set; }
+        public IReadOnlyCollection<RetirementCapital> RetirementCapitalSequence { get; set; }
     }
 }
