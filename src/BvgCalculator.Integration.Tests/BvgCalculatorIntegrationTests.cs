@@ -39,7 +39,7 @@ namespace BvgCalculator.Integration.Tests
 
         [Theory(DisplayName = "Pension")]
         [InlineData(100_000, 0, 8966, "2020-01-01", "1974-08-31", 14698)]
-        [InlineData(100_000, 96287, 107202, "2017-01-01", "1969-03-17", 20610)]
+        [InlineData(207154, 127503.60, 137843.90, "2020-01-01", "1969-03-17", 20610)]
         public async Task ShouldCalculateSuccessfullyPension(
             decimal salary,
             decimal retirementCapitalBeginOfYear,
