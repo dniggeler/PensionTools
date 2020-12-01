@@ -1,31 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using PensionCoach.Tools.CommonTypes;
+﻿using PensionCoach.Tools.CommonTypes;
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
 {
-    public class TaxSupportedMunicipalityModel
-        : IEqualityComparer<TaxSupportedMunicipalityModel>
+    public record TaxSupportedMunicipalityModel
     {
-        public int BfsNumber { get; set; }
+        public int BfsNumber { get; init; }
 
-        public string Name { get; set; }
+        public string Name { get; init; }
 
-        public Canton Canton { get; set; }
-
-        public bool Equals(TaxSupportedMunicipalityModel x, TaxSupportedMunicipalityModel y)
-        {
-            if (ReferenceEquals(x, y)) return true;
-            if (ReferenceEquals(x, null)) return false;
-            if (ReferenceEquals(y, null)) return false;
-            if (x.GetType() != y.GetType()) return false;
-
-            return x.BfsNumber == y.BfsNumber;
-        }
-
-        public int GetHashCode(TaxSupportedMunicipalityModel obj)
-        {
-            return obj.BfsNumber.GetHashCode();
-        }
+        public Canton Canton { get; init; }
     }
 }

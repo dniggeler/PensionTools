@@ -214,7 +214,8 @@ namespace PensionCoach.Tools.BvgCalculator
                 {2013, 27840M},
                 {2015, 28080M},
                 {2019, 28200M},
-                {9999, 28440M},
+                {2021, 28440M},
+                {9999, 28680M},
             };
 
         private const decimal MinimalSalaryFactor = 0.125M;
