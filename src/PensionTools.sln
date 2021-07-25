@@ -54,8 +54,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BvgCalculator.Tests", "BvgC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BvgCalculator.Integration.Tests", "BvgCalculator.Integration.Tests\BvgCalculator.Integration.Tests.csproj", "{F270AF92-0177-4596-9ECD-BE34A16F916F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorPensionTools", "BlazorPensionTools\BlazorPensionTools.csproj", "{CF32CE29-0FC5-4196-9173-02FBCAC422EA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,10 +128,6 @@ Global
 		{F270AF92-0177-4596-9ECD-BE34A16F916F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F270AF92-0177-4596-9ECD-BE34A16F916F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F270AF92-0177-4596-9ECD-BE34A16F916F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF32CE29-0FC5-4196-9173-02FBCAC422EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF32CE29-0FC5-4196-9173-02FBCAC422EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF32CE29-0FC5-4196-9173-02FBCAC422EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF32CE29-0FC5-4196-9173-02FBCAC422EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
