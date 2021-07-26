@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaxCalculators.Tests", "Tax
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.WebApi", "TaxCalculator.WebApi\TaxCalculator.WebApi.csproj", "{19811879-AEFC-4F75-BF52-10CB8471F5CB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tax.Tools.Comparison", "Tax.Tools.Comparison", "{BF9972ED-AFAC-4E39-9AAD-89F46338CED1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools.Comparison", "Tools.Comparison", "{BF9972ED-AFAC-4E39-9AAD-89F46338CED1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Tools.Comparison", "Tax.Tools.Comparison\Tax.Tools.Comparison\Tax.Tools.Comparison.csproj", "{7F3959D0-0998-41D0-B362-2A1366CA1270}"
 EndProject
