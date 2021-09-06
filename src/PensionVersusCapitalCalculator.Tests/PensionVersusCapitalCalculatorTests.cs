@@ -17,9 +17,11 @@ namespace PensionVersusCapitalCalculator.Tests
         }
 
         [Theory]
-        [InlineData(50_000, 1_000_000, 261, 18.838)]
-        [InlineData(50_000, 1_000_000, 3426, 18.745)]
-        public async Task Calculate_BreakEven_Factor(decimal retirementPension, decimal retirementCapital, int municipalityId, decimal expectedBreakEvenFactor)
+        [InlineData(50_000, 28680, 1_000_000, 261, 20.305)] // Zürich
+        [InlineData(50_000, 28680, 1_000_000, 141, 20.305)] // Zürich
+        [InlineData(50_000, 28680, 1_000_000, 3426, 20.075)] // SG
+        [InlineData(50_000, 28680, 1_000_000, 2526, 20.19)] // SO
+        public async Task Calculate_BreakEven_Factor(decimal retirementPension, decimal otherIncome, decimal retirementCapital, int municipalityId, decimal expectedBreakEvenFactor)
         {
             const decimal epsilon = 0.001M;
             const int calculationYear = 2019;
@@ -33,21 +35,13 @@ namespace PensionVersusCapitalCalculator.Tests
                 Name = name,
                 CivilStatus = civilStatus,
                 ReligiousGroupType = religiousGroupType,
-                TaxableFederalIncome = retirementPension,
-                TaxableIncome = retirementPension,
+                TaxableFederalIncome = otherIncome,
+                TaxableIncome = otherIncome,
                 TaxableWealth = decimal.Zero
             };
 
-            CapitalBenefitTaxPerson capitalTaxPerson = new()
-            {
-                Name = name,
-                CivilStatus = civilStatus,
-                TaxableBenefits = retirementCapital,
-                ReligiousGroupType = religiousGroupType
-            };
-
             decimal result =
-                (await fixture.Service.CalculateAsync(calculationYear, municipalityId, canton, taxPerson, capitalTaxPerson))
+                (await fixture.Service.CalculateAsync(calculationYear, municipalityId, canton, retirementPension, retirementCapital, taxPerson))
                 .IfNone(decimal.Zero);
 
             Assert.InRange(result, expectedBreakEvenFactor - epsilon, expectedBreakEvenFactor + epsilon);

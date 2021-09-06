@@ -11,7 +11,8 @@ namespace PensionVersusCapitalCalculator.Abstractions
             int calculationYear,
             int municipalityId,
             Canton canton,
-            TaxPerson incomeTaxPerson,
-            CapitalBenefitTaxPerson capitalBenefitTaxPerson);
+            decimal retirementPension,
+            decimal retirementCapital,
+            TaxPerson taxPerson);
     }
 }

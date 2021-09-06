@@ -23,33 +23,64 @@ namespace PensionVersusCapitalCalculator
         }
 
         public async Task<Option<decimal>> CalculateAsync(
-            int calculationYear, int municipalityId, Canton canton, TaxPerson incomeTaxPerson, CapitalBenefitTaxPerson capitalBenefitTaxPerson)
+            int calculationYear,
+            int municipalityId,
+            Canton canton,
+            decimal retirementPension,
+            decimal retirementCapital,
+            TaxPerson taxPerson)
         {
             ICapitalBenefitTaxCalculator capitalBenefitCalculator = capitalBenefitCalculatorFunc(canton);
+
+            CapitalBenefitTaxPerson capitalBenefitTaxPerson = new()
+            {
+                Name = "Benefit Person",
+                CivilStatus = taxPerson.CivilStatus,
+                TaxableBenefits = retirementCapital,
+                ReligiousGroupType = taxPerson.ReligiousGroupType,
+                NumberOfChildren = taxPerson.NumberOfChildren,
+                PartnerReligiousGroupType = taxPerson.PartnerReligiousGroupType
+            };
+
 
             Either<string, CapitalBenefitTaxResult> capitalBenefitTaxCalculationResult =
                 await capitalBenefitCalculator.CalculateAsync(calculationYear, municipalityId, canton, capitalBenefitTaxPerson);
 
-            Either<string, SingleTaxResult> incomeTaxCalculationResult =
-                await incomeTaxCalculator.CalculateAsync(calculationYear, municipalityId, canton, incomeTaxPerson);
+            Either<string, SingleTaxResult> justOtherIncomeTaxCalculationResult =
+                await incomeTaxCalculator.CalculateAsync(calculationYear, municipalityId, canton, taxPerson);
 
-            var r = from b in capitalBenefitTaxCalculationResult
-                from i in incomeTaxCalculationResult
-                select CalculateBreakEvenFactor(b,i);
+            decimal otherIncome = taxPerson.TaxableIncome;
+
+            taxPerson.TaxableIncome += retirementPension;
+            taxPerson.TaxableFederalIncome += retirementPension;
+
+            Either<string, SingleTaxResult> withPensionIncomeTaxCalculationResult =
+                await incomeTaxCalculator.CalculateAsync(calculationYear, municipalityId, canton, taxPerson);
+
+            var r = from benefitsTax in capitalBenefitTaxCalculationResult
+                from otherIncomeTax in justOtherIncomeTaxCalculationResult
+                from withPensionIncomeTax in withPensionIncomeTaxCalculationResult
+                    select CalculateBreakEvenFactor(benefitsTax, otherIncomeTax, withPensionIncomeTax);
 
             return r.IfLeft(()=>Option<decimal>.None);
 
-            Option<decimal> CalculateBreakEvenFactor(CapitalBenefitTaxResult benefitTaxResult, SingleTaxResult incomeTaxResult)
+            Option<decimal> CalculateBreakEvenFactor(
+                CapitalBenefitTaxResult benefitTaxResult,
+                SingleTaxResult otherIncomeTaxResult,
+                SingleTaxResult withPensionIncomeTaxResult)
             {
                 decimal capitalBenefitNet = capitalBenefitTaxPerson.TaxableBenefits - benefitTaxResult.TotalTaxAmount;
-                decimal incomeNet = incomeTaxPerson.TaxableIncome - incomeTaxResult.TotalTaxAmount;
+                decimal incomeNet = taxPerson.TaxableIncome - otherIncome;
+                decimal totalTaxNet = withPensionIncomeTaxResult.TotalTaxAmount - otherIncomeTaxResult.TotalTaxAmount;
 
                 if (incomeNet == decimal.Zero)
                 {
                     return Option<decimal>.None;
                 }
 
-                return capitalBenefitNet / incomeNet;
+                
+
+                return capitalBenefitNet / (incomeNet - totalTaxNet);
             }
         }
     }
