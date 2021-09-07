@@ -18,7 +18,7 @@ namespace PensionVersusCapitalCalculator.Tests
 
         [Theory]
         [InlineData(50_000, 28680, 1_000_000, 261, 20.305)] // Zürich
-        [InlineData(50_000, 28680, 1_000_000, 141, 20.305)] // Zürich
+        [InlineData(50_000, 28680, 1_000_000, 141, 20.214)] // Zürich
         [InlineData(50_000, 28680, 1_000_000, 3426, 20.075)] // SG
         [InlineData(50_000, 28680, 1_000_000, 2526, 20.19)] // SO
         public async Task Calculate_BreakEven_Factor(decimal retirementPension, decimal otherIncome, decimal retirementCapital, int municipalityId, decimal expectedBreakEvenFactor)
