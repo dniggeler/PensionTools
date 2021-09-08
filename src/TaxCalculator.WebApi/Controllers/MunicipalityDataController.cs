@@ -68,6 +68,7 @@ namespace TaxCalculator.WebApi.Controllers
         /// Search the municipality directory including its history
         /// matching filter values.
         /// </summary>
+        /// <param name="filter">Search municipalities with respect to given filter.</param>
         /// <returns>A list of municipalities.</returns>
         /// <remarks>
         /// Durchsucht das Gemeindeverzeichnis gemäss Filterwerte.
@@ -76,8 +77,7 @@ namespace TaxCalculator.WebApi.Controllers
         [Route("search")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<IEnumerable<MunicipalityModel>> Search(
-            MunicipalitySearchFilter filter)
+        public ActionResult<IEnumerable<MunicipalityModel>> Search(MunicipalitySearchFilter filter)
         {
             if (filter == null)
             {
