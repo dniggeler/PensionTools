@@ -1,9 +1,11 @@
-﻿namespace Calculators.CashFlow.Abstractions
+﻿namespace Calculators.CashFlow
 {
-    public enum StockValueType
+    public enum FundsType
     {
         Exogenous,
         TaxableWealth,
-        TaxableIncome
+        TaxableIncome,
+        NonTaxableWealth,
+        TaxableCapitalBenefit
     }
 }

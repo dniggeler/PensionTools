@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Calculators.CashFlow.Abstractions.Models
+namespace Calculators.CashFlow.Models
 {
     public record GenericCashFlowDefinition
     {
@@ -37,6 +37,14 @@ namespace Calculators.CashFlow.Abstractions.Models
         public decimal InitialAmount { get; init; }
 
         /// <summary>
+        /// Gets the step amount.
+        /// </summary>
+        /// <value>
+        /// The step amount.
+        /// </value>
+        public (decimal Amount, FrequencyType Frequency) RecurringAmount { get; init; }
+
+        /// <summary>
         /// Gets or sets the net growth rate.
         /// </summary>
         /// <value>
@@ -45,12 +53,12 @@ namespace Calculators.CashFlow.Abstractions.Models
         public decimal NetGrowthRate { get; init; }
 
         /// <summary>
-        /// Get or sets the period the cash-flow is producing values.
+        /// Get or sets the investment period beginning with the begin year and repeating count times.
         /// </summary>
         /// <value>
-        /// The net growth rate.
+        /// The investment period.
         /// </value>
-        public record ActivePeriod(DateTime Start, DateTime End);
+        public (int BeginYear, int Count) InvestmentPeriod { get; init; }
 
         /// <summary>
         /// Get or sets the period the cash-flow is producing values.
@@ -58,6 +66,6 @@ namespace Calculators.CashFlow.Abstractions.Models
         /// <value>
         /// The net growth rate.
         /// </value>
-        public record Stock(StockValueType Source, StockValueType Target);
+        public (FundsType Source, FundsType Target) Flow { get; init; }
     }
 }

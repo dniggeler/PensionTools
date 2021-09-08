@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>Calculators.CashFlow.Abstractions</AssemblyName>
-    <RootNamespace>Calculators.CashFlow.Abstractions</RootNamespace>
+    <RootNamespace>Calculators.CashFlow</RootNamespace>
   </PropertyGroup>
 
 </Project>
