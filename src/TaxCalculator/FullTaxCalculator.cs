@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AutoMapper;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes;
@@ -28,15 +29,17 @@ namespace TaxCalculator
             int calculationYear,
             int municipalityId,
             Canton canton,
-            TaxPerson person)
+            TaxPerson person,
+            bool withMaxAvailableCalculationYear)
         {
+            int maxCalculationYear = withMaxAvailableCalculationYear
+                ? Math.Min(calculationYear, 2019)
+                : calculationYear;
+
             var federalTaxPerson = mapper.Map<FederalTaxPerson>(person);
 
-            var stateTaxResultTask =
-                stateTaxCalculator
-                    .CalculateAsync(calculationYear, municipalityId, canton, person);
-            var federalTaxResultTask =
-                federalTaxCalculator.CalculateAsync(calculationYear, federalTaxPerson);
+            var stateTaxResultTask = stateTaxCalculator.CalculateAsync(maxCalculationYear, municipalityId, canton, person);
+            var federalTaxResultTask = federalTaxCalculator.CalculateAsync(maxCalculationYear, federalTaxPerson);
 
             await Task.WhenAll(stateTaxResultTask, federalTaxResultTask);
 

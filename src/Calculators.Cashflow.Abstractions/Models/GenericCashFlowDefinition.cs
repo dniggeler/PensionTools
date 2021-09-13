@@ -1,4 +1,5 @@
 ﻿using System;
+using PensionCoach.Tools.CommonTypes;
 
 namespace Calculators.CashFlow.Models
 {
@@ -66,6 +67,12 @@ namespace Calculators.CashFlow.Models
         /// <value>
         /// The net growth rate.
         /// </value>
-        public (FundsType Source, FundsType Target) Flow { get; init; }
+        public (AccountType Source, AccountType Target) Flow { get; init; }
+
+        public bool IsTaxable { get; set; }
+
+        public TaxType TaxType { get; set; }
+
+        public OccurrenceType OccurrenceType { get; set; }
     }
 }

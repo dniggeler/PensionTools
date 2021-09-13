@@ -6,4 +6,8 @@
     <RootNamespace>Calculators.CashFlow</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TaxCalculator.Abstractions\TaxCalculator.Abstractions.csproj" />
+  </ItemGroup>
+
 </Project>
