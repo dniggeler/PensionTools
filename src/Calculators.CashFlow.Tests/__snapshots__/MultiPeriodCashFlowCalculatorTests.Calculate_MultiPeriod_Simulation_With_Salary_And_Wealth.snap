@@ -1,0 +1,56 @@
+﻿{
+  "StartingYear": 2021,
+  "NumberOfPeriods": 10,
+  "Accounts": [
+    {
+      "Year": 2021,
+      "Amount": 516730.865,
+      "AccountType": "Wealth"
+    },
+    {
+      "Year": 2022,
+      "Amount": 534041.3250,
+      "AccountType": "Wealth"
+    },
+    {
+      "Year": 2023,
+      "Amount": 551429.585000,
+      "AccountType": "Wealth"
+    },
+    {
+      "Year": 2024,
+      "Amount": 568898.67500000,
+      "AccountType": "Wealth"
+    },
+    {
+      "Year": 2025,
+      "Amount": 586445.6553000000,
+      "AccountType": "Wealth"
+    },
+    {
+      "Year": 2026,
+      "Amount": 604046.096803000000,
+      "AccountType": "Wealth"
+    },
+    {
+      "Year": 2027,
+      "Amount": 621726.64132103000000,
+      "AccountType": "Wealth"
+    },
+    {
+      "Year": 2028,
+      "Amount": 639466.9218842403000000,
+      "AccountType": "Wealth"
+    },
+    {
+      "Year": 2029,
+      "Amount": 657293.643053082703000000,
+      "AccountType": "Wealth"
+    },
+    {
+      "Year": 2030,
+      "Amount": 675186.50123361353003000000,
+      "AccountType": "Wealth"
+    }
+  ]
+}
