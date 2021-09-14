@@ -1,5 +1,4 @@
-﻿using System;
-using PensionCoach.Tools.CommonTypes;
+﻿using PensionCoach.Tools.CommonTypes;
 
 namespace Calculators.CashFlow.Models
 {
@@ -11,7 +10,7 @@ namespace Calculators.CashFlow.Models
         /// <value>
         /// The identifier.
         /// </value>
-        public Guid Id { get; init; }
+        public string Id { get; init; }
 
         /// <summary>
         /// Gets the name.
@@ -62,10 +61,10 @@ namespace Calculators.CashFlow.Models
         public (int BeginYear, int Count) InvestmentPeriod { get; init; }
 
         /// <summary>
-        /// Get or sets the period the cash-flow is producing values.
+        /// Gets the flow. Source account is cleared and moved to target account.
         /// </summary>
         /// <value>
-        /// The net growth rate.
+        /// The flow.
         /// </value>
         public (AccountType Source, AccountType Target) Flow { get; init; }
 

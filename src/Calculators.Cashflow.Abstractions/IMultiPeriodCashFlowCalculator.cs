@@ -17,28 +17,25 @@ namespace Calculators.CashFlow
         ///    is moved to taxable wealth).
         /// </summary>
         /// <param name="person"></param>
-        /// <param name="cashFlowDefinitions">The cash flow definitions.</param>
-        /// <param name="initialAccountValues"></param>
+        /// <param name="cashFlowDefinitionHolder"></param>
         /// <returns></returns>
         Task<MultiPeriodCalculationResult> CalculateAsync(
             MultiPeriodCalculatorPerson person,
-            IReadOnlyCollection<GenericCashFlowDefinition> cashFlowDefinitions,
-            Dictionary<AccountType, decimal> initialAccountValues);
+            CashFlowDefinitionHolder cashFlowDefinitionHolder);
+
 
         /// <summary>
         /// Calculates the asynchronous.
         /// </summary>
-        /// <param name="startingYear"></param>
-        /// <param name="numberOfPeriods"></param>
+        /// <param name="startingYear">The starting year.</param>
+        /// <param name="numberOfPeriods">The number of periods.</param>
         /// <param name="person">The person.</param>
-        /// <param name="cashFlowDefinitions"></param>
-        /// <param name="initialAccountValues"></param>
+        /// <param name="cashFlowDefinitionHolder">The cash flow definition holder.</param>
         /// <returns></returns>
         Task<MultiPeriodCalculationResult> CalculateAsync(
             int startingYear,
             int numberOfPeriods,
             MultiPeriodCalculatorPerson person,
-            IReadOnlyCollection<GenericCashFlowDefinition> cashFlowDefinitions,
-            Dictionary<AccountType, decimal> initialAccountValues);
+            CashFlowDefinitionHolder cashFlowDefinitionHolder);
     }
 }

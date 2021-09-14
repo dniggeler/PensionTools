@@ -16,6 +16,8 @@ namespace Calculators.CashFlow.Models
         public decimal Income { get; set; }
         
         public decimal Wealth { get; set; }
+
+        public (decimal Pillar3a, decimal PensionPlan) CapitalBenefits { get; set; }
         
         public int NumberOfChildren { get; set; }
         

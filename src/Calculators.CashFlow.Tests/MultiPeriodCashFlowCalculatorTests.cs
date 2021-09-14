@@ -23,7 +23,7 @@ namespace Calculators.CashFlow.Tests
             // given
             int startingYear = 2021;
             int numberOfPeriods = 10;
-            int municipalityId = 261; // Zurich
+            int municipalityId = 261;
             Canton canton = Canton.ZH;
             MultiPeriodCalculatorPerson person = new()
             {
@@ -33,31 +33,64 @@ namespace Calculators.CashFlow.Tests
                 MunicipalityId = municipalityId,
                 Income = 100_000,
                 Wealth = 500_000,
+                CapitalBenefits = (100_000, 400_000),
                 NumberOfChildren = 0,
                 PartnerReligiousGroupType = ReligiousGroupType.Other,
                 ReligiousGroupType = ReligiousGroupType.Other
             };
 
-            List<GenericCashFlowDefinition> cashFlowDefinitions = new();
-            //{
-            //    new GenericCashFlowDefinition
-            //    {
-            //        NetGrowthRate = 0,
-            //        Name = "Test",
-            //        InitialAmount = 6883,
-            //        RecurringAmount = (6883, FrequencyType.Yearly),
-            //        Flow = (AccountType.Income, AccountType.CapitalBenefits),
-            //        InvestmentPeriod = (2021, 10),
-            //        IsTaxable = true,
-            //        TaxType = TaxType.Income
-            //    }
-            //};
+            List<GenericCashFlowDefinition> cashFlowDefinitions = new()
+            {
+                new GenericCashFlowDefinition
+                {
+                    Id = "my 3a account",
+                    Name = $"{person.Name} - 3a Pillar",
+                    InitialAmount = 6883,
+                    RecurringAmount = (6883, FrequencyType.Yearly),
+                    Flow = (AccountType.Income, AccountType.CapitalBenefits),
+                    InvestmentPeriod = (2021, 10),
+                    IsTaxable = false,
+                    TaxType = TaxType.Undefined,
+                    OccurrenceType = OccurrenceType.BeginOfPeriod
+                },
+                new GenericCashFlowDefinition
+                {
+                    Id = "my PK account",
+                    NetGrowthRate = 0,
+                    Name = "PK-Einkauf",
+                    InitialAmount = 10000,
+                    RecurringAmount = (10000, FrequencyType.Yearly),
+                    Flow = (AccountType.Income, AccountType.CapitalBenefits),
+                    InvestmentPeriod = (2021, 5),
+                    IsTaxable = false,
+                    TaxType = TaxType.Undefined,
+                    OccurrenceType = OccurrenceType.BeginOfPeriod
+                }
+            };
 
-            Dictionary<AccountType, decimal> initialFunds = new Dictionary<AccountType, decimal>();
+            List<ClearCashFlowDefinition> clearCashFlowDefinitions = new()
+            {
+                new ClearCashFlowDefinition
+                {
+                    Id = "Clear Capital Benefit Account",
+                    ClearAtYear = 2030,
+                    Flow = (AccountType.CapitalBenefits, AccountType.Wealth),
+                    IsTaxable = true,
+                    TaxType = TaxType.Capital,
+                    OccurrenceType = OccurrenceType.EndOfPeriod,
+                }
+            };
 
             // when
             var result = await _fixture.Service.CalculateAsync(
-                startingYear, numberOfPeriods, person, cashFlowDefinitions, initialFunds);
+                startingYear,
+                numberOfPeriods,
+                person,
+                new CashFlowDefinitionHolder
+                {
+                    GenericCashFlowDefinitions = cashFlowDefinitions,
+                    ClearCashFlowDefinitions = clearCashFlowDefinitions
+                });
 
             // then
             Snapshot.Match(result);

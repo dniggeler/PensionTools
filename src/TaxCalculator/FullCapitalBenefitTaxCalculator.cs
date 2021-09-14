@@ -31,17 +31,22 @@ namespace TaxCalculator
             int calculationYear,
             int municipalityId,
             Canton canton,
-            CapitalBenefitTaxPerson capitalBenefitTaxPerson)
+            CapitalBenefitTaxPerson capitalBenefitTaxPerson,
+            bool withMaxAvailableCalculationYear)
         {
+            int maxCalculationYear = withMaxAvailableCalculationYear
+                ? Math.Min(calculationYear, 2019)
+                : calculationYear;
+
             var capitalBenefitTaxResultTask =
                 capitalBenefitCalculatorFunc(canton)
-                    .CalculateAsync(calculationYear, municipalityId, canton, capitalBenefitTaxPerson);
+                    .CalculateAsync(maxCalculationYear, municipalityId, canton, capitalBenefitTaxPerson);
 
             var federalTaxPerson =
                 mapper.Map<FederalTaxPerson>(capitalBenefitTaxPerson);
 
             var federalTaxResultTask =
-                federalCalculator.CalculateAsync(calculationYear, federalTaxPerson);
+                federalCalculator.CalculateAsync(maxCalculationYear, federalTaxPerson);
 
             await Task.WhenAll(capitalBenefitTaxResultTask, federalTaxResultTask);
 
