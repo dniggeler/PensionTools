@@ -60,7 +60,7 @@ namespace Calculators.CashFlow
                     .Where(item => item.Year == currentYear)
                     .ToList();
 
-                List<ClearCashFlowDefinition> clearCashFlowDefinitions = cashFlowDefinitionHolder
+                List<ClearCashFlowDefinition> currentYearClearCashFlowDefinitions = cashFlowDefinitionHolder
                     .ClearCashFlowDefinitions
                     .Where(item => item.ClearAtYear == currentYear)
                     .ToList();
@@ -78,16 +78,22 @@ namespace Calculators.CashFlow
                 }
 
                 // 1. apply begin of year clear cash-flows
-                foreach (var clearCashFlowDefinition in clearCashFlowDefinitions
-                    .Where(item => item.OccurrenceType == OccurrenceType.BeginOfPeriod))
+                foreach (var clearCashFlowDefinition in currentYearClearCashFlowDefinitions
+                    .Where(item => item.OccurrenceType == OccurrenceType.BeginOfPeriod && item.IsTaxable))
                 {
-                    decimal amount = currentPeriodAccounts[clearCashFlowDefinition.Flow.Source] *
+                    decimal taxableAmount = currentPeriodAccounts[clearCashFlowDefinition.Flow.Source] *
                                            clearCashFlowDefinition.ClearRatio;
+                    
                     currentPeriodAccounts =
-                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, clearCashFlowDefinition.Flow.Source, -amount);
+                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, clearCashFlowDefinition.Flow.Source, -taxableAmount);
 
                     currentPeriodAccounts =
-                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, clearCashFlowDefinition.Flow.Target, amount);
+                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, clearCashFlowDefinition.Flow.Target, taxableAmount);
+
+                    var taxPaymentAmount = await CalculateCapitalBenefitsTaxAsync(currentYear, person, taxableAmount);
+
+                    currentPeriodAccounts =
+                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Wealth, -taxPaymentAmount);
                 }
 
                 // 2a. take each account amount, calculate tax, and deduct it from wealth
@@ -117,16 +123,22 @@ namespace Calculators.CashFlow
                     AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Income, -newSavings);
 
                 // 4. apply end of year clear cash-flows
-                foreach (var clearCashFlowDefinition in clearCashFlowDefinitions
-                    .Where(item => item.OccurrenceType == OccurrenceType.EndOfPeriod))
+                foreach (var clearCashFlowDefinition in currentYearClearCashFlowDefinitions
+                    .Where(item => item.OccurrenceType == OccurrenceType.EndOfPeriod && item.IsTaxable))
                 {
-                    decimal amount = currentPeriodAccounts[clearCashFlowDefinition.Flow.Source] *
-                                     clearCashFlowDefinition.ClearRatio;
+                    decimal taxableAmount = currentPeriodAccounts[clearCashFlowDefinition.Flow.Source] *
+                                            clearCashFlowDefinition.ClearRatio;
                     currentPeriodAccounts =
-                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, clearCashFlowDefinition.Flow.Source, -amount);
+                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, clearCashFlowDefinition.Flow.Source, -taxableAmount);
 
                     currentPeriodAccounts =
-                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, clearCashFlowDefinition.Flow.Target, amount);
+                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, clearCashFlowDefinition.Flow.Target, taxableAmount);
+
+                    var taxPaymentAmount = await CalculateCapitalBenefitsTaxAsync(currentYear, person, taxableAmount);
+
+                    currentPeriodAccounts =
+                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Wealth, -taxPaymentAmount);
+
                 }
 
                 // 5. reset flow account types income and exogenous which are swapped to next period
