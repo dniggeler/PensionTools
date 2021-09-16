@@ -68,9 +68,9 @@ namespace Calculators.CashFlow.Tests
                 }
             };
 
-            List<ClearCashFlowDefinition> clearCashFlowDefinitions = new()
+            List<ClearActionDefinition> clearCashFlowDefinitions = new()
             {
-                new ClearCashFlowDefinition
+                new ClearActionDefinition
                 {
                     Id = "Clear Capital Benefit Account",
                     ClearAtYear = 2030,

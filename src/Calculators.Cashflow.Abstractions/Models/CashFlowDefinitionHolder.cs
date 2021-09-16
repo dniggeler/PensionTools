@@ -18,6 +18,6 @@ namespace Calculators.CashFlow.Models
         /// <value>
         /// The clear cash flow definitions.
         /// </value>
-        public IReadOnlyCollection<ClearCashFlowDefinition> ClearCashFlowDefinitions { get; init; }
+        public IReadOnlyCollection<ClearActionDefinition> ClearCashFlowDefinitions { get; init; }
     }
 }
