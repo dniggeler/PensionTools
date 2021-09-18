@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,7 +35,7 @@ namespace Calculators.CashFlow
 
 
         /// <inheritdoc />
-        public async Task<MultiPeriodCalculationResult> CalculateAsync(
+        public async Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
             MultiPeriodCalculatorPerson person,
             CashFlowDefinitionHolder cashFlowDefinitionHolder)
         {
@@ -97,18 +96,10 @@ namespace Calculators.CashFlow
                 }
 
                 // 2a. take each account amount, calculate tax, and deduct it from wealth
-                decimal totalTaxAmount = decimal.Zero;
-                foreach (AccountType accountType in Enum.GetValues<AccountType>())
-                {
-                    var netAmount = currentPeriodAccounts[accountType];
+                var income = currentPeriodAccounts[AccountType.Income];
+                var wealth = currentPeriodAccounts[AccountType.Wealth];
 
-                    totalTaxAmount += accountType switch
-                    {
-                        AccountType.Income => await CalculateIncomeTaxAsync(currentYear, person, netAmount),
-                        AccountType.Wealth => await CalculateWealthTaxAsync(currentYear, person, netAmount),
-                        _ => decimal.Zero
-                    };
-                }
+                var totalTaxAmount = await CalculateIncomeAndWealthTaxAsync(currentYear, person, income, wealth);
 
                 // 2b. deduct tax payment from current wealth as tax payments are made after calculating taxes
                 currentPeriodAccounts =
@@ -158,8 +149,8 @@ namespace Calculators.CashFlow
                 Accounts = singlePeriodCalculationResults
             };
 
-            async Task<decimal> CalculateIncomeTaxAsync(
-                int currentYear, MultiPeriodCalculatorPerson calculatorPerson, decimal amount)
+            async Task<decimal> CalculateIncomeAndWealthTaxAsync(
+                int currentYear, MultiPeriodCalculatorPerson calculatorPerson, decimal income, decimal wealth)
             {
                 TaxPerson taxPerson = new()
                 {
@@ -168,36 +159,9 @@ namespace Calculators.CashFlow
                     NumberOfChildren = calculatorPerson.NumberOfChildren,
                     ReligiousGroupType = calculatorPerson.ReligiousGroupType,
                     PartnerReligiousGroupType = calculatorPerson.PartnerReligiousGroupType,
-                    TaxableWealth = decimal.Zero,
-                    TaxableFederalIncome = amount,
-                    TaxableIncome = amount
-                };
-
-                Either<string, FullTaxResult> result = await _fullTaxCalculator.CalculateAsync(
-                    currentYear, person.MunicipalityId, person.Canton, taxPerson, true);
-
-                return result.Match(
-                    Right: r => r.TotalTaxAmount,
-                    Left: error =>
-                    {
-                        _logger.LogError(error);
-                        return decimal.Zero;
-                    });
-            }
-
-            async Task<decimal> CalculateWealthTaxAsync(
-                int currentYear, MultiPeriodCalculatorPerson calculatorPerson, decimal amount)
-            {
-                TaxPerson taxPerson = new()
-                {
-                    Name = calculatorPerson.Name,
-                    CivilStatus = calculatorPerson.CivilStatus,
-                    NumberOfChildren = calculatorPerson.NumberOfChildren,
-                    ReligiousGroupType = calculatorPerson.ReligiousGroupType,
-                    PartnerReligiousGroupType = calculatorPerson.PartnerReligiousGroupType,
-                    TaxableWealth = amount,
-                    TaxableFederalIncome = decimal.Zero,
-                    TaxableIncome = decimal.Zero
+                    TaxableWealth = wealth,
+                    TaxableFederalIncome = income,
+                    TaxableIncome = income
                 };
 
                 Either<string, FullTaxResult> result = await _fullTaxCalculator.CalculateAsync(
@@ -239,7 +203,7 @@ namespace Calculators.CashFlow
         }
 
         /// <inheritdoc />
-        public Task<MultiPeriodCalculationResult> CalculateAsync(
+        public Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
             int startingYear,
             int numberOfPeriods,
             MultiPeriodCalculatorPerson person,
@@ -267,7 +231,7 @@ namespace Calculators.CashFlow
                 InvestmentPeriod = (startingYear, 1),
                 Flow = (AccountType.Exogenous, AccountType.Wealth),
                 InitialAmount = person.Wealth,
-                NetGrowthRate = _calculatorOptions.SalaryNetGrowthRate,
+                NetGrowthRate = _calculatorOptions.WealthNetGrowthRate,
                 Ordinal = 0,
                 RecurringAmount = (decimal.Zero, FrequencyType.Yearly),
                 OccurrenceType = OccurrenceType.BeginOfPeriod,

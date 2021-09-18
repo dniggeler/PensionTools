@@ -3,7 +3,7 @@ using PensionCoach.Tools.CommonTypes;
 
 namespace Calculators.CashFlow.Models
 {
-    public class MultiPeriodCalculatorPerson
+    public record MultiPeriodCalculatorPerson
     {
         public string Name { get; set; }
 

@@ -4,102 +4,102 @@
   "Accounts": [
     {
       "Year": 2021,
-      "Amount": 515250.745,
+      "Amount": -48.00,
       "AccountType": "Wealth"
     },
     {
       "Year": 2021,
-      "Amount": 516883.0,
+      "Amount": 0.0,
       "AccountType": "CapitalBenefits"
     },
     {
       "Year": 2022,
-      "Amount": 530575.34000,
+      "Amount": -96.0000,
       "AccountType": "Wealth"
     },
     {
       "Year": 2022,
-      "Amount": 533766.0,
+      "Amount": 0.0,
       "AccountType": "CapitalBenefits"
     },
     {
       "Year": 2023,
-      "Amount": 545976.7850000,
+      "Amount": -144.000000,
       "AccountType": "Wealth"
     },
     {
       "Year": 2023,
-      "Amount": 550649.0,
+      "Amount": 0.0,
       "AccountType": "CapitalBenefits"
     },
     {
       "Year": 2024,
-      "Amount": 561458.110000000,
+      "Amount": -192.00000000,
       "AccountType": "Wealth"
     },
     {
       "Year": 2024,
-      "Amount": 567532.0,
+      "Amount": 0.0,
       "AccountType": "CapitalBenefits"
     },
     {
       "Year": 2025,
-      "Amount": 577020.18530000000,
+      "Amount": -240.0000000000,
       "AccountType": "Wealth"
     },
     {
       "Year": 2025,
-      "Amount": 584415.0,
+      "Amount": 0.0,
       "AccountType": "CapitalBenefits"
     },
     {
       "Year": 2026,
-      "Amount": 593501.1818030000000,
+      "Amount": -288.000000000000,
       "AccountType": "Wealth"
     },
     {
       "Year": 2026,
-      "Amount": 591298.0,
+      "Amount": 0.0,
       "AccountType": "CapitalBenefits"
     },
     {
       "Year": 2027,
-      "Amount": 610037.241321030000000,
+      "Amount": -336.00000000000000,
       "AccountType": "Wealth"
     },
     {
       "Year": 2027,
-      "Amount": 598181.0,
+      "Amount": 0.0,
       "AccountType": "CapitalBenefits"
     },
     {
       "Year": 2028,
-      "Amount": 626606.80688424030000000,
+      "Amount": -384.0000000000000000,
       "AccountType": "Wealth"
     },
     {
       "Year": 2028,
-      "Amount": 605064.0,
+      "Amount": 0.0,
       "AccountType": "CapitalBenefits"
     },
     {
       "Year": 2029,
-      "Amount": 933389.0530530827030000000,
+      "Amount": -432.000000000000000000,
       "AccountType": "Wealth"
     },
     {
       "Year": 2029,
-      "Amount": 305973.5,
+      "Amount": 0.0,
       "AccountType": "CapitalBenefits"
     },
     {
       "Year": 2030,
-      "Amount": 1245510.5412336135300300000000,
+      "Amount": -480.00000000000000000000,
       "AccountType": "Wealth"
     },
     {
       "Year": 2030,
-      "Amount": 0.00,
+      "Amount": 0.0,
       "AccountType": "CapitalBenefits"
     }
   ]

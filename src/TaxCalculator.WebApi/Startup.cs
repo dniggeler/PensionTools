@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Text.Json.Serialization;
+using Calculators.CashFlow;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -50,6 +51,7 @@ namespace TaxCalculator.WebApi
             services.AddTaxCalculators();
             services.AddTaxComparers();
             services.AddBvgCalculators();
+            services.AddCashFlowCalculators();
             services.AddSwaggerExamplesFromAssemblyOf<Examples.CapitalBenefitTaxRequestExample>();
             services.AddSwaggerGen(opt =>
             {

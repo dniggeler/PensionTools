@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Calculators.CashFlow.Models;
+using LanguageExt;
 
 namespace Calculators.CashFlow
 {
@@ -19,7 +19,7 @@ namespace Calculators.CashFlow
         /// <param name="person"></param>
         /// <param name="cashFlowDefinitionHolder"></param>
         /// <returns></returns>
-        Task<MultiPeriodCalculationResult> CalculateAsync(
+        Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
             MultiPeriodCalculatorPerson person,
             CashFlowDefinitionHolder cashFlowDefinitionHolder);
 
@@ -32,7 +32,7 @@ namespace Calculators.CashFlow
         /// <param name="person">The person.</param>
         /// <param name="cashFlowDefinitionHolder">The cash flow definition holder.</param>
         /// <returns></returns>
-        Task<MultiPeriodCalculationResult> CalculateAsync(
+        Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
             int startingYear,
             int numberOfPeriods,
             MultiPeriodCalculatorPerson person,
