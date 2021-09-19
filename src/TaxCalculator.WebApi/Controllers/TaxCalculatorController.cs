@@ -60,10 +60,10 @@ namespace TaxCalculator.WebApi.Controllers
             var taxPerson = MapRequest();
 
             Either<string, MunicipalityModel> municipalityData =
-                await this.municipalityResolver.GetAsync(request.BfsMunicipalityId, request.CalculationYear);
+                await municipalityResolver.GetAsync(request.BfsMunicipalityId, request.CalculationYear);
 
             Either<string, FullTaxResult> result = await municipalityData
-                .BindAsync(m => this.fullTaxCalculator.CalculateAsync(
+                .BindAsync(m => fullTaxCalculator.CalculateAsync(
                     request.CalculationYear,
                     request.BfsMunicipalityId,
                     m.Canton,

@@ -9,11 +9,11 @@ namespace Calculators.CashFlow
         public static IEnumerable<CashFlowModel> GenerateCashFlow(this GenericCashFlowDefinition definition)
         {
             var range = Enumerable.Range(
-                definition.InvestmentPeriod.BeginYear + 1,
-                definition.InvestmentPeriod.Count - 1);
+                definition.InvestmentPeriod.Year + 1,
+                definition.InvestmentPeriod.NumberOfPeriods - 1);
 
             yield return new CashFlowModel(
-                definition.InvestmentPeriod.BeginYear,
+                definition.InvestmentPeriod.Year,
                 definition.InitialAmount,
                 definition.Flow.Source,
                 definition.Flow.Target,
@@ -21,7 +21,7 @@ namespace Calculators.CashFlow
                 definition.TaxType,
                 definition.OccurrenceType);
 
-            decimal cashFlow = definition.RecurringAmount.Amount;
+            decimal cashFlow = definition.RecurringInvestment.Amount;
 
             foreach (var year in range)
             {

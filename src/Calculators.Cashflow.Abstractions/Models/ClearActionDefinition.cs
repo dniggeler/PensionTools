@@ -38,7 +38,7 @@ namespace Calculators.CashFlow.Models
 
         public decimal ClearRatio { get; init; } = decimal.One;
 
-        public (AccountType Source, AccountType Target) Flow { get; init; }
+        public FlowPair Flow { get; init; }
 
         public bool IsTaxable { get; set; }
 

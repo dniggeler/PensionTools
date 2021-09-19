@@ -7,7 +7,7 @@
       "Accounts": [
         {
           "Year": 2021,
-          "Amount": 499447.205,
+          "Amount": -48.00,
           "AccountType": "Wealth"
         },
         {
@@ -17,7 +17,7 @@
         },
         {
           "Year": 2022,
-          "Amount": 498896.60000,
+          "Amount": -96.0000,
           "AccountType": "Wealth"
         },
         {
@@ -27,7 +27,7 @@
         },
         {
           "Year": 2023,
-          "Amount": 498348.1850000,
+          "Amount": -144.000000,
           "AccountType": "Wealth"
         },
         {
@@ -37,7 +37,7 @@
         },
         {
           "Year": 2024,
-          "Amount": 497799.770000000,
+          "Amount": -192.00000000,
           "AccountType": "Wealth"
         },
         {
@@ -47,7 +47,7 @@
         },
         {
           "Year": 2025,
-          "Amount": 497253.54500000000,
+          "Amount": -240.0000000000,
           "AccountType": "Wealth"
         },
         {
@@ -57,7 +57,7 @@
         },
         {
           "Year": 2026,
-          "Amount": 496707.3200000000000,
+          "Amount": -288.000000000000,
           "AccountType": "Wealth"
         },
         {
@@ -67,7 +67,7 @@
         },
         {
           "Year": 2027,
-          "Amount": 496163.285000000000000,
+          "Amount": -336.00000000000000,
           "AccountType": "Wealth"
         },
         {
@@ -77,7 +77,7 @@
         },
         {
           "Year": 2028,
-          "Amount": 495619.25000000000000000,
+          "Amount": -384.0000000000000000,
           "AccountType": "Wealth"
         },
         {
@@ -87,7 +87,7 @@
         },
         {
           "Year": 2029,
-          "Amount": 495077.4050000000000000000,
+          "Amount": -432.000000000000000000,
           "AccountType": "Wealth"
         },
         {
@@ -97,7 +97,7 @@
         },
         {
           "Year": 2030,
-          "Amount": 494535.560000000000000000000,
+          "Amount": -480.00000000000000000000,
           "AccountType": "Wealth"
         },
         {

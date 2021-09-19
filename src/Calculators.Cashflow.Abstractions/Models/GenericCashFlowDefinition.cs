@@ -37,12 +37,12 @@ namespace Calculators.CashFlow.Models
         public decimal InitialAmount { get; init; }
 
         /// <summary>
-        /// Gets the step amount.
+        /// Gets the recurring investment.
         /// </summary>
         /// <value>
-        /// The step amount.
+        /// The recurring investment.
         /// </value>
-        public (decimal Amount, FrequencyType Frequency) RecurringAmount { get; init; }
+        public RecurringInvestment RecurringInvestment { get; init; }
 
         /// <summary>
         /// Gets or sets the net growth rate.
@@ -58,7 +58,7 @@ namespace Calculators.CashFlow.Models
         /// <value>
         /// The investment period.
         /// </value>
-        public (int BeginYear, int Count) InvestmentPeriod { get; init; }
+        public InvestmentPeriod InvestmentPeriod { get; init; }
 
         /// <summary>
         /// Gets the flow. Source account is cleared and moved to target account.
@@ -66,7 +66,7 @@ namespace Calculators.CashFlow.Models
         /// <value>
         /// The flow.
         /// </value>
-        public (AccountType Source, AccountType Target) Flow { get; init; }
+        public FlowPair Flow { get; init; }
 
         public bool IsTaxable { get; set; }
 

@@ -1,10 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Calculators.CashFlow;
 using Calculators.CashFlow.Models;
 using LanguageExt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.TaxCalculator.Abstractions;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using TaxCalculator.WebApi.Models;
 
 namespace TaxCalculator.WebApi.Controllers
@@ -15,14 +18,14 @@ namespace TaxCalculator.WebApi.Controllers
     public class MultiPeriodCalculatorController : ControllerBase
     {
         private readonly IMultiPeriodCashFlowCalculator multiPeriodCashFlowCalculator;
-        private readonly ILogger<TaxCalculatorController> logger;
+        private readonly IMunicipalityConnector municipalityResolver;
 
         public MultiPeriodCalculatorController(
             IMultiPeriodCashFlowCalculator multiPeriodCashFlowCalculator,
-            ILogger<TaxCalculatorController> logger)
+            IMunicipalityConnector municipalityResolver)
         {
             this.multiPeriodCashFlowCalculator = multiPeriodCashFlowCalculator;
-            this.logger = logger;
+            this.municipalityResolver = municipalityResolver;
         }
 
         /// <summary>
@@ -50,8 +53,14 @@ namespace TaxCalculator.WebApi.Controllers
                 return BadRequest(nameof(request));
             }
 
-            Either<string, MultiPeriodCalculationResult> result = await multiPeriodCashFlowCalculator.CalculateAsync(
-                request.StartingYear, request.NumberOfPeriods, request.Person, request.CashFlowDefinitionHolder);
+            MultiPeriodCalculatorPerson person = MapPerson();
+
+            Either<string, MunicipalityModel> municipalityData =
+                await municipalityResolver.GetAsync(request.BfsMunicipalityId, request.StartingYear);
+
+            Either<string, MultiPeriodCalculationResult> result = await municipalityData
+                .BindAsync(m => multiPeriodCashFlowCalculator.CalculateAsync(
+                    request.StartingYear, request.NumberOfPeriods, person with { Canton = m.Canton }, request.CashFlowDefinitionHolder));
 
             return result
                 .Match<ActionResult>(
@@ -59,6 +68,26 @@ namespace TaxCalculator.WebApi.Controllers
                     Left: BadRequest);
 
             // local methods
+            MultiPeriodCalculatorPerson MapPerson()
+            {
+                var name = string.IsNullOrEmpty(request.Name)
+                    ? Guid.NewGuid().ToString().Substring(0, 6)
+                    : request.Name;
+
+                return new MultiPeriodCalculatorPerson
+                {
+                    Name = name,
+                    MunicipalityId = request.BfsMunicipalityId,
+                    CivilStatus = request.CivilStatus,
+                    ReligiousGroupType = request.ReligiousGroupType,
+                    PartnerReligiousGroupType = request.PartnerReligiousGroupType ?? ReligiousGroupType.Other,
+                    NumberOfChildren = 0,
+                    Income = request.Income,
+                    Wealth = request.Wealth,
+                    CapitalBenefits = (request.CapitalBenefitsPillar3A, request.CapitalBenefitsPension),
+                };
+            }
+
             MultiPeriodResponse MapResponse(MultiPeriodCalculationResult calculationResult)
             {
                 return new MultiPeriodResponse
