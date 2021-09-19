@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using FluentValidation;
 using LanguageExt;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -32,7 +33,7 @@ namespace TaxCalculator.Basis.Wealth
         public Task<Either<string, BasisTaxResult>> CalculateAsync(
             int calculationYear, Canton canton, BasisTaxPerson person)
         {
-            var validationResult = this.taxPersonValidator.Validate(person);
+            var validationResult = taxPersonValidator.Validate(person);
             if (!validationResult.IsValid)
             {
                 var errorMessageLine = string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
@@ -40,14 +41,14 @@ namespace TaxCalculator.Basis.Wealth
             }
 
             var tariffItems =
-                this.tariffData.Get(new TaxFilterModel
+                tariffData.Get(new TaxFilterModel
                 {
                     Year = calculationYear,
                     Canton = canton.ToString(),
                 })
                     .OrderBy(item => item.TaxAmount);
 
-            return this.Map(person.CivilStatus)
+            return Map(person.CivilStatus)
 
                 // get all income level candidate
                 .Map(typeId => tariffItems
@@ -59,7 +60,7 @@ namespace TaxCalculator.Basis.Wealth
                     .First())
 
                 // calculate result
-                .Map(tariff => this.CalculateIncomeTax(person, tariff))
+                .Map(tariff => CalculateIncomeTax(person, tariff))
                 .Match<Either<string, BasisTaxResult>>(
                     Some: r => r,
                     None: () => "Tariff not available")

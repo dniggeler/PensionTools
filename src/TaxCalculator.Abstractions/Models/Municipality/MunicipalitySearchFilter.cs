@@ -1,4 +1,5 @@
 ﻿using System;
+using PensionCoach.Tools.CommonTypes;
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models.Municipality
 {

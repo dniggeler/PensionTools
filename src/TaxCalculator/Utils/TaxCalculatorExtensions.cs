@@ -1,4 +1,4 @@
-﻿using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+﻿using PensionCoach.Tools.CommonTypes;
 using Tax.Data.Abstractions.Models;
 
 namespace TaxCalculator.Utils

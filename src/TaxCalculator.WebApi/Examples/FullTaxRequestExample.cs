@@ -1,4 +1,4 @@
-﻿using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+﻿using PensionCoach.Tools.CommonTypes;
 using Swashbuckle.AspNetCore.Filters;
 using TaxCalculator.WebApi.Models;
 
@@ -11,13 +11,14 @@ namespace TaxCalculator.WebApi.Examples
             return new FullTaxRequest
             {
                 Name = "Test",
-                CalculationYear = 2018,
-                CivilStatus = CivilStatus.Single,
+                CalculationYear = 2019,
+                CivilStatus = CivilStatus.Married,
                 BfsMunicipalityId = 261,
                 ReligiousGroup = ReligiousGroupType.Other,
-                TaxableIncome = 99995M,
-                TaxableFederalIncome = 99995M,
-                TaxableWealth = 522000,
+                PartnerReligiousGroup = ReligiousGroupType.Other,
+                TaxableIncome = 100_000M,
+                TaxableFederalIncome = 100_000M,
+                TaxableWealth = 500_000,
             };
         }
     }

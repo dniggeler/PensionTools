@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LanguageExt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Tools.Comparison.Abstractions;
 using Tax.Tools.Comparison.Abstractions.Models;

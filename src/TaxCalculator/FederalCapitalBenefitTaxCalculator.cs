@@ -29,11 +29,11 @@
             int calculationYear, FederalTaxPerson capitalBenefitTaxPerson)
         {
             const decimal scaleFactor = 0.2M;
-            FederalTaxPerson taxPerson = this.mapper.Map<FederalTaxPerson>(capitalBenefitTaxPerson);
+            FederalTaxPerson taxPerson = mapper.Map<FederalTaxPerson>(capitalBenefitTaxPerson);
 
-            var taxResult = await this.taxCalculator.CalculateAsync(calculationYear, taxPerson);
+            var taxResult = await taxCalculator.CalculateAsync(calculationYear, taxPerson);
 
-            return taxResult.Map(r => this.Scale(r, scaleFactor));
+            return taxResult.Map(r => Scale(r, scaleFactor));
         }
 
         private BasisTaxResult Scale(BasisTaxResult intermediateResult, decimal scaleFactor)

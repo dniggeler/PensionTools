@@ -5,6 +5,7 @@ using AutoMapper;
 using FluentValidation;
 using FluentValidation.Validators;
 using LanguageExt;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -43,22 +44,22 @@ namespace TaxCalculator.Basis.CapitalBenefit
             Canton canton,
             CapitalBenefitTaxPerson capitalBenefitTaxPerson)
         {
-            var validationResult = this.validator.Validate(capitalBenefitTaxPerson);
+            var validationResult = validator.Validate(capitalBenefitTaxPerson);
             if (!validationResult.IsValid)
             {
                 return
                     string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
             }
 
-            var stateTaxPerson = this.mapper.Map<TaxPerson>(capitalBenefitTaxPerson);
+            var stateTaxPerson = mapper.Map<TaxPerson>(capitalBenefitTaxPerson);
             stateTaxPerson.TaxableIncome = capitalBenefitTaxPerson.TaxableBenefits;
 
-            var stateTaxResult = await this.stateTaxCalculator
+            var stateTaxResult = await stateTaxCalculator
                 .CalculateAsync(calculationYear, municipalityId, Canton.SO, stateTaxPerson);
 
             return stateTaxResult.Map(Scale);
 
-            CapitalBenefitTaxResult Scale(StateTaxResult intermediateResult)
+            static CapitalBenefitTaxResult Scale(StateTaxResult intermediateResult)
             {
                 return new CapitalBenefitTaxResult
                 {

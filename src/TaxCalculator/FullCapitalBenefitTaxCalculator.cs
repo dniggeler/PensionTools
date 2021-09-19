@@ -3,6 +3,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using LanguageExt;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -30,17 +31,22 @@ namespace TaxCalculator
             int calculationYear,
             int municipalityId,
             Canton canton,
-            CapitalBenefitTaxPerson capitalBenefitTaxPerson)
+            CapitalBenefitTaxPerson capitalBenefitTaxPerson,
+            bool withMaxAvailableCalculationYear)
         {
+            int maxCalculationYear = withMaxAvailableCalculationYear
+                ? Math.Min(calculationYear, 2019)
+                : calculationYear;
+
             var capitalBenefitTaxResultTask =
-                this.capitalBenefitCalculatorFunc(canton)
-                    .CalculateAsync(calculationYear, municipalityId, canton, capitalBenefitTaxPerson);
+                capitalBenefitCalculatorFunc(canton)
+                    .CalculateAsync(maxCalculationYear, municipalityId, canton, capitalBenefitTaxPerson);
 
             var federalTaxPerson =
-                this.mapper.Map<FederalTaxPerson>(capitalBenefitTaxPerson);
+                mapper.Map<FederalTaxPerson>(capitalBenefitTaxPerson);
 
             var federalTaxResultTask =
-                this.federalCalculator.CalculateAsync(calculationYear, federalTaxPerson);
+                federalCalculator.CalculateAsync(maxCalculationYear, federalTaxPerson);
 
             await Task.WhenAll(capitalBenefitTaxResultTask, federalTaxResultTask);
 

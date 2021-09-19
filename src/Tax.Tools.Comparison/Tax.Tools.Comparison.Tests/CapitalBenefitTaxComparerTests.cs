@@ -1,6 +1,5 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+﻿using System.Threading.Tasks;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;
 using Tax.Tools.Comparison.Abstractions;

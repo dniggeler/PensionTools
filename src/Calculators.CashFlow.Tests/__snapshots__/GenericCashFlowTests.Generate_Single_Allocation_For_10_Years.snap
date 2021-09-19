@@ -1,0 +1,92 @@
+﻿[
+  {
+    "Year": 2021,
+    "Amount": 10000.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth",
+    "OccurrenceType": "BeginOfPeriod"
+  },
+  {
+    "Year": 2022,
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth",
+    "OccurrenceType": "BeginOfPeriod"
+  },
+  {
+    "Year": 2023,
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth",
+    "OccurrenceType": "BeginOfPeriod"
+  },
+  {
+    "Year": 2024,
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth",
+    "OccurrenceType": "BeginOfPeriod"
+  },
+  {
+    "Year": 2025,
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth",
+    "OccurrenceType": "BeginOfPeriod"
+  },
+  {
+    "Year": 2026,
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth",
+    "OccurrenceType": "BeginOfPeriod"
+  },
+  {
+    "Year": 2027,
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth",
+    "OccurrenceType": "BeginOfPeriod"
+  },
+  {
+    "Year": 2028,
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth",
+    "OccurrenceType": "BeginOfPeriod"
+  },
+  {
+    "Year": 2029,
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth",
+    "OccurrenceType": "BeginOfPeriod"
+  },
+  {
+    "Year": 2030,
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth",
+    "OccurrenceType": "BeginOfPeriod"
+  }
+]

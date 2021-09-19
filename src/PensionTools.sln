@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapitalVersusPension", "CapitalVersusPension\CapitalVersusPension.csproj", "{3A47738B-9A83-4747-9C52-0120FB9DF602}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Data", "Tax.Data\Tax.Data.csproj", "{77C27B5A-B471-4439-A0F9-C334C0367C06}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.AppConsole", "Tax.AppConsole\Tax.AppConsole.csproj", "{44395165-D657-41EE-A40B-9CA948569AE6}"
@@ -27,13 +25,46 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaxCalculators.Tests", "Tax
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.WebApi", "TaxCalculator.WebApi\TaxCalculator.WebApi.csproj", "{19811879-AEFC-4F75-BF52-10CB8471F5CB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tax.Tools.Comparison", "Tax.Tools.Comparison", "{BF9972ED-AFAC-4E39-9AAD-89F46338CED1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Higher Order Calculators", "Higher Order Calculators", "{BF9972ED-AFAC-4E39-9AAD-89F46338CED1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Tools.Comparison", "Tax.Tools.Comparison\Tax.Tools.Comparison\Tax.Tools.Comparison.csproj", "{7F3959D0-0998-41D0-B362-2A1366CA1270}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.Tools.Comparison.Abstractions", "Tax.Tools.Comparison\Tax.Tools.Comparison.Abstractions\Tax.Tools.Comparison.Abstractions.csproj", "{9354F5AC-21E6-4FE9-AF2E-4D80972ACE29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Tools.Comparison.Abstractions", "Tax.Tools.Comparison\Tax.Tools.Comparison.Abstractions\Tax.Tools.Comparison.Abstractions.csproj", "{9354F5AC-21E6-4FE9-AF2E-4D80972ACE29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.Tools.Comparison.Tests", "Tax.Tools.Comparison\Tax.Tools.Comparison.Tests\Tax.Tools.Comparison.Tests.csproj", "{71DD068D-41A9-4084-8808-5190BB4D1AC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Tools.Comparison.Tests", "Tax.Tools.Comparison\Tax.Tools.Comparison.Tests\Tax.Tools.Comparison.Tests.csproj", "{71DD068D-41A9-4084-8808-5190BB4D1AC0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PensionCalculators", "PensionCalculators", "{4224614A-B5A0-4633-BF49-A485C0E61595}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BvgCalculator", "BvgCalculator\BvgCalculator.csproj", "{BEA34185-AC53-406B-8A57-F3E6C8F12636}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BvgCalculator.Abstractions", "BvgCalculator.Abstractions\BvgCalculator.Abstractions.csproj", "{CE0A3BC7-0EAC-4004-BDD3-4008C685C8EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonTypes", "CommonTypes\CommonTypes.csproj", "{7432DA0D-73B2-45F8-B6D8-2FF7423DB6BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0F6FD2BA-85B0-4ABA-A3F9-A4F6BE4808B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonUtils", "CommonUtils\CommonUtils.csproj", "{6A4CA971-D78F-48A7-84A0-81B7ADC92AFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C1ED00D3-E701-4E17-9117-1B95EBD423D1}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BvgCalculator.Tests", "BvgCalculator.Tests\BvgCalculator.Tests.csproj", "{43E1CB25-89F2-4257-B95D-D2CFDA7CA472}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BvgCalculator.Integration.Tests", "BvgCalculator.Integration.Tests\BvgCalculator.Integration.Tests.csproj", "{F270AF92-0177-4596-9ECD-BE34A16F916F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PensionVersusCapitalCalculator.Abstractions", "PensionVersusCapitalCalculator.Abstractions\PensionVersusCapitalCalculator.Abstractions.csproj", "{568269F6-0D9E-4ADA-AE8C-FDF70814AE00}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PensionVersusCapitalCalculator", "PensionVersusCapitalCalculator\PensionVersusCapitalCalculator.csproj", "{B905A759-712E-4C0B-B027-8DB4D0A7961B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PensionVersusCapitalCalculator.Tests", "PensionVersusCapitalCalculator.Tests\PensionVersusCapitalCalculator.Tests.csproj", "{E2D9578A-4597-40A3-8E4F-DCAB03733114}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculators.CashFlow.Abstractions", "Calculators.Cashflow.Abstractions\Calculators.CashFlow.Abstractions.csproj", "{FF5ECF20-7A50-4950-B911-0D0C9386A008}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculators.CashFlow", "Calculators.CashFlow\Calculators.CashFlow.csproj", "{6D23DE23-3FBA-4FEF-ABDD-C022F149C355}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculators.CashFlow.Tests", "Calculators.CashFlow.Tests\Calculators.CashFlow.Tests.csproj", "{A0EF9592-1653-4A8F-BFDB-955BA806B590}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +72,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3A47738B-9A83-4747-9C52-0120FB9DF602}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A47738B-9A83-4747-9C52-0120FB9DF602}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A47738B-9A83-4747-9C52-0120FB9DF602}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A47738B-9A83-4747-9C52-0120FB9DF602}.Release|Any CPU.Build.0 = Release|Any CPU
 		{77C27B5A-B471-4439-A0F9-C334C0367C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{77C27B5A-B471-4439-A0F9-C334C0367C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77C27B5A-B471-4439-A0F9-C334C0367C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -89,6 +116,54 @@ Global
 		{71DD068D-41A9-4084-8808-5190BB4D1AC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71DD068D-41A9-4084-8808-5190BB4D1AC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71DD068D-41A9-4084-8808-5190BB4D1AC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEA34185-AC53-406B-8A57-F3E6C8F12636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA34185-AC53-406B-8A57-F3E6C8F12636}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEA34185-AC53-406B-8A57-F3E6C8F12636}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA34185-AC53-406B-8A57-F3E6C8F12636}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE0A3BC7-0EAC-4004-BDD3-4008C685C8EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE0A3BC7-0EAC-4004-BDD3-4008C685C8EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE0A3BC7-0EAC-4004-BDD3-4008C685C8EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE0A3BC7-0EAC-4004-BDD3-4008C685C8EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7432DA0D-73B2-45F8-B6D8-2FF7423DB6BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7432DA0D-73B2-45F8-B6D8-2FF7423DB6BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7432DA0D-73B2-45F8-B6D8-2FF7423DB6BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7432DA0D-73B2-45F8-B6D8-2FF7423DB6BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A4CA971-D78F-48A7-84A0-81B7ADC92AFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A4CA971-D78F-48A7-84A0-81B7ADC92AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A4CA971-D78F-48A7-84A0-81B7ADC92AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A4CA971-D78F-48A7-84A0-81B7ADC92AFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43E1CB25-89F2-4257-B95D-D2CFDA7CA472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43E1CB25-89F2-4257-B95D-D2CFDA7CA472}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43E1CB25-89F2-4257-B95D-D2CFDA7CA472}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43E1CB25-89F2-4257-B95D-D2CFDA7CA472}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F270AF92-0177-4596-9ECD-BE34A16F916F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F270AF92-0177-4596-9ECD-BE34A16F916F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F270AF92-0177-4596-9ECD-BE34A16F916F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F270AF92-0177-4596-9ECD-BE34A16F916F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{568269F6-0D9E-4ADA-AE8C-FDF70814AE00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{568269F6-0D9E-4ADA-AE8C-FDF70814AE00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{568269F6-0D9E-4ADA-AE8C-FDF70814AE00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{568269F6-0D9E-4ADA-AE8C-FDF70814AE00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B905A759-712E-4C0B-B027-8DB4D0A7961B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B905A759-712E-4C0B-B027-8DB4D0A7961B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B905A759-712E-4C0B-B027-8DB4D0A7961B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B905A759-712E-4C0B-B027-8DB4D0A7961B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2D9578A-4597-40A3-8E4F-DCAB03733114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2D9578A-4597-40A3-8E4F-DCAB03733114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2D9578A-4597-40A3-8E4F-DCAB03733114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2D9578A-4597-40A3-8E4F-DCAB03733114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF5ECF20-7A50-4950-B911-0D0C9386A008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF5ECF20-7A50-4950-B911-0D0C9386A008}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF5ECF20-7A50-4950-B911-0D0C9386A008}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF5ECF20-7A50-4950-B911-0D0C9386A008}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D23DE23-3FBA-4FEF-ABDD-C022F149C355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D23DE23-3FBA-4FEF-ABDD-C022F149C355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D23DE23-3FBA-4FEF-ABDD-C022F149C355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D23DE23-3FBA-4FEF-ABDD-C022F149C355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0EF9592-1653-4A8F-BFDB-955BA806B590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0EF9592-1653-4A8F-BFDB-955BA806B590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0EF9592-1653-4A8F-BFDB-955BA806B590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0EF9592-1653-4A8F-BFDB-955BA806B590}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +179,18 @@ Global
 		{7F3959D0-0998-41D0-B362-2A1366CA1270} = {BF9972ED-AFAC-4E39-9AAD-89F46338CED1}
 		{9354F5AC-21E6-4FE9-AF2E-4D80972ACE29} = {BF9972ED-AFAC-4E39-9AAD-89F46338CED1}
 		{71DD068D-41A9-4084-8808-5190BB4D1AC0} = {BF9972ED-AFAC-4E39-9AAD-89F46338CED1}
+		{BEA34185-AC53-406B-8A57-F3E6C8F12636} = {4224614A-B5A0-4633-BF49-A485C0E61595}
+		{CE0A3BC7-0EAC-4004-BDD3-4008C685C8EE} = {4224614A-B5A0-4633-BF49-A485C0E61595}
+		{7432DA0D-73B2-45F8-B6D8-2FF7423DB6BA} = {0F6FD2BA-85B0-4ABA-A3F9-A4F6BE4808B1}
+		{6A4CA971-D78F-48A7-84A0-81B7ADC92AFE} = {0F6FD2BA-85B0-4ABA-A3F9-A4F6BE4808B1}
+		{43E1CB25-89F2-4257-B95D-D2CFDA7CA472} = {4224614A-B5A0-4633-BF49-A485C0E61595}
+		{F270AF92-0177-4596-9ECD-BE34A16F916F} = {4224614A-B5A0-4633-BF49-A485C0E61595}
+		{568269F6-0D9E-4ADA-AE8C-FDF70814AE00} = {4224614A-B5A0-4633-BF49-A485C0E61595}
+		{B905A759-712E-4C0B-B027-8DB4D0A7961B} = {4224614A-B5A0-4633-BF49-A485C0E61595}
+		{E2D9578A-4597-40A3-8E4F-DCAB03733114} = {4224614A-B5A0-4633-BF49-A485C0E61595}
+		{FF5ECF20-7A50-4950-B911-0D0C9386A008} = {BF9972ED-AFAC-4E39-9AAD-89F46338CED1}
+		{6D23DE23-3FBA-4FEF-ABDD-C022F149C355} = {BF9972ED-AFAC-4E39-9AAD-89F46338CED1}
+		{A0EF9592-1653-4A8F-BFDB-955BA806B590} = {BF9972ED-AFAC-4E39-9AAD-89F46338CED1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB937E37-4C08-4EB0-86F7-87F74A7F6C44}

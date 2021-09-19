@@ -1,0 +1,271 @@
+﻿{
+  "DateOfRetirement": "2039-09-01T00:00:00",
+  "EffectiveSalary": 100000.0,
+  "InsuredSalary": 60435.00,
+  "RetirementCredit": 9065.2500,
+  "RetirementCreditFactor": 0.15,
+  "RetirementCapitalEndOfYear": 0.0,
+  "FinalRetirementCapital": 216261.0,
+  "FinalRetirementCapitalWithoutInterest": 197622.0,
+  "RetirementPension": 14706.0,
+  "DisabilityPension": 13438.0,
+  "PartnerPension": 8063.0,
+  "OrphanPension": 2688.0,
+  "ChildPensionForDisabled": 2688.0,
+  "RetirementCreditSequence": [
+    {
+      "Age": 45,
+      "AmountRaw": 9065.2500,
+      "AmountRounded10": 9065.30,
+      "AmountRounded60": 9065.40,
+      "AmountRounded100": 9065.0
+    },
+    {
+      "Age": 46,
+      "AmountRaw": 9065.2500,
+      "AmountRounded10": 9065.30,
+      "AmountRounded60": 9065.40,
+      "AmountRounded100": 9065.0
+    },
+    {
+      "Age": 47,
+      "AmountRaw": 9065.2500,
+      "AmountRounded10": 9065.30,
+      "AmountRounded60": 9065.40,
+      "AmountRounded100": 9065.0
+    },
+    {
+      "Age": 48,
+      "AmountRaw": 9065.2500,
+      "AmountRounded10": 9065.30,
+      "AmountRounded60": 9065.40,
+      "AmountRounded100": 9065.0
+    },
+    {
+      "Age": 49,
+      "AmountRaw": 9065.2500,
+      "AmountRounded10": 9065.30,
+      "AmountRounded60": 9065.40,
+      "AmountRounded100": 9065.0
+    },
+    {
+      "Age": 50,
+      "AmountRaw": 9065.2500,
+      "AmountRounded10": 9065.30,
+      "AmountRounded60": 9065.40,
+      "AmountRounded100": 9065.0
+    },
+    {
+      "Age": 51,
+      "AmountRaw": 9065.2500,
+      "AmountRounded10": 9065.30,
+      "AmountRounded60": 9065.40,
+      "AmountRounded100": 9065.0
+    },
+    {
+      "Age": 52,
+      "AmountRaw": 9065.2500,
+      "AmountRounded10": 9065.30,
+      "AmountRounded60": 9065.40,
+      "AmountRounded100": 9065.0
+    },
+    {
+      "Age": 53,
+      "AmountRaw": 9065.2500,
+      "AmountRounded10": 9065.30,
+      "AmountRounded60": 9065.40,
+      "AmountRounded100": 9065.0
+    },
+    {
+      "Age": 54,
+      "AmountRaw": 9065.2500,
+      "AmountRounded10": 9065.30,
+      "AmountRounded60": 9065.40,
+      "AmountRounded100": 9065.0
+    },
+    {
+      "Age": 55,
+      "AmountRaw": 10878.3000,
+      "AmountRounded10": 10878.30,
+      "AmountRounded60": 10878.60,
+      "AmountRounded100": 10878.0
+    },
+    {
+      "Age": 56,
+      "AmountRaw": 10878.3000,
+      "AmountRounded10": 10878.30,
+      "AmountRounded60": 10878.60,
+      "AmountRounded100": 10878.0
+    },
+    {
+      "Age": 57,
+      "AmountRaw": 10878.3000,
+      "AmountRounded10": 10878.30,
+      "AmountRounded60": 10878.60,
+      "AmountRounded100": 10878.0
+    },
+    {
+      "Age": 58,
+      "AmountRaw": 10878.3000,
+      "AmountRounded10": 10878.30,
+      "AmountRounded60": 10878.60,
+      "AmountRounded100": 10878.0
+    },
+    {
+      "Age": 59,
+      "AmountRaw": 10878.3000,
+      "AmountRounded10": 10878.30,
+      "AmountRounded60": 10878.60,
+      "AmountRounded100": 10878.0
+    },
+    {
+      "Age": 60,
+      "AmountRaw": 10878.3000,
+      "AmountRounded10": 10878.30,
+      "AmountRounded60": 10878.60,
+      "AmountRounded100": 10878.0
+    },
+    {
+      "Age": 61,
+      "AmountRaw": 10878.3000,
+      "AmountRounded10": 10878.30,
+      "AmountRounded60": 10878.60,
+      "AmountRounded100": 10878.0
+    },
+    {
+      "Age": 62,
+      "AmountRaw": 10878.3000,
+      "AmountRounded10": 10878.30,
+      "AmountRounded60": 10878.60,
+      "AmountRounded100": 10878.0
+    },
+    {
+      "Age": 63,
+      "AmountRaw": 10878.3000,
+      "AmountRounded10": 10878.30,
+      "AmountRounded60": 10878.60,
+      "AmountRounded100": 10878.0
+    },
+    {
+      "Age": 64,
+      "AmountRaw": 10878.3000,
+      "AmountRounded10": 10878.30,
+      "AmountRounded60": 10878.60,
+      "AmountRounded100": 10878.0
+    },
+    {
+      "Age": 65,
+      "AmountRaw": 10878.3000,
+      "AmountRounded10": 10878.30,
+      "AmountRounded60": 10878.60,
+      "AmountRounded100": 10878.0
+    }
+  ],
+  "RetirementCapitalSequence": [
+    {
+      "Date": "2039-09-01T00:00:00",
+      "Value": 216261.36483717683685023734165,
+      "ValueWithoutInterest": 197622.45000000000000000000000
+    },
+    {
+      "Date": "2039-01-01T00:00:00",
+      "Value": 207624.99818262599687109669700,
+      "ValueWithoutInterest": 190370.2500
+    },
+    {
+      "Date": "2038-01-01T00:00:00",
+      "Value": 194798.71107190692759514524455,
+      "ValueWithoutInterest": 179491.9500
+    },
+    {
+      "Date": "2037-01-01T00:00:00",
+      "Value": 182099.41690287814613380717282,
+      "ValueWithoutInterest": 168613.6500
+    },
+    {
+      "Date": "2036-01-01T00:00:00",
+      "Value": 169525.85831968133280574967606,
+      "ValueWithoutInterest": 157735.3500
+    },
+    {
+      "Date": "2035-01-01T00:00:00",
+      "Value": 157076.79041552607208490066937,
+      "ValueWithoutInterest": 146857.0500
+    },
+    {
+      "Date": "2034-01-01T00:00:00",
+      "Value": 144750.98060943175453950561324,
+      "ValueWithoutInterest": 135978.7500
+    },
+    {
+      "Date": "2033-01-01T00:00:00",
+      "Value": 132547.20852418985597970852796,
+      "ValueWithoutInterest": 125100.4500
+    },
+    {
+      "Date": "2032-01-01T00:00:00",
+      "Value": 120464.26586553451087099854253,
+      "ValueWithoutInterest": 114222.1500
+    },
+    {
+      "Date": "2031-01-01T00:00:00",
+      "Value": 108500.95630250941670395895300,
+      "ValueWithoutInterest": 103343.8500
+    },
+    {
+      "Date": "2030-01-01T00:00:00",
+      "Value": 96656.09534901922445936530000,
+      "ValueWithoutInterest": 92465.5500
+    },
+    {
+      "Date": "2029-01-01T00:00:00",
+      "Value": 84928.51024655368758353000000,
+      "ValueWithoutInterest": 81587.2500
+    },
+    {
+      "Date": "2028-01-01T00:00:00",
+      "Value": 75112.089353023453053000000000,
+      "ValueWithoutInterest": 72522.0000
+    },
+    {
+      "Date": "2027-01-01T00:00:00",
+      "Value": 65392.860745567775300000000000,
+      "ValueWithoutInterest": 63456.7500
+    },
+    {
+      "Date": "2026-01-01T00:00:00",
+      "Value": 55769.862124324530000000000000,
+      "ValueWithoutInterest": 54391.5000
+    },
+    {
+      "Date": "2025-01-01T00:00:00",
+      "Value": 46242.14071715300000000000,
+      "ValueWithoutInterest": 45326.2500
+    },
+    {
+      "Date": "2024-01-01T00:00:00",
+      "Value": 36808.7531853000000000,
+      "ValueWithoutInterest": 36261.0000
+    },
+    {
+      "Date": "2023-01-01T00:00:00",
+      "Value": 27468.765530000000,
+      "ValueWithoutInterest": 27195.7500
+    },
+    {
+      "Date": "2022-01-01T00:00:00",
+      "Value": 18221.25300000,
+      "ValueWithoutInterest": 18130.5000
+    },
+    {
+      "Date": "2021-01-01T00:00:00",
+      "Value": 9065.3000,
+      "ValueWithoutInterest": 9065.2500
+    },
+    {
+      "Date": "2020-01-01T00:00:00",
+      "Value": 0.0,
+      "ValueWithoutInterest": 0.0
+    }
+  ]
+}

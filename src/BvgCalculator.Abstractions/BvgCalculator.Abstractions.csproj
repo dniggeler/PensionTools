@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>PensionCoach.Tools.BvgCalculator</RootNamespace>
+    <AssemblyName>PensionCoach.Tools.BvgCalculator.Abstractions</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LanguageExt.Core" Version="3.4.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CommonTypes\CommonTypes.csproj" />
+    <ProjectReference Include="..\CommonUtils\CommonUtils.csproj" />
+  </ItemGroup>
+
+</Project>

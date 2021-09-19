@@ -5,6 +5,7 @@ using AutoMapper;
 using FluentValidation;
 using LanguageExt;
 using Microsoft.EntityFrameworkCore;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -34,43 +35,41 @@ namespace TaxCalculator
         public async Task<Either<string, SingleTaxResult>> CalculateAsync(
             int calculationYear, int municipalityId, Canton canton, TaxPerson person)
         {
-            var validationResult = this.taxPersonValidator.Validate(person);
+            var validationResult = taxPersonValidator.Validate(person);
             if (!validationResult.IsValid)
             {
                 var errorMessageLine = string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
                 return $"validation failed: {errorMessageLine}";
             }
 
-            var basisTaxPerson = this.mapper.Map<BasisTaxPerson>(person);
+            var basisTaxPerson = mapper.Map<BasisTaxPerson>(person);
 
             basisTaxPerson.TaxableAmount = person.TaxableWealth;
 
             var basisTaxResult =
-                await this.basisWealthTaxCalculatorFunc(canton).CalculateAsync(
+                await basisWealthTaxCalculatorFunc(canton).CalculateAsync(
                     calculationYear, canton, basisTaxPerson);
 
             return basisTaxResult
                 .Match<Either<string, SingleTaxResult>>(
-                    Right: r => this.CalculateTax(calculationYear, municipalityId, r),
+                    Right: r => CalculateTax(calculationYear, municipalityId, r),
                     Left: msg => msg);
         }
 
         private SingleTaxResult CalculateTax(
             int calculationYear, int municipalityId, BasisTaxResult basisTaxResult)
         {
-            using (var dbContext = this.rateDbContextFunc())
-            {
-                var taxRate = dbContext.Rates.AsNoTracking()
-                    .Single(item => item.BfsId == municipalityId
-                                    && item.Year == calculationYear);
+            using var dbContext = rateDbContextFunc();
+            var taxRate = dbContext.Rates.AsNoTracking()
+                .Single(item => item.BfsId == municipalityId
+                                && item.Year == calculationYear);
 
-                return new SingleTaxResult
-                {
-                    BasisTaxAmount = basisTaxResult,
-                    MunicipalityRate = taxRate.TaxRateMunicipality,
-                    CantonRate = taxRate.TaxRateCanton,
-                };
-            }
+            return new SingleTaxResult
+            {
+                BasisTaxAmount = basisTaxResult,
+                MunicipalityRate = taxRate.TaxRateMunicipality,
+                CantonRate = taxRate.TaxRateCanton,
+            };
         }
     }
 }

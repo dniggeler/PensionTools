@@ -19,10 +19,15 @@ namespace Tax.Data
 
         public IReadOnlyCollection<TaxTariffModel> Get(TaxFilterModel filter)
         {
-            using var ctxt = this.dbContext();
-            return ctxt.Tariffs.AsNoTracking()
-                .Where(item => item.Canton == filter.Canton
-                               && item.Year == filter.Year)
+            using var ctxt = dbContext();
+            List<TaxTariffModel> tariffs = ctxt.Tariffs.AsNoTracking()
+                .Where(item => item.Canton == filter.Canton)
+                .ToList();
+
+            int maxYear = Math.Min(filter.Year, tariffs.Max(item => item.Year));
+
+            return tariffs
+                .Where(item => item.Year == maxYear)
                 .ToList();
         }
     }

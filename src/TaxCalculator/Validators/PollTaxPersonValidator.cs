@@ -8,8 +8,8 @@ namespace TaxCalculator.Validators
     {
         public PollTaxPersonValidator()
         {
-            this.RuleFor(x => x.Name).NotNull().NotEmpty();
-            this.RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
+            RuleFor(x => x.Name).NotNull().NotEmpty();
+            RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
         }
     }
 }

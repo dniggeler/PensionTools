@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using LanguageExt;
 using Microsoft.Extensions.Logging;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -25,7 +26,7 @@ namespace TaxCalculator.Basis.CapitalBenefit
 
             Either<string, CapitalBenefitTaxResult> result = msg;
 
-            this.logger.LogWarning(msg);
+            logger.LogWarning(msg);
 
             return Task.FromResult(result);
         }

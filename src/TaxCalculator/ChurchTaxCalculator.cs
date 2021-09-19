@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using LanguageExt;
 using Microsoft.EntityFrameworkCore;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -24,7 +25,7 @@ namespace TaxCalculator
             Func<TaxRateDbContext> taxRateContext)
         {
             this.churchTaxPersonValidator = churchTaxPersonValidator;
-            this.taxResultValidator = basisTaxResultValidator;
+            taxResultValidator = basisTaxResultValidator;
             this.taxRateContext = taxRateContext;
         }
 
@@ -35,32 +36,30 @@ namespace TaxCalculator
             ChurchTaxPerson person,
             AggregatedBasisTaxResult taxResult)
         {
-            using (var ctxt = this.taxRateContext())
+            using var ctxt = taxRateContext();
+            TaxRateEntity taxRateEntity = ctxt.Rates.AsNoTracking()
+                .FirstOrDefault(item => item.Year == calculationYear
+                                        && item.BfsId == municipalityId);
+            if (taxRateEntity == null)
             {
-                TaxRateEntity taxRateEntity = ctxt.Rates.AsNoTracking()
-                    .FirstOrDefault(item => item.Year == calculationYear
-                                            && item.BfsId == municipalityId);
-                if (taxRateEntity == null)
-                {
-                    Either<string, ChurchTaxResult> msg =
-                        $"No tax rate found for municipality {municipalityId} and year {calculationYear}";
+                Either<string, ChurchTaxResult> msg =
+                    $"No tax rate found for municipality {municipalityId} and year {calculationYear}";
 
-                    return msg.AsTask();
-                }
-
-                return this
-                    .Validate(person, taxResult)
-                    .BindAsync(r => this.CalculateInternalAsync(
-                        person, taxRateEntity, taxResult));
+                return msg.AsTask();
             }
+
+            return
+                Validate(person, taxResult)
+                    .BindAsync(r => CalculateInternalAsync(
+                        person, taxRateEntity, taxResult));
         }
 
         public Task<Either<string, ChurchTaxResult>> CalculateAsync(
             ChurchTaxPerson person, TaxRateEntity taxRateEntity, AggregatedBasisTaxResult taxResult)
         {
-            return this
-                .Validate(person, taxResult)
-                .BindAsync(r => this.CalculateInternalAsync(
+            return
+                Validate(person, taxResult)
+                .BindAsync(r => CalculateInternalAsync(
                     person, taxRateEntity, taxResult));
         }
 
@@ -77,7 +76,7 @@ namespace TaxCalculator
                 return $"validation failed: {nameof(taxResult)} null";
             }
 
-            var validationResult = this.churchTaxPersonValidator.Validate(person);
+            var validationResult = churchTaxPersonValidator.Validate(person);
 
             if (!validationResult.IsValid)
             {
@@ -87,7 +86,7 @@ namespace TaxCalculator
                 return $"validation failed: {errorMessageLine}";
             }
 
-            var validationResultForTax = this.taxResultValidator.Validate(taxResult);
+            var validationResultForTax = taxResultValidator.Validate(taxResult);
 
             if (!validationResultForTax.IsValid)
             {
@@ -112,7 +111,7 @@ namespace TaxCalculator
                 (from c in person.CivilStatus
                  from r in person.ReligiousGroup
                  from rp in religiousGroupPartner
-                 select this.DetermineSplitFactor(
+                 select DetermineSplitFactor(
                      c, r, rp))
                 .IfNone(0M);
 
@@ -130,7 +129,7 @@ namespace TaxCalculator
                     None: () => "No rate for church tax found")
                 .AsTask();
 
-            decimal GetTaxRate(ReligiousGroupType religiousGroupType, TaxRateEntity rateEntity)
+            static decimal GetTaxRate(ReligiousGroupType religiousGroupType, TaxRateEntity rateEntity)
             {
                 return religiousGroupType switch
                 {

@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -24,6 +25,8 @@ namespace TaxCalculator.Tests
         [InlineData(2018, 1_000_000, "Single", "Protestant", 261, "ZH")]
         [InlineData(2018, 2_000_000, "Married", "Catholic", 261, "ZH")]
         [InlineData(2018, 0, "Married", "Protestant", 261, "ZH")]
+        [InlineData(2019, 150_000, "Single", "Protestant", 3426, "SG")]
+        [InlineData(2019, 1_500_000, "Single", "Protestant", 3426, "SG")]
         [InlineData(2019, 2_000_000, "Married", "Protestant", 3426, "SG")]
         [InlineData(2019, 2_000_000, "Single", "Protestant", 3426, "SG")]
         [InlineData(2019, 0, "Single", "Protestant", 3426, "SG")]

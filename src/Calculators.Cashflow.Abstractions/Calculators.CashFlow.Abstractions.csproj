@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Calculators.CashFlow.Abstractions</AssemblyName>
+    <RootNamespace>Calculators.CashFlow</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaxCalculator.Abstractions\TaxCalculator.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

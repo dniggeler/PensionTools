@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using FluentValidation.Results;
 using LanguageExt;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -34,16 +35,16 @@ namespace TaxCalculator.Basis.Income
             int calculationYear, Canton canton, BasisTaxPerson person)
         {
             Option<ValidationResult> validationResult =
-                this.taxPersonValidator.Validate(person);
+                taxPersonValidator.Validate(person);
 
             var tariffType = validationResult
                 .Where(v => !v.IsValid)
                 .Map<Either<string, bool>>(r => string.Join(";", r.Errors.Select(x => x.ErrorMessage)))
                 .IfNone(true)
-                .Bind(_ => this.Map(person.CivilStatus));
+                .Bind(_ => Map(person.CivilStatus));
 
             var tariffItems =
-                this.tariffData.Get(new TaxFilterModel
+                tariffData.Get(new TaxFilterModel
                     {
                         Year = calculationYear,
                         Canton = canton.ToString(),
@@ -62,7 +63,7 @@ namespace TaxCalculator.Basis.Income
                     .First())
 
                 // calculate result
-                .Map(tariff => this.CalculateIncomeTax(person, tariff))
+                .Map(tariff => CalculateIncomeTax(person, tariff))
                 .AsTask();
         }
 

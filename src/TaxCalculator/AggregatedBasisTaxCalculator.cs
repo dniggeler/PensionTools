@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using LanguageExt;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -27,15 +28,15 @@ namespace TaxCalculator
         public async Task<Either<string, AggregatedBasisTaxResult>> CalculateAsync(
             int calculationYear, Canton canton, TaxPerson person)
         {
-            var basisTaxPerson = this.mapper.Map<BasisTaxPerson>(person);
+            var basisTaxPerson = mapper.Map<BasisTaxPerson>(person);
 
             var incomeTaxResultTask =
-                this.basisIncomeTaxCalculatorFunc(canton)
+                basisIncomeTaxCalculatorFunc(canton)
                     .CalculateAsync(calculationYear, canton, basisTaxPerson);
 
             basisTaxPerson.TaxableAmount = person.TaxableWealth;
             var wealthTaxResultTask =
-                this.basisWealthTaxCalculatorFunc(canton)
+                basisWealthTaxCalculatorFunc(canton)
                     .CalculateAsync(calculationYear, canton, basisTaxPerson);
 
             await Task.WhenAll(incomeTaxResultTask, wealthTaxResultTask);

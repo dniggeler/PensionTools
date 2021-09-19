@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using LanguageExt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -60,10 +60,10 @@ namespace TaxCalculator.WebApi.Controllers
             var taxPerson = MapRequest();
 
             Either<string, MunicipalityModel> municipalityData =
-                await this.municipalityResolver.GetAsync(request.BfsMunicipalityId, request.CalculationYear);
+                await municipalityResolver.GetAsync(request.BfsMunicipalityId, request.CalculationYear);
 
             Either<string, FullTaxResult> result = await municipalityData
-                .BindAsync(m => this.fullTaxCalculator.CalculateAsync(
+                .BindAsync(m => fullTaxCalculator.CalculateAsync(
                     request.CalculationYear,
                     request.BfsMunicipalityId,
                     m.Canton,

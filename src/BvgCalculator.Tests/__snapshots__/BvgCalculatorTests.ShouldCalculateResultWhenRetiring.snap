@@ -1,0 +1,31 @@
+﻿{
+  "DateOfRetirement": "2019-04-01T00:00:00",
+  "EffectiveSalary": 85000.0,
+  "InsuredSalary": 60115.00,
+  "RetirementCredit": 10820.7000,
+  "RetirementCreditFactor": 0.18,
+  "RetirementCapitalEndOfYear": 0.0,
+  "FinalRetirementCapital": 0.0,
+  "FinalRetirementCapitalWithoutInterest": 0.0,
+  "RetirementPension": 0.0,
+  "DisabilityPension": 0.0,
+  "PartnerPension": 0.0,
+  "OrphanPension": 0.0,
+  "ChildPensionForDisabled": 0.0,
+  "RetirementCreditSequence": [
+    {
+      "Age": 65,
+      "AmountRaw": 10820.7000,
+      "AmountRounded10": 10820.70,
+      "AmountRounded60": 10821.00,
+      "AmountRounded100": 10821.0
+    }
+  ],
+  "RetirementCapitalSequence": [
+    {
+      "Date": "2019-04-01T00:00:00",
+      "Value": 0.0,
+      "ValueWithoutInterest": 0.0
+    }
+  ]
+}

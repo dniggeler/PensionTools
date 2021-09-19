@@ -7,8 +7,8 @@ namespace TaxCalculator.Validators
     {
         public TaxPersonValidator()
         {
-            this.RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
-            this.RuleFor(x => x.ReligiousGroupType).Must(x => x.IsSome);
+            RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
+            RuleFor(x => x.ReligiousGroupType).Must(x => x.IsSome);
         }
     }
 }

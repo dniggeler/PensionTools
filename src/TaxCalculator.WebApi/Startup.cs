@@ -1,13 +1,15 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Reflection;
 using System.Text.Json.Serialization;
+using Calculators.CashFlow;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using PensionCoach.Tools.BvgCalculator;
 using Swashbuckle.AspNetCore.Filters;
 using Tax.Data;
 using Tax.Tools.Comparison;
@@ -20,7 +22,7 @@ namespace TaxCalculator.WebApi
 
         public Startup(IConfiguration configuration)
         {
-            this.Configuration = configuration;
+            Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -29,7 +31,7 @@ namespace TaxCalculator.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
-                options.AddPolicy(this.myAllowSpecificOrigins, builder =>
+                options.AddPolicy(myAllowSpecificOrigins, builder =>
                 {
                     builder.WithOrigins(
                         "http://localhost:8080",
@@ -45,9 +47,11 @@ namespace TaxCalculator.WebApi
             services.AddControllersWithViews()
                 .AddJsonOptions(options =>
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-            services.AddTaxData(this.Configuration);
+            services.AddTaxData(Configuration);
             services.AddTaxCalculators();
             services.AddTaxComparers();
+            services.AddBvgCalculators();
+            services.AddCashFlowCalculators();
             services.AddSwaggerExamplesFromAssemblyOf<Examples.CapitalBenefitTaxRequestExample>();
             services.AddSwaggerGen(opt =>
             {
@@ -78,7 +82,7 @@ namespace TaxCalculator.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(this.myAllowSpecificOrigins);
+            app.UseCors(myAllowSpecificOrigins);
             app.UseRouting();
             app.UseAuthorization();
             app.UseHealthChecks("/");

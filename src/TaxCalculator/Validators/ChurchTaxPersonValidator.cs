@@ -9,9 +9,9 @@ namespace TaxCalculator.Validators
     {
         public ChurchTaxPersonValidator()
         {
-            this.RuleFor(x => x.Name).NotNull().NotEmpty();
-            this.RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
-            this.RuleFor(x => x.ReligiousGroup).Must(x => x.IsSome);
+            RuleFor(x => x.Name).NotNull().NotEmpty();
+            RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
+            RuleFor(x => x.ReligiousGroup).Must(x => x.IsSome);
         }
     }
 }
