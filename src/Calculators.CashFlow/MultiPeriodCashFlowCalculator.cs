@@ -59,8 +59,8 @@ namespace Calculators.CashFlow
                     .Where(item => item.Year == currentYear)
                     .ToList();
 
-                List<ClearActionDefinition> currentYearClearCashFlowDefinitions = cashFlowDefinitionHolder
-                    .ClearCashFlowDefinitions
+                List<ClearAccountAction> currentYearClearCashFlowDefinitions = cashFlowDefinitionHolder
+                    .ClearAccountActions
                     .Where(item => item.ClearAtYear == currentYear)
                     .ToList();
 

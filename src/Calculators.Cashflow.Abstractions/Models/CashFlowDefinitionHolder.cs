@@ -20,7 +20,16 @@ namespace Calculators.CashFlow.Models
         /// <value>
         /// The clear action definitions.
         /// </value>
-        public IReadOnlyCollection<ClearActionDefinition> ClearCashFlowDefinitions { get; init; } =
-            Enumerable.Empty<ClearActionDefinition>().ToList();
+        public IReadOnlyCollection<ClearAccountAction> ClearAccountActions { get; init; } =
+            Enumerable.Empty<ClearAccountAction>().ToList();
+
+        /// <summary>
+        /// Gets the change residence actions.
+        /// </summary>
+        /// <value>
+        /// The change residence actions.
+        /// </value>
+        public IReadOnlyCollection<ChangeResidenceAction> ChangeResidenceActions { get; init; } =
+                    Enumerable.Empty<ChangeResidenceAction>().ToList();
     }
 }

@@ -32,7 +32,7 @@ namespace TaxCalculator.WebApi.Examples
                 PartnerReligiousGroupType = ReligiousGroupType.Other,
                 CashFlowDefinitionHolder = new CashFlowDefinitionHolder
                 {
-                    ClearCashFlowDefinitions = new List<ClearActionDefinition>
+                    ClearAccountActions = new List<ClearAccountAction>
                     {
                         new ()
                         {
