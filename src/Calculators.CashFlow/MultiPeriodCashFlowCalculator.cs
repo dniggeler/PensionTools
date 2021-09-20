@@ -51,17 +51,24 @@ namespace Calculators.CashFlow
 
             // swap every account from begin of year T to T+1 (begin of next year)
             ImmutableDictionary<AccountType, decimal> currentPeriodAccounts = new Dictionary<AccountType, decimal>().ToImmutableDictionary();
+            MultiPeriodCalculatorPerson currentPerson = person;
             for (int year = startingYear; year <= finalYear; year++)
             {
+
                 int currentYear = year;
                 
                 List<CashFlowModel> currentYearCashFlows = cashFlows
                     .Where(item => item.Year == currentYear)
                     .ToList();
 
-                List<ClearAccountAction> currentYearClearCashFlowDefinitions = cashFlowDefinitionHolder
+                List<ClearAccountAction> currentYearClearAccountActions = cashFlowDefinitionHolder
                     .ClearAccountActions
                     .Where(item => item.ClearAtYear == currentYear)
+                    .ToList();
+
+                List<ChangeResidenceAction> currentYearChangeResidenceActions = cashFlowDefinitionHolder
+                    .ChangeResidenceActions
+                    .Where(item => item.ChangeAtYear == currentYear)
                     .ToList();
 
                 // 0. move target asset amount to account if it starts at beginning of the year, and
@@ -77,7 +84,7 @@ namespace Calculators.CashFlow
                 }
 
                 // 1. apply begin of year clear cash-flows
-                foreach (var clearCashFlowDefinition in currentYearClearCashFlowDefinitions
+                foreach (var clearCashFlowDefinition in currentYearClearAccountActions
                     .Where(item => item.OccurrenceType == OccurrenceType.BeginOfPeriod && item.IsTaxable))
                 {
                     decimal taxableAmount = currentPeriodAccounts[clearCashFlowDefinition.Flow.Source] *
@@ -89,7 +96,7 @@ namespace Calculators.CashFlow
                     currentPeriodAccounts =
                         AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, clearCashFlowDefinition.Flow.Target, taxableAmount);
 
-                    var taxPaymentAmount = await CalculateCapitalBenefitsTaxAsync(currentYear, person, taxableAmount);
+                    var taxPaymentAmount = await CalculateCapitalBenefitsTaxAsync(currentYear, currentPerson, taxableAmount);
 
                     currentPeriodAccounts =
                         AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Wealth, -taxPaymentAmount);
@@ -99,7 +106,7 @@ namespace Calculators.CashFlow
                 var income = currentPeriodAccounts[AccountType.Income];
                 var wealth = currentPeriodAccounts[AccountType.Wealth];
 
-                var totalTaxAmount = await CalculateIncomeAndWealthTaxAsync(currentYear, person, income, wealth);
+                var totalTaxAmount = await CalculateIncomeAndWealthTaxAsync(currentYear, currentPerson, income, wealth);
 
                 // 2b. deduct tax payment from current wealth as tax payments are made after calculating taxes
                 currentPeriodAccounts =
@@ -114,7 +121,7 @@ namespace Calculators.CashFlow
                     AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Income, -newSavings);
 
                 // 4. apply end of year clear cash-flows
-                foreach (var clearCashFlowDefinition in currentYearClearCashFlowDefinitions
+                foreach (var clearCashFlowDefinition in currentYearClearAccountActions
                     .Where(item => item.OccurrenceType == OccurrenceType.EndOfPeriod && item.IsTaxable))
                 {
                     decimal taxableAmount = currentPeriodAccounts[clearCashFlowDefinition.Flow.Source] *
@@ -125,7 +132,7 @@ namespace Calculators.CashFlow
                     currentPeriodAccounts =
                         AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, clearCashFlowDefinition.Flow.Target, taxableAmount);
 
-                    var taxPaymentAmount = await CalculateCapitalBenefitsTaxAsync(currentYear, person, taxableAmount);
+                    var taxPaymentAmount = await CalculateCapitalBenefitsTaxAsync(currentYear, currentPerson, taxableAmount);
 
                     currentPeriodAccounts =
                         AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Wealth, -taxPaymentAmount);
@@ -135,8 +142,21 @@ namespace Calculators.CashFlow
                 // 5. reset flow account types income and exogenous which are swapped to next period
                 currentPeriodAccounts = currentPeriodAccounts.Remove(AccountType.Income);
                 currentPeriodAccounts = currentPeriodAccounts.Remove(AccountType.Exogenous);
-                
-                // 6. collect calculation results
+
+                // 6. Change residence
+                foreach (ChangeResidenceAction changeResidenceAction in currentYearChangeResidenceActions)
+                {
+                    currentPerson = currentPerson with
+                    {
+                        MunicipalityId = changeResidenceAction.DestinationMunicipalityId,
+                        Canton = changeResidenceAction.DestinationCanton,
+                    };
+
+                    currentPeriodAccounts =
+                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Wealth, -changeResidenceAction.ChangeCost);
+                }
+
+                // 7. collect calculation results
                 currentPeriodAccounts
                     .Select(pair => new SinglePeriodCalculationResult(currentYear, pair.Value, pair.Key))
                     .Iter(item => singlePeriodCalculationResults.Add(item));
@@ -190,7 +210,7 @@ namespace Calculators.CashFlow
                 };
 
                 Either<string, FullCapitalBenefitTaxResult> result = await _capitalBenefitCalculator.CalculateAsync(
-                    currentYear, person.MunicipalityId, person.Canton, taxPerson, true);
+                    currentYear, calculatorPerson.MunicipalityId, calculatorPerson.Canton, taxPerson, true);
 
                 return result.Match(
                     Right: r => r.TotalTaxAmount,

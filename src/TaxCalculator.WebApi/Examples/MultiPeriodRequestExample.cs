@@ -46,6 +46,21 @@ namespace TaxCalculator.WebApi.Examples
                             OccurrenceType = OccurrenceType.EndOfPeriod,
                         },
                     },
+
+                    ChangeResidenceActions = new List<ChangeResidenceAction>
+                    {
+                        new ()
+                        {
+                            Id = "Change residence",
+                            Name = $"{personName} - Change Residence",
+                            Ordinal = 0,
+                            DestinationMunicipalityId = 3426,
+                            DestinationCanton = Canton.SG,
+                            ChangeCost = 5_000,
+                            ChangeAtYear = 2029,
+                        },
+                    },
+
                     GenericCashFlowDefinitions = new List<GenericCashFlowDefinition>
                     {
                         new ()

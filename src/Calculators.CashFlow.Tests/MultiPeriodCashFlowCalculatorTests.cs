@@ -88,7 +88,8 @@ namespace Calculators.CashFlow.Tests
                 new CashFlowDefinitionHolder
                 {
                     GenericCashFlowDefinitions = GetCashFlowDefinitions(person).ToList(),
-                    ClearAccountActions = GetClearActionDefinitions().ToList()
+                    ClearAccountActions = GetClearActionDefinitions().ToList(),
+                    ChangeResidenceActions = GetChangeResidenceActions().ToList(),
                 });
 
             // then
@@ -149,17 +150,6 @@ namespace Calculators.CashFlow.Tests
             yield return new ClearAccountAction
             {
                 Id = "Clear Capital Benefit Action 1",
-                ClearAtYear = 2029,
-                ClearRatio = 0.5M,
-                Flow = new FlowPair(AccountType.CapitalBenefits, AccountType.Wealth),
-                IsTaxable = true,
-                TaxType = TaxType.Capital,
-                OccurrenceType = OccurrenceType.EndOfPeriod,
-            };
-
-            yield return new ClearAccountAction
-            {
-                Id = "Clear Capital Benefit Action 2",
                 ClearAtYear = 2030,
                 ClearRatio = 1.0M,
                 Flow = new FlowPair(AccountType.CapitalBenefits, AccountType.Wealth),
@@ -171,12 +161,13 @@ namespace Calculators.CashFlow.Tests
 
         IEnumerable<ChangeResidenceAction> GetChangeResidenceActions()
         {
-            yield return new ChangeResidenceAction()
+            yield return new ChangeResidenceAction
             {
                 Id = "Change residence action",
                 DestinationMunicipalityId = 3426,
-                ChangeCost = 5_000,
-                OccurrenceType = OccurrenceType.EndOfPeriod,
+                DestinationCanton = Canton.SG,
+                ChangeCost = 2_000,
+                ChangeAtYear = 2029,
             };
         }
     }
