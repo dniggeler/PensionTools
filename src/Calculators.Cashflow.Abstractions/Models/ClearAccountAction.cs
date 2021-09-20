@@ -2,7 +2,7 @@
 
 namespace Calculators.CashFlow.Models
 {
-    public record ClearActionDefinition
+    public record ClearAccountAction
     {
         /// <summary>
         /// Gets or sets the identifier.

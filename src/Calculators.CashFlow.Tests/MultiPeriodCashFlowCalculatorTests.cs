@@ -70,8 +70,8 @@ namespace Calculators.CashFlow.Tests
             Snapshot.Match(result);
         }
 
-        [Fact(DisplayName = "Salary and Wealth Projection")]
-        public async Task Calculate_MultiPeriod_Simulation_With_Salary_And_Wealth()
+        [Fact(DisplayName = "Full Simulation")]
+        public async Task Calculate_Full_MultiPeriod_Simulation()
         {
             // given
             int startingYear = 2021;
@@ -88,7 +88,8 @@ namespace Calculators.CashFlow.Tests
                 new CashFlowDefinitionHolder
                 {
                     GenericCashFlowDefinitions = GetCashFlowDefinitions(person).ToList(),
-                    ClearCashFlowDefinitions = GetClearActionDefinitions().ToList()
+                    ClearAccountActions = GetClearActionDefinitions().ToList(),
+                    ChangeResidenceActions = GetChangeResidenceActions().ToList(),
                 });
 
             // then
@@ -144,28 +145,29 @@ namespace Calculators.CashFlow.Tests
             return person;
         }
 
-        IEnumerable<ClearActionDefinition> GetClearActionDefinitions()
+        IEnumerable<ClearAccountAction> GetClearActionDefinitions()
         {
-            yield return new ClearActionDefinition
+            yield return new ClearAccountAction
             {
                 Id = "Clear Capital Benefit Action 1",
-                ClearAtYear = 2029,
-                ClearRatio = 0.5M,
-                Flow = new FlowPair(AccountType.CapitalBenefits, AccountType.Wealth),
-                IsTaxable = true,
-                TaxType = TaxType.Capital,
-                OccurrenceType = OccurrenceType.EndOfPeriod,
-            };
-
-            yield return new ClearActionDefinition
-            {
-                Id = "Clear Capital Benefit Action 2",
                 ClearAtYear = 2030,
                 ClearRatio = 1.0M,
                 Flow = new FlowPair(AccountType.CapitalBenefits, AccountType.Wealth),
                 IsTaxable = true,
                 TaxType = TaxType.Capital,
                 OccurrenceType = OccurrenceType.EndOfPeriod,
+            };
+        }
+
+        IEnumerable<ChangeResidenceAction> GetChangeResidenceActions()
+        {
+            yield return new ChangeResidenceAction
+            {
+                Id = "Change residence action",
+                DestinationMunicipalityId = 3426,
+                DestinationCanton = Canton.SG,
+                ChangeCost = 2_000,
+                ChangeAtYear = 2029,
             };
         }
     }
