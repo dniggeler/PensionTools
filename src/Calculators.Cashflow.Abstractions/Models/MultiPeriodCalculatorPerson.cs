@@ -21,8 +21,8 @@ namespace Calculators.CashFlow.Models
         
         public int NumberOfChildren { get; set; }
         
-        public Option<ReligiousGroupType> ReligiousGroupType { get; set; }
+        public ReligiousGroupType ReligiousGroupType { get; set; }
 
-        public Option<ReligiousGroupType> PartnerReligiousGroupType { get; set; }
+        public ReligiousGroupType PartnerReligiousGroupType { get; set; }
     }
 }

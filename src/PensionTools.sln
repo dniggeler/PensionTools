@@ -64,7 +64,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculators.CashFlow.Abstra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculators.CashFlow", "Calculators.CashFlow\Calculators.CashFlow.csproj", "{6D23DE23-3FBA-4FEF-ABDD-C022F149C355}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculators.CashFlow.Tests", "Calculators.CashFlow.Tests\Calculators.CashFlow.Tests.csproj", "{A0EF9592-1653-4A8F-BFDB-955BA806B590}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculators.CashFlow.Tests", "Calculators.CashFlow.Tests\Calculators.CashFlow.Tests.csproj", "{A0EF9592-1653-4A8F-BFDB-955BA806B590}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp", "BlazorApp\BlazorApp.csproj", "{82A13E90-F0A6-4A37-96A9-902D87FDF31A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -164,6 +166,10 @@ Global
 		{A0EF9592-1653-4A8F-BFDB-955BA806B590}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0EF9592-1653-4A8F-BFDB-955BA806B590}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0EF9592-1653-4A8F-BFDB-955BA806B590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82A13E90-F0A6-4A37-96A9-902D87FDF31A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82A13E90-F0A6-4A37-96A9-902D87FDF31A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82A13E90-F0A6-4A37-96A9-902D87FDF31A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82A13E90-F0A6-4A37-96A9-902D87FDF31A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
