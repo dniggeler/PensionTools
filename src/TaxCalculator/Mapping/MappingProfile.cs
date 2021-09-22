@@ -18,8 +18,8 @@ namespace TaxCalculator.Mapping
 
             CreateMap<CapitalBenefitTaxPerson, TaxPerson>();
             CreateMap<CapitalBenefitTaxPerson, ChurchTaxPerson>()
-                .ForMember(d => d.ReligiousGroup, m => m.MapFrom(s => s.ReligiousGroupType))
-                .ForMember(d => d.PartnerReligiousGroup, m => m.MapFrom(s => s.PartnerReligiousGroupType));
+                .ForMember(d => d.ReligiousGroupType, m => m.MapFrom(s => s.ReligiousGroupType))
+                .ForMember(d => d.PartnerReligiousGroupType, m => m.MapFrom(s => s.PartnerReligiousGroupType));
 
             CreateMap<CapitalBenefitTaxPerson, FederalTaxPerson>()
                 .ForMember(d => d.TaxableAmount, m => m.MapFrom(s => s.TaxableBenefits));
@@ -33,8 +33,8 @@ namespace TaxCalculator.Mapping
             CreateMap<TaxPerson, PollTaxPerson>();
 
             CreateMap<TaxPerson, ChurchTaxPerson>()
-                .ForMember(d => d.ReligiousGroup, m => m.MapFrom(s => s.ReligiousGroupType))
-                .ForMember(d => d.PartnerReligiousGroup, m => m.MapFrom(s => s.PartnerReligiousGroupType));
+                .ForMember(d => d.ReligiousGroupType, m => m.MapFrom(s => s.ReligiousGroupType))
+                .ForMember(d => d.PartnerReligiousGroupType, m => m.MapFrom(s => s.PartnerReligiousGroupType));
         }
 
         private DateTime? Convert(string dateAsString)

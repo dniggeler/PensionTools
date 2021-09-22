@@ -4,12 +4,14 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FluentValidation;
 using LanguageExt;
+using LanguageExt.SomeHelp;
 using Microsoft.EntityFrameworkCore;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data;
+using static LanguageExt.Prelude;
 
 namespace TaxCalculator.Basis.CapitalBenefit
 {
@@ -89,7 +91,7 @@ namespace TaxCalculator.Basis.CapitalBenefit
 
             BasisTaxResult GetBasisCapitalBenefitTaxAmount(CapitalBenefitTaxPerson person)
             {
-                var amount = person.CivilStatus
+                var amount = Some(person.CivilStatus)
                     .Match(
                         Some: status => status switch
                         {

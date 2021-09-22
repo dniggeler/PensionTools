@@ -35,14 +35,13 @@ namespace PensionVersusCapitalCalculator
             CapitalBenefitTaxPerson capitalBenefitTaxPerson = new()
             {
                 Name = "Benefit Person",
-                CivilStatus = taxPerson.CivilStatus,
+                CivilStatus = taxPerson.CivilStatus.IfNone(CivilStatus.Undefined),
                 TaxableBenefits = retirementCapital,
                 ReligiousGroupType = taxPerson.ReligiousGroupType,
                 NumberOfChildren = taxPerson.NumberOfChildren,
                 PartnerReligiousGroupType = taxPerson.PartnerReligiousGroupType
             };
-
-
+            
             Either<string, CapitalBenefitTaxResult> capitalBenefitTaxCalculationResult =
                 await capitalBenefitCalculator.CalculateAsync(calculationYear, municipalityId, canton, capitalBenefitTaxPerson);
 
