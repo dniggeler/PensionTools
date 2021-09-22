@@ -35,7 +35,7 @@ namespace PensionVersusCapitalCalculator
             CapitalBenefitTaxPerson capitalBenefitTaxPerson = new()
             {
                 Name = "Benefit Person",
-                CivilStatus = taxPerson.CivilStatus.IfNone(CivilStatus.Undefined),
+                CivilStatus = taxPerson.CivilStatus,
                 TaxableBenefits = retirementCapital,
                 ReligiousGroupType = taxPerson.ReligiousGroupType,
                 NumberOfChildren = taxPerson.NumberOfChildren,
