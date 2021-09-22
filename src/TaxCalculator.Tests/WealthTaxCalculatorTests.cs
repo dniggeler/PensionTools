@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using FluentAssertions;
 using LanguageExt;
@@ -32,6 +32,7 @@ namespace TaxCalculator.Tests
 
             var taxPerson = new TaxPerson
             {
+                Name = "Burli",
                 CivilStatus = CivilStatus.Married,
                 ReligiousGroupType = ReligiousGroupType.Protestant,
                 TaxableIncome = 99995,

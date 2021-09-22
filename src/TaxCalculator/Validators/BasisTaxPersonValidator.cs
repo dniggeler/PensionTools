@@ -9,8 +9,9 @@ namespace TaxCalculator.Validators
 
         public BasisTaxPersonValidator()
         {
+            Include(new TaxPersonBasicValidator());
             RuleFor(p => p.TaxableAmount)
-                .Must(value => value >= decimal.Zero)
+                .GreaterThanOrEqualTo(decimal.Zero)
                 .WithMessage(ValueMustNotBeNegative);
         }
     }

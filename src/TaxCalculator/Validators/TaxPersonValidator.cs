@@ -9,14 +9,16 @@ namespace TaxCalculator.Validators
 
         public TaxPersonValidator()
         {
+            Include(new TaxPersonBasicValidator());
+
             RuleFor(p => p.TaxableIncome)
-                .Must(value => value >= decimal.Zero)
+                .GreaterThanOrEqualTo(decimal.Zero)
                 .WithMessage(ValueMustNotBeNegative);
             RuleFor(p => p.TaxableWealth)
-                .Must(value => value >= decimal.Zero)
+                .GreaterThanOrEqualTo(decimal.Zero)
                 .WithMessage(ValueMustNotBeNegative);
             RuleFor(p => p.TaxableFederalIncome)
-                .Must(value => value >= decimal.Zero)
+                .GreaterThanOrEqualTo(decimal.Zero)
                 .WithMessage(ValueMustNotBeNegative);
         }
     }

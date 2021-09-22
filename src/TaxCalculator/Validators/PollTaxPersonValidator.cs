@@ -7,7 +7,7 @@ namespace TaxCalculator.Validators
     {
         public PollTaxPersonValidator()
         {
-            RuleFor(x => x.Name).NotNull().NotEmpty();
+            Include(new TaxPersonBasicValidator());
         }
     }
 }

@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using FluentAssertions;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
@@ -28,6 +28,7 @@ namespace TaxCalculator.Tests
             Canton canton = Canton.ZH;
             var taxPerson = new TaxPerson
             {
+                Name = "Burli",
                 CivilStatus = CivilStatus.Married,
                 ReligiousGroupType = ReligiousGroupType.Protestant,
                 TaxableIncome = 99995
