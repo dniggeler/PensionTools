@@ -33,7 +33,7 @@ namespace TaxCalculator.Basis.Income
             // This method breaks the progression and results in a lower tax
             // amount.
             (decimal TaxAmount, decimal Multiplier) adaptedTaxData =
-                person.CivilStatus
+                Prelude.Some(person.CivilStatus)
                     .Match(
                         Some: status => status switch
                         {

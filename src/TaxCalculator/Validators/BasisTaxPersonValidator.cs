@@ -5,9 +5,13 @@ namespace TaxCalculator.Validators
 {
     public class BasisTaxPersonValidator : AbstractValidator<BasisTaxPerson>
     {
+        private const string ValueMustNotBeNegative = "Value must not be negative";
+
         public BasisTaxPersonValidator()
         {
-            RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
+            RuleFor(p => p.TaxableAmount)
+                .Must(value => value >= decimal.Zero)
+                .WithMessage(ValueMustNotBeNegative);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace TaxCalculator.Basis.Income
             // divide taxable income by 2 if married and
             // multiple by 2 (to break the progression)
             (decimal TaxAmount, decimal Multiplier) adaptedTaxData =
-                person.CivilStatus
+                Prelude.Some(person.CivilStatus)
                     .Match(
                         Some: status => status switch
                         {

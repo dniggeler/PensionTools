@@ -1,18 +1,17 @@
 ﻿using System.Linq;
 using FluentValidation;
 using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
 namespace TaxCalculator.Validators
 {
     public class CantonValidator : AbstractValidator<Canton>
     {
-        private readonly Canton[] supportedCantons = { Canton.ZH };
+        private static readonly Canton[] SupportedCantons = { Canton.ZH, Canton.SG, Canton.SO };
 
         public CantonValidator()
         {
             RuleFor(canton => canton)
-                .Must(c => supportedCantons.Contains(c))
+                .Must(c => SupportedCantons.Contains(c))
                 .WithMessage(c => $"Canton {c} is not yet supported");
         }
     }
