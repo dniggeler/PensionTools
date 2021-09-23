@@ -1,8 +1,67 @@
 ﻿@page "/IncomeWealth"
+@using PensionCoach.Tools.CommonTypes
 
 <h3>Einkommen und Vermögen</h3>
 
-@code {
+<EditForm Model="taxPerson" OnValidSubmit="SubmitForm">
+    <FormSection Title="Steuerperson" HelpText="Minimale Personangaben um die verschiedenen Steuerrechner zu bestücken.">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="personName" class="font-weight-bold text-secondary">Name</label>
+                    <InputText @bind-Value="taxPerson.Name" class="form-control" id="personName" />
+                </div>
+            </div>
+            
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="civilStatus" class="font-weight-bold text-secondary">Zivilstand</label>
 
+                    <RadzenDropDown Data="@civilStatusValues" @bind-Value="@civilStatus" />
+                </div>
+            </div>
+        </div>
+    </FormSection>
+
+    <FormSection Title="Steuerdaten" HelpText="Angaben zu Lohn und Vermögen">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="income" class="font-weight-bold text-secondary">Steuerbarer Lohn</label>
+                    <InputNumber @bind-Value="taxPerson.TaxableIncome" class="form-control" id="income" />
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="wealth" class="font-weight-bold text-secondary">Steuerbares Vermögen</label>
+                    <InputNumber @bind-Value="taxPerson.TaxableWealth" class="form-control" id="wealth" />
+                </div>
+            </div>
+        </div>
+    </FormSection>
+
+    <div class="mt-4 mb-5">
+        <div class="row">
+            <div class="offset-4 col-8 text-right">
+                <button class="btn btn-outline-secondary" type="button" @onclick="@(() => taxPerson = DefaultTaxPerson .GetDefaultValues())">Standard</button>
+                <button class="btn btn-outline-secondary" type="button" @onclick="@(() => taxPerson = new TaxPerson())">Löschen</button>
+                <button class="btn btn-primary" type="submit">Simulieren</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    TaxPerson taxPerson = new ();
+
+    IEnumerable<string> civilStatusValues = Enum.GetNames(typeof(CivilStatus));
+
+    string civilStatus = CivilStatus.Undefined.ToString();
+
+    private async Task SubmitForm()
+    {
+
+    }
 }
 

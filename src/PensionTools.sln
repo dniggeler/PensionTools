@@ -66,7 +66,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculators.CashFlow", "Cal
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculators.CashFlow.Tests", "Calculators.CashFlow.Tests\Calculators.CashFlow.Tests.csproj", "{A0EF9592-1653-4A8F-BFDB-955BA806B590}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp", "BlazorApp\BlazorApp.csproj", "{82A13E90-F0A6-4A37-96A9-902D87FDF31A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp", "BlazorApp\BlazorApp.csproj", "{82A13E90-F0A6-4A37-96A9-902D87FDF31A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

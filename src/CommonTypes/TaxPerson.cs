@@ -1,6 +1,4 @@
-﻿using PensionCoach.Tools.CommonTypes;
-
-namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person
+﻿namespace PensionCoach.Tools.CommonTypes
 {
     public record TaxPerson : TaxPersonBasic
     {
