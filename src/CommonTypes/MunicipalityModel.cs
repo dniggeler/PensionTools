@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Xml.Schema;
-using PensionCoach.Tools.CommonTypes;
 
-
-namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
+namespace PensionCoach.Tools.CommonTypes
 {
     public class MunicipalityModel
     {

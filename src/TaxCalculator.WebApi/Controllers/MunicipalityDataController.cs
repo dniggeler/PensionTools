@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using LanguageExt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Municipality;
@@ -16,14 +16,11 @@ namespace TaxCalculator.WebApi.Controllers
     public class MunicipalityDataController : ControllerBase
     {
         private readonly IMunicipalityConnector municipalityConnector;
-        private readonly ILogger<MunicipalityDataController> logger;
 
         public MunicipalityDataController(
-            IMunicipalityConnector municipalityConnector,
-            ILogger<MunicipalityDataController> logger)
+            IMunicipalityConnector municipalityConnector)
         {
             this.municipalityConnector = municipalityConnector;
-            this.logger = logger;
         }
 
         /// <summary>
@@ -37,7 +34,7 @@ namespace TaxCalculator.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<string>>> Get()
         {
-            return this.Ok(await this.municipalityConnector.GetAllAsync());
+            return Ok(await municipalityConnector.GetAllAsync());
         }
 
         /// <summary>
@@ -56,12 +53,12 @@ namespace TaxCalculator.WebApi.Controllers
         public async Task<ActionResult<MunicipalityModel>> Get(int year, int id)
         {
             Either<string, MunicipalityModel> result =
-                await this.municipalityConnector.GetAsync(id, year);
+                await municipalityConnector.GetAsync(id, year);
 
             return result
                 .Match<ActionResult>(
-                    Right: this.Ok,
-                    Left: this.NotFound);
+                    Right: Ok,
+                    Left: NotFound);
         }
 
         /// <summary>
@@ -81,13 +78,13 @@ namespace TaxCalculator.WebApi.Controllers
         {
             if (filter == null)
             {
-                return this.BadRequest("Search filter is null");
+                return BadRequest("Search filter is null");
             }
 
             IEnumerable<MunicipalityModel> result =
-                this.municipalityConnector.Search(filter);
+                municipalityConnector.Search(filter);
 
-            return this.Ok(result);
+            return Ok(result);
         }
     }
 }
