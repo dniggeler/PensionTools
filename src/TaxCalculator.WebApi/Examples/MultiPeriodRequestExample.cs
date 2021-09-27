@@ -2,6 +2,8 @@
 using Calculators.CashFlow;
 using Calculators.CashFlow.Models;
 using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.MultiPeriod;
+using PensionCoach.Tools.CommonTypes.Tax;
 using Swashbuckle.AspNetCore.Filters;
 using TaxCalculator.WebApi.Models;
 

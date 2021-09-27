@@ -1,4 +1,4 @@
-﻿namespace Calculators.CashFlow.Models
+﻿namespace PensionCoach.Tools.CommonTypes.MultiPeriod
 {
     public record RecurringInvestment(decimal Amount, FrequencyType Frequency);
 }

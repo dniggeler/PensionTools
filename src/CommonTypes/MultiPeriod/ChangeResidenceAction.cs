@@ -1,6 +1,4 @@
-﻿using PensionCoach.Tools.CommonTypes;
-
-namespace Calculators.CashFlow.Models
+﻿namespace PensionCoach.Tools.CommonTypes.MultiPeriod
 {
     /// <summary>
     /// Simulates the change of the residence. A change always happens at the end of a period.

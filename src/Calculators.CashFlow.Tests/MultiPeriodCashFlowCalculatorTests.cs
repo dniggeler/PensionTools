@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Calculators.CashFlow.Models;
 using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.MultiPeriod;
+using PensionCoach.Tools.CommonTypes.Tax;
 using Snapshooter.Xunit;
 using Xunit;
 

@@ -5413,14 +5413,14 @@ ul.rz-profile-menu {
   width: 10rem; }
 
 .rz-slider-range {
-  position: absolute;
-  top: -1px;
-  bottom: -1px;
-  left: -1px;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  background-color: #5d717b;
-  border: 1px solid #5d717b; }
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: -1px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border: 1px solid #5d717b;
+}
 
 .rz-slider-handle {
   position: absolute;

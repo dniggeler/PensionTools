@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Calculators.CashFlow.Models
+namespace PensionCoach.Tools.CommonTypes.MultiPeriod
 {
     public record CashFlowDefinitionHolder
     {

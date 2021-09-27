@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using PensionVersusCapitalCalculator.Abstractions;
 using Xunit;

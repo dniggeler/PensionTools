@@ -1,4 +1,4 @@
-﻿namespace PensionCoach.Tools.CommonTypes
+﻿namespace PensionCoach.Tools.CommonTypes.Tax
 {
     public record TaxPerson : TaxPersonBasic
     {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Calculators.CashFlow.Models;
+using PensionCoach.Tools.CommonTypes.MultiPeriod;
 
 namespace Calculators.CashFlow
 {

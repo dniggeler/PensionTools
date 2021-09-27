@@ -1,4 +1,4 @@
-﻿namespace Calculators.CashFlow
+﻿namespace PensionCoach.Tools.CommonTypes
 {
     public enum AccountType
     {

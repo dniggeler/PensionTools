@@ -1,10 +1,10 @@
 ﻿@page "/IncomeWealth"
 @using PensionCoach.Tools.CommonTypes
+@using PensionCoach.Tools.CommonTypes.Tax
 
 <h3>Einkommen und Vermögen</h3>
 
 <EditForm Model="taxPerson" OnValidSubmit="SubmitForm">
-    <FormSection Title="Steuerperson" HelpText="Minimale Personangaben um die verschiedenen Steuerrechner zu bestücken.">
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
@@ -21,9 +21,7 @@
                 </div>
             </div>
         </div>
-    </FormSection>
 
-    <FormSection Title="Steuerdaten" HelpText="Angaben zu Lohn und Vermögen">
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
@@ -39,7 +37,6 @@
                 </div>
             </div>
         </div>
-    </FormSection>
 
     <div class="mt-4 mb-5">
         <div class="row">

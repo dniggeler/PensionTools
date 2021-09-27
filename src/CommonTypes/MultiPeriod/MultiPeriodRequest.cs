@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
-using Calculators.CashFlow.Models;
-using PensionCoach.Tools.CommonTypes;
 
-namespace TaxCalculator.WebApi.Models
+namespace PensionCoach.Tools.CommonTypes.MultiPeriod
 {
     public class MultiPeriodRequest
     {
