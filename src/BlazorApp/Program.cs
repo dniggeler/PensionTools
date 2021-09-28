@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using BlazorApp.Services;
+using Microsoft.Extensions.Configuration;
 using Radzen;
 
 namespace BlazorApp
@@ -13,6 +15,18 @@ namespace BlazorApp
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
+
+            bool isMocked = Convert.ToBoolean(builder.Configuration.GetSection("isMocked").Value);
+            Console.WriteLine(isMocked);
+
+            if (isMocked)
+            {
+                builder.Services.AddScoped<IMultiPeriodCalculationService, MockedMultiPeriodCalculationService>();
+            }
+            else
+            {
+                builder.Services.AddScoped<IMultiPeriodCalculationService, MultiPeriodCalculationService>();
+            }
 
             builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 

@@ -1,0 +1,106 @@
+﻿{
+  "startingYear": 2021,
+  "numberOfPeriods": 10,
+  "accounts": [
+    {
+      "year": 2021,
+      "amount": 515751.830,
+      "accountType": "Wealth"
+    },
+    {
+      "year": 2021,
+      "amount": 516883,
+      "accountType": "CapitalBenefits"
+    },
+    {
+      "year": 2022,
+      "amount": 531588.56000,
+      "accountType": "Wealth"
+    },
+    {
+      "year": 2022,
+      "amount": 533766,
+      "accountType": "CapitalBenefits"
+    },
+    {
+      "year": 2023,
+      "amount": 547511.1300000,
+      "accountType": "Wealth"
+    },
+    {
+      "year": 2023,
+      "amount": 550649,
+      "accountType": "CapitalBenefits"
+    },
+    {
+      "year": 2024,
+      "amount": 563522.570000000,
+      "accountType": "Wealth"
+    },
+    {
+      "year": 2024,
+      "amount": 567532,
+      "accountType": "CapitalBenefits"
+    },
+    {
+      "year": 2025,
+      "amount": 579625.94030000000,
+      "accountType": "Wealth"
+    },
+    {
+      "year": 2025,
+      "amount": 584415,
+      "accountType": "CapitalBenefits"
+    },
+    {
+      "year": 2026,
+      "amount": 596759.2518030000000,
+      "accountType": "Wealth"
+    },
+    {
+      "year": 2026,
+      "amount": 591298,
+      "accountType": "CapitalBenefits"
+    },
+    {
+      "year": 2027,
+      "amount": 613958.046321030000000,
+      "accountType": "Wealth"
+    },
+    {
+      "year": 2027,
+      "amount": 598181,
+      "accountType": "CapitalBenefits"
+    },
+    {
+      "year": 2028,
+      "amount": 631203.99688424030000000,
+      "accountType": "Wealth"
+    },
+    {
+      "year": 2028,
+      "amount": 605064,
+      "accountType": "CapitalBenefits"
+    },
+    {
+      "year": 2029,
+      "amount": 648498.2280530827030000000,
+      "accountType": "Wealth"
+    },
+    {
+      "year": 2029,
+      "amount": 611947,
+      "accountType": "CapitalBenefits"
+    },
+    {
+      "year": 2030,
+      "amount": 665867.496233613530030000000,
+      "accountType": "Wealth"
+    },
+    {
+      "year": 2030,
+      "amount": 618830,
+      "accountType": "CapitalBenefits"
+    }
+  ]
+}

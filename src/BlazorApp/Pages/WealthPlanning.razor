@@ -2,10 +2,12 @@
 @using PensionCoach.Tools.CommonTypes
 @using Microsoft.Extensions.Logging
 @using System.Text.Json
+@using BlazorApp.Services
 @using PensionCoach.Tools.CommonTypes.MultiPeriod
 @using PensionCoach.Tools.CommonTypes.Tax
 
 @inject ILogger<WealthPlanning> logger;
+@inject IMultiPeriodCalculationService multiPeriodCalculationService;
 
 <RadzenTemplateForm TItem="MultiPeriodRequest" Data=@model Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
     <RadzenContent Container="main">
@@ -27,12 +29,12 @@
                                         <div class="col-md-6">
                                             <h3>Zivilstand</h3>
                                             <RadzenRadioButtonList Name="CivilStatus"
-                                                                   TValue="int"
-                                                                   Value=@((int)taxPerson.CivilStatus)
-                                                                   Change=@(args => { taxPerson.CivilStatus = (CivilStatus)args; })>
+                                                                   TValue="CivilStatus"
+                                                                   Value=@(taxPerson.CivilStatus)
+                                                                   Change=@(args => { taxPerson.CivilStatus = args; })>
                                                 <Items>
-                                                    <RadzenRadioButtonListItem Text="Ledig" Value="1" />
-                                                    <RadzenRadioButtonListItem Text="Verheiratet" Value="2" />
+                                                    <RadzenRadioButtonListItem Text="Ledig" Value="@CivilStatus.Single" />
+                                                    <RadzenRadioButtonListItem Text="Verheiratet" Value="@CivilStatus.Married" />
                                                 </Items>
                                             </RadzenRadioButtonList>
                                         </div>
@@ -131,11 +133,69 @@
     </RadzenContent>
 </RadzenTemplateForm>
 
+@if (multiPeriodCalculationResponse != null)
+{
+    <RadzenPanel AllowCollapse="true">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <RadzenChart>
+                    <RadzenAreaSeries Smooth="false"
+                                      Data="@GetWealthSeries()"
+                                      CategoryProperty="Year"
+                                      Title="Steuerbares Vermögen"
+                                      ValueProperty="Value"
+                                      RenderingOrder="2">
+                        <TooltipTemplate Context="data">
+                            <div>@data.Year</div>
+                            Amount: @(data.Value.ToString("#,##0.####"))
+                        </TooltipTemplate>
+                    </RadzenAreaSeries>
+
+                    <RadzenAreaSeries Smooth="false"
+                                      Data="@GetCapitalBenefitsSeries()"
+                                      CategoryProperty="Year"
+                                      Title="Kapitalleistungen"
+                                      ValueProperty="Value"
+                                      RenderingOrder="1">
+                        <TooltipTemplate Context="data">
+                            <div>@data.Year</div>
+                            Amount: @(data.Value.ToString("#,##0.####"))
+                        </TooltipTemplate>
+                    </RadzenAreaSeries>
+
+                    <RadzenCategoryAxis Padding="20" FormatString="{0:yyyy}"/>
+                    <RadzenValueAxis Min="0" Step="100000">
+                        <RadzenGridLines Visible="true"/>
+                        <RadzenAxisTitle Text="Gesamtvermögen"/>
+                    </RadzenValueAxis>
+                </RadzenChart>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <label>Rohdaten</label>
+                <RadzenTextArea Name="output" Rows="10" ReadOnly="true" Value="@Serialize(multiPeriodCalculationResponse)" Style="width: 100%"/>
+            </div>
+        </div>
+        </div>
+    </RadzenPanel>
+}
+
 @code {
+
+    class ChartDataItemModel
+    {
+        public DateTime Year { get; set; }
+        public double Value { get; set; }
+    }
 
     private MultiPeriodRequest model = GetDefaultValues();
     private readonly TaxPerson taxPerson = DefaultTaxPerson.GetDefaultValues();
     private IReadOnlyCollection<MunicipalityModel> municipalities = new List<MunicipalityModel>();
+
+    private MultiPeriodResponse multiPeriodCalculationResponse = null;
 
     protected override Task OnInitializedAsync()
     {
@@ -175,9 +235,9 @@
         logger.LogInformation("municipality changed");
     }
 
-    private void OnSubmit(MultiPeriodRequest model)
+    private async Task OnSubmit(MultiPeriodRequest request)
     {
-        logger.LogInformation($"Submit {JsonSerializer.Serialize(model)}");
+        multiPeriodCalculationResponse = await multiPeriodCalculationService.CalculateAsync(request);
     }
 
     private void OnInvalidSubmit(FormInvalidSubmitEventArgs args)
@@ -199,5 +259,44 @@
             NumberOfPeriods = 10,
             StartingYear = 2021,
         };
+    }
+
+    private string Serialize(MultiPeriodResponse response)
+    {
+        return JsonSerializer.Serialize(response);
+    }
+
+    private ChartDataItemModel[] GetWealthSeries()
+    {
+        if (multiPeriodCalculationResponse == null)
+        {
+            return Enumerable.Empty<ChartDataItemModel>().ToArray();
+        }
+
+        return multiPeriodCalculationResponse.Accounts
+            .Where(item => item.AccountType == AccountType.Wealth)
+            .Select(item => new ChartDataItemModel
+            {
+                Year = new DateTime(item.Year, 1, 1),
+                Value = (double)item.Amount
+            })
+            .ToArray();
+    }
+
+    private ChartDataItemModel[] GetCapitalBenefitsSeries()
+    {
+        if (multiPeriodCalculationResponse == null)
+        {
+            return Enumerable.Empty<ChartDataItemModel>().ToArray();
+        }
+
+        return multiPeriodCalculationResponse.Accounts
+            .GroupBy(keySelector => keySelector.Year)
+            .Select(g => new ChartDataItemModel
+            {
+                Year = new DateTime(g.Key, 1, 1),
+                Value = g.Sum(item => (double)item.Amount)
+            })
+            .ToArray();
     }
 }

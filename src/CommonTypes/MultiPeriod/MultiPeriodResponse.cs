@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Calculators.CashFlow.Models;
 
-namespace TaxCalculator.WebApi.Models
+namespace PensionCoach.Tools.CommonTypes.MultiPeriod
 {
     public class MultiPeriodResponse
     {

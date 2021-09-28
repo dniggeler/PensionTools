@@ -160,7 +160,12 @@ namespace Calculators.CashFlow
 
                 // 7. collect calculation results
                 currentPeriodAccounts
-                    .Select(pair => new SinglePeriodCalculationResult(currentYear, pair.Value, pair.Key))
+                    .Select(pair => new SinglePeriodCalculationResult
+                    {
+                        Year = currentYear,
+                        Amount = pair.Value,
+                        AccountType = pair.Key
+                    })
                     .Iter(item => singlePeriodCalculationResults.Add(item));
             }
 
