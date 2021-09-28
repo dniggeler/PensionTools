@@ -141,27 +141,19 @@
             <div class="col-md-12">
                 <RadzenChart>
                     <RadzenAreaSeries Smooth="false"
-                                      Data="@GetWealthSeries()"
-                                      CategoryProperty="Year"
+                                      Data="@wealthDataItems"
+                                      CategoryProperty="Date"
                                       Title="Steuerbares Vermögen"
                                       ValueProperty="Value"
                                       RenderingOrder="2">
-                        <TooltipTemplate Context="data">
-                            <div>@data.Year</div>
-                            Amount: @(data.Value.ToString("#,##0.####"))
-                        </TooltipTemplate>
                     </RadzenAreaSeries>
 
                     <RadzenAreaSeries Smooth="false"
-                                      Data="@GetCapitalBenefitsSeries()"
-                                      CategoryProperty="Year"
+                                      Data="@capitalBenefitsDataItems"
+                                      CategoryProperty="Date"
                                       Title="Kapitalleistungen"
                                       ValueProperty="Value"
                                       RenderingOrder="1">
-                        <TooltipTemplate Context="data">
-                            <div>@data.Year</div>
-                            Amount: @(data.Value.ToString("#,##0.####"))
-                        </TooltipTemplate>
                     </RadzenAreaSeries>
 
                     <RadzenCategoryAxis Padding="20" FormatString="{0:yyyy}"/>
@@ -187,8 +179,8 @@
 
     class ChartDataItemModel
     {
-        public DateTime Year { get; set; }
-        public double Value { get; set; }
+        public DateTime Date { get; set; }
+        public decimal Value { get; set; }
     }
 
     private MultiPeriodRequest model = GetDefaultValues();
@@ -196,6 +188,8 @@
     private IReadOnlyCollection<MunicipalityModel> municipalities = new List<MunicipalityModel>();
 
     private MultiPeriodResponse multiPeriodCalculationResponse = null;
+    private ChartDataItemModel[] capitalBenefitsDataItems = { };
+    private ChartDataItemModel[] wealthDataItems = { };
 
     protected override Task OnInitializedAsync()
     {
@@ -238,6 +232,9 @@
     private async Task OnSubmit(MultiPeriodRequest request)
     {
         multiPeriodCalculationResponse = await multiPeriodCalculationService.CalculateAsync(request);
+
+        capitalBenefitsDataItems = GetCapitalBenefitsDataItems();
+        wealthDataItems = GetWealthDataItems();
     }
 
     private void OnInvalidSubmit(FormInvalidSubmitEventArgs args)
@@ -266,7 +263,7 @@
         return JsonSerializer.Serialize(response);
     }
 
-    private ChartDataItemModel[] GetWealthSeries()
+    private ChartDataItemModel[] GetWealthDataItems()
     {
         if (multiPeriodCalculationResponse == null)
         {
@@ -277,13 +274,13 @@
             .Where(item => item.AccountType == AccountType.Wealth)
             .Select(item => new ChartDataItemModel
             {
-                Year = new DateTime(item.Year, 1, 1),
-                Value = (double)item.Amount
+                Date = new DateTime(item.Year, 1, 1),
+                Value = Math.Round(item.Amount)
             })
             .ToArray();
     }
 
-    private ChartDataItemModel[] GetCapitalBenefitsSeries()
+    private ChartDataItemModel[] GetCapitalBenefitsDataItems()
     {
         if (multiPeriodCalculationResponse == null)
         {
@@ -294,8 +291,8 @@
             .GroupBy(keySelector => keySelector.Year)
             .Select(g => new ChartDataItemModel
             {
-                Year = new DateTime(g.Key, 1, 1),
-                Value = g.Sum(item => (double)item.Amount)
+                Date = new DateTime(g.Key, 1, 1),
+                Value = g.Sum(item => Math.Round(item.Amount))
             })
             .ToArray();
     }
