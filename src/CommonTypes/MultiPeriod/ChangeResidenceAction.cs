@@ -35,7 +35,7 @@
         /// <value>
         /// The change of residence at this year.
         /// </value>
-        public int ChangeAtYear { get; init; }
+        public int ChangeAtYear { get; set; }
 
         /// <summary>
         /// Gets the destination municipality identifier.
@@ -43,7 +43,7 @@
         /// <value>
         /// The destination municipality identifier.
         /// </value>
-        public int DestinationMunicipalityId { get; init; }
+        public int DestinationMunicipalityId { get; set; }
 
         /// <summary>
         /// Gets or sets the destination canton.
@@ -59,6 +59,6 @@
         /// <value>
         /// The change cost.
         /// </value>
-        public decimal ChangeCost { get; init; }
+        public decimal ChangeCost { get; set; }
     }
 }

@@ -1,0 +1,40 @@
+﻿@using PensionCoach.Tools.CommonTypes
+@using BlazorApp.Services
+
+@inject IMunicipalityService municipalityService
+
+<h3>@Title</h3>
+
+<RadzenDropDown TextProperty="Name"
+                ValueProperty="BfsNumber"
+                FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                FilterOperator="StringFilterOperator.StartsWith"
+                AllowFiltering="true"
+                @bind-Value="BfsMunicipalityId"
+                Change="HandleChange"
+                Data="municipalities" />
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public int BfsMunicipalityId { get; set; }
+
+    [Parameter]
+    public EventCallback<int> OnSelected { get; set; }
+
+    private IReadOnlyCollection<MunicipalityModel> municipalities = new List<MunicipalityModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        municipalities = (await municipalityService.GetAllAsync()).ToList();
+    }
+
+    private void HandleChange(object value)
+    {
+        BfsMunicipalityId = (int)value;
+        OnSelected.InvokeAsync(BfsMunicipalityId);
+    }
+
+}

@@ -1,16 +1,14 @@
-﻿<div class="card card-brand mb-4 shadow">
-    <div class="card-body">
+﻿<RadzenCard>
         <div class="row">
             <div class="col-4">
-                <h4>@Title</h4>
+                <h3>@Title</h3>
                 <p class="text-secondary">@HelpText</p>
             </div>
             <div class="col-8">
                 @ChildContent
             </div>
         </div>
-    </div>
-</div>
+</RadzenCard>
 
 @code {
     [Parameter] public string Title { get; set; }

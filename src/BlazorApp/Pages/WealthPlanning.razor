@@ -6,8 +6,9 @@
 @using PensionCoach.Tools.CommonTypes.MultiPeriod
 @using PensionCoach.Tools.CommonTypes.Tax
 
-@inject ILogger<WealthPlanning> logger;
-@inject IMultiPeriodCalculationService multiPeriodCalculationService;
+@inject ILogger<WealthPlanning> logger
+@inject IMultiPeriodCalculationService multiPeriodCalculationService
+@inject IMunicipalityService municipalityService
 
 <RadzenTemplateForm TItem="MultiPeriodRequest" Data=@model Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
     <RadzenContent Container="main">
@@ -18,7 +19,10 @@
                 <Steps>
                     <RadzenStepsItem Text="Steuerperson" Selected="true">
                         <ChildContent>
-                            <RadzenCard>
+                            <FormStep 
+                                Title="Person" 
+                                HelpText="Steuerlich relevante Angaben zur Person sind der Zivilstand, die Konfession und, falls verheiratet, die Konfession der Partnerin.">
+                                <RadzenCard>
                                 <ChildContent>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -73,35 +77,67 @@
                                     </div>
                                 </ChildContent>
                             </RadzenCard>
+                            </FormStep>
                         </ChildContent>
                     </RadzenStepsItem>
                     <RadzenStepsItem Text="Steuerdaten">
                         <ChildContent>
-                            <RadzenCard>
-                                <ChildContent>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <h3>Steuerbarer Lohn</h3>
-                                            <RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Income" />
+                            <FormStep Title="Steuerdaten" HelpText="Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.">
+                                <RadzenCard>
+                                    <ChildContent>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <h3>Lohn</h3>
+                                                <RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Income"/>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <h3>Vermögen</h3>
+                                                <RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Wealth"/>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <MunicipalitySelector Title="Steuergemeinde" BfsMunicipalityId="model.BfsMunicipalityId"/>
+                                            </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <h3>Steuerbares Vermögen</h3>
-                                            <RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Wealth" />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h3>Steuergemeinde</h3>
-                                            <RadzenDropDown TextProperty="Name"
-                                                            ValueProperty="BfsNumber"
-                                                            FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
-                                                            FilterOperator="StringFilterOperator.StartsWith"
-                                                            AllowFiltering="true"
-                                                            Change=@(args => OnChangeMunicipality(args, "DropDown with custom filter operator"))
-                                                            @bind-Value="model.BfsMunicipalityId"
-                                                            Data="municipalities" />
-                                        </div>
+                                    </ChildContent>
+                                </RadzenCard>
+                            </FormStep>
+                        </ChildContent>
+                    </RadzenStepsItem>
+                    <RadzenStepsItem Text="Cash-Flow Actions">
+                        <ChildContent>
+                            <FormStep
+                                Title="Wohnortwechsel"
+                                HelpText="Ab einem gewünschten Jahr kann die Wohngemeinde geändert werden, was einen Einfluss auf alle Steuern hat, insbesondere wenn die neue Gemeinde in einem anderen Kanton liegt.">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>Steuergemeinde wechseln</h3>
+                                        <RadzenSwitch ValueChanged="() => isChangeResidenceActive = ! isChangeResidenceActive"/>
                                     </div>
-                                </ChildContent>
-                            </RadzenCard>
+                                </div>
+
+                                <RadzenCard Visible="isChangeResidenceActive">
+                                    <ChildContent>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h3>Wechsel im Jahr</h3>
+                                                <RadzenNumeric TValue="int" @bind-Value="changeResidenceModel.ChangeAtYear"/>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h3>Wechselkosten</h3>
+                                                <RadzenNumeric TValue="decimal" @bind-Value="changeResidenceModel.ChangeCost"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <MunicipalitySelector
+                                                    Title="Neue Steuergemeinde"
+                                                    BfsMunicipalityId="changeResidenceModel.DestinationMunicipalityId"
+                                                    OnSelected="HandleMunicipalityChange"/>
+                                            </div>
+                                        </div>
+                                    </ChildContent>
+                                </RadzenCard>
+                            </FormStep>
                         </ChildContent>
                     </RadzenStepsItem>
                     <RadzenStepsItem Text="Simulation">
@@ -184,53 +220,30 @@
     }
 
     private MultiPeriodRequest model = GetDefaultValues();
-    private readonly TaxPerson taxPerson = DefaultTaxPerson.GetDefaultValues();
-    private IReadOnlyCollection<MunicipalityModel> municipalities = new List<MunicipalityModel>();
+    private ChangeResidenceAction changeResidenceModel = new()
+    {
+        Id = "cra1",
+        Name = "Change Residence Action",
+    };
 
-    private MultiPeriodResponse multiPeriodCalculationResponse = null;
+    private readonly TaxPerson taxPerson = DefaultTaxPerson.GetDefaultValues();
+
+    private MultiPeriodResponse multiPeriodCalculationResponse;
     private ChartDataItemModel[] capitalBenefitsDataItems = { };
     private ChartDataItemModel[] wealthDataItems = { };
+    private bool isChangeResidenceActive = false;
 
     protected override Task OnInitializedAsync()
     {
-        municipalities = new List<MunicipalityModel>
-        {
-            new()
-            {
-                BfsNumber = 261,
-                Canton = Canton.ZH,
-                Name = "Zürich",
-            },
-            new()
-            {
-                BfsNumber = 136,
-                Canton = Canton.ZH,
-                Name = "Langnau a.A.",
-            },
-            new()
-            {
-                BfsNumber = 139,
-                Canton = Canton.ZH,
-                Name = "Rüschlikon",
-            },
-            new()
-            {
-                BfsNumber = 3426,
-                Canton = Canton.SG,
-                Name = "Zuzwil",
-            }
-        };
+        changeResidenceModel.DestinationMunicipalityId = model.BfsMunicipalityId;
+        changeResidenceModel.ChangeAtYear = Math.Max(model.StartingYear + model.NumberOfPeriods - 3, 0);
 
-        return base.OnInitializedAsync();
-    }
-
-    private void OnChangeMunicipality(object args, string dropdownWithCustomFilterOperator)
-    {
-        logger.LogInformation("municipality changed");
+        return Task.CompletedTask;
     }
 
     private async Task OnSubmit(MultiPeriodRequest request)
     {
+        multiPeriodCalculationResponse = null;
         multiPeriodCalculationResponse = await multiPeriodCalculationService.CalculateAsync(request);
 
         capitalBenefitsDataItems = GetCapitalBenefitsDataItems();
@@ -295,5 +308,10 @@
                 Value = g.Sum(item => Math.Round(item.Amount))
             })
             .ToArray();
+    }
+
+    private void HandleMunicipalityChange(int id)
+    {
+        changeResidenceModel.DestinationMunicipalityId = id;
     }
 }

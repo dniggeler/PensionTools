@@ -4,7 +4,6 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using BlazorApp.Services;
-using Microsoft.Extensions.Configuration;
 using Radzen;
 
 namespace BlazorApp
@@ -22,6 +21,7 @@ namespace BlazorApp
             if (isMocked)
             {
                 builder.Services.AddScoped<IMultiPeriodCalculationService, MockedMultiPeriodCalculationService>();
+                builder.Services.AddScoped<IMunicipalityService, MockedMunicipalityService>();
             }
             else
             {
