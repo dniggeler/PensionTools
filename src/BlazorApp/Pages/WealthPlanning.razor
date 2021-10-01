@@ -118,21 +118,53 @@
                                 <RadzenCard Visible="isChangeResidenceActive">
                                     <ChildContent>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <h3>Wechsel im Jahr</h3>
-                                                <RadzenNumeric TValue="int" @bind-Value="changeResidenceModel.ChangeAtYear"/>
+                                                <RadzenNumeric TValue="int" @bind-Value="changeResidenceModel.ChangeAtYear" />
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <h3>Wechselkosten</h3>
-                                                <RadzenNumeric TValue="decimal" @bind-Value="changeResidenceModel.ChangeCost"/>
+                                                <RadzenNumeric TValue="decimal" @bind-Value="changeResidenceModel.ChangeCost" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <MunicipalitySelector Title="Neue Steuergemeinde"
+                                                                      BfsMunicipalityId="changeResidenceModel.DestinationMunicipalityId"
+                                                                      OnSelected="HandleMunicipalityChange" />
                                             </div>
                                         </div>
+                                    </ChildContent>
+                                </RadzenCard>
+                            </FormStep>
+
+                            <FormStep Title="Zu- und Abflüsse" HelpText="Einmalige oder periodische Kapitalflüsse, die einer Steuer unterliegen. Mit einem Geldfluss sind immer zwei Konti verbunden.">
+                                <RadzenCard>
+                                    <ChildContent>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <MunicipalitySelector
-                                                    Title="Neue Steuergemeinde"
-                                                    BfsMunicipalityId="changeResidenceModel.DestinationMunicipalityId"
-                                                    OnSelected="HandleMunicipalityChange"/>
+                                            <div class="col-md-12">
+                                                <RadzenAccordion>
+                                                    <Items>
+                                                        @foreach (GenericCashFlowDefinition definition in genericCashFlowDefinitions)
+                                                        {
+                                                            <RadzenAccordionItem Text="@definition.Name">
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <RadzenLabel Text="Titel" Component="name" />
+                                                                        <RadzenTextBox TValue="string" @bind-Value="@definition.Name" Name="name" />
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <RadzenLabel Text="Initialer Betrag" Component="initialAmount" />
+                                                                        <RadzenNumeric TValue="decimal" @bind-Value="@definition.InitialAmount" Name="initialAmount" />
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <RadzenLabel Text="Versteuern" Component="isTaxable" />
+                                                                        <RadzenSwitch @bind-Value="@definition.IsTaxable" Name="isTaxable" />
+                                                                    </div>
+                                                                </div>
+                                                            </RadzenAccordionItem>
+                                                        }
+                                                    </Items>
+
+                                                </RadzenAccordion>
                                             </div>
                                         </div>
                                     </ChildContent>
@@ -226,6 +258,8 @@
         Name = "Change Residence Action",
     };
 
+    private IEnumerable<GenericCashFlowDefinition> genericCashFlowDefinitions = new List<GenericCashFlowDefinition>();
+
     private readonly TaxPerson taxPerson = DefaultTaxPerson.GetDefaultValues();
 
     private MultiPeriodResponse multiPeriodCalculationResponse;
@@ -237,6 +271,33 @@
     {
         changeResidenceModel.DestinationMunicipalityId = model.BfsMunicipalityId;
         changeResidenceModel.ChangeAtYear = Math.Max(model.StartingYear + model.NumberOfPeriods - 3, 0);
+        genericCashFlowDefinitions = new List<GenericCashFlowDefinition>
+        {
+            new()
+            {
+                Id = "my 3a account",
+                Name = "Säule 3a",
+                InitialAmount = 6883,
+                RecurringInvestment = new RecurringInvestment(6883, FrequencyType.Yearly),
+                Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+                InvestmentPeriod = new InvestmentPeriod(2021, 10),
+                IsTaxable = false,
+                TaxType = TaxType.Undefined,
+                OccurrenceType = OccurrenceType.BeginOfPeriod
+            },
+            new()
+            {
+                NetGrowthRate = 0,
+                Name = "PK-Einkauf",
+                InitialAmount = 10000,
+                RecurringInvestment = new RecurringInvestment(10000, FrequencyType.Yearly),
+                Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+                InvestmentPeriod = new InvestmentPeriod(2021, 5),
+                IsTaxable = false,
+                TaxType = TaxType.Undefined,
+                OccurrenceType = OccurrenceType.BeginOfPeriod
+            }
+        };
 
         return Task.CompletedTask;
     }

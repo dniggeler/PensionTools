@@ -18,7 +18,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The name.
         /// </value>
-        public string Name { get; init; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the ordinal to define a linear order between multiple cash-flows.
@@ -34,7 +34,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The initial amount.
         /// </value>
-        public decimal InitialAmount { get; init; }
+        public decimal InitialAmount { get; set; }
 
         /// <summary>
         /// Gets the recurring investment.
