@@ -6,7 +6,7 @@
 
 <h3>@Title</h3>
 
-<RadzenDropDown TextProperty="Name"
+<RadzenDropDown TextProperty="NameAndCanton"
                 ValueProperty="BfsNumber"
                 FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
                 FilterOperator="StringFilterOperator.StartsWith"
@@ -25,7 +25,7 @@
     [Parameter]
     public EventCallback<int> OnSelected { get; set; }
 
-    private IReadOnlyCollection<MunicipalityModel> municipalities = new List<MunicipalityModel>();
+    private IReadOnlyCollection<MunicipalityViewModel> municipalities = new List<MunicipalityViewModel>();
 
     protected override async Task OnInitializedAsync()
     {

@@ -159,6 +159,10 @@
                                                                         <RadzenLabel Text="Versteuern" Component="isTaxable" />
                                                                         <RadzenSwitch @bind-Value="@definition.IsTaxable" Name="isTaxable" />
                                                                     </div>
+                                                                    <div class="col-md-4">
+                                                                        <RadzenLabel Text="Versteuern" Component="isTaxable" />
+                                                                        <RadzenSwitch @bind-Value="@definition.IsTaxable" Name="isTaxable" />
+                                                                    </div>
                                                                 </div>
                                                             </RadzenAccordionItem>
                                                         }
@@ -174,25 +178,41 @@
                     </RadzenStepsItem>
                     <RadzenStepsItem Text="Simulation">
                         <ChildContent>
-                            <RadzenCard>
-                                <ChildContent>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h3>Berechnungsjahr</h3>
-                                            <RadzenNumeric TValue="int" @bind-Value="model.StartingYear" />
+                            <FormStep Title="Simulation" HelpText="Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern.">
+                                <RadzenCard>
+                                    <ChildContent>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <h3>Berechnungsjahr</h3>
+                                                <RadzenNumeric TValue="int" @bind-Value="model.StartingYear"/>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <h3>Anzahl Perioden: @model.NumberOfPeriods</h3>
+                                                <RadzenSlider TValue="int" @bind-Value="model.NumberOfPeriods" Min="1" Max="50"/>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <h3>Anzahl Perioden: @model.NumberOfPeriods</h3>
-                                            <RadzenSlider TValue="int" @bind-Value="model.NumberOfPeriods" Min="1" Max="50" />
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <h3>Sparquote</h3>
+                                                <RadzenNumeric TValue="decimal" Format="P0" @bind-Value="simulationOptions.SavingsQuota" Min="0" Max="1" Step="0.01"/>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <h3>Lohnwachstum</h3>
+                                                <RadzenNumeric TValue="decimal" Format="P2" @bind-Value="simulationOptions.SalaryNetGrowthRate" Min="0" Max="0.5M" Step="0.01"/>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <h3>Vermögenswachstum</h3>
+                                                <RadzenNumeric TValue="decimal" Format="P2" @bind-Value="simulationOptions.WealthNetGrowthRate" Min="0" Max="0.5M" Step="0.01"/>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 text-right">
-                                            <RadzenButton ButtonType="ButtonType.Submit" Text="Berechne"></RadzenButton>
+                                        <div class="row">
+                                            <div class="col-md-12 text-right">
+                                                <RadzenButton ButtonType="ButtonType.Submit" Text="Berechne"></RadzenButton>
+                                            </div>
                                         </div>
-                                    </div>
-                                </ChildContent>
-                            </RadzenCard>
+                                    </ChildContent>
+                                </RadzenCard>
+                            </FormStep>
                         </ChildContent>
                     </RadzenStepsItem>
                 </Steps>
@@ -251,8 +271,8 @@
         public decimal Value { get; set; }
     }
 
-    private MultiPeriodRequest model = GetDefaultValues();
-    private ChangeResidenceAction changeResidenceModel = new()
+    private readonly MultiPeriodRequest model = GetDefaultValues();
+    private readonly ChangeResidenceAction changeResidenceModel = new()
     {
         Id = "cra1",
         Name = "Change Residence Action",
@@ -261,6 +281,7 @@
     private IEnumerable<GenericCashFlowDefinition> genericCashFlowDefinitions = new List<GenericCashFlowDefinition>();
 
     private readonly TaxPerson taxPerson = DefaultTaxPerson.GetDefaultValues();
+    private readonly MultiPeriodOptions simulationOptions = new();
 
     private MultiPeriodResponse multiPeriodCalculationResponse;
     private ChartDataItemModel[] capitalBenefitsDataItems = { };

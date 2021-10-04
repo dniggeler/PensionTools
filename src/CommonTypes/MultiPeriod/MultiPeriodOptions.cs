@@ -1,4 +1,4 @@
-﻿namespace Calculators.CashFlow.Models
+﻿namespace PensionCoach.Tools.CommonTypes.MultiPeriod
 {
     public class MultiPeriodOptions
     {

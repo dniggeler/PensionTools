@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using BlazorApp.MyComponents;
 using PensionCoach.Tools.CommonTypes;
 
 namespace BlazorApp.Services
 {
     public class MockedMunicipalityService : IMunicipalityService
     {
-        public async Task<IEnumerable<MunicipalityModel>> GetAllAsync()
+        public async Task<IEnumerable<MunicipalityViewModel>> GetAllAsync()
         {
-            var municipalities = new List<MunicipalityModel>
+            var municipalities = new List<MunicipalityViewModel>
             {
                 new()
                 {
