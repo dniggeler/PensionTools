@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
 namespace TaxCalculator.Validators
@@ -8,8 +7,7 @@ namespace TaxCalculator.Validators
     {
         public PollTaxPersonValidator()
         {
-            RuleFor(x => x.Name).NotNull().NotEmpty();
-            RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
+            Include(new TaxPersonBasicValidator());
         }
     }
 }

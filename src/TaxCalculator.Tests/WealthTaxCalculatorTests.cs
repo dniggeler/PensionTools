@@ -1,8 +1,9 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using FluentAssertions;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -32,6 +33,7 @@ namespace TaxCalculator.Tests
 
             var taxPerson = new TaxPerson
             {
+                Name = "Burli",
                 CivilStatus = CivilStatus.Married,
                 ReligiousGroupType = ReligiousGroupType.Protestant,
                 TaxableIncome = 99995,

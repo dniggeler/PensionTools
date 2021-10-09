@@ -1,0 +1,162 @@
+﻿[
+  {
+    "BfsNumber": 9051,
+    "Name": "Zürichsee (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1000,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 71,
+    "Name": "Wil (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1000,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 121,
+    "Name": "Wetzikon (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1000,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 231,
+    "Name": "Zell (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1000,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 160,
+    "Name": "Zumikon",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1000,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 120,
+    "Name": "Wald (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1000,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 83,
+    "Name": "Buchs (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1000,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 22,
+    "Name": "Benken (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1000,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 115,
+    "Name": "Gossau (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1000,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 151,
+    "Name": "Erlenbach (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1000,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 154,
+    "Name": "Küsnacht (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1000,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 135,
+    "Name": "Kilchberg (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1000,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 118,
+    "Name": "Rüti (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1000,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 225,
+    "Name": "Rickenbach (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1000,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 161,
+    "Name": "Zollikon",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1493,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 261,
+    "Name": "Zürich",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1498,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 242,
+    "Name": "Birmensdorf (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1500,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 251,
+    "Name": "Weiningen (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1509,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 226,
+    "Name": "Schlatt (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 1920,
+    "SuccessorId": 0
+  },
+  {
+    "BfsNumber": 241,
+    "Name": "Aesch (ZH)",
+    "Canton": "ZH",
+    "DateOfMutation": null,
+    "MutationId": 2165,
+    "SuccessorId": 0
+  }
+]

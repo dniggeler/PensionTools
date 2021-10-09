@@ -1,8 +1,11 @@
-﻿namespace PensionCoach.Tools.CommonTypes
+﻿using System.Text.Json.Serialization;
+
+namespace PensionCoach.Tools.CommonTypes
 {
     /// <summary>
     /// Represents the gender of a human being.
     /// </summary>
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Gender
     {
         /// <summary>

@@ -1,9 +1,8 @@
 ﻿using System.Text.Json.Serialization;
-using Newtonsoft.Json.Converters;
 
 namespace PensionCoach.Tools.CommonTypes
 {
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum CivilStatus
     {
         /// <summary>

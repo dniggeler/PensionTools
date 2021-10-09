@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using FluentAssertions;
 using PensionCoach.Tools.CommonTypes;
@@ -40,6 +40,7 @@ namespace TaxCalculator.Tests
 
             var taxPerson = new BasisTaxPerson
             {
+                Name = "Burli",
                 CivilStatus = status,
                 TaxableAmount = income
             };

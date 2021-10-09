@@ -56,8 +56,7 @@ namespace TaxCalculator
                 .FirstOrDefault(item => item.BfsId == municipalityId
                                         && item.Year == calculationYear);
 
-            return (from status in person.CivilStatus
-                    from nbrOfPolls in GetNumberOfPolls(status)
+            return (from nbrOfPolls in GetNumberOfPolls(person.CivilStatus)
                     from rate in taxRate
                     select new PollTaxResult
                     {
@@ -86,8 +85,7 @@ namespace TaxCalculator
                         $"validation failed: {errorMessageLine}");
             }
 
-            return (from status in person.CivilStatus
-                    from nbrOfPolls in GetNumberOfPolls(status)
+            return (from nbrOfPolls in GetNumberOfPolls(person.CivilStatus)
                     select new PollTaxResult
                     {
                         CantonTaxAmount = nbrOfPolls * AllCantonsWithPollTax[canton],

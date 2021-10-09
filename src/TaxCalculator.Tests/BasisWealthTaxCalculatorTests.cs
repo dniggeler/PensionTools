@@ -1,9 +1,8 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using FluentAssertions;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;
 using Xunit;
@@ -38,6 +37,7 @@ namespace TaxCalculator.Tests
 
             var taxPerson = new BasisTaxPerson
             {
+                Name = "Peter",
                 CivilStatus = status,
                 TaxableAmount = wealth,
             };

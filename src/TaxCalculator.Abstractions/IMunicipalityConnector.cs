@@ -1,8 +1,8 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using LanguageExt;
+using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Municipality;
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions
 {

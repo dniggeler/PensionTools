@@ -1,17 +1,19 @@
 ﻿using FluentValidation;
-using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
 namespace TaxCalculator.Validators
 {
     public class CapitalBenefitsTaxPersonValidator : AbstractValidator<CapitalBenefitTaxPerson>
     {
+        private const string ValueMustNotBeNegative = "Value must not be negative";
+
         public CapitalBenefitsTaxPersonValidator()
         {
-            RuleFor(x => x.CivilStatus)
-                .Must(x => x.IfNone(CivilStatus.Undefined) != CivilStatus.Undefined);
-            RuleFor(x => x.ReligiousGroupType).Must(x => x.IsSome);
+            Include(new TaxPersonBasicValidator());
+
+            RuleFor(p => p.TaxableBenefits)
+                .GreaterThanOrEqualTo(decimal.Zero)
+                .WithMessage(ValueMustNotBeNegative);
         }
     }
 }

@@ -47,8 +47,8 @@ namespace TaxCalculator.Tests
             {
                 Name = name,
                 CivilStatus = status,
-                ReligiousGroup = religiousGroup,
-                PartnerReligiousGroup = partnerReligiousGroup,
+                ReligiousGroupType = religiousGroup,
+                PartnerReligiousGroupType = partnerReligiousGroup,
             };
 
             var taxResult = new AggregatedBasisTaxResult

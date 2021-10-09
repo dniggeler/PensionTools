@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;

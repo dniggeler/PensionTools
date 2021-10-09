@@ -1,14 +1,27 @@
 ﻿using FluentValidation;
+using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
 namespace TaxCalculator.Validators
 {
     public class TaxPersonValidator : AbstractValidator<TaxPerson>
     {
+        private const string ValueMustNotBeNegative = "Value must not be negative";
+
         public TaxPersonValidator()
         {
-            RuleFor(x => x.CivilStatus).Must(x => x.IsSome);
-            RuleFor(x => x.ReligiousGroupType).Must(x => x.IsSome);
+            Include(new TaxPersonBasicValidator());
+
+            RuleFor(p => p.TaxableIncome)
+                .GreaterThanOrEqualTo(decimal.Zero)
+                .WithMessage(ValueMustNotBeNegative);
+            RuleFor(p => p.TaxableWealth)
+                .GreaterThanOrEqualTo(decimal.Zero)
+                .WithMessage(ValueMustNotBeNegative);
+            RuleFor(p => p.TaxableFederalIncome)
+                .GreaterThanOrEqualTo(decimal.Zero)
+                .WithMessage(ValueMustNotBeNegative);
         }
     }
 }

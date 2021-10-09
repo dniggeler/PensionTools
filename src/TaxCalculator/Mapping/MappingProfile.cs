@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Globalization;
 using AutoMapper;
+using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Municipality;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data.Abstractions.Models;
@@ -18,8 +21,8 @@ namespace TaxCalculator.Mapping
 
             CreateMap<CapitalBenefitTaxPerson, TaxPerson>();
             CreateMap<CapitalBenefitTaxPerson, ChurchTaxPerson>()
-                .ForMember(d => d.ReligiousGroup, m => m.MapFrom(s => s.ReligiousGroupType))
-                .ForMember(d => d.PartnerReligiousGroup, m => m.MapFrom(s => s.PartnerReligiousGroupType));
+                .ForMember(d => d.ReligiousGroupType, m => m.MapFrom(s => s.ReligiousGroupType))
+                .ForMember(d => d.PartnerReligiousGroupType, m => m.MapFrom(s => s.PartnerReligiousGroupType));
 
             CreateMap<CapitalBenefitTaxPerson, FederalTaxPerson>()
                 .ForMember(d => d.TaxableAmount, m => m.MapFrom(s => s.TaxableBenefits));
@@ -33,8 +36,8 @@ namespace TaxCalculator.Mapping
             CreateMap<TaxPerson, PollTaxPerson>();
 
             CreateMap<TaxPerson, ChurchTaxPerson>()
-                .ForMember(d => d.ReligiousGroup, m => m.MapFrom(s => s.ReligiousGroupType))
-                .ForMember(d => d.PartnerReligiousGroup, m => m.MapFrom(s => s.PartnerReligiousGroupType));
+                .ForMember(d => d.ReligiousGroupType, m => m.MapFrom(s => s.ReligiousGroupType))
+                .ForMember(d => d.PartnerReligiousGroupType, m => m.MapFrom(s => s.PartnerReligiousGroupType));
         }
 
         private DateTime? Convert(string dateAsString)

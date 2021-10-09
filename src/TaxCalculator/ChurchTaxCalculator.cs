@@ -48,10 +48,9 @@ namespace TaxCalculator
                 return msg.AsTask();
             }
 
-            return
-                Validate(person, taxResult)
-                    .BindAsync(r => CalculateInternalAsync(
-                        person, taxRateEntity, taxResult));
+            return Validate(person, taxResult)
+                    .Map(_ => CalculateInternal(person, taxRateEntity, taxResult))
+                    .AsTask();
         }
 
         public Task<Either<string, ChurchTaxResult>> CalculateAsync(
@@ -59,8 +58,8 @@ namespace TaxCalculator
         {
             return
                 Validate(person, taxResult)
-                .BindAsync(r => CalculateInternalAsync(
-                    person, taxRateEntity, taxResult));
+                .Select(_ => CalculateInternal(person, taxRateEntity, taxResult))
+                .AsTask();
         }
 
         private Either<string, bool> Validate(
@@ -99,35 +98,25 @@ namespace TaxCalculator
             return true;
         }
 
-        private Task<Either<string, ChurchTaxResult>> CalculateInternalAsync(
+        private ChurchTaxResult CalculateInternal(
             ChurchTaxPerson person,
             TaxRateEntity taxRateEntity,
             AggregatedBasisTaxResult taxResult)
         {
-            Option<ReligiousGroupType> religiousGroupPartner =
-                person.PartnerReligiousGroup.IfNone(ReligiousGroupType.Other);
+            ReligiousGroupType religiousGroupPartner = person.PartnerReligiousGroupType ?? ReligiousGroupType.Other;
 
             var splitFactor =
-                (from c in person.CivilStatus
-                 from r in person.ReligiousGroup
-                 from rp in religiousGroupPartner
-                 select DetermineSplitFactor(
-                     c, r, rp))
-                .IfNone(0M);
+                DetermineSplitFactor(person.CivilStatus, person.ReligiousGroupType, person.PartnerReligiousGroupType);
 
-            return
-                (from ratePerson in person.ReligiousGroup.Map(type => GetTaxRate(type, taxRateEntity))
-                    from ratePartner in religiousGroupPartner.Map(type => GetTaxRate(type, taxRateEntity))
-                    select new ChurchTaxResult
-                    {
-                        TaxAmount = ratePerson / 100M * taxResult.Total * splitFactor,
-                        TaxAmountPartner = ratePartner / 100M * taxResult.Total * (1M - splitFactor),
-                        TaxRate = ratePerson,
-                    })
-                .Match<Either<string, ChurchTaxResult>>(
-                    Some: r => r,
-                    None: () => "No rate for church tax found")
-                .AsTask();
+            decimal ratePerson = GetTaxRate(person.ReligiousGroupType, taxRateEntity);
+            decimal ratePartner = GetTaxRate(religiousGroupPartner, taxRateEntity);
+
+            return new ChurchTaxResult
+            {
+                TaxAmount = ratePerson / 100M * taxResult.Total * splitFactor,
+                TaxAmountPartner = ratePartner / 100M * taxResult.Total * (1M - splitFactor),
+                TaxRate = ratePerson,
+            };
 
             static decimal GetTaxRate(ReligiousGroupType religiousGroupType, TaxRateEntity rateEntity)
             {
@@ -144,7 +133,7 @@ namespace TaxCalculator
         private decimal DetermineSplitFactor(
             CivilStatus civilStatus,
             ReligiousGroupType religiousGroupType,
-            ReligiousGroupType personReligiousGroupPartner)
+            ReligiousGroupType? personReligiousGroupPartner)
         {
             decimal splitFactor = (civilStatus, religiousGroupType, personReligiousGroupPartner)
                 switch

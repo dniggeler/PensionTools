@@ -1,12 +1,10 @@
-﻿using LanguageExt;
-using PensionCoach.Tools.CommonTypes;
+﻿using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person
 {
-    public class FederalTaxPerson
+    public record FederalTaxPerson : TaxPersonBasic
     {
-        public string Name { get; set; }
-        public Option<CivilStatus> CivilStatus { get; set; }
         public decimal TaxableAmount { get; set; } 
     }
 }

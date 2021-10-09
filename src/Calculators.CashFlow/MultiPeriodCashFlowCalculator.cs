@@ -7,6 +7,8 @@ using LanguageExt;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.MultiPeriod;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -158,7 +160,12 @@ namespace Calculators.CashFlow
 
                 // 7. collect calculation results
                 currentPeriodAccounts
-                    .Select(pair => new SinglePeriodCalculationResult(currentYear, pair.Value, pair.Key))
+                    .Select(pair => new SinglePeriodCalculationResult
+                    {
+                        Year = currentYear,
+                        Amount = pair.Value,
+                        AccountType = pair.Key
+                    })
                     .Iter(item => singlePeriodCalculationResults.Add(item));
             }
 

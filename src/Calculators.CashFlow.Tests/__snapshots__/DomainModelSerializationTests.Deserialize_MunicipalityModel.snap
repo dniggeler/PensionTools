@@ -1,0 +1,10 @@
+﻿[
+  {
+    "BfsNumber": 261,
+    "Name": "Zürich",
+    "Canton": "ZH",
+    "DateOfMutation": "2020-01-01T00:00:00",
+    "MutationId": 1911,
+    "SuccessorId": 33
+  }
+]
