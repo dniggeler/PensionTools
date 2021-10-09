@@ -10,7 +10,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The identifier.
         /// </value>
-        public string Id { get; init; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets the name.
@@ -26,7 +26,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The ordinal.
         /// </value>
-        public int Ordinal { get; init; }
+        public int Ordinal { get; set; }
 
         /// <summary>
         /// Gets or sets the initial amount.
@@ -42,7 +42,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The recurring investment.
         /// </value>
-        public RecurringInvestment RecurringInvestment { get; init; }
+        public RecurringInvestment RecurringInvestment { get; set; }
 
         /// <summary>
         /// Gets or sets the net growth rate.
@@ -50,7 +50,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The net growth rate.
         /// </value>
-        public decimal NetGrowthRate { get; init; }
+        public decimal NetGrowthRate { get; set; }
 
         /// <summary>
         /// Get or sets the investment period beginning with the begin year and repeating count times.
@@ -58,7 +58,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The investment period.
         /// </value>
-        public InvestmentPeriod InvestmentPeriod { get; init; }
+        public InvestmentPeriod InvestmentPeriod { get; set; }
 
         /// <summary>
         /// Gets the flow. Source account is cleared and moved to target account.
@@ -66,7 +66,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The flow.
         /// </value>
-        public FlowPair Flow { get; init; }
+        public FlowPair Flow { get; set; }
 
         public bool IsTaxable { get; set; }
 

@@ -11,7 +11,7 @@
         /// <value>
         /// The identifier.
         /// </value>
-        public string Id { get; init; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets the name.
@@ -19,7 +19,7 @@
         /// <value>
         /// The name.
         /// </value>
-        public string Name { get; init; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the ordinal to define a linear order between multiple cash-flows.
@@ -27,7 +27,7 @@
         /// <value>
         /// The ordinal.
         /// </value>
-        public int Ordinal { get; init; }
+        public int Ordinal { get; set; }
 
         /// <summary>
         /// Gets the change of residence at this year.

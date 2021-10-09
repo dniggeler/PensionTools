@@ -11,7 +11,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The generic cash flow definitions.
         /// </value>
-        public IReadOnlyCollection<GenericCashFlowDefinition> GenericCashFlowDefinitions { get; init; } =
+        public IReadOnlyCollection<GenericCashFlowDefinition> GenericCashFlowDefinitions { get; set; } =
             Enumerable.Empty<GenericCashFlowDefinition>().ToList();
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The clear action definitions.
         /// </value>
-        public IReadOnlyCollection<ClearAccountAction> ClearAccountActions { get; init; } =
+        public IReadOnlyCollection<ClearAccountAction> ClearAccountActions { get; set; } =
             Enumerable.Empty<ClearAccountAction>().ToList();
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The change residence actions.
         /// </value>
-        public IReadOnlyCollection<ChangeResidenceAction> ChangeResidenceActions { get; init; } =
+        public IReadOnlyCollection<ChangeResidenceAction> ChangeResidenceActions { get; set; } =
                     Enumerable.Empty<ChangeResidenceAction>().ToList();
     }
 }

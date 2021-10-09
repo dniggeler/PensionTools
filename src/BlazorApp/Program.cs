@@ -16,7 +16,6 @@ namespace BlazorApp
             builder.RootComponents.Add<App>("#app");
 
             bool isMocked = Convert.ToBoolean(builder.Configuration.GetSection("isMocked").Value);
-            Console.WriteLine(isMocked);
 
             if (isMocked)
             {
@@ -26,6 +25,7 @@ namespace BlazorApp
             else
             {
                 builder.Services.AddScoped<IMultiPeriodCalculationService, MultiPeriodCalculationService>();
+                builder.Services.AddScoped<IMunicipalityService, MunicipalityServiceClient>();
             }
 
             builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
