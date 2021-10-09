@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentValidation;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Tax.Tools.Comparison.Abstractions;
 using Tax.Tools.Comparison.Abstractions.Models;
@@ -50,14 +51,14 @@ namespace Tax.Tools.Comparison
                     await this.capitalBenefitCalculator
                         .CalculateAsync(
                             calculationYear,
-                            municipality.BfsNumber,
+                            municipality.BfsMunicipalityNumber,
                             municipality.Canton,
                             person);
 
                 result
                     .Map(r => new CapitalBenefitTaxComparerResult
                     {
-                        MunicipalityId = municipality.BfsNumber,
+                        MunicipalityId = municipality.BfsMunicipalityNumber,
                         MunicipalityName = municipality.Name,
                         Canton = municipality.Canton,
                         MunicipalityTaxResult = r,

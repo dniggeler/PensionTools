@@ -6,8 +6,8 @@ using AutoMapper;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Municipality;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using Tax.Data;
 using Tax.Data.Abstractions.Models;
 
@@ -103,7 +103,7 @@ namespace TaxCalculator
                     .OrderBy(item => item.MunicipalityName)
                     .Select(item => new TaxSupportedMunicipalityModel
                     {
-                        BfsNumber = item.BfsId,
+                        BfsMunicipalityNumber = item.BfsId,
                         Name = item.MunicipalityName,
                         Canton = Enum.Parse<Canton>(item.Canton),
                     })

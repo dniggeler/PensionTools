@@ -56,7 +56,7 @@ namespace TaxCalculator.WebApi.Controllers
         {
             if (request == null)
             {
-                return this.BadRequest(nameof(request));
+                return BadRequest(nameof(request));
             }
 
             var taxPerson = MapRequest();
@@ -73,8 +73,8 @@ namespace TaxCalculator.WebApi.Controllers
 
             return result
                 .Match<ActionResult>(
-                    Right: r => this.Ok(MapResponse(r)),
-                    Left: this.BadRequest);
+                    Right: r => Ok(MapResponse(r)),
+                    Left: BadRequest);
 
             FullTaxResponse MapResponse(FullTaxResult r)
             {
@@ -140,17 +140,17 @@ namespace TaxCalculator.WebApi.Controllers
         {
             if (request == null)
             {
-                return this.BadRequest(nameof(request));
+                return BadRequest(nameof(request));
             }
 
             var taxPerson = MapRequest();
 
             Either<string, MunicipalityModel> municipalityData =
-                await this.municipalityResolver.GetAsync(request.BfsMunicipalityId, request.CalculationYear);
+                await municipalityResolver.GetAsync(request.BfsMunicipalityId, request.CalculationYear);
 
             var result =
                 await municipalityData
-                    .BindAsync(m => this.fullCapitalBenefitTaxCalculator.CalculateAsync(
+                    .BindAsync(m => fullCapitalBenefitTaxCalculator.CalculateAsync(
                         request.CalculationYear,
                         request.BfsMunicipalityId,
                         m.Canton,
@@ -158,8 +158,8 @@ namespace TaxCalculator.WebApi.Controllers
 
             return result
                 .Match<ActionResult>(
-                    Right: r => this.Ok(MapResponse(r)),
-                    Left: this.BadRequest);
+                    Right: r => Ok(MapResponse(r)),
+                    Left: BadRequest);
 
             // local methods
             CapitalBenefitTaxResponse MapResponse(FullCapitalBenefitTaxResult r)
@@ -201,10 +201,9 @@ namespace TaxCalculator.WebApi.Controllers
         [Route("municipality/{year}")]
         public async Task<ActionResult<IEnumerable<TaxSupportedMunicipalityModel>>> GetSupportedMunicipalities(int year)
         {
-            IReadOnlyCollection<TaxSupportedMunicipalityModel> list =
-                await this.municipalityResolver.GetAllSupportTaxCalculationAsync(year);
+            IReadOnlyCollection<TaxSupportedMunicipalityModel> list = await municipalityResolver.GetAllSupportTaxCalculationAsync(year);
 
-            return this.Ok(list);
+            return Ok(list);
         }
     }
 }

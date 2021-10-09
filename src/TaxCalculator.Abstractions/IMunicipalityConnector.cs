@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes.Municipality;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions
 {
