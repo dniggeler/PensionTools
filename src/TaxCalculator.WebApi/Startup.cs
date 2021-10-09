@@ -38,7 +38,8 @@ namespace TaxCalculator.WebApi
                         "https://localhost:5001",
                         "http://localhost:44331",
                         "https://localhost:44331",
-                        "https://relaxed-bose-eb5bc2.netlify.com")
+                        "https://relaxed-bose-eb5bc2.netlify.com",
+                        "http://pensiontools-ui.azurewebsites.net")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 }));
