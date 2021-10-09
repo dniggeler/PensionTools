@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using BlazorApp.MyComponents;
+using PensionCoach.Tools.CommonTypes.Municipality;
 
 namespace BlazorApp.Services
 {
     public interface IMunicipalityService
     {
-        Task<IEnumerable<MunicipalityViewModel>> GetAllAsync();
+        Task<IEnumerable<MunicipalityModel>> GetAllAsync();
     }
 }

@@ -21,7 +21,7 @@ namespace BlazorApp.Services
             this.configuration = configuration;
             this.httpClient = httpClient;
         }
-        public async Task<IEnumerable<MunicipalityViewModel>> GetAllAsync()
+        public async Task<IEnumerable<MunicipalityModel>> GetAllAsync()
         {
             string urlPath = configuration.GetSection("MunicipalityServiceUrl").Value;
 
@@ -31,9 +31,9 @@ namespace BlazorApp.Services
 
                 response.EnsureSuccessStatusCode();
 
-                IEnumerable<MunicipalityViewModel> result = await response.Content.ReadFromJsonAsync<IEnumerable<MunicipalityViewModel>>();
+                IEnumerable<MunicipalityModel> result = await response.Content.ReadFromJsonAsync<IEnumerable<MunicipalityModel>>();
 
-                return result?.Select(item => new MunicipalityViewModel
+                return result?.Select(item => new MunicipalityModel
                 {
                     Name = item.Name,
                     BfsNumber = item.BfsNumber,

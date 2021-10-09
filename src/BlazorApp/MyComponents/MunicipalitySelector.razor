@@ -1,12 +1,11 @@
-﻿@using PensionCoach.Tools.CommonTypes
-@using BlazorApp.Services
-@using BlazorApp.MyComponents
+﻿@using BlazorApp.Services
+@using PensionCoach.Tools.CommonTypes.Municipality
 
 @inject IMunicipalityService municipalityService
 
 <h3>@Title</h3>
 
-<RadzenDropDown TextProperty="NameAndCanton"
+<RadzenDropDown TextProperty="Name"
                 ValueProperty="BfsNumber"
                 FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
                 FilterOperator="StringFilterOperator.StartsWith"
@@ -25,7 +24,7 @@
     [Parameter]
     public EventCallback<int> OnSelected { get; set; }
 
-    private IReadOnlyCollection<MunicipalityViewModel> municipalities = new List<MunicipalityViewModel>();
+    private IReadOnlyCollection<MunicipalityModel> municipalities = new List<MunicipalityModel>();
 
     protected override async Task OnInitializedAsync()
     {

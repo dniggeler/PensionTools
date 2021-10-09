@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using BlazorApp.MyComponents;
 using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Municipality;
 
 namespace BlazorApp.Services
 {
     public class MockedMunicipalityService : IMunicipalityService
     {
-        public async Task<IEnumerable<MunicipalityViewModel>> GetAllAsync()
+        public async Task<IEnumerable<MunicipalityModel>> GetAllAsync()
         {
-            var municipalities = new List<MunicipalityViewModel>
+            var municipalities = new List<MunicipalityModel>
             {
                 new()
                 {
@@ -33,7 +33,7 @@ namespace BlazorApp.Services
                 {
                     BfsNumber = 3426,
                     Canton = Canton.SG,
-                    Name = "Zuzwil",
+                    Name = "Zuzwil (SG)",
                 }
             };
 

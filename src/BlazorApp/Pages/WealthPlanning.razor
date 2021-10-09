@@ -95,7 +95,7 @@
                                                 <RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Wealth"/>
                                             </div>
                                             <div class="col-md-4">
-                                                <MunicipalitySelector Title="Steuergemeinde" BfsMunicipalityId="model.BfsMunicipalityId"/>
+                                                <MunicipalitySelector Title="Steuergemeinde" BfsMunicipalityId="model.BfsMunicipalityId" OnSelected="id => { model.BfsMunicipalityId = id; }"/>
                                             </div>
                                         </div>
                                     </ChildContent>
@@ -129,7 +129,7 @@
                                             <div class="col-md-4">
                                                 <MunicipalitySelector Title="Neue Steuergemeinde"
                                                                       BfsMunicipalityId="changeResidenceModel.DestinationMunicipalityId"
-                                                                      OnSelected="HandleMunicipalityChange" />
+                                                                      OnSelected="HandleChangeResidence" />
                                             </div>
                                         </div>
                                     </ChildContent>
@@ -392,7 +392,7 @@
             .ToArray();
     }
 
-    private void HandleMunicipalityChange(int id)
+    private void HandleChangeResidence(int id)
     {
         changeResidenceModel.DestinationMunicipalityId = id;
     }
