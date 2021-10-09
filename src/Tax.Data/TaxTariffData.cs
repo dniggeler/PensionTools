@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Tax.Data.Abstractions;
 using Tax.Data.Abstractions.Models;
 
-
 namespace Tax.Data
 {
     public class TaxTariffData : ITaxTariffData
