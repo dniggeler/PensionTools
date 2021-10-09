@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PensionCoach.Tools.CommonTypes
+namespace PensionCoach.Tools.CommonTypes.Municipality
 {
     public class MunicipalityModel
     {

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
+using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 
 namespace TaxCalculator.WebApi.Controllers

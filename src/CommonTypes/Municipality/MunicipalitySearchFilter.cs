@@ -1,7 +1,4 @@
-﻿using System;
-using PensionCoach.Tools.CommonTypes;
-
-namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models.Municipality
+﻿namespace PensionCoach.Tools.CommonTypes.Municipality
 {
     public class MunicipalitySearchFilter
     {

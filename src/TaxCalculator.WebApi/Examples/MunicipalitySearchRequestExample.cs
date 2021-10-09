@@ -1,5 +1,5 @@
 ﻿using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Municipality;
+using PensionCoach.Tools.CommonTypes.Municipality;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace TaxCalculator.WebApi.Examples

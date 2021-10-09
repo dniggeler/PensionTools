@@ -26,4 +26,8 @@
       <ProjectReference Include="..\TaxCalculator.WebApi\TaxCalculator.WebApi.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="__snapshots__\" />
+    </ItemGroup>
+
 </Project>

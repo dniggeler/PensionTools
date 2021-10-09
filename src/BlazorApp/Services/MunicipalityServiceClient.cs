@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using BlazorApp.MyComponents;
 using Microsoft.Extensions.Configuration;
-using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Municipality;
 
 namespace BlazorApp.Services
 {
@@ -23,17 +25,37 @@ namespace BlazorApp.Services
         {
             string urlPath = configuration.GetSection("MunicipalityServiceUrl").Value;
 
-            var response = await httpClient.GetFromJsonAsync<IEnumerable<MunicipalityModel>>(urlPath);
-
-            return response.Select(item => new MunicipalityViewModel
+            try
             {
-                Name = item.Name,
-                BfsNumber = item.BfsNumber,
-                Canton = item.Canton,
-                MutationId = item.MutationId,
-                DateOfMutation = item.DateOfMutation,
-                SuccessorId = item.SuccessorId
-            });
+                var response = await httpClient.PostAsJsonAsync(Path.Combine(urlPath, "search"), GetFilter());
+
+                response.EnsureSuccessStatusCode();
+
+                IEnumerable<MunicipalityViewModel> result = await response.Content.ReadFromJsonAsync<IEnumerable<MunicipalityViewModel>>();
+
+                return result?.Select(item => new MunicipalityViewModel
+                {
+                    Name = item.Name,
+                    BfsNumber = item.BfsNumber,
+                    Canton = item.Canton,
+                    MutationId = item.MutationId,
+                    DateOfMutation = item.DateOfMutation,
+                    SuccessorId = item.SuccessorId
+                });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            MunicipalitySearchFilter GetFilter()
+            {
+                return new MunicipalitySearchFilter
+                {
+                    YearOfValidity = 2021
+                };
+            }
         }
     }
 }

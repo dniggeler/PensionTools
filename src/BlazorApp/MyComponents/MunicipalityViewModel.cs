@@ -1,4 +1,5 @@
 ﻿using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Municipality;
 
 namespace BlazorApp.MyComponents
 {

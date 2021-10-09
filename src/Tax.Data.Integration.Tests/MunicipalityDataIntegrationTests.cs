@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Municipality;
+using PensionCoach.Tools.CommonTypes.Municipality;
 using Snapshooter.Xunit;
 using TaxCalculator.WebApi;
 using Xunit;
@@ -23,7 +24,7 @@ namespace Tax.Data.Integration.Tests
         {
             var testServer = new TestServer(
                 new WebHostBuilder()
-                    .ConfigureAppConfiguration((context, builder) =>
+                    .ConfigureAppConfiguration((_, builder) =>
                     {
                         builder.AddJsonFile("appsettings.integration.json");
                     })
@@ -42,7 +43,7 @@ namespace Tax.Data.Integration.Tests
 
             response.EnsureSuccessStatusCode();
 
-            var result = await response.Content.ReadAsStringAsync();
+            var result = await response.Content.ReadFromJsonAsync<IEnumerable<MunicipalityModel>>();
 
             Snapshot.Match(result);
         }
@@ -53,7 +54,7 @@ namespace Tax.Data.Integration.Tests
             {
                 Name = "Z",
                 Canton = Canton.ZH,
-                YearOfValidity = 2019
+                YearOfValidity = 2021
             };
         }
     }
