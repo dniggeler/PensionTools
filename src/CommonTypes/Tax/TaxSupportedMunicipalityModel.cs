@@ -7,5 +7,7 @@
         public string Name { get; set; }
 
         public Canton Canton { get; set; }
+
+        public int MaxSupportedYear { get; set; }
     }
 }

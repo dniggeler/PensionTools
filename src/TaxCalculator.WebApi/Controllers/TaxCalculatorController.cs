@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using LanguageExt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
@@ -23,18 +22,15 @@ namespace TaxCalculator.WebApi.Controllers
         private readonly IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator;
         private readonly IFullTaxCalculator fullTaxCalculator;
         private readonly IMunicipalityConnector municipalityResolver;
-        private readonly ILogger<TaxCalculatorController> logger;
 
         public TaxCalculatorController(
             IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator,
             IFullTaxCalculator fullTaxCalculator,
-            IMunicipalityConnector municipalityResolver,
-            ILogger<TaxCalculatorController> logger)
+            IMunicipalityConnector municipalityResolver)
         {
             this.fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;
             this.fullTaxCalculator = fullTaxCalculator;
             this.municipalityResolver = municipalityResolver;
-            this.logger = logger;
         }
 
         /// <summary>

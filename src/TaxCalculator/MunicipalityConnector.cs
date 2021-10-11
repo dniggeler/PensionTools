@@ -99,14 +99,22 @@ namespace TaxCalculator
             IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities =
                 ctx.Rates
                     .Where(
-                        item => item.Year == year)
-                    .OrderBy(item => item.MunicipalityName)
+                        item => item.Year >= year)
+                    .AsEnumerable()
+                    .GroupBy(keySelector => new
+                    {
+                        Id = keySelector.BfsId,
+                        Name = keySelector.MunicipalityName,
+                        keySelector.Canton,
+                    })
                     .Select(item => new TaxSupportedMunicipalityModel
                     {
-                        BfsMunicipalityNumber = item.BfsId,
-                        Name = item.MunicipalityName,
-                        Canton = Enum.Parse<Canton>(item.Canton),
+                        BfsMunicipalityNumber = item.Key.Id,
+                        Name = item.Key.Name,
+                        Canton = Enum.Parse<Canton>(item.Key.Canton),
+                        MaxSupportedYear = item.Max(entity => entity.Year),
                     })
+                    .OrderBy(item => item.Name)
                     .ToList();
 
             return Task.FromResult(municipalities);
