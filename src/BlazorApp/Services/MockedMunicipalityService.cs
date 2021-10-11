@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Municipality;
+using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace BlazorApp.Services
 {
@@ -40,7 +41,7 @@ namespace BlazorApp.Services
             return await Task.FromResult(municipalities);
         }
 
-        public Task<IEnumerable<MunicipalityModel>> GetTaxSupportingAsync()
+        public Task<IEnumerable<TaxSupportedMunicipalityModel>> GetTaxSupportingAsync()
         {
             throw new System.NotImplementedException();
         }

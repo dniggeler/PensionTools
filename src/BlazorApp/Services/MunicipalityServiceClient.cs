@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using BlazorApp.MyComponents;
 using Microsoft.Extensions.Configuration;
 using PensionCoach.Tools.CommonTypes.Municipality;
+using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace BlazorApp.Services
 {
@@ -25,29 +24,23 @@ namespace BlazorApp.Services
         {
             string urlPath = configuration.GetSection("MunicipalityServiceUrl").Value;
 
-            try
+            var response = await httpClient.PostAsJsonAsync(Path.Combine(urlPath, "search"), GetFilter());
+
+            response.EnsureSuccessStatusCode();
+
+            IEnumerable<MunicipalityModel> result =
+                await response.Content.ReadFromJsonAsync<IEnumerable<MunicipalityModel>>();
+
+            return result?.Select(item => new MunicipalityModel
             {
-                var response = await httpClient.PostAsJsonAsync(Path.Combine(urlPath, "search"), GetFilter());
+                Name = item.Name,
+                BfsNumber = item.BfsNumber,
+                Canton = item.Canton,
+                MutationId = item.MutationId,
+                DateOfMutation = item.DateOfMutation,
+                SuccessorId = item.SuccessorId
+            });
 
-                response.EnsureSuccessStatusCode();
-
-                IEnumerable<MunicipalityModel> result = await response.Content.ReadFromJsonAsync<IEnumerable<MunicipalityModel>>();
-
-                return result?.Select(item => new MunicipalityModel
-                {
-                    Name = item.Name,
-                    BfsNumber = item.BfsNumber,
-                    Canton = item.Canton,
-                    MutationId = item.MutationId,
-                    DateOfMutation = item.DateOfMutation,
-                    SuccessorId = item.SuccessorId
-                });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
 
             MunicipalitySearchFilter GetFilter()
             {
@@ -58,41 +51,11 @@ namespace BlazorApp.Services
             }
         }
 
-        public async Task<IEnumerable<MunicipalityModel>> GetTaxSupportingAsync()
+        public async Task<IEnumerable<TaxSupportedMunicipalityModel>> GetTaxSupportingAsync()
         {
             string urlPath = configuration.GetSection("TaxCalculatorServiceUrl").Value;
 
-            try
-            {
-                var response = await httpClient.PostAsJsonAsync(Path.Combine(urlPath, "municipality"), GetFilter());
-
-                response.EnsureSuccessStatusCode();
-
-                IEnumerable<MunicipalityModel> result = await response.Content.ReadFromJsonAsync<IEnumerable<MunicipalityModel>>();
-
-                return result?.Select(item => new MunicipalityModel
-                {
-                    Name = item.Name,
-                    BfsNumber = item.BfsNumber,
-                    Canton = item.Canton,
-                    MutationId = item.MutationId,
-                    DateOfMutation = item.DateOfMutation,
-                    SuccessorId = item.SuccessorId
-                });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
-            MunicipalitySearchFilter GetFilter()
-            {
-                return new MunicipalitySearchFilter
-                {
-                    YearOfValidity = 2021
-                };
-            }
+            return await httpClient.GetFromJsonAsync<IEnumerable<TaxSupportedMunicipalityModel>>(Path.Combine(urlPath, "municipality"));
         }
     }
 }
