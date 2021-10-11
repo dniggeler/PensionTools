@@ -1,0 +1,1034 @@
+﻿[
+  {
+    "BfsMunicipalityNumber": 21,
+    "Name": "Adlikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 131,
+    "Name": "Adliswil",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 241,
+    "Name": "Aesch",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 1,
+    "Name": "Aeugst a.A.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 2,
+    "Name": "Affoltern a.A.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 211,
+    "Name": "Altikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 30,
+    "Name": "Andelfingen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 51,
+    "Name": "Bachenbülach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 81,
+    "Name": "Bachs",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 111,
+    "Name": "Bäretswil",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 52,
+    "Name": "Bassersdorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 297,
+    "Name": "Bauma",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 22,
+    "Name": "Benken",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 23,
+    "Name": "Berg a.I.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 242,
+    "Name": "Birmensdorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 3,
+    "Name": "Bonstetten",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 82,
+    "Name": "Boppelsen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 213,
+    "Name": "Brütten",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 112,
+    "Name": "Bubikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 24,
+    "Name": "Buch a.I.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 83,
+    "Name": "Buchs",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 53,
+    "Name": "Bülach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 25,
+    "Name": "Dachsen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 214,
+    "Name": "Dägerlen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 84,
+    "Name": "Dällikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 85,
+    "Name": "Dänikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 215,
+    "Name": "Dättlikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 86,
+    "Name": "Dielsdorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 243,
+    "Name": "Dietikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 54,
+    "Name": "Dietlikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 216,
+    "Name": "Dinhard",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 26,
+    "Name": "Dorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 191,
+    "Name": "Dübendorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 113,
+    "Name": "Dürnten",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 192,
+    "Name": "Egg",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 55,
+    "Name": "Eglisau",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 294,
+    "Name": "Elgg",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 218,
+    "Name": "Ellikon a.d.Th.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 219,
+    "Name": "Elsau",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 56,
+    "Name": "Embrach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 151,
+    "Name": "Erlenbach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 193,
+    "Name": "Fällanden",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 172,
+    "Name": "Fehraltorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 27,
+    "Name": "Feuerthalen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 114,
+    "Name": "Fischenthal",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 28,
+    "Name": "Flaach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 29,
+    "Name": "Flurlingen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 57,
+    "Name": "Freienstein-Teufen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 244,
+    "Name": "Geroldswil",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 58,
+    "Name": "Glattfelden",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 115,
+    "Name": "Gossau",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 194,
+    "Name": "Greifensee",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 116,
+    "Name": "Grüningen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 220,
+    "Name": "Hagenbuch",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 4,
+    "Name": "Hausen a.A.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 5,
+    "Name": "Hedingen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 31,
+    "Name": "Henggart",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 152,
+    "Name": "Herrliberg",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 221,
+    "Name": "Hettlingen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 117,
+    "Name": "Hinwil",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 173,
+    "Name": "Hittnau",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 59,
+    "Name": "Hochfelden",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 153,
+    "Name": "Hombrechtikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 295,
+    "Name": "Horgen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 60,
+    "Name": "Höri",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 32,
+    "Name": "Humlikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 61,
+    "Name": "Hüntwangen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 134,
+    "Name": "Hütten",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2018
+  },
+  {
+    "BfsMunicipalityNumber": 87,
+    "Name": "Hüttikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 296,
+    "Name": "Illnau-Effretikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 6,
+    "Name": "Kappel a.A.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 135,
+    "Name": "Kilchberg",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 33,
+    "Name": "Kleinandelfingen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 62,
+    "Name": "Kloten",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 7,
+    "Name": "Knonau",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 154,
+    "Name": "Küsnacht",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 136,
+    "Name": "Langnau a.A.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 34,
+    "Name": "Laufen-Uhwiesen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 176,
+    "Name": "Lindau",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 2526,
+    "Name": "Lohn-Ammannsegg",
+    "Canton": "SO",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 63,
+    "Name": "Lufingen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 155,
+    "Name": "Männedorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 35,
+    "Name": "Marthalen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 8,
+    "Name": "Maschwanden",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 195,
+    "Name": "Maur",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 156,
+    "Name": "Meilen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 9,
+    "Name": "Mettmenstetten",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 196,
+    "Name": "Mönchaltorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 88,
+    "Name": "Neerach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 223,
+    "Name": "Neftenbach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 89,
+    "Name": "Niederglatt",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 90,
+    "Name": "Niederhasli",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 91,
+    "Name": "Niederweningen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 64,
+    "Name": "Nürensdorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 65,
+    "Name": "Oberembrach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 245,
+    "Name": "Oberengstringen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 92,
+    "Name": "Oberglatt",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 137,
+    "Name": "Oberrieden",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 36,
+    "Name": "Oberstammheim",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2018
+  },
+  {
+    "BfsMunicipalityNumber": 93,
+    "Name": "Oberweningen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 10,
+    "Name": "Obfelden",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 246,
+    "Name": "Oetwil a.d.L.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 157,
+    "Name": "Oetwil a.S.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 66,
+    "Name": "Opfikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 37,
+    "Name": "Ossingen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 94,
+    "Name": "Otelfingen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 11,
+    "Name": "Ottenbach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 177,
+    "Name": "Pfäffikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 224,
+    "Name": "Pfungen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 67,
+    "Name": "Rafz",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 95,
+    "Name": "Regensberg",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 96,
+    "Name": "Regensdorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 38,
+    "Name": "Rheinau",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 138,
+    "Name": "Richterswil",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 225,
+    "Name": "Rickenbach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 12,
+    "Name": "Rifferswil",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 68,
+    "Name": "Rorbas",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 97,
+    "Name": "Rümlang",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 139,
+    "Name": "Rüschlikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 178,
+    "Name": "Russikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 118,
+    "Name": "Rüti",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 226,
+    "Name": "Schlatt",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 98,
+    "Name": "Schleinikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 247,
+    "Name": "Schlieren",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 99,
+    "Name": "Schöfflisdorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 140,
+    "Name": "Schönenberg",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2018
+  },
+  {
+    "BfsMunicipalityNumber": 197,
+    "Name": "Schwerzenbach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 119,
+    "Name": "Seegräben",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 227,
+    "Name": "Seuzach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 2601,
+    "Name": "Solothurn",
+    "Canton": "SO",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 3203,
+    "Name": "St.Gallen",
+    "Canton": "SG",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 100,
+    "Name": "Stadel",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 158,
+    "Name": "Stäfa",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 13,
+    "Name": "Stallikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 292,
+    "Name": "Stammheim",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 101,
+    "Name": "Steinmaur",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 39,
+    "Name": "Thalheim a.d.Th.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 141,
+    "Name": "Thalwil",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 40,
+    "Name": "Trüllikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 41,
+    "Name": "Truttikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 228,
+    "Name": "Turbenthal",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 159,
+    "Name": "Uetikon a.S.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 248,
+    "Name": "Uitikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 249,
+    "Name": "Unterengstringen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 42,
+    "Name": "Unterstammheim",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2018
+  },
+  {
+    "BfsMunicipalityNumber": 250,
+    "Name": "Urdorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 198,
+    "Name": "Uster",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 43,
+    "Name": "Volken",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 199,
+    "Name": "Volketswil",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 293,
+    "Name": "Wädenswil",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 142,
+    "Name": "Wädenswil",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2018
+  },
+  {
+    "BfsMunicipalityNumber": 120,
+    "Name": "Wald",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 69,
+    "Name": "Wallisellen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 44,
+    "Name": "Waltalingen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2018
+  },
+  {
+    "BfsMunicipalityNumber": 200,
+    "Name": "Wangen-Brüttisellen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 70,
+    "Name": "Wasterkingen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 102,
+    "Name": "Weiach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 251,
+    "Name": "Weiningen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 180,
+    "Name": "Weisslingen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 14,
+    "Name": "Wettswil a.A.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 121,
+    "Name": "Wetzikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 298,
+    "Name": "Wiesendangen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 71,
+    "Name": "Wil",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 181,
+    "Name": "Wila",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 182,
+    "Name": "Wildberg",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 72,
+    "Name": "Winkel",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 230,
+    "Name": "Winterthur",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 231,
+    "Name": "Zell",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 161,
+    "Name": "Zollikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 160,
+    "Name": "Zumikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 261,
+    "Name": "Zürich",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 3426,
+    "Name": "Zuzwil",
+    "Canton": "SG",
+    "MaxSupportedYear": 2019
+  }
+]

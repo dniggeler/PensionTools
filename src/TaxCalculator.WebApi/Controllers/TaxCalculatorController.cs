@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using LanguageExt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
@@ -23,18 +22,15 @@ namespace TaxCalculator.WebApi.Controllers
         private readonly IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator;
         private readonly IFullTaxCalculator fullTaxCalculator;
         private readonly IMunicipalityConnector municipalityResolver;
-        private readonly ILogger<TaxCalculatorController> logger;
 
         public TaxCalculatorController(
             IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator,
             IFullTaxCalculator fullTaxCalculator,
-            IMunicipalityConnector municipalityResolver,
-            ILogger<TaxCalculatorController> logger)
+            IMunicipalityConnector municipalityResolver)
         {
             this.fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;
             this.fullTaxCalculator = fullTaxCalculator;
             this.municipalityResolver = municipalityResolver;
-            this.logger = logger;
         }
 
         /// <summary>
@@ -56,7 +52,7 @@ namespace TaxCalculator.WebApi.Controllers
         {
             if (request == null)
             {
-                return this.BadRequest(nameof(request));
+                return BadRequest(nameof(request));
             }
 
             var taxPerson = MapRequest();
@@ -73,8 +69,8 @@ namespace TaxCalculator.WebApi.Controllers
 
             return result
                 .Match<ActionResult>(
-                    Right: r => this.Ok(MapResponse(r)),
-                    Left: this.BadRequest);
+                    Right: r => Ok(MapResponse(r)),
+                    Left: BadRequest);
 
             FullTaxResponse MapResponse(FullTaxResult r)
             {
@@ -140,17 +136,17 @@ namespace TaxCalculator.WebApi.Controllers
         {
             if (request == null)
             {
-                return this.BadRequest(nameof(request));
+                return BadRequest(nameof(request));
             }
 
             var taxPerson = MapRequest();
 
             Either<string, MunicipalityModel> municipalityData =
-                await this.municipalityResolver.GetAsync(request.BfsMunicipalityId, request.CalculationYear);
+                await municipalityResolver.GetAsync(request.BfsMunicipalityId, request.CalculationYear);
 
             var result =
                 await municipalityData
-                    .BindAsync(m => this.fullCapitalBenefitTaxCalculator.CalculateAsync(
+                    .BindAsync(m => fullCapitalBenefitTaxCalculator.CalculateAsync(
                         request.CalculationYear,
                         request.BfsMunicipalityId,
                         m.Canton,
@@ -158,8 +154,8 @@ namespace TaxCalculator.WebApi.Controllers
 
             return result
                 .Match<ActionResult>(
-                    Right: r => this.Ok(MapResponse(r)),
-                    Left: this.BadRequest);
+                    Right: r => Ok(MapResponse(r)),
+                    Left: BadRequest);
 
             // local methods
             CapitalBenefitTaxResponse MapResponse(FullCapitalBenefitTaxResult r)
@@ -198,13 +194,12 @@ namespace TaxCalculator.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("municipality/{year}")]
-        public async Task<ActionResult<IEnumerable<TaxSupportedMunicipalityModel>>> GetSupportedMunicipalities(int year)
+        [Route("municipality")]
+        public async Task<ActionResult<IEnumerable<TaxSupportedMunicipalityModel>>> GetSupportedMunicipalities()
         {
-            IReadOnlyCollection<TaxSupportedMunicipalityModel> list =
-                await this.municipalityResolver.GetAllSupportTaxCalculationAsync(year);
+            IReadOnlyCollection<TaxSupportedMunicipalityModel> list = await municipalityResolver.GetAllSupportTaxCalculationAsync();
 
-            return this.Ok(list);
+            return Ok(list);
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using LanguageExt;
-
-namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
+﻿namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
 {
     public class CapitalBenefitTaxResult
     {

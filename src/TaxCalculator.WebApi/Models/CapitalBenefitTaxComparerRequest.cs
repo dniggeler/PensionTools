@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
 namespace TaxCalculator.WebApi.Models
 {
@@ -8,9 +7,6 @@ namespace TaxCalculator.WebApi.Models
     {
         [MaxLength(50)]
         public string Name { get; set; }
-
-        [Range(2018, 2099, ErrorMessage = "Valid tax years start from 2018")]
-        public int CalculationYear { get; set; }
 
         public CivilStatus CivilStatus { get; set; }
 

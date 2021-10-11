@@ -62,11 +62,10 @@ namespace TaxCalculator.Tests
         public async Task ShouldReturnAllMunicipalitiesSupportingTaxCalculation()
         {
             // given
-            int year = 2019;
 
             // when
             var result =
-                await _fixture.Service.GetAllSupportTaxCalculationAsync(year);
+                await _fixture.Service.GetAllSupportTaxCalculationAsync();
 
             Snapshot.Match(result, "SupportTaxCalculation");
         }

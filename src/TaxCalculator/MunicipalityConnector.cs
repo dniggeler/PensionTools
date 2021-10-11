@@ -6,8 +6,8 @@ using AutoMapper;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Municipality;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using Tax.Data;
 using Tax.Data.Abstractions.Models;
 
@@ -93,20 +93,26 @@ namespace TaxCalculator
                 .AsTask();
         }
 
-        public Task<IReadOnlyCollection<TaxSupportedMunicipalityModel>> GetAllSupportTaxCalculationAsync(int year)
+        public Task<IReadOnlyCollection<TaxSupportedMunicipalityModel>> GetAllSupportTaxCalculationAsync()
         {
             using var ctx = dbContext();
             IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities =
                 ctx.Rates
-                    .Where(
-                        item => item.Year == year)
-                    .OrderBy(item => item.MunicipalityName)
+                    .AsEnumerable()
+                    .GroupBy(keySelector => new
+                    {
+                        Id = keySelector.BfsId,
+                        Name = keySelector.MunicipalityName,
+                        keySelector.Canton,
+                    })
                     .Select(item => new TaxSupportedMunicipalityModel
                     {
-                        BfsNumber = item.BfsId,
-                        Name = item.MunicipalityName,
-                        Canton = Enum.Parse<Canton>(item.Canton),
+                        BfsMunicipalityNumber = item.Key.Id,
+                        Name = item.Key.Name,
+                        Canton = Enum.Parse<Canton>(item.Key.Canton),
+                        MaxSupportedYear = item.Max(entity => entity.Year),
                     })
+                    .OrderBy(item => item.Name)
                     .ToList();
 
             return Task.FromResult(municipalities);

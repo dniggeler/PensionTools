@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes.Municipality;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions
 {
@@ -18,8 +18,7 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions
         /// Gets all municipalities supporting tax calculation.
         /// Municipalities are sorted by their name.
         /// </summary>
-        /// <param name="year">The year.</param>
         /// <returns></returns>
-        Task<IReadOnlyCollection<TaxSupportedMunicipalityModel>> GetAllSupportTaxCalculationAsync(int year);
+        Task<IReadOnlyCollection<TaxSupportedMunicipalityModel>> GetAllSupportTaxCalculationAsync();
     }
 }

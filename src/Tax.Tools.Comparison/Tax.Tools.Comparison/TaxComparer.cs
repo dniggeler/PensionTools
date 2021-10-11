@@ -1,10 +1,10 @@
 ﻿using LanguageExt;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentValidation;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Tax.Tools.Comparison.Abstractions;
 using Tax.Tools.Comparison.Abstractions.Models;
@@ -28,9 +28,9 @@ namespace Tax.Tools.Comparison
         }
 
         public async Task<Either<string, IReadOnlyCollection<CapitalBenefitTaxComparerResult>>> CompareCapitalBenefitTaxAsync(
-            int calculationYear, CapitalBenefitTaxPerson person)
+            CapitalBenefitTaxPerson person)
         {
-            var validationResult = this.taxPersonValidator.Validate(person);
+            var validationResult = taxPersonValidator.Validate(person);
             if (!validationResult.IsValid)
             {
                 var errorMessageLine =
@@ -39,27 +39,28 @@ namespace Tax.Tools.Comparison
             }
 
             IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities =
-                await this.municipalityConnector
-                    .GetAllSupportTaxCalculationAsync(calculationYear);
+                await municipalityConnector
+                    .GetAllSupportTaxCalculationAsync();
 
             var resultList = new List<CapitalBenefitTaxComparerResult>();
 
             foreach (var municipality in municipalities)
             {
                 var result =
-                    await this.capitalBenefitCalculator
+                    await capitalBenefitCalculator
                         .CalculateAsync(
-                            calculationYear,
-                            municipality.BfsNumber,
+                            municipality.MaxSupportedYear,
+                            municipality.BfsMunicipalityNumber,
                             municipality.Canton,
                             person);
 
                 result
                     .Map(r => new CapitalBenefitTaxComparerResult
                     {
-                        MunicipalityId = municipality.BfsNumber,
+                        MunicipalityId = municipality.BfsMunicipalityNumber,
                         MunicipalityName = municipality.Name,
                         Canton = municipality.Canton,
+                        MaxSupportedTaxYear = municipality.MaxSupportedYear,
                         MunicipalityTaxResult = r,
                     })
                     .IfRight(r =>
