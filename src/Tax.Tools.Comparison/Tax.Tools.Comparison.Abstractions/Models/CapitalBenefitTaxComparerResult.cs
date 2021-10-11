@@ -12,6 +12,8 @@ namespace Tax.Tools.Comparison.Abstractions.Models
 
         public Canton Canton { get; set; }
 
+        public int MaxSupportedTaxYear { get; set; }
+
         public FullCapitalBenefitTaxResult MunicipalityTaxResult { get; set; }
     }
 }

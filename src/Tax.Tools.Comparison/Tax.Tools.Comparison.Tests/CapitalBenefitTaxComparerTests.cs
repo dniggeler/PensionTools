@@ -23,7 +23,6 @@ namespace Tax.Tools.Comparison.Tests
         {
             // given
             string name = "Burli";
-            int calculationYear = 2019;
             CivilStatus status = CivilStatus.Single;
             ReligiousGroupType religiousGroup = ReligiousGroupType.Protestant;
 
@@ -37,8 +36,7 @@ namespace Tax.Tools.Comparison.Tests
 
             // when
             var result =
-                await fixture.Calculator.CompareCapitalBenefitTaxAsync(
-                    calculationYear, taxPerson);
+                await fixture.Calculator.CompareCapitalBenefitTaxAsync(taxPerson);
 
             // then
             Assert.True(result.IsRight);

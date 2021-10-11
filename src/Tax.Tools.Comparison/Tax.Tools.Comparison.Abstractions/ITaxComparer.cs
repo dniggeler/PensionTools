@@ -10,6 +10,6 @@ namespace Tax.Tools.Comparison.Abstractions
     public interface ITaxComparer
     {
         Task<Either<string,IReadOnlyCollection<CapitalBenefitTaxComparerResult>>> CompareCapitalBenefitTaxAsync(
-            int calculationYear, CapitalBenefitTaxPerson person);
+            CapitalBenefitTaxPerson person);
     }
 }

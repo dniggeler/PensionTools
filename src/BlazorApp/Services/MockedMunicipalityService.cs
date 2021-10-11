@@ -39,5 +39,10 @@ namespace BlazorApp.Services
 
             return await Task.FromResult(municipalities);
         }
+
+        public Task<IEnumerable<MunicipalityModel>> GetTaxSupportingAsync()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

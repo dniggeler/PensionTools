@@ -93,13 +93,11 @@ namespace TaxCalculator
                 .AsTask();
         }
 
-        public Task<IReadOnlyCollection<TaxSupportedMunicipalityModel>> GetAllSupportTaxCalculationAsync(int year)
+        public Task<IReadOnlyCollection<TaxSupportedMunicipalityModel>> GetAllSupportTaxCalculationAsync()
         {
             using var ctx = dbContext();
             IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities =
                 ctx.Rates
-                    .Where(
-                        item => item.Year >= year)
                     .AsEnumerable()
                     .GroupBy(keySelector => new
                     {

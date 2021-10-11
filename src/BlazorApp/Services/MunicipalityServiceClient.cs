@@ -57,5 +57,42 @@ namespace BlazorApp.Services
                 };
             }
         }
+
+        public async Task<IEnumerable<MunicipalityModel>> GetTaxSupportingAsync()
+        {
+            string urlPath = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+
+            try
+            {
+                var response = await httpClient.PostAsJsonAsync(Path.Combine(urlPath, "municipality"), GetFilter());
+
+                response.EnsureSuccessStatusCode();
+
+                IEnumerable<MunicipalityModel> result = await response.Content.ReadFromJsonAsync<IEnumerable<MunicipalityModel>>();
+
+                return result?.Select(item => new MunicipalityModel
+                {
+                    Name = item.Name,
+                    BfsNumber = item.BfsNumber,
+                    Canton = item.Canton,
+                    MutationId = item.MutationId,
+                    DateOfMutation = item.DateOfMutation,
+                    SuccessorId = item.SuccessorId
+                });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            MunicipalitySearchFilter GetFilter()
+            {
+                return new MunicipalitySearchFilter
+                {
+                    YearOfValidity = 2021
+                };
+            }
+        }
     }
 }

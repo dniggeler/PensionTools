@@ -8,7 +8,7 @@
 
         public string MunicipalityName { get; set; }
 
-        public int CalculationYear { get; set; }
+        public int MaxSupportedTaxYear { get; set; }
 
         public decimal TotalTaxAmount { get; set; }
 

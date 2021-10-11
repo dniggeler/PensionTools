@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LanguageExt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Tools.Comparison.Abstractions;
@@ -19,14 +19,10 @@ namespace TaxCalculator.WebApi.Controllers
     public class TaxComparerController : ControllerBase
     {
         private readonly ITaxComparer taxComparer;
-        private readonly ILogger<TaxCalculatorController> logger;
 
-        public TaxComparerController(
-            ITaxComparer taxComparer,
-            ILogger<TaxCalculatorController> logger)
+        public TaxComparerController(ITaxComparer taxComparer)
         {
             this.taxComparer = taxComparer;
-            this.logger = logger;
         }
 
         /// <summary>
@@ -52,19 +48,19 @@ namespace TaxCalculator.WebApi.Controllers
         {
             if (request == null)
             {
-                return this.BadRequest(nameof(request));
+                return BadRequest(nameof(request));
             }
 
             var taxPerson = MapRequest();
 
-            var result =
-                await this.taxComparer
-                    .CompareCapitalBenefitTaxAsync(request.CalculationYear, taxPerson);
+            Either<string, IReadOnlyCollection<CapitalBenefitTaxComparerResult>> result =
+                await taxComparer
+                    .CompareCapitalBenefitTaxAsync(taxPerson);
 
             return result
                 .Match<ActionResult>(
-                    Right: r => this.Ok(MapResponse(r)),
-                    Left: this.BadRequest);
+                    Right: r => Ok(MapResponse(r)),
+                    Left: BadRequest);
 
             // local methods
             IReadOnlyCollection<CapitalBenefitTaxComparerResponse> MapResponse(IReadOnlyCollection<CapitalBenefitTaxComparerResult> resultList)
@@ -74,7 +70,7 @@ namespace TaxCalculator.WebApi.Controllers
                         Name = taxPerson.Name,
                         MunicipalityId = r.MunicipalityId,
                         MunicipalityName = r.MunicipalityName,
-                        CalculationYear = request.CalculationYear,
+                        MaxSupportedTaxYear = r.MaxSupportedTaxYear,
                         TotalTaxAmount = r.MunicipalityTaxResult.TotalTaxAmount,
                         TaxDetails = new TaxAmountDetail
                         {

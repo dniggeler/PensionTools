@@ -7,5 +7,7 @@ namespace BlazorApp.Services
     public interface IMunicipalityService
     {
         Task<IEnumerable<MunicipalityModel>> GetAllAsync();
+
+        Task<IEnumerable<MunicipalityModel>> GetTaxSupportingAsync();
     }
 }

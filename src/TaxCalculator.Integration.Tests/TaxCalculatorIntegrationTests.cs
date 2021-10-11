@@ -37,10 +37,11 @@ namespace TaxCalculator.Integration.Tests
         public async Task Get_Full_Tax_Supported_Municipalities()
         {
             // given
-            int year = 2018;
 
-            var result = await client.GetFromJsonAsync<IEnumerable<TaxSupportedMunicipalityModel>>($"municipality/{year}");
+            // when
+            var result = await client.GetFromJsonAsync<IEnumerable<TaxSupportedMunicipalityModel>>($"municipality");
 
+            // then
             Snapshot.Match(result);
         }
     }
