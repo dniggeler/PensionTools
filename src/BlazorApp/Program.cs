@@ -4,6 +4,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using BlazorApp.Services;
+using Blazored.LocalStorage;
 using Radzen;
 
 namespace BlazorApp
@@ -34,6 +35,8 @@ namespace BlazorApp
             builder.Services.AddScoped<NotificationService>();
             builder.Services.AddScoped<TooltipService>();
             builder.Services.AddScoped<ContextMenuService>();
+
+            builder.Services.AddBlazoredLocalStorage();
 
             await builder.Build().RunAsync();
         }

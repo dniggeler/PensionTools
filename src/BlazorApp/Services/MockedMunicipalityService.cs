@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
-using PensionCoach.Tools.CommonTypes;
+using Blazored.LocalStorage;
+using Microsoft.Extensions.Configuration;
 using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 
@@ -8,42 +12,44 @@ namespace BlazorApp.Services
 {
     public class MockedMunicipalityService : IMunicipalityService
     {
-        public async Task<IEnumerable<MunicipalityModel>> GetAllAsync()
-        {
-            var municipalities = new List<MunicipalityModel>
-            {
-                new()
-                {
-                    BfsNumber = 261,
-                    Canton = Canton.ZH,
-                    Name = "Zürich",
-                },
-                new()
-                {
-                    BfsNumber = 136,
-                    Canton = Canton.ZH,
-                    Name = "Langnau a.A.",
-                },
-                new()
-                {
-                    BfsNumber = 139,
-                    Canton = Canton.ZH,
-                    Name = "Rüschlikon",
-                },
-                new()
-                {
-                    BfsNumber = 3426,
-                    Canton = Canton.SG,
-                    Name = "Zuzwil (SG)",
-                }
-            };
+        private readonly IConfiguration configuration;
+        private readonly ILocalStorageService localStorageService;
+        private readonly HttpClient httpClient;
 
-            return await Task.FromResult(municipalities);
+        public MockedMunicipalityService(IConfiguration configuration, ILocalStorageService localStorageService, HttpClient httpClient)
+        {
+            this.configuration = configuration;
+            this.localStorageService = localStorageService;
+            this.httpClient = httpClient;
         }
 
-        public Task<IEnumerable<TaxSupportedMunicipalityModel>> GetTaxSupportingAsync()
+        public Task<IEnumerable<MunicipalityModel>> GetAllAsync()
         {
-            throw new System.NotImplementedException();
+            string urlPath = configuration.GetSection("MunicipalityServiceUrl").Value;
+
+            return httpClient.GetFromJsonAsync<IEnumerable<MunicipalityModel>>(urlPath);
+        }
+
+        public async Task<IEnumerable<TaxSupportedMunicipalityModel>> GetTaxSupportingAsync()
+        {
+            var cachedItems = await localStorageService.GetItemAsync<IEnumerable<TaxSupportedMunicipalityModel>>("TaxCalculatorServiceUrl");
+
+            if (cachedItems is { })
+            {
+                return cachedItems;
+            }
+
+            string urlPath = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+
+            List<TaxSupportedMunicipalityModel> fetchedItems = await httpClient.GetFromJsonAsync<List<TaxSupportedMunicipalityModel>>(urlPath);
+
+            if (fetchedItems is { })
+            {
+                await localStorageService.SetItemAsync("TaxCalculatorServiceUrl", fetchedItems);
+                return fetchedItems;
+            }
+
+            return Enumerable.Empty<TaxSupportedMunicipalityModel>();
         }
     }
 }
