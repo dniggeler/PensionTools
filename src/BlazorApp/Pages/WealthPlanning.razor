@@ -326,6 +326,7 @@
     private async Task OnSubmit(MultiPeriodRequest request)
     {
         multiPeriodCalculationResponse = null;
+        logger.LogDebug(JsonSerializer.Serialize(request));
         multiPeriodCalculationResponse = await multiPeriodCalculationService.CalculateAsync(request);
 
         capitalBenefitsDataItems = GetCapitalBenefitsDataItems();
