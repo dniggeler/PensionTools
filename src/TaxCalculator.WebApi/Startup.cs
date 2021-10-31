@@ -35,6 +35,7 @@ namespace TaxCalculator.WebApi
                 {
                     builder.WithOrigins(
                         "http://localhost:8080",
+                        "https://localhost:8080",
                         "https://localhost:5001",
                         "http://localhost:44331",
                         "https://localhost:44331",

@@ -1,0 +1,26 @@
+name: pensiontools
+services:
+- name: pensiontools-webapi
+  project: src/TaxCalculator.WebApi/TaxCalculator.WebApi.csproj
+  bindings:
+  - protocol: http
+    host: localhost
+    port: 57094
+- name: pensiontools-ui
+  project: src/BlazorApp/BlazorApp.csproj
+  bindings:
+    - port: 5001
+ingress:
+  - name: ingress
+    bindings:
+      - port: 8080
+        protocol: https
+    rules:
+      - path: /api
+        service: pensiontools-webapi
+        preservePath: true
+      - path: /swagger
+        preservePath: true
+        service: pensiontools-webapi
+      - service: pensiontools-ui
+
