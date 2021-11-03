@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-using Calculators.CashFlow;
-using Calculators.CashFlow.Models;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.Tax;
 using Swashbuckle.AspNetCore.Filters;
-using TaxCalculator.WebApi.Models;
 
 namespace TaxCalculator.WebApi.Examples
 {
@@ -70,9 +67,17 @@ namespace TaxCalculator.WebApi.Examples
                             Id = "my 3a account",
                             Name = $"{personName} - 3a Pillar",
                             InitialAmount = 6883,
-                            RecurringInvestment = new RecurringInvestment(6883, FrequencyType.Yearly),
+                            RecurringInvestment = new RecurringInvestment
+                            {
+                                Amount = 6883,
+                                Frequency = FrequencyType.Yearly,
+                            },
                             Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
-                            InvestmentPeriod = new InvestmentPeriod(startingYear, numberOfPeriods),
+                            InvestmentPeriod = new InvestmentPeriod
+                            {
+                                Year = startingYear,
+                                NumberOfPeriods = numberOfPeriods,
+                            },
                             IsTaxable = false,
                             TaxType = TaxType.Undefined,
                             OccurrenceType = OccurrenceType.BeginOfPeriod,
@@ -83,9 +88,17 @@ namespace TaxCalculator.WebApi.Examples
                             NetGrowthRate = 0,
                             Name = "PK-Einkauf",
                             InitialAmount = 10000,
-                            RecurringInvestment = new RecurringInvestment(10000, FrequencyType.Yearly),
+                            RecurringInvestment = new RecurringInvestment
+                            {
+                                Amount = 10000,
+                                Frequency = FrequencyType.Yearly,
+                            },
                             Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
-                            InvestmentPeriod = new InvestmentPeriod(startingYear, 5),
+                            InvestmentPeriod = new InvestmentPeriod
+                            {
+                                Year = startingYear,
+                                NumberOfPeriods = 5,
+                            },
                             IsTaxable = false,
                             TaxType = TaxType.Undefined,
                             OccurrenceType = OccurrenceType.BeginOfPeriod,

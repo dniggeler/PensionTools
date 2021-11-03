@@ -146,24 +146,7 @@
                                                         @foreach (GenericCashFlowDefinition definition in genericCashFlowDefinitions)
                                                         {
                                                             <RadzenAccordionItem Text="@definition.Name">
-                                                                <div class="row">
-                                                                    <div class="col-md-4">
-                                                                        <RadzenLabel Text="Titel" Component="name" />
-                                                                        <RadzenTextBox TValue="string" @bind-Value="@definition.Name" Name="name" />
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <RadzenLabel Text="Initialer Betrag" Component="initialAmount" />
-                                                                        <RadzenNumeric TValue="decimal" @bind-Value="@definition.InitialAmount" Name="initialAmount" />
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <RadzenLabel Text="Versteuern" Component="isTaxable" />
-                                                                        <RadzenSwitch @bind-Value="@definition.IsTaxable" Name="isTaxable" />
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <RadzenLabel Text="Versteuern" Component="isTaxable" />
-                                                                        <RadzenSwitch @bind-Value="@definition.IsTaxable" Name="isTaxable" />
-                                                                    </div>
-                                                                </div>
+                                                                <GenericCashFlowDefinitionForm Definition="definition"/>
                                                             </RadzenAccordionItem>
                                                         }
                                                     </Items>
@@ -299,9 +282,17 @@
                 Id = "my 3a account",
                 Name = "Säule 3a",
                 InitialAmount = 6883,
-                RecurringInvestment = new RecurringInvestment(6883, FrequencyType.Yearly),
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 6883,
+                    Frequency = FrequencyType.Yearly,
+                },
                 Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
-                InvestmentPeriod = new InvestmentPeriod(2021, 10),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = 2021,
+                    NumberOfPeriods = 10,
+                },
                 IsTaxable = false,
                 TaxType = TaxType.Undefined,
                 OccurrenceType = OccurrenceType.BeginOfPeriod
@@ -311,9 +302,17 @@
                 NetGrowthRate = 0,
                 Name = "PK-Einkauf",
                 InitialAmount = 10000,
-                RecurringInvestment = new RecurringInvestment(10000, FrequencyType.Yearly),
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 10000,
+                    Frequency = FrequencyType.Yearly,
+                },
                 Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
-                InvestmentPeriod = new InvestmentPeriod(2021, 5),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = 2021,
+                    NumberOfPeriods = 5,
+                },
                 IsTaxable = false,
                 TaxType = TaxType.Undefined,
                 OccurrenceType = OccurrenceType.BeginOfPeriod
@@ -326,7 +325,8 @@
     private async Task OnSubmit(MultiPeriodRequest request)
     {
         multiPeriodCalculationResponse = null;
-        logger.LogDebug(JsonSerializer.Serialize(request));
+        request.Options = simulationOptions;
+        request.CashFlowDefinitionHolder.GenericCashFlowDefinitions = genericCashFlowDefinitions.ToList();
         multiPeriodCalculationResponse = await multiPeriodCalculationService.CalculateAsync(request);
 
         capitalBenefitsDataItems = GetCapitalBenefitsDataItems();

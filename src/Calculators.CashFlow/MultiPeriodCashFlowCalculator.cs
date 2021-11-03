@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Calculators.CashFlow.Models;
 using LanguageExt;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.Tax;
@@ -21,10 +20,7 @@ namespace Calculators.CashFlow
         private readonly IFullCapitalBenefitTaxCalculator _capitalBenefitCalculator;
         private readonly ILogger<MultiPeriodCashFlowCalculator> _logger;
 
-        private readonly MultiPeriodOptions _calculatorOptions;
-
         public MultiPeriodCashFlowCalculator(
-            IOptions<MultiPeriodOptions> options,
             IFullTaxCalculator fullTaxCalculator,
             IFullCapitalBenefitTaxCalculator capitalBenefitCalculator,
             ILogger<MultiPeriodCashFlowCalculator> logger)
@@ -32,14 +28,14 @@ namespace Calculators.CashFlow
             _fullTaxCalculator = fullTaxCalculator;
             _capitalBenefitCalculator = capitalBenefitCalculator;
             _logger = logger;
-            _calculatorOptions = options.Value;
         }
 
 
         /// <inheritdoc />
         public async Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
             MultiPeriodCalculatorPerson person,
-            CashFlowDefinitionHolder cashFlowDefinitionHolder)
+            CashFlowDefinitionHolder cashFlowDefinitionHolder,
+            MultiPeriodOptions options)
         {
             IEnumerable<CashFlowModel> cashFlows = cashFlowDefinitionHolder.GenericCashFlowDefinitions
                 .SelectMany(d => d.GenerateCashFlow())
@@ -115,7 +111,7 @@ namespace Calculators.CashFlow
                     AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Wealth, -totalTaxAmount);
 
                 // 3. savings quota: take share from current income account and move it to wealth
-                decimal newSavings = currentPeriodAccounts[AccountType.Income] * _calculatorOptions.SavingsQuota;
+                decimal newSavings = currentPeriodAccounts[AccountType.Income] * options.SavingsQuota;
 
                 currentPeriodAccounts =
                     AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Wealth, newSavings);
@@ -234,18 +230,27 @@ namespace Calculators.CashFlow
             int startingYear,
             int numberOfPeriods,
             MultiPeriodCalculatorPerson person,
-            CashFlowDefinitionHolder cashFlowDefinitionHolder)
+            CashFlowDefinitionHolder cashFlowDefinitionHolder,
+            MultiPeriodOptions options)
         {
             GenericCashFlowDefinition salaryCashFlowDefinition = new()
             {
                 Id = "my salary",
                 Name = $"{person.Name} - Lohn",
-                InvestmentPeriod = new InvestmentPeriod(startingYear, numberOfPeriods),
+                InvestmentPeriod = new InvestmentPeriod
+                { 
+                    Year = startingYear,
+                    NumberOfPeriods = numberOfPeriods
+                },
                 Flow = new FlowPair( AccountType.Exogenous, AccountType.Income),
                 InitialAmount = person.Income,
-                NetGrowthRate = _calculatorOptions.SalaryNetGrowthRate,
+                NetGrowthRate = options.SalaryNetGrowthRate,
                 Ordinal = 0,
-                RecurringInvestment = new RecurringInvestment(person.Income, FrequencyType.Yearly),
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = person.Income,
+                    Frequency = FrequencyType.Yearly,
+                },
                 OccurrenceType = OccurrenceType.BeginOfPeriod,
                 IsTaxable = true,
                 TaxType = TaxType.Income
@@ -255,12 +260,20 @@ namespace Calculators.CashFlow
             {
                 Id = "my wealth",
                 Name = $"{person.Name} - Vermögen",
-                InvestmentPeriod = new InvestmentPeriod(startingYear, 1),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = startingYear,
+                    NumberOfPeriods = 1
+                },
                 Flow = new FlowPair(AccountType.Exogenous, AccountType.Wealth),
                 InitialAmount = person.Wealth,
-                NetGrowthRate = _calculatorOptions.WealthNetGrowthRate,
+                NetGrowthRate = options.WealthNetGrowthRate,
                 Ordinal = 0,
-                RecurringInvestment = new RecurringInvestment(decimal.Zero, FrequencyType.Yearly),
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 0,
+                    Frequency = FrequencyType.Yearly,
+                },
                 OccurrenceType = OccurrenceType.BeginOfPeriod,
                 IsTaxable = true,
                 TaxType = TaxType.Wealth
@@ -271,9 +284,17 @@ namespace Calculators.CashFlow
                 Id = "my 3a account",
                 Name = $"{person.Name} - 3a Pillar",
                 InitialAmount = person.CapitalBenefits.Pillar3a,
-                RecurringInvestment = new RecurringInvestment(decimal.Zero, FrequencyType.Yearly),
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 0,
+                    Frequency = FrequencyType.Yearly,
+                },
                 Flow = new FlowPair(AccountType.Exogenous, AccountType.CapitalBenefits),
-                InvestmentPeriod = new InvestmentPeriod(startingYear, 1),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = startingYear,
+                    NumberOfPeriods = 1
+                },
                 IsTaxable = false,
                 TaxType = TaxType.Undefined,
                 OccurrenceType = OccurrenceType.BeginOfPeriod
@@ -286,9 +307,17 @@ namespace Calculators.CashFlow
                 NetGrowthRate = 0,
                 Name = "PK-Einkauf",
                 InitialAmount = person.CapitalBenefits.PensionPlan,
-                RecurringInvestment = new RecurringInvestment(decimal.Zero, FrequencyType.Yearly),
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 0,
+                    Frequency = FrequencyType.Yearly,
+                },
                 Flow = new FlowPair(AccountType.Exogenous, AccountType.CapitalBenefits),
-                InvestmentPeriod = new InvestmentPeriod(startingYear, 1),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = startingYear,
+                    NumberOfPeriods = 1
+                },
                 IsTaxable = false,
                 TaxType = TaxType.Undefined,
                 OccurrenceType = OccurrenceType.BeginOfPeriod
@@ -304,7 +333,7 @@ namespace Calculators.CashFlow
                     .ToList()
             };
 
-            return CalculateAsync(person, extendedDefinitionHolder);
+            return CalculateAsync(person, extendedDefinitionHolder, options);
         }
 
         private static ImmutableDictionary<AccountType, decimal> AddOrUpdateCurrentPeriodAccounts(

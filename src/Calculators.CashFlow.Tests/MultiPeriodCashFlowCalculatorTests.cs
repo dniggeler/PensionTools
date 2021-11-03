@@ -28,6 +28,7 @@ namespace Calculators.CashFlow.Tests
             int numberOfPeriods = 10;
             int municipalityId = 261;
             Canton canton = Canton.ZH;
+            MultiPeriodOptions options = new();
             MultiPeriodCalculatorPerson person = GetMarriedPerson(canton, municipalityId) with
             {
                 Income = decimal.Zero,
@@ -40,7 +41,8 @@ namespace Calculators.CashFlow.Tests
                 startingYear,
                 numberOfPeriods,
                 person,
-                new CashFlowDefinitionHolder());
+                new CashFlowDefinitionHolder(),
+                options);
 
             // then
             Snapshot.Match(result);
@@ -54,6 +56,7 @@ namespace Calculators.CashFlow.Tests
             int numberOfPeriods = 10;
             int municipalityId = 261;
             Canton canton = Canton.ZH;
+            MultiPeriodOptions options = new();
             MultiPeriodCalculatorPerson person = GetMarriedPerson(canton, municipalityId) with
             {
                 Income = decimal.Zero,
@@ -66,7 +69,8 @@ namespace Calculators.CashFlow.Tests
                 startingYear,
                 numberOfPeriods,
                 person,
-                new CashFlowDefinitionHolder());
+                new CashFlowDefinitionHolder(),
+                options);
 
             // then
             Snapshot.Match(result);
@@ -80,6 +84,7 @@ namespace Calculators.CashFlow.Tests
             int numberOfPeriods = 10;
             int municipalityId = 261;
             Canton canton = Canton.ZH;
+            MultiPeriodOptions options = new();
             MultiPeriodCalculatorPerson person = GetMarriedPerson(canton, municipalityId);
 
             // when
@@ -92,7 +97,36 @@ namespace Calculators.CashFlow.Tests
                     GenericCashFlowDefinitions = GetCashFlowDefinitions(person).ToList(),
                     ClearAccountActions = GetClearActionDefinitions().ToList(),
                     ChangeResidenceActions = GetChangeResidenceActions().ToList(),
-                });
+                },
+                options);
+
+            // then
+            Snapshot.Match(result);
+        }
+
+        [Fact(DisplayName = "3a Simulation")]
+        public async Task Calculate_ThirdPillar_Simulation()
+        {
+            // given
+            int startingYear = 2021;
+            int numberOfPeriods = 10;
+            int municipalityId = 261;
+            Canton canton = Canton.ZH;
+            MultiPeriodOptions options = new();
+            MultiPeriodCalculatorPerson person = GetMarriedPerson(canton, municipalityId);
+            person.Wealth = 0;
+            person.CapitalBenefits = (0, 0);
+
+            // when
+            var result = await _fixture.Service.CalculateAsync(
+                startingYear,
+                numberOfPeriods,
+                person,
+                new CashFlowDefinitionHolder
+                {
+                    GenericCashFlowDefinitions = GetThirdPillarCashFlowDefinitions(person).ToList(),
+                },
+                options);
 
             // then
             Snapshot.Match(result);
@@ -105,9 +139,17 @@ namespace Calculators.CashFlow.Tests
                 Id = "my 3a account",
                 Name = $"{person.Name} - 3a Pillar",
                 InitialAmount = 6883,
-                RecurringInvestment = new RecurringInvestment(6883, FrequencyType.Yearly),
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 6883,
+                    Frequency = FrequencyType.Yearly,
+                },
                 Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
-                InvestmentPeriod = new InvestmentPeriod(2021, 10),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = 2021,
+                    NumberOfPeriods = 10,
+                },
                 IsTaxable = false,
                 TaxType = TaxType.Undefined,
                 OccurrenceType = OccurrenceType.BeginOfPeriod
@@ -119,16 +161,48 @@ namespace Calculators.CashFlow.Tests
                 NetGrowthRate = 0,
                 Name = "PK-Einkauf",
                 InitialAmount = 10000,
-                RecurringInvestment = new RecurringInvestment(10000, FrequencyType.Yearly),
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 10000,
+                    Frequency = FrequencyType.Yearly,
+                },
                 Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
-                InvestmentPeriod = new InvestmentPeriod(2021, 5),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = 2021,
+                    NumberOfPeriods = 5,
+                },
                 IsTaxable = false,
                 TaxType = TaxType.Undefined,
                 OccurrenceType = OccurrenceType.BeginOfPeriod
             };
         }
 
-        MultiPeriodCalculatorPerson GetMarriedPerson(Canton canton, int municipalityId)
+        private static IEnumerable<GenericCashFlowDefinition> GetThirdPillarCashFlowDefinitions(MultiPeriodCalculatorPerson person)
+        {
+            yield return new GenericCashFlowDefinition
+            {
+                Id = "my 3a account",
+                Name = $"{person.Name} - 3a Pillar",
+                InitialAmount = 100_000,
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 6883,
+                    Frequency = FrequencyType.Yearly,
+                },
+                Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = 2021,
+                    NumberOfPeriods = 10,
+                },
+                IsTaxable = false,
+                TaxType = TaxType.Undefined,
+                OccurrenceType = OccurrenceType.BeginOfPeriod
+            };
+        }
+
+        private MultiPeriodCalculatorPerson GetMarriedPerson(Canton canton, int municipalityId)
         {
             MultiPeriodCalculatorPerson person = new()
             {
@@ -147,7 +221,7 @@ namespace Calculators.CashFlow.Tests
             return person;
         }
 
-        IEnumerable<ClearAccountAction> GetClearActionDefinitions()
+        private IEnumerable<ClearAccountAction> GetClearActionDefinitions()
         {
             yield return new ClearAccountAction
             {
@@ -161,7 +235,7 @@ namespace Calculators.CashFlow.Tests
             };
         }
 
-        IEnumerable<ChangeResidenceAction> GetChangeResidenceActions()
+        private IEnumerable<ChangeResidenceAction> GetChangeResidenceActions()
         {
             yield return new ChangeResidenceAction
             {

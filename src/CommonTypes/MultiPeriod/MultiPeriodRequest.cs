@@ -36,6 +36,8 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         [Range(0, 1_000_000, ErrorMessage = "Currently owned total capital in pension plan")]
         public decimal CapitalBenefitsPension { get; set; }
 
-        public CashFlowDefinitionHolder CashFlowDefinitionHolder { get; set; }
+        public MultiPeriodOptions Options { get; set; } = new();
+
+        public CashFlowDefinitionHolder CashFlowDefinitionHolder { get; set; } = new();
     }
 }

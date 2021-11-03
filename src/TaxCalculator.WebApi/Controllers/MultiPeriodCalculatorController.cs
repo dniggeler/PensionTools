@@ -59,8 +59,13 @@ namespace TaxCalculator.WebApi.Controllers
                 await municipalityResolver.GetAsync(request.BfsMunicipalityId, request.StartingYear);
 
             Either<string, MultiPeriodCalculationResult> result = await municipalityData
-                .BindAsync(m => multiPeriodCashFlowCalculator.CalculateAsync(
-                    request.StartingYear, request.NumberOfPeriods, person with { Canton = m.Canton }, request.CashFlowDefinitionHolder));
+                .BindAsync(m =>
+                        multiPeriodCashFlowCalculator.CalculateAsync(
+                            request.StartingYear,
+                            request.NumberOfPeriods,
+                            person with { Canton = m.Canton },
+                            request.CashFlowDefinitionHolder,
+                            request.Options));
 
             return result
                 .Match<ActionResult>(

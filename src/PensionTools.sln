@@ -68,9 +68,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculators.CashFlow.Integr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaxData", "TaxData", "{1081A860-2D1C-4AF4-A901-10B00BF278CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.Data.Integration.Tests", "Tax.Data.Integration.Tests\Tax.Data.Integration.Tests.csproj", "{0517B781-DC60-44F8-9B98-4C9A4654BDD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Data.Integration.Tests", "Tax.Data.Integration.Tests\Tax.Data.Integration.Tests.csproj", "{0517B781-DC60-44F8-9B98-4C9A4654BDD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxCalculator.Integration.Tests", "TaxCalculator.Integration.Tests\TaxCalculator.Integration.Tests.csproj", "{47C8A4FD-6756-4474-870B-BD6921163C0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.Integration.Tests", "TaxCalculator.Integration.Tests\TaxCalculator.Integration.Tests.csproj", "{47C8A4FD-6756-4474-870B-BD6921163C0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,36 @@
+﻿@using BlazorApp.ViewModels
+
+<EditForm Model="GenericDefinition">
+    <div class="row">
+        <div class="col-md-3">
+            <RadzenLabel Text="Startjahr" Component="year"/>
+            <RadzenNumeric TValue="int" @bind-Value="GenericDefinition.Year" Name="year" Change="HandleChange"/>
+        </div>
+        <div class="col-md-3">
+            <RadzenLabel Text="Startbetrag" Component="initialAmount" />
+            <RadzenNumeric TValue="decimal" @bind-Value="GenericDefinition.InitialAmount" Name="initialAmount" Step="100" Change="HandleChange" />
+        </div>
+        <div class="col-md-3">
+            <RadzenLabel Text="Jährlicher Betrag" Component="recurrentAmount" />
+            <RadzenNumeric TValue="decimal" @bind-Value="GenericDefinition.RecurrentAmount" Name="recurrentAmount" Step="100"  Change="HandleChange"/>
+        </div>
+        <div class="col-md-3">
+            <RadzenLabel Text="Wiederholungen" Component="periods" />
+            <RadzenNumeric TValue="int" @bind-Value="GenericDefinition.NumberOfPeriods" Name="periods" Change="HandleChange" />
+        </div>
+    </div>
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public InvestmentDefinitionViewModel GenericDefinition { get; set; }
+
+    [Parameter]
+    public EventCallback<InvestmentDefinitionViewModel> OnChanged { get; set; }
+
+    private void HandleChange()
+    {
+        OnChanged.InvokeAsync(GenericDefinition);
+    }
+}

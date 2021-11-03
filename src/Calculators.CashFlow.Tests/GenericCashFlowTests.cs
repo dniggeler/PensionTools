@@ -21,9 +21,17 @@ namespace Calculators.CashFlow.Tests
                 NetGrowthRate = 0,
                 Name = "Test",
                 InitialAmount = 10_000,
-                RecurringInvestment = new RecurringInvestment(500, FrequencyType.Yearly),
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 500,
+                    Frequency = FrequencyType.Yearly,
+                },
                 Flow = new FlowPair(AccountType.Exogenous, AccountType.Wealth),
-                InvestmentPeriod = new InvestmentPeriod(2021, 10),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = 2021,
+                    NumberOfPeriods = 10
+                },
                 IsTaxable = true,
                 TaxType = TaxType.Wealth
             };
@@ -44,9 +52,17 @@ namespace Calculators.CashFlow.Tests
                 NetGrowthRate = 0,
                 Name = "Test",
                 InitialAmount = 10_000,
-                RecurringInvestment = new RecurringInvestment(500, FrequencyType.Yearly),
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 500,
+                    Frequency = FrequencyType.Yearly,
+                },
                 Flow = new FlowPair(AccountType.Exogenous, AccountType.Wealth),
-                InvestmentPeriod = new InvestmentPeriod(2021, 10),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = 2021,
+                    NumberOfPeriods = 10
+                },
                 IsTaxable = true,
                 TaxType = TaxType.Wealth
             };
@@ -56,9 +72,17 @@ namespace Calculators.CashFlow.Tests
                 NetGrowthRate = 0,
                 Name = "Test 2",
                 InitialAmount = 20_000,
-                RecurringInvestment = new RecurringInvestment(500, FrequencyType.Yearly),
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 500,
+                    Frequency = FrequencyType.Yearly,
+                },
                 Flow = new FlowPair(AccountType.Exogenous, AccountType.Wealth),
-                InvestmentPeriod = new InvestmentPeriod(2021, 5),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = 2021,
+                    NumberOfPeriods = 5
+                },
                 IsTaxable = true,
                 TaxType = TaxType.Wealth
             };
@@ -68,9 +92,17 @@ namespace Calculators.CashFlow.Tests
                 NetGrowthRate = 0,
                 Name = "Test 3",
                 InitialAmount = 50_000,
-                RecurringInvestment = new RecurringInvestment(0, FrequencyType.Yearly),
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 0,
+                    Frequency = FrequencyType.Yearly,
+                },
                 Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
-                InvestmentPeriod = new InvestmentPeriod(2021, 1),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = 2021,
+                    NumberOfPeriods = 1
+                },
             };
 
             // when

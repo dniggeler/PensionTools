@@ -1,0 +1,112 @@
+﻿[
+  {
+    "State": "IsRight",
+    "Right": {
+      "StartingYear": 2021,
+      "NumberOfPeriods": 10,
+      "Accounts": [
+        {
+          "Year": 2021,
+          "Amount": -48.00,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2021,
+          "Amount": 100000.0,
+          "AccountType": "CapitalBenefits"
+        },
+        {
+          "Year": 2022,
+          "Amount": 28187.1000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2022,
+          "Amount": 106883.0,
+          "AccountType": "CapitalBenefits"
+        },
+        {
+          "Year": 2023,
+          "Amount": 45112.340000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2023,
+          "Amount": 113766.0,
+          "AccountType": "CapitalBenefits"
+        },
+        {
+          "Year": 2024,
+          "Amount": 62118.41000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2024,
+          "Amount": 120649.0,
+          "AccountType": "CapitalBenefits"
+        },
+        {
+          "Year": 2025,
+          "Amount": 79208.3703000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2025,
+          "Amount": 127532.0,
+          "AccountType": "CapitalBenefits"
+        },
+        {
+          "Year": 2026,
+          "Amount": 96362.791803000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2026,
+          "Amount": 134415.0,
+          "AccountType": "CapitalBenefits"
+        },
+        {
+          "Year": 2027,
+          "Amount": 113607.31632103000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2027,
+          "Amount": 141298.0,
+          "AccountType": "CapitalBenefits"
+        },
+        {
+          "Year": 2028,
+          "Amount": 130922.5768842403000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2028,
+          "Amount": 148181.0,
+          "AccountType": "CapitalBenefits"
+        },
+        {
+          "Year": 2029,
+          "Amount": 148311.758053082703000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2029,
+          "Amount": 155064.0,
+          "AccountType": "CapitalBenefits"
+        },
+        {
+          "Year": 2030,
+          "Amount": 165800.59623361353003000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2030,
+          "Amount": 161947.0,
+          "AccountType": "CapitalBenefits"
+        }
+      ]
+    },
+    "Left": null
+  }
+]

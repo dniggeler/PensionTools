@@ -22,7 +22,8 @@ namespace Calculators.CashFlow
         /// <returns></returns>
         Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
             MultiPeriodCalculatorPerson person,
-            CashFlowDefinitionHolder cashFlowDefinitionHolder);
+            CashFlowDefinitionHolder cashFlowDefinitionHolder,
+            MultiPeriodOptions options);
 
 
         /// <summary>
@@ -32,11 +33,13 @@ namespace Calculators.CashFlow
         /// <param name="numberOfPeriods">The number of periods.</param>
         /// <param name="person">The person.</param>
         /// <param name="cashFlowDefinitionHolder">The cash flow definition holder.</param>
+        /// <param name="options"></param>
         /// <returns></returns>
         Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
             int startingYear,
             int numberOfPeriods,
             MultiPeriodCalculatorPerson person,
-            CashFlowDefinitionHolder cashFlowDefinitionHolder);
+            CashFlowDefinitionHolder cashFlowDefinitionHolder,
+            MultiPeriodOptions options);
     }
 }
