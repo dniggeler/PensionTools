@@ -1,7 +1,16 @@
 ﻿[
   {
     "Year": 2021,
-    "Amount": 10000.0,
+    "Amount": 9500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth",
+    "OccurrenceType": "BeginOfPeriod"
+  },
+  {
+    "Year": 2021,
+    "Amount": 500.0,
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,

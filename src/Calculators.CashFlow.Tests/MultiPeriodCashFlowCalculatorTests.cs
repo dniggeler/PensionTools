@@ -56,7 +56,10 @@ namespace Calculators.CashFlow.Tests
             int numberOfPeriods = 10;
             int municipalityId = 261;
             Canton canton = Canton.ZH;
+
             MultiPeriodOptions options = new();
+            options.WealthNetGrowthRate = 0.01M;
+
             MultiPeriodCalculatorPerson person = GetMarriedPerson(canton, municipalityId) with
             {
                 Income = decimal.Zero,
@@ -112,10 +115,14 @@ namespace Calculators.CashFlow.Tests
             int numberOfPeriods = 10;
             int municipalityId = 261;
             Canton canton = Canton.ZH;
+
             MultiPeriodOptions options = new();
-            MultiPeriodCalculatorPerson person = GetMarriedPerson(canton, municipalityId);
-            person.Wealth = 0;
-            person.CapitalBenefits = (0, 0);
+            options.SalaryNetGrowthRate = decimal.Zero;
+
+            MultiPeriodCalculatorPerson person = GetMarriedPerson(canton, municipalityId) with
+            {
+                Wealth = decimal.Zero
+            };
 
             // when
             var result = await _fixture.Service.CalculateAsync(
@@ -138,7 +145,7 @@ namespace Calculators.CashFlow.Tests
             {
                 Id = "my 3a account",
                 Name = $"{person.Name} - 3a Pillar",
-                InitialAmount = 6883,
+                InitialAmount = 100_000,
                 RecurringInvestment = new RecurringInvestment
                 {
                     Amount = 6883,
@@ -160,7 +167,7 @@ namespace Calculators.CashFlow.Tests
                 Id = "my PK account",
                 NetGrowthRate = 0,
                 Name = "PK-Einkauf",
-                InitialAmount = 10000,
+                InitialAmount = 400_000,
                 RecurringInvestment = new RecurringInvestment
                 {
                     Amount = 10000,
@@ -185,6 +192,7 @@ namespace Calculators.CashFlow.Tests
                 Id = "my 3a account",
                 Name = $"{person.Name} - 3a Pillar",
                 InitialAmount = 100_000,
+                NetGrowthRate = 0.0M,
                 RecurringInvestment = new RecurringInvestment
                 {
                     Amount = 6883,
@@ -212,7 +220,7 @@ namespace Calculators.CashFlow.Tests
                 MunicipalityId = municipalityId,
                 Income = 100_000,
                 Wealth = 500_000,
-                CapitalBenefits = (100_000, 400_000),
+                CapitalBenefits = (0, 0),
                 NumberOfChildren = 0,
                 PartnerReligiousGroupType = ReligiousGroupType.Other,
                 ReligiousGroupType = ReligiousGroupType.Other

@@ -154,7 +154,17 @@ namespace Calculators.CashFlow
                         AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Wealth, -changeResidenceAction.ChangeCost);
                 }
 
-                // 7. collect calculation results
+                // 7. compound wealth and capital benefits accounts
+                decimal wealthIncrease = currentPeriodAccounts[AccountType.Wealth] * options.WealthNetGrowthRate;
+                decimal capitalBenefitsIncrease = currentPeriodAccounts[AccountType.CapitalBenefits] * options.CapitalBenefitsNetGrowthRate;
+
+                currentPeriodAccounts =
+                    AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Wealth, wealthIncrease);
+
+                currentPeriodAccounts =
+                    AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.CapitalBenefits, capitalBenefitsIncrease);
+
+                // 8. collect calculation results
                 currentPeriodAccounts
                     .Select(pair => new SinglePeriodCalculationResult
                     {
@@ -243,7 +253,7 @@ namespace Calculators.CashFlow
                     NumberOfPeriods = numberOfPeriods
                 },
                 Flow = new FlowPair( AccountType.Exogenous, AccountType.Income),
-                InitialAmount = person.Income,
+                InitialAmount = decimal.Zero,
                 NetGrowthRate = options.SalaryNetGrowthRate,
                 Ordinal = 0,
                 RecurringInvestment = new RecurringInvestment

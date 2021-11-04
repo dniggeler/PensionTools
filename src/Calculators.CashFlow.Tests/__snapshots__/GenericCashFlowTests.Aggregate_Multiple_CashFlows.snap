@@ -92,6 +92,15 @@
   {
     "Year": 2021,
     "Amount": 50000.0,
+    "Source": "Exogenous",
+    "Target": "CapitalBenefits",
+    "IsTaxable": false,
+    "TaxType": "Undefined",
+    "OccurrenceType": "BeginOfPeriod"
+  },
+  {
+    "Year": 2021,
+    "Amount": 0.0,
     "Source": "Income",
     "Target": "CapitalBenefits",
     "IsTaxable": false,

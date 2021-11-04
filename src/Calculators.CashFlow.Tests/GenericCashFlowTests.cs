@@ -20,7 +20,7 @@ namespace Calculators.CashFlow.Tests
             {
                 NetGrowthRate = 0,
                 Name = "Test",
-                InitialAmount = 10_000,
+                InitialAmount = 9_500,
                 RecurringInvestment = new RecurringInvestment
                 {
                     Amount = 500,
@@ -51,7 +51,7 @@ namespace Calculators.CashFlow.Tests
             {
                 NetGrowthRate = 0,
                 Name = "Test",
-                InitialAmount = 10_000,
+                InitialAmount = 9_500,
                 RecurringInvestment = new RecurringInvestment
                 {
                     Amount = 500,
@@ -71,7 +71,7 @@ namespace Calculators.CashFlow.Tests
             {
                 NetGrowthRate = 0,
                 Name = "Test 2",
-                InitialAmount = 20_000,
+                InitialAmount = 19_500,
                 RecurringInvestment = new RecurringInvestment
                 {
                     Amount = 500,
