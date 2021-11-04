@@ -16,3 +16,12 @@ stages:
       steps:
       - script: dotnet build --configuration $(buildConfiguration) src/BlazorApp/BlazorApp.csproj
         displayName: 'Building $(buildConfiguration)...'
+      - task: DotNetCoreCLI@2
+        displayName: 'Publishing App...'
+        inputs:
+          command: publish
+          publishWebProjects: false
+          arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+          zipAfterPublish: false
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publishing Build Artifacts...'
