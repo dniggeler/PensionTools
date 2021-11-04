@@ -175,15 +175,19 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <h3>Sparquote</h3>
                                                 <RadzenNumeric TValue="decimal" Format="P0" @bind-Value="simulationOptions.SavingsQuota" Min="0" Max="1" Step="0.01"/>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <h3>Lohnwachstum</h3>
                                                 <RadzenNumeric TValue="decimal" Format="P2" @bind-Value="simulationOptions.SalaryNetGrowthRate" Min="0" Max="0.5M" Step="0.01"/>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
+                                                <h3>Vorsorgewachstum</h3>
+                                                <RadzenNumeric TValue="decimal" Format="P2" @bind-Value="simulationOptions.CapitalBenefitsNetGrowthRate" Min="0" Max="0.5M" Step="0.01"/>
+                                            </div>
+                                            <div class="col-md-3">
                                                 <h3>Vermögenswachstum</h3>
                                                 <RadzenNumeric TValue="decimal" Format="P2" @bind-Value="simulationOptions.WealthNetGrowthRate" Min="0" Max="0.5M" Step="0.01"/>
                                             </div>
