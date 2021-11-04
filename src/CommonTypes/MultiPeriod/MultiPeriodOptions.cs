@@ -4,11 +4,14 @@
     {
         private const decimal DefaultSalaryGrowthRate = 0.01M;
         private const decimal DefaultWealthGrowthRate = decimal.Zero;
+        private const decimal DefaultCapitalBenefitsGrowthRate = decimal.Zero;
         private const decimal DefaultSavingsQuota = 0.30M;
 
         public decimal SalaryNetGrowthRate { get; set; } = DefaultSalaryGrowthRate;
 
         public decimal WealthNetGrowthRate { get; set; } = DefaultWealthGrowthRate;
+
+        public decimal CapitalBenefitsNetGrowthRate { get; set; } = DefaultCapitalBenefitsGrowthRate;
 
         /// <summary>
         /// Gets or sets the savings quota. Defines how much of the yearly made income

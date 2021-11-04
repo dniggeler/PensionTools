@@ -4,6 +4,8 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using BlazorApp.Services;
+using Blazored.LocalStorage;
+using Microsoft.Extensions.Logging;
 using Radzen;
 
 namespace BlazorApp
@@ -15,9 +17,7 @@ namespace BlazorApp
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
-            bool isMocked = Convert.ToBoolean(builder.Configuration.GetSection("isMocked").Value);
-
-            if (isMocked)
+            if (builder.HostEnvironment.IsEnvironment("Mock"))
             {
                 builder.Services.AddScoped<IMultiPeriodCalculationService, MockedMultiPeriodCalculationService>();
                 builder.Services.AddScoped<IMunicipalityService, MockedMunicipalityService>();
@@ -34,6 +34,13 @@ namespace BlazorApp
             builder.Services.AddScoped<NotificationService>();
             builder.Services.AddScoped<TooltipService>();
             builder.Services.AddScoped<ContextMenuService>();
+
+            builder.Services.AddBlazoredLocalStorage();
+
+            if (!builder.HostEnvironment.IsProduction())
+            {
+                builder.Services.AddLogging(b => b.SetMinimumLevel(LogLevel.Debug).AddFilter("Microsoft", LogLevel.Information));
+            }
 
             await builder.Build().RunAsync();
         }

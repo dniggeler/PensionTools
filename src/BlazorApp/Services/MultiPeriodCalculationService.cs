@@ -22,9 +22,15 @@ namespace BlazorApp.Services
         public async Task<MultiPeriodResponse> CalculateAsync(MultiPeriodRequest request)
         {
             string urlPath = configuration.GetSection("MultiPeriodCalculationServiceUrl").Value;
-            var response = await httpClient.GetFromJsonAsync<MultiPeriodResponse>(urlPath);
 
-            return response;
+            HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
+
+            response.EnsureSuccessStatusCode();
+
+            MultiPeriodResponse result =
+                await response.Content.ReadFromJsonAsync<MultiPeriodResponse>();
+
+            return result;
         }
     }
 }

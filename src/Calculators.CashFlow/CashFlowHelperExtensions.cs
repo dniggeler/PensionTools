@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Calculators.CashFlow.Models;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 
 namespace Calculators.CashFlow
@@ -10,13 +11,13 @@ namespace Calculators.CashFlow
         public static IEnumerable<CashFlowModel> GenerateCashFlow(this GenericCashFlowDefinition definition)
         {
             var range = Enumerable.Range(
-                definition.InvestmentPeriod.Year + 1,
-                definition.InvestmentPeriod.NumberOfPeriods - 1);
+                definition.InvestmentPeriod.Year,
+                definition.InvestmentPeriod.NumberOfPeriods);
 
             yield return new CashFlowModel(
                 definition.InvestmentPeriod.Year,
                 definition.InitialAmount,
-                definition.Flow.Source,
+                AccountType.Exogenous,
                 definition.Flow.Target,
                 definition.IsTaxable,
                 definition.TaxType,
@@ -26,8 +27,6 @@ namespace Calculators.CashFlow
 
             foreach (var year in range)
             {
-                cashFlow *= decimal.One + definition.NetGrowthRate;
-
                 yield return new CashFlowModel(
                     year,
                     cashFlow,
@@ -36,6 +35,8 @@ namespace Calculators.CashFlow
                     definition.IsTaxable,
                     definition.TaxType,
                     definition.OccurrenceType);
+
+                cashFlow *= decimal.One + definition.NetGrowthRate;
             }
         }
 
