@@ -25,8 +25,8 @@ namespace TaxCalculator.WebApi.Examples
                 CivilStatus = CivilStatus.Married,
                 Income = 100_000,
                 Wealth = 500_000,
-                CapitalBenefitsPillar3A = 100_000,
-                CapitalBenefitsPension = 400_000,
+                CapitalBenefitsPillar3A = 0,
+                CapitalBenefitsPension = 0,
                 ReligiousGroupType = ReligiousGroupType.Other,
                 PartnerReligiousGroupType = ReligiousGroupType.Other,
                 CashFlowDefinitionHolder = new CashFlowDefinitionHolder
@@ -66,7 +66,7 @@ namespace TaxCalculator.WebApi.Examples
                         {
                             Id = "my 3a account",
                             Name = $"{personName} - 3a Pillar",
-                            InitialAmount = 6883,
+                            InitialAmount = 100_000,
                             RecurringInvestment = new RecurringInvestment
                             {
                                 Amount = 6883,
@@ -87,7 +87,7 @@ namespace TaxCalculator.WebApi.Examples
                             Id = "my PK account",
                             NetGrowthRate = 0,
                             Name = "PK-Einkauf",
-                            InitialAmount = 10000,
+                            InitialAmount = 400_000,
                             RecurringInvestment = new RecurringInvestment
                             {
                                 Amount = 10000,
