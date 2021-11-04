@@ -13,3 +13,6 @@ stages:
     displayName: 'Build blazor app and deploy it'
     jobs:
     - job: build_and_deploy
+      steps:
+      - script: dotnet build --configuration $(buildConfiguration) src/Blazor.App/BlazorApp.csproj
+        displayName: 'Building $(buildConfiguration)...'
