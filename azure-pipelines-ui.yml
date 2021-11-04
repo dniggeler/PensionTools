@@ -20,7 +20,7 @@ stages:
         displayName: 'Publishing App...'
         inputs:
           command: publish
-          publishWebProjects: false
+          publishWebProjects: true
           arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
           zipAfterPublish: false
       - task: PublishBuildArtifacts@1
