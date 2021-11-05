@@ -7,3 +7,21 @@ pool:
 variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+
+stages:
+  - stage: build_and_deploy_blazor_app
+    displayName: 'Build blazor app and deploy it'
+    jobs:
+    - job: build_and_deploy
+      steps:
+      - script: dotnet build --configuration $(buildConfiguration) src/BlazorApp/BlazorApp.csproj
+        displayName: 'Building $(buildConfiguration)'
+      - task: DotNetCoreCLI@2
+        displayName: 'Publishing App'
+        inputs:
+          command: publish
+          publishWebProjects: true
+          arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+          zipAfterPublish: false
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publishing Build Artifacts'
