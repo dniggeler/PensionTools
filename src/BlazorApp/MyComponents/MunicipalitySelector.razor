@@ -3,17 +3,14 @@
 
 @inject IMunicipalityService municipalityService
 
-<h3>@Title</h3>
-
-<RadzenDropDown TextProperty="Name"
-                ValueProperty="BfsMunicipalityNumber"
-                FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
-                FilterOperator="StringFilterOperator.StartsWith"
-                AllowFiltering="true"
-                @bind-Value="BfsMunicipalityId"
-                Change="HandleChange"
-                Data="municipalities" />
-
+        <RadzenDropDown TextProperty="Name"
+                        ValueProperty="BfsMunicipalityNumber"
+                        FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                        FilterOperator="StringFilterOperator.StartsWith"
+                        AllowFiltering="true"
+                        @bind-Value="BfsMunicipalityId"
+                        Change="HandleChange"
+                        Data="municipalities"/>
 @code {
     [Parameter]
     public string Title { get; set; }

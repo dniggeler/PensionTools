@@ -2,19 +2,19 @@
 
 <EditForm Model="GenericDefinition">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             <RadzenLabel Text="Startjahr" Component="year"/>
             <RadzenNumeric TValue="int" @bind-Value="GenericDefinition.Year" Name="year" Change="HandleChange"/>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <RadzenLabel Text="Startbetrag" Component="initialAmount" />
             <RadzenNumeric TValue="decimal" @bind-Value="GenericDefinition.InitialAmount" Name="initialAmount" Step="100" Change="HandleChange" />
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <RadzenLabel Text="Jährlicher Betrag" Component="recurrentAmount" />
             <RadzenNumeric TValue="decimal" @bind-Value="GenericDefinition.RecurrentAmount" Name="recurrentAmount" Step="100"  Change="HandleChange"/>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <RadzenLabel Text="Wiederholungen" Component="periods" />
             <RadzenNumeric TValue="int" @bind-Value="GenericDefinition.NumberOfPeriods" Name="periods" Change="HandleChange" />
         </div>
