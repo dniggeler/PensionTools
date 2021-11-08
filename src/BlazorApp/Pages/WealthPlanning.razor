@@ -215,21 +215,29 @@
         <div class="row">
             <div class="col-md-12">
                 <RadzenChart>
-                    <RadzenAreaSeries Smooth="false"
+                    <RadzenLineSeries Smooth="false"
                                       Data="@wealthDataItems"
                                       CategoryProperty="Date"
                                       Title="Steuerbares Vermögen"
                                       ValueProperty="Value"
                                       RenderingOrder="2">
-                    </RadzenAreaSeries>
+                    </RadzenLineSeries>
 
-                    <RadzenAreaSeries Smooth="false"
+                    <RadzenLineSeries Smooth="false"
                                       Data="@capitalBenefitsDataItems"
                                       CategoryProperty="Date"
                                       Title="Kapitalleistungen"
                                       ValueProperty="Value"
                                       RenderingOrder="1">
-                    </RadzenAreaSeries>
+                    </RadzenLineSeries>
+                    
+                    <RadzenLineSeries Smooth="false"
+                                      Data="@totalDataItems"
+                                      CategoryProperty="Date"
+                                      Title="Total"
+                                      ValueProperty="Value"
+                                      RenderingOrder="3">
+                    </RadzenLineSeries>
 
                     <RadzenCategoryAxis Padding="20" FormatString="{0:yyyy}"/>
                     <RadzenValueAxis Min="0" Step="100000">
@@ -273,6 +281,7 @@
     private MultiPeriodResponse multiPeriodCalculationResponse;
     private ChartDataItemModel[] capitalBenefitsDataItems = { };
     private ChartDataItemModel[] wealthDataItems = { };
+    private ChartDataItemModel[] totalDataItems = { };
     private bool isChangeResidenceActive = false;
 
     protected override Task OnInitializedAsync()
@@ -285,7 +294,7 @@
             {
                 Id = "my 3a account",
                 Name = "Säule 3a",
-                InitialAmount = 6883,
+                InitialAmount = 0,
                 RecurringInvestment = new RecurringInvestment
                 {
                     Amount = 6883,
@@ -305,7 +314,7 @@
             {
                 NetGrowthRate = 0,
                 Name = "PK-Einkauf",
-                InitialAmount = 10000,
+                InitialAmount = 0,
                 RecurringInvestment = new RecurringInvestment
                 {
                     Amount = 10000,
@@ -333,8 +342,10 @@
         request.CashFlowDefinitionHolder.GenericCashFlowDefinitions = genericCashFlowDefinitions.ToList();
         multiPeriodCalculationResponse = await multiPeriodCalculationService.CalculateAsync(request);
 
-        capitalBenefitsDataItems = GetCapitalBenefitsDataItems();
-        wealthDataItems = GetWealthDataItems();
+        (ChartDataItemModel[] wealthData, ChartDataItemModel[] capitalBenefitsData, ChartDataItemModel[] totalData) = GetTotalDataItems();
+        capitalBenefitsDataItems = capitalBenefitsData;
+        wealthDataItems = wealthData;
+        totalDataItems = totalData;
     }
 
     private void OnInvalidSubmit(FormInvalidSubmitEventArgs args)
@@ -363,6 +374,15 @@
         return JsonSerializer.Serialize(response);
     }
 
+    private (ChartDataItemModel[] wealthData, ChartDataItemModel[] capitalBenefitsData, ChartDataItemModel[] totalData) GetTotalDataItems()
+    {
+        ChartDataItemModel[] wealthData = GetWealthDataItems();
+        ChartDataItemModel[] capitalBenefitsData = GetCapitalBenefitsDataItems();
+        ChartDataItemModel[] totalData = GetTotalSumDataItems();
+
+        return (wealthData, capitalBenefitsData, totalData);
+    }
+
     private ChartDataItemModel[] GetWealthDataItems()
     {
         if (multiPeriodCalculationResponse == null)
@@ -381,6 +401,23 @@
     }
 
     private ChartDataItemModel[] GetCapitalBenefitsDataItems()
+    {
+        if (multiPeriodCalculationResponse == null)
+        {
+            return Enumerable.Empty<ChartDataItemModel>().ToArray();
+        }
+
+        return multiPeriodCalculationResponse.Accounts
+            .Where(item => item.AccountType == AccountType.CapitalBenefits)
+            .Select(item => new ChartDataItemModel
+            {
+                Date = new DateTime(item.Year, 1, 1),
+                Value = Math.Round(item.Amount)
+            })
+            .ToArray();
+    }
+
+    private ChartDataItemModel[] GetTotalSumDataItems()
     {
         if (multiPeriodCalculationResponse == null)
         {
