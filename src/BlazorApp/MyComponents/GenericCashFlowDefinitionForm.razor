@@ -2,22 +2,22 @@
 
 <EditForm Model="Definition">
     <div class="row">
-        <div class="col-md-12">
-            <RadzenLabel Text="Titel" Component="name" />
-            <RadzenTextBox TValue="string" @bind-Value="@Definition.Name" Name="name" />
+        <div class="col-md-2">
+            <RadzenLabel Text="Titel" Component="name"/>
+            <RadzenTextBox TValue="string" @bind-Value="@Definition.Name" Name="name"/>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-12">
             <InvestmentDefinitionForm GenericDefinition="@InvestmentDefinition" OnChanged="Set"/>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <RadzenLabel Text="Versteuern" Component="isTaxable" />
             <RadzenSwitch @bind-Value="@Definition.IsTaxable" Name="isTaxable" />
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <RadzenLabel Text="Jährliche Zunahme" Component="netGrowthRate" />
             <RadzenNumeric TValue="decimal" Format="P2" @bind-Value="@Definition.NetGrowthRate" Name="netGrowthRate" Min="0" Max="0.5M" Step="0.005" />
         </div>

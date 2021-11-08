@@ -17,54 +17,35 @@
             </RadzenHeading>
             <RadzenSteps NextText="Nächster" PreviousText="Vorheriger">
                 <Steps>
-                    <RadzenStepsItem Text="Steuerperson" Selected="true">
+                    <RadzenStepsItem Text="Person" Selected="true">
                         <ChildContent>
-                            <FormStep 
-                                Title="Person" 
-                                HelpText="Steuerlich relevante Angaben zur Person sind der Zivilstand, die Konfession und, falls verheiratet, die Konfession der Partnerin.">
-                                <RadzenCard>
+                            <FormStep Title="Person"
+                                      HelpText="Steuerlich relevante Angaben zur Person sind der Zivilstand, die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter, welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.">
                                 <ChildContent>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h3>Name</h3>
-                                            <RadzenTextBox Name="Name" @bind-Value="model.Name"></RadzenTextBox>
-                                        </div>
+                                    <RadzenFieldset Text="Steuerperson">
+                                        <div class="row">
+                                            <div class="col-md-3"><RadzenLabel Text="Name" Component="simulationName" /></div>
+                                            <div class="col-md-9"><RadzenTextBox @bind-Value="model.Name" Name="simulationName" /></div>
 
-                                        <div class="col-md-6">
-                                            <h3>Zivilstand</h3>
-                                            <RadzenRadioButtonList Name="CivilStatus"
-                                                                   TValue="CivilStatus"
-                                                                   Value=@(taxPerson.CivilStatus)
-                                                                   Change=@(args => { taxPerson.CivilStatus = args; })>
-                                                <Items>
-                                                    <RadzenRadioButtonListItem Text="Ledig" Value="@CivilStatus.Single" />
-                                                    <RadzenRadioButtonListItem Text="Verheiratet" Value="@CivilStatus.Married" />
-                                                </Items>
-                                            </RadzenRadioButtonList>
-                                        </div>
+                                            <div class="col-md-3"><RadzenLabel Text="Zivilstand" Component="civilStatus" /></div>
+                                            <div class="col-md-9">
+                                                <RadzenRadioButtonList Name="civilStatus"
+                                                                       TValue="CivilStatus"
+                                                                       Value=@(taxPerson.CivilStatus)
+                                                                       Change=@(args => { taxPerson.CivilStatus = args; })>
+                                                    <Items>
+                                                        <RadzenRadioButtonListItem Text="Ledig" Value="@CivilStatus.Single" />
+                                                        <RadzenRadioButtonListItem Text="Verheiratet" Value="@CivilStatus.Married" />
+                                                    </Items>
+                                                </RadzenRadioButtonList>
+                                            </div>
 
-                                        <div class="col-md-12">
-                                            <h3>Konfession</h3>
-                                            <RadzenRadioButtonList Name="ReligousGroup"
-                                                                   TValue="int"
-                                                                   Value=@((int)taxPerson.ReligiousGroupType)
-                                                                   Change=@(args => { taxPerson.ReligiousGroupType = (ReligiousGroupType)args; })>
-                                                <Items>
-                                                    <RadzenRadioButtonListItem Text="andere" Value="0" />
-                                                    <RadzenRadioButtonListItem Text="evangelisch" Value="1" />
-                                                    <RadzenRadioButtonListItem Text="christ-katholisch" Value="2" />
-                                                    <RadzenRadioButtonListItem Text="römisch-katholisch" Value="3" />
-                                                </Items>
-                                            </RadzenRadioButtonList>
-                                        </div>
-                                        @if (taxPerson.CivilStatus == CivilStatus.Married)
-                                        {
-                                            <div class="col-md-12">
-                                                <h3>Konfession Partner</h3>
-                                                <RadzenRadioButtonList Name="ReligousGroupPartner"
+                                            <div class="col-md-3"><RadzenLabel Text="Konfession" Component="religousGroup" /></div>
+                                            <div class="col-md-9">
+                                                <RadzenRadioButtonList Name="religousGroup"
                                                                        TValue="int"
-                                                                       Change=@(args => { taxPerson.PartnerReligiousGroupType = (ReligiousGroupType)args; })
-                                                                       Value=@((int)(taxPerson.PartnerReligiousGroupType ?? ReligiousGroupType.Other))>
+                                                                       Value=@((int)taxPerson.ReligiousGroupType)
+                                                                       Change=@(args => { taxPerson.ReligiousGroupType = (ReligiousGroupType)args; })>
                                                     <Items>
                                                         <RadzenRadioButtonListItem Text="andere" Value="0" />
                                                         <RadzenRadioButtonListItem Text="evangelisch" Value="1" />
@@ -73,33 +54,50 @@
                                                     </Items>
                                                 </RadzenRadioButtonList>
                                             </div>
-                                        }
-                                    </div>
+                                            @if (taxPerson.CivilStatus == CivilStatus.Married)
+                                            {
+                                                <div class="col-md-3"><RadzenLabel Text="Partner" Component="religousGroupPartner" /></div>
+                                                <div class="col-md-9">
+                                                    <RadzenRadioButtonList Name="religousGroupPartner"
+                                                                           TValue="int"
+                                                                           Change=@(args => { taxPerson.PartnerReligiousGroupType = (ReligiousGroupType)args; })
+                                                                           Value=@((int)(taxPerson.PartnerReligiousGroupType ?? ReligiousGroupType.Other))>
+                                                        <Items>
+                                                            <RadzenRadioButtonListItem Text="andere" Value="0" />
+                                                            <RadzenRadioButtonListItem Text="evangelisch" Value="1" />
+                                                            <RadzenRadioButtonListItem Text="christ-katholisch" Value="2" />
+                                                            <RadzenRadioButtonListItem Text="römisch-katholisch" Value="3" />
+                                                        </Items>
+                                                    </RadzenRadioButtonList>
+                                                </div>
+                                            }
+                                        </div>
+                                        
+                                    </RadzenFieldset>
                                 </ChildContent>
-                            </RadzenCard>
                             </FormStep>
                         </ChildContent>
                     </RadzenStepsItem>
                     <RadzenStepsItem Text="Steuerdaten">
                         <ChildContent>
                             <FormStep Title="Steuerdaten" HelpText="Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.">
-                                <RadzenCard>
-                                    <ChildContent>
+                                <ChildContent>
+
+                                    <RadzenFieldset Text="Steuerdaten">
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <h3>Lohn</h3>
-                                                <RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Income"/>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <h3>Vermögen</h3>
-                                                <RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Wealth"/>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <MunicipalitySelector Title="Steuergemeinde" BfsMunicipalityId="model.BfsMunicipalityId" OnSelected="id => { model.BfsMunicipalityId = id; }"/>
+                                            <div class="col-md-3"><RadzenLabel Text="Lohn" /></div>
+                                            <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Income" /></div>
+
+                                            <div class="col-md-3"><RadzenLabel Text="Vermögen" /></div>
+                                            <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Wealth" /></div>
+                                            <div class="col-md-3"><RadzenLabel Text="Steuergemeinde" /></div>
+                                            <div class="col-md-9">
+                                                <MunicipalitySelector BfsMunicipalityId="model.BfsMunicipalityId" OnSelected="id => { model.BfsMunicipalityId = id; }" />
                                             </div>
                                         </div>
+                                    </RadzenFieldset>
+
                                     </ChildContent>
-                                </RadzenCard>
                             </FormStep>
                         </ChildContent>
                     </RadzenStepsItem>
@@ -118,25 +116,20 @@
                                 <RadzenCard Visible="isChangeResidenceActive">
                                     <ChildContent>
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <h3>Wechsel im Jahr</h3>
-                                                <RadzenNumeric TValue="int" @bind-Value="changeResidenceModel.ChangeAtYear" />
-                                            </div>
-                                            <div class="col-md-4">
-                                                <h3>Wechselkosten</h3>
-                                                <RadzenNumeric TValue="decimal" @bind-Value="changeResidenceModel.ChangeCost" />
-                                            </div>
-                                            <div class="col-md-4">
-                                                <MunicipalitySelector Title="Neue Steuergemeinde"
-                                                                      BfsMunicipalityId="changeResidenceModel.DestinationMunicipalityId"
-                                                                      OnSelected="HandleChangeResidence" />
-                                            </div>
+                                            <div class="col-md-3"><RadzenLabel Text="Jahr" /></div>
+                                            <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="changeResidenceModel.ChangeAtYear" /></div>
+                                            <div class="col-md-3"><RadzenLabel Text="Kosten" /></div>
+                                            <div class="col-md-9"><RadzenNumeric TValue="decimal" @bind-Value="changeResidenceModel.ChangeCost" /></div>
+                                            <div class="col-md-3"><RadzenLabel Text="Gemeinde" /></div>
+                                            <div class="col-md-9"><MunicipalitySelector BfsMunicipalityId="changeResidenceModel.DestinationMunicipalityId" OnSelected="HandleChangeResidence" /></div>
                                         </div>
                                     </ChildContent>
                                 </RadzenCard>
                             </FormStep>
 
-                            <FormStep Title="Zu- und Abflüsse" HelpText="Einmalige oder periodische Kapitalflüsse, die einer Steuer unterliegen. Mit einem Geldfluss sind immer zwei Konti verbunden.">
+                            <FormStep Title="Zu- und Abflüsse"
+                                      HelpText="Einmalige oder periodische Kapitalflüsse, die einer Steuer unterliegen. Mit einem Geldfluss sind immer zwei Konti verbunden.">
+                                <h3>Vorsorge</h3>
                                 <RadzenCard>
                                     <ChildContent>
                                         <div class="row">
@@ -145,9 +138,9 @@
                                                     <Items>
                                                         @foreach (GenericCashFlowDefinition definition in genericCashFlowDefinitions)
                                                         {
-                                                            <RadzenAccordionItem Text="@definition.Name">
-                                                                <GenericCashFlowDefinitionForm Definition="definition"/>
-                                                            </RadzenAccordionItem>
+                                                        <RadzenAccordionItem Text="@definition.Name">
+                                                            <GenericCashFlowDefinitionForm Definition="definition" />
+                                                        </RadzenAccordionItem>
                                                         }
                                                     </Items>
 
@@ -165,32 +158,28 @@
                                 <RadzenCard>
                                     <ChildContent>
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <h3>Berechnungsjahr</h3>
-                                                <RadzenNumeric TValue="int" @bind-Value="model.StartingYear"/>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <h3>Anzahl Perioden: @model.NumberOfPeriods</h3>
-                                                <RadzenSlider TValue="int" @bind-Value="model.NumberOfPeriods" Min="1" Max="50"/>
-                                            </div>
+                                            <RadzenFieldset Text="Simulation">
+                                                <div class="row">
+                                                    <div class="col-md-3"><RadzenLabel Text="Startjahr" /></div>
+                                                    <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="model.StartingYear" /></div>
+                                                    <div class="col-md-3"><RadzenLabel Text="Anzahl Perioden" /></div>
+                                                    <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="model.NumberOfPeriods" /></div>
+                                                </div>
+                                            </RadzenFieldset>
                                         </div>
+
+
                                         <div class="row">
-                                            <div class="col-md-3">
-                                                <h3>Sparquote</h3>
-                                                <RadzenNumeric TValue="decimal" Format="P0" @bind-Value="simulationOptions.SavingsQuota" Min="0" Max="1" Step="0.01"/>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <h3>Lohnwachstum</h3>
-                                                <RadzenNumeric TValue="decimal" Format="P2" @bind-Value="simulationOptions.SalaryNetGrowthRate" Min="0" Max="0.5M" Step="0.01"/>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <h3>Vorsorgewachstum</h3>
-                                                <RadzenNumeric TValue="decimal" Format="P2" @bind-Value="simulationOptions.CapitalBenefitsNetGrowthRate" Min="0" Max="0.5M" Step="0.01"/>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <h3>Vermögenswachstum</h3>
-                                                <RadzenNumeric TValue="decimal" Format="P2" @bind-Value="simulationOptions.WealthNetGrowthRate" Min="0" Max="0.5M" Step="0.01"/>
-                                            </div>
+                                            <RadzenFieldset Text="Wertentwicklung">
+                                                <div class="col-md-3"><RadzenLabel Text="Sparquote" /></div>
+                                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="P0" @bind-Value="simulationOptions.SavingsQuota" Min="0" Max="1" Step="0.01" /></div>
+                                                <div class="col-md-3"><RadzenLabel Text="Lohnwachstum" /></div>
+                                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="P2" @bind-Value="simulationOptions.SalaryNetGrowthRate" Min="0" Max="0.5M" Step="0.01" /></div>
+                                                <div class="col-md-3"><RadzenLabel Text="Vorsorgewachstum" /></div>
+                                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="P2" @bind-Value="simulationOptions.CapitalBenefitsNetGrowthRate" Min="0" Max="0.5M" Step="0.01" /></div>
+                                                <div class="col-md-3"><RadzenLabel Text="Vermögenswachstum" /></div>
+                                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="P2" @bind-Value="simulationOptions.WealthNetGrowthRate" Min="0" Max="0.5M" Step="0.01" /></div>
+                                            </RadzenFieldset>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12 text-right">
