@@ -22,41 +22,42 @@
                             <FormStep Title="Person"
                                       HelpText="Steuerlich relevante Angaben zur Person sind der Zivilstand, die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter, welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.">
                                 <ChildContent>
-                                    <RadzenFieldset Text="Steuerperson">
-                                        <div class="row">
-                                            <div class="col-md-3"><RadzenLabel Text="Name" Component="simulationName" /></div>
-                                            <div class="col-md-9"><RadzenTextBox @bind-Value="model.Name" Name="simulationName" /></div>
+                                    <div class="row">
+                                        <RadzenFieldset Text="Steuerperson">
+                                            <div class="row">
+                                                <div class="col-md-3"><RadzenLabel Text="Name" /></div>
+                                                <div class="col-md-9"><RadzenTextBox @bind-Value="model.Name" Name="simulationName" /></div>
 
-                                            <div class="col-md-3"><RadzenLabel Text="Zivilstand" Component="civilStatus" /></div>
-                                            <div class="col-md-9">
-                                                <RadzenRadioButtonList Name="civilStatus"
-                                                                       TValue="CivilStatus"
-                                                                       Value=@(taxPerson.CivilStatus)
-                                                                       Change=@(args => { taxPerson.CivilStatus = args; })>
-                                                    <Items>
-                                                        <RadzenRadioButtonListItem Text="Ledig" Value="@CivilStatus.Single" />
-                                                        <RadzenRadioButtonListItem Text="Verheiratet" Value="@CivilStatus.Married" />
-                                                    </Items>
-                                                </RadzenRadioButtonList>
-                                            </div>
+                                                <div class="col-md-3"><RadzenLabel Text="Zivilstand" /></div>
+                                                <div class="col-md-9">
+                                                    <RadzenRadioButtonList Name="civilStatus"
+                                                                           TValue="CivilStatus"
+                                                                           Value=@(taxPerson.CivilStatus)
+                                                                           Change=@(args => { taxPerson.CivilStatus = args; })>
+                                                        <Items>
+                                                            <RadzenRadioButtonListItem Text="Ledig" Value="@CivilStatus.Single" />
+                                                            <RadzenRadioButtonListItem Text="Verheiratet" Value="@CivilStatus.Married" />
+                                                        </Items>
+                                                    </RadzenRadioButtonList>
+                                                </div>
 
-                                            <div class="col-md-3"><RadzenLabel Text="Konfession" Component="religousGroup" /></div>
-                                            <div class="col-md-9">
-                                                <RadzenRadioButtonList Name="religousGroup"
-                                                                       TValue="int"
-                                                                       Value=@((int)taxPerson.ReligiousGroupType)
-                                                                       Change=@(args => { taxPerson.ReligiousGroupType = (ReligiousGroupType)args; })>
-                                                    <Items>
-                                                        <RadzenRadioButtonListItem Text="andere" Value="0" />
-                                                        <RadzenRadioButtonListItem Text="evangelisch" Value="1" />
-                                                        <RadzenRadioButtonListItem Text="christ-katholisch" Value="2" />
-                                                        <RadzenRadioButtonListItem Text="römisch-katholisch" Value="3" />
-                                                    </Items>
-                                                </RadzenRadioButtonList>
-                                            </div>
-                                            @if (taxPerson.CivilStatus == CivilStatus.Married)
+                                                <div class="col-md-3"><RadzenLabel Text="Konfession" /></div>
+                                                <div class="col-md-9">
+                                                    <RadzenRadioButtonList Name="religousGroup"
+                                                                           TValue="int"
+                                                                           Value=@((int)taxPerson.ReligiousGroupType)
+                                                                           Change=@(args => { taxPerson.ReligiousGroupType = (ReligiousGroupType)args; })>
+                                                        <Items>
+                                                            <RadzenRadioButtonListItem Text="andere" Value="0" />
+                                                            <RadzenRadioButtonListItem Text="evangelisch" Value="1" />
+                                                            <RadzenRadioButtonListItem Text="christ-katholisch" Value="2" />
+                                                            <RadzenRadioButtonListItem Text="römisch-katholisch" Value="3" />
+                                                        </Items>
+                                                    </RadzenRadioButtonList>
+                                                </div>
+                                                @if (taxPerson.CivilStatus == CivilStatus.Married)
                                             {
-                                                <div class="col-md-3"><RadzenLabel Text="Partner" Component="religousGroupPartner" /></div>
+                                                <div class="col-md-3"><RadzenLabel Text="Partner" /></div>
                                                 <div class="col-md-9">
                                                     <RadzenRadioButtonList Name="religousGroupPartner"
                                                                            TValue="int"
@@ -71,9 +72,17 @@
                                                     </RadzenRadioButtonList>
                                                 </div>
                                             }
-                                        </div>
-                                        
-                                    </RadzenFieldset>
+                                            </div>
+
+                                        </RadzenFieldset>
+                                    </div>
+                                    <div class="row">
+                                        <RadzenFieldset Text="Vorsorge">
+                                            <div class="col-md-3"><RadzenLabel Text="Geburtstag" /></div>
+                                            <div class="col-md-9"><RadzenDatePicker @bind-Value="model.Name" ShowTime="false" /></div>
+
+                                        </RadzenFieldset>
+                                    </div>
                                 </ChildContent>
                             </FormStep>
                         </ChildContent>
