@@ -79,7 +79,7 @@
                                     <div class="row">
                                         <RadzenFieldset Text="Vorsorge">
                                             <div class="col-md-3"><RadzenLabel Text="Geburtstag" /></div>
-                                            <div class="col-md-9"><RadzenDatePicker @bind-Value="model.Name" ShowTime="false" /></div>
+                                            <div class="col-md-9"><RadzenDatePicker @bind-Value="birthdate" DateFormat="d.M.yyyy"/></div>
 
                                         </RadzenFieldset>
                                     </div>
@@ -136,7 +136,22 @@
                                 </RadzenCard>
                             </FormStep>
 
-                            <FormStep Title="Zu- und Abflüsse"
+                            <FormStep 
+                                Title="Transfers"
+                                HelpText="Für ein gewähltes Jahr kann Guthaben von einem Ursrpungs- zu einem Zielkonto transferiert werden. Das Guthaben kann ein Betrag oder ein Prozentssatz sein.
+                                           Transfer-Transaktionen dieser Art gibt es insbesondere in der Vorsorge: ein 3a-Konto wird aufgelöst oder bei Pensionierung lässt man sich das Geld auszahlen.
+                                           Wie im Fall einer Auflösung des 3a-Kontos fallen auch Steuern an.">
+
+                                <h3>Transaktionen</h3>
+
+                                <RadzenCard>
+                                    <ChildContent>
+                                        <ClearAccountActionDefinitionForm Definition="clearAccountAction"></ClearAccountActionDefinitionForm>
+                                    </ChildContent>
+                                </RadzenCard>
+                            </FormStep>
+
+                            <FormStep Title="Generische Zu- und Abflüsse"
                                       HelpText="Einmalige oder periodische Kapitalflüsse, die einer Steuer unterliegen. Mit einem Geldfluss sind immer zwei Konti verbunden.">
                                 <h3>Vorsorge</h3>
                                 <RadzenCard>
@@ -272,6 +287,7 @@
     };
 
     private IEnumerable<GenericCashFlowDefinition> genericCashFlowDefinitions = new List<GenericCashFlowDefinition>();
+    private ClearAccountAction clearAccountAction = new();
 
     private readonly TaxPerson taxPerson = DefaultTaxPerson.GetDefaultValues();
     private readonly MultiPeriodOptions simulationOptions = new();
@@ -281,6 +297,7 @@
     private ChartDataItemModel[] wealthDataItems = { };
     private ChartDataItemModel[] totalDataItems = { };
     private bool isChangeResidenceActive = false;
+    private DateOnly? birthdate = new DateOnly(1969, 3, 17);
 
     protected override Task OnInitializedAsync()
     {
@@ -329,6 +346,12 @@
                 OccurrenceType = OccurrenceType.BeginOfPeriod
             }
         };
+
+        clearAccountAction.Name = "Kapitalbezug";
+        clearAccountAction.ClearAtYear = 2029;
+        clearAccountAction.ClearRatio = 1M;
+        clearAccountAction.Flow = new FlowPair(AccountType.CapitalBenefits, AccountType.Wealth);
+        clearAccountAction.IsTaxable = true;
 
         return Task.CompletedTask;
     }
