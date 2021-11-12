@@ -1,0 +1,38 @@
+﻿@using PensionCoach.Tools.CommonTypes.MultiPeriod
+
+<EditForm Model="Definition">
+    <div class="row">
+        <div class="col-md-2">
+            <RadzenLabel Text="Titel"/>
+            <RadzenTextBox TValue="string" @bind-Value="@Definition.Name"/>
+        </div>
+    </div>
+    <dîv class="row">
+        <div class="col-md-3">
+            <RadzenLabel Text="Jahr" />
+            <RadzenNumeric TValue="int" @bind-Value="@Definition.ClearAtYear" Min="2000" Max="2100" Step="1" />
+        </div>
+    </dîv>
+    <div class="row">
+                <div class="col-md-3">
+            <RadzenLabel Text="Anteil" />
+            <RadzenNumeric TValue="decimal" Format="P2" @bind-Value="@Definition.ClearRatio" Min="0" Max="1M" Step="0.005" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <RadzenLabel Text="Versteuern" />
+            <RadzenSwitch @bind-Value="@Definition.IsTaxable" />
+        </div>
+    </div>
+</EditForm>
+
+@code {
+
+    [Parameter]
+    public ClearAccountAction Definition { get; set; }
+
+    protected override void OnInitialized()
+    {
+    }
+}
