@@ -2,7 +2,6 @@
 @using PensionCoach.Tools.CommonTypes
 @using Microsoft.Extensions.Logging
 @using System.Text.Json
-@using BlazorApp.Services
 @using PensionCoach.Tools.CommonTypes.MultiPeriod
 @using PensionCoach.Tools.CommonTypes.Tax
 
@@ -30,46 +29,24 @@
 
                                                 <div class="col-md-3"><RadzenLabel Text="Zivilstand" /></div>
                                                 <div class="col-md-9">
-                                                    <RadzenRadioButtonList Name="civilStatus"
-                                                                           TValue="CivilStatus"
-                                                                           Value=@(taxPerson.CivilStatus)
-                                                                           Change=@(args => { taxPerson.CivilStatus = args; })>
-                                                        <Items>
-                                                            <RadzenRadioButtonListItem Text="Ledig" Value="@CivilStatus.Single" />
-                                                            <RadzenRadioButtonListItem Text="Verheiratet" Value="@CivilStatus.Married" />
-                                                        </Items>
-                                                    </RadzenRadioButtonList>
+                                                    <CivilStatusSelector
+                                                        SelectedCivilStatus="@taxPerson.CivilStatus"
+                                                        OnSelected="@(args => taxPerson.CivilStatus = args)"/>
                                                 </div>
 
                                                 <div class="col-md-3"><RadzenLabel Text="Konfession" /></div>
                                                 <div class="col-md-9">
-                                                    <RadzenRadioButtonList Name="religousGroup"
-                                                                           TValue="int"
-                                                                           Value=@((int)taxPerson.ReligiousGroupType)
-                                                                           Change=@(args => { taxPerson.ReligiousGroupType = (ReligiousGroupType)args; })>
-                                                        <Items>
-                                                            <RadzenRadioButtonListItem Text="andere" Value="0" />
-                                                            <RadzenRadioButtonListItem Text="evangelisch" Value="1" />
-                                                            <RadzenRadioButtonListItem Text="christ-katholisch" Value="2" />
-                                                            <RadzenRadioButtonListItem Text="römisch-katholisch" Value="3" />
-                                                        </Items>
-                                                    </RadzenRadioButtonList>
+                                                    <ReligiousGroupSelector
+                                                        SelectedReligiousGroupType="@taxPerson.ReligiousGroupType"
+                                                        OnSelected="@(args => taxPerson.ReligiousGroupType = args ?? ReligiousGroupType.Other)" />
                                                 </div>
                                                 @if (taxPerson.CivilStatus == CivilStatus.Married)
                                             {
-                                                <div class="col-md-3"><RadzenLabel Text="Partner" /></div>
+                                                <div class="col-md-3"><RadzenLabel Text="Konfession Partner" /></div>
                                                 <div class="col-md-9">
-                                                    <RadzenRadioButtonList Name="religousGroupPartner"
-                                                                           TValue="int"
-                                                                           Change=@(args => { taxPerson.PartnerReligiousGroupType = (ReligiousGroupType)args; })
-                                                                           Value=@((int)(taxPerson.PartnerReligiousGroupType ?? ReligiousGroupType.Other))>
-                                                        <Items>
-                                                            <RadzenRadioButtonListItem Text="andere" Value="0" />
-                                                            <RadzenRadioButtonListItem Text="evangelisch" Value="1" />
-                                                            <RadzenRadioButtonListItem Text="christ-katholisch" Value="2" />
-                                                            <RadzenRadioButtonListItem Text="römisch-katholisch" Value="3" />
-                                                        </Items>
-                                                    </RadzenRadioButtonList>
+                                                    <ReligiousGroupSelector
+                                                        SelectedReligiousGroupType="@taxPerson.PartnerReligiousGroupType"
+                                                        OnSelected="@(args => taxPerson.PartnerReligiousGroupType = args)" />
                                                 </div>
                                             }
                                             </div>
@@ -117,7 +94,7 @@
                                 HelpText="Ab einem gewünschten Jahr kann die Wohngemeinde geändert werden, was einen Einfluss auf alle Steuern hat, insbesondere wenn die neue Gemeinde in einem anderen Kanton liegt.">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h3>Steuergemeinde wechseln</h3>
+                                        <h5>Steuergemeinde wechseln</h5>
                                         <RadzenSwitch Value="isChangeResidenceActive" ValueChanged="() => isChangeResidenceActive = !isChangeResidenceActive"/>
                                     </div>
                                 </div>
@@ -142,9 +119,14 @@
                                            Transfer-Transaktionen dieser Art gibt es insbesondere in der Vorsorge: ein 3a-Konto wird aufgelöst oder bei Pensionierung lässt man sich das Geld auszahlen.
                                            Wie im Fall einer Auflösung des 3a-Kontos fallen auch Steuern an.">
 
-                                <h3>Transaktionen</h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>Kapitalbezug</h3>
+                                        <RadzenSwitch Value="isClearActionActive" ValueChanged="() => isClearActionActive = !isClearActionActive"/>
+                                    </div>
+                                </div>
 
-                                <RadzenCard>
+                                <RadzenCard Visible="isClearActionActive">
                                     <ChildContent>
                                         <ClearAccountActionDefinitionForm Definition="clearAccountAction"></ClearAccountActionDefinitionForm>
                                     </ChildContent>
@@ -297,6 +279,7 @@
     private ChartDataItemModel[] wealthDataItems = { };
     private ChartDataItemModel[] totalDataItems = { };
     private bool isChangeResidenceActive = false;
+    private bool isClearActionActive = false;
     private DateOnly? birthdate = new DateOnly(1969, 3, 17);
 
     protected override Task OnInitializedAsync()
@@ -347,11 +330,7 @@
             }
         };
 
-        clearAccountAction.Name = "Kapitalbezug";
-        clearAccountAction.ClearAtYear = 2029;
-        clearAccountAction.ClearRatio = 1M;
-        clearAccountAction.Flow = new FlowPair(AccountType.CapitalBenefits, AccountType.Wealth);
-        clearAccountAction.IsTaxable = true;
+        clearAccountAction.ClearAtYear = Math.Max(model.StartingYear + model.NumberOfPeriods-1, 0);
 
         return Task.CompletedTask;
     }
@@ -361,6 +340,7 @@
         multiPeriodCalculationResponse = null;
         request.Options = simulationOptions;
         request.CashFlowDefinitionHolder.GenericCashFlowDefinitions = genericCashFlowDefinitions.ToList();
+        request.CashFlowDefinitionHolder.ClearAccountActions = new List<ClearAccountAction>() { clearAccountAction };
         multiPeriodCalculationResponse = await multiPeriodCalculationService.CalculateAsync(request);
 
         (ChartDataItemModel[] wealthData, ChartDataItemModel[] capitalBenefitsData, ChartDataItemModel[] totalData) = GetTotalDataItems();

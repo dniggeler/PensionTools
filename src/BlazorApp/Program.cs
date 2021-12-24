@@ -21,11 +21,13 @@ namespace BlazorApp
             {
                 builder.Services.AddScoped<IMultiPeriodCalculationService, MockedMultiPeriodCalculationService>();
                 builder.Services.AddScoped<IMunicipalityService, MockedMunicipalityService>();
+                builder.Services.AddScoped<IPersonService, MockedPersonService>();
             }
             else
             {
                 builder.Services.AddScoped<IMultiPeriodCalculationService, MultiPeriodCalculationService>();
                 builder.Services.AddScoped<IMunicipalityService, MunicipalityServiceClient>();
+                builder.Services.AddScoped<IPersonService, PersonService>();
             }
 
             builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
@@ -37,6 +39,8 @@ namespace BlazorApp
 
             builder.Services.AddBlazoredLocalStorage();
 
+            builder.Services.AddLocalization();
+            
             if (!builder.HostEnvironment.IsProduction())
             {
                 builder.Services.AddLogging(b => b.SetMinimumLevel(LogLevel.Debug).AddFilter("Microsoft", LogLevel.Information));
