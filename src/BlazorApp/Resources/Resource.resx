@@ -133,6 +133,9 @@
     <value>Wohnort</value>
   </data>
   <data name="person.taxableincome" xml:space="preserve">
-    <value>Einkommen (steuerbar)</value>
+    <value>Steuerbares Einkommen</value>
+  </data>
+  <data name="person.taxablewealth" xml:space="preserve">
+    <value>Steuerbares Vermögen</value>
   </data>
 </root>

@@ -5,14 +5,22 @@
 
 @inject IStringLocalizer<PensionComponents> localizer
 
-<RadzenDropDown Name="gender"
+@if (IsReadOnly)
+{
+    <RadzenLabel Text="@GetViewModel().Name"/>
+}
+else
+{
+    <RadzenDropDown Name="gender"
                 Disabled="@IsReadOnly"
                 Data=@genderModels
                 ValueProperty="Value"
                 TextProperty="Name"
                 @bind-Value="@SelectedGender"
                 Change="@(HandleChange)">
-</RadzenDropDown>
+    </RadzenDropDown>
+}
+
 
 @code {
     internal class GenderViewModel
@@ -43,5 +51,10 @@
     {
         SelectedGender = (Gender)value;
         OnSelected.InvokeAsync(SelectedGender);
+    }
+
+    private GenderViewModel GetViewModel()
+    {
+        return genderModels.Single(item => item.Value == SelectedGender);
     }
 }

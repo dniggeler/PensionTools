@@ -3,39 +3,34 @@
 
 @inject IStringLocalizer<Resource> localizer
 
-<RadzenDataList
-    WrapItems="true"
+<RadzenDataGrid
     AllowPaging="true"
+    PageSize="4"
+    AllowSorting="true"
     Data="@Persons"
     TItem="PersonViewModel"
-    PageSize="5">
-     <Template Context="person">
-         <RadzenCard Style="width: 100%; padding: 0; overflow: hidden;">
-             <div class="container">
-                <div class="row">
-                    <div class="col-lg-3">
-                          <h5 class="mb-0">@(localizer["person.name"])</h5>
-                        @(person.Name)
-                    </div>
-                    <div class="col-lg-3">
-                        <h5 class="mb-0">@(localizer["person.residence"])</h5>
-                        @($"{person.MunicipalityName} ({person.Canton})")
-                    </div>
-                    <div class="col-lg-3">
-                        <h5 class="mb-0">@(localizer["person.birthdate"])</h5>
-                        @(person.DateOfBirth.ToShortDateString())
-                    </div>
-                    <div class="col-lg-3">
-                        <h5 class="mb-0">@(localizer["person.taxableincome"])</h5>
-                        @(person.TaxableIncome)
-                    </div>
-                </div>
-             </div>
-         </RadzenCard>
-     </Template>
-    </RadzenDataList>
+    SelectionMode="DataGridSelectionMode.Single"
+    @bind-Value="@selectedPersons">
+    <Columns>
+        <RadzenDataGridColumn TItem="PersonViewModel" Property="Name" Title="@localizer["person.name"]" />
+        <RadzenDataGridColumn TItem="PersonViewModel" Property="MunicipalityName" Title="@localizer["person.residence"]" />
+        <RadzenDataGridColumn TItem="PersonViewModel" Property="DateOfBirth" Title="@localizer["person.birthdate"]" FormatString="{0:d}" />
+        <RadzenDataGridColumn TItem="PersonViewModel" Property="Gender" Title="@localizer["person.gender"]">
+            <Template Context="person">
+                <GenderSelector SelectedGender="@person.Gender" IsReadOnly="true"/>
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
+
+@if (selectedPersons?.Any() == true)
+{
+    <BlazorApp.Pages.PersonView Person="selectedPersons[0]"/>
+}
 
 @code {
     [Parameter]
     public IEnumerable<PersonViewModel> Persons { get; set; }
+
+    private IList<PersonViewModel> selectedPersons;
 }

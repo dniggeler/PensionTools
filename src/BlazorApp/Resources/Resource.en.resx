@@ -133,6 +133,9 @@
     <value>Residence</value>
   </data>
   <data name="person.taxableincome" xml:space="preserve">
-    <value>Income (taxable)</value>
+    <value>Taxable Income</value>
+  </data>
+  <data name="person.taxablewealth" xml:space="preserve">
+    <value>Taxable Wealth</value>
   </data>
 </root>

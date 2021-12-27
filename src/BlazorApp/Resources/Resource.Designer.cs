@@ -106,11 +106,20 @@ namespace BlazorApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Einkommen (steuerbar).
+        ///   Looks up a localized string similar to Steuerbares Einkommen.
         /// </summary>
         public static string person_taxableincome {
             get {
                 return ResourceManager.GetString("person.taxableincome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steuerbares Vermögen.
+        /// </summary>
+        public static string person_taxablewealth {
+            get {
+                return ResourceManager.GetString("person.taxablewealth", resourceCulture);
             }
         }
     }
