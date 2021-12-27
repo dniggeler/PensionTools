@@ -78,7 +78,7 @@
                                             <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Wealth" /></div>
                                             <div class="col-md-3"><RadzenLabel Text="Steuergemeinde" /></div>
                                             <div class="col-md-9">
-                                                <MunicipalitySelector BfsMunicipalityId="model.BfsMunicipalityId" OnSelected="id => { model.BfsMunicipalityId = id; }" />
+                                                <MunicipalitySelector BfsMunicipalityId="model.BfsMunicipalityId" OnSelected="m => { model.BfsMunicipalityId = m.BfsMunicipalityNumber; }" />
                                             </div>
                                         </div>
                                     </RadzenFieldset>
@@ -107,7 +107,9 @@
                                             <div class="col-md-3"><RadzenLabel Text="Kosten" /></div>
                                             <div class="col-md-9"><RadzenNumeric TValue="decimal" @bind-Value="changeResidenceModel.ChangeCost" /></div>
                                             <div class="col-md-3"><RadzenLabel Text="Gemeinde" /></div>
-                                            <div class="col-md-9"><MunicipalitySelector BfsMunicipalityId="changeResidenceModel.DestinationMunicipalityId" OnSelected="HandleChangeResidence" /></div>
+                                            <div class="col-md-9"><MunicipalitySelector
+                                                BfsMunicipalityId="changeResidenceModel.DestinationMunicipalityId"
+                                                OnSelected="HandleChangeResidence" /></div>
                                         </div>
                                     </ChildContent>
                                 </RadzenCard>
@@ -435,8 +437,8 @@
             .ToArray();
     }
 
-    private void HandleChangeResidence(int id)
+    private void HandleChangeResidence(TaxSupportedMunicipalityModel municipalityModel)
     {
-        changeResidenceModel.DestinationMunicipalityId = id;
+        changeResidenceModel.DestinationMunicipalityId = municipalityModel.BfsMunicipalityNumber;
     }
 }
