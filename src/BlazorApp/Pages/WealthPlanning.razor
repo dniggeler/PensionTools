@@ -4,10 +4,12 @@
 @using System.Text.Json
 @using PensionCoach.Tools.CommonTypes.MultiPeriod
 @using PensionCoach.Tools.CommonTypes.Tax
+@using BlazorApp.MyComponents.Person
 
 @inject ILogger<WealthPlanning> logger
 @inject IMultiPeriodCalculationService multiPeriodCalculationService
 @inject IMunicipalityService municipalityService
+@inject IPersonService personService
 
 <RadzenTemplateForm TItem="MultiPeriodRequest" Data=@model Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
     <RadzenContent Container="main">
@@ -21,6 +23,9 @@
                             <FormStep Title="Person"
                                       HelpText="Steuerlich relevante Angaben zur Person sind der Zivilstand, die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter, welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.">
                                 <ChildContent>
+                                    <div class="row">
+                                        <PersonSelector Persons="persons"/>
+                                    </div>
                                     <div class="row">
                                         <RadzenFieldset Text="Steuerperson">
                                             <div class="row">
@@ -274,6 +279,7 @@
     private ClearAccountAction clearAccountAction = new();
 
     private readonly TaxPerson taxPerson = DefaultTaxPerson.GetDefaultValues();
+    private IReadOnlyCollection<PersonViewModel> persons;
     private readonly MultiPeriodOptions simulationOptions = new();
 
     private MultiPeriodResponse multiPeriodCalculationResponse;
@@ -284,8 +290,9 @@
     private bool isClearActionActive = false;
     private DateOnly? birthdate = new DateOnly(1969, 3, 17);
 
-    protected override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
+        persons = (await personService.GetPersonsAsync()).ToList();
         changeResidenceModel.DestinationMunicipalityId = model.BfsMunicipalityId;
         changeResidenceModel.ChangeAtYear = Math.Max(model.StartingYear + model.NumberOfPeriods - 3, 0);
         genericCashFlowDefinitions = new List<GenericCashFlowDefinition>
@@ -333,8 +340,6 @@
         };
 
         clearAccountAction.ClearAtYear = Math.Max(model.StartingYear + model.NumberOfPeriods-1, 0);
-
-        return Task.CompletedTask;
     }
 
     private async Task OnSubmit(MultiPeriodRequest request)

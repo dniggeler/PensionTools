@@ -129,4 +129,10 @@
   <data name="person.name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="person.residence" xml:space="preserve">
+    <value>Wohnort</value>
+  </data>
+  <data name="person.taxableincome" xml:space="preserve">
+    <value>Einkommen (steuerbar)</value>
+  </data>
 </root>

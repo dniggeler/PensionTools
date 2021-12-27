@@ -1,4 +1,7 @@
 ﻿@using PensionCoach.Tools.CommonTypes
+@using System.Globalization
+
+@inject IStringLocalizer<Resource> localizer
 
 <RadzenDataList
     WrapItems="true"
@@ -10,8 +13,21 @@
          <RadzenCard Style="width: 100%; padding: 0; overflow: hidden;">
              <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 p-3 product-title">
+                    <div class="col-lg-3">
+                          <h5 class="mb-0">@(localizer["person.name"])</h5>
                         @(person.Name)
+                    </div>
+                    <div class="col-lg-3">
+                        <h5 class="mb-0">@(localizer["person.residence"])</h5>
+                        @($"{person.MunicipalityName} ({person.Canton})")
+                    </div>
+                    <div class="col-lg-3">
+                        <h5 class="mb-0">@(localizer["person.birthdate"])</h5>
+                        @(person.DateOfBirth.ToShortDateString())
+                    </div>
+                    <div class="col-lg-3">
+                        <h5 class="mb-0">@(localizer["person.taxableincome"])</h5>
+                        @(person.TaxableIncome)
                     </div>
                 </div>
              </div>
