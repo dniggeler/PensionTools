@@ -10,7 +10,7 @@
     Data="@Persons"
     TItem="PersonViewModel"
     SelectionMode="DataGridSelectionMode.Single"
-    @bind-Value="@selectedPersons">
+    ValueChanged="@(args => ChangeSelectedPerson(args))">
     <Columns>
         <RadzenDataGridColumn TItem="PersonViewModel" Property="Name" Title="@localizer["person.name"]" />
         <RadzenDataGridColumn TItem="PersonViewModel" Property="MunicipalityName" Title="@localizer["person.residence"]" />
@@ -23,14 +23,23 @@
     </Columns>
 </RadzenDataGrid>
 
-@if (selectedPersons?.Any() == true)
+@if (selectedPerson is { })
 {
-    <BlazorApp.Pages.PersonView Person="selectedPersons[0]"/>
+    <BlazorApp.Pages.PersonView Person="selectedPerson"/>
 }
 
 @code {
     [Parameter]
     public IEnumerable<PersonViewModel> Persons { get; set; }
 
-    private IList<PersonViewModel> selectedPersons;
+    [Parameter]
+    public EventCallback<Guid> OnSelect { get; set; }
+
+    private PersonViewModel selectedPerson { get; set; }
+
+    private Task ChangeSelectedPerson(IList<PersonViewModel> persons)
+    {
+        selectedPerson = persons[0];
+        return OnSelect.InvokeAsync(selectedPerson.Id);
+    }
 }

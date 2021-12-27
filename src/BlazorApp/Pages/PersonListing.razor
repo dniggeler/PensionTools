@@ -79,12 +79,18 @@
                 BfsMunicipalityId = sourcePerson.BfsMunicipalityId,
                 Name = $"{sourcePerson.Name} (Copy)",
                 CivilStatus = sourcePerson.CivilStatus,
-                Gender = sourcePerson.Gender
+                Gender = sourcePerson.Gender,
+                TaxableIncome = sourcePerson.TaxableIncome,
+                TaxableWealth = sourcePerson.TaxableWealth,
             };
 
-        await personService.AddPersonAsync(copyPerson);
+        bool isDone = await OpenDialogAsync("Person ändern", copyPerson);
 
-        StateHasChanged();
+        if (isDone)
+        {
+            persons.Add(copyPerson);
+            await personService.AddPersonAsync(copyPerson);
+        }
     }
 
     private async Task<bool> OpenDialogAsync(string title, PersonViewModel person)
