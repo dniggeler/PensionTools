@@ -23,7 +23,7 @@
         {
             @foreach (var person in persons)
             {
-                <PersonView Person="person" OnDelete="@DeletePerson" OnEdit="@EditPerson"/>
+                <PersonView Person="person" OnDelete="@DeletePerson" OnEdit="@EditPerson" OnCopy="@CopyPerson"/>
             }
         }
     </div>
@@ -68,6 +68,23 @@
         {
             await personService.AddPersonAsync(person);
         }
+    }
+
+    private async Task CopyPerson(Guid id)
+    {
+        PersonViewModel sourcePerson = persons.SingleOrDefault(p => p.Id == id);
+
+        PersonViewModel copyPerson = new()
+            {
+                BfsMunicipalityId = sourcePerson.BfsMunicipalityId,
+                Name = $"{sourcePerson.Name} (Copy)",
+                CivilStatus = sourcePerson.CivilStatus,
+                Gender = sourcePerson.Gender
+            };
+
+        await personService.AddPersonAsync(copyPerson);
+
+        StateHasChanged();
     }
 
     private async Task<bool> OpenDialogAsync(string title, PersonViewModel person)

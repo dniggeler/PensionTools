@@ -16,6 +16,11 @@
                 <RadzenButton Icon="edit" Click="@HandleEdit" ButtonStyle="ButtonStyle.Secondary"/>
             }
 
+            @if(OnCopy.HasDelegate)
+            {
+                <RadzenButton Icon="content_copy" Click="@HandleCopy" ButtonStyle="ButtonStyle.Secondary"/>
+            }
+            
             @if(OnDelete.HasDelegate)
             {
                 <RadzenButton Icon="delete" Click="@HandleDelete" ButtonStyle="ButtonStyle.Secondary"/>
@@ -74,9 +79,17 @@
     [Parameter]
     public EventCallback<Guid> OnEdit { get; set; }
 
+    [Parameter]
+    public EventCallback<Guid> OnCopy { get; set; }
+
     private Task HandleDelete()
     {
         return OnDelete.InvokeAsync(Person.Id);
+    }
+
+    private Task HandleCopy()
+    {
+        return OnCopy.InvokeAsync(Person.Id);
     }
 
     private Task HandleEdit()
