@@ -6,6 +6,7 @@
 @using PensionCoach.Tools.CommonTypes.Tax
 @using BlazorApp.MyComponents.Person
 
+@inject IStringLocalizer<Resource> localizer
 @inject ILogger<WealthPlanning> logger
 @inject IMultiPeriodCalculationService multiPeriodCalculationService
 @inject IMunicipalityService municipalityService
@@ -24,13 +25,16 @@
                         </FormStep>
                     </RadzenStepsItem>
 
-                    <RadzenStepsItem Text="Person" Disabled="@(selectedPerson == null)">
+                    <RadzenStepsItem Text="Auswahl Steuerperson" Disabled="@(selectedPerson == null)">
                         <ChildContent>
                             <FormStep Title="Person"
-                                      HelpText="Steuerlich relevante Angaben zur Person sind der Zivilstand, die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter, welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.">
+                                      HelpText="Steuerlich relevante Angaben zur Person sind der Zivilstand,
+die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter,
+welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.
+Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.">
                                 <ChildContent>
                                     <div class="row">
-                                        <RadzenFieldset Text="Steuerperson">
+                                        <RadzenFieldset Text="Person">
                                             <div class="row">
                                                 <div class="col-md-3"><RadzenLabel Text="Name" /></div>
                                                 <div class="col-md-9"><RadzenTextBox @bind-Value="model.Name" Name="simulationName" /></div>
@@ -67,34 +71,27 @@
                                             <div class="col-md-9"><RadzenDatePicker @bind-Value="birthdate" DateFormat="d.M.yyyy"/></div>
 
                                         </RadzenFieldset>
+
+                                        <RadzenFieldset Text="Steuerdaten">
+                                            <div class="row">
+                                                <div class="col-md-3"><RadzenLabel Text="Lohn" /></div>
+                                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Income" /></div>
+
+                                                <div class="col-md-3"><RadzenLabel Text="Vermögen" /></div>
+                                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Wealth" /></div>
+                                                <div class="col-md-3"><RadzenLabel Text="Steuergemeinde" /></div>
+                                                <div class="col-md-9">
+                                                    <MunicipalitySelector BfsMunicipalityId="model.BfsMunicipalityId" OnSelected="m => { model.BfsMunicipalityId = m.BfsMunicipalityNumber; }" />
+                                                </div>
+                                            </div>
+                                        </RadzenFieldset>
+
                                     </div>
                                 </ChildContent>
                             </FormStep>
                         </ChildContent>
                     </RadzenStepsItem>
-                    <RadzenStepsItem Text="Steuerdaten" Disabled="@(selectedPerson == null)">
-                        <ChildContent>
-                            <FormStep Title="Steuerdaten" HelpText="Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.">
-                                <ChildContent>
 
-                                    <RadzenFieldset Text="Steuerdaten">
-                                        <div class="row">
-                                            <div class="col-md-3"><RadzenLabel Text="Lohn" /></div>
-                                            <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Income" /></div>
-
-                                            <div class="col-md-3"><RadzenLabel Text="Vermögen" /></div>
-                                            <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Wealth" /></div>
-                                            <div class="col-md-3"><RadzenLabel Text="Steuergemeinde" /></div>
-                                            <div class="col-md-9">
-                                                <MunicipalitySelector BfsMunicipalityId="model.BfsMunicipalityId" OnSelected="m => { model.BfsMunicipalityId = m.BfsMunicipalityNumber; }" />
-                                            </div>
-                                        </div>
-                                    </RadzenFieldset>
-
-                                    </ChildContent>
-                            </FormStep>
-                        </ChildContent>
-                    </RadzenStepsItem>
                     <RadzenStepsItem Text="Cash-Flow Actions" Disabled="@(selectedPerson == null)">
                         <ChildContent>
                             <FormStep
@@ -292,7 +289,7 @@
     private ChartDataItemModel[] totalDataItems = { };
     private bool isChangeResidenceActive = false;
     private bool isClearActionActive = false;
-    private DateOnly? birthdate = new DateOnly(1969, 3, 17);
+    private DateOnly? birthdate = new DateOnly(1900, 1, 1);
 
     protected override async Task OnInitializedAsync()
     {
@@ -369,13 +366,7 @@
     {
         return new MultiPeriodRequest
         {
-            Name = "Toni",
-            CivilStatus = CivilStatus.Single,
-            ReligiousGroupType = ReligiousGroupType.Protestant,
-            PartnerReligiousGroupType = null,
-            Income = 100_000,
-            Wealth = 500_000,
-            BfsMunicipalityId = 139,
+            Name = "Unknown",
             NumberOfPeriods = 10,
             StartingYear = 2021,
         };
@@ -463,5 +454,15 @@
                 PartnerReligiousGroupType = selectedPerson.PartnerReligiousGroupType,
                 ReligiousGroupType = selectedPerson.ReligiousGroupType,
             };
+
+        model.CivilStatus = selectedPerson.CivilStatus;
+        model.ReligiousGroupType = selectedPerson.ReligiousGroupType;
+        model.PartnerReligiousGroupType = selectedPerson.PartnerReligiousGroupType;
+        model.Name = selectedPerson.Name;
+        model.BfsMunicipalityId = selectedPerson.BfsMunicipalityId;
+        model.Income = selectedPerson.TaxableIncome;
+        model.Wealth = selectedPerson.TaxableWealth;
+
+        birthdate = DateOnly.FromDateTime(selectedPerson.DateOfBirth.Date);
     }
 }
