@@ -72,7 +72,7 @@
                             </FormStep>
                         </ChildContent>
                     </RadzenStepsItem>
-                    <RadzenStepsItem Text="Steuerdaten">
+                    <RadzenStepsItem Text="Steuerdaten" Disabled="@(selectedPerson == null)">
                         <ChildContent>
                             <FormStep Title="Steuerdaten" HelpText="Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.">
                                 <ChildContent>
@@ -95,7 +95,7 @@
                             </FormStep>
                         </ChildContent>
                     </RadzenStepsItem>
-                    <RadzenStepsItem Text="Cash-Flow Actions">
+                    <RadzenStepsItem Text="Cash-Flow Actions" Disabled="@(selectedPerson == null)">
                         <ChildContent>
                             <FormStep
                                 Title="Wohnortwechsel"
@@ -168,7 +168,7 @@
                             </FormStep>
                         </ChildContent>
                     </RadzenStepsItem>
-                    <RadzenStepsItem Text="Simulation">
+                    <RadzenStepsItem Text="Simulation" Disabled="@(selectedPerson == null)">
                         <ChildContent>
                             <FormStep Title="Simulation" HelpText="Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern.">
                                 <RadzenCard>
@@ -281,7 +281,7 @@
     private IEnumerable<GenericCashFlowDefinition> genericCashFlowDefinitions = new List<GenericCashFlowDefinition>();
     private ClearAccountAction clearAccountAction = new();
 
-    private readonly TaxPerson taxPerson = DefaultTaxPerson.GetDefaultValues();
+    private TaxPerson taxPerson;
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
     private readonly MultiPeriodOptions simulationOptions = new();
@@ -454,5 +454,14 @@
     private void HandleSelectPerson(Guid personId)
     {
         selectedPerson = persons.Single(item => item.Id == personId);
+        taxPerson = new TaxPerson
+            {
+                Name = selectedPerson.Name,
+                CivilStatus = selectedPerson.CivilStatus,
+                TaxableIncome = selectedPerson.TaxableIncome,
+                TaxableWealth = selectedPerson.TaxableWealth,
+                PartnerReligiousGroupType = selectedPerson.PartnerReligiousGroupType,
+                ReligiousGroupType = selectedPerson.ReligiousGroupType,
+            };
     }
 }
