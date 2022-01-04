@@ -15,10 +15,7 @@ stages:
     - job: build_and_deploy
       steps:
       - script: dotnet build --configuration $(buildConfiguration) src/BlazorApp/BlazorApp.csproj
-        displayName: 'Building $(buildConfiguration)'
-        inputs:
-          packageType: 'sdk'
-          version: '6.0.x'
+        displayName: 'Building $(buildConfiguration)'     
       - task: DotNetCoreCLI@2
         displayName: 'Publishing App'
         inputs:
