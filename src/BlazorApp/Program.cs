@@ -19,13 +19,15 @@ namespace BlazorApp
 
             if (builder.HostEnvironment.IsEnvironment("Mock"))
             {
-                builder.Services.AddScoped<IMultiPeriodCalculationService, MockedMultiPeriodCalculationService>();
+                builder.Services.AddScoped<IMultiPeriodCalculationService, MockedPensionToolsCalculationService>();
+                builder.Services.AddScoped<ITaxCalculationService, MockedPensionToolsCalculationService>();
                 builder.Services.AddScoped<IMunicipalityService, MockedMunicipalityService>();
                 builder.Services.AddScoped<IPersonService, MockedPersonService>();
             }
             else
             {
                 builder.Services.AddScoped<IMultiPeriodCalculationService, MultiPeriodCalculationService>();
+                builder.Services.AddScoped<ITaxCalculationService, TaxCalculationService>();
                 builder.Services.AddScoped<IMunicipalityService, MunicipalityServiceClient>();
                 builder.Services.AddScoped<IPersonService, PersonService>();
             }

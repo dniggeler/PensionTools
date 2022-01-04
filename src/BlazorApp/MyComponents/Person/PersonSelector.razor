@@ -1,7 +1,4 @@
-﻿@using PensionCoach.Tools.CommonTypes
-@using System.Globalization
-
-@inject IStringLocalizer<Resource> localizer
+﻿@inject IStringLocalizer<Resource> localizer
 
 <RadzenDataGrid
     AllowPaging="true"
@@ -10,7 +7,7 @@
     Data="@Persons"
     TItem="PersonViewModel"
     SelectionMode="DataGridSelectionMode.Single"
-    ValueChanged="@(args => ChangeSelectedPerson(args))">
+    ValueChanged="@(ChangeSelectedPerson)">
     <Columns>
         <RadzenDataGridColumn TItem="PersonViewModel" Property="Name" Title="@localizer["person.name"]" />
         <RadzenDataGridColumn TItem="PersonViewModel" Property="MunicipalityName" Title="@localizer["person.residence"]" />

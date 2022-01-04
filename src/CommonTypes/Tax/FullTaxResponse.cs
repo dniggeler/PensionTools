@@ -1,4 +1,4 @@
-﻿namespace TaxCalculator.WebApi.Models
+﻿namespace PensionCoach.Tools.CommonTypes.Tax
 {
     public class FullTaxResponse
     {
