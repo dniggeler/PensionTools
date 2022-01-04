@@ -2,7 +2,7 @@ trigger:
 - master
 
 pool:
-  vmImage: windows-2022
+  vmImage: ubuntu-latest
 
 variables:
   buildPlatform: 'Any CPU'
@@ -16,7 +16,7 @@ stages:
       steps:
       - script: dotnet build --configuration $(buildConfiguration) src/BlazorApp/BlazorApp.csproj
         displayName: 'Building $(buildConfiguration)'
-        input:
+        inputs:
           packageType: 'sdk'
           version: '6.0.x'
       - task: DotNetCoreCLI@2
