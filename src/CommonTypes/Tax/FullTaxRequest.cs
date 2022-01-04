@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
-namespace TaxCalculator.WebApi.Models
+namespace PensionCoach.Tools.CommonTypes.Tax
 {
     public class FullTaxRequest
     {

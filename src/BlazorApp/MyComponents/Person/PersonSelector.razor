@@ -1,0 +1,42 @@
+﻿@inject IStringLocalizer<Resource> localizer
+
+<RadzenDataGrid
+    AllowPaging="true"
+    PageSize="4"
+    AllowSorting="true"
+    Data="@Persons"
+    TItem="PersonViewModel"
+    SelectionMode="DataGridSelectionMode.Single"
+    ValueChanged="@(ChangeSelectedPerson)">
+    <Columns>
+        <RadzenDataGridColumn TItem="PersonViewModel" Property="Name" Title="@localizer["person.name"]" />
+        <RadzenDataGridColumn TItem="PersonViewModel" Property="MunicipalityName" Title="@localizer["person.residence"]" />
+        <RadzenDataGridColumn TItem="PersonViewModel" Property="DateOfBirth" Title="@localizer["person.birthdate"]" FormatString="{0:d}" />
+        <RadzenDataGridColumn TItem="PersonViewModel" Property="Gender" Title="@localizer["person.gender"]">
+            <Template Context="person">
+                <GenderSelector SelectedGender="@person.Gender" IsReadOnly="true"/>
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
+
+@if (selectedPerson is { })
+{
+    <BlazorApp.Pages.PersonView Person="selectedPerson"/>
+}
+
+@code {
+    [Parameter]
+    public IEnumerable<PersonViewModel> Persons { get; set; }
+
+    [Parameter]
+    public EventCallback<Guid> OnSelect { get; set; }
+
+    private PersonViewModel selectedPerson { get; set; }
+
+    private Task ChangeSelectedPerson(IList<PersonViewModel> persons)
+    {
+        selectedPerson = persons[0];
+        return OnSelect.InvokeAsync(selectedPerson.Id);
+    }
+}

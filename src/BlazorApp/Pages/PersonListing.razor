@@ -1,0 +1,105 @@
+﻿@page "/PersonListing"
+
+@inject IPersonService personService
+@inject DialogService dialogService
+
+<h3>Personenverzeichnis</h3>
+
+<div class="row">
+    <div class="col-xl-6 offset-xl-2">
+        <RadzenCard class="m-4">
+            <div class="row">
+                <div class="col-xl-10">
+                    <h3>Neue Person erstellen</h3>
+                </div>
+                <div class="col-xl-2">
+                    <RadzenButton Click=@(OpenPerson) Class="float-right" Icon="person_add" ButtonStyle="ButtonStyle.Secondary"></RadzenButton>
+                </div>
+            </div>
+            
+        </RadzenCard>
+        
+        @if (persons is not null)
+        {
+            @foreach (var person in persons)
+            {
+                <PersonView Person="person" OnDelete="@DeletePerson" OnEdit="@EditPerson" OnCopy="@CopyPerson"/>
+            }
+        }
+    </div>
+</div>
+
+
+@code
+{
+    private List<PersonViewModel> persons;
+
+    protected override async Task OnInitializedAsync()
+    {
+        persons = (await personService.GetPersonsAsync()).ToList();
+    }
+
+    private async Task OpenPerson()
+    {
+        PersonViewModel newPerson = new();
+
+        bool isDone = await OpenDialogAsync("Neue Person anlegen", newPerson);
+
+        if (isDone)
+        {
+            persons.Add(newPerson);
+            await personService.AddPersonAsync(newPerson);
+        }
+    }
+
+    private async Task DeletePerson(Guid id)
+    {
+        persons.RemoveAll(p => p.Id == id);
+        await personService.DeletePersonAsync(id);
+    }
+
+    private async Task EditPerson(Guid id)
+    {
+        PersonViewModel person = persons.SingleOrDefault(p => p.Id == id);
+
+        bool isDone = await OpenDialogAsync("Person ändern", person);
+
+        if (isDone)
+        {
+            await personService.AddPersonAsync(person);
+        }
+    }
+
+    private async Task CopyPerson(Guid id)
+    {
+        PersonViewModel sourcePerson = persons.SingleOrDefault(p => p.Id == id);
+
+        PersonViewModel copyPerson = new()
+            {
+                BfsMunicipalityId = sourcePerson.BfsMunicipalityId,
+                Name = $"{sourcePerson.Name} (Copy)",
+                CivilStatus = sourcePerson.CivilStatus,
+                Gender = sourcePerson.Gender,
+                TaxableIncome = sourcePerson.TaxableIncome,
+                TaxableWealth = sourcePerson.TaxableWealth,
+            };
+
+        bool isDone = await OpenDialogAsync("Person ändern", copyPerson);
+
+        if (isDone)
+        {
+            persons.Add(copyPerson);
+            await personService.AddPersonAsync(copyPerson);
+        }
+    }
+
+    private async Task<bool> OpenDialogAsync(string title, PersonViewModel person)
+    {
+        dynamic result = await dialogService.OpenAsync<PersonEdit>(
+            title,
+            new Dictionary<string, object> { { "Person", person } },
+            new DialogOptions { Width = "600px", Height = "550px", Resizable = true, Draggable = true });
+
+        return Convert.ToBoolean(result);
+    }
+}

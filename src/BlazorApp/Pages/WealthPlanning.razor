@@ -2,13 +2,15 @@
 @using PensionCoach.Tools.CommonTypes
 @using Microsoft.Extensions.Logging
 @using System.Text.Json
-@using BlazorApp.Services
 @using PensionCoach.Tools.CommonTypes.MultiPeriod
 @using PensionCoach.Tools.CommonTypes.Tax
+@using BlazorApp.MyComponents.Person
 
+@inject IStringLocalizer<Resource> localizer
 @inject ILogger<WealthPlanning> logger
 @inject IMultiPeriodCalculationService multiPeriodCalculationService
 @inject IMunicipalityService municipalityService
+@inject IPersonService personService
 
 <RadzenTemplateForm TItem="MultiPeriodRequest" Data=@model Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
     <RadzenContent Container="main">
@@ -17,98 +19,87 @@
             </RadzenHeading>
             <RadzenSteps NextText="Nächster" PreviousText="Vorheriger">
                 <Steps>
-                    <RadzenStepsItem Text="Person" Selected="true">
+                    <RadzenStepsItem Text="Personen" Selected="true">
+                        <FormStep Title="Auswahl" HelpText="Die Cashflow-Simulation basiert auf Angaben zur Person sowie steuerrevelanten Daten wie Wohnort, Einkommen und Vermögen.">
+                            <div class="row"><PersonSelector Persons="persons" OnSelect="@HandleSelectPerson"/></div>
+                        </FormStep>
+                    </RadzenStepsItem>
+
+                    <RadzenStepsItem Text="Steuerperson ändern" Disabled="@(selectedPerson == null)">
                         <ChildContent>
                             <FormStep Title="Person"
-                                      HelpText="Steuerlich relevante Angaben zur Person sind der Zivilstand, die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter, welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.">
+                                      HelpText="Steuerlich relevante Angaben zur Person sind der Zivilstand,
+die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter,
+welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.
+Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.">
                                 <ChildContent>
-                                    <RadzenFieldset Text="Steuerperson">
-                                        <div class="row">
-                                            <div class="col-md-3"><RadzenLabel Text="Name" Component="simulationName" /></div>
-                                            <div class="col-md-9"><RadzenTextBox @bind-Value="model.Name" Name="simulationName" /></div>
+                                    <div class="row">
+                                        <RadzenFieldset Text="Person">
+                                            <div class="row">
+                                                <div class="col-md-3"><RadzenLabel Text="Name" /></div>
+                                                <div class="col-md-9"><RadzenTextBox @bind-Value="model.Name" Name="simulationName" /></div>
 
-                                            <div class="col-md-3"><RadzenLabel Text="Zivilstand" Component="civilStatus" /></div>
-                                            <div class="col-md-9">
-                                                <RadzenRadioButtonList Name="civilStatus"
-                                                                       TValue="CivilStatus"
-                                                                       Value=@(taxPerson.CivilStatus)
-                                                                       Change=@(args => { taxPerson.CivilStatus = args; })>
-                                                    <Items>
-                                                        <RadzenRadioButtonListItem Text="Ledig" Value="@CivilStatus.Single" />
-                                                        <RadzenRadioButtonListItem Text="Verheiratet" Value="@CivilStatus.Married" />
-                                                    </Items>
-                                                </RadzenRadioButtonList>
-                                            </div>
-
-                                            <div class="col-md-3"><RadzenLabel Text="Konfession" Component="religousGroup" /></div>
-                                            <div class="col-md-9">
-                                                <RadzenRadioButtonList Name="religousGroup"
-                                                                       TValue="int"
-                                                                       Value=@((int)taxPerson.ReligiousGroupType)
-                                                                       Change=@(args => { taxPerson.ReligiousGroupType = (ReligiousGroupType)args; })>
-                                                    <Items>
-                                                        <RadzenRadioButtonListItem Text="andere" Value="0" />
-                                                        <RadzenRadioButtonListItem Text="evangelisch" Value="1" />
-                                                        <RadzenRadioButtonListItem Text="christ-katholisch" Value="2" />
-                                                        <RadzenRadioButtonListItem Text="römisch-katholisch" Value="3" />
-                                                    </Items>
-                                                </RadzenRadioButtonList>
-                                            </div>
-                                            @if (taxPerson.CivilStatus == CivilStatus.Married)
-                                            {
-                                                <div class="col-md-3"><RadzenLabel Text="Partner" Component="religousGroupPartner" /></div>
+                                                <div class="col-md-3"><RadzenLabel Text="Zivilstand" /></div>
                                                 <div class="col-md-9">
-                                                    <RadzenRadioButtonList Name="religousGroupPartner"
-                                                                           TValue="int"
-                                                                           Change=@(args => { taxPerson.PartnerReligiousGroupType = (ReligiousGroupType)args; })
-                                                                           Value=@((int)(taxPerson.PartnerReligiousGroupType ?? ReligiousGroupType.Other))>
-                                                        <Items>
-                                                            <RadzenRadioButtonListItem Text="andere" Value="0" />
-                                                            <RadzenRadioButtonListItem Text="evangelisch" Value="1" />
-                                                            <RadzenRadioButtonListItem Text="christ-katholisch" Value="2" />
-                                                            <RadzenRadioButtonListItem Text="römisch-katholisch" Value="3" />
-                                                        </Items>
-                                                    </RadzenRadioButtonList>
+                                                    <CivilStatusSelector
+                                                        SelectedCivilStatus="@taxPerson.CivilStatus"
+                                                        OnSelected="@(args => taxPerson.CivilStatus = args)"/>
+                                                </div>
+
+                                                <div class="col-md-3"><RadzenLabel Text="Konfession" /></div>
+                                                <div class="col-md-9">
+                                                    <ReligiousGroupSelector
+                                                        SelectedReligiousGroupType="@taxPerson.ReligiousGroupType"
+                                                        OnSelected="@(args => taxPerson.ReligiousGroupType = args ?? ReligiousGroupType.Other)" />
+                                                </div>
+                                                @if (taxPerson.CivilStatus == CivilStatus.Married)
+                                            {
+                                                <div class="col-md-3"><RadzenLabel Text="Konfession Partner" /></div>
+                                                <div class="col-md-9">
+                                                    <ReligiousGroupSelector
+                                                        SelectedReligiousGroupType="@taxPerson.PartnerReligiousGroupType"
+                                                        OnSelected="@(args => taxPerson.PartnerReligiousGroupType = args)" />
                                                 </div>
                                             }
-                                        </div>
-                                        
-                                    </RadzenFieldset>
+                                            </div>
+
+                                        </RadzenFieldset>
+                                    </div>
+                                    <div class="row">
+                                        <RadzenFieldset Text="Vorsorge">
+                                            <div class="col-md-3"><RadzenLabel Text="Geburtstag" /></div>
+                                            <div class="col-md-9"><RadzenDatePicker @bind-Value="birthdate" DateFormat="d.M.yyyy"/></div>
+
+                                        </RadzenFieldset>
+
+                                        <RadzenFieldset Text="Steuerdaten">
+                                            <div class="row">
+                                                <div class="col-md-3"><RadzenLabel Text="Lohn" /></div>
+                                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Income" /></div>
+
+                                                <div class="col-md-3"><RadzenLabel Text="Vermögen" /></div>
+                                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Wealth" /></div>
+                                                <div class="col-md-3"><RadzenLabel Text="Steuergemeinde" /></div>
+                                                <div class="col-md-9">
+                                                    <MunicipalitySelector BfsMunicipalityId="model.BfsMunicipalityId" OnSelected="m => { model.BfsMunicipalityId = m.BfsMunicipalityNumber; }" />
+                                                </div>
+                                            </div>
+                                        </RadzenFieldset>
+
+                                    </div>
                                 </ChildContent>
                             </FormStep>
                         </ChildContent>
                     </RadzenStepsItem>
-                    <RadzenStepsItem Text="Steuerdaten">
-                        <ChildContent>
-                            <FormStep Title="Steuerdaten" HelpText="Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.">
-                                <ChildContent>
 
-                                    <RadzenFieldset Text="Steuerdaten">
-                                        <div class="row">
-                                            <div class="col-md-3"><RadzenLabel Text="Lohn" /></div>
-                                            <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Income" /></div>
-
-                                            <div class="col-md-3"><RadzenLabel Text="Vermögen" /></div>
-                                            <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="model.Wealth" /></div>
-                                            <div class="col-md-3"><RadzenLabel Text="Steuergemeinde" /></div>
-                                            <div class="col-md-9">
-                                                <MunicipalitySelector BfsMunicipalityId="model.BfsMunicipalityId" OnSelected="id => { model.BfsMunicipalityId = id; }" />
-                                            </div>
-                                        </div>
-                                    </RadzenFieldset>
-
-                                    </ChildContent>
-                            </FormStep>
-                        </ChildContent>
-                    </RadzenStepsItem>
-                    <RadzenStepsItem Text="Cash-Flow Actions">
+                    <RadzenStepsItem Text="Cash-Flow Actions" Disabled="@(selectedPerson == null)">
                         <ChildContent>
                             <FormStep
                                 Title="Wohnortwechsel"
                                 HelpText="Ab einem gewünschten Jahr kann die Wohngemeinde geändert werden, was einen Einfluss auf alle Steuern hat, insbesondere wenn die neue Gemeinde in einem anderen Kanton liegt.">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h3>Steuergemeinde wechseln</h3>
+                                        <h5>Steuergemeinde wechseln</h5>
                                         <RadzenSwitch Value="isChangeResidenceActive" ValueChanged="() => isChangeResidenceActive = !isChangeResidenceActive"/>
                                     </div>
                                 </div>
@@ -121,13 +112,35 @@
                                             <div class="col-md-3"><RadzenLabel Text="Kosten" /></div>
                                             <div class="col-md-9"><RadzenNumeric TValue="decimal" @bind-Value="changeResidenceModel.ChangeCost" /></div>
                                             <div class="col-md-3"><RadzenLabel Text="Gemeinde" /></div>
-                                            <div class="col-md-9"><MunicipalitySelector BfsMunicipalityId="changeResidenceModel.DestinationMunicipalityId" OnSelected="HandleChangeResidence" /></div>
+                                            <div class="col-md-9"><MunicipalitySelector
+                                                BfsMunicipalityId="changeResidenceModel.DestinationMunicipalityId"
+                                                OnSelected="HandleChangeResidence" /></div>
                                         </div>
                                     </ChildContent>
                                 </RadzenCard>
                             </FormStep>
 
-                            <FormStep Title="Zu- und Abflüsse"
+                            <FormStep 
+                                Title="Transfers"
+                                HelpText="Für ein gewähltes Jahr kann Guthaben von einem Ursrpungs- zu einem Zielkonto transferiert werden. Das Guthaben kann ein Betrag oder ein Prozentssatz sein.
+                                           Transfer-Transaktionen dieser Art gibt es insbesondere in der Vorsorge: ein 3a-Konto wird aufgelöst oder bei Pensionierung lässt man sich das Geld auszahlen.
+                                           Wie im Fall einer Auflösung des 3a-Kontos fallen auch Steuern an.">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>Kapitalbezug</h3>
+                                        <RadzenSwitch Value="isClearActionActive" ValueChanged="() => isClearActionActive = !isClearActionActive"/>
+                                    </div>
+                                </div>
+
+                                <RadzenCard Visible="isClearActionActive">
+                                    <ChildContent>
+                                        <ClearAccountActionDefinitionForm Definition="clearAccountAction"></ClearAccountActionDefinitionForm>
+                                    </ChildContent>
+                                </RadzenCard>
+                            </FormStep>
+
+                            <FormStep Title="Generische Zu- und Abflüsse"
                                       HelpText="Einmalige oder periodische Kapitalflüsse, die einer Steuer unterliegen. Mit einem Geldfluss sind immer zwei Konti verbunden.">
                                 <h3>Vorsorge</h3>
                                 <RadzenCard>
@@ -152,7 +165,7 @@
                             </FormStep>
                         </ChildContent>
                     </RadzenStepsItem>
-                    <RadzenStepsItem Text="Simulation">
+                    <RadzenStepsItem Text="Simulation" Disabled="@(selectedPerson == null)">
                         <ChildContent>
                             <FormStep Title="Simulation" HelpText="Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern.">
                                 <RadzenCard>
@@ -240,7 +253,7 @@
         <div class="row">
             <div class="col-md-12">
                 <label>Rohdaten</label>
-                <RadzenTextArea Name="output" Rows="10" ReadOnly="true" Value="@Serialize(multiPeriodCalculationResponse)" Style="width: 100%"/>
+                <RadzenTextArea Name="output" Rows="10" ReadOnly="true" Value="@(JsonSerializer.Serialize(multiPeriodCalculationResponse))" Style="width: 100%"/>
             </div>
         </div>
         </div>
@@ -263,18 +276,24 @@
     };
 
     private IEnumerable<GenericCashFlowDefinition> genericCashFlowDefinitions = new List<GenericCashFlowDefinition>();
+    private ClearAccountAction clearAccountAction = new();
 
-    private readonly TaxPerson taxPerson = DefaultTaxPerson.GetDefaultValues();
+    private TaxPerson taxPerson;
+    private PersonViewModel selectedPerson;
+    private IReadOnlyCollection<PersonViewModel> persons;
     private readonly MultiPeriodOptions simulationOptions = new();
 
     private MultiPeriodResponse multiPeriodCalculationResponse;
     private ChartDataItemModel[] capitalBenefitsDataItems = { };
     private ChartDataItemModel[] wealthDataItems = { };
     private ChartDataItemModel[] totalDataItems = { };
-    private bool isChangeResidenceActive = false;
+    private bool isChangeResidenceActive;
+    private bool isClearActionActive;
+    private DateOnly? birthdate = new DateOnly(1900, 1, 1);
 
-    protected override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
+        persons = (await personService.GetPersonsAsync()).ToList();
         changeResidenceModel.DestinationMunicipalityId = model.BfsMunicipalityId;
         changeResidenceModel.ChangeAtYear = Math.Max(model.StartingYear + model.NumberOfPeriods - 3, 0);
         genericCashFlowDefinitions = new List<GenericCashFlowDefinition>
@@ -321,7 +340,7 @@
             }
         };
 
-        return Task.CompletedTask;
+        clearAccountAction.ClearAtYear = Math.Max(model.StartingYear + model.NumberOfPeriods-1, 0);
     }
 
     private async Task OnSubmit(MultiPeriodRequest request)
@@ -329,6 +348,7 @@
         multiPeriodCalculationResponse = null;
         request.Options = simulationOptions;
         request.CashFlowDefinitionHolder.GenericCashFlowDefinitions = genericCashFlowDefinitions.ToList();
+        request.CashFlowDefinitionHolder.ClearAccountActions = new List<ClearAccountAction>() { clearAccountAction };
         multiPeriodCalculationResponse = await multiPeriodCalculationService.CalculateAsync(request);
 
         (ChartDataItemModel[] wealthData, ChartDataItemModel[] capitalBenefitsData, ChartDataItemModel[] totalData) = GetTotalDataItems();
@@ -346,21 +366,10 @@
     {
         return new MultiPeriodRequest
         {
-            Name = "Toni",
-            CivilStatus = CivilStatus.Single,
-            ReligiousGroupType = ReligiousGroupType.Protestant,
-            PartnerReligiousGroupType = null,
-            Income = 100_000,
-            Wealth = 500_000,
-            BfsMunicipalityId = 139,
+            Name = "Unknown",
             NumberOfPeriods = 10,
             StartingYear = 2021,
         };
-    }
-
-    private string Serialize(MultiPeriodResponse response)
-    {
-        return JsonSerializer.Serialize(response);
     }
 
     private (ChartDataItemModel[] wealthData, ChartDataItemModel[] capitalBenefitsData, ChartDataItemModel[] totalData) GetTotalDataItems()
@@ -423,8 +432,32 @@
             .ToArray();
     }
 
-    private void HandleChangeResidence(int id)
+    private void HandleChangeResidence(TaxSupportedMunicipalityModel municipalityModel)
     {
-        changeResidenceModel.DestinationMunicipalityId = id;
+        changeResidenceModel.DestinationMunicipalityId = municipalityModel.BfsMunicipalityNumber;
+    }
+
+    private void HandleSelectPerson(Guid personId)
+    {
+        selectedPerson = persons.Single(item => item.Id == personId);
+        taxPerson = new TaxPerson
+            {
+                Name = selectedPerson.Name,
+                CivilStatus = selectedPerson.CivilStatus,
+                TaxableIncome = selectedPerson.TaxableIncome,
+                TaxableWealth = selectedPerson.TaxableWealth,
+                PartnerReligiousGroupType = selectedPerson.PartnerReligiousGroupType,
+                ReligiousGroupType = selectedPerson.ReligiousGroupType,
+            };
+
+        model.CivilStatus = selectedPerson.CivilStatus;
+        model.ReligiousGroupType = selectedPerson.ReligiousGroupType;
+        model.PartnerReligiousGroupType = selectedPerson.PartnerReligiousGroupType;
+        model.Name = selectedPerson.Name;
+        model.BfsMunicipalityId = selectedPerson.BfsMunicipalityId;
+        model.Income = selectedPerson.TaxableIncome;
+        model.Wealth = selectedPerson.TaxableWealth;
+
+        birthdate = DateOnly.FromDateTime(selectedPerson.DateOfBirth.Date);
     }
 }

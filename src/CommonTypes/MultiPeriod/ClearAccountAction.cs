@@ -10,7 +10,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The identifier.
         /// </value>
-        public string Id { get; init; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets the name.
@@ -18,7 +18,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The name.
         /// </value>
-        public string Name { get; init; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the ordinal to define a linear order between multiple cash-flows.
@@ -26,7 +26,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The ordinal.
         /// </value>
-        public int Ordinal { get; init; }
+        public int Ordinal { get; set; }
 
         /// <summary>
         /// Gets the clear at year.
@@ -34,11 +34,11 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The clear at year.
         /// </value>
-        public int ClearAtYear { get; init; }
+        public int ClearAtYear { get; set; }
 
-        public decimal ClearRatio { get; init; } = decimal.One;
+        public decimal ClearRatio { get; set; } = decimal.One;
 
-        public FlowPair Flow { get; init; }
+        public FlowPair Flow { get; set; }
 
         public bool IsTaxable { get; set; }
 

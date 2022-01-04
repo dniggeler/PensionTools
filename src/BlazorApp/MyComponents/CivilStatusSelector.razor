@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Components
+@using Microsoft.Extensions.Localization
+@using PensionCoach.Tools.CommonTypes
+@using BlazorApp.Resources
+
+@inject IStringLocalizer<Resource> localizer
+
+<RadzenDropDown Name="civilStatus"
+                Disabled="@IsReadOnly"
+                Data=@civilStatusModels
+                ValueProperty="Value"
+                TextProperty="Name"
+                @bind-Value="@SelectedCivilStatus"
+                Change="@(HandleChange)">
+</RadzenDropDown>
+
+@code {
+    internal class CivilStatusViewModel
+    {
+        public CivilStatus Value { get; set; }
+
+        public string Name { get; set;}
+    }
+
+    [Parameter]
+    public bool IsReadOnly { get; set; }
+
+    [Parameter]
+    public CivilStatus SelectedCivilStatus { get; set; } = CivilStatus.Undefined;
+
+    [Parameter]
+    public EventCallback<CivilStatus> OnSelected { get; set; }
+
+    private readonly List<CivilStatusViewModel> civilStatusModels = new();
+
+    protected override void OnInitialized()
+    {
+        civilStatusModels.Add(new CivilStatusViewModel { Name = "ledig", Value = CivilStatus.Single });
+        civilStatusModels.Add(new CivilStatusViewModel { Name = "verheiratet", Value = CivilStatus.Married });
+    }
+
+    private void HandleChange(object value)
+    {
+        SelectedCivilStatus = (CivilStatus)value;
+        OnSelected.InvokeAsync(SelectedCivilStatus);
+    }
+}

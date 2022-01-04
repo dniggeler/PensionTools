@@ -1,4 +1,6 @@
-﻿@inherits LayoutComponentBase
+﻿@using System.Globalization
+@using System.Threading
+@inherits LayoutComponentBase
 
 <RadzenDialog />
 <RadzenNotification />
@@ -13,6 +15,12 @@
                 <RadzenLabel Text="PensionTools"></RadzenLabel>
             </div>
             <div class="col-6 text-right">
+                <RadzenSplitButton Icon="language" Style="background-color: #479cc8" Click="@(SetCulture)">
+                    <ChildContent>
+                        <RadzenSplitButtonItem Text="DE" Value="1"/>
+                        <RadzenSplitButtonItem Text="EN" Value="2" />
+                    </ChildContent>
+                </RadzenSplitButton>
             </div>
         </div>
     </ChildContent>
@@ -28,6 +36,8 @@
     <ChildContent>
         <RadzenPanelMenu style="height: 100%">
             <ChildContent>
+                <RadzenPanelMenuItem Text="Personen" Path="PersonListing"></RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Text="Steuerrechner" Path="TaxCalculation"></RadzenPanelMenuItem>
                 <RadzenPanelMenuItem Text="Finanzplanung" Path="WealthPlanning"></RadzenPanelMenuItem>
             </ChildContent>
         </RadzenPanelMenu>
@@ -65,4 +75,11 @@
 
         await InvokeAsync(() => { body0.Toggle(); });
     }
+
+    private void SetCulture()
+    {
+        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.DefaultThreadCurrentUICulture =
+            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-CH");
+    }
+
 }
