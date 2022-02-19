@@ -114,17 +114,35 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         <RadzenPanel AllowCollapse="true">
         <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-3">
+                <RadzenLabel Text="@taxResponse.Name" />
+            </div>
+            <div class="col-lg-9">
+                <RadzenTree>
+                    <RadzenTreeItem Text="@("Total Steuerbetrag: " + taxResponse.TotalTaxAmount)" Expanded="false">
+                        <ChildContent>
+                            <RadzenTreeItem Text=@("Gemeindesteuer: " + taxResponse.MunicipalityTaxAmount)/>
+                            <RadzenTreeItem Text=@("Staatssteuer: " + taxResponse.CantonTaxAmount)/>
+                            <RadzenTreeItem Text=@("Bundessteuer: " + taxResponse.FederalTaxAmount)/>
+                            <RadzenTreeItem Text=@("Vermögenssteuer: " + taxResponse.WealthTaxAmount)/>
+                            <RadzenTreeItem Text="Details" Expanded="false">
+                                <ChildContent>
+                                </ChildContent>
+                            </RadzenTreeItem>
+                        </ChildContent>
+                    </RadzenTreeItem>
+                </RadzenTree>
+
                 <RadzenDataGrid AllowFiltering="false" AllowColumnResize="false" AllowPaging="false" AllowSorting="false"
                                 Data="@(GetFullTaxResponses())" TItem="FullTaxResponse">
                     <Columns>
-                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="Name" Filterable="false" Title="Name" TextAlign="TextAlign.Center" />
-                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="TotalTaxAmount" Filterable="false" Title="Total Steuerbetrag" TextAlign="TextAlign.Right" />
-                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="MunicipalityTaxAmount" Filterable="false" Title="Gemeindesteuer" TextAlign="TextAlign.Right" />
-                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="CantonTaxAmount" Filterable="false" Title="Staatssteuer" TextAlign="TextAlign.Right" />
-                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="FederalTaxAmount" Filterable="false" Title="Bundessteuer" TextAlign="TextAlign.Right" />
-                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="WealthTaxAmount" Filterable="false" Title="Vermögenssteuer" TextAlign="TextAlign.Right" />
-                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="ChurchTaxAmount" Filterable="false" Title="Kirchensteuer" TextAlign="TextAlign.Right" />
+                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="Name" Filterable="false" Title="Name" TextAlign="TextAlign.Center"/>
+                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="TotalTaxAmount" Filterable="false" Title="Total Steuerbetrag" TextAlign="TextAlign.Right"/>
+                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="MunicipalityTaxAmount" Filterable="false" Title="Gemeindesteuer" TextAlign="TextAlign.Right"/>
+                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="CantonTaxAmount" Filterable="false" Title="Staatssteuer" TextAlign="TextAlign.Right"/>
+                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="FederalTaxAmount" Filterable="false" Title="Bundessteuer" TextAlign="TextAlign.Right"/>
+                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="WealthTaxAmount" Filterable="false" Title="Vermögenssteuer" TextAlign="TextAlign.Right"/>
+                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="ChurchTaxAmount" Filterable="false" Title="Kirchensteuer" TextAlign="TextAlign.Right"/>
                     </Columns>
                 </RadzenDataGrid>
             </div>
