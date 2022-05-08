@@ -42,8 +42,8 @@ namespace Calculators.CashFlow
                 .AggregateCashFlows()
                 .ToList();
 
-            int startingYear = cashFlows.Min(item => item.Year);
-            int finalYear = cashFlows.Max(item => item.Year);
+            int startingYear = cashFlows.Min(item => item.DateOfOccurrence.Year);
+            int finalYear = cashFlows.Max(item => item.DateOfOccurrence.Year);
 
             List<SinglePeriodCalculationResult> singlePeriodCalculationResults = Enumerable.Empty<SinglePeriodCalculationResult>().ToList();
 
@@ -56,7 +56,7 @@ namespace Calculators.CashFlow
                 int currentYear = year;
                 
                 List<CashFlowModel> currentYearCashFlows = cashFlows
-                    .Where(item => item.Year == currentYear)
+                    .Where(item => item.DateOfOccurrence.Year == currentYear)
                     .ToList();
 
                 List<ClearAccountAction> currentYearClearAccountActions = cashFlowDefinitionHolder

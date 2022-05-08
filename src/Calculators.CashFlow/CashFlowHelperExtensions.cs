@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Calculators.CashFlow.Models;
 using PensionCoach.Tools.CommonTypes;
@@ -15,7 +16,7 @@ namespace Calculators.CashFlow
                 definition.InvestmentPeriod.NumberOfPeriods);
 
             yield return new CashFlowModel(
-                definition.InvestmentPeriod.Year,
+                new DateOnly(definition.InvestmentPeriod.Year, 1, 1),
                 definition.InitialAmount,
                 AccountType.Exogenous,
                 definition.Flow.Target,
@@ -28,7 +29,7 @@ namespace Calculators.CashFlow
             foreach (var year in range)
             {
                 yield return new CashFlowModel(
-                    year,
+                    new DateOnly(year, 1, 1),
                     cashFlow,
                     definition.Flow.Source,
                     definition.Flow.Target,
@@ -45,7 +46,7 @@ namespace Calculators.CashFlow
             return cashFlows
                 .GroupBy(keySelector => new
                 {
-                    keySelector.Year,
+                    keySelector.DateOfOccurrence,
                     keySelector.Source,
                     keySelector.Target,
                     keySelector.IsTaxable,
@@ -53,7 +54,7 @@ namespace Calculators.CashFlow
                     keySelector.OccurrenceType
                 })
                 .Select(g => new CashFlowModel(
-                    g.Key.Year,
+                    g.Key.DateOfOccurrence,
                     g.Sum(item => item.Amount),
                     g.Key.Source,
                     g.Key.Target,

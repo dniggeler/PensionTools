@@ -1,11 +1,12 @@
-﻿using PensionCoach.Tools.CommonTypes;
+﻿using System;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace Calculators.CashFlow.Models
 {
     public record CashFlowModel(
-        int Year,
+        DateOnly DateOfOccurrence,
         decimal Amount,
         AccountType Source,
         AccountType Target,

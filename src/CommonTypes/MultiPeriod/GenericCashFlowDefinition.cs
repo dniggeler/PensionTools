@@ -1,9 +1,18 @@
-﻿using PensionCoach.Tools.CommonTypes.Tax;
+﻿using System;
+using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod
 {
     public record GenericCashFlowDefinition
     {
+        /// <summary>
+        /// Gets or sets the date of start.
+        /// </summary>
+        /// <value>
+        /// The date of start.
+        /// </value>
+        public DateOnly DateOfStart { get; set; }
+
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>

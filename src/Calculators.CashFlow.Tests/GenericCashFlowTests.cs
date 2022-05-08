@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Calculators.CashFlow.Models;
 using PensionCoach.Tools.CommonTypes;
@@ -18,6 +19,7 @@ namespace Calculators.CashFlow.Tests
             // given
             GenericCashFlowDefinition definition = new GenericCashFlowDefinition
             {
+                DateOfStart = new DateOnly(2021, 1, 1),
                 NetGrowthRate = 0,
                 Name = "Test",
                 InitialAmount = 9_500,
