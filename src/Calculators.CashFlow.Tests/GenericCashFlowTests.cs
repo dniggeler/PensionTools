@@ -19,7 +19,7 @@ namespace Calculators.CashFlow.Tests
             // given
             GenericCashFlowDefinition definition = new GenericCashFlowDefinition
             {
-                DateOfStart = new DateOnly(2021, 1, 1),
+                DateOfStart = new DateTime(2021, 1, 1),
                 NetGrowthRate = 0,
                 Name = "Test",
                 InitialAmount = 9_500,

@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using PensionCoach.Tools.BvgCalculator;
+using PensionCoach.Tools.EstvTaxCalculators;
 using Swashbuckle.AspNetCore.Filters;
 using Tax.Data;
 using Tax.Tools.Comparison;
@@ -59,6 +60,7 @@ namespace TaxCalculator.WebApi
             services.AddTaxComparers();
             services.AddBvgCalculators();
             services.AddCashFlowCalculators();
+            services.AddEstvClient(Configuration["EstvClient:BaseUrl"]);
             services.AddSwaggerExamplesFromAssemblyOf<Examples.CapitalBenefitTaxRequestExample>();
             services.AddSwaggerGen(opt =>
             {

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
+using PensionCoach.Tools.EstvTaxCalculators;
+using PensionCoach.Tools.EstvTaxCalculators.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
@@ -22,15 +24,18 @@ namespace TaxCalculator.WebApi.Controllers
         private readonly IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator;
         private readonly IFullTaxCalculator fullTaxCalculator;
         private readonly IMunicipalityConnector municipalityResolver;
+        private readonly IEstvFacadeClient estvFacadeClient;
 
         public TaxCalculatorController(
             IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator,
             IFullTaxCalculator fullTaxCalculator,
-            IMunicipalityConnector municipalityResolver)
+            IMunicipalityConnector municipalityResolver,
+            IEstvFacadeClient estvFacadeClient)
         {
             this.fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;
             this.fullTaxCalculator = fullTaxCalculator;
             this.municipalityResolver = municipalityResolver;
+            this.estvFacadeClient = estvFacadeClient;
         }
 
         /// <summary>
@@ -200,6 +205,20 @@ namespace TaxCalculator.WebApi.Controllers
             IReadOnlyCollection<TaxSupportedMunicipalityModel> list = await municipalityResolver.GetAllSupportTaxCalculationAsync();
 
             return Ok(list);
+        }
+
+        [HttpGet]
+        [Route("location")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
+        public async Task<ActionResult<TaxLocation>> GetTaxLocation(string zip, string city)
+        {
+            return await estvFacadeClient.GetTaxLocationAsync(zip, city) switch
+            {
+                null => NotFound(),
+                { } a => Ok(a)
+            };
         }
     }
 }

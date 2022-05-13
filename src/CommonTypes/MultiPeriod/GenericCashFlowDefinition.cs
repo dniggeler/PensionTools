@@ -11,7 +11,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         /// <value>
         /// The date of start.
         /// </value>
-        public DateOnly DateOfStart { get; set; }
+        public DateTime DateOfStart { get; set; }
 
         /// <summary>
         /// Gets or sets the identifier.
