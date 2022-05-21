@@ -72,9 +72,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.Integration.T
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EstvTaxCalculators", "EstvTaxCalculators", "{925F3C21-3653-4DA2-99F9-0982736674BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstvTaxCalculatorFacade", "EstvTaxCalculatorFacade\EstvTaxCalculatorFacade.csproj", "{A0859BE8-14DC-479C-A20F-561092BF59F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstvTaxCalculatorFacade", "EstvTaxCalculatorFacade\EstvTaxCalculatorFacade.csproj", "{A0859BE8-14DC-479C-A20F-561092BF59F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstvTaxCalculatorFacade.Integration.Tests", "EstvTaxCalculatorFacade.Integration.Tests\EstvTaxCalculatorFacade.Integration.Tests.csproj", "{202EB507-C7AB-49F2-B048-73267E7BBEC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstvTaxCalculatorFacade.Integration.Tests", "EstvTaxCalculatorFacade.Integration.Tests\EstvTaxCalculatorFacade.Integration.Tests.csproj", "{202EB507-C7AB-49F2-B048-73267E7BBEC2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Post OpenApi", "Post OpenApi", "{6878921D-9AA1-4159-8E29-B440B2E44C9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostOpenApi.Client", "PostOpenApi.Client\PostOpenApi.Client.csproj", "{8F5A7D0B-09EE-4952-885D-B1738DE243BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostOpenApi.Integration.Tests", "PostOpenApi.Integration.Tests\PostOpenApi.Integration.Tests.csproj", "{B35C3E62-552B-470D-9471-5B823A1B7831}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -194,6 +200,14 @@ Global
 		{202EB507-C7AB-49F2-B048-73267E7BBEC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{202EB507-C7AB-49F2-B048-73267E7BBEC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{202EB507-C7AB-49F2-B048-73267E7BBEC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F5A7D0B-09EE-4952-885D-B1738DE243BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F5A7D0B-09EE-4952-885D-B1738DE243BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F5A7D0B-09EE-4952-885D-B1738DE243BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F5A7D0B-09EE-4952-885D-B1738DE243BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B35C3E62-552B-470D-9471-5B823A1B7831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B35C3E62-552B-470D-9471-5B823A1B7831}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B35C3E62-552B-470D-9471-5B823A1B7831}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B35C3E62-552B-470D-9471-5B823A1B7831}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -225,6 +239,8 @@ Global
 		{47C8A4FD-6756-4474-870B-BD6921163C0B} = {3B665A6F-1CE9-48B9-9736-A5C05C49335D}
 		{A0859BE8-14DC-479C-A20F-561092BF59F6} = {925F3C21-3653-4DA2-99F9-0982736674BA}
 		{202EB507-C7AB-49F2-B048-73267E7BBEC2} = {925F3C21-3653-4DA2-99F9-0982736674BA}
+		{8F5A7D0B-09EE-4952-885D-B1738DE243BB} = {6878921D-9AA1-4159-8E29-B440B2E44C9B}
+		{B35C3E62-552B-470D-9471-5B823A1B7831} = {6878921D-9AA1-4159-8E29-B440B2E44C9B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB937E37-4C08-4EB0-86F7-87F74A7F6C44}

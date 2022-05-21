@@ -24,18 +24,18 @@ namespace TaxCalculator.WebApi.Controllers
         private readonly IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator;
         private readonly IFullTaxCalculator fullTaxCalculator;
         private readonly IMunicipalityConnector municipalityResolver;
-        private readonly IEstvFacadeClient estvFacadeClient;
+        private readonly IEstvTaxCalculatorClient estvTaxCalculatorClient;
 
         public TaxCalculatorController(
             IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator,
             IFullTaxCalculator fullTaxCalculator,
             IMunicipalityConnector municipalityResolver,
-            IEstvFacadeClient estvFacadeClient)
+            IEstvTaxCalculatorClient estvFacadeClient)
         {
             this.fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;
             this.fullTaxCalculator = fullTaxCalculator;
             this.municipalityResolver = municipalityResolver;
-            this.estvFacadeClient = estvFacadeClient;
+            this.estvTaxCalculatorClient = estvFacadeClient;
         }
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace TaxCalculator.WebApi.Controllers
 
         public async Task<ActionResult<TaxLocation>> GetTaxLocation(string zip, string city)
         {
-            return await estvFacadeClient.GetTaxLocationAsync(zip, city) switch
+            return await estvTaxCalculatorClient.GetTaxLocationAsync(zip, city) switch
             {
                 null => NotFound(),
                 { } a => Ok(a)

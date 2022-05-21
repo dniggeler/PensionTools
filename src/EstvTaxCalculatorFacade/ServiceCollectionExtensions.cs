@@ -4,14 +4,26 @@ namespace PensionCoach.Tools.EstvTaxCalculators;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddEstvClient(this IServiceCollection services, string baseUrl)
+    public static IServiceCollection AddSwissTaxFacadeClient(this IServiceCollection services, string baseUrl)
     {
-        services.AddHttpClient("EstvClient", c =>
+        services.AddHttpClient(SwissTaxFacadeClient.SwissTaxFacadeClientName, c =>
         {
             c.BaseAddress = new Uri(baseUrl);
         });
 
-        services.AddTransient<IEstvFacadeClient, EstvFacadeClient>();
+        services.AddTransient<ISwissTaxFacadeClient, SwissTaxFacadeClient>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddEstvTaxCalculatorClient(this IServiceCollection services, string baseUrl)
+    {
+        services.AddHttpClient(EstvTaxCalculatorClient.EstvTaxCalculatorClientName, c =>
+        {
+            c.BaseAddress = new Uri(baseUrl);
+        });
+
+        services.AddTransient<IEstvTaxCalculatorClient, EstvTaxCalculatorClient>();
 
         return services;
     }

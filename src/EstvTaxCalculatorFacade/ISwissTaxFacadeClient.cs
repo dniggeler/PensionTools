@@ -2,7 +2,7 @@
 
 namespace PensionCoach.Tools.EstvTaxCalculators;
 
-public interface IEstvFacadeClient
+public interface ISwissTaxFacadeClient
 {
     Task<TaxLocation> GetTaxLocationAsync(string zip, string city);
 }

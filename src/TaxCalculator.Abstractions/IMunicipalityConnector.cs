@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
+using PensionCoach.Tools.PostOpenApi.Models;
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions
 {
@@ -18,7 +19,11 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions
         /// Gets all municipalities supporting tax calculation.
         /// Municipalities are sorted by their name.
         /// </summary>
-        /// <returns></returns>
         Task<IReadOnlyCollection<TaxSupportedMunicipalityModel>> GetAllSupportTaxCalculationAsync();
+
+        /// <summary>
+        /// Get all current zip (PLZ) information for Switzerland supplied by the Swiss Post.
+        /// </summary>
+        Task<IEnumerable<ZipModel>> GetAllZipCodesAsync();
     }
 }

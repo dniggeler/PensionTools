@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using AutoMapper;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
+using PensionCoach.Tools.PostOpenApi;
+using PensionCoach.Tools.PostOpenApi.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Tax.Data;
 using Tax.Data.Abstractions.Models;
@@ -18,15 +22,18 @@ namespace TaxCalculator
         private readonly IMapper mapper;
         private readonly MunicipalityDbContext municipalityDbContext;
         private readonly Func<TaxRateDbContext> dbContext;
+        private readonly IPostOpenApiClient postOpenApiClient;
 
         public MunicipalityConnector(
             IMapper mapper,
             MunicipalityDbContext municipalityDbContext,
-            Func<TaxRateDbContext> dbContext)
+            Func<TaxRateDbContext> dbContext,
+            IPostOpenApiClient postOpenApiClient)
         {
             this.mapper = mapper;
             this.municipalityDbContext = municipalityDbContext;
             this.dbContext = dbContext;
+            this.postOpenApiClient = postOpenApiClient;
         }
 
         public Task<IEnumerable<MunicipalityModel>> GetAllAsync()
@@ -93,6 +100,7 @@ namespace TaxCalculator
                 .AsTask();
         }
 
+        /// <inheritdoc />
         public Task<IReadOnlyCollection<TaxSupportedMunicipalityModel>> GetAllSupportTaxCalculationAsync()
         {
             using var ctx = dbContext();
@@ -116,6 +124,52 @@ namespace TaxCalculator
                     .ToList();
 
             return Task.FromResult(municipalities);
+        }
+
+        /// <inheritdoc />
+        public async Task<IEnumerable<ZipModel>> GetAllZipCodesAsync()
+        {
+            const int limitPerFetch = 100;
+            int offsetFactor = 0;
+
+            Channel<(int, int)> fetchZipChannel = Channel.CreateBounded<(int, int)>(new BoundedChannelOptions(5));
+
+            _ = Task.Factory.StartNew(async () =>
+            {
+                for (int ii = 0; ii < 10; ii++)
+                {
+                    await fetchZipChannel.Writer.WriteAsync((limitPerFetch, offsetFactor));
+                }
+            });
+
+            int count = 0;
+
+            List<ZipModel> zipModels = new();
+            while (count < 10)
+            {
+                (int limit, int offset) = await fetchZipChannel.Reader.ReadAsync();
+
+                IEnumerable<ZipModel> zipBatch =
+                    await postOpenApiClient.GetZipCodesAsync(limit, offset) switch
+                    {
+                        null => Array.Empty<ZipModel>(),
+                        { Records: { } } r => r.Records.Select(x => new ZipModel
+                        {
+                            BfsCode = x.Record.Fields.BfsCode,
+                            MunicipalityName = x.Record.Fields.MunicipalityName,
+                            Canton = x.Record.Fields.Canton,
+                            ZipCode = x.Record.Fields.ZipCode,
+                            DateOfValidity = DateTime.Parse(x.Record.Fields.DateOfValidity,
+                                CultureInfo.InvariantCulture),
+                        })
+                    };
+
+                zipModels.AddRange(zipBatch);
+
+                count++;
+            }
+
+            return zipModels;
         }
     }
 }

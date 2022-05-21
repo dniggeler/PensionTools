@@ -31,6 +31,7 @@
     <ProjectReference Include="..\BvgCalculator\BvgCalculator.csproj" />
     <ProjectReference Include="..\Calculators.CashFlow\Calculators.CashFlow.csproj" />
     <ProjectReference Include="..\EstvTaxCalculatorFacade\EstvTaxCalculatorFacade.csproj" />
+    <ProjectReference Include="..\PostOpenApi.Client\PostOpenApi.Client.csproj" />
     <ProjectReference Include="..\Tax.Tools.Comparison\Tax.Tools.Comparison\Tax.Tools.Comparison.csproj" />
     <ProjectReference Include="..\TaxCalculator\TaxCalculator.csproj" />
   </ItemGroup>
