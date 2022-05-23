@@ -134,7 +134,7 @@ namespace TaxCalculator
 
             Channel<(int, int)> fetchZipChannel = Channel.CreateBounded<(int, int)>(new BoundedChannelOptions(5));
 
-            _ = Task.Factory.StartNew(async () =>
+            _ = Task.Run(async () =>
             {
                 for (int ii = 0; ii < 10; ii++)
                 {
