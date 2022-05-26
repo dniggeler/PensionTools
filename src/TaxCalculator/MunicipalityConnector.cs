@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using AutoMapper;
 using LanguageExt;
+using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
+using PensionCoach.Tools.CommonUtils;
 using PensionCoach.Tools.PostOpenApi;
 using PensionCoach.Tools.PostOpenApi.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
@@ -23,18 +26,23 @@ namespace TaxCalculator
         private readonly MunicipalityDbContext municipalityDbContext;
         private readonly Func<TaxRateDbContext> dbContext;
         private readonly IPostOpenApiClient postOpenApiClient;
+        private readonly ILogger<MunicipalityConnector> logger;
 
         public MunicipalityConnector(
             IMapper mapper,
             MunicipalityDbContext municipalityDbContext,
             Func<TaxRateDbContext> dbContext,
-            IPostOpenApiClient postOpenApiClient)
+            IPostOpenApiClient postOpenApiClient,
+            ILogger<MunicipalityConnector> logger)
         {
             this.mapper = mapper;
             this.municipalityDbContext = municipalityDbContext;
             this.dbContext = dbContext;
             this.postOpenApiClient = postOpenApiClient;
+            this.logger = logger;
         }
+
+        private bool HasFetchFinished { get; set; }
 
         public Task<IEnumerable<MunicipalityModel>> GetAllAsync()
         {
@@ -129,47 +137,83 @@ namespace TaxCalculator
         /// <inheritdoc />
         public async Task<IEnumerable<ZipModel>> GetAllZipCodesAsync()
         {
+            const int numberOfReaders = 5;
             const int limitPerFetch = 100;
-            int offsetFactor = 0;
 
-            Channel<(int, int)> fetchZipChannel = Channel.CreateBounded<(int, int)>(new BoundedChannelOptions(5));
-
-            _ = Task.Run(async () =>
+            using (new MeasureTime(t => logger.LogDebug($"Execution time to fetch all ZIP: {t}ms")))
             {
-                for (int ii = 0; ii < 10; ii++)
+                Channel<(int, int)> fetchZipChannel = Channel.CreateBounded<(int, int)>(new BoundedChannelOptions(5));
+                Channel<ZipModel> resultZipChannel = Channel.CreateUnbounded<ZipModel>();
+
+                var consumers =
+                    Enumerable
+                        .Range(1, numberOfReaders)
+                        .Select(counter => ConsumeDataAsync(fetchZipChannel.Reader, resultZipChannel.Writer, counter))
+                        .ToArray();
+
+                await Task.Run(async () =>
                 {
-                    await fetchZipChannel.Writer.WriteAsync((limitPerFetch, offsetFactor));
-                }
-            });
-
-            int count = 0;
-
-            List<ZipModel> zipModels = new();
-            while (count < 10)
-            {
-                (int limit, int offset) = await fetchZipChannel.Reader.ReadAsync();
-
-                IEnumerable<ZipModel> zipBatch =
-                    await postOpenApiClient.GetZipCodesAsync(limit, offset) switch
+                    int count = 0;
+                    while (!HasFetchFinished)
                     {
-                        null => Array.Empty<ZipModel>(),
-                        { Records: { } } r => r.Records.Select(x => new ZipModel
-                        {
-                            BfsCode = x.Record.Fields.BfsCode,
-                            MunicipalityName = x.Record.Fields.MunicipalityName,
-                            Canton = x.Record.Fields.Canton,
-                            ZipCode = x.Record.Fields.ZipCode,
-                            DateOfValidity = DateTime.Parse(x.Record.Fields.DateOfValidity,
-                                CultureInfo.InvariantCulture),
-                        })
-                    };
+                        await fetchZipChannel.Writer.WriteAsync((limitPerFetch, count * limitPerFetch));
+                        count++;
+                    }
 
-                zipModels.AddRange(zipBatch);
+                    fetchZipChannel.Writer.Complete();
+                });
 
-                count++;
+                await Task.WhenAll(consumers);
+
+                resultZipChannel.Writer.Complete();
+
+                List<ZipModel> zipModels = new();
+
+                await foreach (var record in resultZipChannel.Reader.ReadAllAsync(CancellationToken.None))
+                {
+                    zipModels.Add(record);
+                }
+
+                return zipModels;
+            }
+        }
+
+        private async Task ConsumeDataAsync(ChannelReader<(int, int)> channelReader, ChannelWriter<ZipModel> channelWriter, int readerId)
+        {
+            while (await channelReader.WaitToReadAsync())
+            {
+                if (channelReader.TryRead(out (int limit, int offset) fetch))
+                {
+                    logger.LogDebug($"Fetch zip data by reader {readerId}: limit {fetch.limit}, offset {fetch.offset}");
+                    List<ZipModel> records = new List<ZipModel>();
+                    foreach (ZipModel model in await postOpenApiClient.GetZipCodesAsync(fetch.limit, fetch.offset)
+                                 switch
+                                 {
+                                     null => Array.Empty<ZipModel>(),
+                                     { TotalCount: 0 } => Array.Empty<ZipModel>(),
+                                     { Records: { } } r => r.Records.Select(x => new ZipModel
+                                     {
+                                         BfsCode = x.Record.Fields.BfsCode,
+                                         MunicipalityName = x.Record.Fields.MunicipalityName,
+                                         Canton = x.Record.Fields.Canton,
+                                         ZipCode = x.Record.Fields.ZipCode,
+                                         DateOfValidity = DateTime.Parse(x.Record.Fields.DateOfValidity, CultureInfo.InvariantCulture),
+                                     })
+                                 })
+                    {
+                        records.Add(model);
+                    }
+
+                    records.Iter(item => channelWriter.WriteAsync(item));
+
+                    if (records.Length() == 0)
+                    {
+                        HasFetchFinished = true;
+                    }
+                }
             }
 
-            return zipModels;
+            logger.LogDebug($"Reader {readerId} completed");
         }
     }
 }

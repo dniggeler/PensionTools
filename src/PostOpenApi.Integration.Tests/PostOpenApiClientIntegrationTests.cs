@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -24,7 +25,11 @@ public class PostOpenApiClientIntegrationTests : IClassFixture<WebApplicationFac
     [Fact(DisplayName = "All Zip Codes")]
     public async Task Should_Get_All_Zip_Codes_Successfully()
     {
-        var result = await client.GetFromJsonAsync<IEnumerable<ZipModel>>("zip");
+        IEnumerable<ZipModel> result = await client.GetFromJsonAsync<IEnumerable<ZipModel>>("zip") switch
+        {
+            {} a => a.ToList().OrderBy(item => item.BfsCode).ThenBy(item => item.MunicipalityName),
+            null => Array.Empty<ZipModel>()
+        };
 
         Snapshot.Match(result);
     }
