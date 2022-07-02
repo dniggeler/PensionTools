@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using LanguageExt;
 using Microsoft.AspNetCore.Http;
@@ -98,9 +97,71 @@ namespace TaxCalculator.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<ZipModel>>> GetZipCodes()
         {
-            IEnumerable<ZipModel> result = await municipalityConnector.GetAllZipCodesAsync();
+            List<ZipModel> result = new List<ZipModel>();
+            await foreach (var model in municipalityConnector.GetAllZipCodesAsync(int.MaxValue))
+            {
+                result.Add(model);
+            }
 
-            return Ok(result.ToList());
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Populate internal data store with all Swiss zip codes supplied by the Swiss Post Open Api.
+        /// </summary>
+        /// <remarks>
+        /// Vollständiges PLZ-Verzeichnis bereitgestellt von der Post abspeichern.
+        /// </remarks>
+        [HttpPost]
+        [Route("zip/populate")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<int>> PopulateZipCodes()
+        {
+            int count = await municipalityConnector.PopulateWithZipCodeAsync();
+
+            return Ok(count);
+        }
+
+        /// <summary>
+        /// Populate internal data store with all Swiss zip codes supplied by the Swiss Post Open Api.
+        /// </summary>
+        /// <remarks>
+        /// Vollständiges PLZ-Verzeichnis bereitgestellt von der Post abspeichern.
+        /// </remarks>
+        [HttpPost]
+        [Route("tax/populate/{clear:bool}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<int>> PopulateTaxLocation(bool clear)
+        {
+            int count = await municipalityConnector.PopulateWithTaxLocationAsync(clear);
+
+            return Ok(count);
+        }
+
+        /// <summary>
+        /// Populate internal data store with all Swiss zip codes supplied by the Swiss Post Open Api.
+        /// </summary>
+        /// <remarks>
+        /// Vollständiges PLZ-Verzeichnis bereitgestellt von der Post abspeichern.
+        /// </remarks>
+        [HttpPost]
+        [Route("zip/stage")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<int>> PopulateStageMunicipalityTable()
+        {
+            int count = await municipalityConnector.StagePlzTableAsync();
+
+            return Ok(count);
+        }
+
+        [HttpPost]
+        [Route("tax/clean")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<int>> CleanMunicipalityNames()
+        {
+            int count = await municipalityConnector.CleanMunicipalityName();
+
+            return Ok(count);
         }
     }
 }

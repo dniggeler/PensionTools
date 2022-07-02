@@ -24,6 +24,28 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions
         /// <summary>
         /// Get all current zip (PLZ) information for Switzerland supplied by the Swiss Post.
         /// </summary>
-        Task<IEnumerable<ZipModel>> GetAllZipCodesAsync();
+        /// <param name="limit"></param>
+        IAsyncEnumerable<ZipModel> GetAllZipCodesAsync(int limit);
+
+        Task<int> PopulateWithZipCodeAsync();
+
+        /// <summary>
+        /// Populate municipality data with ESTV's tax location id.
+        /// If doClear is true, tax location id is set to null first.
+        /// </summary>
+        /// <returns>Number of cases processed.</returns>
+        Task<int> PopulateWithTaxLocationAsync(bool doClear);
+
+        /// <summary>
+        /// Stage table with zip codes from Post OpenData API.
+        /// </summary>
+        /// <returns>Number of cases processed.</returns>
+        Task<int> StagePlzTableAsync();
+
+        /// <summary>
+        /// Clean municipality name. E.g. removing canton postfix to avoid ambiguity.
+        /// </summary>
+        /// <returns>Number of cases processed.</returns>
+        Task<int> CleanMunicipalityName();
     }
 }

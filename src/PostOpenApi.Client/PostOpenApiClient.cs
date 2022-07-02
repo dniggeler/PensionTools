@@ -16,7 +16,7 @@ public class PostOpenApiClient : IPostOpenApiClient
 
     public Task<OpenApiZipInfo> GetZipCodesAsync(int limit, int offset)
     {
-        string[] fieldNames = { "postleitzahl", "gilt_ab_dat", "bfsnr", "kanton", "ortbez18" } ;
+        string[] fieldNames = { "postleitzahl","plz_zz", "gilt_ab_dat", "bfsnr", "kanton", "ortbez27" } ;
 
         HttpClient client = httpClientFactory.CreateClient(ClientName);
 

@@ -12,16 +12,19 @@ using PensionCoach.Tools.CommonTypes.Municipality;
 using Snapshooter.Xunit;
 using TaxCalculator.WebApi;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Tax.Data.Integration.Tests
 {
     [Trait("Municipality", "Integration")]
     public class MunicipalityDataIntegrationTests : IClassFixture<WebApplicationFactory<Startup>>
     {
+        private readonly ITestOutputHelper outputHelper;
         private readonly HttpClient client;
 
-        public MunicipalityDataIntegrationTests()
+        public MunicipalityDataIntegrationTests(ITestOutputHelper outputHelper)
         {
+            this.outputHelper = outputHelper;
             var testServer = new TestServer(
                 new WebHostBuilder()
                     .ConfigureAppConfiguration((_, builder) =>
@@ -46,6 +49,58 @@ namespace Tax.Data.Integration.Tests
             var result = await response.Content.ReadFromJsonAsync<IEnumerable<MunicipalityModel>>();
 
             Snapshot.Match(result);
+        }
+
+        [Fact(DisplayName = "Populate With Zip Codes")]
+        public async Task Populate_With_All_ZipCodes()
+        {
+            HttpResponseMessage response = await client.PostAsync($"zip/populate", null);
+
+            response.EnsureSuccessStatusCode();
+
+            var result = await response.Content.ReadFromJsonAsync<int>();
+            
+            Assert.True(result > 0);
+        }
+
+        [Fact(DisplayName = "Stage Zip Codes")]
+        public async Task Stage_With_ZipCodes()
+        {
+            HttpResponseMessage response = await client.PostAsync("zip/stage", null);
+
+            response.EnsureSuccessStatusCode();
+
+            int result = await response.Content.ReadFromJsonAsync<int>();
+
+            Assert.True(result > 0);
+        }
+
+        [Fact(DisplayName = "Populate With Tax Location")]
+        public async Task Populate_With_Tax_Location()
+        {
+            bool doClear = false;
+
+            HttpResponseMessage response = await client.PostAsync($"tax/populate/{doClear}", null);
+
+            response.EnsureSuccessStatusCode();
+
+            int result = await response.Content.ReadFromJsonAsync<int>();
+
+            outputHelper.WriteLine($"Number of updates: {result}");
+
+            Assert.True(result > 0);
+        }
+
+        [Fact(DisplayName = "Clean Municipality Names")]
+        public async Task Clean_Municipality_Names()
+        {
+            HttpResponseMessage response = await client.PostAsync($"tax/clean", null);
+
+            response.EnsureSuccessStatusCode();
+
+            int result = await response.Content.ReadFromJsonAsync<int>();
+
+            Assert.True(result > 0);
         }
 
         private static MunicipalitySearchFilter GetRequest()

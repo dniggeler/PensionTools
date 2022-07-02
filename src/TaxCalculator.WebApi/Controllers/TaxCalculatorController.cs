@@ -210,11 +210,10 @@ namespace TaxCalculator.WebApi.Controllers
         [HttpGet]
         [Route("location")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
 
-        public async Task<ActionResult<TaxLocation>> GetTaxLocation(string zip, string city)
+        public async Task<ActionResult<TaxLocation[]>> GetTaxLocation(string zip, string city)
         {
-            return await estvTaxCalculatorClient.GetTaxLocationAsync(zip, city) switch
+            return await estvTaxCalculatorClient.GetTaxLocationsAsync(zip, city) switch
             {
                 null => NotFound(),
                 { } a => Ok(a)

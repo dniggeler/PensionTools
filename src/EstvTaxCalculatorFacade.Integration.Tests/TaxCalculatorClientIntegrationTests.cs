@@ -27,7 +27,7 @@ public class TaxCalculatorClientIntegrationTests : IClassFixture<WebApplicationF
         string zip = "3303";
         string city = "Zuzwil";
 
-        var result = await estvClient.GetFromJsonAsync<TaxLocation>($"location?zip={zip}&city={city}");
+        var result = await estvClient.GetFromJsonAsync<TaxLocation[]>($"location?zip={zip}&city={city}");
 
         Snapshot.Match(result);
     }

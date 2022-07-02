@@ -63,7 +63,7 @@ namespace Tax.Data
                 ServiceLifetime.Transient);
 
             collection.AddDbContext<MunicipalityDbContext>(
-                opt => opt.UseSqlite(connectionString).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking),
+                opt => opt.UseSqlite(connectionString),
                 ServiceLifetime.Transient);
 
             collection.AddSingleton<Func<TaxTariffDbContext>>(provider => provider.GetRequiredService<TaxTariffDbContext>);
