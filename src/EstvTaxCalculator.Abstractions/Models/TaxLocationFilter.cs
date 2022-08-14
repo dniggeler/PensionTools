@@ -1,4 +1,4 @@
-﻿namespace PensionCoach.Tools.EstvTaxCalculators.Models;
+﻿namespace PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
 
 public class TaxLocationRequest
 {

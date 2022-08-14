@@ -30,6 +30,7 @@ namespace TaxCalculator
             collection.AddTransient<IFullCapitalBenefitTaxCalculator, FullCapitalBenefitTaxCalculator>();
 
             collection.AddTransient<IMunicipalityConnector, MunicipalityConnector>();
+            collection.AddTransient<IAdminConnector, AdminConnector>();
 
             var mappingConfig = new MapperConfiguration(mc =>
             {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +13,7 @@ namespace Tax.Data
         {
             var connectionString = "Filename="+configuration.GetConnectionString("TaxDb");
 
-            collection.AddTransient(ctxt =>
+            collection.AddTransient(_ =>
             {
                 var opt = new DbContextOptionsBuilder<FederalTaxTariffDbContext>();
                 opt.UseSqlite(connectionString)
@@ -23,7 +22,7 @@ namespace Tax.Data
                 return opt.Options;
             });
 
-            collection.AddTransient(ctxt =>
+            collection.AddTransient(_ =>
             {
                 var opt = new DbContextOptionsBuilder<MunicipalityDbContext>();
                 opt.UseSqlite(connectionString)
@@ -32,7 +31,7 @@ namespace Tax.Data
                 return opt.Options;
             });
 
-            collection.AddTransient(ctxt =>
+            collection.AddTransient(_ =>
             {
                 var opt = new DbContextOptionsBuilder<TaxRateDbContext>();
                 opt.UseSqlite(connectionString)
@@ -41,7 +40,7 @@ namespace Tax.Data
                 return opt.Options;
             });
 
-            collection.AddTransient(ctxt =>
+            collection.AddTransient(_ =>
             {
                 var opt = new DbContextOptionsBuilder<TaxTariffDbContext>();
                 opt.UseSqlite(connectionString)
@@ -71,6 +70,7 @@ namespace Tax.Data
             collection.AddSingleton<Func<FederalTaxTariffDbContext>>(provider =>provider.GetRequiredService<FederalTaxTariffDbContext>);
             collection.AddSingleton<Func<MunicipalityDbContext>>(provider => provider.GetRequiredService<MunicipalityDbContext>);
 
+            collection.AddTransient<ITaxDataPopulateService, StaticTaxDataPopulateService>();
             collection.AddSingleton<ITaxTariffData,TaxTariffData>();
         }
     }

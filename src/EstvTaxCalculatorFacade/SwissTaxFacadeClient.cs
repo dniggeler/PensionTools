@@ -1,5 +1,5 @@
 ﻿using System.Net.Http.Json;
-using PensionCoach.Tools.EstvTaxCalculators.Models;
+using PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
 
 namespace PensionCoach.Tools.EstvTaxCalculators;
 

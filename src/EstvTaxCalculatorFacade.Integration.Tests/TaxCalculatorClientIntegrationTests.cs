@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
-using PensionCoach.Tools.EstvTaxCalculators.Models;
+using PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
 using Snapshooter.Xunit;
 using TaxCalculator.WebApi;
 using Xunit;
@@ -14,7 +14,6 @@ namespace EstvTaxCalculatorFacade.Integration.Tests;
 public class TaxCalculatorClientIntegrationTests : IClassFixture<WebApplicationFactory<Startup>>
 {
     private readonly HttpClient estvClient;
-    private readonly HttpClient swissTaxClient;
 
     public TaxCalculatorClientIntegrationTests(WebApplicationFactory<Startup> factory)
     {

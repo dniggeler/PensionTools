@@ -1,7 +1,8 @@
 ﻿using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
+using PensionCoach.Tools.EstvTaxCalculators.Abstractions;
+using PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
 using PensionCoach.Tools.EstvTaxCalculators.Models;
 
 namespace PensionCoach.Tools.EstvTaxCalculators;

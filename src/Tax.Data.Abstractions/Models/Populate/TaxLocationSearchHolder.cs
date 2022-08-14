@@ -1,10 +1,8 @@
 ﻿using PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
-using PensionCoach.Tools.EstvTaxCalculators.Models;
-using Tax.Data.Abstractions.Models;
 
-namespace TaxCalculator.Internals;
+namespace Tax.Data.Abstractions.Models.Populate;
 
-internal record TaxLocationSearchHolder
+public record TaxLocationSearchHolder
 {
     public MunicipalityEntity MunicipalityEntity { get; init; }
 

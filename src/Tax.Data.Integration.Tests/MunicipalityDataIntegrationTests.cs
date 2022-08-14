@@ -59,36 +59,8 @@ namespace Tax.Data.Integration.Tests
             response.EnsureSuccessStatusCode();
 
             var result = await response.Content.ReadFromJsonAsync<int>();
-            
-            Assert.True(result > 0);
-        }
-
-        [Fact(DisplayName = "Stage Zip Codes")]
-        public async Task Stage_With_ZipCodes()
-        {
-            HttpResponseMessage response = await client.PostAsync("zip/stage", null);
-
-            response.EnsureSuccessStatusCode();
-
-            int result = await response.Content.ReadFromJsonAsync<int>();
-
-            Assert.True(result > 0);
-        }
-
-        [Fact(DisplayName = "Populate With Tax Location")]
-        public async Task Populate_With_Tax_Location()
-        {
-            bool doClear = false;
-
-            HttpResponseMessage response = await client.PostAsync($"tax/populate/{doClear}", null);
-
-            response.EnsureSuccessStatusCode();
-
-            int result = await response.Content.ReadFromJsonAsync<int>();
 
             outputHelper.WriteLine($"Number of updates: {result}");
-
-            Assert.True(result > 0);
         }
 
         [Fact(DisplayName = "Clean Municipality Names")]

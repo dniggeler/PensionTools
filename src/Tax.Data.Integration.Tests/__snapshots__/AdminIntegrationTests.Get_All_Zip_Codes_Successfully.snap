@@ -2593,15 +2593,6 @@
   },
   {
     "BfsCode": 230,
-    "ZipCode": "8403",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Winterthur",
-    "Canton": "ZH",
-    "DateOfValidity": "2014-12-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 230,
     "ZipCode": "8400",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Winterthur",
@@ -2634,6 +2625,15 @@
     "MunicipalityName": "Winterthur",
     "Canton": "ZH",
     "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 230,
+    "ZipCode": "8403",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Winterthur",
+    "Canton": "ZH",
+    "DateOfValidity": "2014-12-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -3421,20 +3421,20 @@
   },
   {
     "BfsCode": 261,
-    "ZipCode": "8070",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1997-03-10T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
     "ZipCode": "8017",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zürich",
     "Canton": "ZH",
     "DateOfValidity": "2020-03-24T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8070",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1997-03-10T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -4942,24 +4942,6 @@
   },
   {
     "BfsCode": 351,
-    "ZipCode": "3024",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Bern",
-    "Canton": "BE",
-    "DateOfValidity": "1987-08-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 351,
-    "ZipCode": "3030",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Bern",
-    "Canton": "BE",
-    "DateOfValidity": "1998-07-15T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 351,
     "ZipCode": "3007",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Bern",
@@ -5001,6 +4983,24 @@
     "MunicipalityName": "Bern",
     "Canton": "BE",
     "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 351,
+    "ZipCode": "3024",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Bern",
+    "Canton": "BE",
+    "DateOfValidity": "1987-08-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 351,
+    "ZipCode": "3030",
+    "ZipCodeAddOn": "01",
+    "MunicipalityName": "Bern",
+    "Canton": "BE",
+    "DateOfValidity": "1998-07-15T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -19549,20 +19549,20 @@
   },
   {
     "BfsCode": 2701,
-    "ZipCode": "4075",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "2005-08-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
     "ZipCode": "4028",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Basel",
     "Canton": "BS",
     "DateOfValidity": "2014-04-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4075",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "2005-08-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31051,20 +31051,20 @@
   },
   {
     "BfsCode": 4566,
-    "ZipCode": "8509",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Frauenfeld",
-    "Canton": "TG",
-    "DateOfValidity": "2014-04-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4566,
     "ZipCode": "8501",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Frauenfeld",
     "Canton": "TG",
     "DateOfValidity": "1996-08-06T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 4566,
+    "ZipCode": "8509",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Frauenfeld",
+    "Canton": "TG",
+    "DateOfValidity": "2014-04-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -37756,15 +37756,6 @@
   },
   {
     "BfsCode": 5586,
-    "ZipCode": "1010",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Lausanne",
-    "Canton": "VD",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5586,
     "ZipCode": "1002",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Lausanne",
@@ -37793,6 +37784,15 @@
   {
     "BfsCode": 5586,
     "ZipCode": "1007",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Lausanne",
+    "Canton": "VD",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 5586,
+    "ZipCode": "1010",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Lausanne",
     "Canton": "VD",

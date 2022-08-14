@@ -1,4 +1,5 @@
-﻿using PensionCoach.Tools.EstvTaxCalculators.Models;
+﻿using PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
+using PensionCoach.Tools.EstvTaxCalculators.Models;
 
 namespace PensionCoach.Tools.EstvTaxCalculators;
 

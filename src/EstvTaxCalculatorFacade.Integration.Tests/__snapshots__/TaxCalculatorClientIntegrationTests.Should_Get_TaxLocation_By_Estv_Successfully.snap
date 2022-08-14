@@ -1,9 +1,11 @@
-﻿{
-  "Id": 0,
-  "ZipCode": null,
-  "BfsId": 0,
-  "CantonId": 0,
-  "BfsName": null,
-  "City": null,
-  "Canton": null
-}
+﻿[
+  {
+    "Id": 330400000,
+    "ZipCode": "3303",
+    "BfsId": 0,
+    "CantonId": 4,
+    "BfsName": "",
+    "City": "Zuzwil BE",
+    "Canton": "BE"
+  }
+]
