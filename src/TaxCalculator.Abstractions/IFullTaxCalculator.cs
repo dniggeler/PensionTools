@@ -3,13 +3,11 @@ using LanguageExt;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
-namespace PensionCoach.Tools.TaxCalculator.Abstractions
+namespace PensionCoach.Tools.TaxCalculator.Abstractions;
+
+public interface IFullTaxCalculator
 {
-    public interface IFullTaxCalculator
-    {
-        Task<Either<string,FullTaxResult>> CalculateAsync(
-            int calculationYear, int municipalityId, Canton canton, TaxPerson person, bool withMaxAvailableCalculationYear = false);
-    }
+    Task<Either<string,FullTaxResult>> CalculateAsync(
+        int calculationYear, int municipalityId, Canton canton, TaxPerson person, bool withMaxAvailableCalculationYear = false);
 }
