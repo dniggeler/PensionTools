@@ -206,17 +206,4 @@ public class TaxCalculatorController : ControllerBase
 
         return Ok(list);
     }
-
-    [HttpGet]
-    [Route("location")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-
-    public async Task<ActionResult<TaxLocation[]>> GetTaxLocation(string zip, string city)
-    {
-        return await estvTaxCalculatorClient.GetTaxLocationsAsync(zip, city) switch
-        {
-            null => NotFound(),
-            { } a => Ok(a)
-        };
-    }
 }

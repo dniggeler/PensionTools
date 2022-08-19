@@ -24,18 +24,30 @@ public class EstvTaxCalculatorClient : IEstvTaxCalculatorClient
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
 
         var request = new TaxLocationRequest { Search = string.IsNullOrEmpty(city) ? $"{zip}" : $"{zip} {city}" };
-        var content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
-        var result = await client.PostAsync( "API_searchLocation", content);
 
-        if (!result.IsSuccessStatusCode)
-        {
-            return null;
-        }
+        TaxLocationResponse response = await CallAsync<TaxLocationResponse>(JsonSerializer.Serialize(request), "API_searchLocation");
 
-        result.EnsureSuccessStatusCode();
+        return response.Response;
+    }
 
-        string json = await result.Content.ReadAsStringAsync();
+    public async Task<SimpleTaxResult> CalculateIncomeAndWealthTaxAsync(SimpleTaxRequest request)
+    {
+        SimpleTaxResponse response = await CallAsync<SimpleTaxResponse>(JsonSerializer.Serialize(request), "API_calculateSimpleTaxes");
 
-        return JsonSerializer.Deserialize<TaxLocationResponse>(json)?.Response;
+        return response.Response;    
+    }
+
+    private async Task<TOut> CallAsync<TOut>(string request, string path)
+    {
+        HttpClient client = httpClientFactory.CreateClient("EstvTaxCalculatorClient");
+        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
+        var content = new StringContent(request, Encoding.UTF8, "application/json");
+        HttpResponseMessage response = await client.PostAsync(path, content);
+        
+        response.EnsureSuccessStatusCode();
+        
+        string json = await response.Content.ReadAsStringAsync();
+
+        return JsonSerializer.Deserialize<TOut>(json);
     }
 }

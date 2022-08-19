@@ -15,5 +15,7 @@ namespace PensionCoach.Tools.CommonTypes.Municipality
         public int MutationId { get; set; }
 
         public int? SuccessorId { get; set; }
+
+        public int? EstvTaxLocationId { get; set; }
     }
 }

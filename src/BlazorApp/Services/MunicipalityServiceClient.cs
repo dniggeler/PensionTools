@@ -41,7 +41,8 @@ namespace BlazorApp.Services
                 Canton = item.Canton,
                 MutationId = item.MutationId,
                 DateOfMutation = item.DateOfMutation,
-                SuccessorId = item.SuccessorId
+                SuccessorId = item.SuccessorId,
+                EstvTaxLocationId = item.EstvTaxLocationId
             });
 
 

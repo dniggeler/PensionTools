@@ -15,6 +15,7 @@ namespace TaxCalculator.Mapping
         public MappingProfile()
         {
             CreateMap<MunicipalityEntity, MunicipalityModel>()
+                .ForMember(d => d.EstvTaxLocationId, opt => opt.MapFrom(s => s.TaxLocationId))
                 .ForMember(
                     d => d.DateOfMutation,
                     opt => opt.MapFrom(s => Convert(s.DateOfMutation)));

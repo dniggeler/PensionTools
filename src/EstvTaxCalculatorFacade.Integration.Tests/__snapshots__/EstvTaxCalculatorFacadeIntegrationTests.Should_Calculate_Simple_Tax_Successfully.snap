@@ -1,0 +1,24 @@
+﻿{
+  "IncomeSimpleTaxCanton": 8132,
+  "FortuneTaxCanton": 787,
+  "IncomeSimpleTaxCity": 8132,
+  "IncomeTaxChurch": 813,
+  "IncomeTaxCity": 8945,
+  "IncomeSimpleTaxFed": 115000,
+  "PersonalTax": 0,
+  "FortuneTaxCity": 866,
+  "FortuneSimpleTaxCanton": 787,
+  "IncomeTaxFed": 115000,
+  "FortuneSimpleTaxCity": 787,
+  "IncomeTaxCanton": 8132,
+  "Location": {
+    "Id": 741800000,
+    "ZipCode": "7418",
+    "BfsId": 0,
+    "CantonId": 10,
+    "BfsName": "",
+    "City": "Tumegl/Tomils",
+    "Canton": "GR"
+  },
+  "FortuneTaxChurch": 79
+}
