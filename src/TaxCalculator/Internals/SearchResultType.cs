@@ -1,4 +1,4 @@
-﻿namespace TaxCalculator.Internals;
+﻿namespace PensionCoach.Tools.TaxCalculator.Internals;
 
 internal enum SearchResultType
 {

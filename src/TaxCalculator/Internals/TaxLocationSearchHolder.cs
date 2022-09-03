@@ -1,8 +1,7 @@
 ﻿using PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
-using PensionCoach.Tools.EstvTaxCalculators.Models;
 using Tax.Data.Abstractions.Models;
 
-namespace TaxCalculator.Internals;
+namespace PensionCoach.Tools.TaxCalculator.Internals;
 
 internal record TaxLocationSearchHolder
 {

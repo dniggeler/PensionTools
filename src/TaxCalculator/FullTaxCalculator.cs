@@ -8,7 +8,7 @@ using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
-namespace TaxCalculator
+namespace PensionCoach.Tools.TaxCalculator
 {
     public class FullTaxCalculator : IFullTaxCalculator
     {
@@ -28,7 +28,7 @@ namespace TaxCalculator
 
         public async Task<Either<string, FullTaxResult>> CalculateAsync(
             int calculationYear,
-            int municipalityId,
+            int taxId,
             Canton canton,
             TaxPerson person,
             bool withMaxAvailableCalculationYear)
@@ -39,7 +39,7 @@ namespace TaxCalculator
 
             var federalTaxPerson = mapper.Map<FederalTaxPerson>(person);
 
-            var stateTaxResultTask = stateTaxCalculator.CalculateAsync(maxCalculationYear, municipalityId, canton, person);
+            var stateTaxResultTask = stateTaxCalculator.CalculateAsync(maxCalculationYear, taxId, canton, person);
             var federalTaxResultTask = federalTaxCalculator.CalculateAsync(maxCalculationYear, federalTaxPerson);
 
             await Task.WhenAll(stateTaxResultTask, federalTaxResultTask);

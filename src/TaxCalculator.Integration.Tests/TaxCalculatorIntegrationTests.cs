@@ -39,7 +39,7 @@ public class TaxCalculatorIntegrationTests : IClassFixture<WebApplicationFactory
         // given
 
         // when
-        var result = await client.GetFromJsonAsync<IEnumerable<TaxSupportedMunicipalityModel>>($"municipality");
+        var result = await client.GetFromJsonAsync<IEnumerable<TaxSupportedMunicipalityModel>>("municipality");
 
         // then
         Snapshot.Match(result);

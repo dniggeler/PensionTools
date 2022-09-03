@@ -8,7 +8,7 @@ using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
-namespace TaxCalculator
+namespace PensionCoach.Tools.TaxCalculator
 {
     public class AggregatedBasisTaxCalculator : IAggregatedBasisTaxCalculator
     {

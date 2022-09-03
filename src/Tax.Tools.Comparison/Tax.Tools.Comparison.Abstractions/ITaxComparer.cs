@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using LanguageExt;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
+using PensionCoach.Tools.CommonTypes.Tax;
 using Tax.Tools.Comparison.Abstractions.Models;
 
 

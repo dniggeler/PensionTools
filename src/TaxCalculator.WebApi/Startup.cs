@@ -12,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.EstvTaxCalculators;
 using PensionCoach.Tools.PostOpenApi;
+using PensionCoach.Tools.TaxCalculator;
 using Swashbuckle.AspNetCore.Filters;
 using Tax.Data;
 using Tax.Tools.Comparison;
@@ -57,7 +58,7 @@ namespace TaxCalculator.WebApi
                 .AddJsonOptions(options =>
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             services.AddTaxData(Configuration);
-            services.AddTaxCalculators();
+            services.AddTaxCalculators(Configuration);
             services.AddTaxComparers();
             services.AddBvgCalculators();
             services.AddCashFlowCalculators();

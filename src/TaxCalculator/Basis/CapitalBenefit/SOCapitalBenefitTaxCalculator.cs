@@ -3,16 +3,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using FluentValidation;
-using FluentValidation.Validators;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data;
 
-namespace TaxCalculator.Basis.CapitalBenefit
+namespace PensionCoach.Tools.TaxCalculator.Basis.CapitalBenefit
 {
     public class SOCapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
     {
@@ -53,7 +51,7 @@ namespace TaxCalculator.Basis.CapitalBenefit
             }
 
             var stateTaxPerson = mapper.Map<TaxPerson>(capitalBenefitTaxPerson);
-            stateTaxPerson.TaxableIncome = capitalBenefitTaxPerson.TaxableBenefits;
+            stateTaxPerson.TaxableIncome = capitalBenefitTaxPerson.TaxableCapitalBenefits;
 
             var stateTaxResult = await stateTaxCalculator
                 .CalculateAsync(calculationYear, municipalityId, Canton.SO, stateTaxPerson);

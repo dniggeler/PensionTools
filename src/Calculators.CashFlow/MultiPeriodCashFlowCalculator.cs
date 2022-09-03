@@ -10,7 +10,6 @@ using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
 namespace Calculators.CashFlow
 {
@@ -219,7 +218,7 @@ namespace Calculators.CashFlow
                     NumberOfChildren = calculatorPerson.NumberOfChildren,
                     ReligiousGroupType = calculatorPerson.ReligiousGroupType,
                     PartnerReligiousGroupType = calculatorPerson.PartnerReligiousGroupType,
-                    TaxableBenefits = amount
+                    TaxableCapitalBenefits = amount
                 };
 
                 Either<string, FullCapitalBenefitTaxResult> result = await _capitalBenefitCalculator.CalculateAsync(

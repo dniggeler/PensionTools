@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;
 using Tax.Tools.Comparison.Abstractions;
@@ -31,7 +32,7 @@ namespace Tax.Tools.Comparison.Tests
                 Name = name,
                 CivilStatus = status,
                 ReligiousGroupType = religiousGroup,
-                TaxableBenefits = 2000_000,
+                TaxableCapitalBenefits = 2000_000,
             };
 
             // when

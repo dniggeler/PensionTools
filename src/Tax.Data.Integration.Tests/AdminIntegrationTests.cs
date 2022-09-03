@@ -37,7 +37,7 @@ public class AdminIntegrationTests : IClassFixture<WebApplicationFactory<Startup
         client.BaseAddress = new Uri("http://localhost/api/admin/");
     }
 
-    [Fact(DisplayName = "Populate With Tax Location")]
+    [Fact(DisplayName = "Populate With Tax Location", Skip = "Affects real data")]
     public async Task Populate_With_Tax_Location()
     {
         bool doClear = true;
@@ -51,7 +51,19 @@ public class AdminIntegrationTests : IClassFixture<WebApplicationFactory<Startup
         outputHelper.WriteLine($"Number of updates: {result}");
     }
 
-    [Fact(DisplayName = "Stage Zip Codes")]
+    [Fact(DisplayName = "Populate With Zip Codes", Skip = "Affects real data")]
+    public async Task Populate_With_All_ZipCodes()
+    {
+        HttpResponseMessage response = await client.PostAsync("zip/populate", null);
+
+        response.EnsureSuccessStatusCode();
+
+        var result = await response.Content.ReadFromJsonAsync<int>();
+
+        outputHelper.WriteLine($"Number of updates: {result}");
+    }
+
+    [Fact(DisplayName = "Stage Zip Codes", Skip = "Affects real data")]
     public async Task Stage_With_ZipCodes()
     {
         HttpResponseMessage response = await client.PostAsync("zip/stage", null);
@@ -68,10 +80,25 @@ public class AdminIntegrationTests : IClassFixture<WebApplicationFactory<Startup
     {
         IEnumerable<ZipModel> result = await client.GetFromJsonAsync<IEnumerable<ZipModel>>("zip") switch
         {
-            { } a => a.ToList().OrderBy(item => item.BfsCode).ThenBy(item => item.MunicipalityName),
+            { } a => a.ToList()
+                .OrderBy(item => item.BfsCode)
+                .ThenBy(item => item.MunicipalityName)
+                .ThenBy(item => item.ZipCode),
             null => Array.Empty<ZipModel>()
         };
 
         Snapshot.Match(result);
+    }
+
+    [Fact(DisplayName = "Clean Municipality Names", Skip = "Affects real data")]
+    public async Task Clean_Municipality_Names()
+    {
+        HttpResponseMessage response = await client.PostAsync("tax/clean", null);
+
+        response.EnsureSuccessStatusCode();
+
+        int result = await response.Content.ReadFromJsonAsync<int>();
+
+        Assert.True(result > 0);
     }
 }

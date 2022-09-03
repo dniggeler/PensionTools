@@ -10,7 +10,7 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data;
 using Tax.Data.Abstractions.Models;
 
-namespace TaxCalculator
+namespace PensionCoach.Tools.TaxCalculator
 {
     public class FederalTaxCalculator : IFederalTaxCalculator
     {

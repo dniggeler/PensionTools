@@ -51,30 +51,6 @@ namespace Tax.Data.Integration.Tests
             Snapshot.Match(result);
         }
 
-        [Fact(DisplayName = "Populate With Zip Codes")]
-        public async Task Populate_With_All_ZipCodes()
-        {
-            HttpResponseMessage response = await client.PostAsync($"zip/populate", null);
-
-            response.EnsureSuccessStatusCode();
-
-            var result = await response.Content.ReadFromJsonAsync<int>();
-
-            outputHelper.WriteLine($"Number of updates: {result}");
-        }
-
-        [Fact(DisplayName = "Clean Municipality Names")]
-        public async Task Clean_Municipality_Names()
-        {
-            HttpResponseMessage response = await client.PostAsync($"tax/clean", null);
-
-            response.EnsureSuccessStatusCode();
-
-            int result = await response.Content.ReadFromJsonAsync<int>();
-
-            Assert.True(result > 0);
-        }
-
         private static MunicipalitySearchFilter GetRequest()
         {
             return new MunicipalitySearchFilter

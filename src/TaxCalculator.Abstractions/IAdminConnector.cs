@@ -6,6 +6,18 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions;
 
 public interface IAdminConnector
 {
+    /// <summary>
+    /// Copy zip code data from stage table to data store.
+    /// </summary>
+    /// <returns></returns>
+    Task<int> PopulateWithZipCodeAsync();
+
+    /// <summary>
+    /// Populate data store containing tax data with ESTV tax location id.
+    /// This is one one time step which may repeated every time a municipality change is available.
+    /// </summary>
+    /// <param name="doClear"></param>
+    /// <returns></returns>
     Task<int> PopulateWithTaxLocationAsync(bool doClear);
 
     /// <summary>
@@ -19,4 +31,10 @@ public interface IAdminConnector
     /// </summary>
     /// <param name="limit"></param>
     IAsyncEnumerable<ZipModel> GetAllZipCodesAsync(int limit);
+
+    /// <summary>
+    /// Clean municipality name. E.g. removing canton postfix to avoid ambiguity.
+    /// </summary>
+    /// <returns>Number of cases processed.</returns>
+    Task<int> CleanMunicipalityName();
 }

@@ -11,7 +11,7 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data.Abstractions;
 using Tax.Data.Abstractions.Models;
 
-namespace TaxCalculator.Basis.Income
+namespace PensionCoach.Tools.TaxCalculator.Basis.Income
 {
     /// <summary>
     /// Default income tax calculator which is the same for ZH.

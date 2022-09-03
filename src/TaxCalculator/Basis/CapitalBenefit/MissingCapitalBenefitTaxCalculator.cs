@@ -2,11 +2,11 @@
 using LanguageExt;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
-namespace TaxCalculator.Basis.CapitalBenefit
+namespace PensionCoach.Tools.TaxCalculator.Basis.CapitalBenefit
 {
     /// <summary>
     /// Null calculator for missing capital benefit calculator.
@@ -20,9 +20,10 @@ namespace TaxCalculator.Basis.CapitalBenefit
             this.logger = logger;
         }
 
-        public Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(int calculationYear, int municipalityId, Canton canton, CapitalBenefitTaxPerson person)
+        public Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(
+            int calculationYear, int municipalityId, Canton canton, CapitalBenefitTaxPerson person)
         {
-            string msg = $"No capital benefit tax calculator for canton {canton.ToString()} available";
+            string msg = $"No capital benefit tax calculator for canton {canton} available";
 
             Either<string, CapitalBenefitTaxResult> result = msg;
 

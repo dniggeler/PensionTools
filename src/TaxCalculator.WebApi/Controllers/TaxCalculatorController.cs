@@ -8,10 +8,8 @@ using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.EstvTaxCalculators.Abstractions;
-using PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using TaxCalculator.WebApi.Models;
 
 namespace TaxCalculator.WebApi.Controllers;
@@ -193,7 +191,7 @@ public class TaxCalculatorController : ControllerBase
                 ReligiousGroupType = request.ReligiousGroup,
                 PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
                 NumberOfChildren = 0,
-                TaxableBenefits = request.TaxableBenefits,
+                TaxableCapitalBenefits = request.TaxableBenefits,
             };
         }
     }

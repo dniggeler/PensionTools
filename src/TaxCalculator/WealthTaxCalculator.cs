@@ -12,7 +12,7 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data;
 
-namespace TaxCalculator
+namespace PensionCoach.Tools.TaxCalculator
 {
     public class WealthTaxCalculator : IWealthTaxCalculator
     {

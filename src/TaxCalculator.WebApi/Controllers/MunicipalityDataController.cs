@@ -13,14 +13,11 @@ namespace TaxCalculator.WebApi.Controllers;
 [Route("api/data/municipality")]
 public class MunicipalityDataController : ControllerBase
 {
-    private readonly IAdminConnector adminConnector;
     private readonly IMunicipalityConnector municipalityConnector;
 
     public MunicipalityDataController(
-        IAdminConnector adminConnector,
         IMunicipalityConnector municipalityConnector)
     {
-        this.adminConnector = adminConnector;
         this.municipalityConnector = municipalityConnector;
     }
 
@@ -86,47 +83,5 @@ public class MunicipalityDataController : ControllerBase
             municipalityConnector.Search(filter);
 
         return Ok(result);
-    }
-
-    /// <summary>
-    /// Populate internal data store with all Swiss zip codes supplied by the Swiss Post Open Api.
-    /// </summary>
-    /// <remarks>
-    /// Vollständiges PLZ-Verzeichnis bereitgestellt von der Post abspeichern.
-    /// </remarks>
-    [HttpPost]
-    [Route("zip/populate")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<int>> PopulateZipCodes()
-    {
-        int count = await municipalityConnector.PopulateWithZipCodeAsync();
-
-        return Ok(count);
-    }
-
-    /// <summary>
-    /// Populate internal data store with all Swiss zip codes supplied by the Swiss Post Open Api.
-    /// </summary>
-    /// <remarks>
-    /// Vollständiges PLZ-Verzeichnis bereitgestellt von der Post abspeichern.
-    /// </remarks>
-    [HttpPost]
-    [Route("tax/populate/{clear:bool}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<int>> PopulateTaxLocation(bool clear)
-    {
-        int count = await adminConnector.PopulateWithTaxLocationAsync(clear);
-
-        return Ok(count);
-    }
-
-    [HttpPost]
-    [Route("tax/clean")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<int>> CleanMunicipalityNames()
-    {
-        int count = await municipalityConnector.CleanMunicipalityName();
-
-        return Ok(count);
     }
 }

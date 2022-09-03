@@ -6,7 +6,7 @@ using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
-namespace TaxCalculator.Basis.Income
+namespace PensionCoach.Tools.TaxCalculator.Basis.Income
 {
     /// <summary>
     /// Null basis income calculator for missing cantons.

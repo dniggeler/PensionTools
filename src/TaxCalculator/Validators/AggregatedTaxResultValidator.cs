@@ -1,8 +1,8 @@
-﻿namespace TaxCalculator.Validators
-{
-    using FluentValidation;
-    using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+﻿using FluentValidation;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
+namespace PensionCoach.Tools.TaxCalculator.Validators
+{
     /// <inheritdoc />
     public class AggregatedTaxResultValidator : AbstractValidator<AggregatedBasisTaxResult>
     {

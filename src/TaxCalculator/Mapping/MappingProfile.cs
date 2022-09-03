@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Globalization;
 using AutoMapper;
-using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data.Abstractions.Models;
 
-namespace TaxCalculator.Mapping
+namespace PensionCoach.Tools.TaxCalculator.Mapping
 {
     public class MappingProfile : Profile
     {
@@ -26,7 +24,7 @@ namespace TaxCalculator.Mapping
                 .ForMember(d => d.PartnerReligiousGroupType, m => m.MapFrom(s => s.PartnerReligiousGroupType));
 
             CreateMap<CapitalBenefitTaxPerson, FederalTaxPerson>()
-                .ForMember(d => d.TaxableAmount, m => m.MapFrom(s => s.TaxableBenefits));
+                .ForMember(d => d.TaxableAmount, m => m.MapFrom(s => s.TaxableCapitalBenefits));
 
             CreateMap<TaxPerson, BasisTaxPerson>()
                 .ForMember(d => d.TaxableAmount, m => m.MapFrom(s => s.TaxableIncome));

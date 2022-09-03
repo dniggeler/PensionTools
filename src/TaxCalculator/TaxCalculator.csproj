@@ -2,13 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <CodeAnalysisRuleSet>CustomCodeAnalysisRules.ruleset</CodeAnalysisRuleSet>
+      <AssemblyName>PensionCoach.Tools.TaxCalculator</AssemblyName>
+      <RootNamespace>PensionCoach.Tools.TaxCalculator</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="FluentValidation" Version="11.0.1" />
-    <PackageReference Include="LanguageExt.Core" Version="4.1.1" />
+    <PackageReference Include="FluentValidation" Version="11.2.1" />
+    <PackageReference Include="LanguageExt.Core" Version="4.2.9" />
   </ItemGroup>
 
   <ItemGroup>

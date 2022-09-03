@@ -16,6 +16,8 @@
 
         public decimal FederalTaxAmount { get; set; }
 
+        public decimal IncomeTaxAmount { get; set; }
+
         public decimal WealthTaxAmount { get; set; }
 
         public decimal ChurchTaxAmount { get; set; }

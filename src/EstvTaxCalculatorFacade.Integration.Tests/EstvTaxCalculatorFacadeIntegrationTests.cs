@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.EstvTaxCalculators;
 using PensionCoach.Tools.EstvTaxCalculators.Abstractions;
-using PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
 using Snapshooter.Xunit;
 using Xunit;
 
@@ -24,7 +24,7 @@ public class EstvTaxCalculatorFacadeIntegrationTests
     }
 
     [Fact(DisplayName = "Tax Location")]
-    public async Task SShould_Get_TaxLocation_By_Estv_Successfully()
+    public async Task Should_Get_TaxLocation_By_Estv_Successfully()
     {
         // given
         string zip = "3303";
@@ -38,31 +38,57 @@ public class EstvTaxCalculatorFacadeIntegrationTests
     }
 
 
-    [Fact(DisplayName = "Simple Tax")]
-    public async Task Should_Calculate_Simple_Tax_Successfully()
+    [Fact(DisplayName = "Income and Wealth Tax")]
+    public async Task Should_Calculate_Income_And_Wealth_Tax_Successfully()
     {
         // given
+        int taxLocationId = 800000000;
+        int taxYear = 2021;
 
         IEstvTaxCalculatorClient estvClient = provider.GetRequiredService<IEstvTaxCalculatorClient>();
 
-        var result = await estvClient.CalculateIncomeAndWealthTaxAsync(GetRequest());
+        var result = await estvClient.CalculateIncomeAndWealthTaxAsync(taxLocationId, taxYear, GetPerson());
 
         Snapshot.Match(result);
     }
 
-    private static SimpleTaxRequest GetRequest()
+    [Fact(DisplayName = "Capital Benefit Tax")]
+    public async Task Calculate_Capital_Benefit_Tax_Successfully()
     {
-        return new SimpleTaxRequest
+        // given
+        int taxLocationId = 800000000;
+        int taxYear = 2021;
+
+        IEstvTaxCalculatorClient estvClient = provider.GetRequiredService<IEstvTaxCalculatorClient>();
+
+        var result = await estvClient.CalculateCapitalBenefitTaxAsync(taxLocationId, taxYear, GetCapitalBenefitPerson());
+
+        Snapshot.Match(result);
+    }
+
+    private static TaxPerson GetPerson()
+    {
+        return new TaxPerson
         {
-            Children = Array.Empty<ChildModel>(),
-            Confession1 = 2,
-            Confession2 = 0,
-            Relationship = 1,
-            TaxableFortune = 500_000,
-            TaxableIncomeCanton = 100_000,
-            TaxableIncomeFed = 100_0000,
-            TaxLocationId = 741800000,
-            TaxYear = 2021
+            Name = "Tester",
+            CivilStatus = CivilStatus.Single,
+            NumberOfChildren = 0,
+            ReligiousGroupType = ReligiousGroupType.Roman,
+            TaxableWealth = 500_000,
+            TaxableFederalIncome = 100_000,
+            TaxableIncome = 100_000,
+        };
+    }
+
+    private static CapitalBenefitTaxPerson GetCapitalBenefitPerson()
+    {
+        return new CapitalBenefitTaxPerson
+        {
+            Name = "Tester",
+            CivilStatus = CivilStatus.Single,
+            NumberOfChildren = 0,
+            ReligiousGroupType = ReligiousGroupType.Roman,
+            TaxableCapitalBenefits = 500_000,
         };
     }
 }

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
+using PensionCoach.Tools.CommonTypes.Tax;
 
-namespace TaxCalculator.Validators
+namespace PensionCoach.Tools.TaxCalculator.Validators
 {
     public class CapitalBenefitsTaxPersonValidator : AbstractValidator<CapitalBenefitTaxPerson>
     {
@@ -11,7 +11,7 @@ namespace TaxCalculator.Validators
         {
             Include(new TaxPersonBasicValidator());
 
-            RuleFor(p => p.TaxableBenefits)
+            RuleFor(p => p.TaxableCapitalBenefits)
                 .GreaterThanOrEqualTo(decimal.Zero)
                 .WithMessage(ValueMustNotBeNegative);
         }

@@ -19,13 +19,5 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions
         /// Municipalities are sorted by their name.
         /// </summary>
         Task<IReadOnlyCollection<TaxSupportedMunicipalityModel>> GetAllSupportTaxCalculationAsync();
-
-        Task<int> PopulateWithZipCodeAsync();
-
-        /// <summary>
-        /// Clean municipality name. E.g. removing canton postfix to avoid ambiguity.
-        /// </summary>
-        /// <returns>Number of cases processed.</returns>
-        Task<int> CleanMunicipalityName();
     }
 }

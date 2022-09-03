@@ -5,7 +5,6 @@ using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using PensionVersusCapitalCalculator.Abstractions;
 
 namespace PensionVersusCapitalCalculator
@@ -37,7 +36,7 @@ namespace PensionVersusCapitalCalculator
             {
                 Name = "Benefit Person",
                 CivilStatus = taxPerson.CivilStatus,
-                TaxableBenefits = retirementCapital,
+                TaxableCapitalBenefits = retirementCapital,
                 ReligiousGroupType = taxPerson.ReligiousGroupType,
                 NumberOfChildren = taxPerson.NumberOfChildren,
                 PartnerReligiousGroupType = taxPerson.PartnerReligiousGroupType
@@ -69,7 +68,7 @@ namespace PensionVersusCapitalCalculator
                 SingleTaxResult otherIncomeTaxResult,
                 SingleTaxResult withPensionIncomeTaxResult)
             {
-                decimal capitalBenefitNet = capitalBenefitTaxPerson.TaxableBenefits - benefitTaxResult.TotalTaxAmount;
+                decimal capitalBenefitNet = capitalBenefitTaxPerson.TaxableCapitalBenefits - benefitTaxResult.TotalTaxAmount;
                 decimal incomeNet = taxPerson.TaxableIncome - otherIncome;
                 decimal totalTaxNet = withPensionIncomeTaxResult.TotalTaxAmount - otherIncomeTaxResult.TotalTaxAmount;
 

@@ -1441,20 +1441,20 @@
   },
   {
     "BfsCode": 121,
-    "ZipCode": "8623",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Wetzikon ZH",
-    "Canton": "ZH",
-    "DateOfValidity": "1997-06-17T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 121,
     "ZipCode": "8622",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Wetzikon ZH",
     "Canton": "ZH",
     "DateOfValidity": "1996-08-06T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 121,
+    "ZipCode": "8623",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Wetzikon ZH",
+    "Canton": "ZH",
+    "DateOfValidity": "1997-06-17T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -2620,29 +2620,11 @@
   },
   {
     "BfsCode": 230,
-    "ZipCode": "8408",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Winterthur",
-    "Canton": "ZH",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 230,
     "ZipCode": "8403",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Winterthur",
     "Canton": "ZH",
     "DateOfValidity": "2014-12-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 230,
-    "ZipCode": "8405",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Winterthur",
-    "Canton": "ZH",
-    "DateOfValidity": "1987-10-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -2656,7 +2638,25 @@
   },
   {
     "BfsCode": 230,
+    "ZipCode": "8405",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Winterthur",
+    "Canton": "ZH",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 230,
     "ZipCode": "8406",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Winterthur",
+    "Canton": "ZH",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 230,
+    "ZipCode": "8408",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Winterthur",
     "Canton": "ZH",
@@ -3187,114 +3187,6 @@
   },
   {
     "BfsCode": 261,
-    "ZipCode": "8005",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8008",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8022",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1998-01-10T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8024",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8038",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8045",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8047",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8048",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8098",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "2000-03-29T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8050",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8051",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8090",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
     "ZipCode": "8001",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zürich",
@@ -3309,132 +3201,6 @@
     "MunicipalityName": "Zürich",
     "Canton": "ZH",
     "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8027",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8031",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8036",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8037",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8039",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8040",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8041",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8049",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8053",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8063",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8064",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8044",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8017",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "2020-03-24T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8070",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "1997-03-10T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -3457,6 +3223,15 @@
   },
   {
     "BfsCode": 261,
+    "ZipCode": "8005",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
     "ZipCode": "8006",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zürich",
@@ -3466,7 +3241,70 @@
   },
   {
     "BfsCode": 261,
+    "ZipCode": "8008",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8017",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "2020-03-24T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8022",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1998-01-10T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
     "ZipCode": "8023",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8024",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8027",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8030",
+    "ZipCodeAddOn": "01",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "2012-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8031",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zürich",
     "Canton": "ZH",
@@ -3502,11 +3340,83 @@
   },
   {
     "BfsCode": 261,
+    "ZipCode": "8036",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8037",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8038",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8039",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8040",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8041",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
     "ZipCode": "8042",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zürich",
     "Canton": "ZH",
     "DateOfValidity": "1990-02-20T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8044",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8045",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -3520,7 +3430,61 @@
   },
   {
     "BfsCode": 261,
+    "ZipCode": "8047",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8048",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8049",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8050",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8051",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
     "ZipCode": "8052",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8053",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zürich",
     "Canton": "ZH",
@@ -3556,7 +3520,61 @@
   },
   {
     "BfsCode": 261,
+    "ZipCode": "8063",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8064",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8068",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "2004-06-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8070",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1997-03-10T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8087",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "2000-03-29T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
     "ZipCode": "8088",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "DateOfValidity": "1990-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8090",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zürich",
     "Canton": "ZH",
@@ -3574,29 +3592,11 @@
   },
   {
     "BfsCode": 261,
-    "ZipCode": "8087",
+    "ZipCode": "8098",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zürich",
     "Canton": "ZH",
     "DateOfValidity": "2000-03-29T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8068",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "2004-06-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8030",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Zürich",
-    "Canton": "ZH",
-    "DateOfValidity": "2012-10-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -4051,20 +4051,20 @@
   },
   {
     "BfsCode": 295,
-    "ZipCode": "8813",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Horgen",
-    "Canton": "ZH",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 295,
     "ZipCode": "8810",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Horgen",
     "Canton": "ZH",
     "DateOfValidity": "1988-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 295,
+    "ZipCode": "8813",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Horgen",
+    "Canton": "ZH",
+    "DateOfValidity": "1986-05-21T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -4825,29 +4825,20 @@
   },
   {
     "BfsCode": 351,
-    "ZipCode": "3001",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Bern",
-    "Canton": "BE",
-    "DateOfValidity": "1998-03-05T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 351,
-    "ZipCode": "3005",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Bern",
-    "Canton": "BE",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 351,
     "ZipCode": "3000",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Bern",
     "Canton": "BE",
     "DateOfValidity": "1987-12-15T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 351,
+    "ZipCode": "3001",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Bern",
+    "Canton": "BE",
+    "DateOfValidity": "1998-03-05T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -4870,6 +4861,15 @@
   },
   {
     "BfsCode": 351,
+    "ZipCode": "3005",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Bern",
+    "Canton": "BE",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 351,
     "ZipCode": "3006",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Bern",
@@ -4879,70 +4879,16 @@
   },
   {
     "BfsCode": 351,
-    "ZipCode": "3008",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Bern",
-    "Canton": "BE",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 351,
-    "ZipCode": "3012",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Bern",
-    "Canton": "BE",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 351,
-    "ZipCode": "3013",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Bern",
-    "Canton": "BE",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 351,
-    "ZipCode": "3015",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Bern",
-    "Canton": "BE",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 351,
-    "ZipCode": "3019",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Bern",
-    "Canton": "BE",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 351,
-    "ZipCode": "3020",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Bern",
-    "Canton": "BE",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 351,
-    "ZipCode": "3027",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Bern",
-    "Canton": "BE",
-    "DateOfValidity": "1989-01-24T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 351,
     "ZipCode": "3007",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Bern",
+    "Canton": "BE",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 351,
+    "ZipCode": "3008",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Bern",
     "Canton": "BE",
@@ -4969,7 +4915,34 @@
   },
   {
     "BfsCode": 351,
+    "ZipCode": "3012",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Bern",
+    "Canton": "BE",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 351,
+    "ZipCode": "3013",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Bern",
+    "Canton": "BE",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 351,
     "ZipCode": "3014",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Bern",
+    "Canton": "BE",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 351,
+    "ZipCode": "3015",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Bern",
     "Canton": "BE",
@@ -4987,6 +4960,24 @@
   },
   {
     "BfsCode": 351,
+    "ZipCode": "3019",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Bern",
+    "Canton": "BE",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 351,
+    "ZipCode": "3020",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Bern",
+    "Canton": "BE",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 351,
     "ZipCode": "3024",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Bern",
@@ -4996,11 +4987,11 @@
   },
   {
     "BfsCode": 351,
-    "ZipCode": "3030",
-    "ZipCodeAddOn": "01",
+    "ZipCode": "3027",
+    "ZipCodeAddOn": "00",
     "MunicipalityName": "Bern",
     "Canton": "BE",
-    "DateOfValidity": "1998-07-15T00:00:00",
+    "DateOfValidity": "1989-01-24T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -5010,6 +5001,15 @@
     "MunicipalityName": "Bern",
     "Canton": "BE",
     "DateOfValidity": "2008-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 351,
+    "ZipCode": "3030",
+    "ZipCodeAddOn": "01",
+    "MunicipalityName": "Bern",
+    "Canton": "BE",
+    "DateOfValidity": "1998-07-15T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -5752,7 +5752,25 @@
   },
   {
     "BfsCode": 371,
+    "ZipCode": "2500",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Biel/Bienne",
+    "Canton": "BE",
+    "DateOfValidity": "1991-08-02T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 371,
     "ZipCode": "2501",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Biel/Bienne",
+    "Canton": "BE",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 371,
+    "ZipCode": "2502",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Biel/Bienne",
     "Canton": "BE",
@@ -5770,34 +5788,16 @@
   },
   {
     "BfsCode": 371,
-    "ZipCode": "2505",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Biel/Bienne",
-    "Canton": "BE",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 371,
-    "ZipCode": "2500",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Biel/Bienne",
-    "Canton": "BE",
-    "DateOfValidity": "1991-08-02T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 371,
-    "ZipCode": "2502",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Biel/Bienne",
-    "Canton": "BE",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 371,
     "ZipCode": "2504",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Biel/Bienne",
+    "Canton": "BE",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 371,
+    "ZipCode": "2505",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Biel/Bienne",
     "Canton": "BE",
@@ -6094,20 +6094,20 @@
   },
   {
     "BfsCode": 404,
-    "ZipCode": "3402",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Burgdorf",
-    "Canton": "BE",
-    "DateOfValidity": "1998-09-10T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 404,
     "ZipCode": "3401",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Burgdorf",
     "Canton": "BE",
     "DateOfValidity": "1996-08-06T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 404,
+    "ZipCode": "3402",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Burgdorf",
+    "Canton": "BE",
+    "DateOfValidity": "1998-09-10T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -10063,6 +10063,15 @@
   },
   {
     "BfsCode": 942,
+    "ZipCode": "3602",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Thun",
+    "Canton": "BE",
+    "DateOfValidity": "1998-03-20T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 942,
     "ZipCode": "3603",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Thun",
@@ -10081,7 +10090,7 @@
   },
   {
     "BfsCode": 942,
-    "ZipCode": "3607",
+    "ZipCode": "3605",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Thun",
     "Canton": "BE",
@@ -10090,16 +10099,7 @@
   },
   {
     "BfsCode": 942,
-    "ZipCode": "3602",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Thun",
-    "Canton": "BE",
-    "DateOfValidity": "1998-03-20T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 942,
-    "ZipCode": "3605",
+    "ZipCode": "3607",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Thun",
     "Canton": "BE",
@@ -11341,20 +11341,20 @@
   },
   {
     "BfsCode": 1054,
-    "ZipCode": "6031",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Ebikon",
-    "Canton": "LU",
-    "DateOfValidity": "1994-09-28T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1054,
     "ZipCode": "6030",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Ebikon",
     "Canton": "LU",
     "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 1054,
+    "ZipCode": "6031",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Ebikon",
+    "Canton": "LU",
+    "DateOfValidity": "1994-09-28T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -11584,7 +11584,7 @@
   },
   {
     "BfsCode": 1061,
-    "ZipCode": "6006",
+    "ZipCode": "6004",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Luzern",
     "Canton": "LU",
@@ -11593,16 +11593,16 @@
   },
   {
     "BfsCode": 1061,
-    "ZipCode": "6015",
+    "ZipCode": "6005",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Luzern",
     "Canton": "LU",
-    "DateOfValidity": "2000-07-01T00:00:00",
+    "DateOfValidity": "1987-10-01T00:00:00",
     "LanguageCode": 0
   },
   {
     "BfsCode": 1061,
-    "ZipCode": "6005",
+    "ZipCode": "6006",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Luzern",
     "Canton": "LU",
@@ -11620,20 +11620,20 @@
   },
   {
     "BfsCode": 1061,
-    "ZipCode": "6004",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Luzern",
-    "Canton": "LU",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1061,
     "ZipCode": "6014",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Luzern",
     "Canton": "LU",
     "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 1061,
+    "ZipCode": "6015",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Luzern",
+    "Canton": "LU",
+    "DateOfValidity": "2000-07-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -13735,20 +13735,20 @@
   },
   {
     "BfsCode": 1402,
-    "ZipCode": "6391",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Engelberg",
-    "Canton": "OW",
-    "DateOfValidity": "1994-06-02T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1402,
     "ZipCode": "6390",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Engelberg",
     "Canton": "OW",
     "DateOfValidity": "1997-05-22T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 1402,
+    "ZipCode": "6391",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Engelberg",
+    "Canton": "OW",
+    "DateOfValidity": "1994-06-02T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -13879,20 +13879,20 @@
   },
   {
     "BfsCode": 1407,
-    "ZipCode": "6061",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Sarnen 1",
-    "Canton": "OW",
-    "DateOfValidity": "1995-08-30T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1407,
     "ZipCode": "6060",
     "ZipCodeAddOn": "01",
     "MunicipalityName": "Sarnen 1",
     "Canton": "OW",
     "DateOfValidity": "2011-03-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 1407,
+    "ZipCode": "6061",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Sarnen 1",
+    "Canton": "OW",
+    "DateOfValidity": "1995-08-30T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -14491,20 +14491,20 @@
   },
   {
     "BfsCode": 1701,
-    "ZipCode": "6341",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Baar",
-    "Canton": "ZG",
-    "DateOfValidity": "1996-06-10T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1701,
     "ZipCode": "6340",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Baar",
     "Canton": "ZG",
     "DateOfValidity": "1996-03-04T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 1701,
+    "ZipCode": "6341",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Baar",
+    "Canton": "ZG",
+    "DateOfValidity": "1996-06-10T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -14761,15 +14761,6 @@
   },
   {
     "BfsCode": 1711,
-    "ZipCode": "6301",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Zug",
-    "Canton": "ZG",
-    "DateOfValidity": "1998-03-18T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1711,
     "ZipCode": "6300",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zug",
@@ -14779,11 +14770,11 @@
   },
   {
     "BfsCode": 1711,
-    "ZipCode": "6303",
+    "ZipCode": "6301",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zug",
     "Canton": "ZG",
-    "DateOfValidity": "1996-03-04T00:00:00",
+    "DateOfValidity": "1998-03-18T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -14793,6 +14784,15 @@
     "MunicipalityName": "Zug",
     "Canton": "ZG",
     "DateOfValidity": "2015-11-05T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 1711,
+    "ZipCode": "6303",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Zug",
+    "Canton": "ZG",
+    "DateOfValidity": "1996-03-04T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -16291,6 +16291,15 @@
   },
   {
     "BfsCode": 2196,
+    "ZipCode": "1700",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Fribourg",
+    "Canton": "FR",
+    "DateOfValidity": "1996-09-05T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2196,
     "ZipCode": "1701",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Fribourg",
@@ -16301,15 +16310,6 @@
   {
     "BfsCode": 2196,
     "ZipCode": "1702",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Fribourg",
-    "Canton": "FR",
-    "DateOfValidity": "1996-09-05T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2196,
-    "ZipCode": "1700",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Fribourg",
     "Canton": "FR",
@@ -18928,20 +18928,20 @@
   },
   {
     "BfsCode": 2581,
-    "ZipCode": "4605",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Olten",
-    "Canton": "SO",
-    "DateOfValidity": "2018-06-28T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2581,
     "ZipCode": "4600",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Olten",
     "Canton": "SO",
     "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2581,
+    "ZipCode": "4605",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Olten",
+    "Canton": "SO",
+    "DateOfValidity": "2018-06-28T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -19063,6 +19063,15 @@
   },
   {
     "BfsCode": 2601,
+    "ZipCode": "4502",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Solothurn",
+    "Canton": "SO",
+    "DateOfValidity": "1996-09-12T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2601,
     "ZipCode": "4503",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Solothurn",
@@ -19073,15 +19082,6 @@
   {
     "BfsCode": 2601,
     "ZipCode": "4509",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Solothurn",
-    "Canton": "SO",
-    "DateOfValidity": "1996-09-12T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2601,
-    "ZipCode": "4502",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Solothurn",
     "Canton": "SO",
@@ -19243,70 +19243,7 @@
   },
   {
     "BfsCode": 2701,
-    "ZipCode": "4010",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4015",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4018",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4024",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1993-09-10T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4025",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1993-09-10T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4030",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4031",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4052",
+    "ZipCode": "4000",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Basel",
     "Canton": "BS",
@@ -19315,29 +19252,11 @@
   },
   {
     "BfsCode": 2701,
-    "ZipCode": "4053",
+    "ZipCode": "4001",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Basel",
     "Canton": "BS",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4057",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4059",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1987-10-01T00:00:00",
+    "DateOfValidity": "1989-12-19T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -19356,96 +19275,6 @@
     "MunicipalityName": "Basel",
     "Canton": "BS",
     "DateOfValidity": "1993-11-11T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4011",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1995-03-29T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4013",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4016",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1993-09-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4019",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1993-11-10T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4020",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4051",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4054",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4056",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4000",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4001",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "1989-12-19T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -19486,6 +19315,24 @@
   },
   {
     "BfsCode": 2701,
+    "ZipCode": "4010",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4011",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1995-03-29T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
     "ZipCode": "4012",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Basel",
@@ -19495,7 +19342,106 @@
   },
   {
     "BfsCode": 2701,
+    "ZipCode": "4013",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4015",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4016",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1993-09-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
     "ZipCode": "4017",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4018",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4019",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1993-11-10T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4020",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4024",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1993-09-10T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4025",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1993-09-10T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4028",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "2014-04-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4030",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4031",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Basel",
     "Canton": "BS",
@@ -19513,7 +19459,61 @@
   },
   {
     "BfsCode": 2701,
+    "ZipCode": "4051",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4052",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4053",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4054",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
     "ZipCode": "4055",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4056",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4057",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Basel",
     "Canton": "BS",
@@ -19531,7 +19531,7 @@
   },
   {
     "BfsCode": 2701,
-    "ZipCode": "4091",
+    "ZipCode": "4059",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Basel",
     "Canton": "BS",
@@ -19549,20 +19549,20 @@
   },
   {
     "BfsCode": 2701,
-    "ZipCode": "4028",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel",
-    "Canton": "BS",
-    "DateOfValidity": "2014-04-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
     "ZipCode": "4075",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Basel",
     "Canton": "BS",
     "DateOfValidity": "2005-08-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2701,
+    "ZipCode": "4091",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Basel",
+    "Canton": "BS",
+    "DateOfValidity": "1987-10-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -21196,24 +21196,6 @@
   },
   {
     "BfsCode": 2939,
-    "ZipCode": "8201",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Schaffhausen",
-    "Canton": "SH",
-    "DateOfValidity": "1996-03-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2939,
-    "ZipCode": "8203",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Schaffhausen",
-    "Canton": "SH",
-    "DateOfValidity": "1996-03-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2939,
     "ZipCode": "8200",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Schaffhausen",
@@ -21223,7 +21205,7 @@
   },
   {
     "BfsCode": 2939,
-    "ZipCode": "8207",
+    "ZipCode": "8201",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Schaffhausen",
     "Canton": "SH",
@@ -21237,6 +21219,24 @@
     "MunicipalityName": "Schaffhausen",
     "Canton": "SH",
     "DateOfValidity": "1997-10-23T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2939,
+    "ZipCode": "8203",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Schaffhausen",
+    "Canton": "SH",
+    "DateOfValidity": "1996-03-06T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2939,
+    "ZipCode": "8207",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Schaffhausen",
+    "Canton": "SH",
+    "DateOfValidity": "1996-03-06T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -21448,20 +21448,20 @@
   },
   {
     "BfsCode": 3001,
-    "ZipCode": "9102",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Herisau",
-    "Canton": "AR",
-    "DateOfValidity": "1989-05-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3001,
     "ZipCode": "9100",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Herisau",
     "Canton": "AR",
     "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3001,
+    "ZipCode": "9102",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Herisau",
+    "Canton": "AR",
+    "DateOfValidity": "1989-05-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -21916,96 +21916,6 @@
   },
   {
     "BfsCode": 3203,
-    "ZipCode": "9020",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "St. Gallen",
-    "Canton": "SG",
-    "DateOfValidity": "1996-04-11T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3203,
-    "ZipCode": "9004",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "St. Gallen",
-    "Canton": "SG",
-    "DateOfValidity": "1988-12-19T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3203,
-    "ZipCode": "9008",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "St. Gallen",
-    "Canton": "SG",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3203,
-    "ZipCode": "9011",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "St. Gallen",
-    "Canton": "SG",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3203,
-    "ZipCode": "9014",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "St. Gallen",
-    "Canton": "SG",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3203,
-    "ZipCode": "9016",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "St. Gallen",
-    "Canton": "SG",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3203,
-    "ZipCode": "9015",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "St. Gallen",
-    "Canton": "SG",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3203,
-    "ZipCode": "9007",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "St. Gallen",
-    "Canton": "SG",
-    "DateOfValidity": "1994-12-29T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3203,
-    "ZipCode": "9010",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "St. Gallen",
-    "Canton": "SG",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3203,
-    "ZipCode": "9012",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "St. Gallen",
-    "Canton": "SG",
-    "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3203,
     "ZipCode": "9000",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "St. Gallen",
@@ -22024,6 +21934,15 @@
   },
   {
     "BfsCode": 3203,
+    "ZipCode": "9004",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "St. Gallen",
+    "Canton": "SG",
+    "DateOfValidity": "1988-12-19T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3203,
     "ZipCode": "9006",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "St. Gallen",
@@ -22033,11 +21952,83 @@
   },
   {
     "BfsCode": 3203,
-    "ZipCode": "9028",
+    "ZipCode": "9007",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "St. Gallen",
     "Canton": "SG",
-    "DateOfValidity": "1994-01-03T00:00:00",
+    "DateOfValidity": "1994-12-29T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3203,
+    "ZipCode": "9008",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "St. Gallen",
+    "Canton": "SG",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3203,
+    "ZipCode": "9010",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "St. Gallen",
+    "Canton": "SG",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3203,
+    "ZipCode": "9011",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "St. Gallen",
+    "Canton": "SG",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3203,
+    "ZipCode": "9012",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "St. Gallen",
+    "Canton": "SG",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3203,
+    "ZipCode": "9014",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "St. Gallen",
+    "Canton": "SG",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3203,
+    "ZipCode": "9015",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "St. Gallen",
+    "Canton": "SG",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3203,
+    "ZipCode": "9016",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "St. Gallen",
+    "Canton": "SG",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3203,
+    "ZipCode": "9020",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "St. Gallen",
+    "Canton": "SG",
+    "DateOfValidity": "1996-04-11T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -22047,6 +22038,15 @@
     "MunicipalityName": "St. Gallen",
     "Canton": "SG",
     "DateOfValidity": "2011-12-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3203,
+    "ZipCode": "9028",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "St. Gallen",
+    "Canton": "SG",
+    "DateOfValidity": "1994-01-03T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -22213,20 +22213,20 @@
   },
   {
     "BfsCode": 3215,
-    "ZipCode": "9401",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Rorschach",
-    "Canton": "SG",
-    "DateOfValidity": "1994-11-23T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3215,
     "ZipCode": "9400",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Rorschach",
     "Canton": "SG",
     "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3215,
+    "ZipCode": "9401",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Rorschach",
+    "Canton": "SG",
+    "DateOfValidity": "1994-11-23T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -26452,6 +26452,24 @@
   },
   {
     "BfsCode": 3901,
+    "ZipCode": "7000",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Chur",
+    "Canton": "GR",
+    "DateOfValidity": "1988-06-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3901,
+    "ZipCode": "7001",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Chur",
+    "Canton": "GR",
+    "DateOfValidity": "1998-03-05T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3901,
     "ZipCode": "7004",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Chur",
@@ -26475,24 +26493,6 @@
     "MunicipalityName": "Chur",
     "Canton": "GR",
     "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3901,
-    "ZipCode": "7000",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Chur",
-    "Canton": "GR",
-    "DateOfValidity": "1988-06-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3901,
-    "ZipCode": "7001",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Chur",
-    "Canton": "GR",
-    "DateOfValidity": "1998-03-05T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -27487,15 +27487,6 @@
   },
   {
     "BfsCode": 4021,
-    "ZipCode": "5406",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Baden",
-    "Canton": "AG",
-    "DateOfValidity": "1993-12-23T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4021,
     "ZipCode": "5400",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Baden",
@@ -27533,6 +27524,15 @@
   {
     "BfsCode": 4021,
     "ZipCode": "5405",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Baden",
+    "Canton": "AG",
+    "DateOfValidity": "1993-12-23T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 4021,
+    "ZipCode": "5406",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Baden",
     "Canton": "AG",
@@ -30151,15 +30151,6 @@
   },
   {
     "BfsCode": 4289,
-    "ZipCode": "4808",
-    "ZipCodeAddOn": "40",
-    "MunicipalityName": "Zofingen PostFinance",
-    "Canton": "AG",
-    "DateOfValidity": "2007-03-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4289,
     "ZipCode": "4800",
     "ZipCodeAddOn": "40",
     "MunicipalityName": "Zofingen PostFinance",
@@ -30170,6 +30161,15 @@
   {
     "BfsCode": 4289,
     "ZipCode": "4807",
+    "ZipCodeAddOn": "40",
+    "MunicipalityName": "Zofingen PostFinance",
+    "Canton": "AG",
+    "DateOfValidity": "2007-03-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 4289,
+    "ZipCode": "4808",
     "ZipCodeAddOn": "40",
     "MunicipalityName": "Zofingen PostFinance",
     "Canton": "AG",
@@ -31051,6 +31051,15 @@
   },
   {
     "BfsCode": 4566,
+    "ZipCode": "8500",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Frauenfeld",
+    "Canton": "TG",
+    "DateOfValidity": "1997-04-11T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 4566,
     "ZipCode": "8501",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Frauenfeld",
@@ -31065,15 +31074,6 @@
     "MunicipalityName": "Frauenfeld",
     "Canton": "TG",
     "DateOfValidity": "2014-04-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4566,
-    "ZipCode": "8500",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Frauenfeld",
-    "Canton": "TG",
-    "DateOfValidity": "1997-04-11T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -32599,6 +32599,15 @@
   },
   {
     "BfsCode": 5002,
+    "ZipCode": "6500",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Bellinzona",
+    "Canton": "TI",
+    "DateOfValidity": "1996-08-02T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 5002,
     "ZipCode": "6501",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Bellinzona",
@@ -32613,15 +32622,6 @@
     "MunicipalityName": "Bellinzona",
     "Canton": "TI",
     "DateOfValidity": "1995-12-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5002,
-    "ZipCode": "6500",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Bellinzona",
-    "Canton": "TI",
-    "DateOfValidity": "1996-08-02T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -33652,20 +33652,20 @@
   },
   {
     "BfsCode": 5120,
-    "ZipCode": "6602",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Muralto",
-    "Canton": "TI",
-    "DateOfValidity": "1995-12-18T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5120,
     "ZipCode": "6600",
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Muralto",
     "Canton": "TI",
     "DateOfValidity": "1998-10-27T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 5120,
+    "ZipCode": "6602",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Muralto",
+    "Canton": "TI",
+    "DateOfValidity": "1995-12-18T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -34291,15 +34291,6 @@
   },
   {
     "BfsCode": 5192,
-    "ZipCode": "6903",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Lugano",
-    "Canton": "TI",
-    "DateOfValidity": "1989-09-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5192,
     "ZipCode": "6900",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Lugano",
@@ -34314,6 +34305,15 @@
     "MunicipalityName": "Lugano",
     "Canton": "TI",
     "DateOfValidity": "1988-12-16T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 5192,
+    "ZipCode": "6903",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Lugano",
+    "Canton": "TI",
+    "DateOfValidity": "1989-09-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -37702,56 +37702,11 @@
   },
   {
     "BfsCode": 5586,
-    "ZipCode": "1003",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Lausanne",
-    "Canton": "VD",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5586,
-    "ZipCode": "1012",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Lausanne",
-    "Canton": "VD",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5586,
-    "ZipCode": "1018",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Lausanne",
-    "Canton": "VD",
-    "DateOfValidity": "1988-03-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5586,
     "ZipCode": "1001",
     "ZipCodeAddOn": "01",
     "MunicipalityName": "Lausanne",
     "Canton": "VD",
     "DateOfValidity": "1998-03-18T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5586,
-    "ZipCode": "1005",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Lausanne",
-    "Canton": "VD",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5586,
-    "ZipCode": "1011",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Lausanne",
-    "Canton": "VD",
-    "DateOfValidity": "1992-02-10T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -37765,7 +37720,25 @@
   },
   {
     "BfsCode": 5586,
+    "ZipCode": "1003",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Lausanne",
+    "Canton": "VD",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 5586,
     "ZipCode": "1004",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Lausanne",
+    "Canton": "VD",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 5586,
+    "ZipCode": "1005",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Lausanne",
     "Canton": "VD",
@@ -37797,6 +37770,33 @@
     "MunicipalityName": "Lausanne",
     "Canton": "VD",
     "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 5586,
+    "ZipCode": "1011",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Lausanne",
+    "Canton": "VD",
+    "DateOfValidity": "1992-02-10T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 5586,
+    "ZipCode": "1012",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Lausanne",
+    "Canton": "VD",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 5586,
+    "ZipCode": "1018",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Lausanne",
+    "Canton": "VD",
+    "DateOfValidity": "1988-03-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -41140,20 +41140,20 @@
   },
   {
     "BfsCode": 5938,
-    "ZipCode": "1401",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Yverdon-les-Bains",
-    "Canton": "VD",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5938,
     "ZipCode": "1400",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Yverdon-les-Bains",
     "Canton": "VD",
     "DateOfValidity": "1992-12-11T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 5938,
+    "ZipCode": "1401",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Yverdon-les-Bains",
+    "Canton": "VD",
+    "DateOfValidity": "1986-05-21T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -44506,8 +44506,8 @@
   },
   {
     "BfsCode": 6421,
-    "ZipCode": "2302",
-    "ZipCodeAddOn": "00",
+    "ZipCode": "2301",
+    "ZipCodeAddOn": "01",
     "MunicipalityName": "La Chaux-de-Fonds",
     "Canton": "NE",
     "DateOfValidity": "1996-09-12T00:00:00",
@@ -44515,8 +44515,8 @@
   },
   {
     "BfsCode": 6421,
-    "ZipCode": "2301",
-    "ZipCodeAddOn": "01",
+    "ZipCode": "2302",
+    "ZipCodeAddOn": "00",
     "MunicipalityName": "La Chaux-de-Fonds",
     "Canton": "NE",
     "DateOfValidity": "1996-09-12T00:00:00",
@@ -45613,11 +45613,11 @@
   },
   {
     "BfsCode": 6621,
-    "ZipCode": "1240",
+    "ZipCode": "1200",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Genève",
     "Canton": "GE",
-    "DateOfValidity": "2004-05-01T00:00:00",
+    "DateOfValidity": "1988-12-22T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -45649,6 +45649,15 @@
   },
   {
     "BfsCode": 6621,
+    "ZipCode": "1204",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Genève",
+    "Canton": "GE",
+    "DateOfValidity": "1987-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 6621,
     "ZipCode": "1205",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Genève",
@@ -45676,29 +45685,11 @@
   },
   {
     "BfsCode": 6621,
-    "ZipCode": "1200",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Genève",
-    "Canton": "GE",
-    "DateOfValidity": "1988-12-22T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6621,
     "ZipCode": "1208",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Genève",
     "Canton": "GE",
     "DateOfValidity": "1998-11-23T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6621,
-    "ZipCode": "1204",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Genève",
-    "Canton": "GE",
-    "DateOfValidity": "1987-10-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -45721,11 +45712,11 @@
   },
   {
     "BfsCode": 6621,
-    "ZipCode": "1211",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Genève 1",
+    "ZipCode": "1240",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Genève",
     "Canton": "GE",
-    "DateOfValidity": "1999-09-23T00:00:00",
+    "DateOfValidity": "2004-05-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -45735,6 +45726,15 @@
     "MunicipalityName": "Genève 1",
     "Canton": "GE",
     "DateOfValidity": "1988-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 6621,
+    "ZipCode": "1211",
+    "ZipCodeAddOn": "01",
+    "MunicipalityName": "Genève 1",
+    "Canton": "GE",
+    "DateOfValidity": "1999-09-23T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -45874,20 +45874,20 @@
   },
   {
     "BfsCode": 6621,
-    "ZipCode": "1211",
-    "ZipCodeAddOn": "20",
-    "MunicipalityName": "Genève 20",
-    "Canton": "GE",
-    "DateOfValidity": "1987-12-15T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6621,
     "ZipCode": "1200",
     "ZipCodeAddOn": "20",
     "MunicipalityName": "Genève 20",
     "Canton": "GE",
     "DateOfValidity": "1988-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 6621,
+    "ZipCode": "1211",
+    "ZipCodeAddOn": "20",
+    "MunicipalityName": "Genève 20",
+    "Canton": "GE",
+    "DateOfValidity": "1987-12-15T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -45928,20 +45928,20 @@
   },
   {
     "BfsCode": 6621,
-    "ZipCode": "1211",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Genève 3",
-    "Canton": "GE",
-    "DateOfValidity": "1999-09-23T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6621,
     "ZipCode": "1200",
     "ZipCodeAddOn": "03",
     "MunicipalityName": "Genève 3",
     "Canton": "GE",
     "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 6621,
+    "ZipCode": "1211",
+    "ZipCodeAddOn": "03",
+    "MunicipalityName": "Genève 3",
+    "Canton": "GE",
+    "DateOfValidity": "1999-09-23T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -45964,20 +45964,20 @@
   },
   {
     "BfsCode": 6621,
-    "ZipCode": "1211",
-    "ZipCodeAddOn": "06",
-    "MunicipalityName": "Genève 6",
-    "Canton": "GE",
-    "DateOfValidity": "1999-09-23T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6621,
     "ZipCode": "1200",
     "ZipCodeAddOn": "06",
     "MunicipalityName": "Genève 6",
     "Canton": "GE",
     "DateOfValidity": "1999-10-25T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 6621,
+    "ZipCode": "1211",
+    "ZipCodeAddOn": "06",
+    "MunicipalityName": "Genève 6",
+    "Canton": "GE",
+    "DateOfValidity": "1999-09-23T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -46018,7 +46018,7 @@
   },
   {
     "BfsCode": 6621,
-    "ZipCode": "1211",
+    "ZipCode": "1200",
     "ZipCodeAddOn": "08",
     "MunicipalityName": "Genève 8",
     "Canton": "GE",
@@ -46027,7 +46027,7 @@
   },
   {
     "BfsCode": 6621,
-    "ZipCode": "1200",
+    "ZipCode": "1211",
     "ZipCodeAddOn": "08",
     "MunicipalityName": "Genève 8",
     "Canton": "GE",

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using LanguageExt;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonUtils;
 using PensionCoach.Tools.PostOpenApi;
@@ -14,20 +15,20 @@ using Tax.Data;
 using Tax.Data.Abstractions;
 using Tax.Data.Abstractions.Models;
 
-namespace TaxCalculator;
+namespace PensionCoach.Tools.TaxCalculator;
 
 public class AdminConnector : IAdminConnector
 {
     private readonly MunicipalityDbContext municipalityDbContext;
     private readonly ITaxDataPopulateService populateTaxDataService;
     private readonly IPostOpenApiClient postOpenApiClient;
-    private readonly ILogger<MunicipalityConnector> logger;
+    private readonly ILogger<AdminConnector> logger;
 
     public AdminConnector(
         MunicipalityDbContext municipalityDbContext,
         ITaxDataPopulateService populateTaxDataService,
         IPostOpenApiClient postOpenApiClient,
-        ILogger<MunicipalityConnector> logger)
+        ILogger<AdminConnector> logger)
     {
         this.municipalityDbContext = municipalityDbContext;
         this.populateTaxDataService = populateTaxDataService;
@@ -36,6 +37,99 @@ public class AdminConnector : IAdminConnector
     }
 
     private int TotalCount { get; set; }
+
+    public async Task<int> PopulateWithZipCodeAsync()
+    {
+        int count = 0;
+        foreach (var municipalityEntity in municipalityDbContext.MunicipalityEntities
+                     .Where(item => item.SuccessorId == 0 && string.IsNullOrEmpty(item.ZipCode)))
+        {
+            ZipEntity[] zipEntities = municipalityDbContext.TaxMunicipalityEntities
+                .Where(item => item.BfsNumber == municipalityEntity.BfsNumber && item.Canton == municipalityEntity.Canton)
+                .ToArray();
+
+            if (zipEntities.Length == 1) // unique, easy case
+            {
+                if (municipalityDbContext.MunicipalityEntities.Local
+                    .Any(item =>
+                        item.BfsNumber == municipalityEntity.BfsNumber &&
+                        item.MutationId == municipalityEntity.MutationId))
+                {
+                    continue;
+                }
+
+                municipalityEntity.ZipCode = zipEntities[0].ZipCode;
+                municipalityDbContext.Update(municipalityEntity);
+                count++;
+            }
+            else if (zipEntities.Length > 1)
+            {
+                var zipsByNameEntities = zipEntities
+                    .Where(item => item.Name.Contains(municipalityEntity.CleanName))
+                    .ToArray();
+
+                if (zipsByNameEntities.Length == 1)
+                {
+                    if (municipalityDbContext.MunicipalityEntities.Local
+                        .Any(item =>
+                            item.BfsNumber == municipalityEntity.BfsNumber &&
+                            item.MutationId == municipalityEntity.MutationId))
+                    {
+                        continue;
+                    }
+
+                    municipalityEntity.ZipCode = zipsByNameEntities[0].ZipCode;
+                    municipalityDbContext.Update(municipalityEntity);
+                    count++;
+                }
+                else if (zipsByNameEntities.Length > 1)
+                {
+                    // take smallest zip add on
+                    var zipsByAddOn = zipsByNameEntities
+                        .Where(item => item.ZipCodeAddOn == "0")
+                        .ToArray();
+
+                    if (zipsByAddOn.Length == 1)
+                    {
+                        if (municipalityDbContext.MunicipalityEntities.Local
+                            .Any(item =>
+                                item.BfsNumber == municipalityEntity.BfsNumber &&
+                                item.MutationId == municipalityEntity.MutationId))
+                        {
+                            continue;
+                        }
+
+                        municipalityEntity.ZipCode = zipsByAddOn[0].ZipCode;
+                        municipalityDbContext.Update(municipalityEntity);
+                        count++;
+                    }
+                    else if (zipsByAddOn.Length > 1)
+                    {
+                        // take smallest zip add on
+                        var zipFinalEntity = zipsByAddOn
+                            .OrderBy(item => item.Name.Length)
+                            .First();
+
+                        if (municipalityDbContext.MunicipalityEntities.Local
+                            .Any(item =>
+                                item.BfsNumber == municipalityEntity.BfsNumber &&
+                                item.MutationId == municipalityEntity.MutationId))
+                        {
+                            continue;
+                        }
+
+                        municipalityEntity.ZipCode = zipFinalEntity.ZipCode;
+                        municipalityDbContext.Update(municipalityEntity);
+                        count++;
+                    }
+                }
+            }
+        }
+
+        await municipalityDbContext.SaveChangesAsync();
+
+        return count;
+    }
 
     public Task<int> PopulateWithTaxLocationAsync(bool doClear)
     {
@@ -62,6 +156,28 @@ public class AdminConnector : IAdminConnector
             });
 
             count++;
+        }
+
+        await municipalityDbContext.SaveChangesAsync(CancellationToken.None);
+
+        return count;
+    }
+
+    public async Task<int> CleanMunicipalityName()
+    {
+        int count = 0;
+        foreach (var municipalityEntity in municipalityDbContext.MunicipalityEntities)
+        {
+            Prelude.Optional((municipalityEntity.Name, municipalityEntity.Canton))
+                .Map(t => RemoveCantonDescription(t.Name, t.Canton))
+                .Map(Abbreviate)
+                .Iter(cleanName =>
+                {
+                    municipalityEntity.CleanName = cleanName;
+                    municipalityDbContext.Update(municipalityEntity);
+
+                    count++;
+                });
         }
 
         await municipalityDbContext.SaveChangesAsync(CancellationToken.None);
@@ -121,7 +237,7 @@ public class AdminConnector : IAdminConnector
             }
         }
     }
-
+    
     private async Task ConsumeDataAsync(ChannelReader<(int, int)> channelReader, ChannelWriter<ZipModel> channelWriter, int readerId)
     {
         while (await channelReader.WaitToReadAsync())
@@ -159,5 +275,23 @@ public class AdminConnector : IAdminConnector
         {
             await channelWriter.WriteAsync(model);
         }
+    }
+
+    private string RemoveCantonDescription(string name, string canton)
+    {
+        return name
+            .Replace($" ({canton})", string.Empty)
+            .Replace($" {canton}", string.Empty)
+            .Trim();
+    }
+
+    private string Abbreviate(string name)
+    {
+        return name
+            .Replace(" bei ", " b. ")
+            .Replace("Saint-", "St-")
+            .Replace("Sainte-", "Ste-")
+            .Replace("ë", "e")
+            .Trim();
     }
 }

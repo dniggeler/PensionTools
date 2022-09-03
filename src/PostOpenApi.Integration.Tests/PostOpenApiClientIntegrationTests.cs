@@ -19,7 +19,7 @@ public class PostOpenApiClientIntegrationTests : IClassFixture<WebApplicationFac
 
     public PostOpenApiClientIntegrationTests(WebApplicationFactory<Startup> factory)
     {
-        client = factory.CreateDefaultClient(new Uri("http://localhost/api/data/municipality/"));
+        client = factory.CreateDefaultClient(new Uri("http://localhost/api/admin/"));
     }
 
     [Fact(DisplayName = "All Zip Codes")]
@@ -27,7 +27,9 @@ public class PostOpenApiClientIntegrationTests : IClassFixture<WebApplicationFac
     {
         IEnumerable<ZipModel> result = await client.GetFromJsonAsync<IEnumerable<ZipModel>>("zip") switch
         {
-            {} a => a.ToList().OrderBy(item => item.BfsCode).ThenBy(item => item.MunicipalityName),
+            {} a => a.ToList().OrderBy(item => item.BfsCode)
+                .ThenBy(item => item.ZipCode)
+                .ThenBy(item => item.MunicipalityName),
             null => Array.Empty<ZipModel>()
         };
 

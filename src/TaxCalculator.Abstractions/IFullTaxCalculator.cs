@@ -9,5 +9,5 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions;
 public interface IFullTaxCalculator
 {
     Task<Either<string,FullTaxResult>> CalculateAsync(
-        int calculationYear, int municipalityId, Canton canton, TaxPerson person, bool withMaxAvailableCalculationYear = false);
+        int calculationYear, int taxId, Canton canton, TaxPerson person, bool withMaxAvailableCalculationYear = false);
 }

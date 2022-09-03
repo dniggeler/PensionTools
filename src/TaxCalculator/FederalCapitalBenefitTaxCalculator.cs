@@ -1,13 +1,14 @@
-﻿namespace TaxCalculator
-{
-    using System.Threading.Tasks;
-    using AutoMapper;
-    using FluentValidation;
-    using LanguageExt;
-    using PensionCoach.Tools.TaxCalculator.Abstractions;
-    using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-    using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
+﻿using System.Threading.Tasks;
+using AutoMapper;
+using FluentValidation;
+using LanguageExt;
+using PensionCoach.Tools.CommonTypes.Tax;
+using PensionCoach.Tools.TaxCalculator.Abstractions;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
+namespace PensionCoach.Tools.TaxCalculator
+{
     public class FederalCapitalBenefitTaxCalculator : IFederalCapitalBenefitTaxCalculator
     {
         private readonly IFederalTaxCalculator taxCalculator;

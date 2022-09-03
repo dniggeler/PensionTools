@@ -6,6 +6,7 @@ using LanguageExt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Tools.Comparison.Abstractions;
 using Tax.Tools.Comparison.Abstractions.Models;
@@ -94,7 +95,7 @@ namespace TaxCalculator.WebApi.Controllers
                     ReligiousGroupType = request.ReligiousGroup,
                     PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
                     NumberOfChildren = 0,
-                    TaxableBenefits = request.TaxableBenefits,
+                    TaxableCapitalBenefits = request.TaxableBenefits,
                 };
             }
         }
