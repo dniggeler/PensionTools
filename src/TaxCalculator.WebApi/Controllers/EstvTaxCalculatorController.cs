@@ -19,12 +19,12 @@ namespace TaxCalculator.WebApi.Controllers;
 public class EstvTaxCalculatorController : ControllerBase
 {
     private readonly IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator;
-    private readonly IFullTaxCalculator fullTaxCalculator;
+    private readonly IFullWealthAndIncomeTaxCalculator fullTaxCalculator;
     private readonly IMunicipalityConnector municipalityResolver;
 
     public EstvTaxCalculatorController(
         IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator,
-        IFullTaxCalculator fullTaxCalculator,
+        IFullWealthAndIncomeTaxCalculator fullTaxCalculator,
         IMunicipalityConnector municipalityResolver)
     {
         this.fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;

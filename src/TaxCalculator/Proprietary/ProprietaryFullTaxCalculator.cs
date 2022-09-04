@@ -8,15 +8,15 @@ using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
-namespace PensionCoach.Tools.TaxCalculator
+namespace PensionCoach.Tools.TaxCalculator.Proprietary
 {
-    public class FullTaxCalculator : IFullTaxCalculator
+    public class ProprietaryFullTaxCalculator : IFullWealthAndIncomeTaxCalculator
     {
         private readonly IMapper mapper;
         private readonly IStateTaxCalculator stateTaxCalculator;
         private readonly IFederalTaxCalculator federalTaxCalculator;
 
-        public FullTaxCalculator(
+        public ProprietaryFullTaxCalculator(
             IMapper mapper,
             IStateTaxCalculator stateTaxCalculator,
             IFederalTaxCalculator federalTaxCalculator)
@@ -33,7 +33,7 @@ namespace PensionCoach.Tools.TaxCalculator
             TaxPerson person,
             bool withMaxAvailableCalculationYear)
         {
-            int maxCalculationYear = withMaxAvailableCalculationYear
+            var maxCalculationYear = withMaxAvailableCalculationYear
                 ? Math.Min(calculationYear, 2019)
                 : calculationYear;
 
@@ -44,8 +44,8 @@ namespace PensionCoach.Tools.TaxCalculator
 
             await Task.WhenAll(stateTaxResultTask, federalTaxResultTask);
 
-            Either<string, StateTaxResult> stateTaxResult = await stateTaxResultTask;
-            Either<string, BasisTaxResult> federalTaxResult = await federalTaxResultTask;
+            var stateTaxResult = await stateTaxResultTask;
+            var federalTaxResult = await federalTaxResultTask;
 
             var fullResult = new FullTaxResult();
 

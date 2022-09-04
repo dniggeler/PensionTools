@@ -14,6 +14,7 @@ using PensionCoach.Tools.TaxCalculator.Basis.Income;
 using PensionCoach.Tools.TaxCalculator.Basis.Wealth;
 using PensionCoach.Tools.TaxCalculator.Estv;
 using PensionCoach.Tools.TaxCalculator.Mapping;
+using PensionCoach.Tools.TaxCalculator.Proprietary;
 using PensionCoach.Tools.TaxCalculator.Validators;
 
 namespace PensionCoach.Tools.TaxCalculator
@@ -32,8 +33,8 @@ namespace PensionCoach.Tools.TaxCalculator
             collection.AddTransient<IStateTaxCalculator, StateTaxCalculator>();
             if (typeOfTaxCalculator == TypeOfTaxCalculator.PensionTools)
             {
-                collection.AddTransient<IFullTaxCalculator, FullTaxCalculator>();
-                collection.AddTransient<IFullCapitalBenefitTaxCalculator, FullCapitalBenefitTaxCalculator>();
+                collection.AddTransient<IFullWealthAndIncomeTaxCalculator, ProprietaryFullTaxCalculator>();
+                collection.AddTransient<IFullCapitalBenefitTaxCalculator, ProprietaryFullCapitalBenefitTaxCalculator>();
                 collection.AddTransient<IMunicipalityConnector, MunicipalityConnector>();
             }
             else
@@ -41,6 +42,7 @@ namespace PensionCoach.Tools.TaxCalculator
                 collection.AddEstvCalculators();
             }
             
+            collection.AddTransient<ITaxCalculatorConnector, TaxCalculatorConnector>();
             collection.AddTransient<IAdminConnector, AdminConnector>();
             
             var mappingConfig = new MapperConfiguration(mc =>
@@ -59,7 +61,7 @@ namespace PensionCoach.Tools.TaxCalculator
 
         private static void AddEstvCalculators(this IServiceCollection collection)
         {
-            collection.AddTransient<IFullTaxCalculator, EstvFullTaxCalculator>();
+            collection.AddTransient<IFullWealthAndIncomeTaxCalculator, EstvFullTaxCalculator>();
             collection.AddTransient<IFullCapitalBenefitTaxCalculator, EstvFullCapitalBenefitTaxCalculator>();
             collection.AddTransient<IMunicipalityConnector, EstvMunicipalityConnector>();
         }

@@ -5,9 +5,7 @@ using LanguageExt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
-using PensionCoach.Tools.EstvTaxCalculators.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using TaxCalculator.WebApi.Models;
@@ -19,21 +17,15 @@ namespace TaxCalculator.WebApi.Controllers;
 [Route("api/calculators/tax")]
 public class TaxCalculatorController : ControllerBase
 {
-    private readonly IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator;
-    private readonly IFullTaxCalculator fullTaxCalculator;
+    private readonly ITaxCalculatorConnector taxCalculatorConnector;
     private readonly IMunicipalityConnector municipalityResolver;
-    private readonly IEstvTaxCalculatorClient estvTaxCalculatorClient;
 
     public TaxCalculatorController(
-        IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator,
-        IFullTaxCalculator fullTaxCalculator,
-        IMunicipalityConnector municipalityResolver,
-        IEstvTaxCalculatorClient estvFacadeClient)
+        ITaxCalculatorConnector taxCalculatorConnector,
+        IMunicipalityConnector municipalityResolver)
     {
-        this.fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;
-        this.fullTaxCalculator = fullTaxCalculator;
+        this.taxCalculatorConnector = taxCalculatorConnector;
         this.municipalityResolver = municipalityResolver;
-        this.estvTaxCalculatorClient = estvFacadeClient;
     }
 
     /// <summary>
@@ -60,15 +52,8 @@ public class TaxCalculatorController : ControllerBase
 
         var taxPerson = MapRequest();
 
-        Either<string, MunicipalityModel> municipalityData =
-            await municipalityResolver.GetAsync(request.BfsMunicipalityId, request.CalculationYear);
-
-        Either<string, FullTaxResult> result = await municipalityData
-            .BindAsync(m => fullTaxCalculator.CalculateAsync(
-                request.CalculationYear,
-                request.BfsMunicipalityId,
-                m.Canton,
-                taxPerson));
+        Either<string, FullTaxResult> result = await taxCalculatorConnector.CalculateAsync(
+                request.CalculationYear, request.BfsMunicipalityId, taxPerson);
 
         return result
             .Match<ActionResult>(
@@ -144,16 +129,8 @@ public class TaxCalculatorController : ControllerBase
 
         var taxPerson = MapRequest();
 
-        Either<string, MunicipalityModel> municipalityData =
-            await municipalityResolver.GetAsync(request.BfsMunicipalityId, request.CalculationYear);
-
-        var result =
-            await municipalityData
-                .BindAsync(m => fullCapitalBenefitTaxCalculator.CalculateAsync(
-                    request.CalculationYear,
-                    request.BfsMunicipalityId,
-                    m.Canton,
-                    taxPerson));
+        var result = await taxCalculatorConnector.CalculateAsync(
+                    request.CalculationYear, request.BfsMunicipalityId, taxPerson);
 
         return result
             .Match<ActionResult>(

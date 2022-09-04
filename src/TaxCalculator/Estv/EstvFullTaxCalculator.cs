@@ -9,7 +9,7 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
 namespace PensionCoach.Tools.TaxCalculator.Estv;
 
-public class EstvFullTaxCalculator : IFullTaxCalculator
+public class EstvFullTaxCalculator : IFullWealthAndIncomeTaxCalculator
 {
     private readonly IEstvTaxCalculatorClient estvTaxCalculatorClient;
 

@@ -15,12 +15,12 @@ namespace Calculators.CashFlow
 {
     public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
     {
-        private readonly IFullTaxCalculator _fullTaxCalculator;
+        private readonly IFullWealthAndIncomeTaxCalculator _fullTaxCalculator;
         private readonly IFullCapitalBenefitTaxCalculator _capitalBenefitCalculator;
         private readonly ILogger<MultiPeriodCashFlowCalculator> _logger;
 
         public MultiPeriodCashFlowCalculator(
-            IFullTaxCalculator fullTaxCalculator,
+            IFullWealthAndIncomeTaxCalculator fullTaxCalculator,
             IFullCapitalBenefitTaxCalculator capitalBenefitCalculator,
             ILogger<MultiPeriodCashFlowCalculator> logger)
         {

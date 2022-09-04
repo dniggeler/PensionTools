@@ -9,15 +9,15 @@ using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
-namespace PensionCoach.Tools.TaxCalculator
+namespace PensionCoach.Tools.TaxCalculator.Proprietary
 {
-    public class FullCapitalBenefitTaxCalculator : IFullCapitalBenefitTaxCalculator
+    public class ProprietaryFullCapitalBenefitTaxCalculator : IFullCapitalBenefitTaxCalculator
     {
         private readonly Func<Canton, ICapitalBenefitTaxCalculator> capitalBenefitCalculatorFunc;
         private readonly IFederalCapitalBenefitTaxCalculator federalCalculator;
         private readonly IMapper mapper;
 
-        public FullCapitalBenefitTaxCalculator(
+        public ProprietaryFullCapitalBenefitTaxCalculator(
             Func<Canton, ICapitalBenefitTaxCalculator> capitalBenefitCalculatorFunc,
             IFederalCapitalBenefitTaxCalculator federalCalculator,
             IMapper mapper)
@@ -35,7 +35,7 @@ namespace PensionCoach.Tools.TaxCalculator
             CapitalBenefitTaxPerson capitalBenefitTaxPerson,
             bool withMaxAvailableCalculationYear)
         {
-            int maxCalculationYear = withMaxAvailableCalculationYear
+            var maxCalculationYear = withMaxAvailableCalculationYear
                 ? Math.Min(calculationYear, 2019)
                 : calculationYear;
 
@@ -51,15 +51,15 @@ namespace PensionCoach.Tools.TaxCalculator
 
             await Task.WhenAll(capitalBenefitTaxResultTask, federalTaxResultTask);
 
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
-            Either<string, CapitalBenefitTaxResult> stateTaxResult = await capitalBenefitTaxResultTask;
-            Either<string, BasisTaxResult> federalTaxResult = await federalTaxResultTask;
+            var stateTaxResult = await capitalBenefitTaxResultTask;
+            var federalTaxResult = await federalTaxResultTask;
 
             stateTaxResult.MapLeft(r => sb.AppendLine(r));
             federalTaxResult.MapLeft(r => sb.AppendLine(r));
 
-            Option<FullCapitalBenefitTaxResult> fullResult =
+            var fullResult =
                 from s in stateTaxResult.ToOption()
                 from f in federalTaxResult.ToOption()
                 select new FullCapitalBenefitTaxResult
@@ -73,5 +73,5 @@ namespace PensionCoach.Tools.TaxCalculator
                     Some: r => r,
                     None: () => sb.ToString());
         }
-     }
+    }
 }

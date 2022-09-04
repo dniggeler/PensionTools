@@ -11,11 +11,11 @@ using Xunit;
 namespace TaxCalculator.Tests
 {
     [Trait("Calculator", "Full Tax")]
-    public class FullTaxCalculatorTests : IClassFixture<TaxCalculatorFixture<IFullTaxCalculator>>
+    public class FullTaxCalculatorTests : IClassFixture<TaxCalculatorFixture<IFullWealthAndIncomeTaxCalculator>>
     {
-        private readonly TaxCalculatorFixture<IFullTaxCalculator> _fixture;
+        private readonly TaxCalculatorFixture<IFullWealthAndIncomeTaxCalculator> _fixture;
 
-        public FullTaxCalculatorTests(TaxCalculatorFixture<IFullTaxCalculator> fixture)
+        public FullTaxCalculatorTests(TaxCalculatorFixture<IFullWealthAndIncomeTaxCalculator> fixture)
         {
             _fixture = fixture;
         }

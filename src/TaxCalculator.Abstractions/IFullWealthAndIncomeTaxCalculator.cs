@@ -6,7 +6,7 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions;
 
-public interface IFullTaxCalculator
+public interface IFullWealthAndIncomeTaxCalculator
 {
     Task<Either<string,FullTaxResult>> CalculateAsync(
         int calculationYear, int taxId, Canton canton, TaxPerson person, bool withMaxAvailableCalculationYear = false);
