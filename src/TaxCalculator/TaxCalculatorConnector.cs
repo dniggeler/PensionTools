@@ -31,10 +31,7 @@ public class TaxCalculatorConnector : ITaxCalculatorConnector
 
         return await municipalityData
             .BindAsync(m => fullWealthAndIncomeTaxCalculator.CalculateAsync(
-                calculationYear,
-                bfsMunicipalityId,
-                m.Canton,
-                person));
+                calculationYear, m, person));
     }
 
     public async Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
@@ -46,8 +43,7 @@ public class TaxCalculatorConnector : ITaxCalculatorConnector
         return await municipalityData
                 .BindAsync(m => fullCapitalBenefitTaxCalculator.CalculateAsync(
                     calculationYear,
-                    m.EstvTaxLocationId ?? 0,
-                    m.Canton,
+                    m,
                     person));
     }
 }

@@ -7,6 +7,7 @@ using LanguageExt;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
+using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
@@ -17,15 +18,18 @@ namespace Calculators.CashFlow
     {
         private readonly IFullWealthAndIncomeTaxCalculator _fullTaxCalculator;
         private readonly IFullCapitalBenefitTaxCalculator _capitalBenefitCalculator;
+        private readonly IMunicipalityConnector municipalityConnector;
         private readonly ILogger<MultiPeriodCashFlowCalculator> _logger;
 
         public MultiPeriodCashFlowCalculator(
             IFullWealthAndIncomeTaxCalculator fullTaxCalculator,
             IFullCapitalBenefitTaxCalculator capitalBenefitCalculator,
+            IMunicipalityConnector municipalityConnector,
             ILogger<MultiPeriodCashFlowCalculator> logger)
         {
             _fullTaxCalculator = fullTaxCalculator;
             _capitalBenefitCalculator = capitalBenefitCalculator;
+            this.municipalityConnector = municipalityConnector;
             _logger = logger;
         }
 
@@ -196,8 +200,10 @@ namespace Calculators.CashFlow
                     TaxableIncome = income
                 };
 
-                Either<string, FullTaxResult> result = await _fullTaxCalculator.CalculateAsync(
-                    currentYear, person.MunicipalityId, person.Canton, taxPerson, true);
+                Either<string, MunicipalityModel> municipality = await municipalityConnector.GetAsync(person.MunicipalityId, currentYear);
+
+                Either<string, FullTaxResult> result = await municipality
+                    .BindAsync(m => _fullTaxCalculator.CalculateAsync(currentYear, m, taxPerson, true));
 
                 return result.Match(
                     Right: r => r.TotalTaxAmount,
@@ -221,8 +227,11 @@ namespace Calculators.CashFlow
                     TaxableCapitalBenefits = amount
                 };
 
-                Either<string, FullCapitalBenefitTaxResult> result = await _capitalBenefitCalculator.CalculateAsync(
-                    currentYear, calculatorPerson.MunicipalityId, calculatorPerson.Canton, taxPerson, true);
+                Either<string, MunicipalityModel> municipality = await municipalityConnector.GetAsync(person.MunicipalityId, currentYear);
+
+                Either<string, FullCapitalBenefitTaxResult> result = await municipality
+                    .BindAsync(m => _capitalBenefitCalculator.CalculateAsync(
+                        currentYear, m, taxPerson, true));
 
                 return result.Match(
                     Right: r => r.TotalTaxAmount,

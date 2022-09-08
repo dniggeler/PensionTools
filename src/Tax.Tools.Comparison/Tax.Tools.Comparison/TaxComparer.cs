@@ -1,9 +1,9 @@
 ﻿using LanguageExt;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentValidation;
+using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Tax.Tools.Comparison.Abstractions;
@@ -44,14 +44,20 @@ namespace Tax.Tools.Comparison
 
             var resultList = new List<CapitalBenefitTaxComparerResult>();
 
-            foreach (var municipality in municipalities)
+            foreach (TaxSupportedMunicipalityModel municipality in municipalities)
             {
+                MunicipalityModel municipalityModel = new MunicipalityModel()
+                {
+                    BfsNumber = municipality.BfsMunicipalityNumber,
+                    Canton = municipality.Canton,
+                    EstvTaxLocationId = null
+                };
+
                 var result =
                     await capitalBenefitCalculator
                         .CalculateAsync(
                             municipality.MaxSupportedYear,
-                            municipality.BfsMunicipalityNumber,
-                            municipality.Canton,
+                            municipalityModel,
                             person);
 
                 result

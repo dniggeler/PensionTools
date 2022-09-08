@@ -4,6 +4,8 @@
     {
         public int BfsMunicipalityNumber { get; set; }
 
+        public int? EstvTaxLocationId { get; set; }
+
         public string Name { get; set; }
 
         public Canton Canton { get; set; }

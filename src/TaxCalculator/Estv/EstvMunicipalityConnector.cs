@@ -106,6 +106,7 @@ public class EstvMunicipalityConnector : IMunicipalityConnector
                 Name = item.Name,
                 Canton = Enum.Parse<Canton>(item.Canton),
                 MaxSupportedYear = maxEstvSupportedYear,
+                EstvTaxLocationId = item.TaxLocationId
             })
             .ToList();
 

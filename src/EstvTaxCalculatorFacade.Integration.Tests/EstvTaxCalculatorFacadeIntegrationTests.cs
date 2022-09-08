@@ -20,7 +20,7 @@ public class EstvTaxCalculatorFacadeIntegrationTests
 
         services.AddEstvTaxCalculatorClient(EstvTaxCalculatorBaseUrl);
 
-        provider =services.BuildServiceProvider();
+        provider = services.BuildServiceProvider();
     }
 
     [Fact(DisplayName = "Tax Location")]

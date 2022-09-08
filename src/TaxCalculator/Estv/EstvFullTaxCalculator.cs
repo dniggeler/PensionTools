@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using LanguageExt;
-using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.EstvTaxCalculators.Abstractions;
 using PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
@@ -19,43 +19,46 @@ public class EstvFullTaxCalculator : IFullWealthAndIncomeTaxCalculator
     }
 
     public async Task<Either<string, FullTaxResult>> CalculateAsync(
-        int calculationYear, int taxId, Canton canton, TaxPerson person, bool withMaxAvailableCalculationYear = false)
+        int calculationYear, MunicipalityModel municipality, TaxPerson person, bool withMaxAvailableCalculationYear = false)
     {
-        SimpleTaxResult result = await estvTaxCalculatorClient.CalculateIncomeAndWealthTaxAsync(
-            calculationYear, taxId, person);
+        if (!municipality.EstvTaxLocationId.HasValue)
+        {
+            return "ESTV tax location id is null";
+        }
 
-        decimal municipalityRate = result.IncomeTaxCity / (decimal)result.IncomeSimpleTaxCity * 100M;
+        SimpleTaxResult estvResult = await estvTaxCalculatorClient.CalculateIncomeAndWealthTaxAsync(
+            municipality.EstvTaxLocationId.Value, calculationYear, person);
 
-        Either<string, FullTaxResult> fullTaxResult = new FullTaxResult
+        decimal municipalityRate = estvResult.IncomeTaxCity / (decimal)estvResult.IncomeSimpleTaxCity * 100M;
+
+        return new FullTaxResult
         {
             FederalTaxResult = new BasisTaxResult
             {
-                TaxAmount = result.IncomeTaxFed,
+                TaxAmount = estvResult.IncomeTaxFed,
                 DeterminingFactorTaxableAmount = decimal.Zero
             },
             StateTaxResult = new StateTaxResult
             {
                 BasisIncomeTax = new BasisTaxResult
                 {
-                    TaxAmount = result.IncomeSimpleTaxCity,
+                    TaxAmount = estvResult.IncomeSimpleTaxCity,
                     DeterminingFactorTaxableAmount = municipalityRate
                 },
                 BasisWealthTax = new BasisTaxResult
                 {
-                    TaxAmount = result.FortuneSimpleTaxCanton,
-                    DeterminingFactorTaxableAmount = result.FortuneTaxCity / (decimal)result.FortuneSimpleTaxCity
+                    TaxAmount = estvResult.FortuneSimpleTaxCanton,
+                    DeterminingFactorTaxableAmount = estvResult.FortuneTaxCity / (decimal)estvResult.FortuneSimpleTaxCity
                 },
                 ChurchTax = new ChurchTaxResult
                 {
-                    TaxAmount = result.IncomeTaxChurch + result.FortuneTaxChurch,
+                    TaxAmount = estvResult.IncomeTaxChurch + estvResult.FortuneTaxChurch,
                     TaxAmountPartner = Option<decimal>.None,
                 },
-                PollTaxAmount = result.PersonalTax,
+                PollTaxAmount = estvResult.PersonalTax,
                 CantonRate = 100M,
                 MunicipalityRate = municipalityRate
             }
         };
-
-        return fullTaxResult;
     }
 }

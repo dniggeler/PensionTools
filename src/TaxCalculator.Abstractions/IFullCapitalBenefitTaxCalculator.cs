@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using LanguageExt;
-using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
@@ -10,8 +10,7 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions
     {
         Task<Either<string,FullCapitalBenefitTaxResult>> CalculateAsync(
             int calculationYear,
-            int taxId,
-            Canton canton,
+            MunicipalityModel municipality,
             CapitalBenefitTaxPerson person,
             bool withMaxAvailableCalculationYear = false);
     }

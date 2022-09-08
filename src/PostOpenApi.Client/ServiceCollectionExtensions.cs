@@ -1,11 +1,14 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace PensionCoach.Tools.PostOpenApi;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddPostOpenApiClient(this IServiceCollection services, string baseUrl)
+    public static IServiceCollection AddPostOpenApiClient(this IServiceCollection services, IConfiguration configuration)
     {
+        string baseUrl = configuration["TaxCalculatorClient:PostOpenApiBaseUrl"];
+
         services.AddHttpClient(PostOpenApiClient.ClientName, c =>
         {
             c.BaseAddress = new Uri(baseUrl);

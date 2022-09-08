@@ -14,6 +14,7 @@ using PensionCoach.Tools.TaxCalculator.Basis.Income;
 using PensionCoach.Tools.TaxCalculator.Basis.Wealth;
 using PensionCoach.Tools.TaxCalculator.Estv;
 using PensionCoach.Tools.TaxCalculator.Mapping;
+using PensionCoach.Tools.TaxCalculator.Mock;
 using PensionCoach.Tools.TaxCalculator.Proprietary;
 using PensionCoach.Tools.TaxCalculator.Validators;
 
@@ -36,6 +37,10 @@ namespace PensionCoach.Tools.TaxCalculator
                 collection.AddTransient<IFullWealthAndIncomeTaxCalculator, ProprietaryFullTaxCalculator>();
                 collection.AddTransient<IFullCapitalBenefitTaxCalculator, ProprietaryFullCapitalBenefitTaxCalculator>();
                 collection.AddTransient<IMunicipalityConnector, MunicipalityConnector>();
+            }
+            else if (typeOfTaxCalculator == TypeOfTaxCalculator.Mock)
+            {
+                collection.AddMockedFullTaxCalculators();
             }
             else
             {
@@ -64,6 +69,13 @@ namespace PensionCoach.Tools.TaxCalculator
             collection.AddTransient<IFullWealthAndIncomeTaxCalculator, EstvFullTaxCalculator>();
             collection.AddTransient<IFullCapitalBenefitTaxCalculator, EstvFullCapitalBenefitTaxCalculator>();
             collection.AddTransient<IMunicipalityConnector, EstvMunicipalityConnector>();
+        }
+
+        private static void AddMockedFullTaxCalculators(this IServiceCollection collection)
+        {
+            collection.AddTransient<IFullCapitalBenefitTaxCalculator, MockedFullTaxCalculator>();
+            collection.AddTransient<IFullWealthAndIncomeTaxCalculator, MockedFullTaxCalculator>();
+            collection.AddTransient<IMunicipalityConnector, MockedFullTaxCalculator>();
         }
 
         private static void AddCantonIncomeTaxCalculatorFactory(

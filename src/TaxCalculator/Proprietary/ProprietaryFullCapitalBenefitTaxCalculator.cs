@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
@@ -30,8 +31,7 @@ namespace PensionCoach.Tools.TaxCalculator.Proprietary
         /// <inheritdoc />
         public async Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
             int calculationYear,
-            int taxId,
-            Canton canton,
+            MunicipalityModel municipality,
             CapitalBenefitTaxPerson capitalBenefitTaxPerson,
             bool withMaxAvailableCalculationYear)
         {
@@ -40,8 +40,8 @@ namespace PensionCoach.Tools.TaxCalculator.Proprietary
                 : calculationYear;
 
             var capitalBenefitTaxResultTask =
-                capitalBenefitCalculatorFunc(canton)
-                    .CalculateAsync(maxCalculationYear, taxId, canton, capitalBenefitTaxPerson);
+                capitalBenefitCalculatorFunc(municipality.Canton)
+                    .CalculateAsync(maxCalculationYear, municipality.BfsNumber, municipality.Canton, capitalBenefitTaxPerson);
 
             var federalTaxPerson =
                 mapper.Map<FederalTaxPerson>(capitalBenefitTaxPerson);

@@ -62,8 +62,8 @@ namespace TaxCalculator.WebApi
             services.AddTaxComparers();
             services.AddBvgCalculators();
             services.AddCashFlowCalculators();
-            services.AddEstvTaxCalculatorClient(Configuration["TaxCalculatorClient:EstvTaxCalculatorBaseUrl"]);
-            services.AddPostOpenApiClient(Configuration["TaxCalculatorClient:PostOpenApiBaseUrl"]);
+            services.AddEstvTaxCalculatorClient(Configuration);
+            services.AddPostOpenApiClient(Configuration);
             services.AddSwaggerExamplesFromAssemblyOf<Examples.CapitalBenefitTaxRequestExample>();
             services.AddSwaggerGen(opt =>
             {

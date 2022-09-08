@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using LanguageExt;
-using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.EstvTaxCalculators.Abstractions;
 using PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
@@ -24,15 +24,17 @@ public class EstvFullCapitalBenefitTaxCalculator : IFullCapitalBenefitTaxCalcula
 
     public async Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
         int calculationYear,
-        int taxId,
-        Canton canton,
+        MunicipalityModel municipality,
         CapitalBenefitTaxPerson person,
         bool withMaxAvailableCalculationYear = false)
     {
+        if (!municipality.EstvTaxLocationId.HasValue)
+        {
+            return "ESTV tax location id is null";
+        }
+
         SimpleCapitalTaxResult calculationResult = await estvTaxCalculatorClient.CalculateCapitalBenefitTaxAsync(
-            taxId,
-            calculationYear,
-            person);
+            municipality.EstvTaxLocationId.Value, calculationYear, person);
 
         decimal municipalityRate = calculationResult.TaxCity / (decimal)calculationResult.TaxCanton * 100M;
 

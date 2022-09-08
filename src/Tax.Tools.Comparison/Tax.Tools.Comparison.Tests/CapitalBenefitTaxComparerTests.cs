@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;
 using Tax.Tools.Comparison.Abstractions;
 using Xunit;
@@ -36,8 +35,7 @@ namespace Tax.Tools.Comparison.Tests
             };
 
             // when
-            var result =
-                await fixture.Calculator.CompareCapitalBenefitTaxAsync(taxPerson);
+            var result = await fixture.Calculator.CompareCapitalBenefitTaxAsync(taxPerson);
 
             // then
             Assert.True(result.IsRight);

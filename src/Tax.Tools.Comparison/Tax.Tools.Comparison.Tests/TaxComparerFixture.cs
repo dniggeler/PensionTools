@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator;
 using Tax.Data;
 
