@@ -9,6 +9,5 @@ public interface IEstvTaxCalculatorClient
 
     Task<SimpleTaxResult> CalculateIncomeAndWealthTaxAsync(int taxLocationId, int taxYear, TaxPerson person);
 
-    Task<SimpleCapitalTaxResult> CalculateCapitalBenefitTaxAsync(
-        int taxLocationId, int taxYear, CapitalBenefitTaxPerson person);
+    Task<SimpleCapitalTaxResult> CalculateCapitalBenefitTaxAsync(int taxLocationId, int taxYear, CapitalBenefitTaxPerson person);
 }
