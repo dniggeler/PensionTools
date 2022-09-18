@@ -8,7 +8,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddEstvTaxCalculatorClient(this IServiceCollection services, IConfiguration configuration)
     {
-        string baseUrl = configuration["TaxCalculatorClient:PostOpenApiBaseUrl"];
+        string baseUrl = configuration["TaxCalculatorClient:EstvTaxCalculatorBaseUrl"];
 
         return services.AddEstvTaxCalculatorClient(baseUrl);
     }

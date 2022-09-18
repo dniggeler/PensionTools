@@ -6,6 +6,9 @@ services:
   - protocol: http
     host: localhost
     port: 57094
+  env:
+    - name: ApplicationMode
+      value: Estv  
 - name: pensiontools-ui
   project: src/BlazorApp/BlazorApp.csproj
   bindings:
