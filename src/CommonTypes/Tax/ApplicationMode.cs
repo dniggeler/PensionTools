@@ -1,8 +1,8 @@
 ﻿namespace PensionCoach.Tools.CommonTypes.Tax
 {
-    public enum TypeOfTaxCalculator
+    public enum ApplicationMode
     {
-        PensionTools = 0,
+        Proprietary = 0,
         Estv = 1,
         Mock = 2
     }

@@ -11259,6 +11259,15 @@
     "LanguageCode": 0
   },
   {
+    "BfsCode": 1040,
+    "ZipCode": "6023",
+    "ZipCodeAddOn": "60",
+    "MunicipalityName": "Rothenburg Zustellung",
+    "Canton": "LU",
+    "DateOfValidity": "2004-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
     "BfsCode": 1041,
     "ZipCode": "6288",
     "ZipCodeAddOn": "00",
@@ -15405,6 +15414,15 @@
     "MunicipalityName": "Romont FR Distribution",
     "Canton": "FR",
     "DateOfValidity": "2002-11-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2096,
+    "ZipCode": "1680",
+    "ZipCodeAddOn": "03",
+    "MunicipalityName": "Romont FR Rte Anc. Ferme",
+    "Canton": "FR",
+    "DateOfValidity": "2022-08-22T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -20490,6 +20508,15 @@
     "MunicipalityName": "Pratteln Bahnhofstrasse",
     "Canton": "BL",
     "DateOfValidity": "2020-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2831,
+    "ZipCode": "4133",
+    "ZipCodeAddOn": "04",
+    "MunicipalityName": "Pratteln Hohenrainstrasse",
+    "Canton": "BL",
+    "DateOfValidity": "2022-08-22T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -42067,15 +42094,6 @@
   },
   {
     "BfsCode": 6076,
-    "ZipCode": "3990",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Ulrichen Bula",
-    "Canton": "VS",
-    "DateOfValidity": "2022-07-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6076,
     "ZipCode": "3999",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Oberwald",
@@ -46428,6 +46446,15 @@
     "MunicipalityName": "Satigny",
     "Canton": "GE",
     "DateOfValidity": "1996-08-06T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 6638,
+    "ZipCode": "1242",
+    "ZipCodeAddOn": "02",
+    "MunicipalityName": "Satigny Rte d'Aire-la-Ville",
+    "Canton": "GE",
+    "DateOfValidity": "2022-08-22T00:00:00",
     "LanguageCode": 0
   },
   {

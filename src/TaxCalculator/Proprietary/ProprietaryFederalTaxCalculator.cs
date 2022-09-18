@@ -10,14 +10,14 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data;
 using Tax.Data.Abstractions.Models;
 
-namespace PensionCoach.Tools.TaxCalculator
+namespace PensionCoach.Tools.TaxCalculator.Proprietary
 {
-    public class FederalTaxCalculator : IFederalTaxCalculator
+    public class ProprietaryFederalTaxCalculator : IFederalTaxCalculator
     {
         private readonly IValidator<FederalTaxPerson> taxPersonValidator;
         private readonly FederalTaxTariffDbContext federalDbContext;
 
-        public FederalTaxCalculator(
+        public ProprietaryFederalTaxCalculator(
             IValidator<FederalTaxPerson> taxPersonValidator,
             FederalTaxTariffDbContext federalDbContext)
         {
@@ -58,11 +58,11 @@ namespace PensionCoach.Tools.TaxCalculator
         private BasisTaxResult CalculateTax(FederalTaxPerson person, FederalTaxTariffModel tariff)
         {
             var referenceTaxableIncome =
-                person.TaxableAmount - (person.TaxableAmount % tariff.IncomeIncrement);
+                person.TaxableAmount - person.TaxableAmount % tariff.IncomeIncrement;
 
             var incrementMultiplier = (referenceTaxableIncome - tariff.IncomeLevel) / tariff.IncomeIncrement;
 
-            var baseTaxAmount = (incrementMultiplier * tariff.TaxIncrement) + tariff.TaxAmount;
+            var baseTaxAmount = incrementMultiplier * tariff.TaxIncrement + tariff.TaxAmount;
 
             return new BasisTaxResult
             {

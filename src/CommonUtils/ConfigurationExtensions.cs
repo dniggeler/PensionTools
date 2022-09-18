@@ -6,14 +6,14 @@ namespace PensionCoach.Tools.CommonUtils;
 
 public static class ConfigurationExtensions
 {
-    public static TypeOfTaxCalculator GetTypeOfTaxCalculator(this IConfiguration configuration)
+    public static ApplicationMode GetApplicationMode(this IConfiguration configuration)
     {
-        const string key = "TaxCalculator:Provider";
+        const string key = "ApplicationMode";
 
         return configuration[key] switch
         {
-            null => TypeOfTaxCalculator.PensionTools,
-            {} v => Enum.Parse<TypeOfTaxCalculator>(v),
+            null => ApplicationMode.Proprietary,
+            {} v => Enum.Parse<ApplicationMode>(v),
         };
     }
 }

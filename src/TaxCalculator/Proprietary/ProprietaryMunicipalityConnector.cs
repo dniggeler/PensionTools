@@ -12,15 +12,15 @@ using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Tax.Data;
 using Tax.Data.Abstractions.Models;
 
-namespace PensionCoach.Tools.TaxCalculator;
+namespace PensionCoach.Tools.TaxCalculator.Proprietary;
 
-public class MunicipalityConnector : IMunicipalityConnector
+public class ProprietaryMunicipalityConnector : IMunicipalityConnector
 {
     private readonly IMapper mapper;
     private readonly MunicipalityDbContext municipalityDbContext;
     private readonly Func<TaxRateDbContext> dbContext;
 
-    public MunicipalityConnector(
+    public ProprietaryMunicipalityConnector(
         IMapper mapper,
         MunicipalityDbContext municipalityDbContext,
         Func<TaxRateDbContext> dbContext)
@@ -58,7 +58,7 @@ public class MunicipalityConnector : IMunicipalityConnector
                 result.Where(item => item.Name.Contains(searchFilter.Name));
         }
 
-        foreach (MunicipalityEntity entity in result)
+        foreach (var entity in result)
         {
             var model = mapper.Map<MunicipalityModel>(entity);
 

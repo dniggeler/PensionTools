@@ -4,6 +4,9 @@ using PensionCoach.Tools.PostOpenApi.Models;
 
 namespace PensionCoach.Tools.PostOpenApi;
 
+/// <summary>
+/// Not yet used as Post Open API is not part of any user calls.
+/// </summary>
 public class PostOpenApiClientMock : IPostOpenApiClient
 {
     public Task<OpenApiZipInfo> GetZipCodesAsync(int limit, int offset)
