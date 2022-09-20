@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LanguageExt;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
@@ -65,16 +66,19 @@ namespace Tax.Tools.Comparison.Tests
             };
 
             // when
-            List<CapitalBenefitTaxComparerResult> results = new List<CapitalBenefitTaxComparerResult>();
+            List<Either<string, CapitalBenefitTaxComparerResult>> results = new List<Either<string, CapitalBenefitTaxComparerResult>>();
             await foreach (var compareResult in fixture.Calculator.CompareCapitalBenefitTaxAsync(taxPerson, maxNumberOfMunicipality))
             {
                 results.Add(compareResult);
             }
 
-            var orderedResults = results.OrderBy(item => item.MunicipalityName);
+            Assert.All(results, m => Assert.True(m.IsRight));
+
+            List<CapitalBenefitTaxComparerResult> orderedResults = new();
+            results.Iter(m => m.IfRight(r => orderedResults.Add(r)));
 
             // then
-            Snapshot.Match(orderedResults);
+            Snapshot.Match(orderedResults.OrderBy(item => item.MunicipalityName));
         }
     }
 }

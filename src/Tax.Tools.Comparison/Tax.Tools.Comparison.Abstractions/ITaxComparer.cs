@@ -12,6 +12,7 @@ namespace Tax.Tools.Comparison.Abstractions
         Task<Either<string,IReadOnlyCollection<CapitalBenefitTaxComparerResult>>> CompareCapitalBenefitTaxAsync(
             CapitalBenefitTaxPerson person);
 
-        IAsyncEnumerable<CapitalBenefitTaxComparerResult> CompareCapitalBenefitTaxAsync(CapitalBenefitTaxPerson person, int maxNumberOfMunicipality);
+        IAsyncEnumerable<Either<string, CapitalBenefitTaxComparerResult>> CompareCapitalBenefitTaxAsync(
+            CapitalBenefitTaxPerson person, int maxNumberOfMunicipality);
     }
 }

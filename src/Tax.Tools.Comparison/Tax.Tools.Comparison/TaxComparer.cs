@@ -9,9 +9,7 @@ using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Tax.Tools.Comparison.Abstractions;
 using Tax.Tools.Comparison.Abstractions.Models;
 using System.Threading.Channels;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using System.Threading;
-using LanguageExt.UnsafeValueAccess;
 
 namespace Tax.Tools.Comparison
 {
@@ -81,7 +79,7 @@ namespace Tax.Tools.Comparison
             return resultList;
         }
 
-        public async IAsyncEnumerable<CapitalBenefitTaxComparerResult> CompareCapitalBenefitTaxAsync(
+        public async IAsyncEnumerable<Either<string, CapitalBenefitTaxComparerResult>> CompareCapitalBenefitTaxAsync(
             CapitalBenefitTaxPerson person, int maxNumberOfMunicipality)
         {
             const int numberOfWorkers = 20;
@@ -90,7 +88,9 @@ namespace Tax.Tools.Comparison
 
             if (!validationResult.IsValid)
             {
-                yield break;
+                var errorMessageLine =
+                    string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
+                yield return $"validation failed: {errorMessageLine}";
             }
 
             IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities =
@@ -119,12 +119,7 @@ namespace Tax.Tools.Comparison
 
             await foreach (Either<string, CapitalBenefitTaxComparerResult> result in resultChannel.Reader.ReadAllAsync(CancellationToken.None))
             {
-                if (result.IsLeft)
-                {
-                    continue;
-                }
-
-                yield return result.ValueUnsafe();
+                yield return result;
             }
         }
 
@@ -148,25 +143,18 @@ namespace Tax.Tools.Comparison
                     EstvTaxLocationId = data.EstvTaxLocationId,
                 };
 
-                Either<string, FullCapitalBenefitTaxResult> result = await capitalBenefitCalculator
-                    .CalculateAsync(data.MaxSupportedYear, municipalityModel, person);
+                Either<string, CapitalBenefitTaxComparerResult> result = await capitalBenefitCalculator
+                    .CalculateAsync(data.MaxSupportedYear, municipalityModel, person)
+                    .MapAsync(r => new CapitalBenefitTaxComparerResult
+                    {
+                        MunicipalityId = municipalityModel.BfsNumber,
+                        MunicipalityName = municipalityModel.Name,
+                        Canton = municipalityModel.Canton,
+                        MaxSupportedTaxYear = data.MaxSupportedYear,
+                        MunicipalityTaxResult = r
+                    });
 
-                if (result.IsLeft)
-                {
-                    continue;
-                }
-
-                var comparerResult = new CapitalBenefitTaxComparerResult
-                {
-                    MunicipalityId = municipalityModel.BfsNumber,
-                    MunicipalityName = municipalityModel.Name,
-                    Canton = municipalityModel.Canton,
-                    MaxSupportedTaxYear = data.MaxSupportedYear,
-                };
-
-                result.Iter(r => comparerResult.MunicipalityTaxResult = r);
-
-                await resultChannel.Writer.WriteAsync(comparerResult);
+                await resultChannel.Writer.WriteAsync(result);
             }
         }
     }
