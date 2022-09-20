@@ -4,15 +4,13 @@ using TaxCalculator.WebApi.Models;
 
 namespace TaxCalculator.WebApi.Examples;
 
-public class CapitalBenefitTaxRequestExample : IExamplesProvider<CapitalBenefitTaxRequest>
+public class CapitalBenefitTaxComparerRequestExample : IExamplesProvider<CapitalBenefitTaxComparerRequest>
 {
-    public CapitalBenefitTaxRequest GetExamples()
+    public CapitalBenefitTaxComparerRequest GetExamples()
     {
-        return new CapitalBenefitTaxRequest
+        return new CapitalBenefitTaxComparerRequest
         {
             Name = "Test",
-            CalculationYear = 2018,
-            BfsMunicipalityId = 261,
             CivilStatus = CivilStatus.Single,
             ReligiousGroup = ReligiousGroupType.Other,
             TaxableBenefits = 1000_000,

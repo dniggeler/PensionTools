@@ -1,8 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
 using Snapshooter.Xunit;
 using Tax.Tools.Comparison.Abstractions;
+using Tax.Tools.Comparison.Abstractions.Models;
 using Xunit;
 
 namespace Tax.Tools.Comparison.Tests
@@ -40,6 +44,37 @@ namespace Tax.Tools.Comparison.Tests
             // then
             Assert.True(result.IsRight);
             Snapshot.Match(result);
+        }
+
+        [Fact(DisplayName = "Compare Capital Benefit Tax (streamed)")]
+        public async Task ShouldReturnCapitalBenefitTaxComparisonByStreaming()
+        {
+            // given
+            const int maxNumberOfMunicipality = 20;
+
+            string name = "Burli";
+            CivilStatus status = CivilStatus.Single;
+            ReligiousGroupType religiousGroup = ReligiousGroupType.Protestant;
+
+            var taxPerson = new CapitalBenefitTaxPerson
+            {
+                Name = name,
+                CivilStatus = status,
+                ReligiousGroupType = religiousGroup,
+                TaxableCapitalBenefits = 2000_000,
+            };
+
+            // when
+            List<CapitalBenefitTaxComparerResult> results = new List<CapitalBenefitTaxComparerResult>();
+            await foreach (var compareResult in fixture.Calculator.CompareCapitalBenefitTaxAsync(taxPerson, maxNumberOfMunicipality))
+            {
+                results.Add(compareResult);
+            }
+
+            var orderedResults = results.OrderBy(item => item.MunicipalityName);
+
+            // then
+            Snapshot.Match(orderedResults);
         }
     }
 }

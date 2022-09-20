@@ -8,6 +8,10 @@ using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Tax.Tools.Comparison.Abstractions;
 using Tax.Tools.Comparison.Abstractions.Models;
+using System.Threading.Channels;
+using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+using System.Threading;
+using LanguageExt.UnsafeValueAccess;
 
 namespace Tax.Tools.Comparison
 {
@@ -48,9 +52,10 @@ namespace Tax.Tools.Comparison
             {
                 MunicipalityModel municipalityModel = new MunicipalityModel()
                 {
+                    Name = municipality.Name,
                     BfsNumber = municipality.BfsMunicipalityNumber,
                     Canton = municipality.Canton,
-                    EstvTaxLocationId = null
+                    EstvTaxLocationId = municipality.EstvTaxLocationId
                 };
 
                 var result =
@@ -74,6 +79,95 @@ namespace Tax.Tools.Comparison
             }
 
             return resultList;
+        }
+
+        public async IAsyncEnumerable<CapitalBenefitTaxComparerResult> CompareCapitalBenefitTaxAsync(
+            CapitalBenefitTaxPerson person, int maxNumberOfMunicipality)
+        {
+            const int numberOfWorkers = 20;
+
+            var validationResult = await taxPersonValidator.ValidateAsync(person);
+
+            if (!validationResult.IsValid)
+            {
+                yield break;
+            }
+
+            IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities =
+                (await municipalityConnector.GetAllSupportTaxCalculationAsync())
+                .Take(maxNumberOfMunicipality)
+                .ToList();
+
+            var bufferChannel = Channel.CreateUnbounded<TaxSupportedMunicipalityModel>();
+            var resultChannel = Channel.CreateUnbounded<Either<string, CapitalBenefitTaxComparerResult>>();
+
+            Task[] readers = Enumerable
+                .Range(1, numberOfWorkers)
+                .Select(_ => CalculateAsync(bufferChannel, resultChannel, person))
+                .ToArray();
+
+            foreach (TaxSupportedMunicipalityModel municipality in municipalities)
+            {
+                await bufferChannel.Writer.WriteAsync(municipality);
+            }
+
+            bufferChannel.Writer.Complete();
+
+            await Task.WhenAll(readers);
+
+            resultChannel.Writer.Complete();
+
+            await foreach (Either<string, CapitalBenefitTaxComparerResult> result in resultChannel.Reader.ReadAllAsync(CancellationToken.None))
+            {
+                if (result.IsLeft)
+                {
+                    continue;
+                }
+
+                yield return result.ValueUnsafe();
+            }
+        }
+
+        private async Task CalculateAsync(
+            Channel<TaxSupportedMunicipalityModel> bufferChannel,
+            Channel<Either<string, CapitalBenefitTaxComparerResult>> resultChannel,
+            CapitalBenefitTaxPerson person)
+        {
+            while (await bufferChannel.Reader.WaitToReadAsync())
+            {
+                if (!bufferChannel.Reader.TryRead(out TaxSupportedMunicipalityModel data))
+                {
+                    continue;
+                }
+
+                MunicipalityModel municipalityModel = new MunicipalityModel()
+                {
+                    Canton = data.Canton,
+                    BfsNumber = data.BfsMunicipalityNumber,
+                    Name = data.Name,
+                    EstvTaxLocationId = data.EstvTaxLocationId,
+                };
+
+                Either<string, FullCapitalBenefitTaxResult> result = await capitalBenefitCalculator
+                    .CalculateAsync(data.MaxSupportedYear, municipalityModel, person);
+
+                if (result.IsLeft)
+                {
+                    continue;
+                }
+
+                var comparerResult = new CapitalBenefitTaxComparerResult
+                {
+                    MunicipalityId = municipalityModel.BfsNumber,
+                    MunicipalityName = municipalityModel.Name,
+                    Canton = municipalityModel.Canton,
+                    MaxSupportedTaxYear = data.MaxSupportedYear,
+                };
+
+                result.Iter(r => comparerResult.MunicipalityTaxResult = r);
+
+                await resultChannel.Writer.WriteAsync(comparerResult);
+            }
         }
     }
 }

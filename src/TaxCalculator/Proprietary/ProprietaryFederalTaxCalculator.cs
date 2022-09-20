@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using FluentValidation.Results;
@@ -15,14 +16,14 @@ namespace PensionCoach.Tools.TaxCalculator.Proprietary
     public class ProprietaryFederalTaxCalculator : IFederalTaxCalculator
     {
         private readonly IValidator<FederalTaxPerson> taxPersonValidator;
-        private readonly FederalTaxTariffDbContext federalDbContext;
+        private readonly Func<FederalTaxTariffDbContext> federalDbContextFunc;
 
         public ProprietaryFederalTaxCalculator(
             IValidator<FederalTaxPerson> taxPersonValidator,
-            FederalTaxTariffDbContext federalDbContext)
+            Func<FederalTaxTariffDbContext> federalDbContextFunc)
         {
             this.taxPersonValidator = taxPersonValidator;
-            this.federalDbContext = federalDbContext;
+            this.federalDbContextFunc = federalDbContextFunc;
         }
 
         /// <inheritdoc/>
@@ -30,6 +31,7 @@ namespace PensionCoach.Tools.TaxCalculator.Proprietary
         {
             Option<ValidationResult> validationResult = taxPersonValidator.Validate(person);
 
+            using var dbContext = federalDbContextFunc();
             return validationResult
                 .Where(r => !r.IsValid)
                 .Map<Either<string, bool>>(r =>
@@ -41,7 +43,7 @@ namespace PensionCoach.Tools.TaxCalculator.Proprietary
                 .Bind(_ => Map(person.CivilStatus))
 
                 // get all income level candidate
-                .Map(typeId => federalDbContext.Tariffs
+                .Map(typeId => dbContext.Tariffs
                     .Where(item => item.Year == calculationYear)
                     .Where(item => item.TariffType == (int)typeId)
                     .ToList()
