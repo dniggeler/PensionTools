@@ -1,8 +1,7 @@
 ﻿using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
-
-namespace Tax.Tools.Comparison.Abstractions.Models
+namespace PensionCoach.Tools.TaxComparison
 {
     public class CapitalBenefitTaxComparerResult
     {

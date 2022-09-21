@@ -1,4 +1,5 @@
 ﻿using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.TaxComparison;
 using Swashbuckle.AspNetCore.Filters;
 using TaxCalculator.WebApi.Models;
 
@@ -14,6 +15,7 @@ public class CapitalBenefitTaxComparerRequestExample : IExamplesProvider<Capital
             CivilStatus = CivilStatus.Single,
             ReligiousGroup = ReligiousGroupType.Other,
             TaxableBenefits = 1000_000,
+            BfsNumberList = new []{ 261, 24, 3 }
         };
     }
 }

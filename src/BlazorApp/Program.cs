@@ -21,6 +21,7 @@ namespace BlazorApp
             {
                 builder.Services.AddScoped<IMultiPeriodCalculationService, MockedPensionToolsCalculationService>();
                 builder.Services.AddScoped<ITaxCalculationService, MockedPensionToolsCalculationService>();
+                builder.Services.AddScoped<ITaxCapitalBenefitsComparisonService, CapitalBenefitsComparisonService>();
                 builder.Services.AddScoped<IMunicipalityService, MockedMunicipalityService>();
                 builder.Services.AddScoped<IPersonService, MockedPersonService>();
             }
@@ -28,6 +29,7 @@ namespace BlazorApp
             {
                 builder.Services.AddScoped<IMultiPeriodCalculationService, MultiPeriodCalculationService>();
                 builder.Services.AddScoped<ITaxCalculationService, TaxCalculationService>();
+                builder.Services.AddScoped<ITaxCapitalBenefitsComparisonService, CapitalBenefitsComparisonService>();
                 builder.Services.AddScoped<IMunicipalityService, MunicipalityServiceClient>();
                 builder.Services.AddScoped<IPersonService, PersonService>();
             }

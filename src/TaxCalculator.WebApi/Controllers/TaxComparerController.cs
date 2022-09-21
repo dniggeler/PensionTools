@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LanguageExt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
+using PensionCoach.Tools.TaxComparison;
 using Tax.Tools.Comparison.Abstractions;
-using Tax.Tools.Comparison.Abstractions.Models;
 using TaxCalculator.WebApi.Models;
 
 namespace TaxCalculator.WebApi.Controllers
@@ -44,42 +40,40 @@ namespace TaxCalculator.WebApi.Controllers
         [Route("capitalbenefit")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<CapitalBenefitTaxComparerResponse>> CompareCapitalBenefitTax(
-            CapitalBenefitTaxComparerRequest request)
+        public async IAsyncEnumerable<CapitalBenefitTaxComparerResponse> CompareCapitalBenefitTax(CapitalBenefitTaxComparerRequest request)
         {
             if (request == null)
             {
-                return BadRequest(nameof(request));
+                yield break;
             }
 
             var taxPerson = MapRequest();
-
-            Either<string, IReadOnlyCollection<CapitalBenefitTaxComparerResult>> result =
-                await taxComparer
-                    .CompareCapitalBenefitTaxAsync(taxPerson);
-
-            return result
-                .Match<ActionResult>(
-                    Right: r => Ok(MapResponse(r)),
-                    Left: BadRequest);
-
-            // local methods
-            IReadOnlyCollection<CapitalBenefitTaxComparerResponse> MapResponse(IReadOnlyCollection<CapitalBenefitTaxComparerResult> resultList)
+            await foreach (var taxResult in taxComparer.CompareCapitalBenefitTaxAsync(taxPerson, request.BfsNumberList))
             {
-                return resultList.Map(r => new CapitalBenefitTaxComparerResponse
+                if (taxResult.IsLeft)
+                {
+                    continue;
+                }
+
+                var compareResult = new CapitalBenefitTaxComparerResponse
+                {
+                    Name = taxPerson.Name,
+                };
+
+                taxResult.Iter(m =>
+                {
+                    compareResult.MunicipalityId = m.MunicipalityId;
+                    compareResult.MunicipalityName = m.MunicipalityName;
+                    compareResult.MaxSupportedTaxYear = m.MaxSupportedTaxYear;
+                    compareResult.TotalTaxAmount = m.MunicipalityTaxResult.TotalTaxAmount;
+                    compareResult.TaxDetails = new TaxAmountDetail
                     {
-                        Name = taxPerson.Name,
-                        MunicipalityId = r.MunicipalityId,
-                        MunicipalityName = r.MunicipalityName,
-                        MaxSupportedTaxYear = r.MaxSupportedTaxYear,
-                        TotalTaxAmount = r.MunicipalityTaxResult.TotalTaxAmount,
-                        TaxDetails = new TaxAmountDetail
-                        {
-                            CantonTaxAmount = r.MunicipalityTaxResult.StateResult.CantonTaxAmount,
-                            FederalTaxAmount = r.MunicipalityTaxResult.FederalResult.TaxAmount,
-                        },
-                    })
-                    .ToList();
+                        CantonTaxAmount = m.MunicipalityTaxResult.StateResult.CantonTaxAmount,
+                        FederalTaxAmount = m.MunicipalityTaxResult.FederalResult.TaxAmount,
+                    };
+                });
+
+                yield return compareResult;
             }
 
             CapitalBenefitTaxPerson MapRequest()

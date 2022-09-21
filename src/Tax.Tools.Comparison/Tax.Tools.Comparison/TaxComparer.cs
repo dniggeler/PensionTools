@@ -7,9 +7,9 @@ using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Tax.Tools.Comparison.Abstractions;
-using Tax.Tools.Comparison.Abstractions.Models;
 using System.Threading.Channels;
 using System.Threading;
+using PensionCoach.Tools.TaxComparison;
 
 namespace Tax.Tools.Comparison
 {
@@ -29,58 +29,8 @@ namespace Tax.Tools.Comparison
             this.municipalityConnector = municipalityConnector;
         }
 
-        public async Task<Either<string, IReadOnlyCollection<CapitalBenefitTaxComparerResult>>> CompareCapitalBenefitTaxAsync(
-            CapitalBenefitTaxPerson person)
-        {
-            var validationResult = taxPersonValidator.Validate(person);
-            if (!validationResult.IsValid)
-            {
-                var errorMessageLine =
-                    string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
-                return $"validation failed: {errorMessageLine}";
-            }
-
-            IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities =
-                await municipalityConnector
-                    .GetAllSupportTaxCalculationAsync();
-
-            var resultList = new List<CapitalBenefitTaxComparerResult>();
-
-            foreach (TaxSupportedMunicipalityModel municipality in municipalities)
-            {
-                MunicipalityModel municipalityModel = new MunicipalityModel()
-                {
-                    Name = municipality.Name,
-                    BfsNumber = municipality.BfsMunicipalityNumber,
-                    Canton = municipality.Canton,
-                    EstvTaxLocationId = municipality.EstvTaxLocationId
-                };
-
-                var result =
-                    await capitalBenefitCalculator
-                        .CalculateAsync(
-                            municipality.MaxSupportedYear,
-                            municipalityModel,
-                            person);
-
-                result
-                    .Map(r => new CapitalBenefitTaxComparerResult
-                    {
-                        MunicipalityId = municipality.BfsMunicipalityNumber,
-                        MunicipalityName = municipality.Name,
-                        Canton = municipality.Canton,
-                        MaxSupportedTaxYear = municipality.MaxSupportedYear,
-                        MunicipalityTaxResult = r,
-                    })
-                    .IfRight(r =>
-                        resultList.Add(r));
-            }
-
-            return resultList;
-        }
-
         public async IAsyncEnumerable<Either<string, CapitalBenefitTaxComparerResult>> CompareCapitalBenefitTaxAsync(
-            CapitalBenefitTaxPerson person, int maxNumberOfMunicipality)
+            CapitalBenefitTaxPerson person, int[] bfsNumbers)
         {
             const int numberOfWorkers = 20;
 
@@ -93,9 +43,10 @@ namespace Tax.Tools.Comparison
                 yield return $"validation failed: {errorMessageLine}";
             }
 
+            // compare all if BFS number list is null or empty
             IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities =
                 (await municipalityConnector.GetAllSupportTaxCalculationAsync())
-                .Take(maxNumberOfMunicipality)
+                .Where(item => bfsNumbers is null || bfsNumbers.Length == 0 || bfsNumbers.Contains(item.BfsMunicipalityNumber))
                 .ToList();
 
             var bufferChannel = Channel.CreateUnbounded<TaxSupportedMunicipalityModel>();

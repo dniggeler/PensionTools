@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using PensionCoach.Tools.CommonTypes;
 
-namespace TaxCalculator.WebApi.Models;
+namespace PensionCoach.Tools.TaxComparison;
 
 public class CapitalBenefitTaxComparerRequest
 {
@@ -13,6 +13,11 @@ public class CapitalBenefitTaxComparerRequest
     public ReligiousGroupType ReligiousGroup { get; set; }
 
     public ReligiousGroupType? PartnerReligiousGroup { get; set; }
+
+    /// <summary>
+    /// List of BFS number defines for which municipalites a comparison is calculated.
+    /// </summary>
+    public int[] BfsNumberList { get; set; }
 
     [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
     public decimal TaxableBenefits { get; set; }

@@ -2,12 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using LanguageExt;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
+using PensionCoach.Tools.TaxComparison;
 using Snapshooter.Xunit;
 using Tax.Tools.Comparison.Abstractions;
-using Tax.Tools.Comparison.Abstractions.Models;
 using Xunit;
 
 namespace Tax.Tools.Comparison.Tests
@@ -23,35 +22,11 @@ namespace Tax.Tools.Comparison.Tests
             this.fixture = fixture;
         }
 
-        [Fact(DisplayName = "Compare Capital Benefit Tax")]
-        public async Task ShouldReturnCapitalBenefitTaxComparison()
-        {
-            // given
-            string name = "Burli";
-            CivilStatus status = CivilStatus.Single;
-            ReligiousGroupType religiousGroup = ReligiousGroupType.Protestant;
-
-            var taxPerson = new CapitalBenefitTaxPerson
-            {
-                Name = name,
-                CivilStatus = status,
-                ReligiousGroupType = religiousGroup,
-                TaxableCapitalBenefits = 2000_000,
-            };
-
-            // when
-            var result = await fixture.Calculator.CompareCapitalBenefitTaxAsync(taxPerson);
-
-            // then
-            Assert.True(result.IsRight);
-            Snapshot.Match(result);
-        }
-
         [Fact(DisplayName = "Compare Capital Benefit Tax (streamed)")]
-        public async Task ShouldReturnCapitalBenefitTaxComparisonByStreaming()
+        public async Task CalculateComparisonByStreaming()
         {
             // given
-            const int maxNumberOfMunicipality = 20;
+            int[] bfsNumbers = { 261, 3, 1344 };
 
             string name = "Burli";
             CivilStatus status = CivilStatus.Single;
@@ -67,7 +42,7 @@ namespace Tax.Tools.Comparison.Tests
 
             // when
             List<Either<string, CapitalBenefitTaxComparerResult>> results = new List<Either<string, CapitalBenefitTaxComparerResult>>();
-            await foreach (var compareResult in fixture.Calculator.CompareCapitalBenefitTaxAsync(taxPerson, maxNumberOfMunicipality))
+            await foreach (var compareResult in fixture.Calculator.CompareCapitalBenefitTaxAsync(taxPerson, bfsNumbers))
             {
                 results.Add(compareResult);
             }

@@ -1,0 +1,70 @@
+﻿[
+  {
+    "MunicipalityId": 3,
+    "MunicipalityName": "Bonstetten",
+    "Canton": "ZH",
+    "MaxSupportedTaxYear": 2019,
+    "MunicipalityTaxResult": {
+      "StateResult": {
+        "BasisTax": {
+          "DeterminingFactorTaxableAmount": 2000000.0,
+          "TaxAmount": 169770.0
+        },
+        "ChurchTax": {
+          "TaxAmount": [
+            22070.100
+          ],
+          "TaxAmountPartner": [
+            0.0
+          ],
+          "TaxRate": 0.0
+        },
+        "CantonRate": 100.0,
+        "MunicipalityRate": 109.0,
+        "MunicipalityTaxAmount": 185049.30,
+        "CantonTaxAmount": 169770.0,
+        "ChurchTaxAmount": 22070.100,
+        "TotalTaxAmount": 376889.400
+      },
+      "FederalResult": {
+        "DeterminingFactorTaxableAmount": 2000000.0,
+        "TaxAmount": 46000.00
+      },
+      "TotalTaxAmount": 422889.400
+    }
+  },
+  {
+    "MunicipalityId": 261,
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "MaxSupportedTaxYear": 2019,
+    "MunicipalityTaxResult": {
+      "StateResult": {
+        "BasisTax": {
+          "DeterminingFactorTaxableAmount": 2000000.0,
+          "TaxAmount": 169770.0
+        },
+        "ChurchTax": {
+          "TaxAmount": [
+            16977.00
+          ],
+          "TaxAmountPartner": [
+            0.0
+          ],
+          "TaxRate": 0.0
+        },
+        "CantonRate": 100.0,
+        "MunicipalityRate": 119.0,
+        "MunicipalityTaxAmount": 202026.30,
+        "CantonTaxAmount": 169770.0,
+        "ChurchTaxAmount": 16977.00,
+        "TotalTaxAmount": 388773.30
+      },
+      "FederalResult": {
+        "DeterminingFactorTaxableAmount": 2000000.0,
+        "TaxAmount": 46000.00
+      },
+      "TotalTaxAmount": 434773.30
+    }
+  }
+]
