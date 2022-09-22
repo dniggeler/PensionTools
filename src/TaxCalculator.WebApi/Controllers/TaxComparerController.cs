@@ -69,7 +69,9 @@ namespace TaxCalculator.WebApi.Controllers
                     compareResult.TaxDetails = new TaxAmountDetail
                     {
                         CantonTaxAmount = m.MunicipalityTaxResult.StateResult.CantonTaxAmount,
+                        MunicipalityTaxAmount = m.MunicipalityTaxResult.StateResult.MunicipalityTaxAmount,
                         FederalTaxAmount = m.MunicipalityTaxResult.FederalResult.TaxAmount,
+                        ChurchTaxAmount = m.MunicipalityTaxResult.StateResult.ChurchTaxAmount,
                     };
                 });
 
@@ -79,7 +81,7 @@ namespace TaxCalculator.WebApi.Controllers
             CapitalBenefitTaxPerson MapRequest()
             {
                 var name = string.IsNullOrEmpty(request.Name)
-                    ? Guid.NewGuid().ToString().Substring(0, 6)
+                    ? Guid.NewGuid().ToString()[..6]
                     : request.Name;
 
                 return new CapitalBenefitTaxPerson

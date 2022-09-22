@@ -1,11 +1,11 @@
 ﻿@page "/TaxComparers"
 
-@using PensionCoach.Tools.CommonTypes.Tax
 @using Microsoft.Extensions.Logging
 @using PensionCoach.Tools.CommonTypes
 @using Microsoft.AspNetCore.Components
 @using System.Text.Json
 @using PensionCoach.Tools.TaxComparison
+@using _Imports = BlazorApp._Imports
 
 @inject IStringLocalizer<Resource> localizer
 @inject ILogger<WealthPlanning> logger
@@ -74,7 +74,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                         <ChildContent>
                             <FormStep Title="Simulation" HelpText="Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern. Welcher Betrag soll bezogen werden und mit welchen Gemeinden soll verglichen werden?">
                                 <div class="col-md-3"><RadzenLabel Text="Kapitalbetrag" /></div>
-                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.TaxableBenefits" Min="20000" /></div>
+                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.TaxableBenefits" Step="10000.0" /></div>
                             </FormStep>
                         </ChildContent>
                     </RadzenStepsItem>
@@ -91,71 +91,42 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     </RadzenContent>
 </RadzenTemplateForm>
 
-@if (taxResponse != null)
-{
-        <RadzenPanel AllowCollapse="true">
-        <div class="container">
+<RadzenPanel AllowCollapse="true">
+    <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <RadzenLabel Text="@taxResponse.Name" />
+                <RadzenLabel Text="Resultat"/>
             </div>
             <div class="col-lg-9">
-                <RadzenTree>
-                    <RadzenTreeItem Text="@("Total Steuerbetrag: " + taxResponse.TotalTaxAmount)" Expanded="false">
-                        <ChildContent>
-                            <RadzenTreeItem Text=@("Gemeindesteuer: " + taxResponse.TaxDetails.MunicipalityTaxAmount)/>
-                            <RadzenTreeItem Text=@("Staatssteuer: " + taxResponse.TaxDetails.CantonTaxAmount)/>
-                                <RadzenTreeItem Text=@("Bundessteuer: " + taxResponse.TaxDetails.FederalTaxAmount) />
-                                <RadzenTreeItem Text=@("Kirchensteuer: " + taxResponse.TaxDetails.ChurchTaxAmount) />
-                            <RadzenTreeItem Text="Details" Expanded="false">
-                                <ChildContent>
-                                </ChildContent>
-                            </RadzenTreeItem>
-                        </ChildContent>
-                    </RadzenTreeItem>
-                </RadzenTree>
-
-                <RadzenDataGrid AllowFiltering="false" AllowColumnResize="false" AllowPaging="false" AllowSorting="false"
-                                TItem="FullTaxResponse">
+                <RadzenDataGrid @ref="taxResultGrid" AllowFiltering="false" AllowColumnResize="false" AllowPaging="false" AllowSorting="true"
+                                Data="@(Data())" TItem="CapitalBenefitTaxComparerResponse">
                     <Columns>
-                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="Name" Filterable="false" Title="Name" TextAlign="TextAlign.Center"/>
-                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="TotalTaxAmount" Filterable="false" Title="Total Steuerbetrag" TextAlign="TextAlign.Right"/>
-                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="MunicipalityTaxAmount" Filterable="false" Title="Gemeindesteuer" TextAlign="TextAlign.Right"/>
-                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="CantonTaxAmount" Filterable="false" Title="Staatssteuer" TextAlign="TextAlign.Right"/>
-                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="FederalTaxAmount" Filterable="false" Title="Bundessteuer" TextAlign="TextAlign.Right"/>
-                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="WealthTaxAmount" Filterable="false" Title="Vermögenssteuer" TextAlign="TextAlign.Right"/>
-                        <RadzenDataGridColumn TItem="FullTaxResponse" Property="ChurchTaxAmount" Filterable="false" Title="Kirchensteuer" TextAlign="TextAlign.Right"/>
+                        <RadzenDataGridColumn TItem="CapitalBenefitTaxComparerResponse" Property="MunicipalityName" Filterable="false" Title="Name" TextAlign="TextAlign.Left"/>
+                        <RadzenDataGridColumn TItem="CapitalBenefitTaxComparerResponse" Property="TotalTaxAmount" Filterable="false" Title="Total Steuerbetrag" TextAlign="TextAlign.Right"/>
+                        <RadzenDataGridColumn TItem="CapitalBenefitTaxComparerResponse" Property="TaxDetails.MunicipalityTaxAmount" Filterable="false" Title="Gemeindesteuer" TextAlign="TextAlign.Right"/>
+                        <RadzenDataGridColumn TItem="CapitalBenefitTaxComparerResponse" Property="TaxDetails.CantonTaxAmount" Filterable="false" Title="Staatssteuer" TextAlign="TextAlign.Right"/>
+                        <RadzenDataGridColumn TItem="CapitalBenefitTaxComparerResponse" Property="TaxDetails.FederalTaxAmount" Filterable="false" Title="Bundessteuer" TextAlign="TextAlign.Right"/>
+                        <RadzenDataGridColumn TItem="CapitalBenefitTaxComparerResponse" Property="TaxDetails.ChurchTaxAmount" Filterable="false" Title="Kirchensteuer" TextAlign="TextAlign.Right" />
                     </Columns>
                 </RadzenDataGrid>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <label>Rohdaten</label>
-                <RadzenTextArea Name="output" Rows="10" ReadOnly="true" Value="@(JsonSerializer.Serialize(taxResponse))" Style="width: 100%"/>
-            </div>
-        </div>
-        </div>
-    </RadzenPanel>
-}
+    </div>
+</RadzenPanel>
 
 @code
 {
-    private CapitalBenefitTaxComparerRequest taxRequest = new();
-    private CapitalBenefitTaxComparerResponse taxResponse;
+    private CapitalBenefitTaxComparerRequest taxRequest = new()
+    {
+            BfsNumberList = new[] { 261, 3, 1344 }
+    };
+    private List<CapitalBenefitTaxComparerResponse> taxCalculationResults = new();
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
 
     protected override async Task OnInitializedAsync()
     {
         persons = (await personService.GetPersonsAsync()).ToList();
-        taxRequest.BfsNumberList = new[] { 261, 3, 1344 };
-    }
-
-    private IEnumerable<CapitalBenefitTaxComparerResponse> GetTaxResponses()
-    {
-        return new[] { taxResponse };
     }
 
     private void HandleSelectPerson(Guid personId)
@@ -168,21 +139,34 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             CivilStatus = selectedPerson.CivilStatus,
             PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
             ReligiousGroup = selectedPerson.ReligiousGroupType,
+            BfsNumberList = new[] { 261, 3, 1344 },
+            TaxableBenefits = 1_000_000
         };
     }
 
     private async Task OnSubmit()
     {
-        logger.LogInformation($"Tax request {JsonSerializer.Serialize(taxRequest)}");
+        taxCalculationResults = new List<CapitalBenefitTaxComparerResponse>();
 
         await foreach (CapitalBenefitTaxComparerResponse municipalityTaxResult in taxComparisonService.CalculateAsync(taxRequest))
         {
+            taxCalculationResults.Add(municipalityTaxResult);
+
             logger.LogInformation($"Tax response {JsonSerializer.Serialize(municipalityTaxResult)}");
         }
+
+        await taxResultGrid.Reload();
     }
 
     private void OnInvalidSubmit(FormInvalidSubmitEventArgs args)
     {
         logger.LogInformation("InvalidSubmit");
     }
+
+    private IEnumerable<CapitalBenefitTaxComparerResponse> Data()
+    {
+        return taxCalculationResults;
+    }
+
+    private RadzenDataGrid<CapitalBenefitTaxComparerResponse> taxResultGrid;
 }
