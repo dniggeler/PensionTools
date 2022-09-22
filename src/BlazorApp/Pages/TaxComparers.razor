@@ -5,17 +5,20 @@
 @using Microsoft.AspNetCore.Components
 @using System.Text.Json
 @using PensionCoach.Tools.TaxComparison
-@using _Imports = BlazorApp._Imports
+@using System.Text
+@using System.IO
+@using System.Reflection
 
 @inject IStringLocalizer<Resource> localizer
 @inject ILogger<WealthPlanning> logger
 @inject IPersonService personService
 @inject ITaxCapitalBenefitsComparisonService taxComparisonService
+@inject IExportService exportService
 
 <RadzenTemplateForm TItem="CapitalBenefitTaxComparerRequest" Data=@taxRequest Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
     <RadzenContent Container="main">
         <ChildContent>
-            <RadzenHeading Size="H1" Text="Vergleichsrechner"></RadzenHeading>
+            <RadzenHeading Size="H1" Text="Gemeindevergleich Kapitalbezugssteuer"></RadzenHeading>
             <RadzenSteps NextText="Nächster" PreviousText="Vorheriger">
                 <Steps>
                     <RadzenStepsItem Text="Personen" Selected="true">
@@ -96,12 +99,15 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         <div class="row">
             <div class="col-lg-3">
                 <RadzenLabel Text="Resultat"/>
+                <RadzenButton Text="Export XLS" Icon="grid_on" Click="@(args => Export("excel"))" Class="mb-4 mr-2" />
             </div>
             <div class="col-lg-9">
-                <RadzenDataGrid @ref="taxResultGrid" AllowFiltering="false" AllowColumnResize="false" AllowPaging="false" AllowSorting="true"
+                <RadzenDataGrid @ref="taxResultGrid" AllowFiltering="true" AllowColumnResize="false" AllowPaging="false" AllowSorting="true"
+                                FilterMode="FilterMode.Simple" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" LogicalFilterOperator="LogicalFilterOperator.And"
                                 Data="@(Data())" TItem="CapitalBenefitTaxComparerResponse">
                     <Columns>
-                        <RadzenDataGridColumn TItem="CapitalBenefitTaxComparerResponse" Property="MunicipalityName" Filterable="false" Title="Name" TextAlign="TextAlign.Left"/>
+                        <RadzenDataGridColumn TItem="CapitalBenefitTaxComparerResponse" Property="MunicipalityName" Filterable="true" Title="Name" TextAlign="TextAlign.Left"/>
+                        <RadzenDataGridColumn TItem="CapitalBenefitTaxComparerResponse" Property="Canton" Filterable="true" Title="Kanton" TextAlign="TextAlign.Center"/>
                         <RadzenDataGridColumn TItem="CapitalBenefitTaxComparerResponse" Property="TotalTaxAmount" Filterable="false" Title="Total Steuerbetrag" TextAlign="TextAlign.Right"/>
                         <RadzenDataGridColumn TItem="CapitalBenefitTaxComparerResponse" Property="TaxDetails.MunicipalityTaxAmount" Filterable="false" Title="Gemeindesteuer" TextAlign="TextAlign.Right"/>
                         <RadzenDataGridColumn TItem="CapitalBenefitTaxComparerResponse" Property="TaxDetails.CantonTaxAmount" Filterable="false" Title="Staatssteuer" TextAlign="TextAlign.Right"/>
@@ -169,4 +175,14 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     }
 
     private RadzenDataGrid<CapitalBenefitTaxComparerResponse> taxResultGrid;
+
+    public void Export(string type)
+    {
+        exportService.Export("Vergleich Kapitalbezugssteuer", type, new Query() 
+        { 
+                OrderBy = taxResultGrid.Query.OrderBy,
+                Filter = taxResultGrid.Query.Filter,
+                Select = string.Join(",", taxResultGrid.ColumnsCollection.Where(c => c.GetVisible()).Select(c => c.Property))
+        });
+    }
 }

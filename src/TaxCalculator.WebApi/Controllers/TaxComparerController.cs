@@ -6,7 +6,6 @@ using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxComparison;
 using Tax.Tools.Comparison.Abstractions;
-using TaxCalculator.WebApi.Models;
 
 namespace TaxCalculator.WebApi.Controllers
 {
@@ -64,6 +63,7 @@ namespace TaxCalculator.WebApi.Controllers
                 {
                     compareResult.MunicipalityId = m.MunicipalityId;
                     compareResult.MunicipalityName = m.MunicipalityName;
+                    compareResult.Canton = m.Canton;
                     compareResult.MaxSupportedTaxYear = m.MaxSupportedTaxYear;
                     compareResult.TotalTaxAmount = m.MunicipalityTaxResult.TotalTaxAmount;
                     compareResult.TaxDetails = new TaxAmountDetail

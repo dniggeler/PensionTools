@@ -1,4 +1,5 @@
-﻿using PensionCoach.Tools.CommonTypes.Tax;
+﻿using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace PensionCoach.Tools.TaxComparison
 {
@@ -9,7 +10,9 @@ namespace PensionCoach.Tools.TaxComparison
         public int MunicipalityId { get; set; }
 
         public string MunicipalityName { get; set; }
-
+        
+        public Canton Canton { get; set; }
+        
         public int MaxSupportedTaxYear { get; set; }
 
         public decimal TotalTaxAmount { get; set; }
