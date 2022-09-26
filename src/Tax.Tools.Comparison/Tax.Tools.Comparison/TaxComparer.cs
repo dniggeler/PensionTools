@@ -57,8 +57,10 @@ namespace Tax.Tools.Comparison
                 .Select(_ => CalculateAsync(bufferChannel, resultChannel, person))
                 .ToArray();
 
+            int totalCount = 0;
             foreach (TaxSupportedMunicipalityModel municipality in municipalities)
             {
+                totalCount++;
                 await bufferChannel.Writer.WriteAsync(municipality);
             }
 
@@ -70,6 +72,7 @@ namespace Tax.Tools.Comparison
 
             await foreach (Either<string, CapitalBenefitTaxComparerResult> result in resultChannel.Reader.ReadAllAsync(CancellationToken.None))
             {
+                result.Iter(r => r.TotalCount = totalCount);
                 yield return result;
             }
         }

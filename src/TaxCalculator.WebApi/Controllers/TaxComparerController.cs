@@ -73,6 +73,7 @@ namespace TaxCalculator.WebApi.Controllers
                         FederalTaxAmount = m.MunicipalityTaxResult.FederalResult.TaxAmount,
                         ChurchTaxAmount = m.MunicipalityTaxResult.StateResult.ChurchTaxAmount,
                     };
+                    compareResult.TotalCount = m.TotalCount;
                 });
 
                 yield return compareResult;

@@ -12,6 +12,8 @@ using System.Linq.Dynamic.Core;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxComparison;
 
 namespace TaxCalculator.WebApi.Controllers;
@@ -204,9 +206,22 @@ public class ExportController : Controller
         return result;
     }
 
-    private static IQueryable<CapitalBenefitTaxComparerResponse> GetComparerResponses()
+    private static IQueryable<TaxComparerResultReportModel> GetComparerResponses()
     {
-        List<CapitalBenefitTaxComparerResponse> list = new();
+        List<TaxComparerResultReportModel> list = new()
+        {
+            new TaxComparerResultReportModel()
+            {
+                Canton = Canton.ZH,
+                MunicipalityName = "Zürich",
+                MunicipalityId = 261,
+                TotalTaxAmount = 105000,
+                MunicipalityTaxAmount = 55000,
+                CantonTaxAmount = 40000,
+                ChurchTaxAmount = 0,
+                FederalTaxAmount = 10000
+            }
+        };
 
         return list.AsQueryable();
     }

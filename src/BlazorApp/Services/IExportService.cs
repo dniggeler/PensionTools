@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Radzen;
+﻿using Radzen;
 
 namespace BlazorApp.Services
 {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
@@ -8,82 +9,73 @@ namespace BlazorApp.Services.Mock;
 
 public class MockCapitalBenefitsComparisonService : ITaxCapitalBenefitsComparisonService
 {
+    private readonly Random randomGenerator;
+
+    public MockCapitalBenefitsComparisonService()
+    {
+        this.randomGenerator = new Random();
+    }
+
     public async IAsyncEnumerable<CapitalBenefitTaxComparerResponse> CalculateAsync(CapitalBenefitTaxComparerRequest request)
     {
-        await Task.Delay(500);
+        int numberOfSamples = 200;
+        string[] municipalityNames = { "Bagnes", "Bern", "Zürich", "Lachen", "Wettingen", "Zuzwil" };
 
-        yield return new CapitalBenefitTaxComparerResponse
+        for (int ii = 0; ii < numberOfSamples; ii++)
         {
-            MunicipalityName = "Bagnes",
-            MunicipalityId = 6031,
-            Canton = Canton.VS,
-            MaxSupportedTaxYear = 2022,
-            Name = "Mock 1",
-            TotalTaxAmount = 121_000,
-            TaxDetails = new TaxAmountDetail
+            string randomName = municipalityNames[randomGenerator.Next(0, municipalityNames.Length - 1)];
+            string[] cantonNames = Enum.GetNames(typeof(Canton));
+            Canton randomCanton = Enum.Parse<Canton>(cantonNames[randomGenerator.Next(0, cantonNames.Length - 1)]);
+            int randomId = randomGenerator.Next(137, 9000);
+            decimal randomMunicipalityTax = GetRandomAmount(60000,90000);
+            decimal randomChurchTax = GetRandomAmount(100, 3000);
+            decimal federalTax = request.TaxableBenefits / 20M;
+            decimal randomCantonTax = Math.Max(0, randomMunicipalityTax + GetRandomAmount(-5000, 5000));
+
+            decimal totalTax = randomCantonTax + randomMunicipalityTax + randomChurchTax + federalTax;
+
+            yield return new CapitalBenefitTaxComparerResponse
             {
-                CantonTaxAmount = 60_000,
-                FederalTaxAmount = 15_000,
-                MunicipalityTaxAmount = 45_000,
-                ChurchTaxAmount = 1000
-            }
-        };
-
-        await Task.Delay(500);
-
-        yield return new CapitalBenefitTaxComparerResponse
-        {
-            MunicipalityName = "Bern",
-            MunicipalityId = 351,
-            Canton = Canton.BE,
-            MaxSupportedTaxYear = 2022,
-            Name = "Mock 2",
-            TotalTaxAmount = 131_000,
-            TaxDetails = new TaxAmountDetail
-            {
-                CantonTaxAmount = 50_000,
-                FederalTaxAmount = 15_000,
-                MunicipalityTaxAmount = 65_000,
-                ChurchTaxAmount = 1000
-            }
-        };
-
-        await Task.Delay(500);
+                MunicipalityName = randomName,
+                MunicipalityId = randomId,
+                Canton = randomCanton,
+                MaxSupportedTaxYear = 2022,
+                Name = $"Mock {ii+1}",
+                TotalTaxAmount = totalTax,
+                TaxDetails = new TaxAmountDetail
+                {
+                    CantonTaxAmount = randomCantonTax,
+                    FederalTaxAmount = federalTax,
+                    MunicipalityTaxAmount = randomMunicipalityTax,
+                    ChurchTaxAmount = randomChurchTax
+                },
+                CountComputed = ii+1,
+                TotalCount = numberOfSamples
+            };
+        }
 
         yield return new CapitalBenefitTaxComparerResponse
         {
-            MunicipalityName = "Zürich",
-            MunicipalityId = 261,
+            MunicipalityName = "Langnau aA",
+            MunicipalityId = 136,
             Canton = Canton.ZH,
             MaxSupportedTaxYear = 2022,
-            Name = "Mock 1",
-            TotalTaxAmount = 101_000,
+            Name = "Mock Langnau",
+            TotalTaxAmount = 115_500,
             TaxDetails = new TaxAmountDetail
             {
-                CantonTaxAmount = 40_000,
-                FederalTaxAmount = 15_000,
-                MunicipalityTaxAmount = 45_000,
-                ChurchTaxAmount = 1000
-            }
+                CantonTaxAmount = 45_000,
+                FederalTaxAmount = 20_000,
+                MunicipalityTaxAmount = 50_000,
+                ChurchTaxAmount = 500
+            },
+            CountComputed = numberOfSamples + 1,
+            TotalCount = numberOfSamples
         };
 
-        await Task.Delay(500);
-
-        yield return new CapitalBenefitTaxComparerResponse
+        decimal GetRandomAmount(decimal min, decimal max)
         {
-            MunicipalityName = "Lachen",
-            MunicipalityId = 1344,
-            Canton = Canton.SZ,
-            MaxSupportedTaxYear = 2022,
-            Name = "Mock 2",
-            TotalTaxAmount = 81_000,
-            TaxDetails = new TaxAmountDetail
-            {
-                CantonTaxAmount = 30_000,
-                FederalTaxAmount = 15_000,
-                MunicipalityTaxAmount = 35_000,
-                ChurchTaxAmount = 1000
-            }
-        };
+            return min + (max - min) * (decimal)randomGenerator.NextDouble();
+        }
     }
 }

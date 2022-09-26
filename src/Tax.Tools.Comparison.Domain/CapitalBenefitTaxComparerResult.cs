@@ -14,5 +14,7 @@ namespace PensionCoach.Tools.TaxComparison
         public int MaxSupportedTaxYear { get; set; }
 
         public FullCapitalBenefitTaxResult MunicipalityTaxResult { get; set; }
+
+        public int TotalCount { get; set; }
     }
 }

@@ -18,5 +18,9 @@ namespace PensionCoach.Tools.TaxComparison
         public decimal TotalTaxAmount { get; set; }
 
         public TaxAmountDetail TaxDetails { get; set; }
+
+        public int TotalCount { get; set; }
+
+        public int CountComputed { get; set; }
     }
 }

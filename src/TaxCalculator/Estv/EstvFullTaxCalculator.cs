@@ -29,7 +29,17 @@ public class EstvFullTaxCalculator : IFullWealthAndIncomeTaxCalculator
         SimpleTaxResult estvResult = await estvTaxCalculatorClient.CalculateIncomeAndWealthTaxAsync(
             municipality.EstvTaxLocationId.Value, calculationYear, person);
 
-        decimal municipalityRate = estvResult.IncomeTaxCity / (decimal)estvResult.IncomeSimpleTaxCity * 100M;
+        decimal simpleTaxRate = decimal.Zero;
+        if (estvResult.IncomeTaxCanton > decimal.Zero)
+        {
+            simpleTaxRate = estvResult.IncomeTaxCity / (decimal)estvResult.IncomeTaxCanton * 100M;
+        }
+
+        decimal wealthTaxRate = decimal.Zero;
+        if (estvResult.FortuneTaxCanton > decimal.Zero)
+        {
+            simpleTaxRate = estvResult.FortuneTaxCity / (decimal)estvResult.FortuneTaxCanton * 100M;
+        }
 
         return new FullTaxResult
         {
@@ -42,13 +52,13 @@ public class EstvFullTaxCalculator : IFullWealthAndIncomeTaxCalculator
             {
                 BasisIncomeTax = new BasisTaxResult
                 {
-                    TaxAmount = estvResult.IncomeSimpleTaxCity,
-                    DeterminingFactorTaxableAmount = municipalityRate
+                    TaxAmount = estvResult.IncomeTaxCanton,
+                    DeterminingFactorTaxableAmount = simpleTaxRate
                 },
                 BasisWealthTax = new BasisTaxResult
                 {
-                    TaxAmount = estvResult.FortuneSimpleTaxCanton,
-                    DeterminingFactorTaxableAmount = estvResult.FortuneTaxCity / (decimal)estvResult.FortuneSimpleTaxCity
+                    TaxAmount = estvResult.FortuneTaxCanton,
+                    DeterminingFactorTaxableAmount = wealthTaxRate
                 },
                 ChurchTax = new ChurchTaxResult
                 {
@@ -57,7 +67,7 @@ public class EstvFullTaxCalculator : IFullWealthAndIncomeTaxCalculator
                 },
                 PollTaxAmount = estvResult.PersonalTax,
                 CantonRate = 100M,
-                MunicipalityRate = municipalityRate
+                MunicipalityRate = simpleTaxRate
             }
         };
     }

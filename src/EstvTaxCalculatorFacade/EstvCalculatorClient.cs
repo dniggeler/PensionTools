@@ -47,6 +47,11 @@ public class EstvTaxCalculatorClient : IEstvTaxCalculatorClient
                 TaxableIncomeCanton = (int)person.TaxableIncome
             };
 
+        if (person.CivilStatus == CivilStatus.Married)
+        {
+            request.Confession2 = Map(person.PartnerReligiousGroupType);
+        }
+
         SimpleTaxResponse response = await CallAsync<SimpleTaxResponse>(JsonSerializer.Serialize(request), "API_calculateSimpleTaxes");
 
         return response.Response;    
@@ -96,10 +101,11 @@ public class EstvTaxCalculatorClient : IEstvTaxCalculatorClient
         };
     }
 
-    private static int Map(ReligiousGroupType religiousGroupType)
+    private static int Map(ReligiousGroupType? religiousGroupType)
     {
         return religiousGroupType switch
         {
+            null => 0,
             ReligiousGroupType.Protestant => 1,
             ReligiousGroupType.Roman => 2,
             ReligiousGroupType.Catholic => 3,

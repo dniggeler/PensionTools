@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -32,7 +33,17 @@ public class CapitalBenefitsComparisonService : ITaxCapitalBenefitsComparisonSer
 
         logger.LogInformation(JsonSerializer.Serialize(request));
 
-        HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
+        // Serialize our concrete class into a JSON String
+        var stringPayload = JsonSerializer.Serialize(request);
+
+        // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
+        var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+
+        var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlPath)
+        {
+            Content = httpContent,
+        };
+        var response = await httpClient.SendAsync(httpRequest, HttpCompletionOption.ResponseHeadersRead);
 
         response.EnsureSuccessStatusCode();
 
