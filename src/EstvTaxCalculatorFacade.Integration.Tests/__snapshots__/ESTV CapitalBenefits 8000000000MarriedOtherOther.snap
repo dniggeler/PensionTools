@@ -1,8 +1,8 @@
 ﻿{
-  "TaxCanton": 20870,
-  "TaxChurch": 2087,
-  "TaxCity": 24835,
-  "TaxFed": 10632,
+  "TaxCanton": 0,
+  "TaxChurch": 0,
+  "TaxCity": 0,
+  "TaxFed": 0,
   "Location": {
     "Id": 800000000,
     "ZipCode": "8000",

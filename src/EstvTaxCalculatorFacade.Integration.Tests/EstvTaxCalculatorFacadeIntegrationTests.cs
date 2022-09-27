@@ -57,18 +57,21 @@ public class EstvTaxCalculatorFacadeIntegrationTests
         Snapshot.Match(result, $"ESTV SimpleTax {taxLocationId}{wealth}{civilStatusString}{religiousType}{religiousTypePartner}");
     }
 
-    [Fact(DisplayName = "Capital Benefit Tax")]
-    public async Task Calculate_Capital_Benefit_Tax_Successfully()
+    [Theory(DisplayName = "Capital Benefit Tax")]
+    [InlineData(2022, 800000000, 1_000_000, "Married", "Other", "Other")]
+    [InlineData(2022, 800000000, 1_000_000, "Married", "Protestant", "Other")]
+    [InlineData(2022, 800000000, 0, "Married", "Other", "Other")]
+    [InlineData(2022, 885300000, 1_000_000, "Married", "Protestant", "Other")]
+    [InlineData(2022, 885300000, 1_000_000, "Married", "Protestant", "Roman")]
+    public async Task Calculate_Capital_Benefit_Tax_Successfully(int taxYear, int taxLocationId, decimal capitalBenefits, string civilStatusString, string religiousType, string religiousTypePartner)
     {
         // given
-        int taxLocationId = 800000000;
-        int taxYear = 2021;
-
         IEstvTaxCalculatorClient estvClient = provider.GetRequiredService<IEstvTaxCalculatorClient>();
 
-        var result = await estvClient.CalculateCapitalBenefitTaxAsync(taxLocationId, taxYear, GetCapitalBenefitPerson());
+        var result = await estvClient.CalculateCapitalBenefitTaxAsync(
+            taxLocationId, taxYear, GetCapitalBenefitPerson(capitalBenefits, civilStatusString, religiousType, religiousTypePartner));
 
-        Snapshot.Match(result);
+        Snapshot.Match(result, $"ESTV CapitalBenefits {taxLocationId}{capitalBenefits}{civilStatusString}{religiousType}{religiousTypePartner}");
     }
 
     private static TaxPerson GetPerson(decimal wealth, string civilStatusString, string religiousTypePerson1, string religiousTypePerson2)
@@ -105,15 +108,34 @@ public class EstvTaxCalculatorFacadeIntegrationTests
         return person;
     }
 
-    private static CapitalBenefitTaxPerson GetCapitalBenefitPerson()
+    private static CapitalBenefitTaxPerson GetCapitalBenefitPerson(
+        decimal capitalBenefits, string civilStatusString, string religiousTypePerson1, string religiousTypePerson2)
     {
-        return new CapitalBenefitTaxPerson
+        var person = new CapitalBenefitTaxPerson
         {
             Name = "Tester",
             CivilStatus = CivilStatus.Single,
             NumberOfChildren = 0,
-            ReligiousGroupType = ReligiousGroupType.Roman,
-            TaxableCapitalBenefits = 500_000,
+            ReligiousGroupType = ReligiousGroupType.Other,
+            TaxableCapitalBenefits = capitalBenefits,
         };
+
+        if (Enum.TryParse<CivilStatus>(civilStatusString, out var civilStatus))
+        {
+            person.CivilStatus = civilStatus;
+        }
+
+        if (Enum.TryParse<ReligiousGroupType>(religiousTypePerson1, out var person1))
+        {
+            person.ReligiousGroupType = person1;
+        }
+
+        if (person.CivilStatus == CivilStatus.Married &&
+            Enum.TryParse<ReligiousGroupType>(religiousTypePerson2, out var person2))
+        {
+            person.PartnerReligiousGroupType = person2;
+        }
+
+        return person;
     }
 }

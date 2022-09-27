@@ -71,6 +71,11 @@ public class EstvTaxCalculatorClient : IEstvTaxCalculatorClient
             Capital = (int)person.TaxableCapitalBenefits,
         };
 
+        if (person.CivilStatus == CivilStatus.Married)
+        {
+            request.Confession2 = Map(person.PartnerReligiousGroupType);
+        }
+
         SimpleCapitalTaxResponse response =
             await CallAsync<SimpleCapitalTaxResponse>(JsonSerializer.Serialize(request), "API_calculateManyCapitalTaxes");
 
