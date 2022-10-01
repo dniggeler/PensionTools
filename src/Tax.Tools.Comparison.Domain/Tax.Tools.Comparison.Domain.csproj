@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>PensionCoach.Tools.TaxComparison.Domain</AssemblyName>
     <RootNamespace>PensionCoach.Tools.TaxComparison</RootNamespace>
+    <LangVersion>latest</LangVersion>
 </PropertyGroup>
 
 <ItemGroup>

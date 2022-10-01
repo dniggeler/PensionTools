@@ -26,10 +26,26 @@ public class CapitalBenefitsComparisonService : ITaxCapitalBenefitsComparisonSer
         this.logger = logger;
     }
 
-    public async IAsyncEnumerable<CapitalBenefitTaxComparerResponse> CalculateAsync(CapitalBenefitTaxComparerRequest request)
+    public async IAsyncEnumerable<TaxComparerResponse> CalculateAsync(CapitalBenefitTaxComparerRequest request)
+    {
+        await foreach (var result in CalculateAsync(request, "capitalbenefit"))
+        {
+            yield return result;
+        }
+    }
+
+    public async IAsyncEnumerable<TaxComparerResponse> CalculateAsync(IncomeAndWealthComparerRequest request)
+    {
+        await foreach (var result in CalculateAsync(request, "incomewealth"))
+        {
+            yield return result;
+        }
+    }
+
+    private async IAsyncEnumerable<TaxComparerResponse> CalculateAsync<T>(T request, string urlMethodPart)
     {
         string baseUri = configuration.GetSection("TaxComparisonServiceUrl").Value;
-        string urlPath = Path.Combine(baseUri, "capitalbenefit");
+        string urlPath = Path.Combine(baseUri, urlMethodPart);
 
         logger.LogInformation(JsonSerializer.Serialize(request));
 
@@ -48,7 +64,7 @@ public class CapitalBenefitsComparisonService : ITaxCapitalBenefitsComparisonSer
         response.EnsureSuccessStatusCode();
 
         var asyncResponse = await response.Content
-            .ReadFromJsonAsync<IAsyncEnumerable<CapitalBenefitTaxComparerResponse>>();
+            .ReadFromJsonAsync<IAsyncEnumerable<TaxComparerResponse>>();
 
         if (asyncResponse is null)
         {

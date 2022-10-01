@@ -9,5 +9,8 @@ namespace Tax.Tools.Comparison.Abstractions
     {
         IAsyncEnumerable<Either<string, CapitalBenefitTaxComparerResult>> CompareCapitalBenefitTaxAsync(
             CapitalBenefitTaxPerson person, int[] bfsNumbers);
+
+        IAsyncEnumerable<Either<string, IncomeAndWealthTaxComparerResult>> CompareIncomeAndWealthTaxAsync(
+            TaxPerson person, int[] bfsNumbers);
     }
 }

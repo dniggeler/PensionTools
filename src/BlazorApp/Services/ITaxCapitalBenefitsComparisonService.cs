@@ -5,6 +5,8 @@ namespace BlazorApp.Services
 {
     public interface ITaxCapitalBenefitsComparisonService
     {
-        IAsyncEnumerable<CapitalBenefitTaxComparerResponse> CalculateAsync(CapitalBenefitTaxComparerRequest request);
+        IAsyncEnumerable<TaxComparerResponse> CalculateAsync(CapitalBenefitTaxComparerRequest request);
+
+        IAsyncEnumerable<TaxComparerResponse> CalculateAsync(IncomeAndWealthComparerRequest request);
     }
 }

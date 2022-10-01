@@ -1,4 +1,4 @@
-﻿@page "/TaxComparers"
+﻿@page "/TaxComparer/CapitalBenefits"
 
 @using Microsoft.Extensions.Logging
 @using PensionCoach.Tools.CommonTypes
@@ -267,7 +267,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
         isComputing = true;
 
-        await foreach (CapitalBenefitTaxComparerResponse item in taxComparisonService.CalculateAsync(taxRequest))
+        await foreach (TaxComparerResponse item in taxComparisonService.CalculateAsync(taxRequest))
         {
             taxCalculationResults.Add(new TaxComparerResultReportModel
             {

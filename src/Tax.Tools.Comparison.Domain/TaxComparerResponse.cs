@@ -3,7 +3,7 @@ using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace PensionCoach.Tools.TaxComparison
 {
-    public class CapitalBenefitTaxComparerResponse
+    public class TaxComparerResponse
     {
         public string Name { get; set; }
 
