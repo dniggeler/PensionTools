@@ -1,9 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components
 
-@inject IStringLocalizer<PensionComponents> localizer
-
 <RadzenCard>
-    <RadzenLabel Text="Gemeinden gerechnet" />
+    <RadzenLabel Text="@Title" />
     <RadzenProgressBar Value="@Value" ShowValue="true" Mode="ProgressBarMode.Determinate"/>
 </RadzenCard>
 
@@ -13,8 +11,4 @@
 
     [Parameter]
     public int Value { get; set; }
-
-    protected override void OnInitialized()
-    {
-    }
 }

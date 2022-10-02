@@ -70,8 +70,14 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                     <RadzenStepsItem Text="Berechnung" Disabled="@(selectedPerson == null)">
                         <ChildContent>
                             <FormStep Title="Simulation" HelpText="Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern. Welcher Betrag soll bezogen werden und mit welchen Gemeinden soll verglichen werden?">
-                                <div class="col-md-3"><RadzenLabel Text="Steuerbares Einkommen" /></div>
+                                <div class="col-md-3"><RadzenLabel Text="Steuerbares Einkommen Kanton" /></div>
                                 <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.TaxableIncome" Step="5000.0" /></div>
+
+                                <div class="col-md-3"><RadzenLabel Text="Steuerbares Einkommen Bund" /></div>
+                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.TaxableFederalIncome" Step="5000.0" /></div>
+
+                                <div class="col-md-3"><RadzenLabel Text="Steuerbares Vermögen" /></div>
+                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.TaxableWealth" Step="50000.0" /></div>
                             </FormStep>
                         </ChildContent>
                     </RadzenStepsItem>
@@ -90,7 +96,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
 @if (isComputing)
 {
-    <ComputedProgressBar Value="@progressBarValue" Title="Gemeinde"/>
+    <ComputedProgressBar Value="@progressBarValue" Title=""/>
 }
 
 <TaxComparisonResult @ref="taxComparisonGrid" SelectedPerson="@selectedPerson" TaxCompareResultModels="@taxCalculationResults" />
@@ -123,9 +129,9 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             CivilStatus = selectedPerson.CivilStatus,
             PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
             ReligiousGroup = selectedPerson.ReligiousGroupType,
-            TaxableFederalIncome = 100_000,
-            TaxableIncome = 100_000,
-            TaxableWealth = 500_000,
+            TaxableFederalIncome = selectedPerson.TaxableFederalIncome,
+            TaxableIncome = selectedPerson.TaxableIncome,
+            TaxableWealth = selectedPerson.TaxableWealth,
         };
     }
 
@@ -134,9 +140,6 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         taxCalculationResults = new List<TaxComparerResultReportModel>();
         
         isComputing = true;
-
-        taxRequest.TaxableFederalIncome = taxRequest.TaxableIncome;
-        taxRequest.TaxableWealth = 500_000;
 
         await foreach (TaxComparerResponse item in TaxComparisonService.CalculateAsync(taxRequest))
         {
@@ -160,6 +163,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         taxComparisonGrid.Reload();
 
         isComputing = false;
+        progressBarValue = 0;
     }
 
     private void OnInvalidSubmit(FormInvalidSubmitEventArgs args)

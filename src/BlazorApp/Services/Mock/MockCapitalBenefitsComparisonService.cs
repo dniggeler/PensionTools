@@ -34,7 +34,7 @@ public class MockCapitalBenefitsComparisonService : ITaxCapitalBenefitsCompariso
         }
     }
 
-    private async IAsyncEnumerable<TaxComparerResponse> CalculateRandomlyAsync(decimal ancorAmount)
+    private async IAsyncEnumerable<TaxComparerResponse> CalculateRandomlyAsync(decimal anchorAmount)
     {
 
         for (int ii = 0; ii < NumberOfSamples; ii++)
@@ -43,9 +43,9 @@ public class MockCapitalBenefitsComparisonService : ITaxCapitalBenefitsCompariso
             string[] cantonNames = Enum.GetNames(typeof(Canton));
             Canton randomCanton = Enum.Parse<Canton>(cantonNames[randomGenerator.Next(0, cantonNames.Length - 1)]);
             int randomId = randomGenerator.Next(137, 9000);
-            decimal randomMunicipalityTax = GetRandomAmount(60000, 90000);
+            decimal randomMunicipalityTax = Math.Max(anchorAmount - 15000 + GetRandomAmount(0, 30000), 0);
             decimal randomChurchTax = GetRandomAmount(100, 3000);
-            decimal federalTax = ancorAmount / 20M;
+            decimal federalTax = anchorAmount / 20M;
             decimal randomCantonTax = Math.Max(0, randomMunicipalityTax + GetRandomAmount(-5000, 5000));
 
             decimal totalTax = randomCantonTax + randomMunicipalityTax + randomChurchTax + federalTax;

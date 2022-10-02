@@ -92,7 +92,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
 @if (isComputing)
 {
-    <ComputedProgressBar Value="@progressBarValue" Title="Gemeinde"/>
+    <ComputedProgressBar Value="@progressBarValue" Title=""/>
 }
 
 
@@ -288,6 +288,8 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
         isComputing = false;
         isResultAvailable = true;
+
+        progressBarValue = 0;
 
         minimalTaxResult = GetMinimumModel();
         maximalTaxResult = GetMaximumModel();
