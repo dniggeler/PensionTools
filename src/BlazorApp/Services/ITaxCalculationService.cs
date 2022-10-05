@@ -6,5 +6,7 @@ namespace BlazorApp.Services
     public interface ITaxCalculationService
     {
         Task<FullTaxResponse> CalculateAsync(FullTaxRequest request);
+
+        Task<int[]> SupportedTaxYears();
     }
 }

@@ -12,4 +12,6 @@ public interface ITaxCalculatorConnector
 
     Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
         int calculationYear, int bfsMunicipalityId, CapitalBenefitTaxPerson person, bool withMaxAvailableCalculationYear = false);
+
+    Task<int[]> GetSupportedTaxYears();
 }

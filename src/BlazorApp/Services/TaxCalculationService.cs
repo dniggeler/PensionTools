@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -41,5 +40,13 @@ public class TaxCalculationService : ITaxCalculationService
             await response.Content.ReadFromJsonAsync<FullTaxResponse>();
 
         return result;
+    }
+
+    public async Task<int[]> SupportedTaxYears()
+    {
+        string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+        string urlPath = Path.Combine(baseUri, "years");
+
+        return await httpClient.GetFromJsonAsync<int[]>(urlPath);
     }
 }

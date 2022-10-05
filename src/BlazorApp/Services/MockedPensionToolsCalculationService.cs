@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
+using LanguageExt;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
@@ -67,6 +68,11 @@ namespace BlazorApp.Services
             };
 
             return Task.FromResult(taxCalculationResponse);
+        }
+
+        public Task<int[]> SupportedTaxYears()
+        {
+            return new[] { 2019, 2020, 2021, 2022 }.AsTask();
         }
     }
 }

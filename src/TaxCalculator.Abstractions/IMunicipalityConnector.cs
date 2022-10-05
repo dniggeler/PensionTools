@@ -19,5 +19,7 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions
         /// Municipalities are sorted by their name.
         /// </summary>
         Task<IReadOnlyCollection<TaxSupportedMunicipalityModel>> GetAllSupportTaxCalculationAsync();
+
+        Task<int[]> GetSupportedTaxYearsAsync();
     }
 }

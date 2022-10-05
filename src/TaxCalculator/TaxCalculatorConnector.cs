@@ -9,6 +9,8 @@ namespace PensionCoach.Tools.TaxCalculator;
 
 public class TaxCalculatorConnector : ITaxCalculatorConnector
 {
+    private readonly int[] supportedTaxYears = { 2019 };
+
     private readonly IFullWealthAndIncomeTaxCalculator fullWealthAndIncomeTaxCalculator;
     private readonly IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator;
     private readonly IMunicipalityConnector municipalityResolver;
@@ -45,5 +47,10 @@ public class TaxCalculatorConnector : ITaxCalculatorConnector
                     calculationYear,
                     m,
                     person));
+    }
+
+    public Task<int[]> GetSupportedTaxYears()
+    {
+        return supportedTaxYears.AsTask();
     }
 }

@@ -1,17 +1,15 @@
 ﻿@page "/TaxCalculation"
 
 @using PensionCoach.Tools.CommonTypes.Tax
-@using Microsoft.Extensions.Logging
 @using PensionCoach.Tools.CommonTypes
 @using Microsoft.AspNetCore.Components
 @using System.Text.Json
 
 @inject IStringLocalizer<Resource> localizer
-@inject ILogger<WealthPlanning> logger
-@inject IPersonService personService
-@inject ITaxCalculationService taxCalculationService
+@inject IPersonService PersonService
+@inject ITaxCalculationService TaxCalculationService
 
-<RadzenTemplateForm TItem="FullTaxRequest" Data=@taxRequest Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
+<RadzenTemplateForm TItem="FullTaxRequest" Data=@taxRequest Submit=@OnSubmit>
     <RadzenContent Container="main">
         <ChildContent>
             <RadzenHeading Size="H1" Text="Steuerberechnung"></RadzenHeading>
@@ -80,8 +78,14 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                                         BfsMunicipalityId="taxRequest.BfsMunicipalityId"
                                                         OnSelected="m => { taxRequest.BfsMunicipalityId = m.BfsMunicipalityNumber; }" />
                                                 </div>
-                                                <div class="col-md-3"><RadzenLabel Text="Aktuelles Steuerjahr" /></div>
-                                                <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="taxRequest.CalculationYear" Disabled="true" /></div>
+                                                <div class="col-md-3">
+                                                    <RadzenLabel Text="Steuerjahr"/>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <RadzenDropDown AllowClear="false" TValue="int" 
+                                                                    Data="@(supportedTaxYears)"
+                                                                    @bind-Value="@taxRequest.CalculationYear"/>
+                                                </div>
                                             </div>
                                         </RadzenFieldset>
                                     </div>
@@ -164,11 +168,14 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     private FullTaxResponse taxResponse;
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
+    private int[] supportedTaxYears;
 
     protected override async Task OnInitializedAsync()
     {
-        persons = (await personService.GetPersonsAsync()).ToList();
-        taxRequest.CalculationYear = 2021;
+        Task<int[]> yearsTask = TaxCalculationService.SupportedTaxYears();
+        persons = (await PersonService.GetPersonsAsync()).ToList();
+
+        supportedTaxYears = await yearsTask;
     }
 
     private IEnumerable<FullTaxResponse> GetFullTaxResponses()
@@ -183,26 +190,19 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         taxRequest = new FullTaxRequest
         {
             Name = selectedPerson.Name,
-            CalculationYear = 2019,
             CivilStatus = selectedPerson.CivilStatus,
             TaxableIncome = selectedPerson.TaxableIncome,
             TaxableWealth = selectedPerson.TaxableWealth,
             TaxableFederalIncome = selectedPerson.TaxableIncome,
             PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
             ReligiousGroup = selectedPerson.ReligiousGroupType,
-            BfsMunicipalityId = selectedPerson.BfsMunicipalityId
+            BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
+            CalculationYear = supportedTaxYears.Max()
         };
     }
 
     private async Task OnSubmit()
     {
-        taxResponse = await taxCalculationService.CalculateAsync(taxRequest);
-
-        logger.LogInformation($"Full tax response {JsonSerializer.Serialize(taxResponse)}");
-    }
-
-    private void OnInvalidSubmit(FormInvalidSubmitEventArgs args)
-    {
-        logger.LogInformation("InvalidSubmit");
+        taxResponse = await TaxCalculationService.CalculateAsync(taxRequest);
     }
 }

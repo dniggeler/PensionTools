@@ -63,12 +63,19 @@ public class MockedFullTaxCalculator : IFullWealthAndIncomeTaxCalculator, IFullC
     {
         MunicipalityModel adaptedModel = GetAdaptedModel();
 
-        IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalites = new List<TaxSupportedMunicipalityModel>
+        IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities = new List<TaxSupportedMunicipalityModel>
         {
             new() { MaxSupportedYear = 2022, BfsMunicipalityNumber = adaptedModel.BfsNumber, Canton = adaptedModel.Canton }
         };
 
-        return municipalites.AsTask();
+        return municipalities.AsTask();
+    }
+
+    public Task<int[]> GetSupportedTaxYearsAsync()
+    {
+        int[] years = { 2022 };
+
+        return years.AsTask();
     }
 
     private MunicipalityModel GetAdaptedModel()

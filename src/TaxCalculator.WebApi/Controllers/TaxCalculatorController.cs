@@ -181,4 +181,21 @@ public class TaxCalculatorController : ControllerBase
 
         return Ok(list);
     }
+
+    /// <summary>
+    /// Returns the supported tax years. List depends on the tax calculator implementation.
+    /// </summary>
+    /// <returns>Tax calculation years.</returns>
+    /// <response code="200">If calculation is successful.</response>
+    /// <remarks>
+    /// Unterstützte Steuerjahre - hängt von der konkreten Steuerrechner-Implementation ab.
+    /// </remarks>
+    [HttpGet]
+    [Route("years")]
+    public async Task<ActionResult<int[]>> GetSupportedTaxYears()
+    {
+        var years = await municipalityResolver.GetSupportedTaxYearsAsync();
+
+        return Ok(years);
+    }
 }
