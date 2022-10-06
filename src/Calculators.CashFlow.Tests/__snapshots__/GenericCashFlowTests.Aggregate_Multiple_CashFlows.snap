@@ -174,21 +174,5 @@
     "IsTaxable": false,
     "TaxType": "Undefined",
     "OccurrenceType": "BeginOfPeriod"
-  },
-  {
-    "DateOfOccurrence": {
-      "Year": 2021,
-      "Month": 1,
-      "Day": 1,
-      "DayOfWeek": "Friday",
-      "DayOfYear": 1,
-      "DayNumber": 737790
-    },
-    "Amount": 0.0,
-    "Source": "Income",
-    "Target": "CapitalBenefits",
-    "IsTaxable": false,
-    "TaxType": "Undefined",
-    "OccurrenceType": "BeginOfPeriod"
   }
 ]

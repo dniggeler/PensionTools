@@ -103,7 +103,7 @@ namespace Calculators.CashFlow.Tests
                 InvestmentPeriod = new InvestmentPeriod
                 {
                     Year = 2021,
-                    NumberOfPeriods = 1
+                    NumberOfPeriods = 0
                 },
             };
 
