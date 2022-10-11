@@ -31,7 +31,8 @@
         "TaxAmount": 46000.00
       },
       "TotalTaxAmount": 422889.400
-    }
+    },
+    "TotalCount": 2
   },
   {
     "MunicipalityId": 261,
@@ -65,6 +66,7 @@
         "TaxAmount": 46000.00
       },
       "TotalTaxAmount": 434773.30
-    }
+    },
+    "TotalCount": 2
   }
 ]

@@ -4,6 +4,7 @@ using System.Linq;
 using Calculators.CashFlow.Models;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 using PensionCoach.Tools.CommonTypes.Tax;
 using Snapshooter.Xunit;
 using Xunit;
@@ -19,9 +20,13 @@ namespace Calculators.CashFlow.Tests
             // given
             GenericCashFlowDefinition definition = new GenericCashFlowDefinition
             {
+                Header = new CashFlowHeader
+                {
+                    Id = "test",
+                    Name = "Test",
+                },
                 DateOfStart = new DateTime(2021, 1, 1),
                 NetGrowthRate = 0,
-                Name = "Test",
                 InitialAmount = 9_500,
                 RecurringInvestment = new RecurringInvestment
                 {
@@ -51,8 +56,12 @@ namespace Calculators.CashFlow.Tests
             // given
             GenericCashFlowDefinition definition1 = new GenericCashFlowDefinition
             {
+                Header = new CashFlowHeader
+                {
+                    Id = "test1",
+                    Name = "Test",
+                },
                 NetGrowthRate = 0,
-                Name = "Test",
                 InitialAmount = 9_500,
                 RecurringInvestment = new RecurringInvestment
                 {
@@ -71,8 +80,12 @@ namespace Calculators.CashFlow.Tests
 
             GenericCashFlowDefinition definition2 = new GenericCashFlowDefinition
             {
+                Header = new CashFlowHeader
+                {
+                    Id = "test2",
+                    Name = "Test 2",
+                },
                 NetGrowthRate = 0,
-                Name = "Test 2",
                 InitialAmount = 19_500,
                 RecurringInvestment = new RecurringInvestment
                 {
@@ -91,8 +104,12 @@ namespace Calculators.CashFlow.Tests
 
             GenericCashFlowDefinition definition3 = new GenericCashFlowDefinition
             {
+                Header = new CashFlowHeader
+                {
+                    Id = "test3",
+                    Name = "Test 3",
+                },
                 NetGrowthRate = 0,
-                Name = "Test 3",
                 InitialAmount = 50_000,
                 RecurringInvestment = new RecurringInvestment
                 {

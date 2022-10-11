@@ -4,6 +4,8 @@ using System.Linq;
 using Calculators.CashFlow.Models;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
+using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace Calculators.CashFlow
 {
@@ -39,6 +41,51 @@ namespace Calculators.CashFlow
 
                 cashFlow *= decimal.One + definition.NetGrowthRate;
             }
+        }
+
+        public static IEnumerable<CashFlowModel> GenerateCashFlow(this ThirdPillarCashFlowDefinition thirdPillarDefinition)
+        {
+            var definition = new GenericCashFlowDefinition
+            {
+                Header = thirdPillarDefinition.Header,
+                DateOfStart = thirdPillarDefinition.DateOfStart,
+                InitialAmount = thirdPillarDefinition.InitialAmount,
+                NetGrowthRate = thirdPillarDefinition.NetGrowthRate,
+                Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = thirdPillarDefinition.YearlyInvestmentAmount,
+                    Frequency = FrequencyType.Yearly,
+                },
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = thirdPillarDefinition.DateOfStart.Year,
+                    NumberOfPeriods = thirdPillarDefinition.NumberOfInvestments,
+                },
+                IsTaxable = false,
+                TaxType = TaxType.Undefined,
+                OccurrenceType = OccurrenceType.BeginOfPeriod
+            };
+
+            foreach (var cashFlowModel in definition.GenerateCashFlow())
+            {
+                yield return cashFlowModel;
+            }
+
+            var range = Enumerable.Range(
+                definition.InvestmentPeriod.Year,
+                definition.InvestmentPeriod.NumberOfPeriods);
+
+            yield return new CashFlowModel(
+                new DateOnly(definition.InvestmentPeriod.Year, 1, 1),
+                definition.InitialAmount,
+                AccountType.Exogenous,
+                definition.Flow.Target,
+                definition.IsTaxable,
+                definition.TaxType,
+                definition.OccurrenceType);
+
+            decimal cashFlow = definition.RecurringInvestment.Amount;
         }
 
         public static IEnumerable<CashFlowModel> AggregateCashFlows(this IEnumerable<CashFlowModel> cashFlows)

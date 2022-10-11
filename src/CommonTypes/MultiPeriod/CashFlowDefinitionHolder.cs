@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod;
 

@@ -3566,15 +3566,6 @@
   {
     "BfsCode": 261,
     "ZipCode": "8045",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Zürich Brunaupark",
-    "Canton": "ZH",
-    "DateOfValidity": "2017-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8045",
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Zürich Friesenbergplatz",
     "Canton": "ZH",
@@ -16359,6 +16350,15 @@
     "MunicipalityName": "Fribourg PostFinance Fil.",
     "Canton": "FR",
     "DateOfValidity": "2007-03-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2196,
+    "ZipCode": "1700",
+    "ZipCodeAddOn": "02",
+    "MunicipalityName": "Fribourg Route de la Glâne",
+    "Canton": "FR",
+    "DateOfValidity": "2022-09-12T00:00:00",
     "LanguageCode": 0
   },
   {

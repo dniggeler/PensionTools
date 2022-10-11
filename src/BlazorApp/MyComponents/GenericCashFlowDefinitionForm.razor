@@ -1,10 +1,11 @@
 ﻿@using PensionCoach.Tools.CommonTypes.MultiPeriod
+@using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions
 
 <EditForm Model="Definition">
     <div class="row">
         <div class="col-md-2">
             <RadzenLabel Text="Titel" Component="name"/>
-            <RadzenTextBox TValue="string" @bind-Value="@Definition.Name" Name="name"/>
+            <RadzenTextBox TValue="string" @bind-Value="@Definition.Header.Name" Name="name"/>
         </div>
     </div>
     <div class="row">

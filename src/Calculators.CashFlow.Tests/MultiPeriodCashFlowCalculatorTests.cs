@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Calculators.CashFlow.Models;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 using PensionCoach.Tools.CommonTypes.Tax;
 using Snapshooter.Xunit;
 using Xunit;
@@ -143,8 +145,12 @@ namespace Calculators.CashFlow.Tests
         {
             yield return new GenericCashFlowDefinition
             {
-                Id = "my 3a account",
-                Name = $"{person.Name} - 3a Pillar",
+                Header = new CashFlowHeader
+                {
+                    Id = "my 3a account",
+                    Name = $"{person.Name} - 3a Pillar",
+                },
+
                 InitialAmount = 100_000,
                 RecurringInvestment = new RecurringInvestment
                 {
@@ -164,9 +170,14 @@ namespace Calculators.CashFlow.Tests
 
             yield return new GenericCashFlowDefinition
             {
-                Id = "my PK account",
+                Header = new CashFlowHeader
+                {
+                    Id = "my PK account",
+                    Name = "PK-Einkauf",
+                },
+
                 NetGrowthRate = 0,
-                Name = "PK-Einkauf",
+                
                 InitialAmount = 400_000,
                 RecurringInvestment = new RecurringInvestment
                 {
@@ -189,8 +200,12 @@ namespace Calculators.CashFlow.Tests
         {
             yield return new GenericCashFlowDefinition
             {
-                Id = "my 3a account",
-                Name = $"{person.Name} - 3a Pillar",
+                Header = new CashFlowHeader
+                {
+                    Id = "my 3a account",
+                    Name = $"{person.Name} - 3a Pillar"
+                },
+                
                 InitialAmount = 100_000,
                 NetGrowthRate = 0.0M,
                 RecurringInvestment = new RecurringInvestment

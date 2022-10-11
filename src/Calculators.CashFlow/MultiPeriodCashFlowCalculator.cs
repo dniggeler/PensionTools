@@ -7,6 +7,8 @@ using LanguageExt;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
@@ -253,8 +255,13 @@ namespace Calculators.CashFlow
         {
             GenericCashFlowDefinition salaryCashFlowDefinition = new()
             {
-                Id = "my salary",
-                Name = $"{person.Name} - Lohn",
+                Header = new CashFlowHeader
+                {
+                    Id = "my salary",
+                    Name = $"{person.Name} - Lohn",
+                    Ordinal = 0,
+                },
+
                 InvestmentPeriod = new InvestmentPeriod
                 { 
                     Year = startingYear,
@@ -263,7 +270,6 @@ namespace Calculators.CashFlow
                 Flow = new FlowPair( AccountType.Exogenous, AccountType.Income),
                 InitialAmount = decimal.Zero,
                 NetGrowthRate = options.SalaryNetGrowthRate,
-                Ordinal = 0,
                 RecurringInvestment = new RecurringInvestment
                 {
                     Amount = person.Income,
@@ -276,8 +282,13 @@ namespace Calculators.CashFlow
 
             GenericCashFlowDefinition wealthCashFlowDefinition = new()
             {
-                Id = "my wealth",
-                Name = $"{person.Name} - Vermögen",
+                Header = new CashFlowHeader
+                {
+                    Id = "my wealth",
+                    Name = $"{person.Name} - Vermögen",
+                    Ordinal = 0,
+                },
+
                 InvestmentPeriod = new InvestmentPeriod
                 {
                     Year = startingYear,
@@ -286,7 +297,6 @@ namespace Calculators.CashFlow
                 Flow = new FlowPair(AccountType.Exogenous, AccountType.Wealth),
                 InitialAmount = person.Wealth,
                 NetGrowthRate = options.WealthNetGrowthRate,
-                Ordinal = 0,
                 RecurringInvestment = new RecurringInvestment
                 {
                     Amount = 0,
@@ -299,8 +309,13 @@ namespace Calculators.CashFlow
 
             GenericCashFlowDefinition pillar3aCashFlowDefinition = new()
             {
-                Id = "my 3a account",
-                Name = $"{person.Name} - 3a Pillar",
+                Header = new CashFlowHeader
+                {
+                    Id = "my 3a account",
+                    Name = $"{person.Name} - 3a Pillar",
+                    Ordinal = 0,
+                },
+                
                 InitialAmount = person.CapitalBenefits.Pillar3a,
                 RecurringInvestment = new RecurringInvestment
                 {
@@ -321,9 +336,14 @@ namespace Calculators.CashFlow
             // PK-Einkauf
             GenericCashFlowDefinition pensionPlanCashFlowDefinition = new()
             {
-                Id = "my PK account",
+                Header = new CashFlowHeader
+                {
+                    Id = "my PK account",
+                    Name = "PK-Einkauf",
+                    Ordinal = 0,
+                },
+
                 NetGrowthRate = 0,
-                Name = "PK-Einkauf",
                 InitialAmount = person.CapitalBenefits.PensionPlan,
                 RecurringInvestment = new RecurringInvestment
                 {

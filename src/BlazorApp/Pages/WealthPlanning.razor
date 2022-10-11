@@ -1,10 +1,12 @@
 ﻿@page "/WealthPlanning"
-@using PensionCoach.Tools.CommonTypes
 @using Microsoft.Extensions.Logging
-@using System.Text.Json
+@using PensionCoach.Tools.CommonTypes
 @using PensionCoach.Tools.CommonTypes.MultiPeriod
+@using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions
+@using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions
 @using PensionCoach.Tools.CommonTypes.Tax
-@using BlazorApp.MyComponents.Person
+@using Microsoft.AspNetCore.Components
+@using System.Text.Json
 
 @inject IStringLocalizer<Resource> localizer
 @inject ILogger<WealthPlanning> logger
@@ -151,7 +153,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                                     <Items>
                                                         @foreach (GenericCashFlowDefinition definition in genericCashFlowDefinitions)
                                                         {
-                                                        <RadzenAccordionItem Text="@definition.Name">
+                                                        <RadzenAccordionItem Text="@definition.Header.Name">
                                                             <GenericCashFlowDefinitionForm Definition="definition" />
                                                         </RadzenAccordionItem>
                                                         }
@@ -300,8 +302,12 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         {
             new()
             {
-                Id = "my 3a account",
-                Name = "Säule 3a",
+                Header = new CashFlowHeader
+                {
+                    Id = "my 3a account",
+                    Name = "Säule 3a",
+                },
+
                 InitialAmount = 0,
                 RecurringInvestment = new RecurringInvestment
                 {
@@ -320,8 +326,12 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             },
             new()
             {
+                Header = new CashFlowHeader
+                {
+                    Id = "purchase",
+                    Name = "PK-Einkauf",
+                },
                 NetGrowthRate = 0,
-                Name = "PK-Einkauf",
                 InitialAmount = 0,
                 RecurringInvestment = new RecurringInvestment
                 {
