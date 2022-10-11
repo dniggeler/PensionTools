@@ -7,107 +7,164 @@ using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 using PensionCoach.Tools.CommonTypes.Tax;
 
-namespace Calculators.CashFlow
+namespace Calculators.CashFlow;
+
+public static class CashFlowHelperExtensions
 {
-    public static class CashFlowHelperExtensions
+    public static IEnumerable<CashFlowModel> GenerateCashFlow(this GenericCashFlowDefinition definition)
     {
-        public static IEnumerable<CashFlowModel> GenerateCashFlow(this GenericCashFlowDefinition definition)
-        {
-            var range = Enumerable.Range(
-                definition.InvestmentPeriod.Year,
-                definition.InvestmentPeriod.NumberOfPeriods);
+        var range = Enumerable.Range(
+            definition.InvestmentPeriod.Year,
+            definition.InvestmentPeriod.NumberOfPeriods);
 
+        yield return new CashFlowModel(
+            new DateOnly(definition.InvestmentPeriod.Year, 1, 1),
+            definition.InitialAmount,
+            AccountType.Exogenous,
+            definition.Flow.Target,
+            definition.IsTaxable,
+            definition.TaxType,
+            definition.OccurrenceType);
+
+        decimal cashFlow = definition.RecurringInvestment.Amount;
+
+        foreach (var year in range)
+        {
             yield return new CashFlowModel(
-                new DateOnly(definition.InvestmentPeriod.Year, 1, 1),
-                definition.InitialAmount,
-                AccountType.Exogenous,
+                new DateOnly(year, 1, 1),
+                cashFlow,
+                definition.Flow.Source,
                 definition.Flow.Target,
                 definition.IsTaxable,
                 definition.TaxType,
                 definition.OccurrenceType);
 
-            decimal cashFlow = definition.RecurringInvestment.Amount;
-
-            foreach (var year in range)
-            {
-                yield return new CashFlowModel(
-                    new DateOnly(year, 1, 1),
-                    cashFlow,
-                    definition.Flow.Source,
-                    definition.Flow.Target,
-                    definition.IsTaxable,
-                    definition.TaxType,
-                    definition.OccurrenceType);
-
-                cashFlow *= decimal.One + definition.NetGrowthRate;
-            }
+            cashFlow *= decimal.One + definition.NetGrowthRate;
         }
+    }
 
-        public static IEnumerable<CashFlowModel> GenerateCashFlow(this ThirdPillarCashFlowDefinition thirdPillarDefinition)
+    public static IEnumerable<GenericCashFlowDefinition> CreateGenericDefinition(this SetupAccountDefinition accountDefinition)
+    {
+        yield return new GenericCashFlowDefinition
         {
-            var definition = new GenericCashFlowDefinition
+            Header = new CashFlowHeader
             {
-                Header = thirdPillarDefinition.Header,
-                DateOfStart = thirdPillarDefinition.DateOfStart,
-                InitialAmount = thirdPillarDefinition.InitialAmount,
-                NetGrowthRate = thirdPillarDefinition.NetGrowthRate,
-                Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
-                RecurringInvestment = new RecurringInvestment
-                {
-                    Amount = thirdPillarDefinition.YearlyInvestmentAmount,
-                    Frequency = FrequencyType.Yearly,
-                },
-                InvestmentPeriod = new InvestmentPeriod
-                {
-                    Year = thirdPillarDefinition.DateOfStart.Year,
-                    NumberOfPeriods = thirdPillarDefinition.NumberOfInvestments,
-                },
-                IsTaxable = false,
-                TaxType = TaxType.Undefined,
-                OccurrenceType = OccurrenceType.BeginOfPeriod
-            };
-
-            foreach (var cashFlowModel in definition.GenerateCashFlow())
+                Id = "setupWealthAccount",
+                Name = "Wealth Account"
+            },
+            DateOfStart = accountDefinition.DateOfStart,
+            InitialAmount = accountDefinition.InitialWealth,
+            Flow = new FlowPair(AccountType.Exogenous, AccountType.Wealth),
+            RecurringInvestment = new RecurringInvestment
             {
-                yield return cashFlowModel;
-            }
+                Amount = 0,
+                Frequency = FrequencyType.Yearly,
+            },
+            InvestmentPeriod = new InvestmentPeriod
+            {
+                Year = accountDefinition.DateOfStart.Year,
+                NumberOfPeriods = 0
+            },
+            IsTaxable = true,
+            TaxType = TaxType.Wealth,
+            OccurrenceType = OccurrenceType.BeginOfPeriod
+        };
 
-            var range = Enumerable.Range(
-                definition.InvestmentPeriod.Year,
-                definition.InvestmentPeriod.NumberOfPeriods);
-
-            yield return new CashFlowModel(
-                new DateOnly(definition.InvestmentPeriod.Year, 1, 1),
-                definition.InitialAmount,
-                AccountType.Exogenous,
-                definition.Flow.Target,
-                definition.IsTaxable,
-                definition.TaxType,
-                definition.OccurrenceType);
-
-            decimal cashFlow = definition.RecurringInvestment.Amount;
-        }
-
-        public static IEnumerable<CashFlowModel> AggregateCashFlows(this IEnumerable<CashFlowModel> cashFlows)
+        yield return new GenericCashFlowDefinition
         {
-            return cashFlows
-                .GroupBy(keySelector => new
-                {
-                    keySelector.DateOfOccurrence,
-                    keySelector.Source,
-                    keySelector.Target,
-                    keySelector.IsTaxable,
-                    keySelector.TaxType,
-                    keySelector.OccurrenceType
-                })
-                .Select(g => new CashFlowModel(
-                    g.Key.DateOfOccurrence,
-                    g.Sum(item => item.Amount),
-                    g.Key.Source,
-                    g.Key.Target,
-                    g.Key.IsTaxable,
-                    g.Key.TaxType,
-                    g.Key.OccurrenceType));
-        }
+            Header = new CashFlowHeader
+            {
+                Id = "setupCapitalBenefitsAccount",
+                Name = "Capital Benefits Account"
+            },
+            DateOfStart = accountDefinition.DateOfStart,
+            InitialAmount = accountDefinition.InitialCapitalBenefits,
+            Flow = new FlowPair(AccountType.Exogenous, AccountType.CapitalBenefits),
+            RecurringInvestment = new RecurringInvestment
+            {
+                Amount = 0,
+                Frequency = FrequencyType.Yearly,
+            },
+            InvestmentPeriod = new InvestmentPeriod
+            {
+                Year = accountDefinition.DateOfStart.Year,
+                NumberOfPeriods = 0
+            },
+            IsTaxable = false,
+            TaxType = TaxType.Capital,
+            OccurrenceType = OccurrenceType.BeginOfPeriod
+        };
+    }
+
+    public static GenericCashFlowDefinition CreateGenericDefinition(this PensionPlanPaymentsDefinition purchaseDefinition)
+    {
+        return new GenericCashFlowDefinition
+        {
+            Header = purchaseDefinition.Header,
+            DateOfStart = purchaseDefinition.DateOfStart,
+            InitialAmount = decimal.Zero,
+            NetGrowthRate = purchaseDefinition.NetGrowthRate,
+            Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+            RecurringInvestment = new RecurringInvestment
+            {
+                Amount = purchaseDefinition.YearlyAmount,
+                Frequency = FrequencyType.Yearly,
+            },
+            InvestmentPeriod = new InvestmentPeriod
+            {
+                Year = purchaseDefinition.DateOfStart.Year,
+                NumberOfPeriods = purchaseDefinition.NumberOfInvestments,
+            },
+            IsTaxable = false,
+            TaxType = TaxType.Undefined,
+            OccurrenceType = OccurrenceType.BeginOfPeriod
+        };
+    }
+
+    public static GenericCashFlowDefinition CreateGenericDefinition(this ThirdPillarPaymentsDefinition thirdPillarDefinition)
+    {
+        return new GenericCashFlowDefinition
+        {
+            Header = thirdPillarDefinition.Header,
+            DateOfStart = thirdPillarDefinition.DateOfStart,
+            InitialAmount = decimal.Zero,
+            NetGrowthRate = thirdPillarDefinition.NetGrowthRate,
+            Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+            RecurringInvestment = new RecurringInvestment
+            {
+                Amount = thirdPillarDefinition.YearlyAmount,
+                Frequency = FrequencyType.Yearly,
+            },
+            InvestmentPeriod = new InvestmentPeriod
+            {
+                Year = thirdPillarDefinition.DateOfStart.Year,
+                NumberOfPeriods = thirdPillarDefinition.NumberOfInvestments,
+            },
+            IsTaxable = false,
+            TaxType = TaxType.Undefined,
+            OccurrenceType = OccurrenceType.BeginOfPeriod
+        };
+    }
+
+    public static IEnumerable<CashFlowModel> AggregateCashFlows(this IEnumerable<CashFlowModel> cashFlows)
+    {
+        return cashFlows
+            .GroupBy(keySelector => new
+            {
+                keySelector.DateOfOccurrence,
+                keySelector.Source,
+                keySelector.Target,
+                keySelector.IsTaxable,
+                keySelector.TaxType,
+                keySelector.OccurrenceType
+            })
+            .Select(g => new CashFlowModel(
+                g.Key.DateOfOccurrence,
+                g.Sum(item => item.Amount),
+                g.Key.Source,
+                g.Key.Target,
+                g.Key.IsTaxable,
+                g.Key.TaxType,
+                g.Key.OccurrenceType));
     }
 }

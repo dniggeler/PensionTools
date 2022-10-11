@@ -2,7 +2,7 @@
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
-public record PurchaseInsuranceYearsCashFlowDefinition
+public record SalaryPaymentsDefinition
 {
     /// <summary>
     /// Gets or sets the header properties
@@ -36,7 +36,7 @@ public record PurchaseInsuranceYearsCashFlowDefinition
     /// <summary>
     /// Gets or sets the yearly investment amount.
     /// </summary>
-    public decimal YearlyInvestmentAmount { get; set; }
+    public decimal YearlyAmount { get; set; }
 
     /// <summary>
     /// Gets or sets the number of investments (one per year).

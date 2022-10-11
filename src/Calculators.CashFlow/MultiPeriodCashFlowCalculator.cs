@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
@@ -253,6 +254,14 @@ namespace Calculators.CashFlow
             CashFlowDefinitionHolder cashFlowDefinitionHolder,
             MultiPeriodOptions options)
         {
+            IEnumerable<GenericCashFlowDefinition> accountSetupDefinitions = new SetupAccountDefinition
+                {
+                    DateOfStart = new DateTime(startingYear, 1, 1),
+                    InitialCapitalBenefits = person.CapitalBenefits.PensionPlan + person.CapitalBenefits.Pillar3a,
+                    InitialWealth = person.Wealth
+                }
+                .CreateGenericDefinition();
+
             GenericCashFlowDefinition salaryCashFlowDefinition = new()
             {
                 Header = new CashFlowHeader
@@ -279,94 +288,14 @@ namespace Calculators.CashFlow
                 IsTaxable = true,
                 TaxType = TaxType.Income
             };
-
-            GenericCashFlowDefinition wealthCashFlowDefinition = new()
-            {
-                Header = new CashFlowHeader
-                {
-                    Id = "my wealth",
-                    Name = $"{person.Name} - Vermögen",
-                    Ordinal = 0,
-                },
-
-                InvestmentPeriod = new InvestmentPeriod
-                {
-                    Year = startingYear,
-                    NumberOfPeriods = 1
-                },
-                Flow = new FlowPair(AccountType.Exogenous, AccountType.Wealth),
-                InitialAmount = person.Wealth,
-                NetGrowthRate = options.WealthNetGrowthRate,
-                RecurringInvestment = new RecurringInvestment
-                {
-                    Amount = 0,
-                    Frequency = FrequencyType.Yearly,
-                },
-                OccurrenceType = OccurrenceType.BeginOfPeriod,
-                IsTaxable = true,
-                TaxType = TaxType.Wealth
-            };
-
-            GenericCashFlowDefinition pillar3aCashFlowDefinition = new()
-            {
-                Header = new CashFlowHeader
-                {
-                    Id = "my 3a account",
-                    Name = $"{person.Name} - 3a Pillar",
-                    Ordinal = 0,
-                },
-                
-                InitialAmount = person.CapitalBenefits.Pillar3a,
-                RecurringInvestment = new RecurringInvestment
-                {
-                    Amount = 0,
-                    Frequency = FrequencyType.Yearly,
-                },
-                Flow = new FlowPair(AccountType.Exogenous, AccountType.CapitalBenefits),
-                InvestmentPeriod = new InvestmentPeriod
-                {
-                    Year = startingYear,
-                    NumberOfPeriods = 1
-                },
-                IsTaxable = false,
-                TaxType = TaxType.Undefined,
-                OccurrenceType = OccurrenceType.BeginOfPeriod
-            };
-
-            // PK-Einkauf
-            GenericCashFlowDefinition pensionPlanCashFlowDefinition = new()
-            {
-                Header = new CashFlowHeader
-                {
-                    Id = "my PK account",
-                    Name = "PK-Einkauf",
-                    Ordinal = 0,
-                },
-
-                NetGrowthRate = 0,
-                InitialAmount = person.CapitalBenefits.PensionPlan,
-                RecurringInvestment = new RecurringInvestment
-                {
-                    Amount = 0,
-                    Frequency = FrequencyType.Yearly,
-                },
-                Flow = new FlowPair(AccountType.Exogenous, AccountType.CapitalBenefits),
-                InvestmentPeriod = new InvestmentPeriod
-                {
-                    Year = startingYear,
-                    NumberOfPeriods = 1
-                },
-                IsTaxable = false,
-                TaxType = TaxType.Undefined,
-                OccurrenceType = OccurrenceType.BeginOfPeriod
-            };
-
+            
             var extendedDefinitionHolder = cashFlowDefinitionHolder with
             {
                 GenericCashFlowDefinitions = new[]
                     {
-                        salaryCashFlowDefinition, wealthCashFlowDefinition, pillar3aCashFlowDefinition, pensionPlanCashFlowDefinition
+                        salaryCashFlowDefinition
                     }
+                    .Concat(accountSetupDefinitions)
                     .Concat(cashFlowDefinitionHolder.GenericCashFlowDefinitions)
                     .ToList()
             };

@@ -2,7 +2,7 @@
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
-public record ThirdPillarCashFlowDefinition
+public record PensionPlanPaymentsDefinition
 {
     /// <summary>
     /// Gets or sets the header properties
@@ -18,14 +18,6 @@ public record ThirdPillarCashFlowDefinition
     public DateTime DateOfStart { get; set; }
 
     /// <summary>
-    /// Gets or sets the initial amount.
-    /// </summary>
-    /// <value>
-    /// The initial amount.
-    /// </value>
-    public decimal InitialAmount { get; set; }
-
-    /// <summary>
     /// Gets or sets the net growth rate.
     /// </summary>
     /// <value>
@@ -34,9 +26,9 @@ public record ThirdPillarCashFlowDefinition
     public decimal NetGrowthRate { get; set; }
 
     /// <summary>
-    /// Gets or sets the yearly investment amount.
+    /// Gets or sets the yearly amount.
     /// </summary>
-    public decimal YearlyInvestmentAmount { get; set; }
+    public decimal YearlyAmount { get; set; }
 
     /// <summary>
     /// Gets or sets the number of investments (one per year).

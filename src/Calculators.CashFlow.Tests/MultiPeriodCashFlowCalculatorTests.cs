@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Calculators.CashFlow.Models;
@@ -143,86 +144,71 @@ namespace Calculators.CashFlow.Tests
 
         private static IEnumerable<GenericCashFlowDefinition> GetCashFlowDefinitions(MultiPeriodCalculatorPerson person)
         {
-            yield return new GenericCashFlowDefinition
+            List<GenericCashFlowDefinition> definitions = new SetupAccountDefinition
+                {
+                    DateOfStart = new DateTime(2021, 1, 1),
+                    InitialWealth = 0,
+                    InitialCapitalBenefits = 500_000,
+                }
+                .CreateGenericDefinition()
+                .ToList();
+
+            definitions.Add(new ThirdPillarPaymentsDefinition
             {
                 Header = new CashFlowHeader
                 {
                     Id = "my 3a account",
                     Name = $"{person.Name} - 3a Pillar",
                 },
+                NetGrowthRate = decimal.Zero,
+                DateOfStart = new DateTime(2021, 1, 1),
+                NumberOfInvestments = 10,
+                YearlyAmount = 6883,
+            }.CreateGenericDefinition());
 
-                InitialAmount = 100_000,
-                RecurringInvestment = new RecurringInvestment
+            definitions.Add(new PensionPlanPaymentsDefinition
                 {
-                    Amount = 6883,
-                    Frequency = FrequencyType.Yearly,
-                },
-                Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
-                InvestmentPeriod = new InvestmentPeriod
-                {
-                    Year = 2021,
-                    NumberOfPeriods = 10,
-                },
-                IsTaxable = false,
-                TaxType = TaxType.Undefined,
-                OccurrenceType = OccurrenceType.BeginOfPeriod
-            };
+                    Header = new CashFlowHeader
+                    {
+                        Id = "my PK account",
+                        Name = "PK-Einkauf",
+                    },
+                    DateOfStart = new DateTime(2021, 1, 1),
+                    NetGrowthRate = 0,
+                    YearlyAmount = 10000,
+                    NumberOfInvestments = 5
+                }
+                .CreateGenericDefinition());
 
-            yield return new GenericCashFlowDefinition
-            {
-                Header = new CashFlowHeader
-                {
-                    Id = "my PK account",
-                    Name = "PK-Einkauf",
-                },
-
-                NetGrowthRate = 0,
-                
-                InitialAmount = 400_000,
-                RecurringInvestment = new RecurringInvestment
-                {
-                    Amount = 10000,
-                    Frequency = FrequencyType.Yearly,
-                },
-                Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
-                InvestmentPeriod = new InvestmentPeriod
-                {
-                    Year = 2021,
-                    NumberOfPeriods = 5,
-                },
-                IsTaxable = false,
-                TaxType = TaxType.Undefined,
-                OccurrenceType = OccurrenceType.BeginOfPeriod
-            };
+            return definitions;
         }
 
         private static IEnumerable<GenericCashFlowDefinition> GetThirdPillarCashFlowDefinitions(MultiPeriodCalculatorPerson person)
         {
-            yield return new GenericCashFlowDefinition
-            {
-                Header = new CashFlowHeader
+            List<GenericCashFlowDefinition> definitions = new SetupAccountDefinition
                 {
-                    Id = "my 3a account",
-                    Name = $"{person.Name} - 3a Pillar"
-                },
-                
-                InitialAmount = 100_000,
-                NetGrowthRate = 0.0M,
-                RecurringInvestment = new RecurringInvestment
+                    DateOfStart = new DateTime(2021, 1, 1),
+                    InitialWealth = decimal.Zero,
+                    InitialCapitalBenefits = 100_000
+                }
+                .CreateGenericDefinition()
+                .ToList();
+
+            definitions.Add(new ThirdPillarPaymentsDefinition
                 {
-                    Amount = 6883,
-                    Frequency = FrequencyType.Yearly,
-                },
-                Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
-                InvestmentPeriod = new InvestmentPeriod
-                {
-                    Year = 2021,
-                    NumberOfPeriods = 10,
-                },
-                IsTaxable = false,
-                TaxType = TaxType.Undefined,
-                OccurrenceType = OccurrenceType.BeginOfPeriod
-            };
+                    Header = new CashFlowHeader
+                    {
+                        Id = "my 3a account",
+                        Name = $"{person.Name} - 3a Pillar"
+                    },
+                    DateOfStart = new DateTime(2021, 1, 1),
+                    NetGrowthRate = 0.0M,
+                    NumberOfInvestments = 10,
+                    YearlyAmount = 6883,
+                }
+                .CreateGenericDefinition());
+
+            return definitions;
         }
 
         private MultiPeriodCalculatorPerson GetMarriedPerson(Canton canton, int municipalityId)
