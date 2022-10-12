@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Calculators.CashFlow.Models;
+using LanguageExt;
+using Microsoft.Extensions.Options;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
@@ -125,6 +127,31 @@ public static class CashFlowHelperExtensions
         };
     }
 
+    public static GenericCashFlowDefinition CreateGenericDefinition(this SalaryPaymentsDefinition salaryDefinition)
+    {
+        return new GenericCashFlowDefinition
+        {
+            Header = salaryDefinition.Header,
+            DateOfStart = salaryDefinition.DateOfStart,
+            InvestmentPeriod = new InvestmentPeriod
+            {
+                Year = salaryDefinition.DateOfStart.Year,
+                NumberOfPeriods = salaryDefinition.NumberOfInvestments,
+            },
+            Flow = new FlowPair(AccountType.Exogenous, AccountType.Income),
+            InitialAmount = decimal.Zero,
+            NetGrowthRate = salaryDefinition.NetGrowthRate,
+            RecurringInvestment = new RecurringInvestment
+            {
+                Amount = salaryDefinition.YearlyAmount,
+                Frequency = FrequencyType.Yearly,
+            },
+            OccurrenceType = OccurrenceType.BeginOfPeriod,
+            IsTaxable = true,
+            TaxType = TaxType.Income
+        };
+    }
+
     public static GenericCashFlowDefinition CreateGenericDefinition(this ThirdPillarPaymentsDefinition thirdPillarDefinition)
     {
         return new GenericCashFlowDefinition
@@ -159,7 +186,7 @@ public static class CashFlowHelperExtensions
         return cashFlows
             .GroupBy(keySelector => new
             {
-                keySelector.DateOfOccurrence,
+                DateOfOccurrence = keySelector.DateOfProcess,
                 keySelector.Source,
                 keySelector.Target,
                 keySelector.IsTaxable,

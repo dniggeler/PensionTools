@@ -48,8 +48,8 @@ namespace Calculators.CashFlow
                 .AggregateCashFlows()
                 .ToList();
 
-            int startingYear = cashFlows.Min(item => item.DateOfOccurrence.Year);
-            int finalYear = cashFlows.Max(item => item.DateOfOccurrence.Year);
+            int startingYear = cashFlows.Min(item => item.DateOfProcess.Year);
+            int finalYear = cashFlows.Max(item => item.DateOfProcess.Year);
 
             List<SinglePeriodCalculationResult> singlePeriodCalculationResults = Enumerable.Empty<SinglePeriodCalculationResult>().ToList();
 
@@ -62,7 +62,7 @@ namespace Calculators.CashFlow
                 int currentYear = year;
                 
                 List<CashFlowModel> currentYearCashFlows = cashFlows
-                    .Where(item => item.DateOfOccurrence.Year == currentYear)
+                    .Where(item => item.DateOfProcess.Year == currentYear)
                     .ToList();
 
                 List<ClearAccountAction> currentYearClearAccountActions = cashFlowDefinitionHolder
@@ -262,32 +262,15 @@ namespace Calculators.CashFlow
                 }
                 .CreateGenericDefinition();
 
-            GenericCashFlowDefinition salaryCashFlowDefinition = new()
-            {
-                Header = new CashFlowHeader
+            GenericCashFlowDefinition salaryCashFlowDefinition = new SalaryPaymentsDefinition
                 {
-                    Id = "my salary",
-                    Name = $"{person.Name} - Lohn",
-                    Ordinal = 0,
-                },
-
-                InvestmentPeriod = new InvestmentPeriod
-                { 
-                    Year = startingYear,
-                    NumberOfPeriods = numberOfPeriods
-                },
-                Flow = new FlowPair( AccountType.Exogenous, AccountType.Income),
-                InitialAmount = decimal.Zero,
-                NetGrowthRate = options.SalaryNetGrowthRate,
-                RecurringInvestment = new RecurringInvestment
-                {
-                    Amount = person.Income,
-                    Frequency = FrequencyType.Yearly,
-                },
-                OccurrenceType = OccurrenceType.BeginOfPeriod,
-                IsTaxable = true,
-                TaxType = TaxType.Income
-            };
+                    Header = new CashFlowHeader { Id = "my salary", Name = $"{person.Name} - Lohn", Ordinal = 0, },
+                    DateOfStart = new DateTime(startingYear, 1, 1),
+                    YearlyAmount = person.Income,
+                    NumberOfInvestments = numberOfPeriods,
+                    NetGrowthRate = options.SalaryNetGrowthRate,
+                }
+                .CreateGenericDefinition();
             
             var extendedDefinitionHolder = cashFlowDefinitionHolder with
             {

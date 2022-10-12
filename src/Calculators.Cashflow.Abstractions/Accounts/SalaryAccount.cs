@@ -11,5 +11,7 @@ public class SalaryAccount
 
     public decimal Balance { get; set; }
 
+    public decimal InterestRate { get; set; }
+
     public IEnumerable<AccountTransaction> Transactions { get; set; }
 }

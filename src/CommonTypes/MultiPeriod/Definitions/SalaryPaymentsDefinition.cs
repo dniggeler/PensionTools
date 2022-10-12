@@ -18,14 +18,6 @@ public record SalaryPaymentsDefinition
     public DateTime DateOfStart { get; set; }
 
     /// <summary>
-    /// Gets or sets the initial amount.
-    /// </summary>
-    /// <value>
-    /// The initial amount.
-    /// </value>
-    public decimal InitialAmount { get; set; }
-
-    /// <summary>
     /// Gets or sets the net growth rate.
     /// </summary>
     /// <value>
