@@ -5,11 +5,6 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 public record PensionPlanPaymentsDefinition
 {
     /// <summary>
-    /// Gets or sets the header properties
-    /// </summary>
-    public CashFlowHeader Header { get; set; }
-
-    /// <summary>
     /// Gets or sets the date of start.
     /// </summary>
     /// <value>

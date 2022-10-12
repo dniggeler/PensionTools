@@ -93,6 +93,8 @@ namespace Calculators.CashFlow.Tests
             MultiPeriodOptions options = new();
             MultiPeriodCalculatorPerson person = GetMarriedPerson(canton, municipalityId);
 
+            person.CapitalBenefits = (0, 500_000);
+
             // when
             var result = await _fixture.Service.CalculateAsync(
                 startingYear,
@@ -100,7 +102,7 @@ namespace Calculators.CashFlow.Tests
                 person,
                 new CashFlowDefinitionHolder
                 {
-                    GenericCashFlowDefinitions = GetCashFlowDefinitions(person).ToList(),
+                    GenericCashFlowDefinitions = GetCashFlowDefinitions().ToList(),
                     ClearAccountActions = GetClearActionDefinitions().ToList(),
                     ChangeResidenceActions = GetChangeResidenceActions().ToList(),
                 },
@@ -124,7 +126,8 @@ namespace Calculators.CashFlow.Tests
 
             MultiPeriodCalculatorPerson person = GetMarriedPerson(canton, municipalityId) with
             {
-                Wealth = decimal.Zero
+                Wealth = decimal.Zero,
+                CapitalBenefits = (0, 100_000)
             };
 
             // when
@@ -134,7 +137,7 @@ namespace Calculators.CashFlow.Tests
                 person,
                 new CashFlowDefinitionHolder
                 {
-                    GenericCashFlowDefinitions = GetThirdPillarCashFlowDefinitions(person).ToList(),
+                    GenericCashFlowDefinitions = GetThirdPillarPaymentsDefinition().ToList(),
                 },
                 options);
 
@@ -142,73 +145,37 @@ namespace Calculators.CashFlow.Tests
             Snapshot.Match(result);
         }
 
-        private static IEnumerable<GenericCashFlowDefinition> GetCashFlowDefinitions(MultiPeriodCalculatorPerson person)
+        private static IEnumerable<GenericCashFlowDefinition> GetCashFlowDefinitions()
         {
-            List<GenericCashFlowDefinition> definitions = new SetupAccountDefinition
+            yield return new ThirdPillarPaymentsDefinition
                 {
+                    NetGrowthRate = decimal.Zero,
                     DateOfStart = new DateTime(2021, 1, 1),
-                    InitialWealth = 0,
-                    InitialCapitalBenefits = 500_000,
+                    NumberOfInvestments = 10,
+                    YearlyAmount = 6883,
                 }
-                .CreateGenericDefinition()
-                .ToList();
+                .CreateGenericDefinition();
 
-            definitions.Add(new ThirdPillarPaymentsDefinition
-            {
-                Header = new CashFlowHeader
+            yield return new PensionPlanPaymentsDefinition
                 {
-                    Id = "my 3a account",
-                    Name = $"{person.Name} - 3a Pillar",
-                },
-                NetGrowthRate = decimal.Zero,
-                DateOfStart = new DateTime(2021, 1, 1),
-                NumberOfInvestments = 10,
-                YearlyAmount = 6883,
-            }.CreateGenericDefinition());
-
-            definitions.Add(new PensionPlanPaymentsDefinition
-                {
-                    Header = new CashFlowHeader
-                    {
-                        Id = "my PK account",
-                        Name = "PK-Einkauf",
-                    },
                     DateOfStart = new DateTime(2021, 1, 1),
                     NetGrowthRate = 0,
                     YearlyAmount = 10000,
                     NumberOfInvestments = 5
                 }
-                .CreateGenericDefinition());
-
-            return definitions;
+                .CreateGenericDefinition();
         }
 
-        private static IEnumerable<GenericCashFlowDefinition> GetThirdPillarCashFlowDefinitions(MultiPeriodCalculatorPerson person)
+        private static IEnumerable<GenericCashFlowDefinition> GetThirdPillarPaymentsDefinition()
         {
-            List<GenericCashFlowDefinition> definitions = new SetupAccountDefinition
+            yield return new ThirdPillarPaymentsDefinition
                 {
-                    DateOfStart = new DateTime(2021, 1, 1),
-                    InitialWealth = decimal.Zero,
-                    InitialCapitalBenefits = 100_000
-                }
-                .CreateGenericDefinition()
-                .ToList();
-
-            definitions.Add(new ThirdPillarPaymentsDefinition
-                {
-                    Header = new CashFlowHeader
-                    {
-                        Id = "my 3a account",
-                        Name = $"{person.Name} - 3a Pillar"
-                    },
                     DateOfStart = new DateTime(2021, 1, 1),
                     NetGrowthRate = 0.0M,
                     NumberOfInvestments = 10,
                     YearlyAmount = 6883,
                 }
-                .CreateGenericDefinition());
-
-            return definitions;
+                .CreateGenericDefinition();
         }
 
         private MultiPeriodCalculatorPerson GetMarriedPerson(Canton canton, int municipalityId)

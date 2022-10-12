@@ -100,7 +100,11 @@ public static class CashFlowHelperExtensions
     {
         return new GenericCashFlowDefinition
         {
-            Header = purchaseDefinition.Header,
+            Header = new CashFlowHeader
+            {
+                Id = "pensionPlanPayments",
+                Name = "Pension Plan Payments"
+            },
             DateOfStart = purchaseDefinition.DateOfStart,
             InitialAmount = decimal.Zero,
             NetGrowthRate = purchaseDefinition.NetGrowthRate,
@@ -125,7 +129,11 @@ public static class CashFlowHelperExtensions
     {
         return new GenericCashFlowDefinition
         {
-            Header = thirdPillarDefinition.Header,
+            Header = new CashFlowHeader
+            {
+                Id = "thirdPillarPayments",
+                Name = "3a Payments"
+            },
             DateOfStart = thirdPillarDefinition.DateOfStart,
             InitialAmount = decimal.Zero,
             NetGrowthRate = thirdPillarDefinition.NetGrowthRate,
