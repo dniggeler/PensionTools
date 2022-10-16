@@ -2,4 +2,4 @@
 
 namespace Calculators.CashFlow.Accounts;
 
-public record AccountTransaction(DateTime ValutaDate, decimal Amount);
+public record AccountTransaction(string Description, DateTime ValutaDate, decimal Amount);

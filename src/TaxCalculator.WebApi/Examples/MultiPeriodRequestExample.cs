@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
@@ -39,7 +40,7 @@ namespace TaxCalculator.WebApi.Examples
                         {
                             Id = "Clear Capital Benefit Action",
                             Name = $"{personName} - Clear Capital Benefit Action",
-                            ClearAtYear = finalYear,
+                            DateOfClearing = new DateTime(finalYear, 1, 1),
                             ClearRatio = 1.0M,
                             Flow = new FlowPair(AccountType.CapitalBenefits, AccountType.Wealth),
                             IsTaxable = true,
@@ -58,7 +59,7 @@ namespace TaxCalculator.WebApi.Examples
                             DestinationMunicipalityId = 3426,
                             DestinationCanton = Canton.SG,
                             ChangeCost = 5_000,
-                            ChangeAtYear = 2029,
+                            DateOfChange = new DateTime(2029, 7, 1)
                         },
                     },
 

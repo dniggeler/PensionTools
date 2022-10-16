@@ -1,4 +1,5 @@
-﻿using PensionCoach.Tools.CommonTypes.Tax;
+﻿using System;
+using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 
@@ -34,7 +35,7 @@ public record ClearAccountAction
     /// <value>
     /// The clear at year.
     /// </value>
-    public int ClearAtYear { get; set; }
+    public DateTime DateOfClearing { get; set; }
 
     public decimal ClearRatio { get; set; } = decimal.One;
 

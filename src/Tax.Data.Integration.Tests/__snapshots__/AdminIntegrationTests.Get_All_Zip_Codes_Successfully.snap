@@ -5176,6 +5176,15 @@
   },
   {
     "BfsCode": 351,
+    "ZipCode": "3000",
+    "ZipCodeAddOn": "31",
+    "MunicipalityName": "Bern Freudenbergerplatz",
+    "Canton": "BE",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 351,
     "ZipCode": "3030",
     "ZipCodeAddOn": "82",
     "MunicipalityName": "Bern KC PK 5",
@@ -19044,6 +19053,15 @@
     "LanguageCode": 0
   },
   {
+    "BfsCode": 2583,
+    "ZipCode": "5012",
+    "ZipCodeAddOn": "05",
+    "MunicipalityName": "Schönenwerd Bahnhofstrasse",
+    "Canton": "SO",
+    "DateOfValidity": "2022-10-03T00:00:00",
+    "LanguageCode": 0
+  },
+  {
     "BfsCode": 2584,
     "ZipCode": "4656",
     "ZipCodeAddOn": "00",
@@ -32716,15 +32734,6 @@
   },
   {
     "BfsCode": 5002,
-    "ZipCode": "6500",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Bellinzona Distribuzione",
-    "Canton": "TI",
-    "DateOfValidity": "1999-03-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5002,
     "ZipCode": "6501",
     "ZipCodeAddOn": "30",
     "MunicipalityName": "Bellinzona SPS",
@@ -38517,15 +38526,6 @@
     "MunicipalityName": "Ecublens VD",
     "Canton": "VD",
     "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5635,
-    "ZipCode": "1024",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Ecublens VD Swiss Tech EPFL",
-    "Canton": "VD",
-    "DateOfValidity": "2021-09-15T00:00:00",
     "LanguageCode": 0
   },
   {

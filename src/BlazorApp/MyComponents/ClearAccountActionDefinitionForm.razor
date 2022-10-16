@@ -4,12 +4,14 @@
 @using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions
 @using PensionCoach.Tools.CommonTypes.Tax
 
+@inject IStringLocalizer<Resource> Localizer
+
 <EditForm Model="Definition">
     <div class="row">
         <div class="col-md-3"><RadzenLabel Text="Titel"/></div>
         <div class="col-md-9"><RadzenTextBox TValue="string" @bind-Value="@Definition.Name"/></div>
         <div class="col-md-3"><RadzenLabel Text="Jahr" /></div>
-        <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="@Definition.ClearAtYear" Min="2000" Max="2100" Step="1" /></div>
+        <div class="col-md-9"><RadzenDatePicker @bind-Value="@Definition.DateOfClearing" DateFormat="d.M.yyyy" Placeholder="@Localizer["person.birthdate"]" /></div>
         <div class="col-md-3"><RadzenLabel Text="Anteil" /></div>
         <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="P2" @bind-Value="@Definition.ClearRatio" Min="0" Max="1M" Step="0.005" /></div>
         <div class="col-md-3"><RadzenLabel Text="Versteuern" /></div>

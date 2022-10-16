@@ -1,4 +1,5 @@
 ﻿@page "/WealthPlanning"
+
 @using Microsoft.Extensions.Logging
 @using PensionCoach.Tools.CommonTypes
 @using PensionCoach.Tools.CommonTypes.MultiPeriod
@@ -110,7 +111,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                     <ChildContent>
                                         <div class="row">
                                             <div class="col-md-3"><RadzenLabel Text="Jahr" /></div>
-                                            <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="changeResidenceModel.ChangeAtYear" /></div>
+                                            <div class="col-md-9"><RadzenDatePicker @bind-Value="changeResidenceModel.DateOfChange" DateFormat="d.M.yyyy"/></div>
                                             <div class="col-md-3"><RadzenLabel Text="Kosten" /></div>
                                             <div class="col-md-9"><RadzenNumeric TValue="decimal" @bind-Value="changeResidenceModel.ChangeCost" /></div>
                                             <div class="col-md-3"><RadzenLabel Text="Gemeinde" /></div>
@@ -297,7 +298,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     {
         persons = (await personService.GetPersonsAsync()).ToList();
         changeResidenceModel.DestinationMunicipalityId = model.BfsMunicipalityId;
-        changeResidenceModel.ChangeAtYear = Math.Max(model.StartingYear + model.NumberOfPeriods - 3, 0);
+        changeResidenceModel.DateOfChange = new DateTime(Math.Max(model.StartingYear + model.NumberOfPeriods - 3, 0), 1, 1);
         genericCashFlowDefinitions = new List<GenericCashFlowDefinition>
         {
             new()
@@ -350,7 +351,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             }
         };
 
-        clearAccountAction.ClearAtYear = Math.Max(model.StartingYear + model.NumberOfPeriods-1, 0);
+        clearAccountAction.DateOfClearing = new DateTime(Math.Max(model.StartingYear + model.NumberOfPeriods-1, 0));
     }
 
     private async Task OnSubmit(MultiPeriodRequest request)

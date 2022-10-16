@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Calculators.CashFlow.Models;
+using LanguageExt;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
@@ -48,7 +49,7 @@ namespace Calculators.CashFlow.Tests
                 options);
 
             // then
-            Snapshot.Match(result);
+            Snapshot.Match(result, opt => opt.IgnoreFields("$..Id"));
         }
 
         [Fact(DisplayName = "Wealth Only Simulation")]
@@ -79,7 +80,7 @@ namespace Calculators.CashFlow.Tests
                 options);
 
             // then
-            Snapshot.Match(result);
+            Snapshot.Match(result, opt => opt.IgnoreFields("$..Id"));
         }
 
         [Fact(DisplayName = "Full Simulation")]
@@ -109,7 +110,7 @@ namespace Calculators.CashFlow.Tests
                 options);
 
             // then
-            Snapshot.Match(result);
+            Snapshot.Match(result, opt => opt.IgnoreFields("$..Id"));
         }
 
         [Fact(DisplayName = "3a Simulation")]
@@ -131,7 +132,7 @@ namespace Calculators.CashFlow.Tests
             };
 
             // when
-            var result = await _fixture.Service.CalculateAsync(
+            Either<string, MultiPeriodCalculationResult> result = await _fixture.Service.CalculateAsync(
                 startingYear,
                 numberOfPeriods,
                 person,
@@ -142,7 +143,7 @@ namespace Calculators.CashFlow.Tests
                 options);
 
             // then
-            Snapshot.Match(result);
+            Snapshot.Match(result, opt => opt.IgnoreFields("$..Id"));
         }
 
         private static IEnumerable<GenericCashFlowDefinition> GetCashFlowDefinitions()
@@ -202,7 +203,7 @@ namespace Calculators.CashFlow.Tests
             yield return new ClearAccountAction
             {
                 Id = "Clear Capital Benefit Action 1",
-                ClearAtYear = 2030,
+                DateOfClearing = new DateTime(2030, 1, 1),
                 ClearRatio = 1.0M,
                 Flow = new FlowPair(AccountType.CapitalBenefits, AccountType.Wealth),
                 IsTaxable = true,
@@ -219,7 +220,7 @@ namespace Calculators.CashFlow.Tests
                 DestinationMunicipalityId = 3426,
                 DestinationCanton = Canton.SG,
                 ChangeCost = 2_000,
-                ChangeAtYear = 2029,
+                DateOfChange = new DateTime(2029, 7, 1)
             };
         }
     }

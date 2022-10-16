@@ -1,4 +1,6 @@
-﻿namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
+﻿using System;
+
+namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 
 /// <summary>
 /// Simulates the change of the residence. A change always happens at the end of a period.
@@ -30,12 +32,12 @@ public record ChangeResidenceAction
     public int Ordinal { get; set; }
 
     /// <summary>
-    /// Gets the change of residence at this year.
+    /// Gets the date of change of residence.
     /// </summary>
     /// <value>
     /// The change of residence at this year.
     /// </value>
-    public int ChangeAtYear { get; set; }
+    public DateTime DateOfChange { get; set; }
 
     /// <summary>
     /// Gets the destination municipality identifier.

@@ -7,6 +7,16 @@
       "Accounts": [
         {
           "Year": 2021,
+          "Amount": 48.00,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2021,
+          "Amount": 0.0,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2021,
           "Amount": -48.00,
           "AccountType": "Wealth"
         },
@@ -17,6 +27,16 @@
         },
         {
           "Year": 2022,
+          "Amount": 48.00,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2022,
+          "Amount": 0.0,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2022,
           "Amount": -48.00,
           "AccountType": "Wealth"
         },
@@ -27,6 +47,16 @@
         },
         {
           "Year": 2023,
+          "Amount": 48.00,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2023,
+          "Amount": 0.0,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2023,
           "Amount": -48.00,
           "AccountType": "Wealth"
         },
@@ -37,6 +67,16 @@
         },
         {
           "Year": 2024,
+          "Amount": 48.00,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2024,
+          "Amount": 0.0,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2024,
           "Amount": -48.00,
           "AccountType": "Wealth"
         },
@@ -47,6 +87,16 @@
         },
         {
           "Year": 2025,
+          "Amount": 48.00,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2025,
+          "Amount": 0.0,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2025,
           "Amount": -48.00,
           "AccountType": "Wealth"
         },
@@ -57,6 +107,16 @@
         },
         {
           "Year": 2026,
+          "Amount": 48.00,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2026,
+          "Amount": 0.0,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2026,
           "Amount": -48.00,
           "AccountType": "Wealth"
         },
@@ -67,6 +127,16 @@
         },
         {
           "Year": 2027,
+          "Amount": 48.00,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2027,
+          "Amount": 0.0,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2027,
           "Amount": -48.00,
           "AccountType": "Wealth"
         },
@@ -77,6 +147,16 @@
         },
         {
           "Year": 2028,
+          "Amount": 48.00,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2028,
+          "Amount": 0.0,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2028,
           "Amount": -48.00,
           "AccountType": "Wealth"
         },
@@ -87,6 +167,16 @@
         },
         {
           "Year": 2029,
+          "Amount": 48.00,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2029,
+          "Amount": 0.0,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2029,
           "Amount": -48.00,
           "AccountType": "Wealth"
         },
@@ -94,6 +184,16 @@
           "Year": 2029,
           "Amount": 0.0,
           "AccountType": "CapitalBenefits"
+        },
+        {
+          "Year": 2030,
+          "Amount": 48.00,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2030,
+          "Amount": 0.0,
+          "AccountType": "Income"
         },
         {
           "Year": 2030,
@@ -105,7 +205,47 @@
           "Amount": 0.0,
           "AccountType": "CapitalBenefits"
         }
-      ]
+      ],
+      "ExogenousAccount": {
+        "Id": "bbd30112-16e6-4eae-867d-c73a06330117",
+        "Name": "Exogenous Account",
+        "Balance": 48.00,
+        "InterestRate": 0.0,
+        "Transactions": [
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2022-01-01T00:00:00",
+            "Amount": 48.00
+          }
+        ]
+      },
+      "IncomeAccount": {
+        "Id": "457d2713-4b87-453c-98e0-134a6fbacfc9",
+        "Name": "Income Account",
+        "Balance": 0.0,
+        "InterestRate": 0.0,
+        "Transactions": []
+      },
+      "WealthAccount": {
+        "Id": "369bf277-3349-4d48-9c3a-53723af2c654",
+        "Name": "Wealth Account",
+        "Balance": -48.00,
+        "NetGrowthRate": 0.0,
+        "Transactions": [
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2022-01-01T00:00:00",
+            "Amount": -48.00
+          }
+        ]
+      },
+      "CapitalBenefitsAccount": {
+        "Id": "e26b3291-4f81-42e4-bddc-de3e701b17b4",
+        "Name": "Capital Benefits Account",
+        "Balance": 0.0,
+        "NetGrowthRate": 0.0,
+        "Transactions": []
+      }
     },
     "Left": null
   }

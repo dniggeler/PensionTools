@@ -1,6 +1,6 @@
 ﻿[
   {
-    "DateOfOccurrence": {
+    "DateOfProcess": {
       "Year": 2021,
       "Month": 1,
       "Day": 1,
@@ -16,7 +16,7 @@
     "OccurrenceType": "BeginOfPeriod"
   },
   {
-    "DateOfOccurrence": {
+    "DateOfProcess": {
       "Year": 2022,
       "Month": 1,
       "Day": 1,
@@ -32,7 +32,7 @@
     "OccurrenceType": "BeginOfPeriod"
   },
   {
-    "DateOfOccurrence": {
+    "DateOfProcess": {
       "Year": 2023,
       "Month": 1,
       "Day": 1,
@@ -48,7 +48,7 @@
     "OccurrenceType": "BeginOfPeriod"
   },
   {
-    "DateOfOccurrence": {
+    "DateOfProcess": {
       "Year": 2024,
       "Month": 1,
       "Day": 1,
@@ -64,7 +64,7 @@
     "OccurrenceType": "BeginOfPeriod"
   },
   {
-    "DateOfOccurrence": {
+    "DateOfProcess": {
       "Year": 2025,
       "Month": 1,
       "Day": 1,
@@ -80,7 +80,7 @@
     "OccurrenceType": "BeginOfPeriod"
   },
   {
-    "DateOfOccurrence": {
+    "DateOfProcess": {
       "Year": 2026,
       "Month": 1,
       "Day": 1,
@@ -96,7 +96,7 @@
     "OccurrenceType": "BeginOfPeriod"
   },
   {
-    "DateOfOccurrence": {
+    "DateOfProcess": {
       "Year": 2027,
       "Month": 1,
       "Day": 1,
@@ -112,7 +112,7 @@
     "OccurrenceType": "BeginOfPeriod"
   },
   {
-    "DateOfOccurrence": {
+    "DateOfProcess": {
       "Year": 2028,
       "Month": 1,
       "Day": 1,
@@ -128,7 +128,7 @@
     "OccurrenceType": "BeginOfPeriod"
   },
   {
-    "DateOfOccurrence": {
+    "DateOfProcess": {
       "Year": 2029,
       "Month": 1,
       "Day": 1,
@@ -144,7 +144,7 @@
     "OccurrenceType": "BeginOfPeriod"
   },
   {
-    "DateOfOccurrence": {
+    "DateOfProcess": {
       "Year": 2030,
       "Month": 1,
       "Day": 1,
@@ -160,7 +160,7 @@
     "OccurrenceType": "BeginOfPeriod"
   },
   {
-    "DateOfOccurrence": {
+    "DateOfProcess": {
       "Year": 2021,
       "Month": 1,
       "Day": 1,
