@@ -26,8 +26,8 @@
 
     protected override void OnInitialized()
     {
-        Definition.Flow = new FlowPair(AccountType.CapitalBenefits, AccountType.Wealth);
-        Definition.TaxType = TaxType.Capital;
+        Definition.Flow = new FlowPair(AccountType.OccupationalPension, AccountType.Wealth);
+        Definition.TaxType = TaxType.CapitalBenefits;
         Definition.IsTaxable = true;
         Definition.Name = "Kapitalbezug";
         Definition.ClearRatio = 1M;

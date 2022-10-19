@@ -315,7 +315,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                     Amount = 6883,
                     Frequency = FrequencyType.Yearly,
                 },
-                Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+                Flow = new FlowPair(AccountType.Income, AccountType.ThirdPillar),
                 InvestmentPeriod = new InvestmentPeriod
                 {
                     Year = 2021,
@@ -339,7 +339,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                     Amount = 10000,
                     Frequency = FrequencyType.Yearly,
                 },
-                Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+                Flow = new FlowPair(AccountType.Income, AccountType.OccupationalPension),
                 InvestmentPeriod = new InvestmentPeriod
                 {
                     Year = 2021,
@@ -386,7 +386,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     private (ChartDataItemModel[] wealthData, ChartDataItemModel[] capitalBenefitsData, ChartDataItemModel[] totalData) GetTotalDataItems()
     {
         ChartDataItemModel[] wealthData = GetWealthDataItems();
-        ChartDataItemModel[] capitalBenefitsData = GetCapitalBenefitsDataItems();
+        ChartDataItemModel[] capitalBenefitsData = GetOccupationalPensionDataItems();
         ChartDataItemModel[] totalData = GetTotalSumDataItems();
 
         return (wealthData, capitalBenefitsData, totalData);
@@ -409,7 +409,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             .ToArray();
     }
 
-    private ChartDataItemModel[] GetCapitalBenefitsDataItems()
+    private ChartDataItemModel[] GetOccupationalPensionDataItems()
     {
         if (multiPeriodCalculationResponse == null)
         {
@@ -417,7 +417,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         }
 
         return multiPeriodCalculationResponse.Accounts
-            .Where(item => item.AccountType == AccountType.CapitalBenefits)
+            .Where(item => item.AccountType == AccountType.OccupationalPension)
             .Select(item => new ChartDataItemModel
             {
                 Date = new DateTime(item.Year, 1, 1),

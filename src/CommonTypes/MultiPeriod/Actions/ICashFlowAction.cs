@@ -1,6 +1,6 @@
-﻿namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
+﻿namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 
-public record CashFlowHeader
+public interface ICashFlowAction
 {
     /// <summary>
     /// Gets or sets the identifier.

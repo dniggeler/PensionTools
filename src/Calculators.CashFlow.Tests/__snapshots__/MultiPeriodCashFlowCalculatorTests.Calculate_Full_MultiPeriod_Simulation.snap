@@ -3,7 +3,7 @@
     "State": "IsRight",
     "Right": {
       "StartingYear": 2021,
-      "NumberOfPeriods": 10,
+      "NumberOfPeriods": 33,
       "Accounts": [
         {
           "Year": 2021,
@@ -22,8 +22,13 @@
         },
         {
           "Year": 2021,
-          "Amount": 516883.0,
-          "AccountType": "CapitalBenefits"
+          "Amount": 510000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2021,
+          "Amount": 6883.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2022,
@@ -42,8 +47,13 @@
         },
         {
           "Year": 2022,
-          "Amount": 533766.0,
-          "AccountType": "CapitalBenefits"
+          "Amount": 520000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2022,
+          "Amount": 13766.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2023,
@@ -62,8 +72,13 @@
         },
         {
           "Year": 2023,
-          "Amount": 550649.0,
-          "AccountType": "CapitalBenefits"
+          "Amount": 530000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2023,
+          "Amount": 20649.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2024,
@@ -82,8 +97,13 @@
         },
         {
           "Year": 2024,
-          "Amount": 567532.0,
-          "AccountType": "CapitalBenefits"
+          "Amount": 540000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2024,
+          "Amount": 27532.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2025,
@@ -102,8 +122,13 @@
         },
         {
           "Year": 2025,
-          "Amount": 584415.0,
-          "AccountType": "CapitalBenefits"
+          "Amount": 550000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2025,
+          "Amount": 34415.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2026,
@@ -122,8 +147,13 @@
         },
         {
           "Year": 2026,
-          "Amount": 591298.0,
-          "AccountType": "CapitalBenefits"
+          "Amount": 550000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2026,
+          "Amount": 41298.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2027,
@@ -142,8 +172,13 @@
         },
         {
           "Year": 2027,
-          "Amount": 598181.0,
-          "AccountType": "CapitalBenefits"
+          "Amount": 550000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2027,
+          "Amount": 48181.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2028,
@@ -162,8 +197,13 @@
         },
         {
           "Year": 2028,
-          "Amount": 605064.0,
-          "AccountType": "CapitalBenefits"
+          "Amount": 550000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2028,
+          "Amount": 55064.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2029,
@@ -182,12 +222,17 @@
         },
         {
           "Year": 2029,
-          "Amount": 611947.0,
-          "AccountType": "CapitalBenefits"
+          "Amount": 550000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2029,
+          "Amount": 61947.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2030,
-          "Amount": -1211643.1460962914426239061983,
+          "Amount": -1222675.8060772914426239061983,
           "AccountType": "Exogenous"
         },
         {
@@ -197,19 +242,599 @@
         },
         {
           "Year": 2030,
-          "Amount": 1211643.1460962914426239061983,
+          "Amount": 1153845.8060772914426239061983,
           "AccountType": "Wealth"
         },
         {
           "Year": 2030,
           "Amount": 0.0,
-          "AccountType": "CapitalBenefits"
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2030,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2031,
+          "Amount": -1218713.4995792220238099357044,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2031,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2031,
+          "Amount": 1149883.4995792220238099357044,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2031,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2031,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2032,
+          "Amount": -1214764.7996416669753801723852,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2032,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2032,
+          "Amount": 1145934.7996416669753801723852,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2032,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2032,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2033,
+          "Amount": -1210829.6595396974909867168732,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2033,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2033,
+          "Amount": 1141999.6595396974909867168732,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2033,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2033,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2034,
+          "Amount": -1200710.9180288381698026684875,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2034,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2034,
+          "Amount": 1131880.9180288381698026684875,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2034,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2034,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2035,
+          "Amount": -1190626.9242763271395275661239,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2035,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2035,
+          "Amount": 1121796.9242763271395275661239,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2035,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2035,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2036,
+          "Amount": -1180577.5589583622321304284618,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2036,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2036,
+          "Amount": 1111747.5589583622321304284618,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2036,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2036,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2037,
+          "Amount": -1170562.7031608992162252925705,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2037,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2037,
+          "Amount": 1101732.7031608992162252925705,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2037,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2037,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2038,
+          "Amount": -1160582.2383782446883167749158,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2038,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2038,
+          "Amount": 1091752.2383782446883167749158,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2038,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2038,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2039,
+          "Amount": -1150636.0465116537960570951107,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2039,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2039,
+          "Amount": 1081806.0465116537960570951107,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2039,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2039,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2040,
+          "Amount": -1140724.0098679327769214350461,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2040,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2040,
+          "Amount": 1071894.0098679327769214350461,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2040,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2040,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2041,
+          "Amount": -1130846.0111580462957654868382,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2041,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2041,
+          "Amount": 1062016.0111580462957654868382,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2041,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2041,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2042,
+          "Amount": -1121001.9334957295647858281564,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2042,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2042,
+          "Amount": 1052171.9334957295647858281564,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2042,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2042,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2043,
+          "Amount": -1111191.6603961052294603536225,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2043,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2043,
+          "Amount": 1042361.6603961052294603536225,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2043,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2043,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2044,
+          "Amount": -1101415.0757743050041023867682,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2044,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2044,
+          "Amount": 1032585.0757743050041023867682,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2044,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2044,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2045,
+          "Amount": -1091672.0639440960407182991720,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2045,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2045,
+          "Amount": 1022842.0639440960407182991720,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2045,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2045,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2046,
+          "Amount": -1081962.5096165120149144725326,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2046,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2046,
+          "Amount": 1013132.5096165120149144725326,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2046,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2046,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2047,
+          "Amount": -1072286.2978984889126552562339,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2047,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2047,
+          "Amount": 1003456.2978984889126552562339,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2047,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2047,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2048,
+          "Amount": -1062643.3142915055017291980840,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2048,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2048,
+          "Amount": 993813.3142915055017291980840,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2048,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2048,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2049,
+          "Amount": -1053033.4446902284718362600178,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2049,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2049,
+          "Amount": 984203.4446902284718362600178,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2049,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2049,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2050,
+          "Amount": -1043456.5753811622272639743009,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2050,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2050,
+          "Amount": 974626.5753811622272639743009,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2050,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2050,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2051,
+          "Amount": -1033912.5930413033161755498132,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2051,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2051,
+          "Amount": 965082.5930413033161755498132,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2051,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2051,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2052,
+          "Amount": -1024401.3847367994805878029751,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2052,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2052,
+          "Amount": 955571.3847367994805878029751,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2052,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2052,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2053,
+          "Amount": -1014922.8379216133111714644597,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2053,
+          "Amount": 0.000000000000000000,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2053,
+          "Amount": 946092.8379216133111714644597,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2053,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2053,
+          "Amount": 68830.0,
+          "AccountType": "ThirdPillar"
         }
       ],
       "ExogenousAccount": {
-        "Id": "f783c2c0-b63d-434b-8114-dbc227b78833",
+        "Id": "b3ce49cf-a0ce-4d88-a3cb-3ab9de691297",
         "Name": "Exogenous Account",
-        "Balance": -1211643.1460962914426239061983,
+        "Balance": -1014922.8379216133111714644597,
         "InterestRate": 0.0,
         "Transactions": [
           {
@@ -223,7 +848,7 @@
             "Amount": -500000.0
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Occupational Pension Account",
             "ValutaDate": "2021-01-01T00:00:00",
             "Amount": -500000.0
           },
@@ -415,7 +1040,7 @@
           {
             "Description": "Tax payment: inflow from Wealth Account",
             "ValutaDate": "2030-01-01T00:00:00",
-            "Amount": 60113.900
+            "Amount": 49280.400
           },
           {
             "Description": "Savings Quota: outflow to Wealth Account",
@@ -425,17 +1050,532 @@
           {
             "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
             "ValutaDate": "2031-01-01T00:00:00",
-            "Amount": 17280.764709707801403991801732
+            "Amount": 17081.604728707801403991801732
           },
           {
             "Description": "Clear income account: inflow from Income Account",
             "ValutaDate": "2031-01-01T00:00:00",
             "Amount": 102485.527268436090100000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2032-01-01T00:00:00",
+            "Amount": 3962.3064980694188139704938850
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2033-01-01T00:00:00",
+            "Amount": 3948.6999375550484297633192089
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2034-01-01T00:00:00",
+            "Amount": 3935.1401019694843934555119707
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2034-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2034-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2035-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2035-01-01T00:00:00",
+            "Amount": 9138.741510859321184048385742
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2035-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2035-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2035-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2036-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2036-01-01T00:00:00",
+            "Amount": 9103.993752511030275102363586
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2036-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2036-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2036-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2037-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2037-01-01T00:00:00",
+            "Amount": 9069.365317964907397137662069
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2037-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2037-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2037-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2038-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2038-01-01T00:00:00",
+            "Amount": 9034.855797463015905135891338
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2038-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2038-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2038-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2039-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2039-01-01T00:00:00",
+            "Amount": 9000.464782654527908517654687
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2039-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2039-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2039-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2040-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2040-01-01T00:00:00",
+            "Amount": 8966.191866590892259679805061
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2040-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2040-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2040-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2041-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2041-01-01T00:00:00",
+            "Amount": 8932.036643721019135660064610
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2041-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2041-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2041-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2042-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2042-01-01T00:00:00",
+            "Amount": 8897.998709886481155948207948
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2042-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2042-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2042-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2043-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2043-01-01T00:00:00",
+            "Amount": 8864.077662316730979658681802
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2043-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2043-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2043-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2044-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2044-01-01T00:00:00",
+            "Amount": 8830.273099624335325474533889
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2044-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2044-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2044-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2045-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2045-01-01T00:00:00",
+            "Amount": 8796.584621800225357966854340
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2045-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2045-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2045-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2046-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2046-01-01T00:00:00",
+            "Amount": 8763.011830208963384087596162
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2046-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2046-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2046-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2047-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2047-01-01T00:00:00",
+            "Amount": 8729.554327584025803826639357
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2047-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2047-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2047-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2048-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2048-01-01T00:00:00",
+            "Amount": 8696.211718023102259216298677
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2048-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2048-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2048-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2049-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2049-01-01T00:00:00",
+            "Amount": 8662.983606983410926058149907
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2049-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2049-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2049-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2050-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2050-01-01T00:00:00",
+            "Amount": 8629.869601277029892938066220
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2050-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2050-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2050-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2051-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2051-01-01T00:00:00",
+            "Amount": 8596.869309066244572285716901
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2051-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2051-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2051-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2052-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2052-01-01T00:00:00",
+            "Amount": 8563.982339858911088424487749
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2052-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2052-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2052-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2053-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2053-01-01T00:00:00",
+            "Amount": 8531.208304503835587746838058
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2053-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Income Account",
+            "ValutaDate": "2053-01-01T00:00:00",
+            "Amount": -63400.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Wealth Account",
+            "ValutaDate": "2053-01-01T00:00:00",
+            "Amount": 20000.0
+          },
+          {
+            "Description": "Savings Quota: outflow to Wealth Account",
+            "ValutaDate": "2054-01-01T00:00:00",
+            "Amount": -19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2054-01-01T00:00:00",
+            "Amount": 8498.546815186169416338515417
+          },
+          {
+            "Description": "Clear income account: inflow from Income Account",
+            "ValutaDate": "2054-01-01T00:00:00",
+            "Amount": 63400.000000000000000000
           }
         ]
       },
       "IncomeAccount": {
-        "Id": "c6b23754-3aab-43f5-92e1-4eab68b4c4c0",
+        "Id": "d535b35b-2216-4db2-adfc-f956315f8658",
         "Name": "Income Account",
         "Balance": 0.000000000000000000,
         "InterestRate": 0.0,
@@ -446,9 +1586,14 @@
             "Amount": 100000.0
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2021-01-01T00:00:00",
-            "Amount": -16883.0
+            "Amount": -6883.0
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Occupational Pension Account",
+            "ValutaDate": "2021-01-01T00:00:00",
+            "Amount": -10000.0
           },
           {
             "Description": "Clear income account: outflow to Exogenous Account",
@@ -461,9 +1606,14 @@
             "Amount": 101000.00
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2022-01-01T00:00:00",
-            "Amount": -16883.0
+            "Amount": -6883.0
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Occupational Pension Account",
+            "ValutaDate": "2022-01-01T00:00:00",
+            "Amount": -10000.0
           },
           {
             "Description": "Clear income account: outflow to Exogenous Account",
@@ -476,9 +1626,14 @@
             "Amount": 102010.0000
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2023-01-01T00:00:00",
-            "Amount": -16883.0
+            "Amount": -6883.0
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Occupational Pension Account",
+            "ValutaDate": "2023-01-01T00:00:00",
+            "Amount": -10000.0
           },
           {
             "Description": "Clear income account: outflow to Exogenous Account",
@@ -491,9 +1646,14 @@
             "Amount": 103030.100000
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2024-01-01T00:00:00",
-            "Amount": -16883.0
+            "Amount": -6883.0
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Occupational Pension Account",
+            "ValutaDate": "2024-01-01T00:00:00",
+            "Amount": -10000.0
           },
           {
             "Description": "Clear income account: outflow to Exogenous Account",
@@ -506,9 +1666,14 @@
             "Amount": 104060.40100000
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2025-01-01T00:00:00",
-            "Amount": -16883.0
+            "Amount": -6883.0
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Occupational Pension Account",
+            "ValutaDate": "2025-01-01T00:00:00",
+            "Amount": -10000.0
           },
           {
             "Description": "Clear income account: outflow to Exogenous Account",
@@ -521,7 +1686,7 @@
             "Amount": 105101.0050100000
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2026-01-01T00:00:00",
             "Amount": -6883.0
           },
@@ -536,7 +1701,7 @@
             "Amount": 106152.015060100000
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2027-01-01T00:00:00",
             "Amount": -6883.0
           },
@@ -551,7 +1716,7 @@
             "Amount": 107213.53521070100000
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2028-01-01T00:00:00",
             "Amount": -6883.0
           },
@@ -566,7 +1731,7 @@
             "Amount": 108285.6705628080100000
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2029-01-01T00:00:00",
             "Amount": -6883.0
           },
@@ -581,7 +1746,7 @@
             "Amount": 109368.527268436090100000
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2030-01-01T00:00:00",
             "Amount": -6883.0
           },
@@ -589,13 +1754,213 @@
             "Description": "Clear income account: outflow to Exogenous Account",
             "ValutaDate": "2031-01-01T00:00:00",
             "Amount": -102485.527268436090100000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2034-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2035-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2035-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2036-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2036-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2037-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2037-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2038-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2038-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2039-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2039-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2040-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2040-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2041-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2041-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2042-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2042-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2043-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2043-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2044-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2044-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2045-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2045-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2046-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2046-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2047-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2047-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2048-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2048-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2049-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2049-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2050-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2050-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2051-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2051-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2052-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2052-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2053-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Exogenous Account",
+            "ValutaDate": "2053-01-01T00:00:00",
+            "Amount": 63400.0
+          },
+          {
+            "Description": "Clear income account: outflow to Exogenous Account",
+            "ValutaDate": "2054-01-01T00:00:00",
+            "Amount": -63400.000000000000000000
           }
         ]
       },
       "WealthAccount": {
-        "Id": "b8218a51-a5b6-43d1-b2cf-5bb941419e97",
+        "Id": "cb4d7102-e01d-4459-ae37-9ff0f7873915",
         "Name": "Wealth Account",
-        "Balance": 1211643.1460962914426239061983,
+        "Balance": 946092.8379216133111714644597,
         "NetGrowthRate": 0.0,
         "Transactions": [
           {
@@ -699,14 +2064,14 @@
             "Amount": -15096.795427614286002102000000
           },
           {
-            "Description": "Clear account: inflow from Capital Benefits Account",
+            "Description": "Clear account: inflow from Occupational Pension Account",
             "ValutaDate": "2030-01-01T00:00:00",
-            "Amount": 618830.0
+            "Amount": 550000.0
           },
           {
             "Description": "Tax payment: outflow to Exogenous Account",
             "ValutaDate": "2030-01-01T00:00:00",
-            "Amount": -60113.900
+            "Amount": -49280.400
           },
           {
             "Description": "Savings Quota: inflow from Exogenous Account",
@@ -716,13 +2081,328 @@
           {
             "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
             "ValutaDate": "2031-01-01T00:00:00",
-            "Amount": -17280.764709707801403991801732
+            "Amount": -17081.604728707801403991801732
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2032-01-01T00:00:00",
+            "Amount": -3962.3064980694188139704938850
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2033-01-01T00:00:00",
+            "Amount": -3948.6999375550484297633192089
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2034-01-01T00:00:00",
+            "Amount": -3935.1401019694843934555119707
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2034-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2035-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2035-01-01T00:00:00",
+            "Amount": -9138.741510859321184048385742
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2035-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2036-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2036-01-01T00:00:00",
+            "Amount": -9103.993752511030275102363586
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2036-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2037-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2037-01-01T00:00:00",
+            "Amount": -9069.365317964907397137662069
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2037-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2038-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2038-01-01T00:00:00",
+            "Amount": -9034.855797463015905135891338
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2038-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2039-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2039-01-01T00:00:00",
+            "Amount": -9000.464782654527908517654687
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2039-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2040-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2040-01-01T00:00:00",
+            "Amount": -8966.191866590892259679805061
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2040-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2041-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2041-01-01T00:00:00",
+            "Amount": -8932.036643721019135660064610
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2041-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2042-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2042-01-01T00:00:00",
+            "Amount": -8897.998709886481155948207948
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2042-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2043-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2043-01-01T00:00:00",
+            "Amount": -8864.077662316730979658681802
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2043-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2044-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2044-01-01T00:00:00",
+            "Amount": -8830.273099624335325474533889
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2044-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2045-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2045-01-01T00:00:00",
+            "Amount": -8796.584621800225357966854340
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2045-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2046-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2046-01-01T00:00:00",
+            "Amount": -8763.011830208963384087596162
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2046-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2047-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2047-01-01T00:00:00",
+            "Amount": -8729.554327584025803826639357
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2047-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2048-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2048-01-01T00:00:00",
+            "Amount": -8696.211718023102259216298677
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2048-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2049-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2049-01-01T00:00:00",
+            "Amount": -8662.983606983410926058149907
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2049-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2050-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2050-01-01T00:00:00",
+            "Amount": -8629.869601277029892938066220
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2050-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2051-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2051-01-01T00:00:00",
+            "Amount": -8596.869309066244572285716901
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2051-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2052-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2052-01-01T00:00:00",
+            "Amount": -8563.982339858911088424487749
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2052-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2053-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2053-01-01T00:00:00",
+            "Amount": -8531.208304503835587746838058
+          },
+          {
+            "Description": "Simple cash-flow: outflow to Exogenous Account",
+            "ValutaDate": "2053-01-01T00:00:00",
+            "Amount": -20000.0
+          },
+          {
+            "Description": "Savings Quota: inflow from Exogenous Account",
+            "ValutaDate": "2054-01-01T00:00:00",
+            "Amount": 19020.00000000000000000000
+          },
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2054-01-01T00:00:00",
+            "Amount": -8498.546815186169416338515417
           }
         ]
       },
-      "CapitalBenefitsAccount": {
-        "Id": "f667ea2a-e7ec-4479-8e72-644e2dc79e66",
-        "Name": "Capital Benefits Account",
+      "OccupationalPensionAccount": {
+        "Id": "cece87bf-c52d-49ea-ad2f-d7325d10bd4a",
+        "Name": "Occupational Pension Account",
         "Balance": 0.0,
         "NetGrowthRate": 0.0,
         "Transactions": [
@@ -734,27 +2414,65 @@
           {
             "Description": "Simple cash-flow: inflow from Income Account",
             "ValutaDate": "2021-01-01T00:00:00",
-            "Amount": 16883.0
+            "Amount": 10000.0
           },
           {
             "Description": "Simple cash-flow: inflow from Income Account",
             "ValutaDate": "2022-01-01T00:00:00",
-            "Amount": 16883.0
+            "Amount": 10000.0
           },
           {
             "Description": "Simple cash-flow: inflow from Income Account",
             "ValutaDate": "2023-01-01T00:00:00",
-            "Amount": 16883.0
+            "Amount": 10000.0
           },
           {
             "Description": "Simple cash-flow: inflow from Income Account",
             "ValutaDate": "2024-01-01T00:00:00",
-            "Amount": 16883.0
+            "Amount": 10000.0
           },
           {
             "Description": "Simple cash-flow: inflow from Income Account",
             "ValutaDate": "2025-01-01T00:00:00",
-            "Amount": 16883.0
+            "Amount": 10000.0
+          },
+          {
+            "Description": "Clear account: outflow to Wealth Account",
+            "ValutaDate": "2030-01-01T00:00:00",
+            "Amount": -550000.0
+          }
+        ]
+      },
+      "ThirdPillarAccount": {
+        "Id": "3fd7566a-9014-47e7-9771-f50f04c035c8",
+        "Name": "Third Pillar Account",
+        "Balance": 68830.0,
+        "NetGrowthRate": 0.0,
+        "Transactions": [
+          {
+            "Description": "Simple cash-flow: inflow from Income Account",
+            "ValutaDate": "2021-01-01T00:00:00",
+            "Amount": 6883.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Income Account",
+            "ValutaDate": "2022-01-01T00:00:00",
+            "Amount": 6883.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Income Account",
+            "ValutaDate": "2023-01-01T00:00:00",
+            "Amount": 6883.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Income Account",
+            "ValutaDate": "2024-01-01T00:00:00",
+            "Amount": 6883.0
+          },
+          {
+            "Description": "Simple cash-flow: inflow from Income Account",
+            "ValutaDate": "2025-01-01T00:00:00",
+            "Amount": 6883.0
           },
           {
             "Description": "Simple cash-flow: inflow from Income Account",
@@ -780,11 +2498,6 @@
             "Description": "Simple cash-flow: inflow from Income Account",
             "ValutaDate": "2030-01-01T00:00:00",
             "Amount": 6883.0
-          },
-          {
-            "Description": "Clear account: outflow to Wealth Account",
-            "ValutaDate": "2030-01-01T00:00:00",
-            "Amount": -618830.0
           }
         ]
       }

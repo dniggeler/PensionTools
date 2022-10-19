@@ -170,7 +170,7 @@
     },
     "Amount": 50000.0,
     "Source": "Exogenous",
-    "Target": "CapitalBenefits",
+    "Target": "OccupationalPension",
     "IsTaxable": false,
     "TaxType": "Undefined",
     "OccurrenceType": "BeginOfPeriod"

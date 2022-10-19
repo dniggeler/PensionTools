@@ -21,8 +21,13 @@ public record SetupAccountDefinition
     public decimal InitialWealth { get; set; }
 
     /// <summary>
-    /// Gets or sets the initial capital benefits.
+    /// Gets or sets the initial occupational pension assets (Berufliche Vorsorge).
     /// </summary>
-    public decimal InitialCapitalBenefits { get; set; }
+    public decimal InitialOccupationalPensionAssets { get; set; }
+
+    /// <summary>
+    /// Gets or sets the initial third pillar assets (3A Konto).
+    /// </summary>
+    public decimal InitialThirdPillarAssets { get; set; }
 
 }

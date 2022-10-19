@@ -106,6 +106,7 @@ namespace Calculators.CashFlow.Tests
                     GenericCashFlowDefinitions = GetCashFlowDefinitions().ToList(),
                     ClearAccountActions = GetClearActionDefinitions().ToList(),
                     ChangeResidenceActions = GetChangeResidenceActions().ToList(),
+                    CashFlowActions = GetCashFlowActions().ToList()
                 },
                 options);
 
@@ -184,6 +185,8 @@ namespace Calculators.CashFlow.Tests
             MultiPeriodCalculatorPerson person = new()
             {
                 CivilStatus = CivilStatus.Married,
+                DateOfBirth = new DateTime(1969, 3, 17),
+                Gender = Gender.Male,
                 Name = "Unit Test",
                 Canton = canton,
                 MunicipalityId = municipalityId,
@@ -205,10 +208,24 @@ namespace Calculators.CashFlow.Tests
                 Id = "Clear Capital Benefit Action 1",
                 DateOfClearing = new DateTime(2030, 1, 1),
                 ClearRatio = 1.0M,
-                Flow = new FlowPair(AccountType.CapitalBenefits, AccountType.Wealth),
+                Flow = new FlowPair(AccountType.OccupationalPension, AccountType.Wealth),
                 IsTaxable = true,
-                TaxType = TaxType.Capital,
+                TaxType = TaxType.CapitalBenefits,
                 OccurrenceType = OccurrenceType.EndOfPeriod,
+            };
+        }
+
+        private IEnumerable<ICashFlowAction> GetCashFlowActions()
+        {
+            yield return new OrdinaryRetirementAction
+            {
+                Id = "OrdinaryRetirementAction",
+                Name = "Ordinary Retirement Action",
+                NumberOfPeriods = 20,
+                AhvPensionAmount = 29_400,
+                CapitalConsumptionAmountPerYear = 20_000,
+                CapitalOptionFactor = 0,
+                RetirementPension = 34_000
             };
         }
 

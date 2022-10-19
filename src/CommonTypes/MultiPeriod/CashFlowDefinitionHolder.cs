@@ -34,4 +34,10 @@ public record CashFlowDefinitionHolder
     /// </value>
     public IReadOnlyCollection<ChangeResidenceAction> ChangeResidenceActions { get; set; } =
         Array.Empty<ChangeResidenceAction>().ToList();
+
+    /// <summary>
+    /// Collection of cash-flow actions.
+    /// </summary>
+    public IReadOnlyCollection<ICashFlowAction> CashFlowActions { get; set; } =
+        Array.Empty<ICashFlowAction>().ToList();
 }

@@ -1,10 +1,15 @@
-﻿using PensionCoach.Tools.CommonTypes;
+﻿using System;
+using PensionCoach.Tools.CommonTypes;
 
 namespace Calculators.CashFlow.Models
 {
     public record MultiPeriodCalculatorPerson
     {
         public string Name { get; set; }
+
+        public DateTime DateOfBirth { get; set; }
+
+        public Gender Gender { get; set; }
 
         public CivilStatus CivilStatus { get; set; }
 

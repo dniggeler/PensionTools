@@ -49,15 +49,27 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
 
         WealthAccount wealthAccount = new() { Id = Guid.NewGuid(), Name = "Wealth Account", };
 
-        CapitalBenefitsAccount capitalBenefitsAccount = new()
+        OccupationalPensionAccount occupationalPensionAccount = new()
         {
-            Id = Guid.NewGuid(), Name = "Capital Benefits Account",
+            Id = Guid.NewGuid(), Name = "Occupational Pension Account",
         };
 
-        IEnumerable<CashFlowModel> cashFlows = cashFlowDefinitionHolder.GenericCashFlowDefinitions
+        ThirdPillarAccount thirdPillarAccount = new()
+        {
+            Id = Guid.NewGuid(),
+            Name = "Third Pillar Account",
+        };
+
+        IEnumerable<CashFlowModel> cashFlowFromDefinitions = cashFlowDefinitionHolder.GenericCashFlowDefinitions
             .SelectMany(d => d.GenerateCashFlow())
-            .AggregateCashFlows()
-            .ToList();
+            .AggregateCashFlows();
+
+        IEnumerable<CashFlowModel> cashFlowFromActions = cashFlowDefinitionHolder.CashFlowActions
+            .SelectMany(a => a.CreateGenericDefinition(person))
+            .SelectMany(d => d.GenerateCashFlow())
+            .AggregateCashFlows();
+
+        IEnumerable<CashFlowModel> cashFlows = cashFlowFromDefinitions.Concat(cashFlowFromActions).ToList();
 
         int startingYear = cashFlows.Min(item => item.DateOfProcess.Year);
         int finalYear = cashFlows.Max(item => item.DateOfProcess.Year);
@@ -70,7 +82,8 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
             { AccountType.Exogenous, exogenousAccount },
             { AccountType.Income, incomeAccount },
             { AccountType.Wealth, wealthAccount },
-            { AccountType.CapitalBenefits, capitalBenefitsAccount }
+            { AccountType.OccupationalPension, occupationalPensionAccount },
+            { AccountType.ThirdPillar, thirdPillarAccount }
         };
 
         MultiPeriodCalculatorPerson currentPerson = person;
@@ -143,7 +156,8 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
             ExogenousAccount = exogenousAccount,
             IncomeAccount = incomeAccount,
             WealthAccount = wealthAccount,
-            CapitalBenefitsAccount = capitalBenefitsAccount
+            OccupationalPensionAccount = occupationalPensionAccount,
+            ThirdPillarAccount = thirdPillarAccount
         };
     }
 
@@ -158,14 +172,14 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
         IEnumerable<GenericCashFlowDefinition> accountSetupDefinitions = new SetupAccountDefinition
             {
                 DateOfStart = new DateTime(startingYear, 1, 1),
-                InitialCapitalBenefits = person.CapitalBenefits.PensionPlan + person.CapitalBenefits.Pillar3a,
+                InitialOccupationalPensionAssets = person.CapitalBenefits.PensionPlan + person.CapitalBenefits.Pillar3a,
                 InitialWealth = person.Wealth
             }
             .CreateGenericDefinition();
 
         GenericCashFlowDefinition salaryCashFlowDefinition = new SalaryPaymentsDefinition
             {
-                Header = new CashFlowHeader { Id = "my salary", Name = $"{person.Name} - Lohn", Ordinal = 0, },
+                Header = new CashFlowHeader { Id = "my salary", Name = $"{person.Name} - Lohn" },
                 DateOfStart = new DateTime(startingYear, 1, 1),
                 YearlyAmount = person.Income,
                 NumberOfInvestments = numberOfPeriods,
@@ -173,7 +187,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
             }
             .CreateGenericDefinition();
 
-        var extendedDefinitionHolder = cashFlowDefinitionHolder with
+        CashFlowDefinitionHolder extendedDefinitionHolder = cashFlowDefinitionHolder with
         {
             GenericCashFlowDefinitions = new[] { salaryCashFlowDefinition }
                 .Concat(accountSetupDefinitions)
@@ -236,7 +250,8 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
         ICashFlowAccount incomeAccount = currentAccounts[AccountType.Income];
         ICashFlowAccount wealthAccount = currentAccounts[AccountType.Wealth];
         ICashFlowAccount exogenousAccount = currentAccounts[AccountType.Exogenous];
-        ICashFlowAccount capitalBenefitsAccount = currentAccounts[AccountType.CapitalBenefits];
+        ICashFlowAccount occupationalPensionAccount = currentAccounts[AccountType.OccupationalPension];
+        ICashFlowAccount thirdPillarAccount = currentAccounts[AccountType.ThirdPillar];
 
         DateTime finalDateAsDateTime = finalDate.ToDateTime(TimeOnly.MinValue);
 
@@ -246,9 +261,12 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
         decimal wealthCompoundedReturn = wealthAccount.Balance * options.WealthNetGrowthRate;
         ExecuteTransaction(exogenousAccount, wealthAccount, "Compound Return Wealth", finalDateAsDateTime, wealthCompoundedReturn);
 
-        decimal capitalBenefitsCompoundedReturn = capitalBenefitsAccount.Balance * options.CapitalBenefitsNetGrowthRate;
-        ExecuteTransaction(exogenousAccount, capitalBenefitsAccount, "Compound Return Capital Benefits", finalDateAsDateTime, capitalBenefitsCompoundedReturn);
-        
+        decimal occupationalPensionCompoundedReturn = occupationalPensionAccount.Balance * options.CapitalBenefitsNetGrowthRate;
+        ExecuteTransaction(exogenousAccount, occupationalPensionAccount, "Compound Return Occupational Pension", finalDateAsDateTime, occupationalPensionCompoundedReturn);
+
+        decimal thirdPillarCompoundedReturn = thirdPillarAccount.Balance * options.CapitalBenefitsNetGrowthRate;
+        ExecuteTransaction(exogenousAccount, thirdPillarAccount, "Compound Return Third Pillar", finalDateAsDateTime, thirdPillarCompoundedReturn);
+
         // savings quota: take share from current income account and move it to wealth
         decimal newSavings = incomeAccount.Balance * options.SavingsQuota;
 

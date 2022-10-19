@@ -23,7 +23,12 @@
         {
           "Year": 2021,
           "Amount": 0.0,
-          "AccountType": "CapitalBenefits"
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2021,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2022,
@@ -43,7 +48,12 @@
         {
           "Year": 2022,
           "Amount": 0.0,
-          "AccountType": "CapitalBenefits"
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2022,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2023,
@@ -63,7 +73,12 @@
         {
           "Year": 2023,
           "Amount": 0.0,
-          "AccountType": "CapitalBenefits"
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2023,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2024,
@@ -83,7 +98,12 @@
         {
           "Year": 2024,
           "Amount": 0.0,
-          "AccountType": "CapitalBenefits"
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2024,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2025,
@@ -103,7 +123,12 @@
         {
           "Year": 2025,
           "Amount": 0.0,
-          "AccountType": "CapitalBenefits"
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2025,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2026,
@@ -123,7 +148,12 @@
         {
           "Year": 2026,
           "Amount": 0.0,
-          "AccountType": "CapitalBenefits"
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2026,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2027,
@@ -143,7 +173,12 @@
         {
           "Year": 2027,
           "Amount": 0.0,
-          "AccountType": "CapitalBenefits"
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2027,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2028,
@@ -163,7 +198,12 @@
         {
           "Year": 2028,
           "Amount": 0.0,
-          "AccountType": "CapitalBenefits"
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2028,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2029,
@@ -183,7 +223,12 @@
         {
           "Year": 2029,
           "Amount": 0.0,
-          "AccountType": "CapitalBenefits"
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2029,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2030,
@@ -203,11 +248,16 @@
         {
           "Year": 2030,
           "Amount": 0.0,
-          "AccountType": "CapitalBenefits"
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2030,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
         }
       ],
       "ExogenousAccount": {
-        "Id": "584b204d-5506-4042-8892-13f9cd2527f2",
+        "Id": "0832eecf-1c17-48da-ae8d-ce5dff9039e3",
         "Name": "Exogenous Account",
         "Balance": -545961.15575830373708856525500,
         "InterestRate": 0.0,
@@ -320,14 +370,14 @@
         ]
       },
       "IncomeAccount": {
-        "Id": "89b05e8e-8011-49f6-b16a-5c09308c1e63",
+        "Id": "850592ff-2372-4d7c-bfd4-b413c8c892f7",
         "Name": "Income Account",
         "Balance": 0.0,
         "InterestRate": 0.0,
         "Transactions": []
       },
       "WealthAccount": {
-        "Id": "71110b25-2a35-428a-b1ee-11928cbd5d6f",
+        "Id": "475cb895-63bd-41a7-8601-b015ceccba3f",
         "Name": "Wealth Account",
         "Balance": 545961.15575830373708856525500,
         "NetGrowthRate": 0.0,
@@ -439,9 +489,16 @@
           }
         ]
       },
-      "CapitalBenefitsAccount": {
-        "Id": "1a60e6b7-1d7d-44b6-b516-75aef4f1c737",
-        "Name": "Capital Benefits Account",
+      "OccupationalPensionAccount": {
+        "Id": "e2cc7f93-1786-4152-b307-b3d07e89f269",
+        "Name": "Occupational Pension Account",
+        "Balance": 0.0,
+        "NetGrowthRate": 0.0,
+        "Transactions": []
+      },
+      "ThirdPillarAccount": {
+        "Id": "cdf5a464-3f49-4d4c-95d9-0a9a7496e6ec",
+        "Name": "Third Pillar Account",
         "Balance": 0.0,
         "NetGrowthRate": 0.0,
         "Transactions": []

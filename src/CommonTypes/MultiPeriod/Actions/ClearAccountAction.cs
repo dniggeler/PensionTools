@@ -3,7 +3,7 @@ using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 
-public record ClearAccountAction
+public record ClearAccountAction : ICashFlowAction
 {
     /// <summary>
     /// Gets or sets the identifier.
@@ -20,14 +20,6 @@ public record ClearAccountAction
     /// The name.
     /// </value>
     public string Name { get; set; }
-
-    /// <summary>
-    /// Gets or sets the ordinal to define a linear order between multiple cash-flows.
-    /// </summary>
-    /// <value>
-    /// The ordinal.
-    /// </value>
-    public int Ordinal { get; set; }
 
     /// <summary>
     /// Gets the clear at year.

@@ -18,6 +18,7 @@ namespace Calculators.CashFlow.Models
 
         public WealthAccount WealthAccount { get; set; }
 
-        public CapitalBenefitsAccount CapitalBenefitsAccount { get; set; }
+        public OccupationalPensionAccount OccupationalPensionAccount { get; set; }
+        public ThirdPillarAccount ThirdPillarAccount { get; set; }
     }
 }

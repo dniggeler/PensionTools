@@ -22,8 +22,13 @@
         },
         {
           "Year": 2021,
-          "Amount": 106883.0,
-          "AccountType": "CapitalBenefits"
+          "Amount": 100000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2021,
+          "Amount": 6883.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2022,
@@ -42,8 +47,13 @@
         },
         {
           "Year": 2022,
-          "Amount": 113766.0,
-          "AccountType": "CapitalBenefits"
+          "Amount": 100000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2022,
+          "Amount": 13766.0,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2023,
@@ -62,8 +72,13 @@
         },
         {
           "Year": 2023,
-          "Amount": 120649.00,
-          "AccountType": "CapitalBenefits"
+          "Amount": 100000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2023,
+          "Amount": 20649.00,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2024,
@@ -82,8 +97,13 @@
         },
         {
           "Year": 2024,
-          "Amount": 127532.000,
-          "AccountType": "CapitalBenefits"
+          "Amount": 100000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2024,
+          "Amount": 27532.000,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2025,
@@ -102,8 +122,13 @@
         },
         {
           "Year": 2025,
-          "Amount": 134415.0000,
-          "AccountType": "CapitalBenefits"
+          "Amount": 100000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2025,
+          "Amount": 34415.0000,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2026,
@@ -122,8 +147,13 @@
         },
         {
           "Year": 2026,
-          "Amount": 141298.00000,
-          "AccountType": "CapitalBenefits"
+          "Amount": 100000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2026,
+          "Amount": 41298.00000,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2027,
@@ -142,8 +172,13 @@
         },
         {
           "Year": 2027,
-          "Amount": 148181.000000,
-          "AccountType": "CapitalBenefits"
+          "Amount": 100000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2027,
+          "Amount": 48181.000000,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2028,
@@ -162,8 +197,13 @@
         },
         {
           "Year": 2028,
-          "Amount": 155064.0000000,
-          "AccountType": "CapitalBenefits"
+          "Amount": 100000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2028,
+          "Amount": 55064.0000000,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2029,
@@ -182,8 +222,13 @@
         },
         {
           "Year": 2029,
-          "Amount": 161947.00000000,
-          "AccountType": "CapitalBenefits"
+          "Amount": 100000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2029,
+          "Amount": 61947.00000000,
+          "AccountType": "ThirdPillar"
         },
         {
           "Year": 2030,
@@ -202,12 +247,17 @@
         },
         {
           "Year": 2030,
-          "Amount": 168830.000000000,
-          "AccountType": "CapitalBenefits"
+          "Amount": 100000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2030,
+          "Amount": 68830.000000000,
+          "AccountType": "ThirdPillar"
         }
       ],
       "ExogenousAccount": {
-        "Id": "799093dd-868b-45da-b45b-df8a0e14943e",
+        "Id": "bdbe6589-3a6d-4f4f-b7bf-dbf22a4bd26f",
         "Name": "Exogenous Account",
         "Balance": -336521.3600000000000000,
         "InterestRate": 0.0,
@@ -218,7 +268,7 @@
             "Amount": -100000.0
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Occupational Pension Account",
             "ValutaDate": "2021-01-01T00:00:00",
             "Amount": -100000.0
           },
@@ -420,7 +470,7 @@
         ]
       },
       "IncomeAccount": {
-        "Id": "826f3895-bb4f-4f48-8606-2743f64fcd36",
+        "Id": "0cce6140-134b-4601-ae72-06579f0f155e",
         "Name": "Income Account",
         "Balance": 0.000000000,
         "InterestRate": 0.0,
@@ -431,7 +481,7 @@
             "Amount": 100000.0
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2021-01-01T00:00:00",
             "Amount": -6883.0
           },
@@ -446,7 +496,7 @@
             "Amount": 100000.0
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2022-01-01T00:00:00",
             "Amount": -6883.0
           },
@@ -461,7 +511,7 @@
             "Amount": 100000.0
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2023-01-01T00:00:00",
             "Amount": -6883.00
           },
@@ -476,7 +526,7 @@
             "Amount": 100000.0
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2024-01-01T00:00:00",
             "Amount": -6883.000
           },
@@ -491,7 +541,7 @@
             "Amount": 100000.0
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2025-01-01T00:00:00",
             "Amount": -6883.0000
           },
@@ -506,7 +556,7 @@
             "Amount": 100000.0
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2026-01-01T00:00:00",
             "Amount": -6883.00000
           },
@@ -521,7 +571,7 @@
             "Amount": 100000.0
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2027-01-01T00:00:00",
             "Amount": -6883.000000
           },
@@ -536,7 +586,7 @@
             "Amount": 100000.0
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2028-01-01T00:00:00",
             "Amount": -6883.0000000
           },
@@ -551,7 +601,7 @@
             "Amount": 100000.0
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2029-01-01T00:00:00",
             "Amount": -6883.00000000
           },
@@ -566,7 +616,7 @@
             "Amount": 100000.0
           },
           {
-            "Description": "Simple cash-flow: outflow to Capital Benefits Account",
+            "Description": "Simple cash-flow: outflow to Third Pillar Account",
             "ValutaDate": "2030-01-01T00:00:00",
             "Amount": -6883.000000000
           },
@@ -578,7 +628,7 @@
         ]
       },
       "WealthAccount": {
-        "Id": "43079392-d70f-44ca-a863-fdd4d115a674",
+        "Id": "c9c341f1-098c-4268-92f8-f9019a8ec851",
         "Name": "Wealth Account",
         "Balance": 167691.3600000000000000,
         "NetGrowthRate": 0.0,
@@ -685,17 +735,25 @@
           }
         ]
       },
-      "CapitalBenefitsAccount": {
-        "Id": "12e41a46-68ae-4281-b05b-9c5b1fa47e31",
-        "Name": "Capital Benefits Account",
-        "Balance": 168830.000000000,
+      "OccupationalPensionAccount": {
+        "Id": "dba722f6-38d3-4e9b-9057-0052dd8cc324",
+        "Name": "Occupational Pension Account",
+        "Balance": 100000.0,
         "NetGrowthRate": 0.0,
         "Transactions": [
           {
             "Description": "Simple cash-flow: inflow from Exogenous Account",
             "ValutaDate": "2021-01-01T00:00:00",
             "Amount": 100000.0
-          },
+          }
+        ]
+      },
+      "ThirdPillarAccount": {
+        "Id": "d6a60f03-2c64-4b00-8941-094562f817a3",
+        "Name": "Third Pillar Account",
+        "Balance": 68830.000000000,
+        "NetGrowthRate": 0.0,
+        "Transactions": [
           {
             "Description": "Simple cash-flow: inflow from Income Account",
             "ValutaDate": "2021-01-01T00:00:00",

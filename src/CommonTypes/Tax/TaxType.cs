@@ -4,7 +4,7 @@
     {
         Undefined = 0,
         Income = 1,
-        Capital = 2,
+        CapitalBenefits = 2,
         Person = 3,
         Wealth = 4
     }

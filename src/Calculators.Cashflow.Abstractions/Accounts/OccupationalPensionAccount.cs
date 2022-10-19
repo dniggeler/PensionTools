@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Calculators.CashFlow.Accounts;
 
-public class CapitalBenefitsAccount : ICashFlowAccount
+public class OccupationalPensionAccount : ICashFlowAccount
 {
     public Guid Id { get; set; }
 

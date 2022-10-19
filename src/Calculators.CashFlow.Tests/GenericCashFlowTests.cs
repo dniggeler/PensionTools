@@ -121,7 +121,7 @@ namespace Calculators.CashFlow.Tests
                     Amount = 0,
                     Frequency = FrequencyType.Yearly,
                 },
-                Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+                Flow = new FlowPair(AccountType.Income, AccountType.OccupationalPension),
                 InvestmentPeriod = new InvestmentPeriod
                 {
                     Year = 2021,

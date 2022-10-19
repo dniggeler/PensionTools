@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Calculators.CashFlow.Models;
-using LanguageExt;
-using Microsoft.Extensions.Options;
+using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 using PensionCoach.Tools.CommonTypes.Tax;
 
@@ -76,12 +76,12 @@ public static class CashFlowHelperExtensions
         {
             Header = new CashFlowHeader
             {
-                Id = "setupCapitalBenefitsAccount",
-                Name = "Capital Benefits Account"
+                Id = "setupOccupationalPensionAccount",
+                Name = "Occupational Pension Account"
             },
             DateOfStart = accountDefinition.DateOfStart,
-            InitialAmount = accountDefinition.InitialCapitalBenefits,
-            Flow = new FlowPair(AccountType.Exogenous, AccountType.CapitalBenefits),
+            InitialAmount = accountDefinition.InitialOccupationalPensionAssets,
+            Flow = new FlowPair(AccountType.Exogenous, AccountType.OccupationalPension),
             RecurringInvestment = new RecurringInvestment
             {
                 Amount = 0,
@@ -93,7 +93,32 @@ public static class CashFlowHelperExtensions
                 NumberOfPeriods = 0
             },
             IsTaxable = false,
-            TaxType = TaxType.Capital,
+            TaxType = TaxType.CapitalBenefits,
+            OccurrenceType = OccurrenceType.BeginOfPeriod
+        };
+
+        yield return new GenericCashFlowDefinition
+        {
+            Header = new CashFlowHeader
+            {
+                Id = "setupThirdPillarAccount",
+                Name = "Third Pillar Account"
+            },
+            DateOfStart = accountDefinition.DateOfStart,
+            InitialAmount = accountDefinition.InitialThirdPillarAssets,
+            Flow = new FlowPair(AccountType.Exogenous, AccountType.ThirdPillar),
+            RecurringInvestment = new RecurringInvestment
+            {
+                Amount = 0,
+                Frequency = FrequencyType.Yearly,
+            },
+            InvestmentPeriod = new InvestmentPeriod
+            {
+                Year = accountDefinition.DateOfStart.Year,
+                NumberOfPeriods = 0
+            },
+            IsTaxable = false,
+            TaxType = TaxType.CapitalBenefits,
             OccurrenceType = OccurrenceType.BeginOfPeriod
         };
     }
@@ -110,7 +135,7 @@ public static class CashFlowHelperExtensions
             DateOfStart = purchaseDefinition.DateOfStart,
             InitialAmount = decimal.Zero,
             NetGrowthRate = purchaseDefinition.NetGrowthRate,
-            Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+            Flow = new FlowPair(AccountType.Income, AccountType.OccupationalPension),
             RecurringInvestment = new RecurringInvestment
             {
                 Amount = purchaseDefinition.YearlyAmount,
@@ -164,7 +189,7 @@ public static class CashFlowHelperExtensions
             DateOfStart = thirdPillarDefinition.DateOfStart,
             InitialAmount = decimal.Zero,
             NetGrowthRate = thirdPillarDefinition.NetGrowthRate,
-            Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+            Flow = new FlowPair(AccountType.Income, AccountType.ThirdPillar),
             RecurringInvestment = new RecurringInvestment
             {
                 Amount = thirdPillarDefinition.YearlyAmount,
@@ -178,6 +203,16 @@ public static class CashFlowHelperExtensions
             IsTaxable = false,
             TaxType = TaxType.Undefined,
             OccurrenceType = OccurrenceType.BeginOfPeriod
+        };
+    }
+
+    public static IEnumerable<GenericCashFlowDefinition> CreateGenericDefinition(
+        this ICashFlowAction cashFlowAction, MultiPeriodCalculatorPerson person)
+    {
+        return cashFlowAction switch
+        {
+            OrdinaryRetirementAction a => a.CreateCashFlows(person),
+            _ => Array.Empty<GenericCashFlowDefinition>()
         };
     }
 
@@ -201,5 +236,89 @@ public static class CashFlowHelperExtensions
                 g.Key.IsTaxable,
                 g.Key.TaxType,
                 g.Key.OccurrenceType));
+    }
+
+    private static IEnumerable<GenericCashFlowDefinition> CreateCashFlows(
+        this OrdinaryRetirementAction cashFlowAction, MultiPeriodCalculatorPerson person)
+    {
+        DateTime retirementDate = person.DateOfBirth.GetRetirementDate(person.Gender);
+
+        yield return new GenericCashFlowDefinition
+        {
+            Header = new CashFlowHeader
+            {
+                Id = "AhvPension",
+                Name = "Yearly AHV Pension"
+            },
+            DateOfStart = retirementDate,
+            InvestmentPeriod = new InvestmentPeriod
+            {
+                Year = retirementDate.Year,
+                NumberOfPeriods = cashFlowAction.NumberOfPeriods,
+            },
+            Flow = new FlowPair(AccountType.Exogenous, AccountType.Income),
+            InitialAmount = decimal.Zero,
+            NetGrowthRate = decimal.Zero,
+            RecurringInvestment = new RecurringInvestment
+            {
+                Amount = cashFlowAction.AhvPensionAmount,
+                Frequency = FrequencyType.Yearly,
+            },
+            OccurrenceType = OccurrenceType.BeginOfPeriod,
+            IsTaxable = true,
+            TaxType = TaxType.Income
+        };
+
+        yield return new GenericCashFlowDefinition
+        {
+            Header = new CashFlowHeader
+            {
+                Id = "RetirementPension",
+                Name = "Yearly Retirement Pension"
+            },
+            DateOfStart = retirementDate,
+            InvestmentPeriod = new InvestmentPeriod
+            {
+                Year = retirementDate.Year,
+                NumberOfPeriods = cashFlowAction.NumberOfPeriods,
+            },
+            Flow = new FlowPair(AccountType.Exogenous, AccountType.Income),
+            InitialAmount = decimal.Zero,
+            NetGrowthRate = decimal.Zero,
+            RecurringInvestment = new RecurringInvestment
+            {
+                Amount = cashFlowAction.RetirementPension,
+                Frequency = FrequencyType.Yearly,
+            },
+            OccurrenceType = OccurrenceType.BeginOfPeriod,
+            IsTaxable = true,
+            TaxType = TaxType.Income
+        };
+
+        yield return new GenericCashFlowDefinition
+        {
+            Header = new CashFlowHeader
+            {
+                Id = "CapitalConsumption",
+                Name = "Yearly Capital Consumption"
+            },
+            DateOfStart = retirementDate,
+            InvestmentPeriod = new InvestmentPeriod
+            {
+                Year = retirementDate.Year,
+                NumberOfPeriods = cashFlowAction.NumberOfPeriods,
+            },
+            Flow = new FlowPair(AccountType.Wealth, AccountType.Exogenous),
+            InitialAmount = decimal.Zero,
+            NetGrowthRate = decimal.Zero,
+            RecurringInvestment = new RecurringInvestment
+            {
+                Amount = cashFlowAction.CapitalConsumptionAmountPerYear,
+                Frequency = FrequencyType.Yearly,
+            },
+            OccurrenceType = OccurrenceType.BeginOfPeriod,
+            IsTaxable = false,
+            TaxType = TaxType.Undefined
+        };
     }
 }

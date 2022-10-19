@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BvgCalculator\BvgCalculator.csproj" />
     <ProjectReference Include="..\Calculators.Cashflow.Abstractions\Calculators.CashFlow.Abstractions.csproj" />
     <ProjectReference Include="..\TaxCalculator.Abstractions\TaxCalculator.Abstractions.csproj" />
     <ProjectReference Include="..\TaxCalculator\TaxCalculator.csproj" />

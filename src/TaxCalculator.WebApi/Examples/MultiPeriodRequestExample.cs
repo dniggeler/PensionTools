@@ -42,9 +42,9 @@ namespace TaxCalculator.WebApi.Examples
                             Name = $"{personName} - Clear Capital Benefit Action",
                             DateOfClearing = new DateTime(finalYear, 1, 1),
                             ClearRatio = 1.0M,
-                            Flow = new FlowPair(AccountType.CapitalBenefits, AccountType.Wealth),
+                            Flow = new FlowPair(AccountType.OccupationalPension, AccountType.Wealth),
                             IsTaxable = true,
-                            TaxType = TaxType.Capital,
+                            TaxType = TaxType.CapitalBenefits,
                             OccurrenceType = OccurrenceType.EndOfPeriod,
                         },
                     },
@@ -55,7 +55,6 @@ namespace TaxCalculator.WebApi.Examples
                         {
                             Id = "Change residence",
                             Name = $"{personName} - Change Residence",
-                            Ordinal = 0,
                             DestinationMunicipalityId = 3426,
                             DestinationCanton = Canton.SG,
                             ChangeCost = 5_000,
@@ -79,7 +78,7 @@ namespace TaxCalculator.WebApi.Examples
                                 Amount = 6883,
                                 Frequency = FrequencyType.Yearly,
                             },
-                            Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+                            Flow = new FlowPair(AccountType.Income, AccountType.ThirdPillar),
                             InvestmentPeriod = new InvestmentPeriod
                             {
                                 Year = startingYear,
@@ -104,7 +103,7 @@ namespace TaxCalculator.WebApi.Examples
                                 Amount = 10000,
                                 Frequency = FrequencyType.Yearly,
                             },
-                            Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+                            Flow = new FlowPair(AccountType.Income, AccountType.OccupationalPension),
                             InvestmentPeriod = new InvestmentPeriod
                             {
                                 Year = startingYear,

@@ -5,7 +5,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 /// <summary>
 /// Simulates the change of the residence. A change always happens at the end of a period.
 /// </summary>
-public record ChangeResidenceAction
+public record ChangeResidenceAction : ICashFlowAction
 {
     /// <summary>
     /// Gets or sets the identifier.
@@ -22,14 +22,6 @@ public record ChangeResidenceAction
     /// The name.
     /// </value>
     public string Name { get; set; }
-
-    /// <summary>
-    /// Gets or sets the ordinal to define a linear order between multiple cash-flows.
-    /// </summary>
-    /// <value>
-    /// The ordinal.
-    /// </value>
-    public int Ordinal { get; set; }
 
     /// <summary>
     /// Gets the date of change of residence.
