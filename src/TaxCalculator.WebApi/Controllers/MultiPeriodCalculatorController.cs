@@ -82,6 +82,8 @@ public class MultiPeriodCalculatorController : ControllerBase
             return new MultiPeriodCalculatorPerson
             {
                 Name = name,
+                Gender = request.Gender,
+                DateOfBirth = request.DateOfBirth,
                 MunicipalityId = request.BfsMunicipalityId,
                 CivilStatus = request.CivilStatus,
                 ReligiousGroupType = request.ReligiousGroupType,

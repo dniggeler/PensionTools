@@ -8,7 +8,6 @@ using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
-using PensionCoach.Tools.CommonTypes.Tax;
 using Snapshooter.Xunit;
 using Xunit;
 
@@ -104,7 +103,6 @@ namespace Calculators.CashFlow.Tests
                 new CashFlowDefinitionHolder
                 {
                     GenericCashFlowDefinitions = GetCashFlowDefinitions().ToList(),
-                    ClearAccountActions = GetClearActionDefinitions().ToList(),
                     ChangeResidenceActions = GetChangeResidenceActions().ToList(),
                     CashFlowActions = GetCashFlowActions().ToList()
                 },
@@ -201,26 +199,15 @@ namespace Calculators.CashFlow.Tests
             return person;
         }
 
-        private IEnumerable<ClearAccountAction> GetClearActionDefinitions()
-        {
-            yield return new ClearAccountAction
-            {
-                Id = "Clear Capital Benefit Action 1",
-                DateOfClearing = new DateTime(2030, 1, 1),
-                ClearRatio = 1.0M,
-                Flow = new FlowPair(AccountType.OccupationalPension, AccountType.Wealth),
-                IsTaxable = true,
-                TaxType = TaxType.CapitalBenefits,
-                OccurrenceType = OccurrenceType.EndOfPeriod,
-            };
-        }
-
-        private IEnumerable<ICashFlowAction> GetCashFlowActions()
+        private IEnumerable<ICashFlowDefinition> GetCashFlowActions()
         {
             yield return new OrdinaryRetirementAction
             {
-                Id = "OrdinaryRetirementAction",
-                Name = "Ordinary Retirement Action",
+                Header = new CashFlowHeader
+                {
+                    Id = "OrdinaryRetirementAction",
+                    Name = "Ordinary Retirement"
+                },
                 NumberOfPeriods = 20,
                 AhvPensionAmount = 29_400,
                 CapitalConsumptionAmountPerYear = 20_000,
@@ -233,11 +220,15 @@ namespace Calculators.CashFlow.Tests
         {
             yield return new ChangeResidenceAction
             {
-                Id = "Change residence action",
+                Header = new CashFlowHeader
+                {
+                    Id = "ChangeResidence",
+                    Name = "Change residence action"
+                },
                 DestinationMunicipalityId = 3426,
                 DestinationCanton = Canton.SG,
                 ChangeCost = 2_000,
-                DateOfChange = new DateTime(2029, 7, 1)
+                DateOfProcess = new DateTime(2029, 7, 1)
             };
         }
     }

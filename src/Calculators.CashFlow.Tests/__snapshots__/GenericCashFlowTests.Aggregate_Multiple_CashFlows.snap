@@ -12,8 +12,7 @@
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
     "DateOfProcess": {
@@ -28,8 +27,7 @@
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
     "DateOfProcess": {
@@ -44,8 +42,7 @@
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
     "DateOfProcess": {
@@ -60,8 +57,7 @@
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
     "DateOfProcess": {
@@ -76,8 +72,7 @@
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
     "DateOfProcess": {
@@ -92,8 +87,7 @@
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
     "DateOfProcess": {
@@ -108,8 +102,7 @@
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
     "DateOfProcess": {
@@ -124,8 +117,7 @@
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
     "DateOfProcess": {
@@ -140,8 +132,7 @@
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
     "DateOfProcess": {
@@ -156,8 +147,7 @@
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
     "DateOfProcess": {
@@ -172,7 +162,6 @@
     "Source": "Exogenous",
     "Target": "OccupationalPension",
     "IsTaxable": false,
-    "TaxType": "Undefined",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Undefined"
   }
 ]

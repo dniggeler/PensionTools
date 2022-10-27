@@ -1,16 +1,14 @@
 ﻿using System;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
-public record SetupAccountDefinition
+public record SetupAccountDefinition : ICashFlowDefinition
 {
-    /// <summary>
-    /// Gets or sets the date of start.
-    /// </summary>
-    /// <value>
-    /// The date of start.
-    /// </value>
-    public DateTime DateOfStart { get; set; }
+    public CashFlowHeader Header { get; set; }
+
+    /// <inheritdoc />
+    public DateTime DateOfProcess { get; set; }
 
     /// <summary>
     /// Gets or sets the initial wealth.
@@ -29,5 +27,4 @@ public record SetupAccountDefinition
     /// Gets or sets the initial third pillar assets (3A Konto).
     /// </summary>
     public decimal InitialThirdPillarAssets { get; set; }
-
 }

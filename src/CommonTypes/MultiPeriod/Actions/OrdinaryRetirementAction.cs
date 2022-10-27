@@ -1,22 +1,16 @@
-﻿namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
+﻿using System;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
-public record OrdinaryRetirementAction : ICashFlowAction
+namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
+
+public record OrdinaryRetirementAction : ICashFlowDefinition
 {
     /// <summary>
-    /// Gets or sets the identifier.
+    /// Gets or sets the header properties
     /// </summary>
-    /// <value>
-    /// The identifier.
-    /// </value>
-    public string Id { get; set; }
+    public CashFlowHeader Header { get; set; }
 
-    /// <summary>
-    /// Gets the name.
-    /// </summary>
-    /// <value>
-    /// The name.
-    /// </value>
-    public string Name { get; set; }
+    public DateTime DateOfProcess { get; set; }
 
     public int NumberOfPeriods { get; set; }
 

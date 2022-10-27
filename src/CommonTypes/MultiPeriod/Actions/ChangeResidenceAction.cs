@@ -1,27 +1,17 @@
 ﻿using System;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 
 /// <summary>
 /// Simulates the change of the residence. A change always happens at the end of a period.
 /// </summary>
-public record ChangeResidenceAction : ICashFlowAction
+public record ChangeResidenceAction : ICashFlowDefinition
 {
     /// <summary>
-    /// Gets or sets the identifier.
+    /// Gets or sets the header properties
     /// </summary>
-    /// <value>
-    /// The identifier.
-    /// </value>
-    public string Id { get; set; }
-
-    /// <summary>
-    /// Gets the name.
-    /// </summary>
-    /// <value>
-    /// The name.
-    /// </value>
-    public string Name { get; set; }
+    public CashFlowHeader Header { get; set; }
 
     /// <summary>
     /// Gets the date of change of residence.
@@ -29,7 +19,7 @@ public record ChangeResidenceAction : ICashFlowAction
     /// <value>
     /// The change of residence at this year.
     /// </value>
-    public DateTime DateOfChange { get; set; }
+    public DateTime DateOfProcess { get; set; }
 
     /// <summary>
     /// Gets the destination municipality identifier.

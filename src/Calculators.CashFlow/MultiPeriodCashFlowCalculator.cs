@@ -6,6 +6,7 @@ using Calculators.CashFlow.Accounts;
 using Calculators.CashFlow.Models;
 using LanguageExt;
 using Microsoft.Extensions.Logging;
+using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
@@ -101,14 +102,14 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
                     .Where(item => item.DateOfProcess == currentDate)
                     .ToList();
 
-                List<ClearAccountAction> currentDateClearAccountActions = cashFlowDefinitionHolder
-                    .ClearAccountActions
-                    .Where(item => item.DateOfClearing == currentDateAsDateTime)
+                List<ICashFlowDefinition> currentDateClearAccountActions = cashFlowDefinitionHolder
+                    .TransferAccountActions
+                    .Where(item => item.DateOfProcess == currentDateAsDateTime)
                     .ToList();
 
-                List<ChangeResidenceAction> currentDateChangeResidenceActions = cashFlowDefinitionHolder
+                List<ICashFlowDefinition> currentDateChangeResidenceActions = cashFlowDefinitionHolder
                     .ChangeResidenceActions
-                    .Where(item => item.DateOfChange == currentDateAsDateTime)
+                    .Where(item => item.DateOfProcess == currentDateAsDateTime)
                     .ToList();
 
                 // 1. process simple cash-flow: move amount from source to target account
@@ -118,13 +119,15 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
                 }
 
                 // 2. apply taxable clearing cash-flows
-                foreach (var clearAction in currentDateClearAccountActions.Where(item => item.IsTaxable))
+                foreach (var clearAction in currentDateClearAccountActions
+                             .OfType<TransferAccountAction>()
+                             .Where(item => item.IsTaxable))
                 {
                     currentAccounts = await ProcessClearingActionAsync(currentAccounts, clearAction, person);
                 }
 
                 // 3. change residence
-                foreach (var changeAction in currentDateChangeResidenceActions)
+                foreach (var changeAction in currentDateChangeResidenceActions.OfType<ChangeResidenceAction>())
                 {
                     currentPerson = currentPerson with
                     {
@@ -169,18 +172,23 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
         CashFlowDefinitionHolder cashFlowDefinitionHolder,
         MultiPeriodOptions options)
     {
-        IEnumerable<GenericCashFlowDefinition> accountSetupDefinitions = new SetupAccountDefinition
+        IEnumerable<ICashFlowDefinition> accountSetupDefinitions = new SetupAccountDefinition
             {
-                DateOfStart = new DateTime(startingYear, 1, 1),
+                Header = new CashFlowHeader
+                {
+                    Id = "SetupAccounts",
+                    Name = "Setup Accounts"
+                },
+                DateOfProcess = new DateTime(startingYear, 1, 1),
                 InitialOccupationalPensionAssets = person.CapitalBenefits.PensionPlan + person.CapitalBenefits.Pillar3a,
                 InitialWealth = person.Wealth
             }
             .CreateGenericDefinition();
 
-        GenericCashFlowDefinition salaryCashFlowDefinition = new SalaryPaymentsDefinition
+        ICashFlowDefinition salaryCashFlowDefinition = new SalaryPaymentsDefinition
             {
                 Header = new CashFlowHeader { Id = "my salary", Name = $"{person.Name} - Lohn" },
-                DateOfStart = new DateTime(startingYear, 1, 1),
+                DateOfProcess = new DateTime(startingYear, 1, 1),
                 YearlyAmount = person.Income,
                 NumberOfInvestments = numberOfPeriods,
                 NetGrowthRate = options.SalaryNetGrowthRate,
@@ -210,22 +218,22 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
     }
 
     private async Task<Dictionary<AccountType, ICashFlowAccount>> ProcessClearingActionAsync(
-        Dictionary<AccountType, ICashFlowAccount> currentAccounts, ClearAccountAction clearingAction, MultiPeriodCalculatorPerson person)
+        Dictionary<AccountType, ICashFlowAccount> currentAccounts, TransferAccountAction clearingAction, MultiPeriodCalculatorPerson person)
     {
-        decimal taxableAmount = currentAccounts[clearingAction.Flow.Source].Balance * clearingAction.ClearRatio;
+        decimal taxableAmount = currentAccounts[clearingAction.Flow.Source].Balance * clearingAction.TransferRatio;
 
         ICashFlowAccount creditAccount = currentAccounts[clearingAction.Flow.Target];
         ICashFlowAccount debitAccount = currentAccounts[clearingAction.Flow.Source];
 
-        ExecuteTransaction(debitAccount, creditAccount, "Clear account", clearingAction.DateOfClearing, taxableAmount);
+        ExecuteTransaction(debitAccount, creditAccount, "Clear account", clearingAction.DateOfProcess, taxableAmount);
 
         // Tax reduces wealth as transaction is taxable.
-        var taxPaymentAmount = await CalculateCapitalBenefitsTaxAsync(clearingAction.DateOfClearing.Year, person, taxableAmount);
+        var taxPaymentAmount = await CalculateCapitalBenefitsTaxAsync(clearingAction.DateOfProcess.Year, person, taxableAmount);
 
         ICashFlowAccount wealthAccount = currentAccounts[AccountType.Wealth];
         ICashFlowAccount exogenousAccount = currentAccounts[AccountType.Exogenous];
 
-        ExecuteTransaction(wealthAccount, exogenousAccount, "Tax payment", clearingAction.DateOfClearing, taxPaymentAmount);
+        ExecuteTransaction(wealthAccount, exogenousAccount, "Tax payment", clearingAction.DateOfProcess, taxPaymentAmount);
 
         return currentAccounts;
     }
@@ -236,7 +244,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
         ICashFlowAccount wealthAccount = currentAccounts[AccountType.Wealth];
         ICashFlowAccount exogenousAccount = currentAccounts[AccountType.Exogenous];
 
-        ExecuteTransaction(wealthAccount, exogenousAccount, "Residence change costs", action.DateOfChange, action.ChangeCost);
+        ExecuteTransaction(wealthAccount, exogenousAccount, "Residence change costs", action.DateOfProcess, action.ChangeCost);
 
         return currentAccounts;
     }
@@ -268,7 +276,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
         ExecuteTransaction(exogenousAccount, thirdPillarAccount, "Compound Return Third Pillar", finalDateAsDateTime, thirdPillarCompoundedReturn);
 
         // savings quota: take share from current income account and move it to wealth
-        decimal newSavings = incomeAccount.Balance * options.SavingsQuota;
+        decimal newSavings = incomeAccount.Balance * SavingsQuota(finalDate, options, person);
 
         // savings are subject to wealth tax but are not deducted fr
         ExecuteTransaction(exogenousAccount, wealthAccount, "Savings Quota", finalDateAsDateTime, newSavings);
@@ -365,5 +373,17 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
 
         debitAccount.Balance -= amount;
         debitAccount.Transactions.Add(trxDebitAccount);
+    }
+
+    private decimal SavingsQuota(DateOnly dateOfValidity, MultiPeriodOptions options, MultiPeriodCalculatorPerson person)
+    {
+        DateOnly retirementDate = DateOnly.FromDateTime(person.DateOfBirth.GetRetirementDate(person.Gender));
+
+        if (dateOfValidity < retirementDate)
+        {
+            return options.SavingsQuota;
+        }
+
+        return decimal.Zero;
     }
 }

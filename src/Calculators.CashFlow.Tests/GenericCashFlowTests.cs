@@ -25,7 +25,7 @@ namespace Calculators.CashFlow.Tests
                     Id = "test",
                     Name = "Test",
                 },
-                DateOfStart = new DateTime(2021, 1, 1),
+                DateOfProcess = new DateTime(2021, 1, 1),
                 NetGrowthRate = 0,
                 InitialAmount = 9_500,
                 RecurringInvestment = new RecurringInvestment
@@ -61,7 +61,7 @@ namespace Calculators.CashFlow.Tests
                     Id = "test1",
                     Name = "Test",
                 },
-                DateOfStart = new DateTime(2021, 1, 1),
+                DateOfProcess = new DateTime(2021, 1, 1),
                 NetGrowthRate = 0,
                 InitialAmount = 9_500,
                 RecurringInvestment = new RecurringInvestment
@@ -75,7 +75,6 @@ namespace Calculators.CashFlow.Tests
                     Year = 2021,
                     NumberOfPeriods = 10
                 },
-                OccurrenceType = OccurrenceType.BeginOfPeriod,
                 IsTaxable = true,
                 TaxType = TaxType.Wealth
             };
@@ -87,7 +86,7 @@ namespace Calculators.CashFlow.Tests
                     Id = "test2",
                     Name = "Test 2",
                 },
-                DateOfStart = new DateTime(2021, 1, 1),
+                DateOfProcess = new DateTime(2021, 1, 1),
                 NetGrowthRate = 0,
                 InitialAmount = 19_500,
                 RecurringInvestment = new RecurringInvestment
@@ -103,7 +102,6 @@ namespace Calculators.CashFlow.Tests
                 },
                 IsTaxable = true,
                 TaxType = TaxType.Wealth,
-                OccurrenceType = OccurrenceType.BeginOfPeriod
             };
 
             GenericCashFlowDefinition definition3 = new GenericCashFlowDefinition
@@ -113,7 +111,7 @@ namespace Calculators.CashFlow.Tests
                     Id = "test3",
                     Name = "Test 3",
                 },
-                DateOfStart = new DateTime(2021, 1, 1),
+                DateOfProcess = new DateTime(2021, 1, 1),
                 NetGrowthRate = 0,
                 InitialAmount = 50_000,
                 RecurringInvestment = new RecurringInvestment
@@ -129,7 +127,6 @@ namespace Calculators.CashFlow.Tests
                 },
                 TaxType = TaxType.Undefined,
                 IsTaxable = false,
-                OccurrenceType = OccurrenceType.BeginOfPeriod
             };
 
             // when

@@ -1,9 +1,10 @@
 ﻿using System;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
-public record GenericCashFlowDefinition
+public record GenericCashFlowDefinition : ICashFlowDefinition
 {
     /// <summary>
     /// Gets or sets the header properties
@@ -11,12 +12,12 @@ public record GenericCashFlowDefinition
     public CashFlowHeader Header { get; set; }
 
     /// <summary>
-    /// Gets or sets the date of start.
+    /// Gets or sets the date of process.
     /// </summary>
     /// <value>
-    /// The date of start.
+    /// The date of process.
     /// </value>
-    public DateTime DateOfStart { get; set; }
+    public DateTime DateOfProcess { get; set; }
 
     /// <summary>
     /// Gets or sets the initial amount.
@@ -61,6 +62,4 @@ public record GenericCashFlowDefinition
     public bool IsTaxable { get; set; }
 
     public TaxType TaxType { get; set; }
-
-    public OccurrenceType OccurrenceType { get; set; }
 }

@@ -34,31 +34,36 @@ namespace TaxCalculator.WebApi.Examples
                 PartnerReligiousGroupType = ReligiousGroupType.Other,
                 CashFlowDefinitionHolder = new CashFlowDefinitionHolder
                 {
-                    ClearAccountActions = new List<ClearAccountAction>
+                    TransferAccountActions = new List<TransferAccountAction>
                     {
                         new ()
                         {
-                            Id = "Clear Capital Benefit Action",
-                            Name = $"{personName} - Clear Capital Benefit Action",
-                            DateOfClearing = new DateTime(finalYear, 1, 1),
-                            ClearRatio = 1.0M,
+                            Header = new CashFlowHeader
+                            {
+                                Id = "ClearCapitalBenefitAction",
+                                Name = $"{personName} - Clear Capital Benefit Action"
+                            },
+                            DateOfProcess = new DateTime(finalYear, 1, 1),
+                            TransferRatio = 1.0M,
                             Flow = new FlowPair(AccountType.OccupationalPension, AccountType.Wealth),
                             IsTaxable = true,
                             TaxType = TaxType.CapitalBenefits,
-                            OccurrenceType = OccurrenceType.EndOfPeriod,
-                        },
+                        }
                     },
 
                     ChangeResidenceActions = new List<ChangeResidenceAction>
                     {
                         new ()
                         {
-                            Id = "Change residence",
-                            Name = $"{personName} - Change Residence",
+                            Header = new CashFlowHeader
+                            {
+                                Id = "ChangeResidence",
+                                Name = $"{personName} - Change Residence"
+                            },
                             DestinationMunicipalityId = 3426,
                             DestinationCanton = Canton.SG,
                             ChangeCost = 5_000,
-                            DateOfChange = new DateTime(2029, 7, 1)
+                            DateOfProcess = new DateTime(2029, 7, 1)
                         },
                     },
 
@@ -86,7 +91,6 @@ namespace TaxCalculator.WebApi.Examples
                             },
                             IsTaxable = false,
                             TaxType = TaxType.Undefined,
-                            OccurrenceType = OccurrenceType.BeginOfPeriod,
                         },
                         new ()
                         {
@@ -110,8 +114,7 @@ namespace TaxCalculator.WebApi.Examples
                                 NumberOfPeriods = 5,
                             },
                             IsTaxable = false,
-                            TaxType = TaxType.Undefined,
-                            OccurrenceType = OccurrenceType.BeginOfPeriod,
+                            TaxType = TaxType.Undefined
                         },
                     },
                 },

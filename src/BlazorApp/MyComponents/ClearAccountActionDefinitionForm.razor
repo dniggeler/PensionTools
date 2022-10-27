@@ -9,11 +9,11 @@
 <EditForm Model="Definition">
     <div class="row">
         <div class="col-md-3"><RadzenLabel Text="Titel"/></div>
-        <div class="col-md-9"><RadzenTextBox TValue="string" @bind-Value="@Definition.Name"/></div>
+        <div class="col-md-9"><RadzenTextBox TValue="string" @bind-Value="@Definition.Header.Name"/></div>
         <div class="col-md-3"><RadzenLabel Text="Jahr" /></div>
-        <div class="col-md-9"><RadzenDatePicker @bind-Value="@Definition.DateOfClearing" DateFormat="d.M.yyyy" Placeholder="@Localizer["person.birthdate"]" /></div>
+        <div class="col-md-9"><RadzenDatePicker @bind-Value="@Definition.DateOfProcess" DateFormat="d.M.yyyy" Placeholder="@Localizer["person.birthdate"]" /></div>
         <div class="col-md-3"><RadzenLabel Text="Anteil" /></div>
-        <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="P2" @bind-Value="@Definition.ClearRatio" Min="0" Max="1M" Step="0.005" /></div>
+        <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="P2" @bind-Value="@Definition.TransferRatio" Min="0" Max="1M" Step="0.005" /></div>
         <div class="col-md-3"><RadzenLabel Text="Versteuern" /></div>
         <div class="col-md-9"><RadzenSwitch @bind-Value="@Definition.IsTaxable" /></div>
     </div>
@@ -22,14 +22,14 @@
 @code {
 
     [Parameter]
-    public ClearAccountAction Definition { get; set; }
+    public TransferAccountAction Definition { get; set; }
 
     protected override void OnInitialized()
     {
         Definition.Flow = new FlowPair(AccountType.OccupationalPension, AccountType.Wealth);
         Definition.TaxType = TaxType.CapitalBenefits;
         Definition.IsTaxable = true;
-        Definition.Name = "Kapitalbezug";
-        Definition.ClearRatio = 1M;
+        Definition.Header.Name = "Kapitalbezug";
+        Definition.TransferRatio = 1M;
     }
 }
