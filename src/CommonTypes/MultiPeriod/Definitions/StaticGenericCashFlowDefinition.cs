@@ -1,10 +1,9 @@
 ﻿using System;
-using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
-public record GenericCashFlowDefinition : ICashFlowDefinition
+public record StaticGenericCashFlowDefinition : IStaticCashFlowDefinition
 {
     /// <summary>
     /// Gets or sets the header properties

@@ -3,7 +3,7 @@ using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 
-public record OrdinaryRetirementAction : ICashFlowDefinition
+public record OrdinaryRetirementAction : ICompositeCashFlowDefinition
 {
     /// <summary>
     /// Gets or sets the header properties

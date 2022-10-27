@@ -15,7 +15,7 @@ public record CashFlowDefinitionHolder
     /// The generic cash flow definitions.
     /// </value>
     public IReadOnlyCollection<ICashFlowDefinition> GenericCashFlowDefinitions { get; set; } =
-        Array.Empty<GenericCashFlowDefinition>().ToList();
+        Array.Empty<ICashFlowDefinition>().ToList();
 
     /// <summary>
     /// Gets the transfer action definitions.
@@ -24,7 +24,7 @@ public record CashFlowDefinitionHolder
     /// The transfer action definitions.
     /// </value>
     public IReadOnlyCollection<ICashFlowDefinition> TransferAccountActions { get; set; } =
-        Array.Empty<TransferAccountAction>().ToList();
+        Array.Empty<StaticTransferAccountAction>().ToList();
 
     /// <summary>
     /// Gets the change residence actions.
@@ -32,12 +32,12 @@ public record CashFlowDefinitionHolder
     /// <value>
     /// The change residence actions.
     /// </value>
-    public IReadOnlyCollection<ICashFlowDefinition> ChangeResidenceActions { get; set; } =
-        Array.Empty<ChangeResidenceAction>().ToList();
+    public IReadOnlyCollection<ICompositeCashFlowDefinition> Composites { get; set; } =
+        Array.Empty<ICompositeCashFlowDefinition>().ToList();
 
     /// <summary>
     /// Collection of cash-flow actions.
     /// </summary>
     public IReadOnlyCollection<ICashFlowDefinition> CashFlowActions { get; set; } =
-        Array.Empty<ICashFlowDefinition>().ToList();
+        Array.Empty<IStaticCashFlowDefinition>().ToList();
 }

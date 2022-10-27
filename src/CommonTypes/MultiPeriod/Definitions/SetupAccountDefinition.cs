@@ -1,15 +1,9 @@
 ﻿using System;
-using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
-public record SetupAccountDefinition : ICashFlowDefinition
+public record SetupAccountDefinition : ICompositeCashFlowDefinition
 {
-    public CashFlowHeader Header { get; set; }
-
-    /// <inheritdoc />
-    public DateTime DateOfProcess { get; set; }
-
     /// <summary>
     /// Gets or sets the initial wealth.
     /// </summary>

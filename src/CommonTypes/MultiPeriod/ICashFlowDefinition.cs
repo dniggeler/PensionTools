@@ -1,7 +1,7 @@
 ﻿using System;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
-namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
+namespace PensionCoach.Tools.CommonTypes.MultiPeriod;
 
 public interface ICashFlowDefinition
 {

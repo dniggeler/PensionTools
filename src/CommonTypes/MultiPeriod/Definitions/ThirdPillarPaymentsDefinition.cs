@@ -2,7 +2,7 @@
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
-public record ThirdPillarPaymentsDefinition
+public record ThirdPillarPaymentsDefinition : ICompositeCashFlowDefinition
 {
     /// <summary>
     /// Gets or sets the date of start.

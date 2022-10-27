@@ -4,7 +4,7 @@ using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 
-public record TransferAccountAction : ICashFlowDefinition
+public record StaticTransferAccountAction : IStaticCashFlowDefinition
 {
     /// <summary>
     /// Gets or sets the header properties
@@ -20,9 +20,9 @@ public record TransferAccountAction : ICashFlowDefinition
     public DateTime DateOfProcess { get; set; }
 
     /// <summary>
-    /// How much is transferred from the source to the target
+    /// Amount which is transferred from the source to the target
     /// </summary>
-    public decimal TransferRatio { get; set; } = decimal.One;
+    public decimal TransferAmount { get; set; }
 
     public FlowPair Flow { get; set; }
 

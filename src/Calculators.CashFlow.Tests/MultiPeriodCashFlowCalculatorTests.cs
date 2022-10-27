@@ -145,7 +145,7 @@ namespace Calculators.CashFlow.Tests
             Snapshot.Match(result, opt => opt.IgnoreFields("$..Id"));
         }
 
-        private static IEnumerable<GenericCashFlowDefinition> GetCashFlowDefinitions()
+        private static IEnumerable<StaticGenericCashFlowDefinition> GetCashFlowDefinitions()
         {
             yield return new ThirdPillarPaymentsDefinition
                 {
@@ -166,7 +166,7 @@ namespace Calculators.CashFlow.Tests
                 .CreateGenericDefinition();
         }
 
-        private static IEnumerable<GenericCashFlowDefinition> GetThirdPillarPaymentsDefinition()
+        private static IEnumerable<StaticGenericCashFlowDefinition> GetThirdPillarPaymentsDefinition()
         {
             yield return new ThirdPillarPaymentsDefinition
                 {
@@ -199,7 +199,7 @@ namespace Calculators.CashFlow.Tests
             return person;
         }
 
-        private IEnumerable<ICashFlowDefinition> GetCashFlowActions()
+        private IEnumerable<ICompositeCashFlowDefinition> GetCashFlowActions()
         {
             yield return new OrdinaryRetirementAction
             {

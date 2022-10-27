@@ -2,7 +2,7 @@
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
-public record PensionPlanPaymentsDefinition
+public record PurchaseInsuranceYearsPaymentsDefinition : ICompositeCashFlowDefinition
 {
     /// <summary>
     /// Gets or sets the date of start.

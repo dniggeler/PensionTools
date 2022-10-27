@@ -6,7 +6,7 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 /// <summary>
 /// Simulates the change of the residence. A change always happens at the end of a period.
 /// </summary>
-public record ChangeResidenceAction : ICashFlowDefinition
+public record ChangeResidenceAction : ICompositeCashFlowDefinition
 {
     /// <summary>
     /// Gets or sets the header properties

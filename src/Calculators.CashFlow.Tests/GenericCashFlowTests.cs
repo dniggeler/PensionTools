@@ -18,7 +18,7 @@ namespace Calculators.CashFlow.Tests
         public void Generate_Single_Allocation_For_10_Years()
         {
             // given
-            GenericCashFlowDefinition definition = new GenericCashFlowDefinition
+            StaticGenericCashFlowDefinition definition = new StaticGenericCashFlowDefinition
             {
                 Header = new CashFlowHeader
                 {
@@ -54,7 +54,7 @@ namespace Calculators.CashFlow.Tests
         public void Aggregate_Multiple_CashFlows()
         {
             // given
-            GenericCashFlowDefinition definition1 = new GenericCashFlowDefinition
+            StaticGenericCashFlowDefinition definition1 = new StaticGenericCashFlowDefinition
             {
                 Header = new CashFlowHeader
                 {
@@ -79,7 +79,7 @@ namespace Calculators.CashFlow.Tests
                 TaxType = TaxType.Wealth
             };
 
-            GenericCashFlowDefinition definition2 = new GenericCashFlowDefinition
+            StaticGenericCashFlowDefinition definition2 = new StaticGenericCashFlowDefinition
             {
                 Header = new CashFlowHeader
                 {
@@ -104,7 +104,7 @@ namespace Calculators.CashFlow.Tests
                 TaxType = TaxType.Wealth,
             };
 
-            GenericCashFlowDefinition definition3 = new GenericCashFlowDefinition
+            StaticGenericCashFlowDefinition definition3 = new StaticGenericCashFlowDefinition
             {
                 Header = new CashFlowHeader
                 {
