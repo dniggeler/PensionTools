@@ -20,6 +20,11 @@ namespace PensionCoach.Tools.CommonUtils
             return new DateTime(dateOfBirth.Year + bvgAge + 1, 1, 1);
         }
 
+        public static DateTime BeginOfYearDate(this DateTime date)
+        {
+            return new DateTime(date.Year, 1, 1);
+        }
+
         public static DateTime GetEndOfYearDate(this DateTime date)
         {
             return new DateTime(date.Year, 1, 1).AddYears(1);

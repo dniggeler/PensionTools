@@ -37,7 +37,10 @@
         <RadzenPanelMenu style="height: 100%">
             <ChildContent>
                 <RadzenPanelMenuItem Text="Personen" Path="PersonListing"></RadzenPanelMenuItem>
-                <RadzenPanelMenuItem Text="Steuerrechner" Path="TaxCalculation"></RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Text="Steuerrechner">
+                    <RadzenPanelMenuItem Text="Einkommen/Vermögen" Path="/TaxComparer/TaxCalculation"></RadzenPanelMenuItem>
+                    <RadzenPanelMenuItem Text="Grenzsteuer" Path="/TaxComparer/MarginalTax"></RadzenPanelMenuItem>
+                </RadzenPanelMenuItem>
                 <RadzenPanelMenuItem Text="Gemeindevergleich">
                     <RadzenPanelMenuItem Text="Einkommen/Vermögen" Path="/TaxComparer/IncomeAndWealth"></RadzenPanelMenuItem>
                     <RadzenPanelMenuItem Text="Kapitalbezug" Path="/TaxComparer/CapitalBenefits"></RadzenPanelMenuItem>

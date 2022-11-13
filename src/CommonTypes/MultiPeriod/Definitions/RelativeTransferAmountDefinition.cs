@@ -1,10 +1,9 @@
 ﻿using System;
-using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 using PensionCoach.Tools.CommonTypes.Tax;
 
-namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
+namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
-public record StaticTransferAccountAction : IStaticCashFlowDefinition
+public record RelativeTransferAmountDefinition : ICompositeCashFlowDefinition
 {
     /// <summary>
     /// Gets or sets the header properties
@@ -22,7 +21,7 @@ public record StaticTransferAccountAction : IStaticCashFlowDefinition
     /// <summary>
     /// Amount which is transferred from the source to the target
     /// </summary>
-    public decimal TransferAmount { get; set; }
+    public decimal TransferRatio { get; set; }
 
     public FlowPair Flow { get; set; }
 

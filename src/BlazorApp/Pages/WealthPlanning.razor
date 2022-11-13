@@ -282,7 +282,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     };
 
     private IEnumerable<StaticGenericCashFlowDefinition> genericCashFlowDefinitions = new List<StaticGenericCashFlowDefinition>();
-    private StaticTransferAccountAction clearAccountAction = new();
+    private RelativeTransferAmountDefinition clearAccountAction = new();
 
     private TaxPerson taxPerson;
     private PersonViewModel selectedPerson;
@@ -359,8 +359,8 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     {
         multiPeriodCalculationResponse = null;
         request.Options = simulationOptions;
-        request.CashFlowDefinitionHolder.GenericCashFlowDefinitions = genericCashFlowDefinitions.ToList();
-        request.CashFlowDefinitionHolder.TransferAccountActions = new List<StaticTransferAccountAction>() { clearAccountAction };
+        request.CashFlowDefinitionHolder.StaticGenericCashFlowDefinitions = genericCashFlowDefinitions.ToList();
+        request.CashFlowDefinitionHolder.Composites = new List<ICompositeCashFlowDefinition> { clearAccountAction };
         multiPeriodCalculationResponse = await multiPeriodCalculationService.CalculateAsync(request);
 
         (ChartDataItemModel[] wealthData, ChartDataItemModel[] capitalBenefitsData, ChartDataItemModel[] totalData) = GetTotalDataItems();

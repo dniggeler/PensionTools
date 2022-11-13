@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper.Configuration.Conventions;
+using Calculators.CashFlow.Accounts;
 using Calculators.CashFlow.Models;
 using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.CommonTypes;
@@ -8,6 +10,7 @@ using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 using PensionCoach.Tools.CommonTypes.Tax;
+using PensionCoach.Tools.CommonUtils;
 
 namespace Calculators.CashFlow;
 
@@ -18,7 +21,6 @@ public static class CashFlowHelperExtensions
         return definition switch
         {
             StaticGenericCashFlowDefinition d => d.GenerateCashFlow(),
-            StaticTransferAccountAction a => a.GenerateCashFlow(),
             _ => Array.Empty<CashFlowModel>()
         };
     }
@@ -30,7 +32,7 @@ public static class CashFlowHelperExtensions
             definition.InvestmentPeriod.NumberOfPeriods);
 
         yield return new CashFlowModel(
-            new DateOnly(definition.InvestmentPeriod.Year, 1, 1),
+            DateOnly.FromDateTime(definition.DateOfProcess), 
             definition.InitialAmount,
             AccountType.Exogenous,
             definition.Flow.Target,
@@ -39,10 +41,11 @@ public static class CashFlowHelperExtensions
 
         decimal cashFlow = definition.RecurringInvestment.Amount;
 
+        var currentDate = DateOnly.FromDateTime(definition.DateOfProcess);
         foreach (var year in range)
         {
             yield return new CashFlowModel(
-                new DateOnly(year, 1, 1),
+                currentDate.AddYears(year - definition.DateOfProcess.Year),
                 cashFlow,
                 definition.Flow.Source,
                 definition.Flow.Target,
@@ -53,18 +56,58 @@ public static class CashFlowHelperExtensions
         }
     }
 
-    public static IEnumerable<CashFlowModel> GenerateCashFlow(this StaticTransferAccountAction action)
+    public static IEnumerable<ICashFlowDefinition> CreateGenericDefinition(this FixedTransferAmountDefinition action)
     {
-        yield return new CashFlowModel(
-            DateOnly.FromDateTime(action.DateOfProcess),
-            68_000,
-            action.Flow.Source,
-            action.Flow.Target,
-            action.IsTaxable,
-            action.TaxType);
+        yield return new StaticGenericCashFlowDefinition
+        {
+            Header = new CashFlowHeader { Id = "transferAmount", Name = "Transfer Fixed Amount" },
+            DateOfProcess = action.DateOfProcess,
+            InitialAmount = decimal.Zero,
+            NetGrowthRate = decimal.Zero,
+            Flow = new FlowPair(action.Flow.Source, action.Flow.Target),
+            RecurringInvestment = new RecurringInvestment
+            {
+                Amount = action.TransferAmount,
+                Frequency = FrequencyType.Yearly,
+            },
+            InvestmentPeriod = new InvestmentPeriod
+            {
+                Year = action.DateOfProcess.Year,
+                NumberOfPeriods = 1,
+            },
+            IsTaxable = action.IsTaxable,
+            TaxType = action.TaxType
+        };
     }
 
-    public static IEnumerable<StaticGenericCashFlowDefinition> CreateGenericDefinition(
+    public static IEnumerable<IStaticCashFlowDefinition> CreateGenericDefinition(
+        this DynamicTransferAccountAction action, Dictionary<AccountType, ICashFlowAccount> accounts)
+    {
+        decimal transferAmount = accounts[action.Flow.Source].Balance * action.TransferRatio;
+
+        yield return new StaticGenericCashFlowDefinition
+        {
+            Header = new CashFlowHeader { Id = "transferAmount", Name = "Transfer Amount By Ratio" },
+            DateOfProcess = action.DateOfProcess,
+            InitialAmount = decimal.Zero,
+            NetGrowthRate = decimal.Zero,
+            Flow = new FlowPair(action.Flow.Source, action.Flow.Target),
+            RecurringInvestment = new RecurringInvestment
+            {
+                Amount = transferAmount,
+                Frequency = FrequencyType.Yearly,
+            },
+            InvestmentPeriod = new InvestmentPeriod
+            {
+                Year = action.DateOfProcess.Year,
+                NumberOfPeriods = 1,
+            },
+            IsTaxable = action.IsTaxable,
+            TaxType = action.TaxType
+        };
+    }
+
+    public static IEnumerable<ICashFlowDefinition> CreateGenericDefinition(
         this SetupAccountDefinition accountDefinition, DateTime dateOfStart)
     {
         yield return new StaticGenericCashFlowDefinition
@@ -140,9 +183,10 @@ public static class CashFlowHelperExtensions
         };
     }
 
-    public static StaticGenericCashFlowDefinition CreateGenericDefinition(this PurchaseInsuranceYearsPaymentsDefinition purchaseDefinition)
+    public static IEnumerable<ICashFlowDefinition> CreateGenericDefinition(
+        this PurchaseInsuranceYearsPaymentsDefinition purchaseDefinition)
     {
-        return new StaticGenericCashFlowDefinition
+        yield return new StaticGenericCashFlowDefinition
         {
             Header = new CashFlowHeader
             {
@@ -168,12 +212,15 @@ public static class CashFlowHelperExtensions
         };
     }
 
-    public static StaticGenericCashFlowDefinition CreateGenericDefinition(
+    public static IEnumerable<ICashFlowDefinition> CreateGenericDefinition(
         this SalaryPaymentsDefinition salaryDefinition, DateTime dateOfStart)
     {
-        return new StaticGenericCashFlowDefinition
+        int numberOfInvestments = salaryDefinition.DateOfEndOfPeriod.Year - dateOfStart.Year;
+
+        // payments for all periods except the last one
+        yield return new StaticGenericCashFlowDefinition
         {
-            Header = new CashFlowHeader()
+            Header = new CashFlowHeader
             {
                 Id = "SalaryPaymentsDefinition",
                 Name = "SalaryPaymentsDefinition"
@@ -182,7 +229,7 @@ public static class CashFlowHelperExtensions
             InvestmentPeriod = new InvestmentPeriod
             {
                 Year = dateOfStart.Year,
-                NumberOfPeriods = salaryDefinition.NumberOfInvestments,
+                NumberOfPeriods = numberOfInvestments,
             },
             Flow = new FlowPair(AccountType.Exogenous, AccountType.Income),
             InitialAmount = decimal.Zero,
@@ -195,11 +242,42 @@ public static class CashFlowHelperExtensions
             IsTaxable = true,
             TaxType = TaxType.Income
         };
+
+        // last period (might be pro-rated)
+        DateTime dateOfBeginYear = salaryDefinition.DateOfEndOfPeriod.BeginOfYearDate();
+        decimal lastPeriodPayment = salaryDefinition.YearlyAmount *
+                                    (salaryDefinition.DateOfEndOfPeriod.GetYears360() -
+                                     dateOfBeginYear.GetYears360());
+
+        yield return new StaticGenericCashFlowDefinition
+        {
+            Header = new CashFlowHeader
+            {
+                Id = "SalaryPaymentsDefinition",
+                Name = "SalaryPaymentsDefinition"
+            },
+            DateOfProcess = dateOfBeginYear,
+            InvestmentPeriod = new InvestmentPeriod
+            {
+                Year = dateOfStart.Year,
+                NumberOfPeriods = 0
+            },
+            Flow = new FlowPair(AccountType.Exogenous, AccountType.Income),
+            InitialAmount = lastPeriodPayment,
+            NetGrowthRate = decimal.Zero,
+            RecurringInvestment = new RecurringInvestment
+            {
+                Amount = decimal.Zero,
+                Frequency = FrequencyType.Yearly
+            },
+            IsTaxable = true,
+            TaxType = TaxType.Income
+        };
     }
 
-    public static StaticGenericCashFlowDefinition CreateGenericDefinition(this ThirdPillarPaymentsDefinition thirdPillarDefinition)
+    public static IEnumerable<IStaticCashFlowDefinition> CreateGenericDefinition(this ThirdPillarPaymentsDefinition thirdPillarDefinition)
     {
-        return new StaticGenericCashFlowDefinition
+        yield return new StaticGenericCashFlowDefinition
         {
             Header = new CashFlowHeader
             {
@@ -226,11 +304,27 @@ public static class CashFlowHelperExtensions
     }
 
     public static IEnumerable<ICashFlowDefinition> CreateGenericDefinition(
-        this IDynamicCashFlowDefinition cashFlowAction, MultiPeriodCalculatorPerson person)
+        this ICompositeCashFlowDefinition cashFlowAction, MultiPeriodCalculatorPerson person, DateTime dateOfStart)
     {
         return cashFlowAction switch
         {
             OrdinaryRetirementAction a => a.CreateCashFlows(person),
+            SetupAccountDefinition s => s.CreateGenericDefinition(dateOfStart),
+            SalaryPaymentsDefinition p => p.CreateGenericDefinition(dateOfStart),
+            FixedTransferAmountDefinition t => t.CreateGenericDefinition(),
+            ThirdPillarPaymentsDefinition p => p.CreateGenericDefinition(),
+            PurchaseInsuranceYearsPaymentsDefinition y => y.CreateGenericDefinition(),
+            _ => Array.Empty<StaticGenericCashFlowDefinition>()
+        };
+    }
+
+    public static IEnumerable<IStaticCashFlowDefinition> CreateGenericDefinition(
+        this IDynamicCashFlowDefinition dynamicCashFlowDefinition, Dictionary<AccountType, ICashFlowAccount> accounts)
+    {
+        return dynamicCashFlowDefinition switch
+        {
+            DynamicTransferAccountAction t => t.CreateGenericDefinition(accounts),
+
             _ => Array.Empty<StaticGenericCashFlowDefinition>()
         };
     }

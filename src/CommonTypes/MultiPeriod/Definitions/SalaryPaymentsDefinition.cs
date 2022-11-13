@@ -1,4 +1,6 @@
-﻿namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
+﻿using System;
+
+namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
 public record SalaryPaymentsDefinition : ICompositeCashFlowDefinition
 {
@@ -16,7 +18,8 @@ public record SalaryPaymentsDefinition : ICompositeCashFlowDefinition
     public decimal YearlyAmount { get; set; }
 
     /// <summary>
-    /// Gets or sets the number of investments (one per year).
+    /// Gets or sets the end of period. It marks not the final salary payment
+    /// but is used the calculate the pro-rated yearly amount in the last payment period.
     /// </summary>
-    public int NumberOfInvestments { get; set; }
+    public DateTime DateOfEndOfPeriod { get; set; }
 }

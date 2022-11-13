@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
+﻿namespace PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
 public record SetupAccountDefinition : ICompositeCashFlowDefinition
 {

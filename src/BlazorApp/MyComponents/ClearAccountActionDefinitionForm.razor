@@ -2,6 +2,7 @@
 @using PensionCoach.Tools.CommonTypes
 @using PensionCoach.Tools.CommonTypes.MultiPeriod
 @using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions
+@using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions
 @using PensionCoach.Tools.CommonTypes.Tax
 
 @inject IStringLocalizer<Resource> Localizer
@@ -22,7 +23,7 @@
 @code {
 
     [Parameter]
-    public StaticTransferAccountAction Definition { get; set; }
+    public RelativeTransferAmountDefinition Definition { get; set; }
 
     protected override void OnInitialized()
     {

@@ -40,11 +40,12 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
 
     /// <inheritdoc />
     public async Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
+        int startingYear,
         MultiPeriodCalculatorPerson person,
         CashFlowDefinitionHolder cashFlowDefinitionHolder,
         MultiPeriodOptions options)
     {
-        DateTime dateOfStart = DateTime.Today;
+        DateTime dateOfStart = new DateTime(startingYear, 1, 1);
 
         ExogenousAccount exogenousAccount = new() { Id = Guid.NewGuid(), Name = "Exogenous Account", };
 
@@ -66,20 +67,20 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
         IEnumerable<ICashFlowDefinition> definitionFromComposites = cashFlowDefinitionHolder.Composites
             .SelectMany(composite => composite.CreateGenericDefinition(person, dateOfStart));
 
-        IEnumerable<CashFlowModel> cashFlowFromDefinitions = cashFlowDefinitionHolder.GenericCashFlowDefinitions
-            .OfType<IStaticCashFlowDefinition>()
+        IEnumerable<CashFlowModel> staticCashFlowsFromComposites = definitionFromComposites
+            .OfType<StaticGenericCashFlowDefinition>()
             .SelectMany(d => d.GenerateCashFlow())
             .AggregateCashFlows();
 
-        IEnumerable<CashFlowModel> cashFlowFromActions = cashFlowDefinitionHolder.CashFlowActions
-            .SelectMany(a => a.CreateGenericDefinition(person))
+        IEnumerable<CashFlowModel> staticCashFlowsFromGenerics = cashFlowDefinitionHolder.StaticGenericCashFlowDefinitions
             .SelectMany(d => d.GenerateCashFlow())
             .AggregateCashFlows();
 
-        IEnumerable<CashFlowModel> cashFlows = cashFlowFromDefinitions.Concat(cashFlowFromActions).ToList();
+        IEnumerable<CashFlowModel> staticCashFlows = staticCashFlowsFromGenerics
+            .Concat(staticCashFlowsFromComposites)
+            .ToList();
 
-        int startingYear = cashFlows.Min(item => item.DateOfProcess.Year);
-        int finalYear = cashFlows.Max(item => item.DateOfProcess.Year);
+        int finalYear = staticCashFlows.Max(item => item.DateOfProcess.Year);
 
         List<SinglePeriodCalculationResult> singlePeriodCalculationResults =
             Enumerable.Empty<SinglePeriodCalculationResult>().ToList();
@@ -104,35 +105,23 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
             {
                 var currentDateAsDateTime = currentDate.ToDateTime(TimeOnly.MinValue);
 
-                List<CashFlowModel> currentDateCashFlows = cashFlows
+                List<CashFlowModel> currentDateStaticCashFlows = staticCashFlows
                     .Where(item => item.DateOfProcess == currentDate)
                     .ToList();
 
-                List<IStaticCashFlowDefinition> currentDateClearAccountActions = cashFlowDefinitionHolder
-                    .TransferAccountActions
-                    .Where(item => item.DateOfProcess == currentDateAsDateTime)
-                    .ToList();
-
-                List<IStaticCashFlowDefinition> currentDateChangeResidenceActions = cashFlowDefinitionHolder
+                List<ChangeResidenceAction> currentDateChangeResidenceActions = cashFlowDefinitionHolder
                     .ChangeResidenceActions
                     .Where(item => item.DateOfProcess == currentDateAsDateTime)
                     .ToList();
 
-                // 1. process simple cash-flow: move amount from source to target account
-                foreach (var cashFlow in currentDateCashFlows)
-                {
-                    currentAccounts = ProcessSimpleCashFlow(currentAccounts, cashFlow);
-                }
+                List<CashFlowModel> currentDateDynamicCashFlows = definitionFromComposites
+                    .OfType<IDynamicCashFlowDefinition>()
+                    .Where(item => item.DateOfProcess == currentDateAsDateTime)
+                    .SelectMany(item => item.CreateGenericDefinition(currentAccounts))
+                    .SelectMany(item => item.GenerateCashFlow())
+                    .ToList();
 
-                // 2. apply taxable clearing cash-flows
-                foreach (var clearAction in currentDateClearAccountActions
-                             .OfType<StaticTransferAccountAction>()
-                             .Where(item => item.IsTaxable))
-                {
-                    currentAccounts = await ProcessClearingActionAsync(currentAccounts, clearAction, person);
-                }
-
-                // 3. change residence
+                // 1. change residence
                 foreach (var changeAction in currentDateChangeResidenceActions.OfType<ChangeResidenceAction>())
                 {
                     currentPerson = currentPerson with
@@ -142,6 +131,12 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
                     };
 
                     currentAccounts = ProcessResidenceChangeAction(currentAccounts, changeAction);
+                }
+
+                // 2. process simple cash-flow: move amount from source to target account
+                foreach (CashFlowModel cashFlow in currentDateStaticCashFlows.Concat(currentDateDynamicCashFlows))
+                {
+                    currentAccounts = await ProcessSimpleCashFlowAsync(currentAccounts, cashFlow, person);
                 }
             }
 
@@ -184,50 +179,37 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
                 InitialWealth = person.Wealth
             };
 
-        ICompositeCashFlowDefinition salaryCashFlowDefinition = new SalaryPaymentsDefinition
-            {
-                YearlyAmount = person.Income,
-                NumberOfInvestments = numberOfPeriods,
-                NetGrowthRate = options.SalaryNetGrowthRate,
-            };
-
         CashFlowDefinitionHolder extendedDefinitionHolder = cashFlowDefinitionHolder with
         {
-            Composites = new[] { salaryCashFlowDefinition, accountSetupDefinition }
+            Composites = cashFlowDefinitionHolder.Composites
+                .Concat(new[] { accountSetupDefinition })
                 .ToList()
         };
 
-        return CalculateAsync(person, extendedDefinitionHolder, options);
+        return CalculateAsync(startingYear, person, extendedDefinitionHolder, options);
     }
 
-    private Dictionary<AccountType, ICashFlowAccount> ProcessSimpleCashFlow(
-        Dictionary<AccountType, ICashFlowAccount> currentAccounts, CashFlowModel cashFlow)
+    private async Task<Dictionary<AccountType, ICashFlowAccount>> ProcessSimpleCashFlowAsync(
+        Dictionary<AccountType, ICashFlowAccount> currentAccounts, CashFlowModel cashFlow, MultiPeriodCalculatorPerson person)
     {
         ICashFlowAccount creditAccount = currentAccounts[cashFlow.Target];
         ICashFlowAccount debitAccount = currentAccounts[cashFlow.Source];
 
         ExecuteTransaction(debitAccount, creditAccount, "Simple cash-flow", cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue), cashFlow.Amount);
 
-        return currentAccounts;
-    }
+        if (cashFlow.IsTaxable)
+        {
+            // Tax reduces wealth as transaction is taxable.
+            if (cashFlow.TaxType == TaxType.CapitalBenefits)
+            {
+                var taxPaymentAmount = await CalculateCapitalBenefitsTaxAsync(cashFlow.DateOfProcess.Year, person, cashFlow.Amount);
 
-    private async Task<Dictionary<AccountType, ICashFlowAccount>> ProcessClearingActionAsync(
-        Dictionary<AccountType, ICashFlowAccount> currentAccounts, StaticTransferAccountAction clearingAction, MultiPeriodCalculatorPerson person)
-    {
-        decimal taxableAmount = currentAccounts[clearingAction.Flow.Source].Balance * clearingAction.TransferRatio;
+                ICashFlowAccount wealthAccount = currentAccounts[AccountType.Wealth];
+                ICashFlowAccount exogenousAccount = currentAccounts[AccountType.Exogenous];
 
-        ICashFlowAccount creditAccount = currentAccounts[clearingAction.Flow.Target];
-        ICashFlowAccount debitAccount = currentAccounts[clearingAction.Flow.Source];
-
-        ExecuteTransaction(debitAccount, creditAccount, "Clear account", clearingAction.DateOfProcess, taxableAmount);
-
-        // Tax reduces wealth as transaction is taxable.
-        var taxPaymentAmount = await CalculateCapitalBenefitsTaxAsync(clearingAction.DateOfProcess.Year, person, taxableAmount);
-
-        ICashFlowAccount wealthAccount = currentAccounts[AccountType.Wealth];
-        ICashFlowAccount exogenousAccount = currentAccounts[AccountType.Exogenous];
-
-        ExecuteTransaction(wealthAccount, exogenousAccount, "Tax payment", clearingAction.DateOfProcess, taxPaymentAmount);
+                ExecuteTransaction(wealthAccount, exogenousAccount, "Tax payment", cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue), taxPaymentAmount);
+            }
+        }
 
         return currentAccounts;
     }

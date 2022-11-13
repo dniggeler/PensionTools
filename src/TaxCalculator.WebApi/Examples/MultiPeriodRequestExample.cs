@@ -34,7 +34,7 @@ namespace TaxCalculator.WebApi.Examples
                 PartnerReligiousGroupType = ReligiousGroupType.Other,
                 CashFlowDefinitionHolder = new CashFlowDefinitionHolder
                 {
-                    TransferAccountActions = new List<StaticTransferAccountAction>
+                    Composites = new List<RelativeTransferAmountDefinition>
                     {
                         new ()
                         {
@@ -67,7 +67,7 @@ namespace TaxCalculator.WebApi.Examples
                         },
                     },
 
-                    GenericCashFlowDefinitions = new List<StaticGenericCashFlowDefinition>
+                    StaticGenericCashFlowDefinitions = new List<StaticGenericCashFlowDefinition>
                     {
                         new ()
                         {

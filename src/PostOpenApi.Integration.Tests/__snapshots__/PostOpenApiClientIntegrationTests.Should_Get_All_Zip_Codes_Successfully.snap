@@ -2701,15 +2701,6 @@
   },
   {
     "BfsCode": 230,
-    "ZipCode": "8408",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Winterthur 8 Zustellung",
-    "Canton": "ZH",
-    "DateOfValidity": "2003-11-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 230,
     "ZipCode": "8409",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Winterthur",
@@ -7440,6 +7431,15 @@
     "MunicipalityName": "Interlaken Zustellung",
     "Canton": "BE",
     "DateOfValidity": "2003-09-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 581,
+    "ZipCode": "3800",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Interlaken Zustellung P",
+    "Canton": "BE",
+    "DateOfValidity": "1999-06-30T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -24248,15 +24248,6 @@
   {
     "BfsCode": 3443,
     "ZipCode": "9200",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Gossau SG 2",
-    "Canton": "SG",
-    "DateOfValidity": "1997-02-24T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3443,
-    "ZipCode": "9200",
     "ZipCodeAddOn": "50",
     "MunicipalityName": "Gossau SG Logistikzentrum",
     "Canton": "SG",
@@ -24270,6 +24261,15 @@
     "MunicipalityName": "Gossau SG LZB FP",
     "Canton": "SG",
     "DateOfValidity": "2012-09-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3443,
+    "ZipCode": "9200",
+    "ZipCodeAddOn": "02",
+    "MunicipalityName": "Gossau SG Mettendorf",
+    "Canton": "SG",
+    "DateOfValidity": "1997-02-24T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -28761,6 +28761,15 @@
     "MunicipalityName": "Menziken",
     "Canton": "AG",
     "DateOfValidity": "1995-12-07T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 4139,
+    "ZipCode": "5737",
+    "ZipCodeAddOn": "02",
+    "MunicipalityName": "Menziken Gässli",
+    "Canton": "AG",
+    "DateOfValidity": "2022-10-17T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -34184,15 +34193,6 @@
   {
     "BfsCode": 5192,
     "ZipCode": "6900",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Lugano Distribuzione",
-    "Canton": "TI",
-    "DateOfValidity": "1998-03-18T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5192,
-    "ZipCode": "6900",
     "ZipCodeAddOn": "07",
     "MunicipalityName": "Lugano Loreto",
     "Canton": "TI",
@@ -35286,15 +35286,6 @@
     "MunicipalityName": "Mendrisio Borgo",
     "Canton": "TI",
     "DateOfValidity": "1995-09-07T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5254,
-    "ZipCode": "6850",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Mendrisio Distribuzione",
-    "Canton": "TI",
-    "DateOfValidity": "2003-10-01T00:00:00",
     "LanguageCode": 0
   },
   {

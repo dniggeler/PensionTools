@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Calculators.CashFlow.Models;
 using LanguageExt;
+using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
+using PensionCoach.Tools.CommonUtils;
 using Snapshooter.Xunit;
 using Xunit;
 
@@ -102,9 +104,8 @@ namespace Calculators.CashFlow.Tests
                 person,
                 new CashFlowDefinitionHolder
                 {
-                    GenericCashFlowDefinitions = GetCashFlowDefinitions().ToList(),
                     ChangeResidenceActions = GetChangeResidenceActions().ToList(),
-                    CashFlowActions = GetCashFlowActions().ToList()
+                    Composites = GetComposites(person).ToList()
                 },
                 options);
 
@@ -137,7 +138,7 @@ namespace Calculators.CashFlow.Tests
                 person,
                 new CashFlowDefinitionHolder
                 {
-                    GenericCashFlowDefinitions = GetThirdPillarPaymentsDefinition().ToList(),
+                    StaticGenericCashFlowDefinitions = GetThirdPillarPaymentsDefinition().ToList(),
                 },
                 options);
 
@@ -145,30 +146,9 @@ namespace Calculators.CashFlow.Tests
             Snapshot.Match(result, opt => opt.IgnoreFields("$..Id"));
         }
 
-        private static IEnumerable<StaticGenericCashFlowDefinition> GetCashFlowDefinitions()
+        private static IEnumerable<IStaticCashFlowDefinition> GetThirdPillarPaymentsDefinition()
         {
-            yield return new ThirdPillarPaymentsDefinition
-                {
-                    NetGrowthRate = decimal.Zero,
-                    DateOfStart = new DateTime(2021, 1, 1),
-                    NumberOfInvestments = 10,
-                    YearlyAmount = 6883,
-                }
-                .CreateGenericDefinition();
-
-            yield return new PensionPlanPaymentsDefinition
-                {
-                    DateOfStart = new DateTime(2021, 1, 1),
-                    NetGrowthRate = 0,
-                    YearlyAmount = 10000,
-                    NumberOfInvestments = 5
-                }
-                .CreateGenericDefinition();
-        }
-
-        private static IEnumerable<StaticGenericCashFlowDefinition> GetThirdPillarPaymentsDefinition()
-        {
-            yield return new ThirdPillarPaymentsDefinition
+            return new ThirdPillarPaymentsDefinition
                 {
                     DateOfStart = new DateTime(2021, 1, 1),
                     NetGrowthRate = 0.0M,
@@ -199,8 +179,19 @@ namespace Calculators.CashFlow.Tests
             return person;
         }
 
-        private IEnumerable<ICompositeCashFlowDefinition> GetCashFlowActions()
+        private IEnumerable<ICompositeCashFlowDefinition> GetComposites(
+            MultiPeriodCalculatorPerson person)
         {
+            DateTime startDate = new DateTime(2021, 1, 1);
+            DateTime retirementDate = person.DateOfBirth.GetRetirementDate(person.Gender);
+
+            yield return new SalaryPaymentsDefinition
+            {
+                YearlyAmount = person.Income,
+                DateOfEndOfPeriod = retirementDate,
+                NetGrowthRate = 0.01M,
+            };
+
             yield return new OrdinaryRetirementAction
             {
                 Header = new CashFlowHeader
@@ -213,6 +204,22 @@ namespace Calculators.CashFlow.Tests
                 CapitalConsumptionAmountPerYear = 20_000,
                 CapitalOptionFactor = 0,
                 RetirementPension = 34_000
+            };
+
+            yield return new ThirdPillarPaymentsDefinition
+            {
+                NetGrowthRate = decimal.Zero,
+                DateOfStart = startDate,
+                NumberOfInvestments = 10,
+                YearlyAmount = 6883,
+            };
+
+            yield return new PurchaseInsuranceYearsPaymentsDefinition
+            {
+                DateOfStart = startDate,
+                NetGrowthRate = 0,
+                YearlyAmount = 10000,
+                NumberOfInvestments = 5
             };
         }
 
