@@ -31,6 +31,7 @@ namespace PensionCoach.Tools.TaxCalculator
             collection.AddTransient<IAggregatedBasisTaxCalculator, ProprietaryAggregatedBasisTaxCalculator>();
             collection.AddTransient<IStateTaxCalculator, ProprietaryStateTaxCalculator>();
             collection.AddTransient<ITaxCalculatorConnector, TaxCalculatorConnector>();
+            collection.AddTransient<IMarginalTaxCurveCalculatorConnector, MarginalTaxCurveCalculatorConnector>();
             collection.AddTransient<IAdminConnector, AdminConnector>();
 
             collection.AddFullTaxCalculators(configuration);

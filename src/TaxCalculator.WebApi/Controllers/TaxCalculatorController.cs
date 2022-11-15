@@ -18,13 +18,16 @@ namespace TaxCalculator.WebApi.Controllers;
 public class TaxCalculatorController : ControllerBase
 {
     private readonly ITaxCalculatorConnector taxCalculatorConnector;
+    private readonly IMarginalTaxCurveCalculatorConnector marginalTaxCurveCalculatorConnector;
     private readonly IMunicipalityConnector municipalityResolver;
 
     public TaxCalculatorController(
         ITaxCalculatorConnector taxCalculatorConnector,
+        IMarginalTaxCurveCalculatorConnector marginalTaxCurveCalculatorConnector,
         IMunicipalityConnector municipalityResolver)
     {
         this.taxCalculatorConnector = taxCalculatorConnector;
+        this.marginalTaxCurveCalculatorConnector = marginalTaxCurveCalculatorConnector;
         this.municipalityResolver = municipalityResolver;
     }
 
@@ -103,6 +106,71 @@ public class TaxCalculatorController : ControllerBase
     }
 
     /// <summary>
+    /// Calculates marginal income tax rate curve.
+    /// </summary>
+    /// <param name="request">The request.</param>
+    /// <returns>Calculation results.</returns>
+    /// <remarks>
+    /// Berechnet die Grenzsteuersatzkurve für die Einkommenssteuer. Ein Punkt auf der Kurve sagt aus, wie hoch der Steueranteil
+    /// für einen zusätzlichen Einkommensfranken ist.
+    /// </remarks>
+    [HttpPost]
+    [Route("marginaltaxcurve/income")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<FullTaxResponse>> CalculateMarginalIncomeTaxCurve(MarginalTaxRequest request)
+    {
+        if (request == null)
+        {
+            return BadRequest(nameof(request));
+        }
+
+        var taxPerson = MapRequest();
+
+        var salaryRange = MapSalaryRange();
+
+        Either<string, MarginalTaxCurveResult> result =
+            await marginalTaxCurveCalculatorConnector.CalculateIncomeTaxCurveAsync(
+                request.CalculationYear, request.BfsMunicipalityId, taxPerson, salaryRange);
+
+        return result
+            .Match<ActionResult>(
+                Right: r => Ok(MapResponse(r)),
+                Left: BadRequest);
+
+        (int, int) MapSalaryRange()
+        {
+            int lowerLimit = request.LowerSalaryLimit;
+            int upperLimit = request.UpperSalaryLimit;
+
+            return (Math.Min(lowerLimit, upperLimit), Math.Max(lowerLimit, upperLimit));
+        }
+
+        MarginalTaxCurveResult MapResponse(MarginalTaxCurveResult r)
+        {
+            return r;
+        }
+
+        TaxPerson MapRequest()
+        {
+            var name = string.IsNullOrEmpty(request.Name)
+                ? Guid.NewGuid().ToString().Substring(0, 6)
+                : request.Name;
+
+            return new TaxPerson
+            {
+                Name = name,
+                CivilStatus = request.CivilStatus,
+                ReligiousGroupType = request.ReligiousGroup,
+                PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
+                NumberOfChildren = 0,
+                TaxableIncome = request.TaxableAmount,
+            };
+        }
+    }
+
+    /// <summary>
     /// Calculates the overall capital benefit tax including state, municipality and
     /// federal tax amounts.
     /// </summary>
@@ -169,6 +237,70 @@ public class TaxCalculatorController : ControllerBase
                 PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
                 NumberOfChildren = 0,
                 TaxableCapitalBenefits = request.TaxableBenefits,
+            };
+        }
+    }
+
+    /// <summary>
+    /// Calculates marginal income tax rate curve.
+    /// </summary>
+    /// <param name="request">The request.</param>
+    /// <returns>Calculation results.</returns>
+    /// <remarks>
+    /// Berechnet die Grenzsteuersatzkurve für die Kapitalbezugssteuer (z.B. Bezüge aus 3a- oder PK-Konten).
+    /// Ein Punkt auf der Kurve sagt aus, wie hoch der Steueranteil für einen Bezug eines zusätzlichen Frankens ist.
+    /// </remarks>
+    [HttpPost]
+    [Route("marginaltaxcurve/capitalbenefits")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<FullTaxResponse>> CalculateMarginalCapitalBenefitsTaxCurve(MarginalTaxRequest request)
+    {
+        if (request == null)
+        {
+            return BadRequest(nameof(request));
+        }
+
+        var taxPerson = MapRequest();
+
+        var salaryRange = MapSalaryRange();
+
+        Either<string, MarginalTaxCurveResult> result =
+            await marginalTaxCurveCalculatorConnector.CalculateCapitalBenefitTaxCurveAsync(
+                request.CalculationYear, request.BfsMunicipalityId, taxPerson, salaryRange);
+
+        return result
+            .Match<ActionResult>(
+                Right: r => Ok(MapResponse(r)),
+                Left: BadRequest);
+
+        (int, int) MapSalaryRange()
+        {
+            int lowerLimit = request.LowerSalaryLimit;
+            int upperLimit = request.UpperSalaryLimit;
+
+            return (Math.Min(lowerLimit, upperLimit), Math.Max(lowerLimit, upperLimit));
+        }
+
+        MarginalTaxCurveResult MapResponse(MarginalTaxCurveResult r)
+        {
+            return r;
+        }
+
+        CapitalBenefitTaxPerson MapRequest()
+        {
+            var name = string.IsNullOrEmpty(request.Name)
+                ? Guid.NewGuid().ToString().Substring(0, 6)
+                : request.Name;
+
+            return new CapitalBenefitTaxPerson
+            {
+                Name = name,
+                CivilStatus = request.CivilStatus,
+                ReligiousGroupType = request.ReligiousGroup,
+                PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
+                NumberOfChildren = 0,
+                TaxableCapitalBenefits = request.TaxableAmount,
             };
         }
     }
