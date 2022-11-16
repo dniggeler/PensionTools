@@ -119,7 +119,7 @@ public class TaxCalculatorController : ControllerBase
     [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<FullTaxResponse>> CalculateMarginalIncomeTaxCurve(MarginalTaxRequest request)
+    public async Task<ActionResult<MarginalTaxResponse>> CalculateMarginalIncomeTaxCurve(MarginalTaxRequest request)
     {
         if (request == null)
         {
