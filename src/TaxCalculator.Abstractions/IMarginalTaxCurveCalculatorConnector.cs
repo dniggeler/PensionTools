@@ -8,9 +8,19 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions;
 public interface IMarginalTaxCurveCalculatorConnector
 {
     Task<Either<string, MarginalTaxCurveResult>> CalculateIncomeTaxCurveAsync(
-        int calculationYear, int bfsMunicipalityId, TaxPerson person, (int LowerLimit, int UpperLimit) salaryRange);
+        int calculationYear,
+        int bfsMunicipalityId,
+        TaxPerson person,
+        int lowerLimit,
+        int upperLimit,
+        int numberOfSamples);
 
     Task<Either<string, MarginalTaxCurveResult>> CalculateCapitalBenefitTaxCurveAsync(
-        int calculationYear, int bfsMunicipalityId, CapitalBenefitTaxPerson person, (int LowerLimit, int UpperLimit) salaryRange);
+        int calculationYear,
+        int bfsMunicipalityId,
+        CapitalBenefitTaxPerson person,
+        int lowerLimit,
+        int upperLimit,
+        int numberOfSamples);
 
 }

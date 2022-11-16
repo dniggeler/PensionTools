@@ -26,7 +26,12 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
     }
 
     public async Task<Either<string, MarginalTaxCurveResult>> CalculateIncomeTaxCurveAsync(
-        int calculationYear, int bfsMunicipalityId, TaxPerson person, (int LowerLimit, int UpperLimit) salaryRange)
+        int calculationYear,
+        int bfsMunicipalityId,
+        TaxPerson person,
+        int lowerLimit,
+        int upperLimit,
+        int numberOfSamples)
     {
         MarginalTaxCurveResult result = new();
 
@@ -41,15 +46,19 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
         async Task<Dictionary<int, decimal>> CalculateInternalAsync(
             MunicipalityModel municipalityModel)
         {
-            const int salaryStepSize = 1_000;
+            int stepSize = (upperLimit - lowerLimit) / numberOfSamples;
 
             Dictionary<int, decimal> incomeTaxes = new Dictionary<int, decimal>();
 
-            int currentSalary = salaryRange.LowerLimit;
+            int currentSalary = lowerLimit;
 
-            while (currentSalary <= salaryRange.UpperLimit)
+            while (currentSalary <= upperLimit)
             {
-                TaxPerson currentPerson = person with { TaxableIncome = currentSalary };
+                TaxPerson currentPerson = person with
+                {
+                    TaxableIncome = currentSalary,
+                    TaxableFederalIncome = currentSalary
+                };
 
                 int salary = currentSalary;
                 (await fullWealthAndIncomeTaxCalculator.CalculateAsync(
@@ -59,7 +68,7 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
                         incomeTaxes.Add(salary, r.TotalTaxAmount);
                     });
 
-                currentSalary += salaryStepSize;
+                currentSalary += stepSize;
             }
 
             return incomeTaxes;
@@ -67,7 +76,12 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
     }
 
     public async Task<Either<string, MarginalTaxCurveResult>> CalculateCapitalBenefitTaxCurveAsync(
-        int calculationYear, int bfsMunicipalityId, CapitalBenefitTaxPerson person, (int LowerLimit, int UpperLimit) salaryRange)
+        int calculationYear,
+        int bfsMunicipalityId,
+        CapitalBenefitTaxPerson person,
+        int lowerLimit,
+        int upperLimit,
+        int numberOfSamples)
     {
         MarginalTaxCurveResult result = new();
 
@@ -82,13 +96,13 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
         async Task<Dictionary<int, decimal>> CalculateInternalAsync(
             MunicipalityModel municipalityModel)
         {
-            const int salaryStepSize = 10_000;
+            int stepSize = (upperLimit - lowerLimit) / numberOfSamples;
 
             Dictionary<int, decimal> incomeTaxes = new Dictionary<int, decimal>();
 
-            int currentSalary = salaryRange.LowerLimit;
+            int currentSalary = lowerLimit;
 
-            while (currentSalary <= salaryRange.UpperLimit)
+            while (currentSalary <= upperLimit)
             {
                 CapitalBenefitTaxPerson currentPerson = person with { TaxableCapitalBenefits = currentSalary };
 
@@ -100,7 +114,7 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
                         incomeTaxes.Add(salary, r.TotalTaxAmount);
                     });
 
-                currentSalary += salaryStepSize;
+                currentSalary += stepSize;
             }
 
             return incomeTaxes;

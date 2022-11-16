@@ -128,24 +128,14 @@ public class TaxCalculatorController : ControllerBase
 
         var taxPerson = MapRequest();
 
-        var salaryRange = MapSalaryRange();
-
         Either<string, MarginalTaxCurveResult> result =
             await marginalTaxCurveCalculatorConnector.CalculateIncomeTaxCurveAsync(
-                request.CalculationYear, request.BfsMunicipalityId, taxPerson, salaryRange);
+                request.CalculationYear, request.BfsMunicipalityId, taxPerson, request.LowerSalaryLimit, request.UpperSalaryLimit, request.NumberOfSamples);
 
         return result
             .Match<ActionResult>(
                 Right: r => Ok(MapResponse(r)),
                 Left: BadRequest);
-
-        (int, int) MapSalaryRange()
-        {
-            int lowerLimit = request.LowerSalaryLimit;
-            int upperLimit = request.UpperSalaryLimit;
-
-            return (Math.Min(lowerLimit, upperLimit), Math.Max(lowerLimit, upperLimit));
-        }
 
         MarginalTaxCurveResult MapResponse(MarginalTaxCurveResult r)
         {
@@ -263,24 +253,19 @@ public class TaxCalculatorController : ControllerBase
 
         var taxPerson = MapRequest();
 
-        var salaryRange = MapSalaryRange();
-
         Either<string, MarginalTaxCurveResult> result =
             await marginalTaxCurveCalculatorConnector.CalculateCapitalBenefitTaxCurveAsync(
-                request.CalculationYear, request.BfsMunicipalityId, taxPerson, salaryRange);
+                request.CalculationYear,
+                request.BfsMunicipalityId,
+                taxPerson,
+                request.LowerSalaryLimit,
+                request.UpperSalaryLimit,
+                request.NumberOfSamples);
 
         return result
             .Match<ActionResult>(
                 Right: r => Ok(MapResponse(r)),
                 Left: BadRequest);
-
-        (int, int) MapSalaryRange()
-        {
-            int lowerLimit = request.LowerSalaryLimit;
-            int upperLimit = request.UpperSalaryLimit;
-
-            return (Math.Min(lowerLimit, upperLimit), Math.Max(lowerLimit, upperLimit));
-        }
 
         MarginalTaxCurveResult MapResponse(MarginalTaxCurveResult r)
         {
@@ -290,7 +275,7 @@ public class TaxCalculatorController : ControllerBase
         CapitalBenefitTaxPerson MapRequest()
         {
             var name = string.IsNullOrEmpty(request.Name)
-                ? Guid.NewGuid().ToString().Substring(0, 6)
+                ? Guid.NewGuid().ToString()[..6]
                 : request.Name;
 
             return new CapitalBenefitTaxPerson

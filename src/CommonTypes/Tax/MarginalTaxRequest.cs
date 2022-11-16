@@ -27,5 +27,9 @@ namespace PensionCoach.Tools.CommonTypes.Tax
 
         [Range(typeof(int), "0", "10000000", ErrorMessage = "Value not possible")]
         public int UpperSalaryLimit { get; set; }
+
+        [Range(typeof(int), "0", "1000", ErrorMessage = "Value not possible")]
+        public int NumberOfSamples { get; set; }
+
     }
 }

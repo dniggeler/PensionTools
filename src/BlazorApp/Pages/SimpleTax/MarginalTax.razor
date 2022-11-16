@@ -102,6 +102,9 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                     <div class="col-md-3"><RadzenLabel Text="Obergrenze" /></div>
                                     <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="taxRequest.UpperSalaryLimit" /></div>
 
+                                    <div class="col-md-3"><RadzenLabel Text="Anzahl Kurvenpunkte" /></div>
+                                    <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="taxRequest.NumberOfSamples" /></div>
+
                                     <div class="col-md-3"><RadzenLabel Text="Gemeinde" /></div>
                                     <div class="col-md-9"><MunicipalitySelector
                                                               BfsMunicipalityId="taxRequest.BfsMunicipalityId"
@@ -146,7 +149,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                             <RadzenAxisTitle Text="Einkommen"/>
                         </RadzenCategoryAxis>
 
-                        <RadzenValueAxis Min="0" Max="1" Step="0.1" FormatString="{0:P1}">
+                        <RadzenValueAxis Min="0" Max="0.5" Step="0.1" FormatString="{0:P1}">
                             <RadzenGridLines Visible="true" />
                             <RadzenAxisTitle Text="Grenzsteuersatz" />
                         </RadzenValueAxis>
@@ -177,7 +180,6 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
     private int[] supportedTaxYears;
-    private int CategoryStepSize = 10_000;
 
     private DataItem[] dataItems = { };
 
@@ -207,13 +209,14 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             ReligiousGroup = selectedPerson.ReligiousGroupType,
             BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
             CalculationYear = supportedTaxYears.Max(),
-            UpperSalaryLimit = 100_000
+            UpperSalaryLimit = 200_000,
+            NumberOfSamples = 50
         };
     }
 
     private async Task OnSubmit(MarginalTaxRequest request)
     {
-        CategoryStepSize = CalculateStepSize(request);
+        taxResponse = null;
 
         taxResponse = await MarginalTaxCurveCalculationService.CalculateIncomeCurveAsync(request);
         dataItems = DataItems();
@@ -238,21 +241,5 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                 Rate = item.Value
             })
             .ToArray();
-    }
-
-    private int CalculateStepSize(MarginalTaxRequest request)
-    {
-        int delta = request.UpperSalaryLimit - request.LowerSalaryLimit;
-        double stepSizeNotRounded = Math.Log10(delta);
-
-        return stepSizeNotRounded switch
-        {
-            var s when s > 6 => 100_000,
-            var s when s > 5 => 50_000,
-            var s when s > 4 => 10_000,
-            var s when s > 3 => 1_000,
-            var s when s > 2 => 100,
-            _ => 10_000
-        };
     }
 }

@@ -31,6 +31,7 @@ namespace TaxCalculator.Tests
             // given
             const int lowerSalaryLimit = 0;
             const int upperSalaryLimit = 200_000;
+            const int numberOfSamples = 50;
 
             string name = "Burli";
             decimal income = Convert.ToDecimal(incomeAsDouble);
@@ -52,11 +53,9 @@ namespace TaxCalculator.Tests
                 TaxableIncome = income,
             };
 
-            var salaryRange = (lowerSalaryLimit, upperSalaryLimit);
-
             // when
             var result = await _fixture.Calculator.CalculateIncomeTaxCurveAsync(
-                calculationYear, municipalityId, taxPerson, salaryRange);
+                calculationYear, municipalityId, taxPerson, lowerSalaryLimit, upperSalaryLimit, numberOfSamples);
 
             result.IsRight.Should().BeTrue();
             result.Match(
@@ -77,6 +76,7 @@ namespace TaxCalculator.Tests
             // given
             const int lowerSalaryLimit = 0;
             const int upperSalaryLimit = 2_000_000;
+            const int numberOfSamples = 50;
 
             string name = "Burli";
             decimal income = Convert.ToDecimal(incomeAsDouble);
@@ -98,11 +98,9 @@ namespace TaxCalculator.Tests
                 TaxableCapitalBenefits = income,
             };
 
-            var salaryRange = (lowerSalaryLimit, upperSalaryLimit);
-
             // when
             var result = await _fixture.Calculator.CalculateCapitalBenefitTaxCurveAsync(
-                calculationYear, municipalityId, taxPerson, salaryRange);
+                calculationYear, municipalityId, taxPerson, lowerSalaryLimit, upperSalaryLimit, numberOfSamples);
 
             result.IsRight.Should().BeTrue();
             result.Match(
