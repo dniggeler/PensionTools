@@ -7,7 +7,7 @@ using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Snapshooter.Xunit;
 using Xunit;
 
-namespace TaxCalculator.Tests
+namespace TaxCalculator.Tests.MarginalTax
 {
     [Trait("Proprietary Calculator", "Marginal Tax Curve")]
     public class MarginalTaxCurveCalculatorTests : IClassFixture<TaxCalculatorFixture<IMarginalTaxCurveCalculatorConnector>>
@@ -33,11 +33,11 @@ namespace TaxCalculator.Tests
             const int upperSalaryLimit = 200_000;
             const int numberOfSamples = 50;
 
-            string name = "Burli";
-            decimal income = Convert.ToDecimal(incomeAsDouble);
-            CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
-            ReligiousGroupType religiousGroupType = Enum.Parse<ReligiousGroupType>(religiousGroupTypeCode);
-            ReligiousGroupType partnerReligiousGroupType = status switch
+            var name = "Burli";
+            var income = Convert.ToDecimal(incomeAsDouble);
+            var status = Enum.Parse<CivilStatus>(civilStatusCode);
+            var religiousGroupType = Enum.Parse<ReligiousGroupType>(religiousGroupTypeCode);
+            var partnerReligiousGroupType = status switch
             {
                 CivilStatus.Married => religiousGroupType,
                 CivilStatus.Single => ReligiousGroupType.Other,
@@ -76,13 +76,13 @@ namespace TaxCalculator.Tests
             // given
             const int lowerSalaryLimit = 0;
             const int upperSalaryLimit = 2_000_000;
-            const int numberOfSamples = 50;
+            const int numberOfSamples = 25;
 
-            string name = "Burli";
-            decimal income = Convert.ToDecimal(incomeAsDouble);
-            CivilStatus status = Enum.Parse<CivilStatus>(civilStatusCode);
-            ReligiousGroupType religiousGroupType = Enum.Parse<ReligiousGroupType>(religiousGroupTypeCode);
-            ReligiousGroupType partnerReligiousGroupType = status switch
+            var name = "Burli";
+            var income = Convert.ToDecimal(incomeAsDouble);
+            var status = Enum.Parse<CivilStatus>(civilStatusCode);
+            var religiousGroupType = Enum.Parse<ReligiousGroupType>(religiousGroupTypeCode);
+            var partnerReligiousGroupType = status switch
             {
                 CivilStatus.Married => religiousGroupType,
                 CivilStatus.Single => ReligiousGroupType.Other,

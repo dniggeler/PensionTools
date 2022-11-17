@@ -3,6 +3,10 @@
 namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
 public class MarginalTaxCurveResult
-{ 
-    public Dictionary<int, decimal> MarginalTaxCurve { get; set; } = new();
+{
+    public record MarginalTaxRate(decimal Amount, decimal Rate);
+
+    public MarginalTaxRate CurrentMarginalTaxRate { get; set; }
+
+    public Dictionary<decimal, decimal> MarginalTaxCurve { get; set; } = new();
 }
