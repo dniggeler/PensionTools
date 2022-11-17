@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Components
+
+<RadzenCard>
+    <RadzenLabel Text="@Title" />
+    <RadzenProgressBar Value="@Value" ShowValue="true" Mode="ProgressBarMode.Determinate"/>
+</RadzenCard>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public int Value { get; set; }
+}

@@ -12,16 +12,19 @@ using PensionCoach.Tools.CommonTypes.Municipality;
 using Snapshooter.Xunit;
 using TaxCalculator.WebApi;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Tax.Data.Integration.Tests
 {
     [Trait("Municipality", "Integration")]
     public class MunicipalityDataIntegrationTests : IClassFixture<WebApplicationFactory<Startup>>
     {
+        private readonly ITestOutputHelper outputHelper;
         private readonly HttpClient client;
 
-        public MunicipalityDataIntegrationTests()
+        public MunicipalityDataIntegrationTests(ITestOutputHelper outputHelper)
         {
+            this.outputHelper = outputHelper;
             var testServer = new TestServer(
                 new WebHostBuilder()
                     .ConfigureAppConfiguration((_, builder) =>

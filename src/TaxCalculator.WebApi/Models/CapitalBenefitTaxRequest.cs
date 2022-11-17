@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
 namespace TaxCalculator.WebApi.Models
 {
@@ -22,7 +21,7 @@ namespace TaxCalculator.WebApi.Models
         [Range(typeof(int), "0", "10000", ErrorMessage = "BFS number not valid")]
         public int BfsMunicipalityId { get; set; }
 
-        [Range(typeof(decimal), "0", "1_000_000_000", ErrorMessage = "No negative values allowed")]
+        [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
         public decimal TaxableBenefits { get; set; }
     }
 }

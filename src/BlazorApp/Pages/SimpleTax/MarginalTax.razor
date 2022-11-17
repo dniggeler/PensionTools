@@ -1,0 +1,245 @@
+﻿@page "/SimpleTax/MarginalTax"
+
+@using PensionCoach.Tools.CommonTypes.Tax
+@using PensionCoach.Tools.CommonTypes
+@using Microsoft.AspNetCore.Components
+@using System.Text.Json
+@using Microsoft.Extensions.Logging
+
+@inject IPersonService PersonService
+@inject ILogger<WealthPlanning> Logger
+@inject IMarginalTaxCurveCalculationService MarginalTaxCurveCalculationService
+
+<RadzenTemplateForm TItem="MarginalTaxRequest" Data=@taxRequest Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
+    <RadzenContent Container="main">
+        <ChildContent>
+            <RadzenHeading Size="H1" Text="Grenzsteuersatz"></RadzenHeading>
+            <RadzenSteps NextText="Nächster" PreviousText="Vorheriger">
+                <Steps>
+                    <RadzenStepsItem Text="Personen" Selected="true">
+                        <FormStep Title="Auswahl" HelpText="Die Cashflow-Simulation basiert auf Angaben zur Person sowie steuerrevelanten Daten wie Wohnort, Einkommen und Vermögen.">
+                            <div class="row">
+                                <PersonSelector Persons="persons" OnSelect="@HandleSelectPerson"/>
+                            </div>
+                        </FormStep>
+                    </RadzenStepsItem>
+                    <RadzenStepsItem Text="Steuerperson ändern" Disabled="@(selectedPerson == null)">
+                        <ChildContent>
+                            <FormStep Title="Person"
+                                      HelpText="Steuerlich relevante Angaben zur Person sind der Zivilstand,
+die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter,
+welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.
+Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.">
+                                <ChildContent>
+                                    <div class="row">
+                                        <RadzenFieldset Text="Person">
+                                            <div class="row">
+                                                <div class="col-md-3"><RadzenLabel Text="Name" /></div>
+                                                <div class="col-md-9"><RadzenTextBox @bind-Value="taxRequest.Name" Name="simulationName" ReadOnly="true" /></div>
+
+                                                <div class="col-md-3"><RadzenLabel Text="Zivilstand" /></div>
+                                                <div class="col-md-9">
+                                                    <CivilStatusSelector
+                                                        SelectedCivilStatus="@taxRequest.CivilStatus"
+                                                        OnSelected="@(args => taxRequest.CivilStatus = args)"/>
+                                                </div>
+
+                                                <div class="col-md-3"><RadzenLabel Text="Konfession" /></div>
+                                                <div class="col-md-9">
+                                                    <ReligiousGroupSelector
+                                                        SelectedReligiousGroupType="@taxRequest.ReligiousGroup"
+                                                        OnSelected="@(args => taxRequest.ReligiousGroup = args ?? ReligiousGroupType.Other)" />
+                                                </div>
+                                                @if (taxRequest.CivilStatus == CivilStatus.Married)
+                                                {
+                                                    <div class="col-md-3"><RadzenLabel Text="Konfession Partner" /></div>
+                                                    <div class="col-md-9">
+                                                        <ReligiousGroupSelector
+                                                            SelectedReligiousGroupType="@taxRequest.PartnerReligiousGroup"
+                                                            OnSelected="@(args => taxRequest.PartnerReligiousGroup = args)" />
+                                                    </div>
+                                                }
+                                            </div>
+
+                                        </RadzenFieldset>
+                                    </div>
+                                    <div class="row">
+
+                                        <RadzenFieldset Text="Steuerdaten">
+                                            <div class="row">
+                                                <div class="col-md-3"><RadzenLabel Text="Lohn" /></div>
+                                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.TaxableAmount" /></div>
+                                                
+                                                <div class="col-md-3"><RadzenLabel Text="Steuergemeinde" /></div>
+                                                <div class="col-md-9">
+                                                    <MunicipalitySelector
+                                                        BfsMunicipalityId="taxRequest.BfsMunicipalityId"
+                                                        OnSelected="m => { taxRequest.BfsMunicipalityId = m.BfsMunicipalityNumber; }" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <RadzenLabel Text="Steuerjahr"/>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <RadzenDropDown AllowClear="false" TValue="int" 
+                                                                    Data="@(supportedTaxYears)"
+                                                                    @bind-Value="@taxRequest.CalculationYear"/>
+                                                </div>
+                                            </div>
+                                        </RadzenFieldset>
+                                    </div>
+                                   
+                                </ChildContent>
+                            </FormStep>
+                        </ChildContent>
+                    </RadzenStepsItem>
+                    <RadzenStepsItem Text="Berechnung" Disabled="@(selectedPerson == null)">
+                        <ChildContent>
+                            <FormStep Title="Simulation" HelpText="Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern.">
+                                <div class="row">
+                                    <div class="col-md-3"><RadzenLabel Text="Untergrenze" /></div>
+                                    <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="taxRequest.LowerSalaryLimit" /></div>
+
+                                    <div class="col-md-3"><RadzenLabel Text="Obergrenze" /></div>
+                                    <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="taxRequest.UpperSalaryLimit" /></div>
+
+                                    <div class="col-md-3"><RadzenLabel Text="Anzahl Kurvenpunkte" /></div>
+                                    <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="taxRequest.NumberOfSamples" /></div>
+
+                                    <div class="col-md-3"><RadzenLabel Text="Gemeinde" /></div>
+                                    <div class="col-md-9"><MunicipalitySelector
+                                                              BfsMunicipalityId="taxRequest.BfsMunicipalityId"
+                                                              OnSelected="HandleChangeResidence" /></div>
+                                </div>
+                                </FormStep>
+                        </ChildContent>
+                    </RadzenStepsItem>
+                </Steps>
+            </RadzenSteps>
+            
+            <div class="row">
+                <div class="col-md-12 text-right mt-1">
+                    <RadzenButton ButtonType="ButtonType.Submit" Text="Berechne" Disabled="@(selectedPerson == null)"></RadzenButton>
+                </div>
+            </div>
+
+        </ChildContent>
+    </RadzenContent>
+</RadzenTemplateForm>
+
+@if (taxResponse != null)
+{
+        <RadzenPanel AllowCollapse="true">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <RadzenChart>
+                        <RadzenLineSeries Smooth="false"
+                                          Data="@dataItems"
+                                          CategoryProperty="Salary"
+                                          Title="Grenzsteuerkurve (Einkommen)"
+                                          ValueProperty="Rate"
+                                          RenderingOrder="1">
+                            <RadzenGridLines Visible="true"/>
+                        </RadzenLineSeries>
+
+                        <RadzenCategoryAxis Padding="20"
+                                            FormatString="{0}"
+                                            Min="0"
+                                            Max="@taxRequest.UpperSalaryLimit">
+                            <RadzenAxisTitle Text="Einkommen"/>
+                        </RadzenCategoryAxis>
+
+                        <RadzenValueAxis Min="0" Max="0.5" Step="0.1" FormatString="{0:P1}">
+                            <RadzenGridLines Visible="true" />
+                            <RadzenAxisTitle Text="Grenzsteuersatz" />
+                        </RadzenValueAxis>
+                    </RadzenChart>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <label>Rohdaten</label>
+                    <RadzenTextArea Name="output" Rows="10" ReadOnly="true" Value="@(JsonSerializer.Serialize(taxResponse))" Style="width: 100%" />
+                </div>
+            </div>
+        </div>
+    </RadzenPanel>
+}
+
+@code
+{
+    internal class DataItem
+    {
+        public int Salary { get; set; }
+        public decimal Rate { get; set; }
+    }
+
+    private MarginalTaxRequest taxRequest = new();
+    private MarginalTaxResponse taxResponse;
+    private PersonViewModel selectedPerson;
+    private IReadOnlyCollection<PersonViewModel> persons;
+    private int[] supportedTaxYears;
+
+    private DataItem[] dataItems = { };
+
+    protected override async Task OnInitializedAsync()
+    {
+        int[] years = { 2019 };
+        persons = (await PersonService.GetPersonsAsync()).ToList();
+
+        supportedTaxYears = years;
+    }
+
+    private void HandleChangeResidence(TaxSupportedMunicipalityModel municipalityModel)
+    {
+        taxRequest.BfsMunicipalityId = municipalityModel.BfsMunicipalityNumber;
+    }
+
+    private void HandleSelectPerson(Guid personId)
+    {
+        selectedPerson = persons.Single(item => item.Id == personId);
+
+        taxRequest = new MarginalTaxRequest
+        {
+            Name = selectedPerson.Name,
+            CivilStatus = selectedPerson.CivilStatus,
+            TaxableAmount = selectedPerson.TaxableIncome,
+            PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
+            ReligiousGroup = selectedPerson.ReligiousGroupType,
+            BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
+            CalculationYear = supportedTaxYears.Max(),
+            UpperSalaryLimit = 200_000,
+            NumberOfSamples = 50
+        };
+    }
+
+    private async Task OnSubmit(MarginalTaxRequest request)
+    {
+        taxResponse = null;
+
+        taxResponse = await MarginalTaxCurveCalculationService.CalculateIncomeCurveAsync(request);
+        dataItems = DataItems();
+    }
+
+    private void OnInvalidSubmit(FormInvalidSubmitEventArgs args)
+    {
+        Logger.LogInformation("InvalidSubmit");
+    }
+
+    private DataItem[] DataItems()
+    {
+        if (taxResponse == null)
+        {
+            return Enumerable.Empty<DataItem>().ToArray();
+        }
+
+        return taxResponse.MarginalTaxCurve
+            .Select(item => new DataItem
+            {
+                Salary = item.Key,
+                Rate = item.Value
+            })
+            .ToArray();
+    }
+}

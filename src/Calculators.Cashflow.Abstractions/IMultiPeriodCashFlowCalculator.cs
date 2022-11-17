@@ -17,10 +17,13 @@ namespace Calculators.CashFlow
         /// 4. move flow asset types to its stock asset type (ie. salary does not stay after paying tax for it but
         ///    is moved to taxable wealth).
         /// </summary>
+        /// <param name="startingYear"></param>
         /// <param name="person"></param>
         /// <param name="cashFlowDefinitionHolder"></param>
+        /// <param name="options"></param>
         /// <returns></returns>
         Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
+            int startingYear,
             MultiPeriodCalculatorPerson person,
             CashFlowDefinitionHolder cashFlowDefinitionHolder,
             MultiPeriodOptions options);

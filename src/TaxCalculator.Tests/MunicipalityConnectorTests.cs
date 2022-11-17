@@ -25,7 +25,7 @@ namespace TaxCalculator.Tests
             // when
             var result = await _fixture.Service.GetAllAsync();
 
-            Snapshot.Match(result,$"Get All Municipalities");
+            Snapshot.Match(result,"Get All Municipalities");
         }
 
         [Fact(DisplayName = "Search")]

@@ -7,9 +7,8 @@ using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
-namespace TaxCalculator.Basis.CapitalBenefit
+namespace PensionCoach.Tools.TaxCalculator.Basis.CapitalBenefit
 {
     public class ZHCapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
     {
@@ -46,7 +45,7 @@ namespace TaxCalculator.Basis.CapitalBenefit
             const decimal annuitizeFactor = 10;
             TaxPerson taxPerson = mapper.Map<TaxPerson>(capitalBenefitTaxPerson);
 
-            taxPerson.TaxableIncome = capitalBenefitTaxPerson.TaxableBenefits / annuitizeFactor;
+            taxPerson.TaxableIncome = capitalBenefitTaxPerson.TaxableCapitalBenefits / annuitizeFactor;
 
             var stateTaxResult = await stateTaxCalculator.CalculateAsync(
                 calculationYear,

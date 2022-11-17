@@ -1,0 +1,24 @@
+﻿{
+  "IncomeSimpleTaxCanton": 2818,
+  "FortuneTaxCanton": 360,
+  "IncomeSimpleTaxCity": 2818,
+  "IncomeTaxChurch": 394,
+  "IncomeTaxCity": 3888,
+  "IncomeSimpleTaxFed": 1968,
+  "PersonalTax": 0,
+  "FortuneTaxCity": 414,
+  "FortuneSimpleTaxCanton": 300,
+  "IncomeTaxFed": 1968,
+  "FortuneSimpleTaxCity": 300,
+  "IncomeTaxCanton": 3381,
+  "Location": {
+    "Id": 885300000,
+    "ZipCode": "8853",
+    "BfsId": 1344,
+    "CantonId": 19,
+    "BfsName": "Lachen",
+    "City": "Lachen SZ",
+    "Canton": "SZ"
+  },
+  "FortuneTaxChurch": 42
+}

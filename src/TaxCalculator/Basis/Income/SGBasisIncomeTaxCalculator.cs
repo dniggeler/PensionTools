@@ -5,57 +5,56 @@ using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
-namespace TaxCalculator.Basis.Income
+namespace PensionCoach.Tools.TaxCalculator.Basis.Income;
+
+/// <summary>
+/// Basis calculator for SG.
+/// </summary>
+/// <seealso cref="PensionCoach.Tools.TaxCalculator.Abstractions.IBasisIncomeTaxCalculator" />
+public class SGBasisIncomeTaxCalculator : IBasisIncomeTaxCalculator
 {
-    /// <summary>
-    /// Basis calculator for SG.
-    /// </summary>
-    /// <seealso cref="PensionCoach.Tools.TaxCalculator.Abstractions.IBasisIncomeTaxCalculator" />
-    public class SGBasisIncomeTaxCalculator : IBasisIncomeTaxCalculator
+    private readonly IDefaultBasisIncomeTaxCalculator defaultBasisIncomeTaxCalculator;
+
+    public SGBasisIncomeTaxCalculator(
+        IDefaultBasisIncomeTaxCalculator defaultBasisIncomeTaxCalculator)
     {
-        private readonly IDefaultBasisIncomeTaxCalculator defaultBasisIncomeTaxCalculator;
+        this.defaultBasisIncomeTaxCalculator = defaultBasisIncomeTaxCalculator;
+    }
 
-        public SGBasisIncomeTaxCalculator(
-            IDefaultBasisIncomeTaxCalculator defaultBasisIncomeTaxCalculator)
+    public async Task<Either<string, BasisTaxResult>> CalculateAsync(
+        int calculationYear, Canton canton, BasisTaxPerson person)
+    {
+        // this canton does not have a tariff of its own
+        // for married people but the following rule applies:
+        // divide taxable income by 2 if married and
+        // multiple by 2 (to break the progression)
+        (decimal TaxAmount, decimal Multiplier) adaptedTaxData =
+            Prelude.Some(person.CivilStatus)
+                .Match(
+                    Some: status => status switch
+                    {
+                        CivilStatus.Married => (person.TaxableAmount / 2M, 2M),
+                        _ => (person.TaxableAmount, 1M)
+                    },
+                    None: () => (person.TaxableAmount, 1));
+
+        var tmpPerson = new BasisTaxPerson
         {
-            this.defaultBasisIncomeTaxCalculator = defaultBasisIncomeTaxCalculator;
-        }
+            Name = person.Name,
+            CivilStatus = CivilStatus.Single,
+            TaxableAmount = adaptedTaxData.TaxAmount,
+        };
 
-        public async Task<Either<string, BasisTaxResult>> CalculateAsync(
-            int calculationYear, Canton canton, BasisTaxPerson person)
-        {
-            // this canton does not have a tariff of its own
-            // for married people but the following rule applies:
-            // divide taxable income by 2 if married and
-            // multiple by 2 (to break the progression)
-            (decimal TaxAmount, decimal Multiplier) adaptedTaxData =
-                Prelude.Some(person.CivilStatus)
-                    .Match(
-                        Some: status => status switch
-                        {
-                            CivilStatus.Married => (person.TaxableAmount / 2M, 2M),
-                            _ => (person.TaxableAmount, 1M)
-                        },
-                        None: () => (person.TaxableAmount, 1));
+        var taxResult =
+            await defaultBasisIncomeTaxCalculator.CalculateAsync(calculationYear, canton, tmpPerson);
 
-            var tmpPerson = new BasisTaxPerson
+        taxResult
+            .IfRight(r =>
             {
-                Name = person.Name,
-                CivilStatus = CivilStatus.Single,
-                TaxableAmount = adaptedTaxData.TaxAmount,
-            };
+                r.TaxAmount *= adaptedTaxData.Multiplier;
+                r.DeterminingFactorTaxableAmount *= adaptedTaxData.Multiplier;
+            });
 
-            var taxResult =
-                await defaultBasisIncomeTaxCalculator.CalculateAsync(calculationYear, canton, tmpPerson);
-
-            taxResult
-                .IfRight(r =>
-                {
-                    r.TaxAmount *= adaptedTaxData.Multiplier;
-                    r.DeterminingFactorTaxableAmount *= adaptedTaxData.Multiplier;
-                });
-
-            return taxResult;
-        }
+        return taxResult;
     }
 }

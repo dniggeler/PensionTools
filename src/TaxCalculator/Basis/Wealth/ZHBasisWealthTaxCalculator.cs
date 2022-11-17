@@ -10,7 +10,7 @@ using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data.Abstractions;
 using Tax.Data.Abstractions.Models;
 
-namespace TaxCalculator.Basis.Wealth
+namespace PensionCoach.Tools.TaxCalculator.Basis.Wealth
 {
     /// <summary>
     /// Wealth tax calculator for ZH.

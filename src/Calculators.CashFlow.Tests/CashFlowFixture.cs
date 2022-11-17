@@ -5,8 +5,8 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PensionCoach.Tools.TaxCalculator;
 using Tax.Data;
-using TaxCalculator;
 
 namespace Calculators.CashFlow.Tests
 {
@@ -41,7 +41,7 @@ namespace Calculators.CashFlow.Tests
             coll.AddOptions();
             coll.AddLogging();
             coll.AddCashFlowCalculators();
-            coll.AddTaxCalculators();
+            coll.AddTaxCalculators(configuration);
             coll.AddTaxData(configuration);
 
 

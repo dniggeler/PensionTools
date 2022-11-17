@@ -1,36 +1,41 @@
 ﻿using System;
 using AutoMapper;
 using FluentValidation;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
+using PensionCoach.Tools.CommonUtils;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
-using TaxCalculator.Basis.CapitalBenefit;
-using TaxCalculator.Basis.Income;
-using TaxCalculator.Basis.Wealth;
-using TaxCalculator.Mapping;
-using TaxCalculator.Validators;
+using PensionCoach.Tools.TaxCalculator.Basis.CapitalBenefit;
+using PensionCoach.Tools.TaxCalculator.Basis.Income;
+using PensionCoach.Tools.TaxCalculator.Basis.Wealth;
+using PensionCoach.Tools.TaxCalculator.Estv;
+using PensionCoach.Tools.TaxCalculator.Mapping;
+using PensionCoach.Tools.TaxCalculator.Mock;
+using PensionCoach.Tools.TaxCalculator.Proprietary;
+using PensionCoach.Tools.TaxCalculator.Validators;
 
-namespace TaxCalculator
+namespace PensionCoach.Tools.TaxCalculator
 {
     public static class TaxCalculatorServiceCollectionExtensions
     {
-        public static void AddTaxCalculators(this IServiceCollection collection)
+        public static void AddTaxCalculators(this IServiceCollection collection, IConfiguration configuration)
         {
-            collection.AddTransient<IIncomeTaxCalculator, IncomeTaxCalculator>();
-            collection.AddTransient<IWealthTaxCalculator, WealthTaxCalculator>();
-            collection.AddTransient<IFederalCapitalBenefitTaxCalculator,
-                FederalCapitalBenefitTaxCalculator>();
-            collection.AddTransient<IFederalTaxCalculator, FederalTaxCalculator>();
-            collection.AddTransient<IAggregatedBasisTaxCalculator, AggregatedBasisTaxCalculator>();
-            collection.AddTransient<IStateTaxCalculator, StateTaxCalculator>();
-            collection.AddTransient<IFullTaxCalculator, FullTaxCalculator>();
-            collection.AddTransient<IFullCapitalBenefitTaxCalculator, FullCapitalBenefitTaxCalculator>();
+            collection.AddTransient<IIncomeTaxCalculator, ProprietaryIncomeTaxCalculator>();
+            collection.AddTransient<IWealthTaxCalculator, ProprietaryWealthTaxCalculator>();
+            collection.AddTransient<IFederalCapitalBenefitTaxCalculator, ProprietaryFederalCapitalBenefitTaxCalculator>();
+            collection.AddTransient<IFederalTaxCalculator, ProprietaryFederalTaxCalculator>();
+            collection.AddTransient<IAggregatedBasisTaxCalculator, ProprietaryAggregatedBasisTaxCalculator>();
+            collection.AddTransient<IStateTaxCalculator, ProprietaryStateTaxCalculator>();
+            collection.AddTransient<ITaxCalculatorConnector, TaxCalculatorConnector>();
+            collection.AddTransient<IMarginalTaxCurveCalculatorConnector, MarginalTaxCurveCalculatorConnector>();
+            collection.AddTransient<IAdminConnector, AdminConnector>();
 
-            collection.AddTransient<IMunicipalityConnector, MunicipalityConnector>();
-
+            collection.AddFullTaxCalculators(configuration);
+            
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
@@ -43,6 +48,35 @@ namespace TaxCalculator
             collection.AddCantonIncomeTaxCalculatorFactory();
             collection.AddCantonWealthTaxCalculatorFactory();
             collection.AddCantonCapitalBenefitTaxCalculatorFactory();
+        }
+
+        private static void AddFullTaxCalculators(this IServiceCollection collection, IConfiguration configuration)
+        {
+            ApplicationMode typeOfTaxCalculator = configuration.GetApplicationMode();
+
+            switch (typeOfTaxCalculator)
+            {
+                case ApplicationMode.Proprietary:
+                    collection.AddTransient<IFullWealthAndIncomeTaxCalculator, ProprietaryFullTaxCalculator>();
+                    collection.AddTransient<IFullCapitalBenefitTaxCalculator, ProprietaryFullCapitalBenefitTaxCalculator>();
+                    collection.AddTransient<IMunicipalityConnector, ProprietaryMunicipalityConnector>();
+                    break;
+                case ApplicationMode.Estv:
+                    collection.AddTransient<IFullWealthAndIncomeTaxCalculator, EstvFullTaxCalculator>();
+                    collection.AddTransient<IFullCapitalBenefitTaxCalculator, EstvFullCapitalBenefitTaxCalculator>();
+                    collection.AddTransient<IMunicipalityConnector, EstvMunicipalityConnector>();
+                    break;
+                case ApplicationMode.Mock:
+                    collection.AddTransient<IFullCapitalBenefitTaxCalculator, MockedFullTaxCalculator>();
+                    collection.AddTransient<IFullWealthAndIncomeTaxCalculator, MockedFullTaxCalculator>();
+                    collection.AddTransient<IMunicipalityConnector, MockedFullTaxCalculator>();
+                    break;
+                default:
+                    collection.AddTransient<IFullWealthAndIncomeTaxCalculator, ProprietaryFullTaxCalculator>();
+                    collection.AddTransient<IFullCapitalBenefitTaxCalculator, ProprietaryFullCapitalBenefitTaxCalculator>();
+                    collection.AddTransient<IMunicipalityConnector, ProprietaryMunicipalityConnector>();
+                    break;
+            }
         }
 
         private static void AddCantonIncomeTaxCalculatorFactory(
@@ -109,8 +143,8 @@ namespace TaxCalculator
 
         private static void AddBasisCalculators(this IServiceCollection collection)
         {
-            collection.AddTransient<IChurchTaxCalculator, ChurchTaxCalculator>();
-            collection.AddTransient<IPollTaxCalculator, PollTaxCalculator>();
+            collection.AddTransient<IChurchTaxCalculator, ProprietaryChurchTaxCalculator>();
+            collection.AddTransient<IPollTaxCalculator, ProprietaryPollTaxCalculator>();
             collection.AddTransient<IDefaultBasisIncomeTaxCalculator, DefaultBasisIncomeTaxCalculator>();
         }
     }

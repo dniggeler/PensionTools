@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -53,6 +52,8 @@ namespace Calculators.CashFlow.Integration.Tests
             return new MultiPeriodRequest
             {
                 Name = "Test Multi-Period Calculator",
+                Gender = Gender.Male,
+                DateOfBirth = new DateTime(1969, 3, 17),
                 BfsMunicipalityId = 261,
                 CivilStatus = CivilStatus.Married,
                 ReligiousGroupType = ReligiousGroupType.Other,

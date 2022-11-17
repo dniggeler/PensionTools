@@ -1,77 +1,76 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PensionCoach.Tools.CommonTypes
+namespace PensionCoach.Tools.CommonTypes;
+
+[JsonConverter(typeof(JsonStringEnumConverter))]
+public enum Canton
 {
-    [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum Canton
-    {
-        /// <summary>
-        /// Undefined is not a valid and is treated as an error
-        /// </summary>
-        Undefined = 0,
+    /// <summary>
+    /// Undefined is not a valid and is treated as an error
+    /// </summary>
+    Undefined = 0,
 
-        /// <summary>
-        /// Zürich
-        /// </summary>
-        ZH = 1,
+    AG = 1,
 
-        /// <summary>
-        /// Bern
-        /// </summary>
-        BE = 2,
+    AI = 2,
 
-        /// <summary>
-        /// Solothurn
-        /// </summary>
-        SO = 3,
+    AR = 3,
+    
+    /// <summary>
+    /// Bern
+    /// </summary>
+    BE = 4,
 
-        /// <summary>
-        /// St.Gallen
-        /// </summary>
-        SG = 4,
+    BL = 5,
 
-        AG = 5,
+    BS = 6,
 
-        GE = 6,
+    FR = 7,
 
-        JU = 7,
+    GE = 8,
 
-        ZG = 8,
+    GL = 9,
 
-        GR = 9,
+    GR = 10,
 
-        VD = 10,
+    JU = 11,
+    
+    LU = 12,
+    
+    NE = 13,
 
-        VS = 11,
+    NW = 14,
 
-        TI = 12,
+    OW = 15,
 
-        LU = 13,
+    SH = 16,
 
-        UR = 14,
+    /// <summary>
+    /// Solothurn
+    /// </summary>
+    SO = 17,
 
-        BS = 15,
+    /// <summary>
+    /// St.Gallen
+    /// </summary>
+    SG = 18,
+    
+    SZ = 19,
 
-        BL = 16,
+    TI = 20,
 
-        FR = 17,
+    TG = 21,
 
-        NE = 18,
+    UR = 22,
 
-        SH = 19,
+    VD = 23,
 
-        TG = 20,
+    VS = 24,
 
-        SZ = 21,
+    ZG = 25,
 
-        GL = 22,
-
-        OW = 23,
-
-        NW = 24,
-
-        AR = 25,
-
-        AI = 26,
-    }
+    /// <summary>
+    /// Zürich
+    /// </summary>
+    ZH = 26,
 }

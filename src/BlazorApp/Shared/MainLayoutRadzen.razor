@@ -37,7 +37,14 @@
         <RadzenPanelMenu style="height: 100%">
             <ChildContent>
                 <RadzenPanelMenuItem Text="Personen" Path="PersonListing"></RadzenPanelMenuItem>
-                <RadzenPanelMenuItem Text="Steuerrechner" Path="TaxCalculation"></RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Text="Steuerrechner">
+                    <RadzenPanelMenuItem Text="Einkommen/Vermögen" Path="/SimpleTax/TaxCalculation"></RadzenPanelMenuItem>
+                    <RadzenPanelMenuItem Text="Grenzsteuerkurve" Path="/SimpleTax/MarginalTax"></RadzenPanelMenuItem>
+                </RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Text="Gemeindevergleich">
+                    <RadzenPanelMenuItem Text="Einkommen/Vermögen" Path="/TaxComparer/IncomeAndWealth"></RadzenPanelMenuItem>
+                    <RadzenPanelMenuItem Text="Kapitalbezug" Path="/TaxComparer/CapitalBenefits"></RadzenPanelMenuItem>
+                </RadzenPanelMenuItem>
                 <RadzenPanelMenuItem Text="Finanzplanung" Path="WealthPlanning"></RadzenPanelMenuItem>
             </ChildContent>
         </RadzenPanelMenu>
@@ -45,7 +52,7 @@
 </RadzenSidebar>
 <RadzenFooter>
     <ChildContent>
-        <RadzenLabel Text="PensionTools, Copyright Ⓒ 2021">
+        <RadzenLabel Text="PensionTools, Copyright Ⓒ 2022">
         </RadzenLabel>
     </ChildContent>
 </RadzenFooter>

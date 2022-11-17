@@ -1,10 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PensionCoach.Tools.TaxCalculator;
 using Tax.Data;
 
 namespace TaxCalculator.Tests
@@ -39,7 +40,7 @@ namespace TaxCalculator.Tests
 
             coll.AddLogging();
             coll.AddTaxData(configuration);
-            coll.AddTaxCalculators();
+            coll.AddTaxCalculators(configuration);
 
             Provider = coll.BuildServiceProvider();
 

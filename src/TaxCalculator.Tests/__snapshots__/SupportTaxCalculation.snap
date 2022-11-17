@@ -1,832 +1,1206 @@
 ﻿[
   {
-    "BfsNumber": 21,
+    "BfsMunicipalityNumber": 21,
+    "EstvTaxLocationId": null,
     "Name": "Adlikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 131,
+    "BfsMunicipalityNumber": 131,
+    "EstvTaxLocationId": null,
     "Name": "Adliswil",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 241,
+    "BfsMunicipalityNumber": 241,
+    "EstvTaxLocationId": null,
     "Name": "Aesch",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 1,
+    "BfsMunicipalityNumber": 1,
+    "EstvTaxLocationId": null,
     "Name": "Aeugst a.A.",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 2,
+    "BfsMunicipalityNumber": 2,
+    "EstvTaxLocationId": null,
     "Name": "Affoltern a.A.",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 211,
+    "BfsMunicipalityNumber": 211,
+    "EstvTaxLocationId": null,
     "Name": "Altikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 30,
+    "BfsMunicipalityNumber": 30,
+    "EstvTaxLocationId": null,
     "Name": "Andelfingen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 51,
+    "BfsMunicipalityNumber": 51,
+    "EstvTaxLocationId": null,
     "Name": "Bachenbülach",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 81,
+    "BfsMunicipalityNumber": 81,
+    "EstvTaxLocationId": null,
     "Name": "Bachs",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 52,
-    "Name": "Bassersdorf",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 297,
-    "Name": "Bauma",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 22,
-    "Name": "Benken",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 23,
-    "Name": "Berg a.I.",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 242,
-    "Name": "Birmensdorf",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 3,
-    "Name": "Bonstetten",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 82,
-    "Name": "Boppelsen",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 213,
-    "Name": "Brütten",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 112,
-    "Name": "Bubikon",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 24,
-    "Name": "Buch a.I.",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 83,
-    "Name": "Buchs",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 111,
+    "BfsMunicipalityNumber": 111,
+    "EstvTaxLocationId": null,
     "Name": "Bäretswil",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 53,
+    "BfsMunicipalityNumber": 52,
+    "EstvTaxLocationId": null,
+    "Name": "Bassersdorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 297,
+    "EstvTaxLocationId": null,
+    "Name": "Bauma",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 22,
+    "EstvTaxLocationId": null,
+    "Name": "Benken",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 23,
+    "EstvTaxLocationId": null,
+    "Name": "Berg a.I.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 242,
+    "EstvTaxLocationId": null,
+    "Name": "Birmensdorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 3,
+    "EstvTaxLocationId": null,
+    "Name": "Bonstetten",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 82,
+    "EstvTaxLocationId": null,
+    "Name": "Boppelsen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 213,
+    "EstvTaxLocationId": null,
+    "Name": "Brütten",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 112,
+    "EstvTaxLocationId": null,
+    "Name": "Bubikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 24,
+    "EstvTaxLocationId": null,
+    "Name": "Buch a.I.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 83,
+    "EstvTaxLocationId": null,
+    "Name": "Buchs",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 53,
+    "EstvTaxLocationId": null,
     "Name": "Bülach",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 25,
+    "BfsMunicipalityNumber": 25,
+    "EstvTaxLocationId": null,
     "Name": "Dachsen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 86,
-    "Name": "Dielsdorf",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 243,
-    "Name": "Dietikon",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 54,
-    "Name": "Dietlikon",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 216,
-    "Name": "Dinhard",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 26,
-    "Name": "Dorf",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 214,
+    "BfsMunicipalityNumber": 214,
+    "EstvTaxLocationId": null,
     "Name": "Dägerlen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 84,
+    "BfsMunicipalityNumber": 84,
+    "EstvTaxLocationId": null,
     "Name": "Dällikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 85,
+    "BfsMunicipalityNumber": 85,
+    "EstvTaxLocationId": null,
     "Name": "Dänikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 215,
+    "BfsMunicipalityNumber": 215,
+    "EstvTaxLocationId": null,
     "Name": "Dättlikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 191,
+    "BfsMunicipalityNumber": 86,
+    "EstvTaxLocationId": null,
+    "Name": "Dielsdorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 243,
+    "EstvTaxLocationId": null,
+    "Name": "Dietikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 54,
+    "EstvTaxLocationId": null,
+    "Name": "Dietlikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 216,
+    "EstvTaxLocationId": null,
+    "Name": "Dinhard",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 26,
+    "EstvTaxLocationId": null,
+    "Name": "Dorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 191,
+    "EstvTaxLocationId": null,
     "Name": "Dübendorf",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 113,
+    "BfsMunicipalityNumber": 113,
+    "EstvTaxLocationId": null,
     "Name": "Dürnten",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 192,
+    "BfsMunicipalityNumber": 192,
+    "EstvTaxLocationId": null,
     "Name": "Egg",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 55,
+    "BfsMunicipalityNumber": 55,
+    "EstvTaxLocationId": null,
     "Name": "Eglisau",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 294,
+    "BfsMunicipalityNumber": 294,
+    "EstvTaxLocationId": null,
     "Name": "Elgg",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 218,
+    "BfsMunicipalityNumber": 218,
+    "EstvTaxLocationId": null,
     "Name": "Ellikon a.d.Th.",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 219,
+    "BfsMunicipalityNumber": 219,
+    "EstvTaxLocationId": null,
     "Name": "Elsau",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 56,
+    "BfsMunicipalityNumber": 56,
+    "EstvTaxLocationId": null,
     "Name": "Embrach",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 151,
+    "BfsMunicipalityNumber": 151,
+    "EstvTaxLocationId": null,
     "Name": "Erlenbach",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 172,
-    "Name": "Fehraltorf",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 27,
-    "Name": "Feuerthalen",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 114,
-    "Name": "Fischenthal",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 28,
-    "Name": "Flaach",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 29,
-    "Name": "Flurlingen",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 57,
-    "Name": "Freienstein-Teufen",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 193,
+    "BfsMunicipalityNumber": 193,
+    "EstvTaxLocationId": null,
     "Name": "Fällanden",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 244,
+    "BfsMunicipalityNumber": 172,
+    "EstvTaxLocationId": null,
+    "Name": "Fehraltorf",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 27,
+    "EstvTaxLocationId": null,
+    "Name": "Feuerthalen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 114,
+    "EstvTaxLocationId": null,
+    "Name": "Fischenthal",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 28,
+    "EstvTaxLocationId": null,
+    "Name": "Flaach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 29,
+    "EstvTaxLocationId": null,
+    "Name": "Flurlingen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 57,
+    "EstvTaxLocationId": null,
+    "Name": "Freienstein-Teufen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 244,
+    "EstvTaxLocationId": null,
     "Name": "Geroldswil",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 58,
+    "BfsMunicipalityNumber": 58,
+    "EstvTaxLocationId": null,
     "Name": "Glattfelden",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 115,
+    "BfsMunicipalityNumber": 115,
+    "EstvTaxLocationId": null,
     "Name": "Gossau",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 194,
+    "BfsMunicipalityNumber": 194,
+    "EstvTaxLocationId": null,
     "Name": "Greifensee",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 116,
+    "BfsMunicipalityNumber": 116,
+    "EstvTaxLocationId": null,
     "Name": "Grüningen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 220,
+    "BfsMunicipalityNumber": 220,
+    "EstvTaxLocationId": null,
     "Name": "Hagenbuch",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 4,
+    "BfsMunicipalityNumber": 4,
+    "EstvTaxLocationId": null,
     "Name": "Hausen a.A.",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 5,
+    "BfsMunicipalityNumber": 5,
+    "EstvTaxLocationId": null,
     "Name": "Hedingen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 31,
+    "BfsMunicipalityNumber": 31,
+    "EstvTaxLocationId": null,
     "Name": "Henggart",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 152,
+    "BfsMunicipalityNumber": 152,
+    "EstvTaxLocationId": null,
     "Name": "Herrliberg",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 221,
+    "BfsMunicipalityNumber": 221,
+    "EstvTaxLocationId": null,
     "Name": "Hettlingen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 117,
+    "BfsMunicipalityNumber": 117,
+    "EstvTaxLocationId": null,
     "Name": "Hinwil",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 173,
+    "BfsMunicipalityNumber": 173,
+    "EstvTaxLocationId": null,
     "Name": "Hittnau",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 59,
+    "BfsMunicipalityNumber": 59,
+    "EstvTaxLocationId": null,
     "Name": "Hochfelden",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 153,
+    "BfsMunicipalityNumber": 153,
+    "EstvTaxLocationId": null,
     "Name": "Hombrechtikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 295,
+    "BfsMunicipalityNumber": 295,
+    "EstvTaxLocationId": null,
     "Name": "Horgen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 32,
-    "Name": "Humlikon",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 60,
+    "BfsMunicipalityNumber": 60,
+    "EstvTaxLocationId": null,
     "Name": "Höri",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 61,
+    "BfsMunicipalityNumber": 32,
+    "EstvTaxLocationId": null,
+    "Name": "Humlikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 61,
+    "EstvTaxLocationId": null,
     "Name": "Hüntwangen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 87,
+    "BfsMunicipalityNumber": 134,
+    "EstvTaxLocationId": null,
+    "Name": "Hütten",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2018
+  },
+  {
+    "BfsMunicipalityNumber": 87,
+    "EstvTaxLocationId": null,
     "Name": "Hüttikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 296,
+    "BfsMunicipalityNumber": 296,
+    "EstvTaxLocationId": null,
     "Name": "Illnau-Effretikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 6,
+    "BfsMunicipalityNumber": 6,
+    "EstvTaxLocationId": null,
     "Name": "Kappel a.A.",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 135,
+    "BfsMunicipalityNumber": 135,
+    "EstvTaxLocationId": null,
     "Name": "Kilchberg",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 33,
+    "BfsMunicipalityNumber": 33,
+    "EstvTaxLocationId": null,
     "Name": "Kleinandelfingen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 62,
+    "BfsMunicipalityNumber": 62,
+    "EstvTaxLocationId": null,
     "Name": "Kloten",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 7,
+    "BfsMunicipalityNumber": 7,
+    "EstvTaxLocationId": null,
     "Name": "Knonau",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 154,
+    "BfsMunicipalityNumber": 154,
+    "EstvTaxLocationId": null,
     "Name": "Küsnacht",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 136,
+    "BfsMunicipalityNumber": 136,
+    "EstvTaxLocationId": null,
     "Name": "Langnau a.A.",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 34,
+    "BfsMunicipalityNumber": 34,
+    "EstvTaxLocationId": null,
     "Name": "Laufen-Uhwiesen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 176,
+    "BfsMunicipalityNumber": 176,
+    "EstvTaxLocationId": null,
     "Name": "Lindau",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 2526,
+    "BfsMunicipalityNumber": 2526,
+    "EstvTaxLocationId": null,
     "Name": "Lohn-Ammannsegg",
-    "Canton": "SO"
+    "Canton": "SO",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 63,
+    "BfsMunicipalityNumber": 63,
+    "EstvTaxLocationId": null,
     "Name": "Lufingen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 35,
-    "Name": "Marthalen",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 8,
-    "Name": "Maschwanden",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 195,
-    "Name": "Maur",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 156,
-    "Name": "Meilen",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 9,
-    "Name": "Mettmenstetten",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 155,
+    "BfsMunicipalityNumber": 155,
+    "EstvTaxLocationId": null,
     "Name": "Männedorf",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 196,
+    "BfsMunicipalityNumber": 35,
+    "EstvTaxLocationId": null,
+    "Name": "Marthalen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 8,
+    "EstvTaxLocationId": null,
+    "Name": "Maschwanden",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 195,
+    "EstvTaxLocationId": null,
+    "Name": "Maur",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 156,
+    "EstvTaxLocationId": null,
+    "Name": "Meilen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 9,
+    "EstvTaxLocationId": null,
+    "Name": "Mettmenstetten",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 196,
+    "EstvTaxLocationId": null,
     "Name": "Mönchaltorf",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 88,
+    "BfsMunicipalityNumber": 88,
+    "EstvTaxLocationId": null,
     "Name": "Neerach",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 223,
+    "BfsMunicipalityNumber": 223,
+    "EstvTaxLocationId": null,
     "Name": "Neftenbach",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 89,
+    "BfsMunicipalityNumber": 89,
+    "EstvTaxLocationId": null,
     "Name": "Niederglatt",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 90,
+    "BfsMunicipalityNumber": 90,
+    "EstvTaxLocationId": null,
     "Name": "Niederhasli",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 91,
+    "BfsMunicipalityNumber": 91,
+    "EstvTaxLocationId": null,
     "Name": "Niederweningen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 64,
+    "BfsMunicipalityNumber": 64,
+    "EstvTaxLocationId": null,
     "Name": "Nürensdorf",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 65,
+    "BfsMunicipalityNumber": 65,
+    "EstvTaxLocationId": null,
     "Name": "Oberembrach",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 245,
+    "BfsMunicipalityNumber": 245,
+    "EstvTaxLocationId": null,
     "Name": "Oberengstringen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 92,
+    "BfsMunicipalityNumber": 92,
+    "EstvTaxLocationId": null,
     "Name": "Oberglatt",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 137,
+    "BfsMunicipalityNumber": 137,
+    "EstvTaxLocationId": null,
     "Name": "Oberrieden",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 93,
+    "BfsMunicipalityNumber": 36,
+    "EstvTaxLocationId": null,
+    "Name": "Oberstammheim",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2018
+  },
+  {
+    "BfsMunicipalityNumber": 93,
+    "EstvTaxLocationId": null,
     "Name": "Oberweningen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 10,
+    "BfsMunicipalityNumber": 10,
+    "EstvTaxLocationId": null,
     "Name": "Obfelden",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 157,
-    "Name": "Oetwil a.S.",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 246,
+    "BfsMunicipalityNumber": 246,
+    "EstvTaxLocationId": null,
     "Name": "Oetwil a.d.L.",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 66,
+    "BfsMunicipalityNumber": 157,
+    "EstvTaxLocationId": null,
+    "Name": "Oetwil a.S.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 66,
+    "EstvTaxLocationId": null,
     "Name": "Opfikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 37,
+    "BfsMunicipalityNumber": 37,
+    "EstvTaxLocationId": null,
     "Name": "Ossingen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 94,
+    "BfsMunicipalityNumber": 94,
+    "EstvTaxLocationId": null,
     "Name": "Otelfingen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 11,
+    "BfsMunicipalityNumber": 11,
+    "EstvTaxLocationId": null,
     "Name": "Ottenbach",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 224,
-    "Name": "Pfungen",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 177,
+    "BfsMunicipalityNumber": 177,
+    "EstvTaxLocationId": null,
     "Name": "Pfäffikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 67,
+    "BfsMunicipalityNumber": 224,
+    "EstvTaxLocationId": null,
+    "Name": "Pfungen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 67,
+    "EstvTaxLocationId": null,
     "Name": "Rafz",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 95,
+    "BfsMunicipalityNumber": 95,
+    "EstvTaxLocationId": null,
     "Name": "Regensberg",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 96,
+    "BfsMunicipalityNumber": 96,
+    "EstvTaxLocationId": null,
     "Name": "Regensdorf",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 38,
+    "BfsMunicipalityNumber": 38,
+    "EstvTaxLocationId": null,
     "Name": "Rheinau",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 138,
+    "BfsMunicipalityNumber": 138,
+    "EstvTaxLocationId": null,
     "Name": "Richterswil",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 225,
+    "BfsMunicipalityNumber": 225,
+    "EstvTaxLocationId": null,
     "Name": "Rickenbach",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 12,
+    "BfsMunicipalityNumber": 12,
+    "EstvTaxLocationId": null,
     "Name": "Rifferswil",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 68,
+    "BfsMunicipalityNumber": 68,
+    "EstvTaxLocationId": null,
     "Name": "Rorbas",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 178,
-    "Name": "Russikon",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 97,
+    "BfsMunicipalityNumber": 97,
+    "EstvTaxLocationId": null,
     "Name": "Rümlang",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 139,
+    "BfsMunicipalityNumber": 139,
+    "EstvTaxLocationId": null,
     "Name": "Rüschlikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 118,
+    "BfsMunicipalityNumber": 178,
+    "EstvTaxLocationId": null,
+    "Name": "Russikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 118,
+    "EstvTaxLocationId": null,
     "Name": "Rüti",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 226,
+    "BfsMunicipalityNumber": 226,
+    "EstvTaxLocationId": null,
     "Name": "Schlatt",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 98,
+    "BfsMunicipalityNumber": 98,
+    "EstvTaxLocationId": null,
     "Name": "Schleinikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 247,
+    "BfsMunicipalityNumber": 247,
+    "EstvTaxLocationId": null,
     "Name": "Schlieren",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 197,
-    "Name": "Schwerzenbach",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 99,
+    "BfsMunicipalityNumber": 99,
+    "EstvTaxLocationId": null,
     "Name": "Schöfflisdorf",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 119,
+    "BfsMunicipalityNumber": 140,
+    "EstvTaxLocationId": null,
+    "Name": "Schönenberg",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2018
+  },
+  {
+    "BfsMunicipalityNumber": 197,
+    "EstvTaxLocationId": null,
+    "Name": "Schwerzenbach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 119,
+    "EstvTaxLocationId": null,
     "Name": "Seegräben",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 227,
+    "BfsMunicipalityNumber": 227,
+    "EstvTaxLocationId": null,
     "Name": "Seuzach",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 2601,
+    "BfsMunicipalityNumber": 2601,
+    "EstvTaxLocationId": null,
     "Name": "Solothurn",
-    "Canton": "SO"
+    "Canton": "SO",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 3203,
+    "BfsMunicipalityNumber": 3203,
+    "EstvTaxLocationId": null,
     "Name": "St.Gallen",
-    "Canton": "SG"
+    "Canton": "SG",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 100,
+    "BfsMunicipalityNumber": 100,
+    "EstvTaxLocationId": null,
     "Name": "Stadel",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 13,
-    "Name": "Stallikon",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 292,
-    "Name": "Stammheim",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 101,
-    "Name": "Steinmaur",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 158,
+    "BfsMunicipalityNumber": 158,
+    "EstvTaxLocationId": null,
     "Name": "Stäfa",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 39,
+    "BfsMunicipalityNumber": 13,
+    "EstvTaxLocationId": null,
+    "Name": "Stallikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 292,
+    "EstvTaxLocationId": null,
+    "Name": "Stammheim",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 101,
+    "EstvTaxLocationId": null,
+    "Name": "Steinmaur",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 39,
+    "EstvTaxLocationId": null,
     "Name": "Thalheim a.d.Th.",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 141,
+    "BfsMunicipalityNumber": 141,
+    "EstvTaxLocationId": null,
     "Name": "Thalwil",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 41,
-    "Name": "Truttikon",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 40,
+    "BfsMunicipalityNumber": 40,
+    "EstvTaxLocationId": null,
     "Name": "Trüllikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 228,
+    "BfsMunicipalityNumber": 41,
+    "EstvTaxLocationId": null,
+    "Name": "Truttikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 228,
+    "EstvTaxLocationId": null,
     "Name": "Turbenthal",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 159,
+    "BfsMunicipalityNumber": 159,
+    "EstvTaxLocationId": null,
     "Name": "Uetikon a.S.",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 248,
+    "BfsMunicipalityNumber": 248,
+    "EstvTaxLocationId": null,
     "Name": "Uitikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 249,
+    "BfsMunicipalityNumber": 249,
+    "EstvTaxLocationId": null,
     "Name": "Unterengstringen",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 250,
+    "BfsMunicipalityNumber": 42,
+    "EstvTaxLocationId": null,
+    "Name": "Unterstammheim",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2018
+  },
+  {
+    "BfsMunicipalityNumber": 250,
+    "EstvTaxLocationId": null,
     "Name": "Urdorf",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 198,
+    "BfsMunicipalityNumber": 198,
+    "EstvTaxLocationId": null,
     "Name": "Uster",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 43,
+    "BfsMunicipalityNumber": 43,
+    "EstvTaxLocationId": null,
     "Name": "Volken",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 199,
+    "BfsMunicipalityNumber": 199,
+    "EstvTaxLocationId": null,
     "Name": "Volketswil",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 120,
-    "Name": "Wald",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 69,
-    "Name": "Wallisellen",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 200,
-    "Name": "Wangen-Brüttisellen",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 70,
-    "Name": "Wasterkingen",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 102,
-    "Name": "Weiach",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 251,
-    "Name": "Weiningen",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 180,
-    "Name": "Weisslingen",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 14,
-    "Name": "Wettswil a.A.",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 121,
-    "Name": "Wetzikon",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 298,
-    "Name": "Wiesendangen",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 71,
-    "Name": "Wil",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 181,
-    "Name": "Wila",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 182,
-    "Name": "Wildberg",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 72,
-    "Name": "Winkel",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 230,
-    "Name": "Winterthur",
-    "Canton": "ZH"
-  },
-  {
-    "BfsNumber": 293,
+    "BfsMunicipalityNumber": 293,
+    "EstvTaxLocationId": null,
     "Name": "Wädenswil",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 231,
+    "BfsMunicipalityNumber": 142,
+    "EstvTaxLocationId": null,
+    "Name": "Wädenswil",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2018
+  },
+  {
+    "BfsMunicipalityNumber": 120,
+    "EstvTaxLocationId": null,
+    "Name": "Wald",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 69,
+    "EstvTaxLocationId": null,
+    "Name": "Wallisellen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 44,
+    "EstvTaxLocationId": null,
+    "Name": "Waltalingen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2018
+  },
+  {
+    "BfsMunicipalityNumber": 200,
+    "EstvTaxLocationId": null,
+    "Name": "Wangen-Brüttisellen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 70,
+    "EstvTaxLocationId": null,
+    "Name": "Wasterkingen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 102,
+    "EstvTaxLocationId": null,
+    "Name": "Weiach",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 251,
+    "EstvTaxLocationId": null,
+    "Name": "Weiningen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 180,
+    "EstvTaxLocationId": null,
+    "Name": "Weisslingen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 14,
+    "EstvTaxLocationId": null,
+    "Name": "Wettswil a.A.",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 121,
+    "EstvTaxLocationId": null,
+    "Name": "Wetzikon",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 298,
+    "EstvTaxLocationId": null,
+    "Name": "Wiesendangen",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 71,
+    "EstvTaxLocationId": null,
+    "Name": "Wil",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 181,
+    "EstvTaxLocationId": null,
+    "Name": "Wila",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 182,
+    "EstvTaxLocationId": null,
+    "Name": "Wildberg",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 72,
+    "EstvTaxLocationId": null,
+    "Name": "Winkel",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 230,
+    "EstvTaxLocationId": null,
+    "Name": "Winterthur",
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 231,
+    "EstvTaxLocationId": null,
     "Name": "Zell",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 161,
+    "BfsMunicipalityNumber": 161,
+    "EstvTaxLocationId": null,
     "Name": "Zollikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 160,
+    "BfsMunicipalityNumber": 160,
+    "EstvTaxLocationId": null,
     "Name": "Zumikon",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
   },
   {
-    "BfsNumber": 3426,
-    "Name": "Zuzwil",
-    "Canton": "SG"
-  },
-  {
-    "BfsNumber": 261,
+    "BfsMunicipalityNumber": 261,
+    "EstvTaxLocationId": null,
     "Name": "Zürich",
-    "Canton": "ZH"
+    "Canton": "ZH",
+    "MaxSupportedYear": 2019
+  },
+  {
+    "BfsMunicipalityNumber": 3426,
+    "EstvTaxLocationId": null,
+    "Name": "Zuzwil",
+    "Canton": "SG",
+    "MaxSupportedYear": 2019
   }
 ]

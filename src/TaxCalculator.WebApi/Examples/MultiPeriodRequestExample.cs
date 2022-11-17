@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 using PensionCoach.Tools.CommonTypes.Tax;
 using Swashbuckle.AspNetCore.Filters;
 
@@ -31,48 +34,56 @@ namespace TaxCalculator.WebApi.Examples
                 PartnerReligiousGroupType = ReligiousGroupType.Other,
                 CashFlowDefinitionHolder = new CashFlowDefinitionHolder
                 {
-                    ClearAccountActions = new List<ClearAccountAction>
+                    Composites = new List<RelativeTransferAmountDefinition>
                     {
                         new ()
                         {
-                            Id = "Clear Capital Benefit Action",
-                            Name = $"{personName} - Clear Capital Benefit Action",
-                            ClearAtYear = finalYear,
-                            ClearRatio = 1.0M,
-                            Flow = new FlowPair(AccountType.CapitalBenefits, AccountType.Wealth),
+                            Header = new CashFlowHeader
+                            {
+                                Id = "ClearCapitalBenefitAction",
+                                Name = $"{personName} - Clear Capital Benefit Action"
+                            },
+                            DateOfProcess = new DateTime(finalYear, 1, 1),
+                            TransferRatio = 1.0M,
+                            Flow = new FlowPair(AccountType.OccupationalPension, AccountType.Wealth),
                             IsTaxable = true,
-                            TaxType = TaxType.Capital,
-                            OccurrenceType = OccurrenceType.EndOfPeriod,
-                        },
+                            TaxType = TaxType.CapitalBenefits,
+                        }
                     },
 
                     ChangeResidenceActions = new List<ChangeResidenceAction>
                     {
                         new ()
                         {
-                            Id = "Change residence",
-                            Name = $"{personName} - Change Residence",
-                            Ordinal = 0,
+                            Header = new CashFlowHeader
+                            {
+                                Id = "ChangeResidence",
+                                Name = $"{personName} - Change Residence"
+                            },
                             DestinationMunicipalityId = 3426,
                             DestinationCanton = Canton.SG,
                             ChangeCost = 5_000,
-                            ChangeAtYear = 2029,
+                            DateOfProcess = new DateTime(2029, 7, 1)
                         },
                     },
 
-                    GenericCashFlowDefinitions = new List<GenericCashFlowDefinition>
+                    StaticGenericCashFlowDefinitions = new List<StaticGenericCashFlowDefinition>
                     {
                         new ()
                         {
-                            Id = "my 3a account",
-                            Name = $"{personName} - 3a Pillar",
+                            Header = new CashFlowHeader
+                            {
+                                Id = "my 3a account",
+                                Name = $"{personName} - 3a Pillar"
+                            },
+
                             InitialAmount = 100_000,
                             RecurringInvestment = new RecurringInvestment
                             {
                                 Amount = 6883,
                                 Frequency = FrequencyType.Yearly,
                             },
-                            Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+                            Flow = new FlowPair(AccountType.Income, AccountType.ThirdPillar),
                             InvestmentPeriod = new InvestmentPeriod
                             {
                                 Year = startingYear,
@@ -80,28 +91,30 @@ namespace TaxCalculator.WebApi.Examples
                             },
                             IsTaxable = false,
                             TaxType = TaxType.Undefined,
-                            OccurrenceType = OccurrenceType.BeginOfPeriod,
                         },
                         new ()
                         {
-                            Id = "my PK account",
+                            Header = new CashFlowHeader
+                            {
+                                Id = "my PK account",
+                                Name = "PK-Einkauf",
+                            },
+
                             NetGrowthRate = 0,
-                            Name = "PK-Einkauf",
                             InitialAmount = 400_000,
                             RecurringInvestment = new RecurringInvestment
                             {
                                 Amount = 10000,
                                 Frequency = FrequencyType.Yearly,
                             },
-                            Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+                            Flow = new FlowPair(AccountType.Income, AccountType.OccupationalPension),
                             InvestmentPeriod = new InvestmentPeriod
                             {
                                 Year = startingYear,
                                 NumberOfPeriods = 5,
                             },
                             IsTaxable = false,
-                            TaxType = TaxType.Undefined,
-                            OccurrenceType = OccurrenceType.BeginOfPeriod,
+                            TaxType = TaxType.Undefined
                         },
                     },
                 },

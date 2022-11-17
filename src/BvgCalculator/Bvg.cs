@@ -190,8 +190,7 @@ namespace PensionCoach.Tools.BvgCalculator
             throw new ArgumentException(nameof(gender));
         }
 
-        private static readonly Dictionary<int, decimal?> AhvMaxPensionDictionary =
-            new Dictionary<int, decimal?>
+        private static readonly Dictionary<int, decimal?> AhvMaxPensionDictionary = new()
             {
                 {1969, null},
                 {1970, 0M},

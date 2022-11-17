@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+      <TargetFramework>net7.0</TargetFramework>
+      <AssemblyName>PensionCoach.Tools.EstvTaxCalculators.Abstractions</AssemblyName>
+      <RootNamespace>PensionCoach.Tools.EstvTaxCalculators.Abstractions</RootNamespace>
+      <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CommonTypes\CommonTypes.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,368 +1,365 @@
-﻿using System.Collections.Generic;
-using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Calculators.CashFlow.Accounts;
 using Calculators.CashFlow.Models;
 using LanguageExt;
 using Microsoft.Extensions.Logging;
+using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
+using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
-namespace Calculators.CashFlow
+namespace Calculators.CashFlow;
+
+public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
 {
-    public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
+    private readonly IFullWealthAndIncomeTaxCalculator _fullTaxCalculator;
+    private readonly IFullCapitalBenefitTaxCalculator _capitalBenefitCalculator;
+    private readonly IMunicipalityConnector municipalityConnector;
+    private readonly ILogger<MultiPeriodCashFlowCalculator> _logger;
+
+    public MultiPeriodCashFlowCalculator(
+        IFullWealthAndIncomeTaxCalculator fullTaxCalculator,
+        IFullCapitalBenefitTaxCalculator capitalBenefitCalculator,
+        IMunicipalityConnector municipalityConnector,
+        ILogger<MultiPeriodCashFlowCalculator> logger)
     {
-        private readonly IFullTaxCalculator _fullTaxCalculator;
-        private readonly IFullCapitalBenefitTaxCalculator _capitalBenefitCalculator;
-        private readonly ILogger<MultiPeriodCashFlowCalculator> _logger;
+        _fullTaxCalculator = fullTaxCalculator;
+        _capitalBenefitCalculator = capitalBenefitCalculator;
+        this.municipalityConnector = municipalityConnector;
+        _logger = logger;
+    }
 
-        public MultiPeriodCashFlowCalculator(
-            IFullTaxCalculator fullTaxCalculator,
-            IFullCapitalBenefitTaxCalculator capitalBenefitCalculator,
-            ILogger<MultiPeriodCashFlowCalculator> logger)
+
+    /// <inheritdoc />
+    public async Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
+        int startingYear,
+        MultiPeriodCalculatorPerson person,
+        CashFlowDefinitionHolder cashFlowDefinitionHolder,
+        MultiPeriodOptions options)
+    {
+        DateTime dateOfStart = new DateTime(startingYear, 1, 1);
+
+        ExogenousAccount exogenousAccount = new() { Id = Guid.NewGuid(), Name = "Exogenous Account", };
+
+        IncomeAccount incomeAccount = new() { Id = Guid.NewGuid(), Name = "Income Account", };
+
+        WealthAccount wealthAccount = new() { Id = Guid.NewGuid(), Name = "Wealth Account", };
+
+        OccupationalPensionAccount occupationalPensionAccount = new()
         {
-            _fullTaxCalculator = fullTaxCalculator;
-            _capitalBenefitCalculator = capitalBenefitCalculator;
-            _logger = logger;
-        }
+            Id = Guid.NewGuid(), Name = "Occupational Pension Account",
+        };
 
-
-        /// <inheritdoc />
-        public async Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
-            MultiPeriodCalculatorPerson person,
-            CashFlowDefinitionHolder cashFlowDefinitionHolder,
-            MultiPeriodOptions options)
+        ThirdPillarAccount thirdPillarAccount = new()
         {
-            IEnumerable<CashFlowModel> cashFlows = cashFlowDefinitionHolder.GenericCashFlowDefinitions
-                .SelectMany(d => d.GenerateCashFlow())
-                .AggregateCashFlows()
-                .ToList();
+            Id = Guid.NewGuid(),
+            Name = "Third Pillar Account",
+        };
 
-            int startingYear = cashFlows.Min(item => item.Year);
-            int finalYear = cashFlows.Max(item => item.Year);
+        IEnumerable<ICashFlowDefinition> definitionFromComposites = cashFlowDefinitionHolder.Composites
+            .SelectMany(composite => composite.CreateGenericDefinition(person, dateOfStart));
 
-            List<SinglePeriodCalculationResult> singlePeriodCalculationResults = Enumerable.Empty<SinglePeriodCalculationResult>().ToList();
+        IEnumerable<CashFlowModel> staticCashFlowsFromComposites = definitionFromComposites
+            .OfType<StaticGenericCashFlowDefinition>()
+            .SelectMany(d => d.GenerateCashFlow())
+            .AggregateCashFlows();
 
-            // swap every account from begin of year T to T+1 (begin of next year)
-            ImmutableDictionary<AccountType, decimal> currentPeriodAccounts = new Dictionary<AccountType, decimal>().ToImmutableDictionary();
-            MultiPeriodCalculatorPerson currentPerson = person;
-            for (int year = startingYear; year <= finalYear; year++)
+        IEnumerable<CashFlowModel> staticCashFlowsFromGenerics = cashFlowDefinitionHolder.StaticGenericCashFlowDefinitions
+            .SelectMany(d => d.GenerateCashFlow())
+            .AggregateCashFlows();
+
+        IEnumerable<CashFlowModel> staticCashFlows = staticCashFlowsFromGenerics
+            .Concat(staticCashFlowsFromComposites)
+            .ToList();
+
+        int finalYear = staticCashFlows.Max(item => item.DateOfProcess.Year);
+
+        List<SinglePeriodCalculationResult> singlePeriodCalculationResults =
+            Enumerable.Empty<SinglePeriodCalculationResult>().ToList();
+
+        Dictionary<AccountType, ICashFlowAccount> currentAccounts = new Dictionary<AccountType, ICashFlowAccount>
+        {
+            { AccountType.Exogenous, exogenousAccount },
+            { AccountType.Income, incomeAccount },
+            { AccountType.Wealth, wealthAccount },
+            { AccountType.OccupationalPension, occupationalPensionAccount },
+            { AccountType.ThirdPillar, thirdPillarAccount }
+        };
+
+        MultiPeriodCalculatorPerson currentPerson = person;
+        for (int currentYear = startingYear; currentYear <= finalYear; currentYear++)
+        {
+            DateOnly startingDate = new DateOnly(currentYear, 1, 1);
+            DateOnly finalDate = new DateOnly(currentYear, 1, 1).AddYears(1);
+
+            // all days in the current year
+            for (DateOnly currentDate = startingDate; currentDate < finalDate; currentDate = currentDate.AddDays(1))
             {
+                var currentDateAsDateTime = currentDate.ToDateTime(TimeOnly.MinValue);
 
-                int currentYear = year;
-                
-                List<CashFlowModel> currentYearCashFlows = cashFlows
-                    .Where(item => item.Year == currentYear)
+                List<CashFlowModel> currentDateStaticCashFlows = staticCashFlows
+                    .Where(item => item.DateOfProcess == currentDate)
                     .ToList();
 
-                List<ClearAccountAction> currentYearClearAccountActions = cashFlowDefinitionHolder
-                    .ClearAccountActions
-                    .Where(item => item.ClearAtYear == currentYear)
-                    .ToList();
-
-                List<ChangeResidenceAction> currentYearChangeResidenceActions = cashFlowDefinitionHolder
+                List<ChangeResidenceAction> currentDateChangeResidenceActions = cashFlowDefinitionHolder
                     .ChangeResidenceActions
-                    .Where(item => item.ChangeAtYear == currentYear)
+                    .Where(item => item.DateOfProcess == currentDateAsDateTime)
                     .ToList();
 
-                // 0. move target asset amount to account if it starts at beginning of the year, and
-                //    deduct source asset amount if it is not exogenous.
-                foreach (var cashFlow in currentYearCashFlows
-                    .Where(item => item.OccurrenceType == OccurrenceType.BeginOfPeriod))
-                {
-                    currentPeriodAccounts =
-                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, cashFlow.Target, cashFlow.Amount);
+                List<CashFlowModel> currentDateDynamicCashFlows = definitionFromComposites
+                    .OfType<IDynamicCashFlowDefinition>()
+                    .Where(item => item.DateOfProcess == currentDateAsDateTime)
+                    .SelectMany(item => item.CreateGenericDefinition(currentAccounts))
+                    .SelectMany(item => item.GenerateCashFlow())
+                    .ToList();
 
-                    currentPeriodAccounts =
-                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, cashFlow.Source, -cashFlow.Amount);
-                }
-
-                // 1. apply begin of year clear cash-flows
-                foreach (var clearCashFlowDefinition in currentYearClearAccountActions
-                    .Where(item => item.OccurrenceType == OccurrenceType.BeginOfPeriod && item.IsTaxable))
-                {
-                    decimal taxableAmount = currentPeriodAccounts[clearCashFlowDefinition.Flow.Source] *
-                                           clearCashFlowDefinition.ClearRatio;
-                    
-                    currentPeriodAccounts =
-                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, clearCashFlowDefinition.Flow.Source, -taxableAmount);
-
-                    currentPeriodAccounts =
-                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, clearCashFlowDefinition.Flow.Target, taxableAmount);
-
-                    var taxPaymentAmount = await CalculateCapitalBenefitsTaxAsync(currentYear, currentPerson, taxableAmount);
-
-                    currentPeriodAccounts =
-                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Wealth, -taxPaymentAmount);
-                }
-
-                // 2a. take each account amount, calculate tax, and deduct it from wealth
-                var income = currentPeriodAccounts[AccountType.Income];
-                var wealth = currentPeriodAccounts[AccountType.Wealth];
-
-                var totalTaxAmount = await CalculateIncomeAndWealthTaxAsync(currentYear, currentPerson, income, wealth);
-
-                // 2b. deduct tax payment from current wealth as tax payments are made after calculating taxes
-                currentPeriodAccounts =
-                    AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Wealth, -totalTaxAmount);
-
-                // 3. savings quota: take share from current income account and move it to wealth
-                decimal newSavings = currentPeriodAccounts[AccountType.Income] * options.SavingsQuota;
-
-                currentPeriodAccounts =
-                    AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Wealth, newSavings);
-                currentPeriodAccounts =
-                    AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Income, -newSavings);
-
-                // 4. apply end of year clear cash-flows
-                foreach (var clearCashFlowDefinition in currentYearClearAccountActions
-                    .Where(item => item.OccurrenceType == OccurrenceType.EndOfPeriod && item.IsTaxable))
-                {
-                    decimal taxableAmount = currentPeriodAccounts[clearCashFlowDefinition.Flow.Source] *
-                                            clearCashFlowDefinition.ClearRatio;
-                    currentPeriodAccounts =
-                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, clearCashFlowDefinition.Flow.Source, -taxableAmount);
-
-                    currentPeriodAccounts =
-                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, clearCashFlowDefinition.Flow.Target, taxableAmount);
-
-                    var taxPaymentAmount = await CalculateCapitalBenefitsTaxAsync(currentYear, currentPerson, taxableAmount);
-
-                    currentPeriodAccounts =
-                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Wealth, -taxPaymentAmount);
-
-                }
-
-                // 5. reset flow account types income and exogenous which are swapped to next period
-                currentPeriodAccounts = currentPeriodAccounts.Remove(AccountType.Income);
-                currentPeriodAccounts = currentPeriodAccounts.Remove(AccountType.Exogenous);
-
-                // 6. Change residence
-                foreach (ChangeResidenceAction changeResidenceAction in currentYearChangeResidenceActions)
+                // 1. change residence
+                foreach (var changeAction in currentDateChangeResidenceActions.OfType<ChangeResidenceAction>())
                 {
                     currentPerson = currentPerson with
                     {
-                        MunicipalityId = changeResidenceAction.DestinationMunicipalityId,
-                        Canton = changeResidenceAction.DestinationCanton,
+                        MunicipalityId = changeAction.DestinationMunicipalityId,
+                        Canton = changeAction.DestinationCanton,
                     };
 
-                    currentPeriodAccounts =
-                        AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Wealth, -changeResidenceAction.ChangeCost);
+                    currentAccounts = ProcessResidenceChangeAction(currentAccounts, changeAction);
                 }
 
-                // 7. compound wealth and capital benefits accounts
-                decimal wealthIncrease = currentPeriodAccounts[AccountType.Wealth] * options.WealthNetGrowthRate;
-                decimal capitalBenefitsIncrease = currentPeriodAccounts[AccountType.CapitalBenefits] * options.CapitalBenefitsNetGrowthRate;
-
-                currentPeriodAccounts =
-                    AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.Wealth, wealthIncrease);
-
-                currentPeriodAccounts =
-                    AddOrUpdateCurrentPeriodAccounts(currentPeriodAccounts, AccountType.CapitalBenefits, capitalBenefitsIncrease);
-
-                // 8. collect calculation results
-                currentPeriodAccounts
-                    .Select(pair => new SinglePeriodCalculationResult
-                    {
-                        Year = currentYear,
-                        Amount = pair.Value,
-                        AccountType = pair.Key
-                    })
-                    .Iter(item => singlePeriodCalculationResults.Add(item));
-            }
-
-            return new MultiPeriodCalculationResult
-            {
-                StartingYear = startingYear,
-                NumberOfPeriods = finalYear - startingYear + 1,
-                Accounts = singlePeriodCalculationResults
-            };
-
-            async Task<decimal> CalculateIncomeAndWealthTaxAsync(
-                int currentYear, MultiPeriodCalculatorPerson calculatorPerson, decimal income, decimal wealth)
-            {
-                TaxPerson taxPerson = new()
+                // 2. process simple cash-flow: move amount from source to target account
+                foreach (CashFlowModel cashFlow in currentDateStaticCashFlows.Concat(currentDateDynamicCashFlows))
                 {
-                    Name = calculatorPerson.Name,
-                    CivilStatus = calculatorPerson.CivilStatus,
-                    NumberOfChildren = calculatorPerson.NumberOfChildren,
-                    ReligiousGroupType = calculatorPerson.ReligiousGroupType,
-                    PartnerReligiousGroupType = calculatorPerson.PartnerReligiousGroupType,
-                    TaxableWealth = wealth,
-                    TaxableFederalIncome = income,
-                    TaxableIncome = income
-                };
-
-                Either<string, FullTaxResult> result = await _fullTaxCalculator.CalculateAsync(
-                    currentYear, person.MunicipalityId, person.Canton, taxPerson, true);
-
-                return result.Match(
-                    Right: r => r.TotalTaxAmount,
-                    Left: error =>
-                    {
-                        _logger.LogError(error);
-                        return decimal.Zero;
-                    });
+                    currentAccounts = await ProcessSimpleCashFlowAsync(currentAccounts, cashFlow, person);
+                }
             }
 
-            async Task<decimal> CalculateCapitalBenefitsTaxAsync(
-                int currentYear, MultiPeriodCalculatorPerson calculatorPerson, decimal amount)
-            {
-                CapitalBenefitTaxPerson taxPerson = new()
+            currentAccounts = await ProcessEndOfYearSettlementAsync(currentAccounts, currentPerson, finalDate, options);
+
+            // collect calculation results
+            int year = currentYear;
+            currentAccounts
+                .Select(pair => new SinglePeriodCalculationResult
                 {
-                    Name = calculatorPerson.Name,
-                    CivilStatus = calculatorPerson.CivilStatus,
-                    NumberOfChildren = calculatorPerson.NumberOfChildren,
-                    ReligiousGroupType = calculatorPerson.ReligiousGroupType,
-                    PartnerReligiousGroupType = calculatorPerson.PartnerReligiousGroupType,
-                    TaxableBenefits = amount
-                };
-
-                Either<string, FullCapitalBenefitTaxResult> result = await _capitalBenefitCalculator.CalculateAsync(
-                    currentYear, calculatorPerson.MunicipalityId, calculatorPerson.Canton, taxPerson, true);
-
-                return result.Match(
-                    Right: r => r.TotalTaxAmount,
-                    Left: error =>
-                    {
-                        _logger.LogError(error);
-                        return decimal.Zero;
-                    });
-            }
+                    Year = year, Amount = pair.Value.Balance, AccountType = pair.Key
+                })
+                .Iter(item => singlePeriodCalculationResults.Add(item));
         }
 
-        /// <inheritdoc />
-        public Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
-            int startingYear,
-            int numberOfPeriods,
-            MultiPeriodCalculatorPerson person,
-            CashFlowDefinitionHolder cashFlowDefinitionHolder,
-            MultiPeriodOptions options)
+        return new MultiPeriodCalculationResult
         {
-            GenericCashFlowDefinition salaryCashFlowDefinition = new()
+            StartingYear = startingYear,
+            NumberOfPeriods = finalYear - startingYear + 1,
+            Accounts = singlePeriodCalculationResults,
+            ExogenousAccount = exogenousAccount,
+            IncomeAccount = incomeAccount,
+            WealthAccount = wealthAccount,
+            OccupationalPensionAccount = occupationalPensionAccount,
+            ThirdPillarAccount = thirdPillarAccount
+        };
+    }
+
+    /// <inheritdoc />
+    public Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
+        int startingYear,
+        int numberOfPeriods,
+        MultiPeriodCalculatorPerson person,
+        CashFlowDefinitionHolder cashFlowDefinitionHolder,
+        MultiPeriodOptions options)
+    {
+        ICompositeCashFlowDefinition accountSetupDefinition = new SetupAccountDefinition
             {
-                Id = "my salary",
-                Name = $"{person.Name} - Lohn",
-                InvestmentPeriod = new InvestmentPeriod
-                { 
-                    Year = startingYear,
-                    NumberOfPeriods = numberOfPeriods
-                },
-                Flow = new FlowPair( AccountType.Exogenous, AccountType.Income),
-                InitialAmount = decimal.Zero,
-                NetGrowthRate = options.SalaryNetGrowthRate,
-                Ordinal = 0,
-                RecurringInvestment = new RecurringInvestment
-                {
-                    Amount = person.Income,
-                    Frequency = FrequencyType.Yearly,
-                },
-                OccurrenceType = OccurrenceType.BeginOfPeriod,
-                IsTaxable = true,
-                TaxType = TaxType.Income
+                InitialOccupationalPensionAssets = person.CapitalBenefits.PensionPlan + person.CapitalBenefits.Pillar3a,
+                InitialWealth = person.Wealth
             };
 
-            GenericCashFlowDefinition wealthCashFlowDefinition = new()
-            {
-                Id = "my wealth",
-                Name = $"{person.Name} - Vermögen",
-                InvestmentPeriod = new InvestmentPeriod
-                {
-                    Year = startingYear,
-                    NumberOfPeriods = 1
-                },
-                Flow = new FlowPair(AccountType.Exogenous, AccountType.Wealth),
-                InitialAmount = person.Wealth,
-                NetGrowthRate = options.WealthNetGrowthRate,
-                Ordinal = 0,
-                RecurringInvestment = new RecurringInvestment
-                {
-                    Amount = 0,
-                    Frequency = FrequencyType.Yearly,
-                },
-                OccurrenceType = OccurrenceType.BeginOfPeriod,
-                IsTaxable = true,
-                TaxType = TaxType.Wealth
-            };
-
-            GenericCashFlowDefinition pillar3aCashFlowDefinition = new()
-            {
-                Id = "my 3a account",
-                Name = $"{person.Name} - 3a Pillar",
-                InitialAmount = person.CapitalBenefits.Pillar3a,
-                RecurringInvestment = new RecurringInvestment
-                {
-                    Amount = 0,
-                    Frequency = FrequencyType.Yearly,
-                },
-                Flow = new FlowPair(AccountType.Exogenous, AccountType.CapitalBenefits),
-                InvestmentPeriod = new InvestmentPeriod
-                {
-                    Year = startingYear,
-                    NumberOfPeriods = 1
-                },
-                IsTaxable = false,
-                TaxType = TaxType.Undefined,
-                OccurrenceType = OccurrenceType.BeginOfPeriod
-            };
-
-            // PK-Einkauf
-            GenericCashFlowDefinition pensionPlanCashFlowDefinition = new()
-            {
-                Id = "my PK account",
-                NetGrowthRate = 0,
-                Name = "PK-Einkauf",
-                InitialAmount = person.CapitalBenefits.PensionPlan,
-                RecurringInvestment = new RecurringInvestment
-                {
-                    Amount = 0,
-                    Frequency = FrequencyType.Yearly,
-                },
-                Flow = new FlowPair(AccountType.Exogenous, AccountType.CapitalBenefits),
-                InvestmentPeriod = new InvestmentPeriod
-                {
-                    Year = startingYear,
-                    NumberOfPeriods = 1
-                },
-                IsTaxable = false,
-                TaxType = TaxType.Undefined,
-                OccurrenceType = OccurrenceType.BeginOfPeriod
-            };
-
-            var extendedDefinitionHolder = cashFlowDefinitionHolder with
-            {
-                GenericCashFlowDefinitions = new[]
-                    {
-                        salaryCashFlowDefinition, wealthCashFlowDefinition, pillar3aCashFlowDefinition, pensionPlanCashFlowDefinition
-                    }
-                    .Concat(cashFlowDefinitionHolder.GenericCashFlowDefinitions)
-                    .ToList()
-            };
-
-            return CalculateAsync(person, extendedDefinitionHolder, options);
-        }
-
-        private static ImmutableDictionary<AccountType, decimal> AddOrUpdateCurrentPeriodAccounts(
-            ImmutableDictionary<AccountType, decimal> currentPeriodAccounts,
-            AccountType accountType,
-            decimal amount)
+        CashFlowDefinitionHolder extendedDefinitionHolder = cashFlowDefinitionHolder with
         {
-            if (currentPeriodAccounts.ContainsKey(accountType))
-            {
-                currentPeriodAccounts = currentPeriodAccounts.SetItem(
-                    accountType,
-                    currentPeriodAccounts[accountType] + amount);
-            }
-            else
-            {
-                currentPeriodAccounts = currentPeriodAccounts.Add(accountType, amount);
-            }
+            Composites = cashFlowDefinitionHolder.Composites
+                .Concat(new[] { accountSetupDefinition })
+                .ToList()
+        };
 
-            return currentPeriodAccounts;
+        return CalculateAsync(startingYear, person, extendedDefinitionHolder, options);
+    }
+
+    private async Task<Dictionary<AccountType, ICashFlowAccount>> ProcessSimpleCashFlowAsync(
+        Dictionary<AccountType, ICashFlowAccount> currentAccounts, CashFlowModel cashFlow, MultiPeriodCalculatorPerson person)
+    {
+        ICashFlowAccount creditAccount = currentAccounts[cashFlow.Target];
+        ICashFlowAccount debitAccount = currentAccounts[cashFlow.Source];
+
+        ExecuteTransaction(debitAccount, creditAccount, "Simple cash-flow", cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue), cashFlow.Amount);
+
+        if (cashFlow.IsTaxable)
+        {
+            // Tax reduces wealth as transaction is taxable.
+            if (cashFlow.TaxType == TaxType.CapitalBenefits)
+            {
+                var taxPaymentAmount = await CalculateCapitalBenefitsTaxAsync(cashFlow.DateOfProcess.Year, person, cashFlow.Amount);
+
+                ICashFlowAccount wealthAccount = currentAccounts[AccountType.Wealth];
+                ICashFlowAccount exogenousAccount = currentAccounts[AccountType.Exogenous];
+
+                ExecuteTransaction(wealthAccount, exogenousAccount, "Tax payment", cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue), taxPaymentAmount);
+            }
         }
+
+        return currentAccounts;
+    }
+
+    private Dictionary<AccountType, ICashFlowAccount> ProcessResidenceChangeAction(
+        Dictionary<AccountType, ICashFlowAccount> currentAccounts, ChangeResidenceAction action)
+    {
+        ICashFlowAccount wealthAccount = currentAccounts[AccountType.Wealth];
+        ICashFlowAccount exogenousAccount = currentAccounts[AccountType.Exogenous];
+
+        ExecuteTransaction(wealthAccount, exogenousAccount, "Residence change costs", action.DateOfProcess, action.ChangeCost);
+
+        return currentAccounts;
+    }
+
+    private async Task<Dictionary<AccountType, ICashFlowAccount>> ProcessEndOfYearSettlementAsync(
+        Dictionary<AccountType, ICashFlowAccount> currentAccounts,
+        MultiPeriodCalculatorPerson person,
+        DateOnly finalDate,
+        MultiPeriodOptions options)
+    {
+        ICashFlowAccount incomeAccount = currentAccounts[AccountType.Income];
+        ICashFlowAccount wealthAccount = currentAccounts[AccountType.Wealth];
+        ICashFlowAccount exogenousAccount = currentAccounts[AccountType.Exogenous];
+        ICashFlowAccount occupationalPensionAccount = currentAccounts[AccountType.OccupationalPension];
+        ICashFlowAccount thirdPillarAccount = currentAccounts[AccountType.ThirdPillar];
+
+        DateTime finalDateAsDateTime = finalDate.ToDateTime(TimeOnly.MinValue);
+
+        // compound wealth and capital benefits accounts
+        // todo: instead of assuming account balance is compounded a full year a time-weighted calculation should be used (TWR).
+        // This can be achieved by the ordered list of transaction on the accounts.
+        decimal wealthCompoundedReturn = wealthAccount.Balance * options.WealthNetGrowthRate;
+        ExecuteTransaction(exogenousAccount, wealthAccount, "Compound Return Wealth", finalDateAsDateTime, wealthCompoundedReturn);
+
+        decimal occupationalPensionCompoundedReturn = occupationalPensionAccount.Balance * options.CapitalBenefitsNetGrowthRate;
+        ExecuteTransaction(exogenousAccount, occupationalPensionAccount, "Compound Return Occupational Pension", finalDateAsDateTime, occupationalPensionCompoundedReturn);
+
+        decimal thirdPillarCompoundedReturn = thirdPillarAccount.Balance * options.CapitalBenefitsNetGrowthRate;
+        ExecuteTransaction(exogenousAccount, thirdPillarAccount, "Compound Return Third Pillar", finalDateAsDateTime, thirdPillarCompoundedReturn);
+
+        // savings quota: take share from current income account and move it to wealth
+        decimal newSavings = incomeAccount.Balance * SavingsQuota(finalDate, options, person);
+
+        // savings are subject to wealth tax but are not deducted fr
+        ExecuteTransaction(exogenousAccount, wealthAccount, "Savings Quota", finalDateAsDateTime, newSavings);
+
+        // take each account amount, calculate tax, and deduct it from wealth
+        var totalTaxAmount =
+            await CalculateIncomeAndWealthTaxAsync(finalDate.Year, person, incomeAccount.Balance, wealthAccount.Balance);
+
+        ExecuteTransaction(wealthAccount, exogenousAccount, "Yearly Income and Wealth Tax", finalDateAsDateTime, totalTaxAmount);
+
+        // Clear income account as it begin at 0 in the new year
+        ExecuteTransaction(incomeAccount, exogenousAccount, "Clear income account", finalDateAsDateTime, incomeAccount.Balance);
+
+        return currentAccounts;
+    }
+
+    private async Task<decimal> CalculateIncomeAndWealthTaxAsync(
+        int currentYear, MultiPeriodCalculatorPerson calculatorPerson, decimal income, decimal wealth)
+    {
+        TaxPerson taxPerson = new()
+        {
+            Name = calculatorPerson.Name,
+            CivilStatus = calculatorPerson.CivilStatus,
+            NumberOfChildren = calculatorPerson.NumberOfChildren,
+            ReligiousGroupType = calculatorPerson.ReligiousGroupType,
+            PartnerReligiousGroupType = calculatorPerson.PartnerReligiousGroupType,
+            TaxableWealth = wealth,
+            TaxableFederalIncome = income,
+            TaxableIncome = income
+        };
+
+        Either<string, MunicipalityModel> municipality =
+            await municipalityConnector.GetAsync(calculatorPerson.MunicipalityId, currentYear);
+
+        Either<string, FullTaxResult> result = await municipality
+            .BindAsync(m => _fullTaxCalculator.CalculateAsync(currentYear, m, taxPerson, true));
+
+        return result.Match(
+            Right: r => r.TotalTaxAmount,
+            Left: error =>
+            {
+                _logger.LogError(error);
+                return decimal.Zero;
+            });
+    }
+
+    private async Task<decimal> CalculateCapitalBenefitsTaxAsync(
+        int currentYear, MultiPeriodCalculatorPerson person, decimal amount)
+    {
+        CapitalBenefitTaxPerson taxPerson = new()
+        {
+            Name = person.Name,
+            CivilStatus = person.CivilStatus,
+            NumberOfChildren = person.NumberOfChildren,
+            ReligiousGroupType = person.ReligiousGroupType,
+            PartnerReligiousGroupType = person.PartnerReligiousGroupType,
+            TaxableCapitalBenefits = amount
+        };
+
+        Either<string, MunicipalityModel> municipality =
+            await municipalityConnector.GetAsync(person.MunicipalityId, currentYear);
+
+        Either<string, FullCapitalBenefitTaxResult> result = await municipality
+            .BindAsync(m => _capitalBenefitCalculator.CalculateAsync(
+                currentYear, m, taxPerson, true));
+
+        return result.Match(
+            Right: r => r.TotalTaxAmount,
+            Left: error =>
+            {
+                _logger.LogError(error);
+                return decimal.Zero;
+
+            });
+    }
+
+    private static void ExecuteTransaction(
+        ICashFlowAccount debitAccount, ICashFlowAccount creditAccount, string description, DateTime transactionDate, decimal amount)
+    {
+        if (amount == decimal.Zero)
+        {
+            return;
+        }
+
+        AccountTransaction trxCreditAccount =
+            new($"{description}: inflow from {debitAccount.Name}", transactionDate, amount);
+
+        creditAccount.Balance += amount;
+        creditAccount.Transactions.Add(trxCreditAccount);
+
+
+        AccountTransaction trxDebitAccount =
+            new($"{description}: outflow to {creditAccount.Name}", transactionDate, -amount);
+
+        debitAccount.Balance -= amount;
+        debitAccount.Transactions.Add(trxDebitAccount);
+    }
+
+    private decimal SavingsQuota(DateOnly dateOfValidity, MultiPeriodOptions options, MultiPeriodCalculatorPerson person)
+    {
+        DateOnly retirementDate = DateOnly.FromDateTime(person.DateOfBirth.GetRetirementDate(person.Gender));
+
+        if (dateOfValidity < retirementDate)
+        {
+            return options.SavingsQuota;
+        }
+
+        return decimal.Zero;
     }
 }

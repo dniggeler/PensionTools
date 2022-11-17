@@ -2,7 +2,7 @@
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
 
-namespace TaxCalculator.Validators
+namespace PensionCoach.Tools.TaxCalculator.Validators
 {
     public class TaxPersonBasicValidator : AbstractValidator<TaxPersonBasic>
     {

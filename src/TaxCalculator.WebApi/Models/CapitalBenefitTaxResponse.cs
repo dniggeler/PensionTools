@@ -1,4 +1,6 @@
-﻿namespace TaxCalculator.WebApi.Models
+﻿using PensionCoach.Tools.CommonTypes.Tax;
+
+namespace TaxCalculator.WebApi.Models
 {
     public class CapitalBenefitTaxResponse
     {
