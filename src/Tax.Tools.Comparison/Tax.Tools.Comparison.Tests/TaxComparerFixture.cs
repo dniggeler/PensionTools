@@ -5,8 +5,8 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PensionCoach.Tools.TaxCalculator;
 using Tax.Data;
-using TaxCalculator;
 
 
 namespace Tax.Tools.Comparison.Tests
@@ -30,7 +30,7 @@ namespace Tax.Tools.Comparison.Tests
 
             var configurationDict = new Dictionary<string, string>
             {
-                {"ConnectionStrings:TaxDb", dbFile}
+                {"ConnectionStrings:TaxDb", dbFile},
             };
 
             IConfiguration configuration = new ConfigurationBuilder()
@@ -40,7 +40,7 @@ namespace Tax.Tools.Comparison.Tests
             ServiceCollection coll = new ServiceCollection();
 
             coll.AddLogging();
-            coll.AddTaxCalculators();
+            coll.AddTaxCalculators(configuration);
             coll.AddTaxData(configuration);
             coll.AddTaxComparers();
 

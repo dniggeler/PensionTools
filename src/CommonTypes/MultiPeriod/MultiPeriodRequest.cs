@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod
@@ -8,6 +9,10 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
         [MaxLength(50)]
         [NotNull]
         public string Name { get; set; }
+
+        public Gender Gender { get; set; }
+
+        public DateTime DateOfBirth { get; set; }
 
         [Range(2018, 2099, ErrorMessage = "Valid tax years start from 2018")]
         public int StartingYear { get; set; }

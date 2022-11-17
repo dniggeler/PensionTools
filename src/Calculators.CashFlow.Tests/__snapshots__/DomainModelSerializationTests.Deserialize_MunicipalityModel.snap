@@ -5,6 +5,7 @@
     "Canton": "ZH",
     "DateOfMutation": "2020-01-01T00:00:00",
     "MutationId": 1911,
-    "SuccessorId": 33
+    "SuccessorId": 33,
+    "EstvTaxLocationId": null
   }
 ]

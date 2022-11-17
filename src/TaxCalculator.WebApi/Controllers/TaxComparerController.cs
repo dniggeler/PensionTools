@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LanguageExt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
+using PensionCoach.Tools.CommonTypes.Tax;
+using PensionCoach.Tools.TaxComparison;
 using Tax.Tools.Comparison.Abstractions;
-using Tax.Tools.Comparison.Abstractions.Models;
-using TaxCalculator.WebApi.Models;
 
 namespace TaxCalculator.WebApi.Controllers
 {
@@ -43,48 +39,50 @@ namespace TaxCalculator.WebApi.Controllers
         [Route("capitalbenefit")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<CapitalBenefitTaxComparerResponse>> CompareCapitalBenefitTax(
-            CapitalBenefitTaxComparerRequest request)
+        public async IAsyncEnumerable<TaxComparerResponse> CompareCapitalBenefitTax(CapitalBenefitTaxComparerRequest request)
         {
             if (request == null)
             {
-                return BadRequest(nameof(request));
+                yield break;
             }
 
             var taxPerson = MapRequest();
-
-            Either<string, IReadOnlyCollection<CapitalBenefitTaxComparerResult>> result =
-                await taxComparer
-                    .CompareCapitalBenefitTaxAsync(taxPerson);
-
-            return result
-                .Match<ActionResult>(
-                    Right: r => Ok(MapResponse(r)),
-                    Left: BadRequest);
-
-            // local methods
-            IReadOnlyCollection<CapitalBenefitTaxComparerResponse> MapResponse(IReadOnlyCollection<CapitalBenefitTaxComparerResult> resultList)
+            await foreach (var taxResult in taxComparer.CompareCapitalBenefitTaxAsync(taxPerson, request.BfsNumberList))
             {
-                return resultList.Map(r => new CapitalBenefitTaxComparerResponse
+                if (taxResult.IsLeft)
+                {
+                    continue;
+                }
+
+                var compareResult = new TaxComparerResponse
+                {
+                    Name = taxPerson.Name,
+                };
+
+                taxResult.Iter(m =>
+                {
+                    compareResult.MunicipalityId = m.MunicipalityId;
+                    compareResult.MunicipalityName = m.MunicipalityName;
+                    compareResult.Canton = m.Canton;
+                    compareResult.MaxSupportedTaxYear = m.MaxSupportedTaxYear;
+                    compareResult.TotalTaxAmount = m.MunicipalityTaxResult.TotalTaxAmount;
+                    compareResult.TaxDetails = new TaxAmountDetail
                     {
-                        Name = taxPerson.Name,
-                        MunicipalityId = r.MunicipalityId,
-                        MunicipalityName = r.MunicipalityName,
-                        MaxSupportedTaxYear = r.MaxSupportedTaxYear,
-                        TotalTaxAmount = r.MunicipalityTaxResult.TotalTaxAmount,
-                        TaxDetails = new TaxAmountDetail
-                        {
-                            CantonTaxAmount = r.MunicipalityTaxResult.StateResult.CantonTaxAmount,
-                            FederalTaxAmount = r.MunicipalityTaxResult.FederalResult.TaxAmount,
-                        },
-                    })
-                    .ToList();
+                        CantonTaxAmount = m.MunicipalityTaxResult.StateResult.CantonTaxAmount,
+                        MunicipalityTaxAmount = m.MunicipalityTaxResult.StateResult.MunicipalityTaxAmount,
+                        FederalTaxAmount = m.MunicipalityTaxResult.FederalResult.TaxAmount,
+                        ChurchTaxAmount = m.MunicipalityTaxResult.StateResult.ChurchTaxAmount,
+                    };
+                    compareResult.TotalCount = m.TotalCount;
+                });
+
+                yield return compareResult;
             }
 
             CapitalBenefitTaxPerson MapRequest()
             {
                 var name = string.IsNullOrEmpty(request.Name)
-                    ? Guid.NewGuid().ToString().Substring(0, 6)
+                    ? Guid.NewGuid().ToString()[..6]
                     : request.Name;
 
                 return new CapitalBenefitTaxPerson
@@ -94,7 +92,84 @@ namespace TaxCalculator.WebApi.Controllers
                     ReligiousGroupType = request.ReligiousGroup,
                     PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
                     NumberOfChildren = 0,
-                    TaxableBenefits = request.TaxableBenefits,
+                    TaxableCapitalBenefits = request.TaxableBenefits,
+                };
+            }
+        }
+
+        /// <summary>
+        /// Calculates the overall income and wealth tax for all available municipalities for a given calculations year.
+        /// </summary>
+        /// <param name="request">The request includes details about the tax person and the taxable amount.</param>
+        /// <returns>Calculation results.</returns>
+        /// <response code="200">If calculation is successful.</response>
+        /// <response code="400">
+        /// If request is incomplete or cannot be validated. The calculator may also not support all cantons.
+        /// </response>
+        /// <remarks>
+        /// Berechnet die Bundes-, Staats- und Gemeindesteuern auf Einkommen und Vermögen für alle Gemeinden in der Datenbasis
+        /// für ein vorgegebenes Steuerjahr.
+        /// </remarks>
+        [HttpPost]
+        [Route("incomewealth")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async IAsyncEnumerable<TaxComparerResponse> CompareIncomeWealthTax(IncomeAndWealthComparerRequest request)
+        {
+            if (request == null)
+            {
+                yield break;
+            }
+
+            var taxPerson = MapRequest();
+            await foreach (var taxResult in taxComparer.CompareIncomeAndWealthTaxAsync(taxPerson, request.BfsNumberList))
+            {
+                if (taxResult.IsLeft)
+                {
+                    continue;
+                }
+
+                TaxComparerResponse compareResult = new TaxComparerResponse
+                {
+                    Name = taxPerson.Name,
+                };
+
+                taxResult.Iter(m =>
+                {
+                    compareResult.MunicipalityId = m.MunicipalityId;
+                    compareResult.MunicipalityName = m.MunicipalityName;
+                    compareResult.Canton = m.Canton;
+                    compareResult.MaxSupportedTaxYear = m.MaxSupportedTaxYear;
+                    compareResult.TotalTaxAmount = m.TaxResult.TotalTaxAmount;
+                    compareResult.TaxDetails = new TaxAmountDetail
+                    {
+                        CantonTaxAmount = m.TaxResult.StateTaxResult.CantonTaxAmount,
+                        MunicipalityTaxAmount = m.TaxResult.StateTaxResult.MunicipalityTaxAmount,
+                        FederalTaxAmount = m.TaxResult.FederalTaxResult.TaxAmount,
+                        ChurchTaxAmount = m.TaxResult.StateTaxResult.ChurchTaxAmount,
+                    };
+                    compareResult.TotalCount = m.TotalCount;
+                });
+
+                yield return compareResult;
+            }
+
+            TaxPerson MapRequest()
+            {
+                var name = string.IsNullOrEmpty(request.Name)
+                    ? Guid.NewGuid().ToString()[..6]
+                    : request.Name;
+
+                return new TaxPerson
+                {
+                    Name = name,
+                    CivilStatus = request.CivilStatus,
+                    ReligiousGroupType = request.ReligiousGroup,
+                    PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
+                    NumberOfChildren = 0,
+                    TaxableIncome = request.TaxableIncome,
+                    TaxableFederalIncome = request.TaxableFederalIncome,
+                    TaxableWealth = request.TaxableWealth,
                 };
             }
         }

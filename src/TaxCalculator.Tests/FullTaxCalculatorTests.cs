@@ -2,20 +2,20 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;
 using Xunit;
 
 namespace TaxCalculator.Tests
 {
-    [Trait("Calculator", "Full Tax")]
-    public class FullTaxCalculatorTests : IClassFixture<TaxCalculatorFixture<IFullTaxCalculator>>
+    [Trait("Proprietary Calculator", "Full Tax")]
+    public class FullTaxCalculatorTests : IClassFixture<TaxCalculatorFixture<IFullWealthAndIncomeTaxCalculator>>
     {
-        private readonly TaxCalculatorFixture<IFullTaxCalculator> _fixture;
+        private readonly TaxCalculatorFixture<IFullWealthAndIncomeTaxCalculator> _fixture;
 
-        public FullTaxCalculatorTests(TaxCalculatorFixture<IFullTaxCalculator> fixture)
+        public FullTaxCalculatorTests(TaxCalculatorFixture<IFullWealthAndIncomeTaxCalculator> fixture)
         {
             _fixture = fixture;
         }
@@ -63,9 +63,11 @@ namespace TaxCalculator.Tests
                 TaxableWealth = wealth
             };
 
+            var municipality = new MunicipalityModel { BfsNumber = municipalityId, Canton = canton };
+
             // when
             var result = await _fixture.Calculator.CalculateAsync(
-                calculationYear, municipalityId, canton, taxPerson);
+                calculationYear, municipality, taxPerson);
 
             result.IsRight.Should().BeTrue();
             Snapshot.Match(result, $"Theory Full Tax {cantonStr}{calculationYear}{stateIncomeAsDouble}{wealthAsDouble}{civilStatusCode}");

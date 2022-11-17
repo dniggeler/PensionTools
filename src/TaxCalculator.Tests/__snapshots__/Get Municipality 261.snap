@@ -7,7 +7,8 @@
       "Canton": "ZH",
       "DateOfMutation": null,
       "MutationId": 1498,
-      "SuccessorId": 0
+      "SuccessorId": 0,
+      "EstvTaxLocationId": 800000000
     },
     "Left": null
   }

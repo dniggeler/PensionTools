@@ -2,7 +2,7 @@
 using FluentValidation;
 using PensionCoach.Tools.CommonTypes;
 
-namespace TaxCalculator.Validators
+namespace PensionCoach.Tools.TaxCalculator.Validators
 {
     public class CantonValidator : AbstractValidator<Canton>
     {

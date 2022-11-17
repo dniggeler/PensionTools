@@ -1,10 +1,13 @@
 ﻿@page "/WealthPlanning"
-@using PensionCoach.Tools.CommonTypes
+
 @using Microsoft.Extensions.Logging
-@using System.Text.Json
+@using PensionCoach.Tools.CommonTypes
 @using PensionCoach.Tools.CommonTypes.MultiPeriod
+@using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions
+@using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions
 @using PensionCoach.Tools.CommonTypes.Tax
-@using BlazorApp.MyComponents.Person
+@using Microsoft.AspNetCore.Components
+@using System.Text.Json
 
 @inject IStringLocalizer<Resource> localizer
 @inject ILogger<WealthPlanning> logger
@@ -108,7 +111,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                     <ChildContent>
                                         <div class="row">
                                             <div class="col-md-3"><RadzenLabel Text="Jahr" /></div>
-                                            <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="changeResidenceModel.ChangeAtYear" /></div>
+                                            <div class="col-md-9"><RadzenDatePicker @bind-Value="changeResidenceModel.DateOfProcess" DateFormat="d.M.yyyy"/></div>
                                             <div class="col-md-3"><RadzenLabel Text="Kosten" /></div>
                                             <div class="col-md-9"><RadzenNumeric TValue="decimal" @bind-Value="changeResidenceModel.ChangeCost" /></div>
                                             <div class="col-md-3"><RadzenLabel Text="Gemeinde" /></div>
@@ -149,9 +152,9 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                             <div class="col-md-12">
                                                 <RadzenAccordion>
                                                     <Items>
-                                                        @foreach (GenericCashFlowDefinition definition in genericCashFlowDefinitions)
+                                                        @foreach (StaticGenericCashFlowDefinition definition in genericCashFlowDefinitions)
                                                         {
-                                                        <RadzenAccordionItem Text="@definition.Name">
+                                                        <RadzenAccordionItem Text="@definition.Header.Name">
                                                             <GenericCashFlowDefinitionForm Definition="definition" />
                                                         </RadzenAccordionItem>
                                                         }
@@ -271,12 +274,15 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     private readonly MultiPeriodRequest model = GetDefaultValues();
     private readonly ChangeResidenceAction changeResidenceModel = new()
     {
-        Id = "cra1",
-        Name = "Change Residence Action",
+        Header = new CashFlowHeader
+        {
+            Id = "cra1",
+                Name = "Change Residence Action"
+        },
     };
 
-    private IEnumerable<GenericCashFlowDefinition> genericCashFlowDefinitions = new List<GenericCashFlowDefinition>();
-    private ClearAccountAction clearAccountAction = new();
+    private IEnumerable<StaticGenericCashFlowDefinition> genericCashFlowDefinitions = new List<StaticGenericCashFlowDefinition>();
+    private RelativeTransferAmountDefinition clearAccountAction = new();
 
     private TaxPerson taxPerson;
     private PersonViewModel selectedPerson;
@@ -295,20 +301,24 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     {
         persons = (await personService.GetPersonsAsync()).ToList();
         changeResidenceModel.DestinationMunicipalityId = model.BfsMunicipalityId;
-        changeResidenceModel.ChangeAtYear = Math.Max(model.StartingYear + model.NumberOfPeriods - 3, 0);
-        genericCashFlowDefinitions = new List<GenericCashFlowDefinition>
+        changeResidenceModel.DateOfProcess = new DateTime(Math.Max(model.StartingYear + model.NumberOfPeriods - 3, 0), 1, 1);
+        genericCashFlowDefinitions = new List<StaticGenericCashFlowDefinition>
         {
             new()
             {
-                Id = "my 3a account",
-                Name = "Säule 3a",
+                Header = new CashFlowHeader
+                {
+                    Id = "my 3a account",
+                    Name = "Säule 3a",
+                },
+
                 InitialAmount = 0,
                 RecurringInvestment = new RecurringInvestment
                 {
                     Amount = 6883,
                     Frequency = FrequencyType.Yearly,
                 },
-                Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+                Flow = new FlowPair(AccountType.Income, AccountType.ThirdPillar),
                 InvestmentPeriod = new InvestmentPeriod
                 {
                     Year = 2021,
@@ -316,19 +326,22 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                 },
                 IsTaxable = false,
                 TaxType = TaxType.Undefined,
-                OccurrenceType = OccurrenceType.BeginOfPeriod
             },
             new()
             {
+                Header = new CashFlowHeader
+                {
+                    Id = "purchase",
+                    Name = "PK-Einkauf",
+                },
                 NetGrowthRate = 0,
-                Name = "PK-Einkauf",
                 InitialAmount = 0,
                 RecurringInvestment = new RecurringInvestment
                 {
                     Amount = 10000,
                     Frequency = FrequencyType.Yearly,
                 },
-                Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+                Flow = new FlowPair(AccountType.Income, AccountType.OccupationalPension),
                 InvestmentPeriod = new InvestmentPeriod
                 {
                     Year = 2021,
@@ -336,19 +349,18 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                 },
                 IsTaxable = false,
                 TaxType = TaxType.Undefined,
-                OccurrenceType = OccurrenceType.BeginOfPeriod
             }
         };
 
-        clearAccountAction.ClearAtYear = Math.Max(model.StartingYear + model.NumberOfPeriods-1, 0);
+        clearAccountAction.DateOfProcess = new DateTime(Math.Max(model.StartingYear + model.NumberOfPeriods-1, 0));
     }
 
     private async Task OnSubmit(MultiPeriodRequest request)
     {
         multiPeriodCalculationResponse = null;
         request.Options = simulationOptions;
-        request.CashFlowDefinitionHolder.GenericCashFlowDefinitions = genericCashFlowDefinitions.ToList();
-        request.CashFlowDefinitionHolder.ClearAccountActions = new List<ClearAccountAction>() { clearAccountAction };
+        request.CashFlowDefinitionHolder.StaticGenericCashFlowDefinitions = genericCashFlowDefinitions.ToList();
+        request.CashFlowDefinitionHolder.Composites = new List<ICompositeCashFlowDefinition> { clearAccountAction };
         multiPeriodCalculationResponse = await multiPeriodCalculationService.CalculateAsync(request);
 
         (ChartDataItemModel[] wealthData, ChartDataItemModel[] capitalBenefitsData, ChartDataItemModel[] totalData) = GetTotalDataItems();
@@ -375,7 +387,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     private (ChartDataItemModel[] wealthData, ChartDataItemModel[] capitalBenefitsData, ChartDataItemModel[] totalData) GetTotalDataItems()
     {
         ChartDataItemModel[] wealthData = GetWealthDataItems();
-        ChartDataItemModel[] capitalBenefitsData = GetCapitalBenefitsDataItems();
+        ChartDataItemModel[] capitalBenefitsData = GetOccupationalPensionDataItems();
         ChartDataItemModel[] totalData = GetTotalSumDataItems();
 
         return (wealthData, capitalBenefitsData, totalData);
@@ -398,7 +410,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             .ToArray();
     }
 
-    private ChartDataItemModel[] GetCapitalBenefitsDataItems()
+    private ChartDataItemModel[] GetOccupationalPensionDataItems()
     {
         if (multiPeriodCalculationResponse == null)
         {
@@ -406,7 +418,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         }
 
         return multiPeriodCalculationResponse.Accounts
-            .Where(item => item.AccountType == AccountType.CapitalBenefits)
+            .Where(item => item.AccountType == AccountType.OccupationalPension)
             .Select(item => new ChartDataItemModel
             {
                 Date = new DateTime(item.Year, 1, 1),

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Municipality;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;
 using Xunit;
 
@@ -56,12 +56,18 @@ namespace TaxCalculator.Tests
                 CivilStatus = status,
                 ReligiousGroupType = religiousGroup,
                 PartnerReligiousGroupType = partnerReligiousGroup,
-                TaxableBenefits = capitalBenefitAmount,
+                TaxableCapitalBenefits = capitalBenefitAmount,
+            };
+
+            MunicipalityModel municipality = new()
+            {
+                BfsNumber = municipalityId,
+                Canton = canton
             };
 
             // when
             var result = await _fixture.Calculator.CalculateAsync(
-                calculationYear, municipalityId, canton, taxPerson);
+                calculationYear, municipality, taxPerson);
 
             Snapshot.Match(
                 result,

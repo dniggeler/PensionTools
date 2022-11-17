@@ -1,0 +1,15 @@
+﻿{
+  "TaxCanton": 24043,
+  "TaxChurch": 1603,
+  "TaxCity": 27649,
+  "TaxFed": 23000,
+  "Location": {
+    "Id": 885300000,
+    "ZipCode": "8853",
+    "BfsId": 1344,
+    "CantonId": 19,
+    "BfsName": "Lachen",
+    "City": "Lachen SZ",
+    "Canton": "SZ"
+  }
+}

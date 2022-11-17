@@ -1,0 +1,171 @@
+﻿@page "/TaxComparer/CapitalBenefits"
+
+@using Microsoft.Extensions.Logging
+@using PensionCoach.Tools.CommonTypes
+@using Microsoft.AspNetCore.Components
+@using PensionCoach.Tools.TaxComparison
+
+@inject ILogger<WealthPlanning> Logger
+@inject IPersonService PersonService
+@inject ITaxCapitalBenefitsComparisonService TaxComparisonService
+
+<RadzenTemplateForm TItem="CapitalBenefitTaxComparerRequest" Data=@taxRequest Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
+    <RadzenContent Container="main">
+        <ChildContent>
+            <RadzenHeading Size="H1" Text="Gemeindevergleich Kapitalbezugssteuer"></RadzenHeading>
+            <RadzenSteps NextText="Nächster" PreviousText="Vorheriger">
+                <Steps>
+                    <RadzenStepsItem Text="Personen" Selected="true">
+                        <FormStep Title="Auswahl" HelpText="Vergleiche die Steuer eines Kapitalbezug zwischen allen Schweizer Gemeinden.">
+                            <div class="row">
+                                <PersonSelector Persons="persons" OnSelect="@HandleSelectPerson"/>
+                            </div>
+                        </FormStep>
+                    </RadzenStepsItem>
+                    <RadzenStepsItem Text="Steuerperson ändern" Disabled="@(selectedPerson == null)">
+                        <ChildContent>
+                            <FormStep Title="Person"
+                                      HelpText="Steuerlich relevante Angaben zur Person sind der Zivilstand,
+die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter,
+welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.
+Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.">
+                                <ChildContent>
+                                    <div class="row">
+                                        <RadzenFieldset Text="Person">
+                                            <div class="row">
+                                                <div class="col-md-3"><RadzenLabel Text="Name" /></div>
+                                                <div class="col-md-9"><RadzenTextBox @bind-Value="taxRequest.Name" Name="simulationName" ReadOnly="true" /></div>
+
+                                                <div class="col-md-3"><RadzenLabel Text="Zivilstand" /></div>
+                                                <div class="col-md-9">
+                                                    <CivilStatusSelector
+                                                        SelectedCivilStatus="@taxRequest.CivilStatus"
+                                                        OnSelected="@(args => taxRequest.CivilStatus = args)"/>
+                                                </div>
+
+                                                <div class="col-md-3"><RadzenLabel Text="Konfession" /></div>
+                                                <div class="col-md-9">
+                                                    <ReligiousGroupSelector
+                                                        SelectedReligiousGroupType="@taxRequest.ReligiousGroup"
+                                                        OnSelected="@(args => taxRequest.ReligiousGroup = args ?? ReligiousGroupType.Other)" />
+                                                </div>
+                                                @if (taxRequest.CivilStatus == CivilStatus.Married)
+                                                {
+                                                    <div class="col-md-3"><RadzenLabel Text="Konfession Partner" /></div>
+                                                    <div class="col-md-9">
+                                                        <ReligiousGroupSelector
+                                                            SelectedReligiousGroupType="@taxRequest.PartnerReligiousGroup"
+                                                            OnSelected="@(args => taxRequest.PartnerReligiousGroup = args)" />
+                                                    </div>
+                                                }
+                                            </div>
+
+                                        </RadzenFieldset>
+                                    </div>
+                                </ChildContent>
+                            </FormStep>
+                        </ChildContent>
+                    </RadzenStepsItem>
+
+                    <RadzenStepsItem Text="Berechnung" Disabled="@(selectedPerson == null)">
+                        <ChildContent>
+                            <FormStep Title="Simulation" HelpText="Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern. Welcher Betrag soll bezogen werden und mit welchen Gemeinden soll verglichen werden?">
+                                <div class="col-md-3"><RadzenLabel Text="Kapitalbetrag" /></div>
+                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.TaxableBenefits" Step="10000.0" /></div>
+                            </FormStep>
+                        </ChildContent>
+                    </RadzenStepsItem>
+                </Steps>
+            </RadzenSteps>
+            
+            <div class="row">
+                <div class="col-md-12 text-right mt-1">
+                    <RadzenButton ButtonType="ButtonType.Submit" Text="Berechne" Disabled="@(selectedPerson == null)"></RadzenButton>
+                </div>
+            </div>
+
+        </ChildContent>
+    </RadzenContent>
+</RadzenTemplateForm>
+
+@if (isComputing)
+{
+    <ComputedProgressBar Value="@progressBarValue" Title=""/>
+}
+
+<TaxComparisonResult @ref="taxComparisonGrid" SelectedPerson="@selectedPerson" TaxCompareResultModels="@taxCalculationResults" />
+
+
+@code
+{
+    private CapitalBenefitTaxComparerRequest taxRequest;
+    private List<TaxComparerResultReportModel> taxCalculationResults = new();
+    private PersonViewModel selectedPerson;
+    private IReadOnlyCollection<PersonViewModel> persons;
+    private TaxComparisonResult taxComparisonGrid;
+
+    private bool isComputing;
+    private int progressBarValue;
+
+    protected override async Task OnInitializedAsync()
+    {
+        isComputing = false;
+        taxRequest = new CapitalBenefitTaxComparerRequest
+        {
+            BfsNumberList = {}
+        };
+        persons = (await PersonService.GetPersonsAsync()).ToList();
+    }
+
+    private void HandleSelectPerson(Guid personId)
+    {
+        selectedPerson = persons.Single(item => item.Id == personId);
+
+        taxRequest = new CapitalBenefitTaxComparerRequest
+        {
+            Name = selectedPerson.Name,
+            CivilStatus = selectedPerson.CivilStatus,
+            PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
+            ReligiousGroup = selectedPerson.ReligiousGroupType,
+            BfsNumberList = {},
+            TaxableBenefits = 1_000_000
+        };
+    }
+
+    private async Task OnSubmit()
+    {
+        taxCalculationResults = new List<TaxComparerResultReportModel>();
+
+        isComputing = true;
+
+        await foreach (TaxComparerResponse item in TaxComparisonService.CalculateAsync(taxRequest))
+        {
+            taxCalculationResults.Add(new TaxComparerResultReportModel
+            {
+                MunicipalityName = item.MunicipalityName,
+                MunicipalityId = item.MunicipalityId,
+                Canton = item.Canton,
+                TotalTaxAmount = item.TotalTaxAmount,
+                MunicipalityTaxAmount = item.TaxDetails.MunicipalityTaxAmount,
+                CantonTaxAmount = item.TaxDetails.CantonTaxAmount,
+                FederalTaxAmount = item.TaxDetails.FederalTaxAmount,
+                ChurchTaxAmount = item.TaxDetails.ChurchTaxAmount
+            });
+
+            progressBarValue = (int)(taxCalculationResults.Count / (item.TotalCount * 1.0) * 100);
+            StateHasChanged();
+            await Task.Delay(3);
+        }
+
+        isComputing = false;
+
+        progressBarValue = 0;
+
+        taxComparisonGrid.Reload();
+    }
+
+    private void OnInvalidSubmit(FormInvalidSubmitEventArgs args)
+    {
+        Logger.LogInformation("InvalidSubmit");
+    }
+}

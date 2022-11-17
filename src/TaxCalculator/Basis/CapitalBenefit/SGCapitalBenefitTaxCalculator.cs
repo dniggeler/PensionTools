@@ -4,16 +4,16 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FluentValidation;
 using LanguageExt;
-using LanguageExt.SomeHelp;
 using Microsoft.EntityFrameworkCore;
 using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data;
 using static LanguageExt.Prelude;
 
-namespace TaxCalculator.Basis.CapitalBenefit
+namespace PensionCoach.Tools.TaxCalculator.Basis.CapitalBenefit
 {
     public class SGCapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
     {
@@ -96,9 +96,9 @@ namespace TaxCalculator.Basis.CapitalBenefit
                         Some: status => status switch
                         {
                             CivilStatus.Single =>
-                            capitalBenefitTaxPerson.TaxableBenefits * taxRateForSingle,
+                            capitalBenefitTaxPerson.TaxableCapitalBenefits * taxRateForSingle,
                             CivilStatus.Married =>
-                            capitalBenefitTaxPerson.TaxableBenefits * taxRateForMarried,
+                            capitalBenefitTaxPerson.TaxableCapitalBenefits * taxRateForMarried,
                             _ => 0M,
                         },
                         None: () => 0);

@@ -1,0 +1,15 @@
+﻿{
+  "TaxCanton": 28116,
+  "TaxChurch": 0,
+  "TaxCity": 33796,
+  "TaxFed": 23000,
+  "Location": {
+    "Id": 800000000,
+    "ZipCode": "8000",
+    "BfsId": 261,
+    "CantonId": 26,
+    "BfsName": "Zürich",
+    "City": "Zürich",
+    "Canton": "ZH"
+  }
+}

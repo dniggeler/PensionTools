@@ -25,6 +25,8 @@
         "MunicipalityTaxAmount": 6105.295,
         "CantonTaxAmount": 5130.5,
         "ChurchTaxAmount": 718.2700,
+        "TotalWealthTax": 552.975,
+        "TotalIncomeTax": 11401.0900,
         "TotalTaxAmount": 12002.0650,
         "PollTaxAmount": [
           48.0

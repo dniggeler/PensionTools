@@ -1,7 +1,7 @@
 ﻿using PensionCoach.Tools.CommonTypes;
 using Tax.Data.Abstractions.Models;
 
-namespace TaxCalculator.Utils
+namespace PensionCoach.Tools.TaxCalculator.Utils
 {
     public static class TaxCalculatorExtensions
     {

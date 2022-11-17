@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Calculators.CashFlow.Models;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 using PensionCoach.Tools.CommonTypes.Tax;
 using Snapshooter.Xunit;
 using Xunit;
@@ -16,10 +18,15 @@ namespace Calculators.CashFlow.Tests
         public void Generate_Single_Allocation_For_10_Years()
         {
             // given
-            GenericCashFlowDefinition definition = new GenericCashFlowDefinition
+            StaticGenericCashFlowDefinition definition = new StaticGenericCashFlowDefinition
             {
+                Header = new CashFlowHeader
+                {
+                    Id = "test",
+                    Name = "Test",
+                },
+                DateOfProcess = new DateTime(2021, 1, 1),
                 NetGrowthRate = 0,
-                Name = "Test",
                 InitialAmount = 9_500,
                 RecurringInvestment = new RecurringInvestment
                 {
@@ -47,10 +54,15 @@ namespace Calculators.CashFlow.Tests
         public void Aggregate_Multiple_CashFlows()
         {
             // given
-            GenericCashFlowDefinition definition1 = new GenericCashFlowDefinition
+            StaticGenericCashFlowDefinition definition1 = new StaticGenericCashFlowDefinition
             {
+                Header = new CashFlowHeader
+                {
+                    Id = "test1",
+                    Name = "Test",
+                },
+                DateOfProcess = new DateTime(2021, 1, 1),
                 NetGrowthRate = 0,
-                Name = "Test",
                 InitialAmount = 9_500,
                 RecurringInvestment = new RecurringInvestment
                 {
@@ -67,10 +79,15 @@ namespace Calculators.CashFlow.Tests
                 TaxType = TaxType.Wealth
             };
 
-            GenericCashFlowDefinition definition2 = new GenericCashFlowDefinition
+            StaticGenericCashFlowDefinition definition2 = new StaticGenericCashFlowDefinition
             {
+                Header = new CashFlowHeader
+                {
+                    Id = "test2",
+                    Name = "Test 2",
+                },
+                DateOfProcess = new DateTime(2021, 1, 1),
                 NetGrowthRate = 0,
-                Name = "Test 2",
                 InitialAmount = 19_500,
                 RecurringInvestment = new RecurringInvestment
                 {
@@ -84,25 +101,32 @@ namespace Calculators.CashFlow.Tests
                     NumberOfPeriods = 5
                 },
                 IsTaxable = true,
-                TaxType = TaxType.Wealth
+                TaxType = TaxType.Wealth,
             };
 
-            GenericCashFlowDefinition definition3 = new GenericCashFlowDefinition
+            StaticGenericCashFlowDefinition definition3 = new StaticGenericCashFlowDefinition
             {
+                Header = new CashFlowHeader
+                {
+                    Id = "test3",
+                    Name = "Test 3",
+                },
+                DateOfProcess = new DateTime(2021, 1, 1),
                 NetGrowthRate = 0,
-                Name = "Test 3",
                 InitialAmount = 50_000,
                 RecurringInvestment = new RecurringInvestment
                 {
                     Amount = 0,
                     Frequency = FrequencyType.Yearly,
                 },
-                Flow = new FlowPair(AccountType.Income, AccountType.CapitalBenefits),
+                Flow = new FlowPair(AccountType.Income, AccountType.OccupationalPension),
                 InvestmentPeriod = new InvestmentPeriod
                 {
                     Year = 2021,
-                    NumberOfPeriods = 1
+                    NumberOfPeriods = 0
                 },
+                TaxType = TaxType.Undefined,
+                IsTaxable = false,
             };
 
             // when

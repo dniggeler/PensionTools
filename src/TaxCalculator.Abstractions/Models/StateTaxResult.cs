@@ -21,6 +21,10 @@ namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models
         public decimal ChurchTaxAmount => ChurchTax.TaxAmount.IfNone(0) +
                                           ChurchTax.TaxAmountPartner.IfNone(0);
 
+        public decimal TotalWealthTax => BasisWealthTax.TaxAmount * (MunicipalityRate / 100M + 1);
+
+        public decimal TotalIncomeTax => BasisIncomeTax.TaxAmount * (MunicipalityRate / 100M + 1) + ChurchTaxAmount;
+
         public decimal TotalTaxAmount => MunicipalityTaxAmount +
                                          CantonTaxAmount +
                                          ChurchTaxAmount +

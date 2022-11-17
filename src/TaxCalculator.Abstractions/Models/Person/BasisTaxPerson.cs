@@ -1,10 +1,8 @@
-﻿using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.CommonTypes.Tax;
+﻿using PensionCoach.Tools.CommonTypes.Tax;
 
-namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person
+namespace PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
+
+public record BasisTaxPerson : TaxPersonBasic
 {
-    public record BasisTaxPerson : TaxPersonBasic
-    {
-        public decimal TaxableAmount { get; set; } 
-    }
+    public decimal TaxableAmount { get; set; } 
 }

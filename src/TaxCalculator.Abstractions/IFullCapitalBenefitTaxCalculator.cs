@@ -1,14 +1,17 @@
 ﻿using System.Threading.Tasks;
 using LanguageExt;
-using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Municipality;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions
 {
     public interface IFullCapitalBenefitTaxCalculator
     {
         Task<Either<string,FullCapitalBenefitTaxResult>> CalculateAsync(
-            int calculationYear, int municipalityId, Canton canton, CapitalBenefitTaxPerson person, bool withMaxAvailableCalculationYear = false);
+            int calculationYear,
+            MunicipalityModel municipality,
+            CapitalBenefitTaxPerson person,
+            bool withMaxAvailableCalculationYear = false);
     }
 }

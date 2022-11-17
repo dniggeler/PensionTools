@@ -1,15 +1,20 @@
-﻿@using PensionCoach.Tools.CommonTypes.MultiPeriod
-@using PensionCoach.Tools.CommonTypes.Tax
+﻿@using Microsoft.AspNetCore.Components
 @using PensionCoach.Tools.CommonTypes
+@using PensionCoach.Tools.CommonTypes.MultiPeriod
+@using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions
+@using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions
+@using PensionCoach.Tools.CommonTypes.Tax
+
+@inject IStringLocalizer<Resource> Localizer
 
 <EditForm Model="Definition">
     <div class="row">
         <div class="col-md-3"><RadzenLabel Text="Titel"/></div>
-        <div class="col-md-9"><RadzenTextBox TValue="string" @bind-Value="@Definition.Name"/></div>
+        <div class="col-md-9"><RadzenTextBox TValue="string" @bind-Value="@Definition.Header.Name"/></div>
         <div class="col-md-3"><RadzenLabel Text="Jahr" /></div>
-        <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="@Definition.ClearAtYear" Min="2000" Max="2100" Step="1" /></div>
+        <div class="col-md-9"><RadzenDatePicker @bind-Value="@Definition.DateOfProcess" DateFormat="d.M.yyyy" Placeholder="@Localizer["person.birthdate"]" /></div>
         <div class="col-md-3"><RadzenLabel Text="Anteil" /></div>
-        <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="P2" @bind-Value="@Definition.ClearRatio" Min="0" Max="1M" Step="0.005" /></div>
+        <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="P2" @bind-Value="@Definition.TransferRatio" Min="0" Max="1M" Step="0.005" /></div>
         <div class="col-md-3"><RadzenLabel Text="Versteuern" /></div>
         <div class="col-md-9"><RadzenSwitch @bind-Value="@Definition.IsTaxable" /></div>
     </div>
@@ -18,14 +23,14 @@
 @code {
 
     [Parameter]
-    public ClearAccountAction Definition { get; set; }
+    public RelativeTransferAmountDefinition Definition { get; set; }
 
     protected override void OnInitialized()
     {
-        Definition.Flow = new FlowPair(AccountType.CapitalBenefits, AccountType.Wealth);
-        Definition.TaxType = TaxType.Capital;
+        Definition.Flow = new FlowPair(AccountType.OccupationalPension, AccountType.Wealth);
+        Definition.TaxType = TaxType.CapitalBenefits;
         Definition.IsTaxable = true;
-        Definition.Name = "Kapitalbezug";
-        Definition.ClearRatio = 1M;
+        Definition.Header.Name = "Kapitalbezug";
+        Definition.TransferRatio = 1M;
     }
 }

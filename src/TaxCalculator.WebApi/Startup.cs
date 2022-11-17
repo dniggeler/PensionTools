@@ -10,6 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using PensionCoach.Tools.BvgCalculator;
+using PensionCoach.Tools.EstvTaxCalculators;
+using PensionCoach.Tools.PostOpenApi;
+using PensionCoach.Tools.TaxCalculator;
 using Swashbuckle.AspNetCore.Filters;
 using Tax.Data;
 using Tax.Tools.Comparison;
@@ -39,6 +42,8 @@ namespace TaxCalculator.WebApi
                         "https://localhost:5001",
                         "http://localhost:44331",
                         "https://localhost:44331",
+                        "http://localhost:57094",
+                        "https://localhost:57094",
                         "https://relaxed-bose-eb5bc2.netlify.com",
                         "https://pensiontoolsblazor.z6.web.core.windows.net")
                         .AllowAnyHeader()
@@ -55,10 +60,12 @@ namespace TaxCalculator.WebApi
                 .AddJsonOptions(options =>
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             services.AddTaxData(Configuration);
-            services.AddTaxCalculators();
+            services.AddTaxCalculators(Configuration);
             services.AddTaxComparers();
             services.AddBvgCalculators();
             services.AddCashFlowCalculators();
+            services.AddEstvTaxCalculatorClient(Configuration);
+            services.AddPostOpenApiClient(Configuration);
             services.AddSwaggerExamplesFromAssemblyOf<Examples.CapitalBenefitTaxRequestExample>();
             services.AddSwaggerGen(opt =>
             {

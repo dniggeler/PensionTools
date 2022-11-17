@@ -1,0 +1,19 @@
+-- Gemeindeverzeichnis
+SELECT * FROM HistGemeindestand where plz is null and successorid=0 and mutationsnummer=11 order by gemeindename;
+ 
+SELECT * FROM HistGemeindestand where Gemeindename like 'Splügen%';
+
+SELECT * FROM HistGemeindestand where bfsid=3714;
+
+SELECT * FROM HistGemeindestand where gemeindenameclean is null;
+
+SELECT * FROM HistGemeindestand where mutationid=3627;
+  
+select * from HistGemeindestand where gemeindename == gemeindenameClean and successorid=0 and plz is null;
+
+SELECT * FROM HistGemeindestand where taxlocationid is null and plz is not null and successorid=0 and mutationsnummer=11 order by gemeindename;
+
+-- Stage PLZ
+SELECT * FROM StagePlzMunicipality where name like '%splügen%';
+
+SELECT * FROM StagePlzMunicipality where bfsnumber=3714;

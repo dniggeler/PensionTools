@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
 using PensionCoach.Tools.CommonTypes.Tax;
 
-namespace BlazorApp.Services
+namespace BlazorApp.Services;
+
+public interface ITaxCalculationService
 {
-    public interface ITaxCalculationService
-    {
-        Task<FullTaxResponse> CalculateAsync(FullTaxRequest request);
-    }
+    Task<FullTaxResponse> CalculateAsync(FullTaxRequest request);
+
+    Task<int[]> SupportedTaxYears();
 }

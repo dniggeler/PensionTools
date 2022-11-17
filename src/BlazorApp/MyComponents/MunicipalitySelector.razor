@@ -1,7 +1,7 @@
 ﻿@using BlazorApp.Services
 @using PensionCoach.Tools.CommonTypes.Tax
 
-@inject IMunicipalityService municipalityService
+@inject IMunicipalityService MunicipalityService
 
 <RadzenDropDown TextProperty="Name"
                 ValueProperty="BfsMunicipalityNumber"
@@ -26,7 +26,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        municipalities = (await municipalityService.GetTaxSupportingAsync()).ToList();
+        municipalities = (await MunicipalityService.GetTaxSupportingAsync()).ToList();
     }
 
     private void HandleChange(object value)

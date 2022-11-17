@@ -5,8 +5,8 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PensionCoach.Tools.TaxCalculator;
 using Tax.Data;
-using TaxCalculator;
 
 namespace PensionVersusCapitalCalculator.Tests
 {
@@ -38,7 +38,7 @@ namespace PensionVersusCapitalCalculator.Tests
 
             ServiceCollection coll = new ServiceCollection();
             coll.AddToolsCalculators();
-            coll.AddTaxCalculators();
+            coll.AddTaxCalculators(configuration);
             coll.AddTaxData(configuration);
 
             Provider = coll.BuildServiceProvider();

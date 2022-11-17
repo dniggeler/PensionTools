@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -10,7 +9,7 @@ using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace BlazorApp.Services;
 
-public class TaxCalculationService : ITaxCalculationService
+public class TaxCalculationService : ITaxCalculationService, IMarginalTaxCurveCalculationService
 {
     private readonly IConfiguration configuration;
     private readonly HttpClient httpClient;
@@ -41,5 +40,31 @@ public class TaxCalculationService : ITaxCalculationService
             await response.Content.ReadFromJsonAsync<FullTaxResponse>();
 
         return result;
+    }
+
+    public async Task<int[]> SupportedTaxYears()
+    {
+        string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+        string urlPath = Path.Combine(baseUri, "years");
+
+        return await httpClient.GetFromJsonAsync<int[]>(urlPath);
+    }
+
+    public async Task<MarginalTaxResponse> CalculateIncomeCurveAsync(MarginalTaxRequest request)
+    {
+        string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+        string urlPath = Path.Combine(baseUri, "marginaltaxcurve/income");
+
+        logger.LogInformation(JsonSerializer.Serialize(request));
+
+        HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
+
+        response.EnsureSuccessStatusCode();
+
+        MarginalTaxResponse result =
+            await response.Content.ReadFromJsonAsync<MarginalTaxResponse>();
+
+        return result;
+
     }
 }

@@ -6,7 +6,7 @@ using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
-namespace TaxCalculator.Basis.Wealth
+namespace PensionCoach.Tools.TaxCalculator.Basis.Wealth
 {
     /// <summary>
     /// Null calculator for missing wealth calculators.

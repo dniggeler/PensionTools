@@ -1,0 +1,84 @@
+﻿[
+  {
+    "State": "IsRight",
+    "Right": {
+      "StartingYear": 2021,
+      "NumberOfPeriods": 1,
+      "Accounts": [
+        {
+          "Year": 2021,
+          "Amount": 48.00,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2021,
+          "Amount": 0.0,
+          "AccountType": "Income"
+        },
+        {
+          "Year": 2021,
+          "Amount": -48.00,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2021,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2021,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        }
+      ],
+      "ExogenousAccount": {
+        "Id": "3ac1ad53-53f1-49c3-9ca8-dfa0a9aeca9c",
+        "Name": "Exogenous Account",
+        "Balance": 48.00,
+        "InterestRate": 0.0,
+        "Transactions": [
+          {
+            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+            "ValutaDate": "2022-01-01T00:00:00",
+            "Amount": 48.00
+          }
+        ]
+      },
+      "IncomeAccount": {
+        "Id": "fa381630-087a-4a2f-b702-7e57b1c58d77",
+        "Name": "Income Account",
+        "Balance": 0.0,
+        "InterestRate": 0.0,
+        "Transactions": []
+      },
+      "WealthAccount": {
+        "Id": "cae26b01-3363-4cae-be46-8ffcc0606a0e",
+        "Name": "Wealth Account",
+        "Balance": -48.00,
+        "NetGrowthRate": 0.0,
+        "Transactions": [
+          {
+            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
+            "ValutaDate": "2022-01-01T00:00:00",
+            "Amount": -48.00
+          }
+        ]
+      },
+      "OccupationalPensionAccount": {
+        "Id": "99ab22dd-3c16-40ac-9db5-1c2f23539f7a",
+        "Name": "Occupational Pension Account",
+        "Balance": 0.0,
+        "NetGrowthRate": 0.0,
+        "Transactions": []
+      },
+      "ThirdPillarAccount": {
+        "Id": "e1f24c00-a8b3-41fc-b81e-b36326be0479",
+        "Name": "Third Pillar Account",
+        "Balance": 0.0,
+        "NetGrowthRate": 0.0,
+        "Transactions": []
+      }
+    },
+    "Left": null
+  }
+]

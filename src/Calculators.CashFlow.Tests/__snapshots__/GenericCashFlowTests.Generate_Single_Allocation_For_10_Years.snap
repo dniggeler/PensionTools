@@ -1,101 +1,167 @@
 ﻿[
   {
-    "Year": 2021,
+    "DateOfProcess": {
+      "Year": 2021,
+      "Month": 1,
+      "Day": 1,
+      "DayOfWeek": "Friday",
+      "DayOfYear": 1,
+      "DayNumber": 737790
+    },
     "Amount": 9500.0,
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
-    "Year": 2021,
+    "DateOfProcess": {
+      "Year": 2021,
+      "Month": 1,
+      "Day": 1,
+      "DayOfWeek": "Friday",
+      "DayOfYear": 1,
+      "DayNumber": 737790
+    },
     "Amount": 500.0,
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
-    "Year": 2022,
+    "DateOfProcess": {
+      "Year": 2022,
+      "Month": 1,
+      "Day": 1,
+      "DayOfWeek": "Saturday",
+      "DayOfYear": 1,
+      "DayNumber": 738155
+    },
     "Amount": 500.0,
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
-    "Year": 2023,
+    "DateOfProcess": {
+      "Year": 2023,
+      "Month": 1,
+      "Day": 1,
+      "DayOfWeek": "Sunday",
+      "DayOfYear": 1,
+      "DayNumber": 738520
+    },
     "Amount": 500.0,
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
-    "Year": 2024,
+    "DateOfProcess": {
+      "Year": 2024,
+      "Month": 1,
+      "Day": 1,
+      "DayOfWeek": "Monday",
+      "DayOfYear": 1,
+      "DayNumber": 738885
+    },
     "Amount": 500.0,
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
-    "Year": 2025,
+    "DateOfProcess": {
+      "Year": 2025,
+      "Month": 1,
+      "Day": 1,
+      "DayOfWeek": "Wednesday",
+      "DayOfYear": 1,
+      "DayNumber": 739251
+    },
     "Amount": 500.0,
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
-    "Year": 2026,
+    "DateOfProcess": {
+      "Year": 2026,
+      "Month": 1,
+      "Day": 1,
+      "DayOfWeek": "Thursday",
+      "DayOfYear": 1,
+      "DayNumber": 739616
+    },
     "Amount": 500.0,
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
-    "Year": 2027,
+    "DateOfProcess": {
+      "Year": 2027,
+      "Month": 1,
+      "Day": 1,
+      "DayOfWeek": "Friday",
+      "DayOfYear": 1,
+      "DayNumber": 739981
+    },
     "Amount": 500.0,
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
-    "Year": 2028,
+    "DateOfProcess": {
+      "Year": 2028,
+      "Month": 1,
+      "Day": 1,
+      "DayOfWeek": "Saturday",
+      "DayOfYear": 1,
+      "DayNumber": 740346
+    },
     "Amount": 500.0,
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
-    "Year": 2029,
+    "DateOfProcess": {
+      "Year": 2029,
+      "Month": 1,
+      "Day": 1,
+      "DayOfWeek": "Monday",
+      "DayOfYear": 1,
+      "DayNumber": 740712
+    },
     "Amount": 500.0,
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   },
   {
-    "Year": 2030,
+    "DateOfProcess": {
+      "Year": 2030,
+      "Month": 1,
+      "Day": 1,
+      "DayOfWeek": "Tuesday",
+      "DayOfYear": 1,
+      "DayNumber": 741077
+    },
     "Amount": 500.0,
     "Source": "Exogenous",
     "Target": "Wealth",
     "IsTaxable": true,
-    "TaxType": "Wealth",
-    "OccurrenceType": "BeginOfPeriod"
+    "TaxType": "Wealth"
   }
 ]

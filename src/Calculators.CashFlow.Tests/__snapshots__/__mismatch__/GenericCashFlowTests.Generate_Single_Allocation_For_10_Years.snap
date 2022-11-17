@@ -1,0 +1,90 @@
+﻿[
+  {
+    "DateOfProcess": "2021-01-01",
+    "Amount": 9500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth"
+  },
+  {
+    "DateOfProcess": "2021-01-01",
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth"
+  },
+  {
+    "DateOfProcess": "2022-01-01",
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth"
+  },
+  {
+    "DateOfProcess": "2023-01-01",
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth"
+  },
+  {
+    "DateOfProcess": "2024-01-01",
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth"
+  },
+  {
+    "DateOfProcess": "2025-01-01",
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth"
+  },
+  {
+    "DateOfProcess": "2026-01-01",
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth"
+  },
+  {
+    "DateOfProcess": "2027-01-01",
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth"
+  },
+  {
+    "DateOfProcess": "2028-01-01",
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth"
+  },
+  {
+    "DateOfProcess": "2029-01-01",
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth"
+  },
+  {
+    "DateOfProcess": "2030-01-01",
+    "Amount": 500.0,
+    "Source": "Exogenous",
+    "Target": "Wealth",
+    "IsTaxable": true,
+    "TaxType": "Wealth"
+  }
+]

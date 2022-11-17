@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
@@ -23,6 +23,7 @@ namespace TaxCalculator.WebApi
                                 .AddJsonFile(
                                     $"appsettings.{context.HostingEnvironment.EnvironmentName}.json",
                                     true)
+                                .AddEnvironmentVariables()
                                 .Build();
                         });
                 });
