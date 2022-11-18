@@ -21,7 +21,7 @@ name: Build and deploy ASP.Net Core app to an Azure Web App
 
 env:
   AZURE_WEBAPP_NAME: api-pensiontools # set this to the name of your Azure Web App
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  AZURE_WEBAPP_PACKAGE_PATH: '.'  # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '7.x'               # set this to the .NET Core version to use
 
 on:
@@ -56,13 +56,13 @@ jobs:
         run: dotnet build --configuration Release ./src/TaxCalculator.WebApi/TaxCalculator.WebApi.csproj
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/api-pensiontools
+        run: dotnet publish ./src/TaxCalculator.WebApi/TaxCalculator.WebApi.csproj -c Release -o ${{env.DOTNET_ROOT}}/PensionTools
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/api-pensiontools
+          path: ${{env.DOTNET_ROOT}}/PensionTools
 
   deploy:
     permissions:
