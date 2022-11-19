@@ -5,6 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="files\TaxDb.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="files\TaxDb.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
   </ItemGroup>
@@ -12,12 +22,6 @@
   <ItemGroup>
     <ProjectReference Include="..\EstvTaxCalculator.Abstractions\EstvTaxCalculator.Abstractions.csproj" />
     <ProjectReference Include="..\Tax.Data.Abstractions\Tax.Data.Abstractions.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="files\TaxDb.db">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
