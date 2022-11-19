@@ -3,14 +3,13 @@
 @using PensionCoach.Tools.CommonTypes.Tax
 @using PensionCoach.Tools.CommonTypes
 @using Microsoft.AspNetCore.Components
-@using System.Text.Json
 @using Microsoft.Extensions.Logging
 
 @inject IPersonService PersonService
 @inject ILogger<WealthPlanning> Logger
 @inject IMarginalTaxCurveCalculationService MarginalTaxCurveCalculationService
 
-<RadzenTemplateForm TItem="MarginalTaxRequest" Data=@taxRequest Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
+<RadzenTemplateForm TItem="MarginalTaxRequest" Data=@taxRequest Submit=@OnSubmit>
     <RadzenContent Container="main">
         <ChildContent>
             <RadzenHeading Size="H1" Text="Grenzsteuersatz"></RadzenHeading>
@@ -110,7 +109,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                                               BfsMunicipalityId="taxRequest.BfsMunicipalityId"
                                                               OnSelected="HandleChangeResidence" /></div>
                                 </div>
-                                </FormStep>
+                            </FormStep>
                         </ChildContent>
                     </RadzenStepsItem>
                 </Steps>
@@ -126,7 +125,12 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     </RadzenContent>
 </RadzenTemplateForm>
 
-@if (taxResponse != null)
+@if(isLoading)
+{
+    <RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+}
+
+@if (taxResponse is not null)
 {
         <RadzenPanel AllowCollapse="true">
         <div class="container">
@@ -156,13 +160,6 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                     </RadzenChart>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <label>Rohdaten</label>
-                    <RadzenTextArea Name="output" Rows="10" ReadOnly="true" Value="@(JsonSerializer.Serialize(taxResponse))" Style="width: 100%" />
-                </div>
-            </div>
         </div>
     </RadzenPanel>
 }
@@ -180,6 +177,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
     private int[] supportedTaxYears;
+    private bool isLoading;
 
     private DataItem[] dataItems = { };
 
@@ -210,21 +208,28 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
             CalculationYear = supportedTaxYears.Max(),
             UpperSalaryLimit = 200_000,
-            NumberOfSamples = 50
+            NumberOfSamples = 20
         };
     }
 
     private async Task OnSubmit(MarginalTaxRequest request)
     {
-        taxResponse = null;
+        try
+        {
+            taxResponse = null;
+            isLoading = true;
 
-        taxResponse = await MarginalTaxCurveCalculationService.CalculateIncomeCurveAsync(request);
-        dataItems = DataItems();
-    }
-
-    private void OnInvalidSubmit(FormInvalidSubmitEventArgs args)
-    {
-        Logger.LogInformation("InvalidSubmit");
+            taxResponse = await MarginalTaxCurveCalculationService.CalculateIncomeCurveAsync(request);
+            dataItems = DataItems();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError($"Loading marginal tax rate curve failed {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
     }
 
     private DataItem[] DataItems()
