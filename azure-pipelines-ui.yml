@@ -3,7 +3,7 @@ trigger:
 
 pool:
   vmImage: windows-2022
-
+  
 variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
@@ -19,7 +19,7 @@ stages:
         inputs:
           packageType: sdk
           version: 7.x
-          installationPath: $(Agent.ToolsDirectory)/dotnet
+          installationPath: $(Agent.ToolsDirectory)/dotnet  
       - script: dotnet build --configuration $(buildConfiguration) src/BlazorApp/BlazorApp.csproj
         displayName: 'Building $(buildConfiguration)'     
       - task: DotNetCoreCLI@2
