@@ -1,7 +1,6 @@
 ﻿using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxComparison;
 using Swashbuckle.AspNetCore.Filters;
-using TaxCalculator.WebApi.Models;
 
 namespace TaxCalculator.WebApi.Examples;
 
