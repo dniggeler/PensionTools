@@ -45,7 +45,23 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
                 .MapAsync(municipalityModel => CalculateSingleMarginalTaxRate(municipalityModel, person)))
             .Iter(taxRate => taxRate.Iter(rate => result.CurrentMarginalTaxRate = rate));
 
+        Merge(result);
+
         return result;
+
+        void Merge(MarginalTaxCurveResult beforeMergeResult)
+        {
+            if (beforeMergeResult.CurrentMarginalTaxRate is null)
+            {
+                return;
+            }
+
+            if (!beforeMergeResult.MarginalTaxCurve.ContainsKey(beforeMergeResult.CurrentMarginalTaxRate.Amount))
+            {
+                beforeMergeResult.MarginalTaxCurve
+                    .Add(beforeMergeResult.CurrentMarginalTaxRate.Amount, beforeMergeResult.CurrentMarginalTaxRate.Rate);
+            }
+        }
 
         async Task<Dictionary<decimal, decimal>> CalculateInternalAsync(
             MunicipalityModel municipalityModel)
@@ -76,13 +92,19 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
             return incomeTaxes;
         }
 
-        async Task<Either<string, MarginalTaxCurveResult.MarginalTaxRate>> CalculateSingleMarginalTaxRate(
+        async Task<Either<string, MarginalTaxRate>> CalculateSingleMarginalTaxRate(
             MunicipalityModel municipalityModel, TaxPerson taxPerson)
         {
-            decimal delta = 100M;
+            const decimal delta = 100M;
+            
+            var x0Person = person with
+            {
+                TaxableIncome = taxPerson.TaxableIncome,
+                TaxableFederalIncome = taxPerson.TaxableFederalIncome
+            };
 
             Either<string, FullTaxResult> tax0 =
-                await fullWealthAndIncomeTaxCalculator.CalculateAsync(calculationYear, municipalityModel, taxPerson);
+                await fullWealthAndIncomeTaxCalculator.CalculateAsync(calculationYear, municipalityModel, x0Person);
 
             var x1Person = taxPerson with
             {
@@ -95,7 +117,7 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
 
             var r = from t0 in tax0
                 from t1 in tax1
-                select new MarginalTaxCurveResult.MarginalTaxRate(
+                select new MarginalTaxRate(
                     taxPerson.TaxableIncome,
                     (t1.TotalTaxAmount - t0.TotalTaxAmount) / delta);
 
@@ -126,7 +148,7 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
 
         return result;
 
-        async Task<Either<string, MarginalTaxCurveResult.MarginalTaxRate>> CalculateSingleMarginalTaxRate(
+        async Task<Either<string, MarginalTaxRate>> CalculateSingleMarginalTaxRate(
             MunicipalityModel municipalityModel, CapitalBenefitTaxPerson taxPerson)
         {
             decimal delta = 1000M;
@@ -139,9 +161,10 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
             Either<string, FullCapitalBenefitTaxResult> tax1 =
                 await fullCapitalBenefitTaxCalculator.CalculateAsync(calculationYear, municipalityModel, x1Person);
 
-            Either<string, MarginalTaxCurveResult.MarginalTaxRate> r = from t0 in tax0
+            Either<string, MarginalTaxRate> r =
+                from t0 in tax0
                 from t1 in tax1
-                select new MarginalTaxCurveResult.MarginalTaxRate(
+                select new MarginalTaxRate(
                     taxPerson.TaxableCapitalBenefits,
                     (t1.TotalTaxAmount - t0.TotalTaxAmount) / delta);
 

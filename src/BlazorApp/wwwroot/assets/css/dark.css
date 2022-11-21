@@ -17455,7 +17455,7 @@ button.rz-colorpicker-trigger {
 }
 
 .rz-breadcrumb-item + .rz-breadcrumb-item::before {
-    content: '»';
+    content: 'ï¿½';
     display: inline-block;
     padding-left: 0.5rem;
     padding-right: 0.5rem;

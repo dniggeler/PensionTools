@@ -125,7 +125,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     </RadzenContent>
 </RadzenTemplateForm>
 
-@if(isLoading)
+@if(showLoading)
 {
     <RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
 }
@@ -142,8 +142,18 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                           CategoryProperty="Salary"
                                           Title="Grenzsteuerkurve (Einkommen)"
                                           ValueProperty="Rate"
-                                          RenderingOrder="1">
+                                          RenderingOrder="2">
+                            @*<RadzenSeriesAnnotation Visible="true" TItem="DataItem" Data="@currentRateDataItem" OffsetY="-32" Text="Dein Satz" />*@
                             <RadzenGridLines Visible="true"/>
+                        </RadzenLineSeries>
+                        
+                        <RadzenLineSeries Smooth="false"
+                                          Data="@verticalDataItems"
+                                          CategoryProperty="Salary"
+                                          Title="Aktueller Satz"
+                                          ValueProperty="Rate"
+                                          RenderingOrder="1">
+                            <RadzenMarkers MarkerType="MarkerType.Circle" />
                         </RadzenLineSeries>
 
                         <RadzenCategoryAxis Padding="20"
@@ -177,9 +187,12 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
     private int[] supportedTaxYears;
-    private bool isLoading;
+    private bool showLoading;
+    private bool showCurrentRate;
 
     private DataItem[] dataItems = { };
+    private DataItem[] verticalDataItems = { };
+    private DataItem currentRateDataItem;
 
     protected override async Task OnInitializedAsync()
     {
@@ -217,10 +230,21 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         try
         {
             taxResponse = null;
-            isLoading = true;
+            showLoading = true;
+            showCurrentRate = true;
 
             taxResponse = await MarginalTaxCurveCalculationService.CalculateIncomeCurveAsync(request);
+            currentRateDataItem = taxResponse.CurrentMarginalTaxRate switch
+            {
+                {} a => new DataItem
+                                    {
+                                        Salary = Convert.ToInt32(a.Amount),
+                                        Rate = a.Rate
+                                    },
+                _ => null
+            };
             dataItems = DataItems();
+            verticalDataItems = VerticalDataItems();
         }
         catch (Exception ex)
         {
@@ -228,8 +252,31 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         }
         finally
         {
-            isLoading = false;
+            showLoading = false;
+            showCurrentRate = false;
         }
+    }
+
+    private DataItem[] VerticalDataItems()
+    {
+        if (taxResponse == null)
+        {
+            return Enumerable.Empty<DataItem>().ToArray();
+        }
+
+        return new DataItem[]
+        {
+            new()
+            {
+                Salary = Convert.ToInt32(taxResponse.CurrentMarginalTaxRate.Amount),
+                Rate = decimal.Zero
+            },
+            new()
+            {
+                Salary = Convert.ToInt32(taxResponse.CurrentMarginalTaxRate.Amount),
+                Rate = taxResponse.CurrentMarginalTaxRate.Rate
+            }
+        };
     }
 
     private DataItem[] DataItems()

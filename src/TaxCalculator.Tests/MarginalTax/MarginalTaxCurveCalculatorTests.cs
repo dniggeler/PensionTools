@@ -31,7 +31,7 @@ namespace TaxCalculator.Tests.MarginalTax
             // given
             const int lowerSalaryLimit = 0;
             const int upperSalaryLimit = 200_000;
-            const int numberOfSamples = 50;
+            const int numberOfSamples = 20;
 
             var name = "Burli";
             var income = Convert.ToDecimal(incomeAsDouble);
