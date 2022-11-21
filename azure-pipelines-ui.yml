@@ -5,12 +5,7 @@ pool:
   vmImage: windows-2022
   
 steps:
-- task: UseDotNet@2
-  displayName: 'Use .NET Core sdk'
-  inputs:
-    packageType: sdk
-    version: 7.x
-    installationPath: $(Agent.ToolsDirectory)/dotnet  
+
 
 variables:
   buildPlatform: 'Any CPU'
@@ -22,6 +17,12 @@ stages:
     jobs:
     - job: build_and_deploy
       steps:
+      - task: UseDotNet@2
+        displayName: 'Use .NET Core sdk'
+        inputs:
+          packageType: sdk
+          version: 7.x
+          installationPath: $(Agent.ToolsDirectory)/dotnet  
       - script: dotnet build --configuration $(buildConfiguration) src/BlazorApp/BlazorApp.csproj
         displayName: 'Building $(buildConfiguration)'     
       - task: DotNetCoreCLI@2
