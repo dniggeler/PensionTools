@@ -4,9 +4,6 @@ trigger:
 pool:
   vmImage: windows-2022
   
-steps:
-
-
 variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
