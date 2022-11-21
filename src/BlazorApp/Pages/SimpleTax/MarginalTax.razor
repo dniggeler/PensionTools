@@ -158,7 +158,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
                         <RadzenCategoryAxis Padding="20"
                                             FormatString="{0}"
-                                            Min="0"
+                                            Min="@taxRequest.LowerSalaryLimit"
                                             Max="@taxRequest.UpperSalaryLimit">
                             <RadzenAxisTitle Text="Einkommen"/>
                         </RadzenCategoryAxis>
