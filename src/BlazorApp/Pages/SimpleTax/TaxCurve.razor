@@ -1,0 +1,89 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <RadzenChart>
+                <RadzenLineSeries Smooth="false"
+                                  Data="@CurvePoints"
+                                  CategoryProperty="XValue"
+                                  Title="@CurveTitle"
+                                  ValueProperty="YValue"
+                                  RenderingOrder="2">
+                    <RadzenGridLines Visible="true" />
+                </RadzenLineSeries>
+
+                <RadzenLineSeries Smooth="false"
+                                  Data="@CurrentPointCurve"
+                                  CategoryProperty="XValue"
+                                  Title="Mein Einkommen"
+                                  ValueProperty="YValue"
+                                  RenderingOrder="1">
+                    <RadzenMarkers MarkerType="MarkerType.Circle" />
+                </RadzenLineSeries>
+
+                <RadzenCategoryAxis Padding="20"
+                                    FormatString="{0}"
+                                    Min="@XMin"
+                                    Max="@XMax">
+                    <RadzenAxisTitle Text="@XAxisTitle" />
+                </RadzenCategoryAxis>
+
+                <RadzenValueAxis FormatString="@formatString">
+                    <RadzenGridLines Visible="true" />
+                    <RadzenAxisTitle Text="@YAxisTitle" />
+                </RadzenValueAxis>
+            </RadzenChart>
+        </div>
+    </div>
+</div>
+
+@code {
+    public class CurvePoint
+    {
+        public int XValue { get; set; }
+        public decimal YValue { get; set; }
+    }
+
+    private CurvePoint[] CurrentPointCurve = { };
+    private string formatString;
+
+    [Parameter] public CurvePoint CurrentPoint { get; set; }
+    [Parameter] public CurvePoint[] CurvePoints { get; set; }
+
+    [Parameter] public decimal XMin { get; set; }
+    [Parameter] public decimal XMax { get; set; }
+
+    [Parameter] public string CurveTitle { get; set; }
+
+    [Parameter] public string XAxisTitle { get; set; }
+    [Parameter] public string YAxisTitle { get; set; }
+
+    [Parameter] public bool IsInPercent { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        CurrentPointCurve = CurrentPointAsCurve();
+        formatString = IsInPercent ? "{0:P1}" : "{0:N0}";
+    }
+
+    private CurvePoint[] CurrentPointAsCurve()
+    {
+        if (CurrentPoint == null)
+        {
+            return Enumerable.Empty<CurvePoint>().ToArray();
+        }
+
+        return new CurvePoint[]
+        {
+            new()
+            {
+                XValue = CurrentPoint.XValue,
+                YValue = decimal.Zero
+            },
+            new()
+            {
+                XValue = Convert.ToInt32(CurrentPoint.XValue),
+                YValue = CurrentPoint.YValue
+            }
+        };
+    }
+}

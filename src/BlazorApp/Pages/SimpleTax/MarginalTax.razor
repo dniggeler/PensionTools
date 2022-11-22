@@ -132,45 +132,26 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
 @if (taxResponse is not null)
 {
-        <RadzenPanel AllowCollapse="true">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <RadzenChart>
-                        <RadzenLineSeries Smooth="false"
-                                          Data="@dataItems"
-                                          CategoryProperty="Salary"
-                                          Title="Grenzsteuerkurve (Einkommen)"
-                                          ValueProperty="Rate"
-                                          RenderingOrder="2">
-                            @*<RadzenSeriesAnnotation Visible="true" TItem="DataItem" Data="@currentRateDataItem" OffsetY="-32" Text="Dein Satz" />*@
-                            <RadzenGridLines Visible="true"/>
-                        </RadzenLineSeries>
-                        
-                        <RadzenLineSeries Smooth="false"
-                                          Data="@verticalDataItems"
-                                          CategoryProperty="Salary"
-                                          Title="Aktueller Satz"
-                                          ValueProperty="Rate"
-                                          RenderingOrder="1">
-                            <RadzenMarkers MarkerType="MarkerType.Circle" />
-                        </RadzenLineSeries>
-
-                        <RadzenCategoryAxis Padding="20"
-                                            FormatString="{0}"
-                                            Min="@taxRequest.LowerSalaryLimit"
-                                            Max="@taxRequest.UpperSalaryLimit">
-                            <RadzenAxisTitle Text="Einkommen"/>
-                        </RadzenCategoryAxis>
-
-                        <RadzenValueAxis Min="0" Max="0.5" Step="0.1" FormatString="{0:P1}">
-                            <RadzenGridLines Visible="true" />
-                            <RadzenAxisTitle Text="Grenzsteuersatz" />
-                        </RadzenValueAxis>
-                    </RadzenChart>
-                </div>
-            </div>
-        </div>
+    <RadzenPanel AllowCollapse="true">
+        <TaxCurve
+            XMin="@taxRequest.LowerSalaryLimit"
+            XMax="@taxRequest.UpperSalaryLimit"
+            CurveTitle="Grenzsteuerkurve"
+            XAxisTitle="Einkommen"
+            YAxisTitle="Grenzsteuersatz"
+            IsInPercent="true"
+            CurrentPoint="@currentTaxRatePoint"
+            CurvePoints="@taxRateCurvePoints"/>
+            
+        <TaxCurve
+            XMin="@taxRequest.LowerSalaryLimit"
+            XMax="@taxRequest.UpperSalaryLimit"
+            CurveTitle="Steuerkurve"
+            XAxisTitle="Einkommen"
+            YAxisTitle="Steuerbetrag"
+            IsInPercent="false"
+              CurrentPoint="@currentTotalTaxPoint"
+              CurvePoints="@totalTaxCurvePoints" />
     </RadzenPanel>
 }
 
@@ -190,9 +171,10 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     private bool showLoading;
     private bool showCurrentRate;
 
-    private DataItem[] dataItems = { };
-    private DataItem[] verticalDataItems = { };
-    private DataItem currentRateDataItem;
+    private TaxCurve.CurvePoint currentTaxRatePoint = new();
+    private TaxCurve.CurvePoint currentTotalTaxPoint = new();
+    private TaxCurve.CurvePoint[] taxRateCurvePoints = { };
+    private TaxCurve.CurvePoint[] totalTaxCurvePoints = { };
 
     protected override async Task OnInitializedAsync()
     {
@@ -220,7 +202,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             ReligiousGroup = selectedPerson.ReligiousGroupType,
             BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
             CalculationYear = supportedTaxYears.Max(),
-            UpperSalaryLimit = 200_000,
+            UpperSalaryLimit = Convert.ToInt32(selectedPerson.TaxableIncome + 100_000),
             NumberOfSamples = 20
         };
     }
@@ -234,17 +216,21 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             showCurrentRate = true;
 
             taxResponse = await MarginalTaxCurveCalculationService.CalculateIncomeCurveAsync(request);
-            currentRateDataItem = taxResponse.CurrentMarginalTaxRate switch
+            
+            taxRateCurvePoints = TaxRateCurvePoints();
+            totalTaxCurvePoints = TotalTaxCurvePoints();
+
+            currentTaxRatePoint = new TaxCurve.CurvePoint
             {
-                {} a => new DataItem
-                                    {
-                                        Salary = Convert.ToInt32(a.Amount),
-                                        Rate = a.Rate
-                                    },
-                _ => null
+                XValue = Convert.ToInt32(taxResponse.CurrentMarginalTaxRate.Salary),
+                YValue = taxResponse.CurrentMarginalTaxRate.Rate
             };
-            dataItems = DataItems();
-            verticalDataItems = VerticalDataItems();
+
+            currentTotalTaxPoint = new TaxCurve.CurvePoint
+            {
+                XValue = Convert.ToInt32(taxResponse.CurrentMarginalTaxRate.Salary),
+                YValue = taxResponse.CurrentMarginalTaxRate.TotalTaxAmount
+            };
         }
         catch (Exception ex)
         {
@@ -257,40 +243,34 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         }
     }
 
-    private DataItem[] VerticalDataItems()
+    private TaxCurve.CurvePoint[] TaxRateCurvePoints()
     {
         if (taxResponse == null)
         {
-            return Enumerable.Empty<DataItem>().ToArray();
-        }
-
-        return new DataItem[]
-        {
-            new()
-            {
-                Salary = Convert.ToInt32(taxResponse.CurrentMarginalTaxRate.Amount),
-                Rate = decimal.Zero
-            },
-            new()
-            {
-                Salary = Convert.ToInt32(taxResponse.CurrentMarginalTaxRate.Amount),
-                Rate = taxResponse.CurrentMarginalTaxRate.Rate
-            }
-        };
-    }
-
-    private DataItem[] DataItems()
-    {
-        if (taxResponse == null)
-        {
-            return Enumerable.Empty<DataItem>().ToArray();
+            return Enumerable.Empty<TaxCurve.CurvePoint>().ToArray();
         }
 
         return taxResponse.MarginalTaxCurve
-            .Select(item => new DataItem
+            .Select(item => new TaxCurve.CurvePoint
+                {
+                    XValue = Convert.ToInt32(item.Salary),
+                    YValue = item.Rate
+                })
+            .ToArray();
+    }
+
+    private TaxCurve.CurvePoint[] TotalTaxCurvePoints()
+    {
+        if (taxResponse == null)
+        {
+            return Enumerable.Empty<TaxCurve.CurvePoint>().ToArray();
+        }
+
+        return taxResponse.MarginalTaxCurve
+            .Select(item => new TaxCurve.CurvePoint
             {
-                Salary = item.Key,
-                Rate = item.Value
+                XValue = Convert.ToInt32(item.Salary),
+                YValue = item.TotalTaxAmount
             })
             .ToArray();
     }
