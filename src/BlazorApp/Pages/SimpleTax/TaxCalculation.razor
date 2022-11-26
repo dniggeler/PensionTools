@@ -171,7 +171,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
     protected override async Task OnInitializedAsync()
     {
-        Task<int[]> yearsTask = TaxCalculationService.SupportedTaxYears();
+        Task<int[]> yearsTask = TaxCalculationService.SupportedTaxYearsAsync();
         persons = (await PersonService.GetPersonsAsync()).ToList();
 
         supportedTaxYears = await yearsTask;

@@ -110,7 +110,7 @@ public class MockedPensionToolsCalculationService :
         return Task.FromResult(taxCalculationResponse);
     }
 
-    public Task<int[]> SupportedTaxYears()
+    public Task<int[]> SupportedTaxYearsAsync()
     {
         return new[] { 2019, 2020, 2021, 2022 }.AsTask();
     }

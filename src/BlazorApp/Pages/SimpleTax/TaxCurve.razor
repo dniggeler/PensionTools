@@ -20,8 +20,9 @@
                     <RadzenMarkers MarkerType="MarkerType.Circle" />
                 </RadzenLineSeries>
 
-                <RadzenCategoryAxis Padding="20"
+                <RadzenCategoryAxis Padding="10"
                                     FormatString="{0}"
+                                    Step="50000"
                                     Min="@XMin"
                                     Max="@XMax">
                     <RadzenAxisTitle Text="@XAxisTitle" />
@@ -49,8 +50,8 @@
     [Parameter] public CurvePoint CurrentPoint { get; set; }
     [Parameter] public CurvePoint[] CurvePoints { get; set; }
 
-    [Parameter] public decimal XMin { get; set; }
-    [Parameter] public decimal XMax { get; set; }
+    [Parameter] public int XMin { get; set; }
+    [Parameter] public int XMax { get; set; }
 
     [Parameter] public string CurveTitle { get; set; }
 

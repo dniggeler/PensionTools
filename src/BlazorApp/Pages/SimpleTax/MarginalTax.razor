@@ -169,7 +169,6 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     private IReadOnlyCollection<PersonViewModel> persons;
     private int[] supportedTaxYears;
     private bool showLoading;
-    private bool showCurrentRate;
 
     private TaxCurve.CurvePoint currentTaxRatePoint = new();
     private TaxCurve.CurvePoint currentTotalTaxPoint = new();
@@ -178,10 +177,9 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
     protected override async Task OnInitializedAsync()
     {
-        int[] years = { 2019 };
         persons = (await PersonService.GetPersonsAsync()).ToList();
 
-        supportedTaxYears = years;
+        supportedTaxYears = await MarginalTaxCurveCalculationService.SupportedTaxYearsAsync();
     }
 
     private void HandleChangeResidence(TaxSupportedMunicipalityModel municipalityModel)
@@ -213,7 +211,6 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         {
             taxResponse = null;
             showLoading = true;
-            showCurrentRate = true;
 
             taxResponse = await MarginalTaxCurveCalculationService.CalculateIncomeCurveAsync(request);
             
@@ -239,7 +236,6 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         finally
         {
             showLoading = false;
-            showCurrentRate = false;
         }
     }
 
