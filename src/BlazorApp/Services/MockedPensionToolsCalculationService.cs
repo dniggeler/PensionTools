@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -79,29 +80,37 @@ public class MockedPensionToolsCalculationService :
             throw new ArgumentException(nameof(request.BfsMunicipalityId));
         }
 
-        var marginalTaxCurve = new Dictionary<int, decimal>();
+        var marginalTaxCurve = new List<MarginalTaxInfo>();
 
         int stepSize =  Convert.ToInt32(request.UpperSalaryLimit / 100M);
         decimal taxRateStepSize = 0.45M / 100.0M;
+        decimal taxAmountStepSize = 20000M / 100.0M;
         for (int ii = 0; ii < 20; ii++)
         {
             for (int jj = 0; jj < 4; jj++)
             {
-                marginalTaxCurve.Add((ii * 5 + jj) * stepSize, taxRateStepSize * (ii * 5));
+                var bucket = ii * 5;
+                marginalTaxCurve.Add(
+                    new MarginalTaxInfo((bucket + jj) * stepSize, taxRateStepSize * bucket, taxAmountStepSize * bucket));
             }
 
-            marginalTaxCurve.Add(((ii * 5) + 4) * stepSize, taxRateStepSize*(ii*5 + 4));
+            var index = (ii * 5 + 4);
+            marginalTaxCurve.Add(
+                new MarginalTaxInfo(index * stepSize, taxRateStepSize*index, taxAmountStepSize * index));
         }
+
+        MarginalTaxInfo currentPoint = marginalTaxCurve.Skip(10).Take(1).First();
 
         MarginalTaxResponse taxCalculationResponse = new()
         {
+            CurrentMarginalTaxRate = currentPoint,
             MarginalTaxCurve = marginalTaxCurve
         };
 
         return Task.FromResult(taxCalculationResponse);
     }
 
-    public Task<int[]> SupportedTaxYears()
+    public Task<int[]> SupportedTaxYearsAsync()
     {
         return new[] { 2019, 2020, 2021, 2022 }.AsTask();
     }

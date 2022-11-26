@@ -4,5 +4,7 @@ namespace PensionCoach.Tools.CommonTypes.Tax;
 
 public class MarginalTaxResponse
 {
-    public Dictionary<int, decimal> MarginalTaxCurve { get; set; } = new();
+    public MarginalTaxInfo CurrentMarginalTaxRate { get; set; }
+
+    public IList<MarginalTaxInfo> MarginalTaxCurve { get; set; } = new List<MarginalTaxInfo>();
 }

@@ -81,7 +81,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostOpenApi.Integration.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstvTaxCalculator.Abstractions", "EstvTaxCalculator.Abstractions\EstvTaxCalculator.Abstractions.csproj", "{1F58B6AE-89D4-414A-9397-F775130B3FBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.Tools.Comparison.Domain", "Tax.Tools.Comparison.Domain\Tax.Tools.Comparison.Domain.csproj", "{9617FEB8-2160-4D3A-B157-2D97EF3B2F56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Tools.Comparison.Domain", "Tax.Tools.Comparison.Domain\Tax.Tools.Comparison.Domain.csproj", "{9617FEB8-2160-4D3A-B157-2D97EF3B2F56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

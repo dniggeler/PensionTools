@@ -42,7 +42,7 @@ public class TaxCalculationService : ITaxCalculationService, IMarginalTaxCurveCa
         return result;
     }
 
-    public async Task<int[]> SupportedTaxYears()
+    public async Task<int[]> SupportedTaxYearsAsync()
     {
         string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
         string urlPath = Path.Combine(baseUri, "years");

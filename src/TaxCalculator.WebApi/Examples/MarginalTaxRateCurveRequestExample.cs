@@ -4,21 +4,22 @@ using Swashbuckle.AspNetCore.Filters;
 
 namespace TaxCalculator.WebApi.Examples
 {
-    public class FullTaxRequestExample : IExamplesProvider<FullTaxRequest>
+    public class MarginalTaxRateCurveRequestExample : IExamplesProvider<MarginalTaxRequest>
     {
-        public FullTaxRequest GetExamples()
+        public MarginalTaxRequest GetExamples()
         {
-            return new FullTaxRequest
+            return new MarginalTaxRequest
             {
-                Name = "Test",
+                Name = "Test Marginal Tax Rate Curve",
                 CalculationYear = 2019,
                 CivilStatus = CivilStatus.Married,
                 BfsMunicipalityId = 261,
                 ReligiousGroup = ReligiousGroupType.Other,
                 PartnerReligiousGroup = ReligiousGroupType.Other,
-                TaxableIncome = 100_000M,
-                TaxableFederalIncome = 100_000M,
-                TaxableWealth = 500_000,
+                TaxableAmount = 100_000M,
+                LowerSalaryLimit = 0,
+                UpperSalaryLimit = 200_000,
+                NumberOfSamples = 10
             };
         }
     }

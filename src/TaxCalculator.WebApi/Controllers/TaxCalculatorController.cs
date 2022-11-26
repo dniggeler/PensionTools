@@ -156,6 +156,7 @@ public class TaxCalculatorController : ControllerBase
                 PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
                 NumberOfChildren = 0,
                 TaxableIncome = request.TaxableAmount,
+                TaxableFederalIncome = request.TaxableAmount
             };
         }
     }
