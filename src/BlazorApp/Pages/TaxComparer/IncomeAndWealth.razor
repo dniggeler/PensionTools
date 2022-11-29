@@ -7,7 +7,7 @@
 
 @inject ILogger<WealthPlanning> Logger
 @inject IPersonService PersonService
-@inject ITaxCapitalBenefitsComparisonService TaxComparisonService
+@inject ITaxComparisonService TaxComparisonService
 
 <RadzenTemplateForm TItem="IncomeAndWealthComparerRequest" Data=@taxRequest Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
     <RadzenContent Container="main">

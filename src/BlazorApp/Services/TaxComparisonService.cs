@@ -4,22 +4,24 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.TaxComparison;
 
 namespace BlazorApp.Services;
 
-public class CapitalBenefitsComparisonService : ITaxCapitalBenefitsComparisonService
+public class TaxComparisonService : ITaxComparisonService
 {
     private readonly IConfiguration configuration;
     private readonly HttpClient httpClient;
-    private readonly ILogger<CapitalBenefitsComparisonService> logger;
+    private readonly ILogger<TaxComparisonService> logger;
 
-    public CapitalBenefitsComparisonService(
+    public TaxComparisonService(
         IConfiguration configuration,
         HttpClient httpClient,
-        ILogger<CapitalBenefitsComparisonService> logger)
+        ILogger<TaxComparisonService> logger)
     {
         this.configuration = configuration;
         this.httpClient = httpClient;
@@ -40,6 +42,11 @@ public class CapitalBenefitsComparisonService : ITaxCapitalBenefitsComparisonSer
         {
             yield return result;
         }
+    }
+
+    public Task<MultiPeriodResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
+    {
+        throw new System.NotImplementedException();
     }
 
     private async IAsyncEnumerable<TaxComparerResponse> CalculateAsync<T>(T request, string urlMethodPart)

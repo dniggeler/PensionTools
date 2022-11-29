@@ -105,9 +105,11 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                     <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="taxRequest.NumberOfSamples" /></div>
 
                                     <div class="col-md-3"><RadzenLabel Text="Gemeinde" /></div>
-                                    <div class="col-md-9"><MunicipalitySelector
-                                                              BfsMunicipalityId="taxRequest.BfsMunicipalityId"
-                                                              OnSelected="HandleChangeResidence" /></div>
+                                    <div class="col-md-9">
+                                        <MunicipalitySelector 
+                                            BfsMunicipalityId="taxRequest.BfsMunicipalityId"
+                                            OnSelected="HandleChangeResidence"/>
+                                    </div>
                                 </div>
                             </FormStep>
                         </ChildContent>

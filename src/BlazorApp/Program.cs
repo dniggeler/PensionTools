@@ -23,7 +23,8 @@ namespace BlazorApp
                 builder.Services.AddScoped<IMultiPeriodCalculationService, MockedPensionToolsCalculationService>();
                 builder.Services.AddScoped<ITaxCalculationService, MockedPensionToolsCalculationService>();
                 builder.Services.AddScoped<IMarginalTaxCurveCalculationService, MockedPensionToolsCalculationService>();
-                builder.Services.AddScoped<ITaxCapitalBenefitsComparisonService, MockCapitalBenefitsComparisonService>();
+                builder.Services.AddScoped<ITaxComparisonService, MockTaxComparisonService>();
+                builder.Services.AddScoped<ITaxScenarioService, MockTaxComparisonService>();
                 builder.Services.AddScoped<IMunicipalityService, MockedMunicipalityService>();
                 builder.Services.AddScoped<IPersonService, MockedPersonService>();
                 builder.Services.AddScoped<IExportService, ExportService>();
@@ -33,7 +34,7 @@ namespace BlazorApp
                 builder.Services.AddScoped<IMultiPeriodCalculationService, MultiPeriodCalculationService>();
                 builder.Services.AddScoped<ITaxCalculationService, TaxCalculationService>();
                 builder.Services.AddScoped<IMarginalTaxCurveCalculationService, TaxCalculationService>();
-                builder.Services.AddScoped<ITaxCapitalBenefitsComparisonService, CapitalBenefitsComparisonService>();
+                builder.Services.AddScoped<ITaxComparisonService, TaxComparisonService>();
                 builder.Services.AddScoped<IMunicipalityService, MunicipalityServiceClient>();
                 builder.Services.AddScoped<IPersonService, PersonService>();
                 builder.Services.AddScoped<IExportService, ExportService>();

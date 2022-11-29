@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxComparison;
 
 namespace BlazorApp.Services.Mock;
 
-public class MockCapitalBenefitsComparisonService : ITaxCapitalBenefitsComparisonService
+public class MockTaxComparisonService : ITaxComparisonService, ITaxScenarioService
 {
     const int NumberOfSamples = 200;
 
     private readonly Random randomGenerator;
     readonly string[] municipalityNames = { "Bagnes", "Bern", "Zürich", "Lachen", "Wettingen", "Zuzwil" };
 
-    public MockCapitalBenefitsComparisonService()
+    public MockTaxComparisonService()
     {
         this.randomGenerator = new Random();
     }
@@ -32,6 +34,11 @@ public class MockCapitalBenefitsComparisonService : ITaxCapitalBenefitsCompariso
         {
             yield return result;
         }
+    }
+
+    public Task<MultiPeriodResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
+    {
+        throw new NotImplementedException();
     }
 
     private async IAsyncEnumerable<TaxComparerResponse> CalculateRandomlyAsync(decimal anchorAmount)
