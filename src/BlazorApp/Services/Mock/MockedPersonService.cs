@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using BlazorApp.ViewModels;
 using PensionCoach.Tools.CommonTypes;
 
-namespace BlazorApp.Services;
+namespace BlazorApp.Services.Mock;
 
 public class MockedPersonService : IPersonService
 {

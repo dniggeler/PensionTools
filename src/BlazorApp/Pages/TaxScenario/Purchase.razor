@@ -1,14 +1,15 @@
 ﻿@page "/TaxScenario/Purchase"
 
-@using PensionCoach.Tools.CommonTypes.Tax
 @using Microsoft.AspNetCore.Components
 @using PensionCoach.Tools.CommonTypes
+@using PensionCoach.Tools.CommonTypes.MultiPeriod
+@using PensionCoach.Tools.TaxComparison
 
 @inject IPersonService PersonService
 @inject ITaxCalculationService TaxCalculationService
 @inject ITaxScenarioService TaxScenarioService
 
-<RadzenTemplateForm TItem="FullTaxRequest" Data=@taxRequest Submit=@OnSubmit>
+<RadzenTemplateForm TItem="CapitalBenefitTransferInComparerRequest" Data=@taxRequest Submit=@OnSubmit>
     <RadzenContent Container="main">
         <ChildContent>
             <RadzenHeading Size="H1" Text="Steuerberechnung"></RadzenHeading>
@@ -92,7 +93,34 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                     <RadzenStepsItem Text="Berechnung" Disabled="@(selectedPerson == null)">
                         <ChildContent>
                             <FormStep Title="Simulation" HelpText="Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern.">
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>Mit Kapitalbezug</h3>
+                                        <RadzenSwitch Value="withCapitalBenefitTaxation" ValueChanged="() => withCapitalBenefitTaxation = !withCapitalBenefitTaxation" />
+                                </div>
+                            </div>
+                            
+                                <RadzenCard Visible="withCapitalBenefitTaxation">
+                                    <ChildContent>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <RadzenLabel Text="Bezugsdatum"/>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <RadzenDatePicker @bind-Value="taxRequest.DateOfCapitalBenefitTaxCalculation" DateFormat="d.M.yyyy"/>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <RadzenLabel Text="Vorsorgekapital (ohne Einkauf)"/>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <RadzenNumeric TValue="decimal" @bind-Value="taxRequest.CapitalBenefitBalance"/>
+                                            </div>
+                                        </div>
+                                    </ChildContent>
+                                </RadzenCard>
                             </FormStep>
+
                         </ChildContent>
                     </RadzenStepsItem>
                 </Steps>
@@ -108,11 +136,36 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     </RadzenContent>
 </RadzenTemplateForm>
 
+@if (taxResponse != null)
+{
+    <div class="col-md-12">
+        <RadzenChart>
+            <RadzenColumnSeries Data="@(GetChartData())" CategoryProperty="XValue" Title="Vermögensentwicklung" LineType="LineType.Dashed" ValueProperty="YValue">
+                <RadzenSeriesDataLabels Visible="false" />
+            </RadzenColumnSeries>
+
+            <RadzenColumnOptions Radius="5" Width="40" />
+            <RadzenCategoryAxis Padding="20" />
+
+            <RadzenCategoryAxis Step="1" Min="@(taxResponse.StartingYear-1)" Max="@(taxResponse.StartingYear + taxResponse.NumberOfPeriods)">
+                <RadzenAxisTitle Text="Jahr" />
+            </RadzenCategoryAxis>
+
+            <RadzenValueAxis>
+                <RadzenGridLines Visible="true" />
+                <RadzenAxisTitle Text="Ersparnis" />
+            </RadzenValueAxis>
+        </RadzenChart>
+    </div>
+}
+
 @code {
-    private FullTaxRequest taxRequest = new();
+    private CapitalBenefitTransferInComparerRequest taxRequest = new();
+    private MultiPeriodResponse taxResponse;
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
     private int[] supportedTaxYears;
+    private bool withCapitalBenefitTaxation;
 
     protected override async Task OnInitializedAsync()
     {
@@ -126,7 +179,9 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     {
         selectedPerson = persons.Single(item => item.Id == personId);
 
-        taxRequest = new FullTaxRequest
+        int calculationYear = supportedTaxYears.Max();
+
+        taxRequest = new CapitalBenefitTransferInComparerRequest
         {
             Name = selectedPerson.Name,
             CivilStatus = selectedPerson.CivilStatus,
@@ -136,11 +191,39 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
             ReligiousGroup = selectedPerson.ReligiousGroupType,
             BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
-            CalculationYear = supportedTaxYears.Max()
+                CalculationYear = calculationYear,
+            TransferIns = new List<TransferInModel>
+            {
+                new (10000, new DateTime(calculationYear+1,1,1)),
+                new (10000, new DateTime(calculationYear+2,1,1)),
+                new (10000, new DateTime(calculationYear+3,1,1)),
+            },
+            WithCapitalBenefitTaxation = false,
+            CapitalBenefitBalance = 0,
+            NetReturnRate = 0.01M,
+            DateOfCapitalBenefitTaxCalculation = null,
         };
     }
 
     private async Task OnSubmit()
     {
+        taxResponse = await TaxScenarioService.CalculateAsync(taxRequest);
+    }
+
+    private TaxCurve.CurvePoint[] GetChartData()
+    {
+        List<TaxCurve.CurvePoint> points = new();
+
+        for (int year = taxResponse.StartingYear; year < taxResponse.NumberOfPeriods + taxResponse.StartingYear; year++)
+        {
+            points.Add(new TaxCurve.CurvePoint
+            {
+                XValue = year,
+                YValue = taxResponse.Accounts
+                    .SingleOrDefault(item => item.AccountType == AccountType.Wealth && item.Year == year)?.Amount ?? decimal.Zero
+            });
+        }
+
+        return points.ToArray();
     }
 }

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.Tax;
 
-namespace BlazorApp.Services;
+namespace BlazorApp.Services.Mock;
 
 public class MockedPensionToolsCalculationService :
     IMultiPeriodCalculationService, ITaxCalculationService, IMarginalTaxCurveCalculationService
@@ -33,7 +33,7 @@ public class MockedPensionToolsCalculationService :
 
     public async Task<MultiPeriodResponse> CalculateAsync(MultiPeriodRequest request)
     {
-        string urlPath = configuration.GetSection("MultiPeriodCalculationServiceUrl").Value;
+        var urlPath = configuration.GetSection("MultiPeriodCalculationServiceUrl").Value;
         foreach (var keyValuePair in configuration.AsEnumerable())
         {
             logger.LogInformation($"{keyValuePair.Key}: {keyValuePair.Value}");
@@ -66,7 +66,9 @@ public class MockedPensionToolsCalculationService :
             TotalTaxAmount = 3200,
             TaxRateDetails = new TaxRateDetails()
             {
-                CantonRate = 1M, ChurchTaxRate = 0.02M, MunicipalityRate = 1.19M
+                CantonRate = 1M,
+                ChurchTaxRate = 0.02M,
+                MunicipalityRate = 1.19M
             }
         };
 
@@ -82,24 +84,24 @@ public class MockedPensionToolsCalculationService :
 
         var marginalTaxCurve = new List<MarginalTaxInfo>();
 
-        int stepSize =  Convert.ToInt32(request.UpperSalaryLimit / 100M);
-        decimal taxRateStepSize = 0.45M / 100.0M;
-        decimal taxAmountStepSize = 20000M / 100.0M;
-        for (int ii = 0; ii < 20; ii++)
+        var stepSize = Convert.ToInt32(request.UpperSalaryLimit / 100M);
+        var taxRateStepSize = 0.45M / 100.0M;
+        var taxAmountStepSize = 20000M / 100.0M;
+        for (var ii = 0; ii < 20; ii++)
         {
-            for (int jj = 0; jj < 4; jj++)
+            for (var jj = 0; jj < 4; jj++)
             {
                 var bucket = ii * 5;
                 marginalTaxCurve.Add(
                     new MarginalTaxInfo((bucket + jj) * stepSize, taxRateStepSize * bucket, taxAmountStepSize * bucket));
             }
 
-            var index = (ii * 5 + 4);
+            var index = ii * 5 + 4;
             marginalTaxCurve.Add(
-                new MarginalTaxInfo(index * stepSize, taxRateStepSize*index, taxAmountStepSize * index));
+                new MarginalTaxInfo(index * stepSize, taxRateStepSize * index, taxAmountStepSize * index));
         }
 
-        MarginalTaxInfo currentPoint = marginalTaxCurve.Skip(10).Take(1).First();
+        var currentPoint = marginalTaxCurve.Skip(10).Take(1).First();
 
         MarginalTaxResponse taxCalculationResponse = new()
         {

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using LanguageExt;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.Tax;
@@ -38,7 +40,43 @@ public class MockTaxComparisonService : ITaxComparisonService, ITaxScenarioServi
 
     public Task<MultiPeriodResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
     {
-        throw new NotImplementedException();
+        const decimal marginalTaxRate = 0.3M;
+
+        int beginOfPeriodYear = request.TransferIns.Min(t => t.DateOfTransferIn.Year);
+        int endOfPeriodYear = request.TransferIns.Max(t => t.DateOfTransferIn.Year);
+
+        if (request.WithCapitalBenefitTaxation)
+        {
+            endOfPeriodYear = (request.DateOfCapitalBenefitTaxCalculation ?? DateTime.MinValue).Year;
+        }
+
+        List<SinglePeriodCalculationResult> singleResults = new();
+        for (int year = beginOfPeriodYear; year <= endOfPeriodYear; year++)
+        {
+            var transferIn = request.TransferIns.FirstOrDefault(t => t.DateOfTransferIn.Year == year);
+
+            SinglePeriodCalculationResult singleResult = new SinglePeriodCalculationResult
+            {
+                AccountType = AccountType.Wealth,
+                Year = year
+            };
+
+            if (transferIn is not null)
+            {
+                singleResult.Amount = transferIn.Amount * marginalTaxRate;
+            }
+
+            singleResults.Add(singleResult);
+        }
+
+        var result = new MultiPeriodResponse
+        {
+            NumberOfPeriods = endOfPeriodYear - beginOfPeriodYear + 1,
+            StartingYear = beginOfPeriodYear,
+            Accounts = singleResults
+        };
+
+        return result.AsTask();
     }
 
     private async IAsyncEnumerable<TaxComparerResponse> CalculateRandomlyAsync(decimal anchorAmount)
