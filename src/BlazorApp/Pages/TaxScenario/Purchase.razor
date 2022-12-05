@@ -32,7 +32,6 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                 <ChildContent>
                                     <div class="row">
                                         <RadzenFieldset Text="Person">
-                                            <div class="row">
                                                 <div class="col-md-3"><RadzenLabel Text="Name" /></div>
                                                 <div class="col-md-9"><RadzenTextBox @bind-Value="taxRequest.Name" Name="simulationName" ReadOnly="true" /></div>
 
@@ -55,14 +54,10 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                                                                 OnSelected="@(args => taxRequest.PartnerReligiousGroup = args)" />
                                                     </div>
                                                 }
-                                            </div>
 
                                         </RadzenFieldset>
-                                    </div>
-                                    <div class="row">
 
                                         <RadzenFieldset Text="Steuerdaten">
-                                            <div class="row">
                                                 <div class="col-md-3"><RadzenLabel Text="Lohn" /></div>
                                                 <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.TaxableIncome" /></div>
 
@@ -82,7 +77,11 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                                                     Data="@(supportedTaxYears)"
                                                                     @bind-Value="@taxRequest.CalculationYear" />
                                                 </div>
-                                            </div>
+                                        </RadzenFieldset>
+                                        
+                                        <RadzenFieldset Text="Vorsorge">
+                                                <div class="col-md-12"><RadzenLabel Text="Altersguthaben bei Pensionierung" /></div>
+                                                <div class="col-md-12"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.FinalRetirementCapital" /></div>
                                         </RadzenFieldset>
                                     </div>
 
@@ -97,11 +96,13 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                             <div class="row">
                                 <div class="col-md-12">
                                     <h3>Mit Kapitalbezug</h3>
-                                        <RadzenSwitch Value="withCapitalBenefitTaxation" ValueChanged="() => withCapitalBenefitTaxation = !withCapitalBenefitTaxation" />
+                                    <RadzenSwitch
+                                        Value="taxRequest.WithCapitalBenefitTaxation"
+                                                      ValueChanged="() => taxRequest.WithCapitalBenefitTaxation = !taxRequest.WithCapitalBenefitTaxation" />
                                 </div>
                             </div>
                             
-                                <RadzenCard Visible="withCapitalBenefitTaxation">
+                                <RadzenCard Visible="taxRequest.WithCapitalBenefitTaxation">
                                     <ChildContent>
                                         <div class="row">
                                             <div class="col-md-3">
@@ -114,7 +115,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                                 <RadzenLabel Text="Vorsorgekapital (ohne Einkauf)"/>
                                             </div>
                                             <div class="col-md-9">
-                                                <RadzenNumeric TValue="decimal" @bind-Value="taxRequest.CapitalBenefitBalance"/>
+                                                <RadzenNumeric TValue="decimal" @bind-Value="taxRequest.FinalRetirementCapital"/>
                                             </div>
                                         </div>
                                     </ChildContent>
@@ -199,7 +200,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                 new (10000, new DateTime(calculationYear+3,1,1)),
             },
             WithCapitalBenefitTaxation = false,
-            CapitalBenefitBalance = 0,
+            FinalRetirementCapital = selectedPerson.FinalRetirementCapital,
             NetReturnRate = 0.01M,
             DateOfCapitalBenefitTaxCalculation = null,
         };

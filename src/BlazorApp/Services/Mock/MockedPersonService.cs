@@ -51,6 +51,8 @@ public class MockedPersonService : IPersonService
                 ReligiousGroupType = ReligiousGroupType.Protestant,
                 TaxableIncome = 100_000,
                 TaxableWealth = 500_000,
+                FinalCapital3a = 150_000,
+                FinalRetirementCapital = 500_000
             },
             new()
             {
@@ -65,7 +67,9 @@ public class MockedPersonService : IPersonService
                 ReligiousGroupType = ReligiousGroupType.Other,
                 PartnerReligiousGroupType = ReligiousGroupType.Other,
                 TaxableIncome = 100_000,
-                TaxableWealth = 500_000
+                TaxableWealth = 500_000,
+                FinalCapital3a = 180_000,
+                FinalRetirementCapital = 600_000
             }
         };
     }

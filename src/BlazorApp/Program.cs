@@ -8,6 +8,7 @@ using Blazored.LocalStorage;
 using Microsoft.Extensions.Logging;
 using Radzen;
 using BlazorApp.Services.Mock;
+using System.Globalization;
 
 namespace BlazorApp
 {
@@ -55,6 +56,9 @@ namespace BlazorApp
             {
                 builder.Services.AddLogging(b => b.SetMinimumLevel(LogLevel.Debug).AddFilter("Microsoft", LogLevel.Information));
             }
+
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("de-CH");
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("de-CH");
 
             await builder.Build().RunAsync();
         }

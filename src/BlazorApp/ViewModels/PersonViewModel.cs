@@ -35,5 +35,9 @@ namespace BlazorApp.ViewModels
         public Canton Canton { get; set; }
 
         public string MunicipalityName { get; set; }
+
+        public decimal FinalRetirementCapital { get; set; }
+
+        public decimal FinalCapital3a { get; set; }
     }
 }

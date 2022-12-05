@@ -41,7 +41,7 @@ public class CapitalBenefitTransferInComparerRequest
     public bool WithCapitalBenefitTaxation { get; set; }
 
     [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
-    public decimal CapitalBenefitBalance { get; set; }
+    public decimal FinalRetirementCapital { get; set; }
 
     public DateTime? DateOfCapitalBenefitTaxCalculation { get; set; }
 }
