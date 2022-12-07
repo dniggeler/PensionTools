@@ -106,10 +106,10 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                     <ChildContent>
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <RadzenLabel Text="Bezugsdatum"/>
+                                                <RadzenLabel Text="Bezugsjahr"/>
                                             </div>
                                             <div class="col-md-9">
-                                                <RadzenDatePicker @bind-Value="taxRequest.DateOfCapitalBenefitTaxCalculation" DateFormat="d.M.yyyy"/>
+                                                <RadzenNumeric TValue="int?" @bind-Value="taxRequest.YearOfCapitalBenefitWithdrawal" Min="2018" Max="2099" />
                                             </div>
                                             <div class="col-md-3">
                                                 <RadzenLabel Text="Vorsorgekapital (ohne Einkauf)"/>
@@ -166,7 +166,6 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
     private int[] supportedTaxYears;
-    private bool withCapitalBenefitTaxation;
 
     protected override async Task OnInitializedAsync()
     {
@@ -202,7 +201,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             WithCapitalBenefitTaxation = false,
             FinalRetirementCapital = selectedPerson.FinalRetirementCapital,
             NetReturnRate = 0.01M,
-            DateOfCapitalBenefitTaxCalculation = null,
+            YearOfCapitalBenefitWithdrawal = selectedPerson.DateOfBirth.AddYears(64).Year,
         };
     }
 

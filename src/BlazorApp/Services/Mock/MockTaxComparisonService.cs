@@ -42,13 +42,14 @@ public class MockTaxComparisonService : ITaxComparisonService, ITaxScenarioServi
     {
         const decimal marginalTaxRate = 0.3M;
         const decimal marginalCapitalBenefitTaxRate = 0.08M;
+        int defaultYear = 2025;
 
         int beginOfPeriodYear = request.TransferIns.Min(t => t.DateOfTransferIn.Year);
         int endOfPeriodYear = request.TransferIns.Max(t => t.DateOfTransferIn.Year);
 
         if (request.WithCapitalBenefitTaxation)
         {
-            endOfPeriodYear = (request.DateOfCapitalBenefitTaxCalculation ?? DateTime.MinValue).Year;
+            endOfPeriodYear = request.YearOfCapitalBenefitWithdrawal ?? defaultYear;
         }
 
         List<SinglePeriodCalculationResult> singleResults = new();
