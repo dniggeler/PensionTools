@@ -92,36 +92,62 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                     <RadzenStepsItem Text="Berechnung" Disabled="@(selectedPerson == null)">
                         <ChildContent>
                             <FormStep Title="Simulation" HelpText="Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern.">
-                            
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h3>Mit Kapitalbezug</h3>
-                                    <RadzenSwitch
-                                        Value="taxRequest.WithCapitalBenefitTaxation"
-                                                      ValueChanged="() => taxRequest.WithCapitalBenefitTaxation = !taxRequest.WithCapitalBenefitTaxation" />
-                                </div>
-                            </div>
-                            
-                                <RadzenCard Visible="taxRequest.WithCapitalBenefitTaxation">
-                                    <ChildContent>
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <RadzenLabel Text="Bezugsjahr"/>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <RadzenNumeric TValue="int?" @bind-Value="taxRequest.YearOfCapitalBenefitWithdrawal" Min="2018" Max="2099" />
-                                            </div>
-                                            <div class="col-md-3">
-                                                <RadzenLabel Text="Vorsorgekapital (ohne Einkauf)"/>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <RadzenNumeric TValue="decimal" @bind-Value="taxRequest.FinalRetirementCapital"/>
-                                            </div>
-                                        </div>
-                                    </ChildContent>
-                                </RadzenCard>
-                            </FormStep>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <RadzenFieldset Text="Einkauf">
 
+                                            <div class="col-md-12">
+                                                <RadzenLabel Text="Gesamtbetrag"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <RadzenNumeric TValue="decimal" Format="n0" @bind-Value="transferInAmount"/>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <RadzenLabel Text="Anzahl Einkäufe"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <RadzenNumeric TValue="int" @bind-Value="numberOfTransferInYears" Min="1"/>
+                                            </div>
+
+                                        </RadzenFieldset>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <RadzenFieldset Text="Kapitalbezug">
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h3>Mit Bezug</h3>
+                                                    <RadzenSwitch
+                                                        Value="taxRequest.WithCapitalBenefitTaxation"
+                                                        ValueChanged="() => taxRequest.WithCapitalBenefitTaxation = !taxRequest.WithCapitalBenefitTaxation"/>
+                                                </div>
+                                            </div>
+
+                                            <RadzenCard Visible="taxRequest.WithCapitalBenefitTaxation">
+                                                <ChildContent>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <RadzenLabel Text="Bezugsjahr"/>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <RadzenNumeric TValue="int?" @bind-Value="taxRequest.YearOfCapitalBenefitWithdrawal" Min="2018" Max="2099"/>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <RadzenLabel Text="Vorsorgekapital (ohne Einkauf)"/>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <RadzenNumeric TValue="decimal" @bind-Value="taxRequest.FinalRetirementCapital"/>
+                                                        </div>
+                                                    </div>
+                                                </ChildContent>
+                                            </RadzenCard>
+
+                                        </RadzenFieldset>
+                                    </div>
+                                </div>
+                            </FormStep>
                         </ChildContent>
                     </RadzenStepsItem>
                 </Steps>
@@ -148,13 +174,13 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             <RadzenColumnOptions Radius="5" Width="40" />
             <RadzenCategoryAxis Padding="20" />
 
-            <RadzenCategoryAxis Step="1" Min="@(taxResponse.StartingYear-1)" Max="@(taxResponse.StartingYear + taxResponse.NumberOfPeriods)">
+            <RadzenCategoryAxis Min="@(taxResponse.StartingYear-1)" Max="@(taxResponse.StartingYear + taxResponse.NumberOfPeriods)">
                 <RadzenAxisTitle Text="Jahr" />
             </RadzenCategoryAxis>
 
             <RadzenValueAxis>
                 <RadzenGridLines Visible="true" />
-                <RadzenAxisTitle Text="Ersparnis" />
+                <RadzenAxisTitle Text="Steuerersparnis" />
             </RadzenValueAxis>
         </RadzenChart>
     </div>
@@ -166,6 +192,8 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
     private int[] supportedTaxYears;
+    private decimal transferInAmount;
+    private int numberOfTransferInYears;
 
     protected override async Task OnInitializedAsync()
     {
@@ -173,13 +201,14 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         persons = (await PersonService.GetPersonsAsync()).ToList();
 
         supportedTaxYears = await yearsTask;
+
+        transferInAmount = 15000;
+        numberOfTransferInYears = 3;
     }
 
     private void HandleSelectPerson(Guid personId)
     {
         selectedPerson = persons.Single(item => item.Id == personId);
-
-        int calculationYear = supportedTaxYears.Max();
 
         taxRequest = new CapitalBenefitTransferInComparerRequest
         {
@@ -191,13 +220,6 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
             ReligiousGroup = selectedPerson.ReligiousGroupType,
             BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
-                CalculationYear = calculationYear,
-            TransferIns = new List<TransferInModel>
-            {
-                new (10000, new DateTime(calculationYear+1,1,1)),
-                new (10000, new DateTime(calculationYear+2,1,1)),
-                new (10000, new DateTime(calculationYear+3,1,1)),
-            },
             WithCapitalBenefitTaxation = false,
             FinalRetirementCapital = selectedPerson.FinalRetirementCapital,
             NetReturnRate = 0.01M,
@@ -207,6 +229,17 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
     private async Task OnSubmit()
     {
+        List<TransferInModel> transferIns = new();
+        decimal amountPerYear = transferInAmount / numberOfTransferInYears;
+        int calculationYear = supportedTaxYears.Max();
+
+        for (int ii = 0; ii < numberOfTransferInYears; ii++)
+        {
+            transferIns.Add(new TransferInModel(amountPerYear, new DateTime(calculationYear+ii, 1, 1)));
+        }
+
+        taxRequest.TransferIns = transferIns;
+
         taxResponse = await TaxScenarioService.CalculateAsync(taxRequest);
     }
 
