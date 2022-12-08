@@ -167,9 +167,9 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 {
     <div class="col-md-12">
         <RadzenChart>
-            <RadzenColumnSeries Data="@(GetChartData())" CategoryProperty="XValue" Title="Vermögensentwicklung" LineType="LineType.Dashed" ValueProperty="YValue">
+            <RadzenColumnSeries Data="@(GetChartData())" CategoryProperty="XValue" Title="Delta Wertentwicklung" LineType="LineType.Dashed" ValueProperty="YValue">
                 <RadzenSeriesDataLabels Visible="false" />
-            </RadzenColumnSeries>
+                </RadzenColumnSeries>
 
             <RadzenColumnOptions Radius="5" Width="40" />
             <RadzenCategoryAxis Padding="20" />
