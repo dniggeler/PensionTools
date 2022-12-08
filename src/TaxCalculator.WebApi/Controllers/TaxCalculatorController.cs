@@ -306,7 +306,7 @@ public class TaxCalculatorController : ControllerBase
     /// <returns>Tax calculation years.</returns>
     /// <response code="200">If calculation is successful.</response>
     /// <remarks>
-    /// Unterstützte Steuerjahre - hängt von der konkreten Steuerrechner-Implementation ab.
+    /// Unterstütze Steuerjahre - hängt von der konkreten Steuerrechner-Implementation ab.
     /// </remarks>
     [HttpGet]
     [Route("years")]

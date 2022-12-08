@@ -31,7 +31,7 @@ public class CapitalBenefitTransferInComparerRequest
     [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
     public decimal TaxableWealth { get; set; }
 
-    public IReadOnlyCollection<TransferInModel> TransferIns { get; set;}
+    public IReadOnlyCollection<SingleTransferInModel> TransferIns { get; set;}
 
     /// <summary>
     /// Gets or sets yearly net return on transfer-ins.

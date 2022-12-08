@@ -229,13 +229,13 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
     private async Task OnSubmit()
     {
-        List<TransferInModel> transferIns = new();
+        List<SingleTransferInModel> transferIns = new();
         decimal amountPerYear = transferInAmount / numberOfTransferInYears;
         int calculationYear = supportedTaxYears.Max();
 
         for (int ii = 0; ii < numberOfTransferInYears; ii++)
         {
-            transferIns.Add(new TransferInModel(amountPerYear, new DateTime(calculationYear+ii, 1, 1)));
+            transferIns.Add(new SingleTransferInModel(amountPerYear, new DateTime(calculationYear+ii, 1, 1)));
         }
 
         taxRequest.TransferIns = transferIns;

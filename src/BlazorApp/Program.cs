@@ -37,6 +37,7 @@ namespace BlazorApp
                 builder.Services.AddScoped<IMarginalTaxCurveCalculationService, TaxCalculationService>();
                 builder.Services.AddScoped<ITaxComparisonService, TaxComparisonService>();
                 builder.Services.AddScoped<IMunicipalityService, MunicipalityServiceClient>();
+                builder.Services.AddScoped<ITaxScenarioService, MockTaxComparisonService>();
                 builder.Services.AddScoped<IPersonService, PersonService>();
                 builder.Services.AddScoped<IExportService, ExportService>();
             }

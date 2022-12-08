@@ -14,12 +14,12 @@ public class TaxCalculationService : ITaxCalculationService, IMarginalTaxCurveCa
 {
     private readonly IConfiguration configuration;
     private readonly HttpClient httpClient;
-    private readonly ILogger<MockedPensionToolsCalculationService> logger;
+    private readonly ILogger<TaxCalculationService> logger;
 
     public TaxCalculationService(
         IConfiguration configuration,
         HttpClient httpClient,
-        ILogger<MockedPensionToolsCalculationService> logger)
+        ILogger<TaxCalculationService> logger)
     {
         this.configuration = configuration;
         this.httpClient = httpClient;
