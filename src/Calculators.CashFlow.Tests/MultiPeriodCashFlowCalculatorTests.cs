@@ -9,7 +9,6 @@ using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
-using PensionCoach.Tools.CommonUtils;
 using Snapshooter.Xunit;
 using Xunit;
 

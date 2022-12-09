@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using PensionCoach.Tools.CommonTypes;
 
@@ -43,6 +42,5 @@ public class CapitalBenefitTransferInComparerRequest
     [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
     public decimal FinalRetirementCapital { get; set; }
 
-    [Range(typeof(decimal), "2018", "2099", ErrorMessage = "Only years in the future")]
     public int? YearOfCapitalBenefitWithdrawal { get; set; }
 }
