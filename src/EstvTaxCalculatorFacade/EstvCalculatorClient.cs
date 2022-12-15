@@ -15,7 +15,8 @@ public class EstvTaxCalculatorClient : IEstvTaxCalculatorClient
 
     private readonly IHttpClientFactory httpClientFactory;
 
-    public EstvTaxCalculatorClient(IHttpClientFactory httpClientFactory)
+    public EstvTaxCalculatorClient(
+        IHttpClientFactory httpClientFactory)
     {
         this.httpClientFactory = httpClientFactory;
     }

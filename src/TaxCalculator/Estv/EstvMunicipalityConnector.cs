@@ -16,8 +16,6 @@ namespace PensionCoach.Tools.TaxCalculator.Estv;
 
 public class EstvMunicipalityConnector : IMunicipalityConnector
 {
-    private readonly int[] supportedTaxYears = { 2019, 2020, 2021, 2022 };
-
     private readonly IMapper mapper;
     private readonly MunicipalityDbContext municipalityDbContext;
 
@@ -113,10 +111,5 @@ public class EstvMunicipalityConnector : IMunicipalityConnector
             .ToList();
 
         return Task.FromResult(list);
-    }
-
-    public Task<int[]> GetSupportedTaxYearsAsync()
-    {
-        return supportedTaxYears.AsTask();
     }
 }

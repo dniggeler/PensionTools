@@ -12,10 +12,12 @@ namespace PensionCoach.Tools.TaxCalculator.Estv;
 public class EstvFullTaxCalculator : IFullWealthAndIncomeTaxCalculator
 {
     private readonly IEstvTaxCalculatorClient estvTaxCalculatorClient;
+    private readonly ITaxSupportedYearProvider taxSupportedYearProvider;
 
-    public EstvFullTaxCalculator(IEstvTaxCalculatorClient estvTaxCalculatorClient)
+    public EstvFullTaxCalculator(IEstvTaxCalculatorClient estvTaxCalculatorClient, ITaxSupportedYearProvider taxSupportedYearProvider)
     {
         this.estvTaxCalculatorClient = estvTaxCalculatorClient;
+        this.taxSupportedYearProvider = taxSupportedYearProvider;
     }
 
     public async Task<Either<string, FullTaxResult>> CalculateAsync(

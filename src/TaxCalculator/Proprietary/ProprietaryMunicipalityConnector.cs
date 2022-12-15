@@ -119,11 +119,4 @@ public class ProprietaryMunicipalityConnector : IMunicipalityConnector
 
         return Task.FromResult(municipalities);
     }
-
-    public Task<int[]> GetSupportedTaxYearsAsync()
-    {
-        int[] years = { 2019 };
-
-        return years.AsTask();
-    }
 }

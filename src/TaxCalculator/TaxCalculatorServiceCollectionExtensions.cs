@@ -60,21 +60,25 @@ namespace PensionCoach.Tools.TaxCalculator
                     collection.AddTransient<IFullWealthAndIncomeTaxCalculator, ProprietaryFullTaxCalculator>();
                     collection.AddTransient<IFullCapitalBenefitTaxCalculator, ProprietaryFullCapitalBenefitTaxCalculator>();
                     collection.AddTransient<IMunicipalityConnector, ProprietaryMunicipalityConnector>();
+                    collection.AddTransient<ITaxSupportedYearProvider, ProprietarySupportedTaxYears>();
                     break;
                 case ApplicationMode.Estv:
                     collection.AddTransient<IFullWealthAndIncomeTaxCalculator, EstvFullTaxCalculator>();
                     collection.AddTransient<IFullCapitalBenefitTaxCalculator, EstvFullCapitalBenefitTaxCalculator>();
                     collection.AddTransient<IMunicipalityConnector, EstvMunicipalityConnector>();
+                    collection.AddTransient<ITaxSupportedYearProvider, EstvTaxSupportedYearProvider>();
                     break;
                 case ApplicationMode.Mock:
                     collection.AddTransient<IFullCapitalBenefitTaxCalculator, MockedFullTaxCalculator>();
                     collection.AddTransient<IFullWealthAndIncomeTaxCalculator, MockedFullTaxCalculator>();
                     collection.AddTransient<IMunicipalityConnector, MockedFullTaxCalculator>();
+                    collection.AddTransient<ITaxSupportedYearProvider, MockedFullTaxCalculator>();
                     break;
                 default:
                     collection.AddTransient<IFullWealthAndIncomeTaxCalculator, ProprietaryFullTaxCalculator>();
                     collection.AddTransient<IFullCapitalBenefitTaxCalculator, ProprietaryFullCapitalBenefitTaxCalculator>();
                     collection.AddTransient<IMunicipalityConnector, ProprietaryMunicipalityConnector>();
+                    collection.AddTransient<ITaxSupportedYearProvider, ProprietarySupportedTaxYears>();
                     break;
             }
         }
