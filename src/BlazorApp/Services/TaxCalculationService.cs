@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
+using BlazorApp.Services.Mock;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes.Tax;
@@ -13,12 +14,12 @@ public class TaxCalculationService : ITaxCalculationService, IMarginalTaxCurveCa
 {
     private readonly IConfiguration configuration;
     private readonly HttpClient httpClient;
-    private readonly ILogger<MockedPensionToolsCalculationService> logger;
+    private readonly ILogger<TaxCalculationService> logger;
 
     public TaxCalculationService(
         IConfiguration configuration,
         HttpClient httpClient,
-        ILogger<MockedPensionToolsCalculationService> logger)
+        ILogger<TaxCalculationService> logger)
     {
         this.configuration = configuration;
         this.httpClient = httpClient;
@@ -65,6 +66,5 @@ public class TaxCalculationService : ITaxCalculationService, IMarginalTaxCurveCa
             await response.Content.ReadFromJsonAsync<MarginalTaxResponse>();
 
         return result;
-
     }
 }

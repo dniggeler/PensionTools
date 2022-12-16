@@ -7,6 +7,7 @@ namespace Calculators.CashFlow
         public static void AddCashFlowCalculators(this IServiceCollection collection)
         {
             collection.AddTransient<IMultiPeriodCashFlowCalculator, MultiPeriodCashFlowCalculator>();
+            collection.AddTransient<ITaxScenarioCalculator, TaxScenarioCalculator>();
         }
     }
 }

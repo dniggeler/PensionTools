@@ -12,10 +12,12 @@ namespace PensionCoach.Tools.TaxCalculator.Estv;
 public class EstvFullTaxCalculator : IFullWealthAndIncomeTaxCalculator
 {
     private readonly IEstvTaxCalculatorClient estvTaxCalculatorClient;
+    private readonly ITaxSupportedYearProvider taxSupportedYearProvider;
 
-    public EstvFullTaxCalculator(IEstvTaxCalculatorClient estvTaxCalculatorClient)
+    public EstvFullTaxCalculator(IEstvTaxCalculatorClient estvTaxCalculatorClient, ITaxSupportedYearProvider taxSupportedYearProvider)
     {
         this.estvTaxCalculatorClient = estvTaxCalculatorClient;
+        this.taxSupportedYearProvider = taxSupportedYearProvider;
     }
 
     public async Task<Either<string, FullTaxResult>> CalculateAsync(
@@ -26,8 +28,10 @@ public class EstvFullTaxCalculator : IFullWealthAndIncomeTaxCalculator
             return "ESTV tax location id is null";
         }
 
+        int supportedTaxYear = taxSupportedYearProvider.MapToSupportedYear(calculationYear);
+
         SimpleTaxResult estvResult = await estvTaxCalculatorClient.CalculateIncomeAndWealthTaxAsync(
-            municipality.EstvTaxLocationId.Value, calculationYear, person);
+            municipality.EstvTaxLocationId.Value, supportedTaxYear, person);
 
         decimal simpleTaxRate = decimal.Zero;
         if (estvResult.IncomeTaxCanton > decimal.Zero)

@@ -105,9 +105,11 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                     <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="taxRequest.NumberOfSamples" /></div>
 
                                     <div class="col-md-3"><RadzenLabel Text="Gemeinde" /></div>
-                                    <div class="col-md-9"><MunicipalitySelector
-                                                              BfsMunicipalityId="taxRequest.BfsMunicipalityId"
-                                                              OnSelected="HandleChangeResidence" /></div>
+                                    <div class="col-md-9">
+                                        <MunicipalitySelector 
+                                            BfsMunicipalityId="taxRequest.BfsMunicipalityId"
+                                            OnSelected="HandleChangeResidence"/>
+                                    </div>
                                 </div>
                             </FormStep>
                         </ChildContent>
@@ -157,12 +159,6 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
 @code
 {
-    internal class DataItem
-    {
-        public int Salary { get; set; }
-        public decimal Rate { get; set; }
-    }
-
     private MarginalTaxRequest taxRequest = new();
     private MarginalTaxResponse taxResponse;
     private PersonViewModel selectedPerson;

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper.Configuration.Conventions;
 using Calculators.CashFlow.Accounts;
 using Calculators.CashFlow.Models;
 using PensionCoach.Tools.BvgCalculator;
@@ -210,6 +209,31 @@ public static class CashFlowHelperExtensions
             IsTaxable = false,
             TaxType = TaxType.Undefined
         };
+
+        yield return new StaticGenericCashFlowDefinition
+        {
+            Header = new CashFlowHeader
+            {
+                Id = "purchaseFundingByWealth",
+                Name = "Funding of Purchase by Wealth"
+            },
+            DateOfProcess = purchaseDefinition.DateOfStart,
+            InitialAmount = decimal.Zero,
+            NetGrowthRate = purchaseDefinition.NetGrowthRate,
+            Flow = new FlowPair(AccountType.Wealth, AccountType.Exogenous),
+            RecurringInvestment = new RecurringInvestment
+            {
+                Amount = purchaseDefinition.YearlyAmount,
+                Frequency = FrequencyType.Yearly,
+            },
+            InvestmentPeriod = new InvestmentPeriod
+            {
+                Year = purchaseDefinition.DateOfStart.Year,
+                NumberOfPeriods = purchaseDefinition.NumberOfInvestments,
+            },
+            IsTaxable = false,
+            TaxType = TaxType.Undefined
+        };
     }
 
     public static IEnumerable<ICashFlowDefinition> CreateGenericDefinition(
@@ -288,6 +312,31 @@ public static class CashFlowHelperExtensions
             InitialAmount = decimal.Zero,
             NetGrowthRate = thirdPillarDefinition.NetGrowthRate,
             Flow = new FlowPair(AccountType.Income, AccountType.ThirdPillar),
+            RecurringInvestment = new RecurringInvestment
+            {
+                Amount = thirdPillarDefinition.YearlyAmount,
+                Frequency = FrequencyType.Yearly,
+            },
+            InvestmentPeriod = new InvestmentPeriod
+            {
+                Year = thirdPillarDefinition.DateOfStart.Year,
+                NumberOfPeriods = thirdPillarDefinition.NumberOfInvestments,
+            },
+            IsTaxable = false,
+            TaxType = TaxType.Undefined
+        };
+
+        yield return new StaticGenericCashFlowDefinition
+        {
+            Header = new CashFlowHeader
+            {
+                Id = "thirdPillarPaymentsFunding",
+                Name = "3a Payments Funded by Wealth"
+            },
+            DateOfProcess = thirdPillarDefinition.DateOfStart,
+            InitialAmount = decimal.Zero,
+            NetGrowthRate = thirdPillarDefinition.NetGrowthRate,
+            Flow = new FlowPair(AccountType.Wealth, AccountType.Exogenous),
             RecurringInvestment = new RecurringInvestment
             {
                 Amount = thirdPillarDefinition.YearlyAmount,

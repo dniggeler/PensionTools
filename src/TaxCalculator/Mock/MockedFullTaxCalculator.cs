@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes;
@@ -10,7 +11,8 @@ using PensionCoach.Tools.TaxCalculator.Proprietary;
 
 namespace PensionCoach.Tools.TaxCalculator.Mock;
 
-public class MockedFullTaxCalculator : IFullWealthAndIncomeTaxCalculator, IFullCapitalBenefitTaxCalculator, IMunicipalityConnector
+public class MockedFullTaxCalculator
+    : IFullWealthAndIncomeTaxCalculator, IFullCapitalBenefitTaxCalculator, IMunicipalityConnector, ITaxSupportedYearProvider
 {
     const int DefaultBfsMunicipalityId = 261;
     const Canton DefaultCanton = Canton.ZH;
@@ -71,11 +73,16 @@ public class MockedFullTaxCalculator : IFullWealthAndIncomeTaxCalculator, IFullC
         return municipalities.AsTask();
     }
 
-    public Task<int[]> GetSupportedTaxYearsAsync()
+    public int[] GetSupportedTaxYears()
     {
         int[] years = { 2022 };
 
-        return years.AsTask();
+        return years;
+    }
+
+    public int MapToSupportedYear(int taxYear)
+    {
+        return GetSupportedTaxYears().Max();
     }
 
     private MunicipalityModel GetAdaptedModel()

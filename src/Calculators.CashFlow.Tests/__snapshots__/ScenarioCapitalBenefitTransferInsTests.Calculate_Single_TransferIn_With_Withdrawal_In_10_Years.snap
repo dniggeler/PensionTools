@@ -1,0 +1,72 @@
+﻿[
+  {
+    "State": "IsRight",
+    "Right": {
+      "StartingYear": 2022,
+      "NumberOfPeriods": 11,
+      "Accounts": [
+        {
+          "Year": 2022,
+          "Amount": 3199.900,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2023,
+          "Amount": 3215.23000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2024,
+          "Amount": 3230.5600000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2025,
+          "Amount": 3245.890000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2026,
+          "Amount": 3261.22000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2027,
+          "Amount": 3268.88500000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2028,
+          "Amount": 3275.45500000000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2029,
+          "Amount": 3283.12000000000000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2030,
+          "Amount": 3290.7850000000000000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2031,
+          "Amount": 3297.3550000000000000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2032,
+          "Amount": 1497.7850000000000000000000,
+          "AccountType": "Wealth"
+        }
+      ],
+      "ExogenousAccount": null,
+      "IncomeAccount": null,
+      "WealthAccount": null,
+      "OccupationalPensionAccount": null,
+      "ThirdPillarAccount": null
+    },
+    "Left": null
+  }
+]
