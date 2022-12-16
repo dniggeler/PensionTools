@@ -93,59 +93,69 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                         <ChildContent>
                             <FormStep Title="Simulation" HelpText="Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern.">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <RadzenFieldset Text="Einkauf">
+                                    <RadzenFieldset Text="Einkauf">
+
+                                        <div class="col-md-12">
+                                            <RadzenLabel Text="Gesamtbetrag"/>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <RadzenNumeric TValue="decimal" Format="n0" @bind-Value="transferInAmount"/>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <RadzenLabel Text="Anzahl Einkäufe"/>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <RadzenNumeric TValue="int" @bind-Value="numberOfTransferInYears" Min="1"/>
+                                        </div>
+
+                                    </RadzenFieldset>
+
+                                    <RadzenFieldset Text="Berechnungsparameter">
+
+                                        <div class="col-md-12">
+                                            <RadzenLabel Text="Rendite p.a. auf Vermögen"/>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <RadzenNumeric TValue="decimal" Step="0.005" Format="p2" @bind-Value="taxRequest.NetReturnRate" Min="0" Max="1"/>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <RadzenLabel Text="Rendite p.a. Vorsorgekapitalien"/>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <RadzenNumeric TValue="decimal" Step="0.005" Format="p2" @bind-Value="taxRequest.NetReturnRate" Min="0" Max="1"/>
+                                        </div>
+
+                                    </RadzenFieldset>
+
+                                    <RadzenFieldset Text="Kapitalbezug">
 
                                             <div class="col-md-12">
-                                                <RadzenLabel Text="Gesamtbetrag"/>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <RadzenNumeric TValue="decimal" Format="n0" @bind-Value="transferInAmount"/>
-                                            </div>
-
-                                            <div class="col-md-12">
-                                                <RadzenLabel Text="Anzahl Einkäufe"/>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <RadzenNumeric TValue="int" @bind-Value="numberOfTransferInYears" Min="1"/>
+                                                <h3>Mit Bezug</h3>
+                                                <RadzenSwitch
+                                                    Value="taxRequest.WithCapitalBenefitTaxation"
+                                                    ValueChanged="() => taxRequest.WithCapitalBenefitTaxation = !taxRequest.WithCapitalBenefitTaxation"/>
                                             </div>
 
-                                        </RadzenFieldset>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <RadzenFieldset Text="Kapitalbezug">
-
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <h3>Mit Bezug</h3>
-                                                    <RadzenSwitch
-                                                        Value="taxRequest.WithCapitalBenefitTaxation"
-                                                        ValueChanged="() => taxRequest.WithCapitalBenefitTaxation = !taxRequest.WithCapitalBenefitTaxation"/>
-                                                </div>
-                                            </div>
-
-                                            <RadzenCard Visible="taxRequest.WithCapitalBenefitTaxation">
-                                                <ChildContent>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <RadzenLabel Text="Bezugsjahr"/>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <RadzenNumeric TValue="int?" @bind-Value="taxRequest.YearOfCapitalBenefitWithdrawal" Min="2018" Max="2099"/>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <RadzenLabel Text="Vorsorgekapital (ohne Einkauf)"/>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <RadzenNumeric TValue="decimal" @bind-Value="taxRequest.FinalRetirementCapital"/>
-                                                        </div>
+                                        <RadzenCard Visible="taxRequest.WithCapitalBenefitTaxation">
+                                            <ChildContent>
+                                                    <div class="col-md-12">
+                                                        <RadzenLabel Text="Bezugsjahr"/>
                                                     </div>
-                                                </ChildContent>
-                                            </RadzenCard>
+                                                    <div class="col-md-12">
+                                                        <RadzenNumeric TValue="int?" @bind-Value="taxRequest.YearOfCapitalBenefitWithdrawal" Min="2018" Max="2099"/>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <RadzenLabel Text="Vorsorgekapital (ohne Einkauf)"/>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <RadzenNumeric TValue="decimal" @bind-Value="taxRequest.FinalRetirementCapital"/>
+                                                    </div>
+                                            </ChildContent>
+                                        </RadzenCard>
 
-                                        </RadzenFieldset>
-                                    </div>
+                                    </RadzenFieldset>
                                 </div>
                             </FormStep>
                         </ChildContent>
@@ -232,6 +242,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         List<SingleTransferInModel> transferIns = new();
         decimal amountPerYear = transferInAmount / numberOfTransferInYears;
         int calculationYear = supportedTaxYears.Max();
+        taxRequest.CalculationYear = calculationYear;
 
         for (int ii = 0; ii < numberOfTransferInYears; ii++)
         {
@@ -253,7 +264,9 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             {
                 XValue = year,
                 YValue = taxResponse.Accounts
-                    .SingleOrDefault(item => item.AccountType == AccountType.Wealth && item.Year == year)?.Amount ?? decimal.Zero
+                    .Where(item => item.AccountType is AccountType.Wealth or AccountType.OccupationalPension &&
+                                   item.Year == year)
+                    .Sum(item => item.Amount)
             });
         }
 

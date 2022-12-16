@@ -62,14 +62,22 @@ public class MockTaxComparisonService : ITaxComparisonService, ITaxScenarioServi
                 continue;
             }
 
-            SinglePeriodCalculationResult singleResult = new SinglePeriodCalculationResult
+            SinglePeriodCalculationResult singleResultWealth = new SinglePeriodCalculationResult
             {
                 AccountType = AccountType.Wealth,
                 Year = year,
-                Amount = transferIn.Amount * marginalTaxRate
+                Amount = -transferIn.Amount * (decimal.One - marginalTaxRate)
             };
-            
-            singleResults.Add(singleResult);
+
+            SinglePeriodCalculationResult singleResultPensionAccount = new SinglePeriodCalculationResult
+            {
+                AccountType = AccountType.OccupationalPension,
+                Year = year,
+                Amount = transferIn.Amount
+            };
+
+            singleResults.Add(singleResultWealth);
+            singleResults.Add(singleResultPensionAccount);
         }
 
         if (request.WithCapitalBenefitTaxation)

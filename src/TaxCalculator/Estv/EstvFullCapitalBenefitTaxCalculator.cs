@@ -15,11 +15,14 @@ namespace PensionCoach.Tools.TaxCalculator.Estv;
 public class EstvFullCapitalBenefitTaxCalculator : IFullCapitalBenefitTaxCalculator
 {
     private readonly IEstvTaxCalculatorClient estvTaxCalculatorClient;
+    private readonly ITaxSupportedYearProvider taxSupportedYearProvider;
 
     public EstvFullCapitalBenefitTaxCalculator(
-        IEstvTaxCalculatorClient estvTaxCalculatorClient)
+        IEstvTaxCalculatorClient estvTaxCalculatorClient,
+        ITaxSupportedYearProvider taxSupportedYearProvider)
     {
         this.estvTaxCalculatorClient = estvTaxCalculatorClient;
+        this.taxSupportedYearProvider = taxSupportedYearProvider;
     }
 
     public async Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
@@ -33,10 +36,14 @@ public class EstvFullCapitalBenefitTaxCalculator : IFullCapitalBenefitTaxCalcula
             return "ESTV tax location id is null";
         }
 
-        SimpleCapitalTaxResult calculationResult = await estvTaxCalculatorClient.CalculateCapitalBenefitTaxAsync(
-            municipality.EstvTaxLocationId.Value, calculationYear, person);
+        int supportedTaxYear = taxSupportedYearProvider.MapToSupportedYear(calculationYear);
 
-        decimal municipalityRate = calculationResult.TaxCity / (decimal)calculationResult.TaxCanton * 100M;
+        SimpleCapitalTaxResult calculationResult = await estvTaxCalculatorClient.CalculateCapitalBenefitTaxAsync(
+            municipality.EstvTaxLocationId.Value, supportedTaxYear, person);
+
+        decimal municipalityRate = calculationResult.TaxCanton == 0
+            ? decimal.Zero
+            : calculationResult.TaxCity / (decimal)calculationResult.TaxCanton * 100M;
 
         return new FullCapitalBenefitTaxResult
         {

@@ -67,10 +67,26 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
 
             List<SinglePeriodCalculationResult> wealthAccount = new List<SinglePeriodCalculationResult>(benchmark.NumberOfPeriods);
 
-            var zipped = benchmark.Accounts.Where(a => a.AccountType == AccountType.Wealth)
-                .Zip(
-                    scenario.Accounts.Where(a => a.AccountType == AccountType.Wealth),
-                    (b, s) => (b.Year, Benchmark: b.Amount, Scenario: s.Amount));
+            var cumulativeWealthBenchmark = from w in benchmark.Accounts.Where(a => a.AccountType is AccountType.Wealth)
+                from p in benchmark.Accounts.Where(a => a.AccountType is AccountType.OccupationalPension)
+                where w.Year == p.Year
+                select new SinglePeriodCalculationResult
+                {
+                    AccountType = AccountType.Wealth, Amount = w.Amount + p.Amount, Year = w.Year
+                };
+
+            var cumulativeWealthScenario = from w in scenario.Accounts.Where(a => a.AccountType is AccountType.Wealth)
+                from p in scenario.Accounts.Where(a => a.AccountType is AccountType.OccupationalPension)
+                where w.Year == p.Year
+                select new SinglePeriodCalculationResult
+                {
+                    AccountType = AccountType.Wealth,
+                    Amount = w.Amount + p.Amount,
+                    Year = w.Year
+                };
+
+            var zipped = cumulativeWealthBenchmark
+                .Zip(cumulativeWealthScenario, (b, s) => (b.Year, Benchmark: b.Amount, Scenario: s.Amount));
 
             foreach (var zippedItem in zipped)
             {

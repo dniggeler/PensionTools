@@ -66,6 +66,5 @@ public class TaxCalculationService : ITaxCalculationService, IMarginalTaxCurveCa
             await response.Content.ReadFromJsonAsync<MarginalTaxResponse>();
 
         return result;
-
     }
 }
