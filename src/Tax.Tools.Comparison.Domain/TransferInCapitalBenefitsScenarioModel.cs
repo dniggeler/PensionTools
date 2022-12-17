@@ -11,9 +11,8 @@ public class TransferInCapitalBenefitsScenarioModel
     /// </summary>
     public decimal NetReturnRate { get; set; }
 
-    public bool WithCapitalBenefitTaxation { get; set; }
+    public bool WithCapitalBenefitWithdrawal{ get; set; }
 
-    public decimal FinalRetirementCapital { get; set; }
+    public IReadOnlyCollection<SingleTransferInModel> Withdrawals { get; set; }
 
-    public int? YearOfCapitalBenefitWithdrawal { get; set; }
 }

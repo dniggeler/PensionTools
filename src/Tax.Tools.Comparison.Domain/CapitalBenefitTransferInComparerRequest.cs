@@ -38,9 +38,7 @@ public class CapitalBenefitTransferInComparerRequest
     public decimal NetReturnRate { get; set; }
     
     public bool WithCapitalBenefitTaxation { get; set; }
+    
+    public IReadOnlyCollection<SingleTransferInModel> Withdrawals { get; set; }
 
-    [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
-    public decimal FinalRetirementCapital { get; set; }
-
-    public int? YearOfCapitalBenefitWithdrawal { get; set; }
 }

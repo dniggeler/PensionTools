@@ -23,11 +23,13 @@ public class CapitalBenefitTransferInRequestExample : IExamplesProvider<CapitalB
             TaxableWealth = 500_000,
             WithCapitalBenefitTaxation = true,
             NetReturnRate = 0.01M,
-            YearOfCapitalBenefitWithdrawal = 2032,
-            FinalRetirementCapital = 800_000,
             TransferIns = new List<SingleTransferInModel>
             {
                 new(10_000, new DateTime(2022, 1, 1))
+            },
+            Withdrawals = new List<SingleTransferInModel>
+            {
+                new(500_000, new DateTime(2032, 1, 1))
             }
         };
     }

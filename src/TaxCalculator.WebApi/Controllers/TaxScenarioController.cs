@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Calculators.CashFlow;
 using Microsoft.AspNetCore.Http;
@@ -40,7 +41,7 @@ public class TaxScenarioController : ControllerBase
     [Route(nameof(CalculateTransferInCapitalBenefits))]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<MultiPeriodResponse>> CalculateTransferInCapitalBenefits(CapitalBenefitTransferInComparerRequest request)
+    public async Task<ActionResult<CapitalBenefitsTransferInResponse>> CalculateTransferInCapitalBenefits(CapitalBenefitTransferInComparerRequest request)
     {
         if (request == null)
         {
@@ -50,7 +51,7 @@ public class TaxScenarioController : ControllerBase
         var taxPerson = MapPerson();
         var scenarioModel = MapScenarioModel();
 
-        var response = new MultiPeriodResponse();
+        var response = new CapitalBenefitsTransferInResponse();
 
         await scenarioCalculator.TransferInCapitalBenefitsAsync(
             request.CalculationYear, request.BfsMunicipalityId, taxPerson, scenarioModel)
@@ -69,9 +70,8 @@ public class TaxScenarioController : ControllerBase
             {
                 TransferIns = request.TransferIns,
                 NetReturnRate = request.NetReturnRate,
-                WithCapitalBenefitTaxation = request.WithCapitalBenefitTaxation,
-                YearOfCapitalBenefitWithdrawal = request.YearOfCapitalBenefitWithdrawal,
-                FinalRetirementCapital = request.FinalRetirementCapital
+                WithCapitalBenefitWithdrawal = request.WithCapitalBenefitTaxation,
+                Withdrawals = request.Withdrawals,
             };
         }
 

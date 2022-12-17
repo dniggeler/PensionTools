@@ -49,7 +49,7 @@ public class MockTaxComparisonService : ITaxComparisonService, ITaxScenarioServi
 
         if (request.WithCapitalBenefitTaxation)
         {
-            endOfPeriodYear = request.YearOfCapitalBenefitWithdrawal ?? defaultYear;
+            endOfPeriodYear = request.Withdrawals.Max(t => t.DateOfTransferIn.Year);
         }
 
         List<SinglePeriodCalculationResult> singleResults = new();
@@ -82,27 +82,29 @@ public class MockTaxComparisonService : ITaxComparisonService, ITaxScenarioServi
 
         if (request.WithCapitalBenefitTaxation)
         {
-            decimal transferInTotal = request.TransferIns.Sum(t => t.Amount);
-            decimal capitalBenefitTaxAmount = transferInTotal * marginalCapitalBenefitTaxRate;
 
-            var existingResult = singleResults.SingleOrDefault(t => t.Year == endOfPeriodYear);
-
-            if (existingResult is null)
+            foreach (var withdrawal in request.Withdrawals)
             {
-                SinglePeriodCalculationResult taxResult = new SinglePeriodCalculationResult
+                decimal capitalBenefitTaxAmount = withdrawal.Amount * marginalCapitalBenefitTaxRate;
+
+                var existingResult = singleResults.SingleOrDefault(t => t.Year == withdrawal.DateOfTransferIn.Year);
+
+                if (existingResult is null)
                 {
-                    AccountType = AccountType.Wealth,
-                    Year = endOfPeriodYear,
-                    Amount = -capitalBenefitTaxAmount
-                };
-                
-                singleResults.Add(taxResult);
+                    SinglePeriodCalculationResult taxResult = new SinglePeriodCalculationResult
+                    {
+                        AccountType = AccountType.Wealth,
+                        Year = withdrawal.DateOfTransferIn.Year,
+                        Amount = -capitalBenefitTaxAmount
+                    };
+
+                    singleResults.Add(taxResult);
+                }
+                else
+                {
+                    existingResult.Amount -= capitalBenefitTaxAmount;
+                }
             }
-            else
-            {
-                existingResult.Amount -= capitalBenefitTaxAmount;
-            }
-            
         }
         
         var result = new MultiPeriodResponse

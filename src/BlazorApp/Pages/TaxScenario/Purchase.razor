@@ -81,7 +81,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                         
                                         <RadzenFieldset Text="Vorsorge">
                                                 <div class="col-md-12"><RadzenLabel Text="Altersguthaben bei Pensionierung" /></div>
-                                                <div class="col-md-12"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.FinalRetirementCapital" /></div>
+                                            <div class="col-md-12"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="totalWithdrawalAmount" /></div>
                                         </RadzenFieldset>
                                     </div>
 
@@ -106,7 +106,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                             <RadzenLabel Text="Anzahl Einkäufe"/>
                                         </div>
                                         <div class="col-md-12">
-                                            <RadzenNumeric TValue="int" @bind-Value="numberOfTransferInYears" Min="1"/>
+                                            <RadzenNumeric TValue="int" @bind-Value="numberOfTransferIns" Min="1"/>
                                         </div>
 
                                     </RadzenFieldset>
@@ -140,18 +140,24 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
                                         <RadzenCard Visible="taxRequest.WithCapitalBenefitTaxation">
                                             <ChildContent>
-                                                    <div class="col-md-12">
-                                                        <RadzenLabel Text="Bezugsjahr"/>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <RadzenNumeric TValue="int?" @bind-Value="taxRequest.YearOfCapitalBenefitWithdrawal" Min="2018" Max="2099"/>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <RadzenLabel Text="Vorsorgekapital (ohne Einkauf)"/>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <RadzenNumeric TValue="decimal" @bind-Value="taxRequest.FinalRetirementCapital"/>
-                                                    </div>
+                                                <div class="col-md-12">
+                                                    <RadzenLabel Text="Bezugsjahr"/>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <RadzenNumeric TValue="int" @bind-Value="yearOfFirstWithdrawal" Min="2018" Max="2099"/>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <RadzenLabel Text="Vorsorgekapital (ohne Einkauf)"/>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <RadzenNumeric TValue="decimal" @bind-Value="totalWithdrawalAmount" />
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <RadzenLabel Text="Anzahl Bezüge"/>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <RadzenNumeric TValue="int" @bind-Value="numberOfWithdrawals" Min="1"/>
+                                                </div>
                                             </ChildContent>
                                         </RadzenCard>
 
@@ -202,8 +208,12 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
     private int[] supportedTaxYears;
+    private decimal totalWithdrawalAmount;
     private decimal transferInAmount;
-    private int numberOfTransferInYears;
+    private decimal withdrawalAmount;
+    private int numberOfTransferIns;
+    private int numberOfWithdrawals;
+    private int yearOfFirstWithdrawal;
 
     protected override async Task OnInitializedAsync()
     {
@@ -213,12 +223,17 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         supportedTaxYears = await yearsTask;
 
         transferInAmount = 15000;
-        numberOfTransferInYears = 3;
+        withdrawalAmount = 500_000;
+        numberOfTransferIns = 3;
+        numberOfWithdrawals = 1;
+        yearOfFirstWithdrawal = DateTime.Today.Year;
     }
 
     private void HandleSelectPerson(Guid personId)
     {
         selectedPerson = persons.Single(item => item.Id == personId);
+
+        totalWithdrawalAmount = selectedPerson.FinalRetirementCapital;
 
         taxRequest = new CapitalBenefitTransferInComparerRequest
         {
@@ -231,27 +246,34 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             ReligiousGroup = selectedPerson.ReligiousGroupType,
             BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
             WithCapitalBenefitTaxation = false,
-            FinalRetirementCapital = selectedPerson.FinalRetirementCapital,
             NetReturnRate = 0.01M,
-            YearOfCapitalBenefitWithdrawal = selectedPerson.DateOfBirth.AddYears(64).Year,
         };
     }
 
     private async Task OnSubmit()
     {
-        List<SingleTransferInModel> transferIns = new();
-        decimal amountPerYear = transferInAmount / numberOfTransferInYears;
-        int calculationYear = supportedTaxYears.Max();
-        taxRequest.CalculationYear = calculationYear;
+        int beginOfTransferInYear = supportedTaxYears.Max();
+        int beginOfWithdrawalYear = yearOfFirstWithdrawal;
 
-        for (int ii = 0; ii < numberOfTransferInYears; ii++)
-        {
-            transferIns.Add(new SingleTransferInModel(amountPerYear, new DateTime(calculationYear+ii, 1, 1)));
-        }
+        taxRequest.CalculationYear = beginOfTransferInYear;
 
-        taxRequest.TransferIns = transferIns;
+        taxRequest.TransferIns = CreateTransferIns(transferInAmount, numberOfTransferIns, beginOfTransferInYear);
+        taxRequest.Withdrawals = CreateTransferIns(withdrawalAmount, numberOfWithdrawals, beginOfWithdrawalYear);
 
         taxResponse = await TaxScenarioService.CalculateAsync(taxRequest);
+
+        IReadOnlyCollection<SingleTransferInModel> CreateTransferIns(decimal amount, int years, int startingYear)
+        {
+            List<SingleTransferInModel> transferIns = new();
+            decimal amountPerYear = amount / years;
+            
+            for (int ii = 0; ii < years; ii++)
+            {
+                transferIns.Add(new SingleTransferInModel(amountPerYear, new DateTime(startingYear + ii, 1, 1)));
+            }
+
+            return transferIns.ToList();
+        }
     }
 
     private TaxCurve.CurvePoint[] GetChartData()

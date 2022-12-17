@@ -43,9 +43,11 @@ namespace Calculators.CashFlow.Tests
                 {
                     new(10000, new DateTime(2022, 1, 1)),
                 },
-                WithCapitalBenefitTaxation = true,
-                YearOfCapitalBenefitWithdrawal = 2032,
-                FinalRetirementCapital = 800_000
+                WithCapitalBenefitWithdrawal = true,
+                Withdrawals = new List<SingleTransferInModel>
+                {
+                    new(800_000, new DateTime(2032, 1, 1)),
+                },
             };
 
             // when

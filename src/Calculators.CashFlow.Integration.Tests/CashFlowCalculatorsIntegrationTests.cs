@@ -50,6 +50,8 @@ namespace Calculators.CashFlow.Integration.Tests
 
         private static CapitalBenefitTransferInComparerRequest GetRequest()
         {
+            int yearOfCapitalBenefitWithdrawal = 2030;
+
             return new CapitalBenefitTransferInComparerRequest
             {
                 Name = "Test Multi-Period Calculator",
@@ -66,8 +68,10 @@ namespace Calculators.CashFlow.Integration.Tests
                     new(10_000, new DateTime(2021, 1, 1))
                 },
                 WithCapitalBenefitTaxation = true,
-                YearOfCapitalBenefitWithdrawal = 2030,
-                FinalRetirementCapital = 500_000
+                Withdrawals = new List<SingleTransferInModel>
+                {
+                    new(500_000, new DateTime(yearOfCapitalBenefitWithdrawal, 1, 1))
+                },
             };
         }
     }
