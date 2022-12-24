@@ -44,9 +44,11 @@ namespace Calculators.CashFlow.Tests
                     new(10000, new DateTime(2022, 1, 1)),
                 },
                 WithCapitalBenefitWithdrawal = true,
+                CapitalBenefitsBeforeWithdrawal = 800_000,
                 Withdrawals = new List<SingleTransferInModel>
                 {
-                    new(800_000, new DateTime(2032, 1, 1)),
+                    new(0.5M, new DateTime(2032, 12, 31)),
+                    new(0.5M, new DateTime(2033, 12, 31)),
                 },
             };
 

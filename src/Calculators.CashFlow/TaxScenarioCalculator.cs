@@ -150,17 +150,15 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
             yield break;
         }
 
-        // one purchase transfer-in for each single transfer-in
-        // as they might not be continuously
-        foreach (var singleTransferIn in scenarioModel.Withdrawals)
+        foreach (var withdrawal in scenarioModel.Withdrawals)
         {
-            DateTime withdrawalDate = new DateTime(singleTransferIn.DateOfTransferIn.Year, 12, 31);
+            DateTime withdrawalDate = new DateTime(withdrawal.DateOfTransferIn.Year, 12, 31);
 
             yield return new DynamicTransferAccountAction
             {
                 Header = new CashFlowHeader { Id = Guid.NewGuid().ToString(), Name = "Capital Benefit Withdrawal" },
                 DateOfProcess = withdrawalDate,
-                TransferRatio = decimal.One,
+                TransferRatio = withdrawal.Amount,
                 Flow = new FlowPair(AccountType.OccupationalPension, AccountType.Wealth),
                 IsTaxable = true,
                 TaxType = TaxType.CapitalBenefits
@@ -190,7 +188,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
         DateTime finalSalaryPaymentDate = scenarioModel.TransferIns.Max(t => t.DateOfTransferIn).AddYears(1);
 
         DateTime finalDate = scenarioModel.WithCapitalBenefitWithdrawal
-            ? scenarioModel.Withdrawals.Max(w => w.DateOfTransferIn)
+            ? scenarioModel.Withdrawals.Min(w => w.DateOfTransferIn)
             : finalSalaryPaymentDate;
 
         yield return new SalaryPaymentsDefinition
@@ -204,6 +202,15 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
         {
             InitialOccupationalPensionAssets = decimal.Zero,
             InitialWealth = person.TaxableWealth
+        };
+
+        yield return new FixedTransferAmountDefinition
+        {
+            DateOfProcess = new DateTime(finalDate.Year, 1, 1),
+            Flow = new FlowPair(AccountType.Exogenous, AccountType.OccupationalPension),
+            TransferAmount = scenarioModel.CapitalBenefitsBeforeWithdrawal,
+            TaxType = TaxType.Undefined,
+            IsTaxable = false,
         };
     }
 }

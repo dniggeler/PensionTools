@@ -10,6 +10,12 @@ using PensionCoach.Tools.TaxComparison;
 
 namespace BlazorApp.Services.Mock;
 
+internal record PurchaseScenarioYears(
+    int StartYearTransferIn,
+    int EndYearTransferIn,
+    int StartYearWithdrawal,
+    int EndYearWithdrawal);
+
 public class MockTaxComparisonService : ITaxComparisonService, ITaxScenarioService
 {
     const int NumberOfSamples = 200;
@@ -38,83 +44,175 @@ public class MockTaxComparisonService : ITaxComparisonService, ITaxScenarioServi
         }
     }
 
-    public Task<MultiPeriodResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
+    public Task<CapitalBenefitsTransferInResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
     {
-        const decimal marginalTaxRate = 0.3M;
-        const decimal marginalCapitalBenefitTaxRate = 0.08M;
-        int defaultYear = 2025;
-
-        int beginOfPeriodYear = request.TransferIns.Min(t => t.DateOfTransferIn.Year);
-        int endOfPeriodYear = request.TransferIns.Max(t => t.DateOfTransferIn.Year);
-
-        if (request.WithCapitalBenefitTaxation)
-        {
-            endOfPeriodYear = request.Withdrawals.Max(t => t.DateOfTransferIn.Year);
-        }
-
-        List<SinglePeriodCalculationResult> singleResults = new();
-        for (int year = beginOfPeriodYear; year <= endOfPeriodYear; year++)
-        {
-            var transferIn = request.TransferIns.FirstOrDefault(t => t.DateOfTransferIn.Year == year);
-
-            if (transferIn is null)
-            {
-                continue;
-            }
-
-            SinglePeriodCalculationResult singleResultWealth = new SinglePeriodCalculationResult
-            {
-                AccountType = AccountType.Wealth,
-                Year = year,
-                Amount = -transferIn.Amount * (decimal.One - marginalTaxRate)
-            };
-
-            SinglePeriodCalculationResult singleResultPensionAccount = new SinglePeriodCalculationResult
-            {
-                AccountType = AccountType.OccupationalPension,
-                Year = year,
-                Amount = transferIn.Amount
-            };
-
-            singleResults.Add(singleResultWealth);
-            singleResults.Add(singleResultPensionAccount);
-        }
-
-        if (request.WithCapitalBenefitTaxation)
-        {
-
-            foreach (var withdrawal in request.Withdrawals)
-            {
-                decimal capitalBenefitTaxAmount = withdrawal.Amount * marginalCapitalBenefitTaxRate;
-
-                var existingResult = singleResults.SingleOrDefault(t => t.Year == withdrawal.DateOfTransferIn.Year);
-
-                if (existingResult is null)
-                {
-                    SinglePeriodCalculationResult taxResult = new SinglePeriodCalculationResult
-                    {
-                        AccountType = AccountType.Wealth,
-                        Year = withdrawal.DateOfTransferIn.Year,
-                        Amount = -capitalBenefitTaxAmount
-                    };
-
-                    singleResults.Add(taxResult);
-                }
-                else
-                {
-                    existingResult.Amount -= capitalBenefitTaxAmount;
-                }
-            }
-        }
+        PurchaseScenarioYears scenarioPeriod = GetPeriod();
         
-        var result = new MultiPeriodResponse
-        {
-            NumberOfPeriods = endOfPeriodYear - beginOfPeriodYear + 1,
-            StartingYear = beginOfPeriodYear,
-            Accounts = singleResults
-        };
+        var benchmark = CreateBenchmarkResults().ToList();
+        var scenario = CreateScenarioResults().ToList();
 
+        var sumBenchmarkSeries =
+            from w in benchmark.Where(item => item.AccountType == AccountType.Wealth)
+            from p in benchmark.Where(item => item.AccountType == AccountType.OccupationalPension)
+            where w.Year == p.Year
+            select new { Sum = w.Amount + p.Amount, w.Year };
+
+        var sumScenarioSeries =
+            from w in scenario.Where(item => item.AccountType == AccountType.Wealth)
+            from p in scenario.Where(item => item.AccountType == AccountType.OccupationalPension)
+            where w.Year == p.Year
+            select new { Sum = w.Amount + p.Amount, w.Year };
+
+        IEnumerable<SinglePeriodCalculationResult> deltaResults = from bSum in sumBenchmarkSeries
+                          from sSum in sumScenarioSeries
+                          where bSum.Year == sSum.Year
+                          select new SinglePeriodCalculationResult
+                          {
+                              Amount = sSum.Sum - bSum.Sum,
+                              Year = bSum.Year,
+                              AccountType = AccountType.Exogenous
+                          };
+
+
+        var result = new CapitalBenefitsTransferInResponse
+        {
+            NumberOfPeriods = scenarioPeriod.EndYearWithdrawal - scenarioPeriod.StartYearTransferIn + 1,
+            StartingYear = scenarioPeriod.StartYearTransferIn,
+            DeltaSeries = deltaResults,
+            BenchmarkSeries = benchmark,
+            ScenarioSeries = scenario
+        };
+        
         return result.AsTask();
+
+        IEnumerable<SinglePeriodCalculationResult> CreateBenchmarkResults()
+        {
+            decimal currentWealth = decimal.Zero;
+            decimal pensionCapital = decimal.Zero;
+
+            int beginYear = scenarioPeriod.StartYearTransferIn;
+            int endYear = scenarioPeriod.EndYearWithdrawal;
+
+            for (int year = beginYear; year <= endYear; year++)
+            {
+                currentWealth *= (decimal.One + request.NetWealthReturn);
+
+                if (year == request.CalculationYear)
+                {
+                    currentWealth += request.TaxableWealth;
+                }
+
+                if (request.WithCapitalBenefitTaxation)
+                {
+                    SingleTransferInModel withdrawal =
+                        request.Withdrawals.FirstOrDefault(t => t.DateOfTransferIn.Year == year);
+
+                    if (withdrawal is not null)
+                    {
+                        currentWealth += pensionCapital * withdrawal.Amount;
+                        pensionCapital -= pensionCapital * withdrawal.Amount;
+                    }
+                }
+
+                if (request.WithCapitalBenefitTaxation && scenarioPeriod.StartYearWithdrawal-1 == year)
+                {
+                    pensionCapital += request.CapitalBenefitsBeforeWithdrawal;
+                }
+
+                yield return new SinglePeriodCalculationResult
+                {
+                    Year = year,
+                    AccountType = AccountType.Wealth,
+                    Amount = currentWealth
+                };
+
+                yield return new SinglePeriodCalculationResult
+                {
+                    Year = year,
+                    AccountType = AccountType.OccupationalPension,
+                    Amount = pensionCapital
+                };
+            }
+        }
+
+        IEnumerable<SinglePeriodCalculationResult> CreateScenarioResults()
+        {
+            decimal currentWealth = decimal.Zero;
+            decimal pensionCapital = decimal.Zero;
+
+            int beginYear = scenarioPeriod.StartYearTransferIn;
+            int endYear = scenarioPeriod.EndYearWithdrawal;
+
+            for (int year = beginYear; year <= endYear; year++)
+            {
+                currentWealth *= (decimal.One + request.NetWealthReturn);
+
+                if (year == request.CalculationYear)
+                {
+                    currentWealth += request.TaxableWealth;
+                }
+
+                SingleTransferInModel transfer = request.TransferIns.FirstOrDefault(t => t.DateOfTransferIn.Year == year);
+
+                if (transfer is not null)
+                {
+                    currentWealth -= transfer.Amount;
+                    pensionCapital += transfer.Amount;
+                }
+
+                if (request.WithCapitalBenefitTaxation)
+                {
+                    SingleTransferInModel withdrawal =
+                        request.Withdrawals.FirstOrDefault(t => t.DateOfTransferIn.Year == year);
+
+                    if (withdrawal is not null)
+                    {
+                        currentWealth += pensionCapital * withdrawal.Amount;
+                        pensionCapital -= pensionCapital * withdrawal.Amount;
+                    }
+                }
+
+                if (request.WithCapitalBenefitTaxation && scenarioPeriod.StartYearWithdrawal - 1 == year)
+                {
+                    pensionCapital += request.CapitalBenefitsBeforeWithdrawal;
+                }
+
+                yield return new SinglePeriodCalculationResult
+                {
+                    Year = year,
+                    AccountType = AccountType.Wealth,
+                    Amount = currentWealth
+                };
+
+                yield return new SinglePeriodCalculationResult
+                {
+                    Year = year,
+                    AccountType = AccountType.OccupationalPension,
+                    Amount = pensionCapital
+                };
+            }
+        }
+
+        PurchaseScenarioYears GetPeriod()
+        {
+            int beginOfPeriodTransferInYear = request.TransferIns.Min(t => t.DateOfTransferIn.Year);
+            int endOfPeriodTransferInYear = request.TransferIns.Max(t => t.DateOfTransferIn.Year);
+
+            int beginOfPeriodWithdrawalYear = endOfPeriodTransferInYear;
+            int endOfPeriodWithdrawalYear = endOfPeriodTransferInYear;
+
+            if (request.WithCapitalBenefitTaxation)
+            {
+                beginOfPeriodWithdrawalYear = request.Withdrawals.Min(t => t.DateOfTransferIn.Year);
+                endOfPeriodWithdrawalYear = request.Withdrawals.Min(t => t.DateOfTransferIn.Year);
+            }
+
+            return new PurchaseScenarioYears(
+                beginOfPeriodTransferInYear,
+                endOfPeriodTransferInYear,
+                beginOfPeriodWithdrawalYear,
+                endOfPeriodWithdrawalYear);
+        }
     }
 
     private async IAsyncEnumerable<TaxComparerResponse> CalculateRandomlyAsync(decimal anchorAmount)

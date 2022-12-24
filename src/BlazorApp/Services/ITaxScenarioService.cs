@@ -6,6 +6,6 @@ namespace BlazorApp.Services
 {
     public interface ITaxScenarioService
     {
-        Task<MultiPeriodResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request);
+        Task<CapitalBenefitsTransferInResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request);
     }
 }

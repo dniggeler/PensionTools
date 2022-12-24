@@ -59,7 +59,7 @@ public class TaxScenarioController : ControllerBase
             {
                 response.NumberOfPeriods = r.NumberOfPeriods;
                 response.StartingYear = r.StartingYear;
-                response.Accounts = r.Accounts;
+                response.DeltaSeries = r.Accounts;
             });
 
         return response;
@@ -69,7 +69,7 @@ public class TaxScenarioController : ControllerBase
             return new TransferInCapitalBenefitsScenarioModel
             {
                 TransferIns = request.TransferIns,
-                NetReturnRate = request.NetReturnRate,
+                NetReturnRate = request.NetWealthReturn,
                 WithCapitalBenefitWithdrawal = request.WithCapitalBenefitTaxation,
                 Withdrawals = request.Withdrawals,
             };

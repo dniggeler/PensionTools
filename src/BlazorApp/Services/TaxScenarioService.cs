@@ -27,12 +27,12 @@ public class TaxScenarioService : ITaxScenarioService
         this.logger = logger;
     }
 
-    public Task<MultiPeriodResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
+    public Task<CapitalBenefitsTransferInResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
     {
         return CalculateAsync(request, "CalculateTransferInCapitalBenefits");
     }
 
-    private async Task<MultiPeriodResponse> CalculateAsync<T>(T request, string urlMethodPart)
+    private async Task<CapitalBenefitsTransferInResponse> CalculateAsync<T>(T request, string urlMethodPart)
     {
         string baseUri = configuration.GetSection("TaxScenarioServiceUrl").Value;
         string urlPath = Path.Combine(baseUri, urlMethodPart);
@@ -54,6 +54,6 @@ public class TaxScenarioService : ITaxScenarioService
 
         response.EnsureSuccessStatusCode();
 
-        return await response.Content.ReadFromJsonAsync<MultiPeriodResponse>();
+        return await response.Content.ReadFromJsonAsync<CapitalBenefitsTransferInResponse>();
     }
 }

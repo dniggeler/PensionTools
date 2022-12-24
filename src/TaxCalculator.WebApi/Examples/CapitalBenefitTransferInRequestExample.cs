@@ -22,7 +22,7 @@ public class CapitalBenefitTransferInRequestExample : IExamplesProvider<CapitalB
             TaxableFederalIncome = 140_000M,
             TaxableWealth = 500_000,
             WithCapitalBenefitTaxation = true,
-            NetReturnRate = 0.01M,
+            NetWealthReturn = 0.01M,
             TransferIns = new List<SingleTransferInModel>
             {
                 new(10_000, new DateTime(2022, 1, 1))

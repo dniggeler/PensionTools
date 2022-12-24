@@ -117,14 +117,14 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                             <RadzenLabel Text="Rendite p.a. auf Vermögen"/>
                                         </div>
                                         <div class="col-md-12">
-                                            <RadzenNumeric TValue="decimal" Step="0.005" Format="p2" @bind-Value="taxRequest.NetReturnRate" Min="0" Max="1"/>
+                                            <RadzenNumeric TValue="decimal" Step="0.005" Format="p2" @bind-Value="taxRequest.NetWealthReturn" Min="0" Max="1"/>
                                         </div>
 
                                         <div class="col-md-12">
                                             <RadzenLabel Text="Rendite p.a. Vorsorgekapitalien"/>
                                         </div>
                                         <div class="col-md-12">
-                                            <RadzenNumeric TValue="decimal" Step="0.005" Format="p2" @bind-Value="taxRequest.NetReturnRate" Min="0" Max="1"/>
+                                            <RadzenNumeric TValue="decimal" Step="0.005" Format="p2" @bind-Value="taxRequest.NetPensionCapitalReturn" Min="0" Max="1"/>
                                         </div>
 
                                     </RadzenFieldset>
@@ -183,9 +183,14 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 {
     <div class="col-md-12">
         <RadzenChart>
-            <RadzenColumnSeries Data="@(GetChartData())" CategoryProperty="XValue" Title="Delta Wertentwicklung" LineType="LineType.Dashed" ValueProperty="YValue">
+            <RadzenColumnSeries
+                Data="@(GetChartData())"
+                CategoryProperty="XValue"
+                Title="Gewinn/Verlust"
+                LineType="LineType.Dashed"
+                ValueProperty="YValue">
                 <RadzenSeriesDataLabels Visible="false" />
-                </RadzenColumnSeries>
+            </RadzenColumnSeries>
 
             <RadzenColumnOptions Radius="5" Width="40" />
             <RadzenCategoryAxis Padding="20" />
@@ -196,7 +201,75 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
             <RadzenValueAxis>
                 <RadzenGridLines Visible="true" />
-                <RadzenAxisTitle Text="Steuerersparnis" />
+                <RadzenAxisTitle Text="Veränderung Gesamtvermögen" />
+            </RadzenValueAxis>
+        </RadzenChart>
+    </div>
+
+    <div class="col-md-12">
+        <RadzenChart>
+            <RadzenColumnSeries
+                Data="@(GetSeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.Wealth))"
+                CategoryProperty="XValue"
+                Title="Privatvermögen"
+                LineType="LineType.Dashed"
+                ValueProperty="YValue">
+                <RadzenSeriesDataLabels Visible="false" />
+            </RadzenColumnSeries>
+            
+            <RadzenColumnSeries
+                Data="@(GetSeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.OccupationalPension))"
+                CategoryProperty="XValue"
+                            Title="Vorsorgekapital"
+                LineType="LineType.Dashed"
+                ValueProperty="YValue">
+                <RadzenSeriesDataLabels Visible="false" />
+            </RadzenColumnSeries>
+
+            <RadzenColumnOptions Radius="5" Width="40" />
+            <RadzenCategoryAxis Padding="20" />
+
+            <RadzenCategoryAxis Min="@(taxResponse.StartingYear-1)" Max="@(taxResponse.StartingYear + taxResponse.NumberOfPeriods)">
+                <RadzenAxisTitle Text="Jahr" />
+            </RadzenCategoryAxis>
+
+            <RadzenValueAxis Min="0">
+                <RadzenGridLines Visible="true" />
+                <RadzenAxisTitle Text="Kontostand" />
+            </RadzenValueAxis>
+        </RadzenChart>
+    </div>
+
+    <div class="col-md-12">
+        <RadzenChart>
+            <RadzenColumnSeries
+                Data="@(GetSeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.Wealth))"
+                CategoryProperty="XValue"
+                Title="Privatvermögen"
+                LineType="LineType.Dashed"
+                ValueProperty="YValue">
+                <RadzenSeriesDataLabels Visible="false" />
+            </RadzenColumnSeries>
+            
+            <RadzenColumnSeries
+                Data="@(GetSeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.OccupationalPension))"
+                CategoryProperty="XValue"
+                Title="Vorsorgekapital"
+                LineType="LineType.Dashed"
+                ValueProperty="YValue">
+                <RadzenSeriesDataLabels Visible="false" />
+            </RadzenColumnSeries>
+
+            <RadzenColumnOptions Radius="5" Width="40" />
+            <RadzenCategoryAxis Padding="20" />
+
+            <RadzenCategoryAxis Min="@(taxResponse.StartingYear-1)" Max="@(taxResponse.StartingYear + taxResponse.NumberOfPeriods)">
+                <RadzenAxisTitle Text="Jahr" />
+            </RadzenCategoryAxis>
+
+            <RadzenValueAxis Min="0">
+                <RadzenGridLines Visible="true" />
+                <RadzenAxisTitle Text="Kontostand" />
             </RadzenValueAxis>
         </RadzenChart>
     </div>
@@ -204,13 +277,12 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
 @code {
     private CapitalBenefitTransferInComparerRequest taxRequest = new();
-    private MultiPeriodResponse taxResponse;
+    private CapitalBenefitsTransferInResponse taxResponse;
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
     private int[] supportedTaxYears;
     private decimal totalWithdrawalAmount;
     private decimal transferInAmount;
-    private decimal withdrawalAmount;
     private int numberOfTransferIns;
     private int numberOfWithdrawals;
     private int yearOfFirstWithdrawal;
@@ -223,10 +295,10 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         supportedTaxYears = await yearsTask;
 
         transferInAmount = 15000;
-        withdrawalAmount = 500_000;
+        totalWithdrawalAmount = 500_000;
         numberOfTransferIns = 3;
         numberOfWithdrawals = 1;
-        yearOfFirstWithdrawal = DateTime.Today.Year;
+        yearOfFirstWithdrawal = DateTime.Today.Year + 10;
     }
 
     private void HandleSelectPerson(Guid personId)
@@ -246,7 +318,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             ReligiousGroup = selectedPerson.ReligiousGroupType,
             BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
             WithCapitalBenefitTaxation = false,
-            NetReturnRate = 0.01M,
+            NetWealthReturn = 0.01M,
         };
     }
 
@@ -256,11 +328,25 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         int beginOfWithdrawalYear = yearOfFirstWithdrawal;
 
         taxRequest.CalculationYear = beginOfTransferInYear;
+        taxRequest.CapitalBenefitsBeforeWithdrawal = totalWithdrawalAmount;
 
         taxRequest.TransferIns = CreateTransferIns(transferInAmount, numberOfTransferIns, beginOfTransferInYear);
-        taxRequest.Withdrawals = CreateTransferIns(withdrawalAmount, numberOfWithdrawals, beginOfWithdrawalYear);
+        taxRequest.Withdrawals = CreateWithdrawals(numberOfWithdrawals, beginOfWithdrawalYear);
 
         taxResponse = await TaxScenarioService.CalculateAsync(taxRequest);
+
+        IReadOnlyCollection<SingleTransferInModel> CreateWithdrawals(int years, int startingYear)
+        {
+            List<SingleTransferInModel> transferIns = new();
+            decimal fraction = decimal.One / years;
+            
+            for (int ii = 0; ii < years; ii++)
+            {
+                transferIns.Add(new SingleTransferInModel(fraction, new DateTime(startingYear + ii, 1, 1)));
+            }
+
+            return transferIns.ToList();
+        }
 
         IReadOnlyCollection<SingleTransferInModel> CreateTransferIns(decimal amount, int years, int startingYear)
         {
@@ -285,8 +371,26 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             points.Add(new TaxCurve.CurvePoint
             {
                 XValue = year,
-                YValue = taxResponse.Accounts
-                    .Where(item => item.AccountType is AccountType.Wealth or AccountType.OccupationalPension &&
+                YValue = taxResponse.DeltaSeries
+                    .Where(item => item.Year == year)
+                    .Sum(item => item.Amount)
+            });
+        }
+
+        return points.ToArray();
+    }
+
+    private TaxCurve.CurvePoint[] GetSeriesData(IReadOnlyCollection<SinglePeriodCalculationResult> series, AccountType accountType)
+    {
+        List<TaxCurve.CurvePoint> points = new();
+
+        for (int year = taxResponse.StartingYear; year < taxResponse.NumberOfPeriods + taxResponse.StartingYear; year++)
+        {
+            points.Add(new TaxCurve.CurvePoint
+            {
+                XValue = year,
+                    YValue = series
+                        .Where(item => item.AccountType == accountType &&
                                    item.Year == year)
                     .Sum(item => item.Amount)
             });
