@@ -29,7 +29,7 @@ public class CapitalBenefitTransferInRequestExample : IExamplesProvider<CapitalB
             },
             Withdrawals = new List<SingleTransferInModel>
             {
-                new(500_000, new DateTime(2032, 1, 1))
+                new(0.5M, new DateTime(2032, 1, 1))
             }
         };
     }

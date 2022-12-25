@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Calculators.CashFlow;
 using Microsoft.AspNetCore.Http;
@@ -59,7 +58,9 @@ public class TaxScenarioController : ControllerBase
             {
                 response.NumberOfPeriods = r.NumberOfPeriods;
                 response.StartingYear = r.StartingYear;
-                response.DeltaSeries = r.Accounts;
+                response.DeltaSeries = r.DeltaSeries;
+                response.BenchmarkSeries = r.BenchmarkSeries;
+                response.ScenarioSeries = r.ScenarioSeries;
             });
 
         return response;

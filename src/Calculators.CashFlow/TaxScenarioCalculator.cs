@@ -41,7 +41,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
         Either<string, MunicipalityModel> municipalityData =
             await municipalityResolver.GetAsync(bfsMunicipalityId, startingYear);
 
-        Either<string, MultiPeriodCalculationResult> scenarioInResult = await municipalityData
+        Either<string, MultiPeriodCalculationResult> scenarioResult = await municipalityData
             .BindAsync(m =>
                 multiPeriodCashFlowCalculator.CalculateAsync(startingYear, GetPerson(m, birthdate), cashFlowDefinitionHolder, options));
 
@@ -51,56 +51,54 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
             .BindAsync(m =>
                 multiPeriodCashFlowCalculator.CalculateAsync(startingYear, GetPerson(m, birthdate), benchmarkDefinitions, options));
 
-        return from b in benchmarkResult
-            from s in scenarioInResult
-            select CalculateDelta(b, s);
+        var benchmarkSeriesResult = benchmarkResult
+            .Map(r => r.Accounts
+                .Where(a => a.AccountType is AccountType.Wealth or AccountType.OccupationalPension));
+
+        var scenarioSeriesResult = scenarioResult
+            .Map(r => r.Accounts
+                .Where(a => a.AccountType is AccountType.Wealth or AccountType.OccupationalPension));
+
+        return from b in benchmarkSeriesResult
+               from s in scenarioSeriesResult
+               select CalculateDelta(b.ToList(), s.ToList());
 
         CapitalBenefitsTransferInResult CalculateDelta(
-            MultiPeriodCalculationResult benchmark,
-            MultiPeriodCalculationResult scenario)
+            IReadOnlyCollection<SinglePeriodCalculationResult> benchmark,
+            IReadOnlyCollection<SinglePeriodCalculationResult> scenario)
         {
-            var diffResult = new CapitalBenefitsTransferInResult
+            var sumBenchmarkSeries =
+                from w in benchmark.Where(item => item.AccountType == AccountType.Wealth)
+                from p in benchmark.Where(item => item.AccountType == AccountType.OccupationalPension)
+                where w.Year == p.Year
+                select new { Sum = w.Amount + p.Amount, w.Year };
+
+            var sumScenarioSeries =
+                from w in scenario.Where(item => item.AccountType == AccountType.Wealth)
+                from p in scenario.Where(item => item.AccountType == AccountType.OccupationalPension)
+                where w.Year == p.Year
+                select new { Sum = w.Amount + p.Amount, w.Year };
+
+            IEnumerable<SinglePeriodCalculationResult> deltaResults = from bSum in sumBenchmarkSeries
+                from sSum in sumScenarioSeries
+                where bSum.Year == sSum.Year
+                select new SinglePeriodCalculationResult
+                {
+                    Amount = sSum.Sum - bSum.Sum,
+                    Year = bSum.Year,
+                    AccountType = AccountType.Exogenous
+                };
+
+            List<SinglePeriodCalculationResult> deltaSeries = deltaResults.ToList();
+            
+            return new CapitalBenefitsTransferInResult
             {
-                StartingYear = benchmark.StartingYear,
-                NumberOfPeriods = benchmark.NumberOfPeriods,
+                StartingYear = Math.Min(benchmark.Min(a => a.Year), scenario.Min(a => a.Year)),
+                NumberOfPeriods = deltaSeries.Count,
+                BenchmarkSeries = benchmark.ToList(),
+                ScenarioSeries = scenario.ToList(),
+                DeltaSeries = deltaSeries
             };
-
-            List<SinglePeriodCalculationResult> wealthAccount = new List<SinglePeriodCalculationResult>(benchmark.NumberOfPeriods);
-
-            var cumulativeWealthBenchmark = from w in benchmark.Accounts.Where(a => a.AccountType is AccountType.Wealth)
-                from p in benchmark.Accounts.Where(a => a.AccountType is AccountType.OccupationalPension)
-                where w.Year == p.Year
-                select new SinglePeriodCalculationResult
-                {
-                    AccountType = AccountType.Wealth, Amount = w.Amount + p.Amount, Year = w.Year
-                };
-
-            var cumulativeWealthScenario = from w in scenario.Accounts.Where(a => a.AccountType is AccountType.Wealth)
-                from p in scenario.Accounts.Where(a => a.AccountType is AccountType.OccupationalPension)
-                where w.Year == p.Year
-                select new SinglePeriodCalculationResult
-                {
-                    AccountType = AccountType.Wealth,
-                    Amount = w.Amount + p.Amount,
-                    Year = w.Year
-                };
-
-            var zipped = cumulativeWealthBenchmark
-                .Zip(cumulativeWealthScenario, (b, s) => (b.Year, Benchmark: b.Amount, Scenario: s.Amount));
-
-            foreach (var zippedItem in zipped)
-            {
-                wealthAccount.Add(new SinglePeriodCalculationResult
-                {
-                    Year = zippedItem.Year,
-                    Amount = zippedItem.Scenario - zippedItem.Benchmark,
-                    AccountType = AccountType.Wealth
-                });
-            }
-
-            diffResult.Accounts = wealthAccount;
-
-            return diffResult;
         }
         
         CashFlowDefinitionHolder CreateBenchmarkDefinitions()
