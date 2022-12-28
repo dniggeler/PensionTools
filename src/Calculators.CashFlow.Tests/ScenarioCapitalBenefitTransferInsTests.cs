@@ -48,7 +48,7 @@ namespace Calculators.CashFlow.Tests
                 Withdrawals = new List<SingleTransferInModel>
                 {
                     new(0.5M, new DateTime(2032, 12, 31)),
-                    new(0.5M, new DateTime(2033, 12, 31)),
+                    new(1M, new DateTime(2033, 12, 31)),
                 },
             };
 

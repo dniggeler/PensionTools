@@ -70,7 +70,7 @@ namespace Calculators.CashFlow.Integration.Tests
                 WithCapitalBenefitTaxation = true,
                 Withdrawals = new List<SingleTransferInModel>
                 {
-                    new(500_000, new DateTime(yearOfCapitalBenefitWithdrawal, 1, 1))
+                    new(1M, new DateTime(yearOfCapitalBenefitWithdrawal, 1, 1))
                 },
             };
         }
