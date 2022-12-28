@@ -338,10 +338,10 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         IReadOnlyCollection<SingleTransferInModel> CreateWithdrawals(int years, int startingYear)
         {
             List<SingleTransferInModel> transferIns = new();
-            decimal fraction = decimal.One / years;
             
             for (int ii = 0; ii < years; ii++)
             {
+                decimal fraction = decimal.One / (years - ii);
                 transferIns.Add(new SingleTransferInModel(fraction, new DateTime(startingYear + ii, 1, 1)));
             }
 
