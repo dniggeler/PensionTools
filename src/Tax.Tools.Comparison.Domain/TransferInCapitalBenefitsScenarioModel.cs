@@ -9,7 +9,12 @@ public class TransferInCapitalBenefitsScenarioModel
     /// <summary>
     /// Gets or sets yearly net return on transfer-ins.
     /// </summary>
-    public decimal NetReturnRate { get; set; }
+    public decimal NetReturnCapitalBenefits { get; set; }
+
+    /// <summary>
+    /// Gets or sets yearly net return on private wealth.
+    /// </summary>
+    public decimal NetReturnWealth { get; set; }
 
     public bool WithCapitalBenefitWithdrawal{ get; set; }
 

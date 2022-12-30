@@ -38,7 +38,7 @@ namespace Calculators.CashFlow.Tests
 
             TransferInCapitalBenefitsScenarioModel scenarioModel = new()
             {
-                NetReturnRate = 0.0M,
+                NetReturnCapitalBenefits = 0.0M,
                 TransferIns = new List<SingleTransferInModel>
                 {
                     new(10000, new DateTime(2022, 1, 1)),

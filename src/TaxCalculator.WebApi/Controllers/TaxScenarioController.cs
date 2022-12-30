@@ -70,8 +70,9 @@ public class TaxScenarioController : ControllerBase
             return new TransferInCapitalBenefitsScenarioModel
             {
                 TransferIns = request.TransferIns,
-                NetReturnRate = request.NetWealthReturn,
+                NetReturnCapitalBenefits = request.NetPensionCapitalReturn,
                 WithCapitalBenefitWithdrawal = request.WithCapitalBenefitTaxation,
+                CapitalBenefitsBeforeWithdrawal = request.CapitalBenefitsBeforeWithdrawal,
                 Withdrawals = request.Withdrawals,
             };
         }

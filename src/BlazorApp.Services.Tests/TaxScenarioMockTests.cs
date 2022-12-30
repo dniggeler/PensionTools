@@ -8,7 +8,7 @@ namespace BlazorApp.Services.Tests
 {
     public class TaxScenarioMockTests
     {
-        private ITaxScenarioService service;
+        private readonly ITaxScenarioService service;
 
         public TaxScenarioMockTests()
         {

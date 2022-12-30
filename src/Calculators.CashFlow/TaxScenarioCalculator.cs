@@ -33,7 +33,8 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
         var birthdate = new DateTime(1969, 3, 17);
 
         MultiPeriodOptions options = new();
-        options.CapitalBenefitsNetGrowthRate = scenarioModel.NetReturnRate;
+        options.CapitalBenefitsNetGrowthRate = scenarioModel.NetReturnCapitalBenefits;
+        options.WealthNetGrowthRate = scenarioModel.NetReturnWealth;
         options.SavingsQuota = decimal.Zero;
 
         CashFlowDefinitionHolder cashFlowDefinitionHolder = CreateScenarioDefinitions();
@@ -173,7 +174,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
             yield return new PurchaseInsuranceYearsPaymentsDefinition
             {
                 DateOfStart = singleTransferIn.DateOfTransferIn,
-                NetGrowthRate = scenarioModel.NetReturnRate,
+                NetGrowthRate = scenarioModel.NetReturnCapitalBenefits,
                 NumberOfInvestments = 1,
                 YearlyAmount = singleTransferIn.Amount,
             };
