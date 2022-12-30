@@ -1,7 +1,7 @@
 ﻿@page "/PersonListing"
 
-@inject IPersonService personService
-@inject DialogService dialogService
+@inject IPersonService PersonService
+@inject DialogService DialogService
 
 <h3>Personenverzeichnis</h3>
 
@@ -36,7 +36,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        persons = (await personService.GetPersonsAsync()).ToList();
+        persons = (await PersonService.GetPersonsAsync()).ToList();
     }
 
     private async Task OpenPerson()
@@ -48,14 +48,14 @@
         if (isDone)
         {
             persons.Add(newPerson);
-            await personService.AddPersonAsync(newPerson);
+            await PersonService.AddPersonAsync(newPerson);
         }
     }
 
     private async Task DeletePerson(Guid id)
     {
         persons.RemoveAll(p => p.Id == id);
-        await personService.DeletePersonAsync(id);
+        await PersonService.DeletePersonAsync(id);
     }
 
     private async Task EditPerson(Guid id)
@@ -66,7 +66,7 @@
 
         if (isDone)
         {
-            await personService.AddPersonAsync(person);
+            await PersonService.AddPersonAsync(person);
         }
     }
 
@@ -94,13 +94,13 @@
         if (isDone)
         {
             persons.Add(copyPerson);
-            await personService.AddPersonAsync(copyPerson);
+            await PersonService.AddPersonAsync(copyPerson);
         }
     }
 
     private async Task<bool> OpenDialogAsync(string title, PersonViewModel person)
     {
-        dynamic result = await dialogService.OpenAsync<PersonEdit>(
+        dynamic result = await DialogService.OpenAsync<PersonEdit>(
             title,
             new Dictionary<string, object> { { "Person", person } },
             new DialogOptions { Width = "600px", Height = "550px", Resizable = true, Draggable = true });

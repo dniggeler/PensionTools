@@ -181,6 +181,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
 @if (taxResponse != null)
 {
+    <RadzenText TextStyle="TextStyle.H5">Relativer Vermögenszuwachs</RadzenText>
     <div class="col-md-12">
         <RadzenChart>
             <RadzenColumnSeries
@@ -206,10 +207,11 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         </RadzenChart>
     </div>
 
+    <RadzenText TextStyle="TextStyle.H5">Vermögensentwicklung mit Einkäufen</RadzenText>
     <div class="col-md-12">
         <RadzenChart>
             <RadzenColumnSeries
-                Data="@(GetSeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.Wealth))"
+                Data="@(GetSeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.Wealth))"
                 CategoryProperty="XValue"
                 Title="Privatvermögen"
                 LineType="LineType.Dashed"
@@ -218,9 +220,9 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             </RadzenColumnSeries>
             
             <RadzenColumnSeries
-                Data="@(GetSeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.OccupationalPension))"
+                Data="@(GetSeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.OccupationalPension))"
                 CategoryProperty="XValue"
-                            Title="Vorsorgekapital"
+                Title="Vorsorgekapital"
                 LineType="LineType.Dashed"
                 ValueProperty="YValue">
                 <RadzenSeriesDataLabels Visible="false" />
@@ -240,10 +242,11 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         </RadzenChart>
     </div>
 
+    <RadzenText TextStyle="TextStyle.H5">Vermögensentwicklung ohne Einkäufe</RadzenText>
     <div class="col-md-12">
         <RadzenChart>
             <RadzenColumnSeries
-                Data="@(GetSeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.Wealth))"
+                Data="@(GetSeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.Wealth))"
                 CategoryProperty="XValue"
                 Title="Privatvermögen"
                 LineType="LineType.Dashed"
@@ -252,7 +255,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             </RadzenColumnSeries>
             
             <RadzenColumnSeries
-                Data="@(GetSeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.OccupationalPension))"
+                Data="@(GetSeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.OccupationalPension))"
                 CategoryProperty="XValue"
                 Title="Vorsorgekapital"
                 LineType="LineType.Dashed"
