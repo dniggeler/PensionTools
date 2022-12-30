@@ -38,14 +38,18 @@ namespace Calculators.CashFlow.Tests
 
             TransferInCapitalBenefitsScenarioModel scenarioModel = new()
             {
-                NetReturnRate = 0.0M,
+                NetReturnCapitalBenefits = 0.0M,
                 TransferIns = new List<SingleTransferInModel>
                 {
                     new(10000, new DateTime(2022, 1, 1)),
                 },
-                WithCapitalBenefitTaxation = true,
-                YearOfCapitalBenefitWithdrawal = 2032,
-                FinalRetirementCapital = 800_000
+                WithCapitalBenefitWithdrawal = true,
+                CapitalBenefitsBeforeWithdrawal = 800_000,
+                Withdrawals = new List<SingleTransferInModel>
+                {
+                    new(0.5M, new DateTime(2032, 12, 31)),
+                    new(1M, new DateTime(2033, 12, 31)),
+                },
             };
 
             // when

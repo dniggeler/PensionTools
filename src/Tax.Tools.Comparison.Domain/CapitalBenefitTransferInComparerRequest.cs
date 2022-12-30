@@ -35,12 +35,18 @@ public class CapitalBenefitTransferInComparerRequest
     /// <summary>
     /// Gets or sets yearly net return on transfer-ins.
     /// </summary>
-    public decimal NetReturnRate { get; set; }
+    public decimal NetWealthReturn { get; set; }
+
+    public decimal NetPensionCapitalReturn { get; set; }
     
     public bool WithCapitalBenefitTaxation { get; set; }
 
-    [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
-    public decimal FinalRetirementCapital { get; set; }
+    /// <summary>
+    /// Gets or sets available capital benefits.
+    /// The amount when starting withdrawals does not include the previously added transfer-ins.
+    /// </summary>
+    public decimal CapitalBenefitsBeforeWithdrawal { get; set; }
+    
+    public IReadOnlyCollection<SingleTransferInModel> Withdrawals { get; set; }
 
-    public int? YearOfCapitalBenefitWithdrawal { get; set; }
 }

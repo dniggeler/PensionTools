@@ -3,69 +3,313 @@
     "State": "IsRight",
     "Right": {
       "StartingYear": 2022,
-      "NumberOfPeriods": 11,
-      "Accounts": [
+      "NumberOfPeriods": 12,
+      "DeltaSeries": [
         {
           "Year": 2022,
           "Amount": 3199.900,
-          "AccountType": "Wealth"
+          "AccountType": "Exogenous"
         },
         {
           "Year": 2023,
           "Amount": 3215.23000,
-          "AccountType": "Wealth"
+          "AccountType": "Exogenous"
         },
         {
           "Year": 2024,
           "Amount": 3230.5600000,
-          "AccountType": "Wealth"
+          "AccountType": "Exogenous"
         },
         {
           "Year": 2025,
           "Amount": 3245.890000000,
-          "AccountType": "Wealth"
+          "AccountType": "Exogenous"
         },
         {
           "Year": 2026,
           "Amount": 3261.22000000000,
-          "AccountType": "Wealth"
+          "AccountType": "Exogenous"
         },
         {
           "Year": 2027,
           "Amount": 3268.88500000000000,
-          "AccountType": "Wealth"
+          "AccountType": "Exogenous"
         },
         {
           "Year": 2028,
           "Amount": 3275.45500000000000000,
-          "AccountType": "Wealth"
+          "AccountType": "Exogenous"
         },
         {
           "Year": 2029,
           "Amount": 3283.12000000000000000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2030,
+          "Amount": 3290.78500000000000000000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2031,
+          "Amount": 3297.35500000000000000000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2032,
+          "Amount": 2626.4250000000000000000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2033,
+          "Amount": 1942.3550000000000000000000,
+          "AccountType": "Exogenous"
+        }
+      ],
+      "BenchmarkSeries": [
+        {
+          "Year": 2022,
+          "Amount": 473331.375,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2022,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2023,
+          "Amount": 446721.88000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2023,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2024,
+          "Amount": 420171.5150000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2024,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2025,
+          "Amount": 393678.090000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2025,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2026,
+          "Amount": 367243.79500000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2026,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2027,
+          "Amount": 340846.73000000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2027,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2028,
+          "Amount": 314479.23000000000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2028,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2029,
+          "Amount": 288140.20000000000000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2029,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2030,
+          "Amount": 261829.64000000000000000000000,
           "AccountType": "Wealth"
         },
         {
           "Year": 2030,
-          "Amount": 3290.7850000000000000000000,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2031,
+          "Amount": 235548.64500000000000000000000,
           "AccountType": "Wealth"
         },
         {
           "Year": 2031,
-          "Amount": 3297.3550000000000000000000,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2032,
+          "Amount": 581516.05000000000000000000000,
           "AccountType": "Wealth"
         },
         {
           "Year": 2032,
-          "Amount": 1497.7850000000000000000000,
+          "Amount": 400000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2033,
+          "Amount": 952476.5150000000000000000000,
           "AccountType": "Wealth"
+        },
+        {
+          "Year": 2033,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
         }
       ],
-      "ExogenousAccount": null,
-      "IncomeAccount": null,
-      "WealthAccount": null,
-      "OccupationalPensionAccount": null,
-      "ThirdPillarAccount": null
+      "ScenarioSeries": [
+        {
+          "Year": 2022,
+          "Amount": 466531.275,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2022,
+          "Amount": 10000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2023,
+          "Amount": 439937.11000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2023,
+          "Amount": 10000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2024,
+          "Amount": 413402.0750000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2024,
+          "Amount": 10000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2025,
+          "Amount": 386923.980000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2025,
+          "Amount": 10000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2026,
+          "Amount": 360505.01500000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2026,
+          "Amount": 10000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2027,
+          "Amount": 334115.61500000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2027,
+          "Amount": 10000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2028,
+          "Amount": 307754.68500000000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2028,
+          "Amount": 10000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2029,
+          "Amount": 281423.32000000000000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2029,
+          "Amount": 10000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2030,
+          "Amount": 255120.42500000000000000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2030,
+          "Amount": 10000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2031,
+          "Amount": 228846.00000000000000000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2031,
+          "Amount": 10000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2032,
+          "Amount": 579142.47500000000000000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2032,
+          "Amount": 405000.0,
+          "AccountType": "OccupationalPension"
+        },
+        {
+          "Year": 2033,
+          "Amount": 954418.8700000000000000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2033,
+          "Amount": 0.0,
+          "AccountType": "OccupationalPension"
+        }
+      ]
     },
     "Left": null
   }

@@ -40,7 +40,7 @@ public class TaxScenarioController : ControllerBase
     [Route(nameof(CalculateTransferInCapitalBenefits))]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<MultiPeriodResponse>> CalculateTransferInCapitalBenefits(CapitalBenefitTransferInComparerRequest request)
+    public async Task<ActionResult<CapitalBenefitsTransferInResponse>> CalculateTransferInCapitalBenefits(CapitalBenefitTransferInComparerRequest request)
     {
         if (request == null)
         {
@@ -50,7 +50,7 @@ public class TaxScenarioController : ControllerBase
         var taxPerson = MapPerson();
         var scenarioModel = MapScenarioModel();
 
-        var response = new MultiPeriodResponse();
+        var response = new CapitalBenefitsTransferInResponse();
 
         await scenarioCalculator.TransferInCapitalBenefitsAsync(
             request.CalculationYear, request.BfsMunicipalityId, taxPerson, scenarioModel)
@@ -58,7 +58,9 @@ public class TaxScenarioController : ControllerBase
             {
                 response.NumberOfPeriods = r.NumberOfPeriods;
                 response.StartingYear = r.StartingYear;
-                response.Accounts = r.Accounts;
+                response.DeltaSeries = r.DeltaSeries;
+                response.BenchmarkSeries = r.BenchmarkSeries;
+                response.ScenarioSeries = r.ScenarioSeries;
             });
 
         return response;
@@ -68,10 +70,10 @@ public class TaxScenarioController : ControllerBase
             return new TransferInCapitalBenefitsScenarioModel
             {
                 TransferIns = request.TransferIns,
-                NetReturnRate = request.NetReturnRate,
-                WithCapitalBenefitTaxation = request.WithCapitalBenefitTaxation,
-                YearOfCapitalBenefitWithdrawal = request.YearOfCapitalBenefitWithdrawal,
-                FinalRetirementCapital = request.FinalRetirementCapital
+                NetReturnCapitalBenefits = request.NetPensionCapitalReturn,
+                WithCapitalBenefitWithdrawal = request.WithCapitalBenefitTaxation,
+                CapitalBenefitsBeforeWithdrawal = request.CapitalBenefitsBeforeWithdrawal,
+                Withdrawals = request.Withdrawals,
             };
         }
 

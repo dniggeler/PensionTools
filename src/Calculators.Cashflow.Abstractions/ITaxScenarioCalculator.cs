@@ -13,7 +13,7 @@ public interface ITaxScenarioCalculator
     /// <param name="person"></param>
     /// <param name="scenarioModel"></param>
     /// <returns></returns>
-    Task<Either<string, MultiPeriodCalculationResult>> TransferInCapitalBenefitsAsync(
+    Task<Either<string, CapitalBenefitsTransferInResult>> TransferInCapitalBenefitsAsync(
         int startingYear,
         int bfsMunicipalityId,
         TaxPerson person,

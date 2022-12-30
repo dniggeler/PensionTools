@@ -34,6 +34,8 @@ public class PersonService : IPersonService
         List<PersonViewModel> persons = (await GetPersonsFromStorageAsync()).ToList();
 
         persons.RemoveAll(p => p.Id == id);
+
+        await localStorageService.SetItemAsync<IEnumerable<PersonViewModel>>(nameof(PersonViewModel), persons);
     }
 
     private async Task<IEnumerable<PersonViewModel>> GetPersonsFromStorageAsync()
