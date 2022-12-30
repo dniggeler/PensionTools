@@ -76,12 +76,17 @@
 
         PersonViewModel copyPerson = new()
             {
+                Id = Guid.NewGuid(),
                 BfsMunicipalityId = sourcePerson.BfsMunicipalityId,
                 Name = $"{sourcePerson.Name} (Copy)",
                 CivilStatus = sourcePerson.CivilStatus,
                 Gender = sourcePerson.Gender,
                 TaxableIncome = sourcePerson.TaxableIncome,
                 TaxableWealth = sourcePerson.TaxableWealth,
+                Canton = sourcePerson.Canton,
+                FinalCapital3a = sourcePerson.FinalCapital3a,
+                FinalRetirementCapital = sourcePerson.FinalRetirementCapital,
+                DateOfBirth = sourcePerson.DateOfBirth
             };
 
         bool isDone = await OpenDialogAsync("Person ändern", copyPerson);
