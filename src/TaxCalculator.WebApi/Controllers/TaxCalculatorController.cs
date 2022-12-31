@@ -20,15 +20,18 @@ public class TaxCalculatorController : ControllerBase
     private readonly ITaxCalculatorConnector taxCalculatorConnector;
     private readonly IMarginalTaxCurveCalculatorConnector marginalTaxCurveCalculatorConnector;
     private readonly IMunicipalityConnector municipalityResolver;
+    private readonly ITaxSupportedYearProvider taxSupportedYearProvider;
 
     public TaxCalculatorController(
         ITaxCalculatorConnector taxCalculatorConnector,
         IMarginalTaxCurveCalculatorConnector marginalTaxCurveCalculatorConnector,
-        IMunicipalityConnector municipalityResolver)
+        IMunicipalityConnector municipalityResolver,
+        ITaxSupportedYearProvider taxSupportedYearProvider)
     {
         this.taxCalculatorConnector = taxCalculatorConnector;
         this.marginalTaxCurveCalculatorConnector = marginalTaxCurveCalculatorConnector;
         this.municipalityResolver = municipalityResolver;
+        this.taxSupportedYearProvider = taxSupportedYearProvider;
     }
 
     /// <summary>
@@ -306,13 +309,13 @@ public class TaxCalculatorController : ControllerBase
     /// <returns>Tax calculation years.</returns>
     /// <response code="200">If calculation is successful.</response>
     /// <remarks>
-    /// Unterstützte Steuerjahre - hängt von der konkreten Steuerrechner-Implementation ab.
+    /// Unterstütze Steuerjahre - hängt von der konkreten Steuerrechner-Implementation ab.
     /// </remarks>
     [HttpGet]
     [Route("years")]
     public async Task<ActionResult<int[]>> GetSupportedTaxYears()
     {
-        var years = await municipalityResolver.GetSupportedTaxYearsAsync();
+        var years = await taxSupportedYearProvider.GetSupportedTaxYears().AsTask();
 
         return Ok(years);
     }

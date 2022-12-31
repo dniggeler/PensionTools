@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.CommonTypes.MultiPeriod;
+using PensionCoach.Tools.TaxComparison;
 using Snapshooter.Xunit;
 using TaxCalculator.WebApi;
 using Xunit;
@@ -23,22 +24,22 @@ namespace Calculators.CashFlow.Integration.Tests
         {
             var testServer = new TestServer(
                 new WebHostBuilder()
-                    .ConfigureAppConfiguration((context, builder) =>
+                    .ConfigureAppConfiguration((_, builder) =>
                     {
                         builder.AddJsonFile("appsettings.integration.json");
                     })
                     .UseStartup<Startup>());
 
             client = testServer.CreateClient();
-            client.BaseAddress = new Uri("http://localhost/api/calculator/");
+            client.BaseAddress = new Uri("http://localhost/api/scenario/tax/");
         }
 
         [Fact(DisplayName = "Default")]
         public async Task ShouldCalculateSuccessfully()
         {
-            var request = GetRequest();
+            CapitalBenefitTransferInComparerRequest request = GetRequest();
 
-            var response = await client.PostAsJsonAsync("multiperiod", request);
+            var response = await client.PostAsJsonAsync("CalculateTransferInCapitalBenefits", request);
 
             response.EnsureSuccessStatusCode();
 
@@ -47,24 +48,30 @@ namespace Calculators.CashFlow.Integration.Tests
             Snapshot.Match(result);
         }
 
-        private static MultiPeriodRequest GetRequest()
+        private static CapitalBenefitTransferInComparerRequest GetRequest()
         {
-            return new MultiPeriodRequest
+            int yearOfCapitalBenefitWithdrawal = 2030;
+
+            return new CapitalBenefitTransferInComparerRequest
             {
                 Name = "Test Multi-Period Calculator",
-                Gender = Gender.Male,
-                DateOfBirth = new DateTime(1969, 3, 17),
+                CalculationYear = 2021,
                 BfsMunicipalityId = 261,
                 CivilStatus = CivilStatus.Married,
-                ReligiousGroupType = ReligiousGroupType.Other,
-                PartnerReligiousGroupType = ReligiousGroupType.Other,
-                Income = 100_000,
-                Wealth = 500_000,
-                CapitalBenefitsPension = 0,
-                CapitalBenefitsPillar3A = 0,
-                CashFlowDefinitionHolder = new CashFlowDefinitionHolder(),
-                StartingYear = 2021,
-                NumberOfPeriods = 10
+                ReligiousGroup = ReligiousGroupType.Other,
+                PartnerReligiousGroup = ReligiousGroupType.Other,
+                TaxableIncome = 100_000,
+                TaxableFederalIncome = 100_000,
+                TaxableWealth = 500_000,
+                TransferIns = new List<SingleTransferInModel>
+                {
+                    new(10_000, new DateTime(2021, 1, 1))
+                },
+                WithCapitalBenefitTaxation = true,
+                Withdrawals = new List<SingleTransferInModel>
+                {
+                    new(1M, new DateTime(yearOfCapitalBenefitWithdrawal, 1, 1))
+                },
             };
         }
     }

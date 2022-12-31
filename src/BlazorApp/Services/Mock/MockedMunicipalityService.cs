@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 
-namespace BlazorApp.Services
+namespace BlazorApp.Services.Mock
 {
     public class MockedMunicipalityService : IMunicipalityService
     {
@@ -25,7 +25,7 @@ namespace BlazorApp.Services
 
         public Task<IEnumerable<MunicipalityModel>> GetAllAsync()
         {
-            string urlPath = configuration.GetSection("MunicipalityServiceUrl").Value;
+            var urlPath = configuration.GetSection("MunicipalityServiceUrl").Value;
 
             return httpClient.GetFromJsonAsync<IEnumerable<MunicipalityModel>>(urlPath);
         }
@@ -39,9 +39,9 @@ namespace BlazorApp.Services
                 return cachedItems;
             }
 
-            string urlPath = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+            var urlPath = configuration.GetSection("TaxCalculatorServiceUrl").Value;
 
-            List<TaxSupportedMunicipalityModel> fetchedItems = await httpClient.GetFromJsonAsync<List<TaxSupportedMunicipalityModel>>(urlPath);
+            var fetchedItems = await httpClient.GetFromJsonAsync<List<TaxSupportedMunicipalityModel>>(urlPath);
 
             if (fetchedItems is { })
             {

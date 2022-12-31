@@ -80,7 +80,9 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
             .Concat(staticCashFlowsFromComposites)
             .ToList();
 
-        int finalYear = staticCashFlows.Max(item => item.DateOfProcess.Year);
+        int finalYear = definitionFromComposites
+            .Concat(cashFlowDefinitionHolder.CashFlowActions)
+            .Max(d => d.DateOfProcess.Year);
 
         List<SinglePeriodCalculationResult> singlePeriodCalculationResults =
             Enumerable.Empty<SinglePeriodCalculationResult>().ToList();
@@ -115,6 +117,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
                     .ToList();
 
                 List<CashFlowModel> currentDateDynamicCashFlows = definitionFromComposites
+                    .Concat(cashFlowDefinitionHolder.CashFlowActions)
                     .OfType<IDynamicCashFlowDefinition>()
                     .Where(item => item.DateOfProcess == currentDateAsDateTime)
                     .SelectMany(item => item.CreateGenericDefinition(currentAccounts))

@@ -1,0 +1,404 @@
+﻿@page "/TaxScenario/Purchase"
+
+@using Microsoft.AspNetCore.Components
+@using PensionCoach.Tools.CommonTypes
+@using PensionCoach.Tools.CommonTypes.MultiPeriod
+@using PensionCoach.Tools.TaxComparison
+
+@inject IPersonService PersonService
+@inject ITaxCalculationService TaxCalculationService
+@inject ITaxScenarioService TaxScenarioService
+
+<RadzenTemplateForm TItem="CapitalBenefitTransferInComparerRequest" Data=@taxRequest Submit=@OnSubmit>
+    <RadzenContent Container="main">
+        <ChildContent>
+            <RadzenHeading Size="H1" Text="Steuerberechnung"></RadzenHeading>
+            <RadzenSteps NextText="Nächster" PreviousText="Vorheriger">
+                <Steps>
+                    <RadzenStepsItem Text="Personen" Selected="true">
+                        <FormStep Title="Auswahl" HelpText="Die Cashflow-Simulation basiert auf Angaben zur Person sowie steuerrevelanten Daten wie Wohnort, Einkommen und Vermögen.">
+                            <div class="row">
+                                <PersonSelector Persons="persons" OnSelect="@HandleSelectPerson" />
+                            </div>
+                        </FormStep>
+                    </RadzenStepsItem>
+                    <RadzenStepsItem Text="Steuerperson ändern" Disabled="@(selectedPerson == null)">
+                        <ChildContent>
+                            <FormStep Title="Person"
+                                      HelpText="Steuerlich relevante Angaben zur Person sind der Zivilstand,
+die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter,
+welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.
+Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.">
+                                <ChildContent>
+                                    <div class="row">
+                                        <RadzenFieldset Text="Person">
+                                                <div class="col-md-3"><RadzenLabel Text="Name" /></div>
+                                                <div class="col-md-9"><RadzenTextBox @bind-Value="taxRequest.Name" Name="simulationName" ReadOnly="true" /></div>
+
+                                                <div class="col-md-3"><RadzenLabel Text="Zivilstand" /></div>
+                                                <div class="col-md-9">
+                                                    <CivilStatusSelector SelectedCivilStatus="@taxRequest.CivilStatus"
+                                                                         OnSelected="@(args => taxRequest.CivilStatus = args)" />
+                                                </div>
+
+                                                <div class="col-md-3"><RadzenLabel Text="Konfession" /></div>
+                                                <div class="col-md-9">
+                                                    <ReligiousGroupSelector SelectedReligiousGroupType="@taxRequest.ReligiousGroup"
+                                                                            OnSelected="@(args => taxRequest.ReligiousGroup = args ?? ReligiousGroupType.Other)" />
+                                                </div>
+                                                @if (taxRequest.CivilStatus == CivilStatus.Married)
+                                                {
+                                                    <div class="col-md-3"><RadzenLabel Text="Konfession Partner" /></div>
+                                                    <div class="col-md-9">
+                                                        <ReligiousGroupSelector SelectedReligiousGroupType="@taxRequest.PartnerReligiousGroup"
+                                                                                OnSelected="@(args => taxRequest.PartnerReligiousGroup = args)" />
+                                                    </div>
+                                                }
+
+                                        </RadzenFieldset>
+
+                                        <RadzenFieldset Text="Steuerdaten">
+                                                <div class="col-md-3"><RadzenLabel Text="Lohn" /></div>
+                                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.TaxableIncome" /></div>
+
+                                                <div class="col-md-3"><RadzenLabel Text="Vermögen" /></div>
+                                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.TaxableWealth" /></div>
+
+                                                <div class="col-md-3"><RadzenLabel Text="Steuergemeinde" /></div>
+                                                <div class="col-md-9">
+                                                    <MunicipalitySelector BfsMunicipalityId="taxRequest.BfsMunicipalityId"
+                                                                          OnSelected="m => { taxRequest.BfsMunicipalityId = m.BfsMunicipalityNumber; }" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <RadzenLabel Text="Steuerjahr" />
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <RadzenDropDown AllowClear="false" TValue="int"
+                                                                    Data="@(supportedTaxYears)"
+                                                                    @bind-Value="@taxRequest.CalculationYear" />
+                                                </div>
+                                        </RadzenFieldset>
+                                        
+                                        <RadzenFieldset Text="Vorsorge">
+                                                <div class="col-md-12"><RadzenLabel Text="Altersguthaben bei Pensionierung" /></div>
+                                            <div class="col-md-12"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="totalWithdrawalAmount" /></div>
+                                        </RadzenFieldset>
+                                    </div>
+
+                                </ChildContent>
+                            </FormStep>
+                        </ChildContent>
+                    </RadzenStepsItem>
+                    <RadzenStepsItem Text="Berechnung" Disabled="@(selectedPerson == null)">
+                        <ChildContent>
+                            <FormStep Title="Simulation" HelpText="Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern.">
+                                <div class="row">
+                                    <RadzenFieldset Text="Einkauf">
+
+                                        <div class="col-md-12">
+                                            <RadzenLabel Text="Gesamtbetrag"/>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <RadzenNumeric TValue="decimal" Format="n0" @bind-Value="transferInAmount"/>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <RadzenLabel Text="Anzahl Einkäufe"/>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <RadzenNumeric TValue="int" @bind-Value="numberOfTransferIns" Min="1"/>
+                                        </div>
+
+                                    </RadzenFieldset>
+
+                                    <RadzenFieldset Text="Berechnungsparameter">
+
+                                        <div class="col-md-12">
+                                            <RadzenLabel Text="Rendite p.a. auf Vermögen"/>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <RadzenNumeric TValue="decimal" Step="0.005" Format="p2" @bind-Value="taxRequest.NetWealthReturn" Min="0" Max="1"/>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <RadzenLabel Text="Rendite p.a. Vorsorgekapitalien"/>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <RadzenNumeric TValue="decimal" Step="0.005" Format="p2" @bind-Value="taxRequest.NetPensionCapitalReturn" Min="0" Max="1"/>
+                                        </div>
+
+                                    </RadzenFieldset>
+
+                                    <RadzenFieldset Text="Kapitalbezug">
+
+                                            <div class="col-md-12">
+                                                <h3>Mit Bezug</h3>
+                                                <RadzenSwitch
+                                                    Value="taxRequest.WithCapitalBenefitTaxation"
+                                                    ValueChanged="() => taxRequest.WithCapitalBenefitTaxation = !taxRequest.WithCapitalBenefitTaxation"/>
+                                            </div>
+
+                                        <RadzenCard Visible="taxRequest.WithCapitalBenefitTaxation">
+                                            <ChildContent>
+                                                <div class="col-md-12">
+                                                    <RadzenLabel Text="Bezugsjahr"/>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <RadzenNumeric TValue="int" @bind-Value="yearOfFirstWithdrawal" Min="2018" Max="2099"/>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <RadzenLabel Text="Vorsorgekapital (ohne Einkauf)"/>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <RadzenNumeric TValue="decimal" @bind-Value="totalWithdrawalAmount" />
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <RadzenLabel Text="Anzahl Bezüge"/>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <RadzenNumeric TValue="int" @bind-Value="numberOfWithdrawals" Min="1"/>
+                                                </div>
+                                            </ChildContent>
+                                        </RadzenCard>
+
+                                    </RadzenFieldset>
+                                </div>
+                            </FormStep>
+                        </ChildContent>
+                    </RadzenStepsItem>
+                </Steps>
+            </RadzenSteps>
+
+            <div class="row">
+                <div class="col-md-12 text-right mt-1">
+                    <RadzenButton ButtonType="ButtonType.Submit" Text="Berechne" Disabled="@(selectedPerson == null)"></RadzenButton>
+                </div>
+            </div>
+
+        </ChildContent>
+    </RadzenContent>
+</RadzenTemplateForm>
+
+@if (taxResponse != null)
+{
+    <RadzenText TextStyle="TextStyle.H5">Relativer Vermögenszuwachs</RadzenText>
+    <div class="col-md-12">
+        <RadzenChart>
+            <RadzenColumnSeries
+                Data="@(GetChartData())"
+                CategoryProperty="XValue"
+                Title="Gewinn/Verlust"
+                LineType="LineType.Dashed"
+                ValueProperty="YValue">
+                <RadzenSeriesDataLabels Visible="false" />
+            </RadzenColumnSeries>
+
+            <RadzenColumnOptions Radius="5" Width="40" />
+            <RadzenCategoryAxis Padding="20" />
+
+            <RadzenCategoryAxis Min="@(taxResponse.StartingYear-1)" Max="@(taxResponse.StartingYear + taxResponse.NumberOfPeriods)">
+                <RadzenAxisTitle Text="Jahr" />
+            </RadzenCategoryAxis>
+
+            <RadzenValueAxis>
+                <RadzenGridLines Visible="true" />
+                <RadzenAxisTitle Text="Veränderung Gesamtvermögen" />
+            </RadzenValueAxis>
+        </RadzenChart>
+    </div>
+
+    <RadzenText TextStyle="TextStyle.H5">Vermögensentwicklung mit Einkäufen</RadzenText>
+    <div class="col-md-12">
+        <RadzenChart>
+            <RadzenColumnSeries
+                Data="@(GetSeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.Wealth))"
+                CategoryProperty="XValue"
+                Title="Privatvermögen"
+                LineType="LineType.Dashed"
+                ValueProperty="YValue">
+                <RadzenSeriesDataLabels Visible="false" />
+            </RadzenColumnSeries>
+            
+            <RadzenColumnSeries
+                Data="@(GetSeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.OccupationalPension))"
+                CategoryProperty="XValue"
+                Title="Vorsorgekapital"
+                LineType="LineType.Dashed"
+                ValueProperty="YValue">
+                <RadzenSeriesDataLabels Visible="false" />
+            </RadzenColumnSeries>
+
+            <RadzenColumnOptions Radius="5" Width="40" />
+            <RadzenCategoryAxis Padding="20" />
+
+            <RadzenCategoryAxis Min="@(taxResponse.StartingYear-1)" Max="@(taxResponse.StartingYear + taxResponse.NumberOfPeriods)">
+                <RadzenAxisTitle Text="Jahr" />
+            </RadzenCategoryAxis>
+
+            <RadzenValueAxis Min="0">
+                <RadzenGridLines Visible="true" />
+                <RadzenAxisTitle Text="Kontostand" />
+            </RadzenValueAxis>
+        </RadzenChart>
+    </div>
+
+    <RadzenText TextStyle="TextStyle.H5">Vermögensentwicklung ohne Einkäufe</RadzenText>
+    <div class="col-md-12">
+        <RadzenChart>
+            <RadzenColumnSeries
+                Data="@(GetSeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.Wealth))"
+                CategoryProperty="XValue"
+                Title="Privatvermögen"
+                LineType="LineType.Dashed"
+                ValueProperty="YValue">
+                <RadzenSeriesDataLabels Visible="false" />
+            </RadzenColumnSeries>
+            
+            <RadzenColumnSeries
+                Data="@(GetSeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.OccupationalPension))"
+                CategoryProperty="XValue"
+                Title="Vorsorgekapital"
+                LineType="LineType.Dashed"
+                ValueProperty="YValue">
+                <RadzenSeriesDataLabels Visible="false" />
+            </RadzenColumnSeries>
+
+            <RadzenColumnOptions Radius="5" Width="40" />
+            <RadzenCategoryAxis Padding="20" />
+
+            <RadzenCategoryAxis Min="@(taxResponse.StartingYear-1)" Max="@(taxResponse.StartingYear + taxResponse.NumberOfPeriods)">
+                <RadzenAxisTitle Text="Jahr" />
+            </RadzenCategoryAxis>
+
+            <RadzenValueAxis Min="0">
+                <RadzenGridLines Visible="true" />
+                <RadzenAxisTitle Text="Kontostand" />
+            </RadzenValueAxis>
+        </RadzenChart>
+    </div>
+}
+
+@code {
+    private CapitalBenefitTransferInComparerRequest taxRequest = new();
+    private CapitalBenefitsTransferInResponse taxResponse;
+    private PersonViewModel selectedPerson;
+    private IReadOnlyCollection<PersonViewModel> persons;
+    private int[] supportedTaxYears;
+    private decimal totalWithdrawalAmount;
+    private decimal transferInAmount;
+    private int numberOfTransferIns;
+    private int numberOfWithdrawals;
+    private int yearOfFirstWithdrawal;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Task<int[]> yearsTask = TaxCalculationService.SupportedTaxYearsAsync();
+        persons = (await PersonService.GetPersonsAsync()).ToList();
+
+        supportedTaxYears = await yearsTask;
+
+        transferInAmount = 15000;
+        totalWithdrawalAmount = 500_000;
+        numberOfTransferIns = 3;
+        numberOfWithdrawals = 1;
+        yearOfFirstWithdrawal = DateTime.Today.Year + 10;
+    }
+
+    private void HandleSelectPerson(Guid personId)
+    {
+        selectedPerson = persons.Single(item => item.Id == personId);
+
+        totalWithdrawalAmount = selectedPerson.FinalRetirementCapital;
+
+        taxRequest = new CapitalBenefitTransferInComparerRequest
+        {
+            Name = selectedPerson.Name,
+            CivilStatus = selectedPerson.CivilStatus,
+            TaxableIncome = selectedPerson.TaxableIncome,
+            TaxableWealth = selectedPerson.TaxableWealth,
+            TaxableFederalIncome = selectedPerson.TaxableIncome,
+            PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
+            ReligiousGroup = selectedPerson.ReligiousGroupType,
+            BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
+            WithCapitalBenefitTaxation = false,
+            NetWealthReturn = 0.01M,
+        };
+    }
+
+    private async Task OnSubmit()
+    {
+        int beginOfTransferInYear = supportedTaxYears.Max();
+        int beginOfWithdrawalYear = yearOfFirstWithdrawal;
+
+        taxRequest.CalculationYear = beginOfTransferInYear;
+        taxRequest.CapitalBenefitsBeforeWithdrawal = totalWithdrawalAmount;
+
+        taxRequest.TransferIns = CreateTransferIns(transferInAmount, numberOfTransferIns, beginOfTransferInYear);
+        taxRequest.Withdrawals = CreateWithdrawals(numberOfWithdrawals, beginOfWithdrawalYear);
+
+        taxResponse = await TaxScenarioService.CalculateAsync(taxRequest);
+
+        IReadOnlyCollection<SingleTransferInModel> CreateWithdrawals(int years, int startingYear)
+        {
+            List<SingleTransferInModel> transferIns = new();
+            
+            for (int ii = 0; ii < years; ii++)
+            {
+                decimal fraction = decimal.One / (years - ii);
+                transferIns.Add(new SingleTransferInModel(fraction, new DateTime(startingYear + ii, 1, 1)));
+            }
+
+            return transferIns.ToList();
+        }
+
+        IReadOnlyCollection<SingleTransferInModel> CreateTransferIns(decimal amount, int years, int startingYear)
+        {
+            List<SingleTransferInModel> transferIns = new();
+            decimal amountPerYear = amount / years;
+            
+            for (int ii = 0; ii < years; ii++)
+            {
+                transferIns.Add(new SingleTransferInModel(amountPerYear, new DateTime(startingYear + ii, 1, 1)));
+            }
+
+            return transferIns.ToList();
+        }
+    }
+
+    private TaxCurve.CurvePoint[] GetChartData()
+    {
+        List<TaxCurve.CurvePoint> points = new();
+
+        for (int year = taxResponse.StartingYear; year < taxResponse.NumberOfPeriods + taxResponse.StartingYear; year++)
+        {
+            points.Add(new TaxCurve.CurvePoint
+            {
+                XValue = year,
+                YValue = taxResponse.DeltaSeries
+                    .Where(item => item.Year == year)
+                    .Sum(item => item.Amount)
+            });
+        }
+
+        return points.ToArray();
+    }
+
+    private TaxCurve.CurvePoint[] GetSeriesData(IReadOnlyCollection<SinglePeriodCalculationResult> series, AccountType accountType)
+    {
+        List<TaxCurve.CurvePoint> points = new();
+
+        for (int year = taxResponse.StartingYear; year < taxResponse.NumberOfPeriods + taxResponse.StartingYear; year++)
+        {
+            points.Add(new TaxCurve.CurvePoint
+            {
+                XValue = year,
+                    YValue = series
+                        .Where(item => item.AccountType == accountType &&
+                                   item.Year == year)
+                    .Sum(item => item.Amount)
+            });
+        }
+
+        return points.ToArray();
+    }
+}

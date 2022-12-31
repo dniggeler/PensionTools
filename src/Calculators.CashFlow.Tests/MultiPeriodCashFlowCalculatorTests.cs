@@ -9,7 +9,6 @@ using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
-using PensionCoach.Tools.CommonUtils;
 using Snapshooter.Xunit;
 using Xunit;
 
@@ -127,7 +126,7 @@ namespace Calculators.CashFlow.Tests
 
             MultiPeriodCalculatorPerson person = GetMarriedPerson(canton, municipalityId) with
             {
-                Wealth = decimal.Zero,
+                Wealth = 10_000,
                 CapitalBenefits = (0, 100_000)
             };
 
@@ -138,7 +137,7 @@ namespace Calculators.CashFlow.Tests
                 person,
                 new CashFlowDefinitionHolder
                 {
-                    StaticGenericCashFlowDefinitions = GetThirdPillarPaymentsDefinition().ToList(),
+                    Composites  = GetThirdPillarPaymentsDefinition().ToList(),
                 },
                 options);
 
@@ -146,16 +145,20 @@ namespace Calculators.CashFlow.Tests
             Snapshot.Match(result, opt => opt.IgnoreFields("$..Id"));
         }
 
-        private static IEnumerable<IStaticCashFlowDefinition> GetThirdPillarPaymentsDefinition()
+        private static IEnumerable<ICompositeCashFlowDefinition> GetThirdPillarPaymentsDefinition()
         {
-            return new ThirdPillarPaymentsDefinition
-                {
-                    DateOfStart = new DateTime(2021, 1, 1),
-                    NetGrowthRate = 0.0M,
-                    NumberOfInvestments = 10,
-                    YearlyAmount = 6883,
-                }
-                .CreateGenericDefinition();
+            yield return new ThirdPillarPaymentsDefinition
+            {
+                DateOfStart = new DateTime(2021, 1, 1),
+                NetGrowthRate = 0.0M,
+                NumberOfInvestments = 10,
+                YearlyAmount = 6883,
+            };
+
+            yield return new SalaryPaymentsDefinition
+            {
+                YearlyAmount = 100_000, DateOfEndOfPeriod = new DateTime(2033, 1, 1)
+            };
         }
 
         private MultiPeriodCalculatorPerson GetMarriedPerson(Canton canton, int municipalityId)
