@@ -9,7 +9,11 @@ namespace BlazorApp.Services
     {
         Task<IEnumerable<PersonViewModel>> GetPersonsAsync();
 
-        Task AddPersonAsync(PersonViewModel person);
+        Task<PersonViewModel> GetAsync(Guid id);
+
+        Task AddAsync(PersonViewModel person);
+
+        Task UpdateAsync(PersonViewModel person);
 
         Task DeletePersonAsync(Guid id);
     }

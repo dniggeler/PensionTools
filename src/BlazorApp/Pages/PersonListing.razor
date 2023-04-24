@@ -48,7 +48,7 @@
         if (isDone)
         {
             persons.Add(newPerson);
-            await PersonService.AddPersonAsync(newPerson);
+            await PersonService.AddAsync(newPerson);
         }
     }
 
@@ -62,17 +62,17 @@
     {
         PersonViewModel person = persons.SingleOrDefault(p => p.Id == id);
 
-        bool isDone = await OpenDialogAsync("Person ändern", person);
-
-        if (isDone)
-        {
-            await PersonService.AddPersonAsync(person);
-        }
+        await OpenDialogAsync("Person ändern", person);
     }
 
     private async Task CopyPerson(Guid id)
     {
         PersonViewModel sourcePerson = persons.SingleOrDefault(p => p.Id == id);
+
+        if (sourcePerson is null)
+        {
+            return;
+        }
 
         PersonViewModel copyPerson = new()
             {
@@ -94,7 +94,7 @@
         if (isDone)
         {
             persons.Add(copyPerson);
-            await PersonService.AddPersonAsync(copyPerson);
+            await PersonService.AddAsync(copyPerson);
         }
     }
 

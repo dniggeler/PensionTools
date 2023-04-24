@@ -85,7 +85,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Tools.Comparison.Domain
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor", "Blazor", "{06D69571-67BA-449E-997A-B098419523EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp.Services.Tests", "BlazorApp.Services.Tests\BlazorApp.Services.Tests.csproj", "{D934E764-94AB-412B-93B5-3C2E3A40E898}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp.Services.Tests", "BlazorApp.Services.Tests\BlazorApp.Services.Tests.csproj", "{D934E764-94AB-412B-93B5-3C2E3A40E898}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp.Components.Tests", "BlazorApp.Components.Tests\BlazorApp.Components.Tests.csproj", "{D28B965D-73AB-4905-AB37-63AF2CB99567}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -225,6 +227,10 @@ Global
 		{D934E764-94AB-412B-93B5-3C2E3A40E898}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D934E764-94AB-412B-93B5-3C2E3A40E898}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D934E764-94AB-412B-93B5-3C2E3A40E898}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D28B965D-73AB-4905-AB37-63AF2CB99567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D28B965D-73AB-4905-AB37-63AF2CB99567}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D28B965D-73AB-4905-AB37-63AF2CB99567}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D28B965D-73AB-4905-AB37-63AF2CB99567}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -262,6 +268,7 @@ Global
 		{1F58B6AE-89D4-414A-9397-F775130B3FBF} = {925F3C21-3653-4DA2-99F9-0982736674BA}
 		{9617FEB8-2160-4D3A-B157-2D97EF3B2F56} = {BF9972ED-AFAC-4E39-9AAD-89F46338CED1}
 		{D934E764-94AB-412B-93B5-3C2E3A40E898} = {06D69571-67BA-449E-997A-B098419523EC}
+		{D28B965D-73AB-4905-AB37-63AF2CB99567} = {06D69571-67BA-449E-997A-B098419523EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB937E37-4C08-4EB0-86F7-87F74A7F6C44}

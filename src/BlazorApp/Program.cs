@@ -27,8 +27,9 @@ namespace BlazorApp
                 builder.Services.AddScoped<ITaxComparisonService, MockTaxComparisonService>();
                 builder.Services.AddScoped<ITaxScenarioService, MockTaxComparisonService>();
                 builder.Services.AddScoped<IMunicipalityService, MockedMunicipalityService>();
-                builder.Services.AddScoped<IPersonService, MockedPersonService>();
                 builder.Services.AddScoped<IExportService, ExportService>();
+
+                builder.Services.AddMockServices();
             }
             else
             {
@@ -38,8 +39,9 @@ namespace BlazorApp
                 builder.Services.AddScoped<ITaxComparisonService, TaxComparisonService>();
                 builder.Services.AddScoped<IMunicipalityService, MunicipalityServiceClient>();
                 builder.Services.AddScoped<ITaxScenarioService, TaxScenarioService>();
-                builder.Services.AddScoped<IPersonService, PersonService>();
                 builder.Services.AddScoped<IExportService, ExportService>();
+
+                builder.Services.AddServices();
             }
 
             builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });

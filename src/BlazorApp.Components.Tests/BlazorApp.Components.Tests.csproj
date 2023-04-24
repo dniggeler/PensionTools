@@ -1,16 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-    <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
-        <IsPackable>false</IsPackable>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentAssertions" Version="6.8.0" />
+        <PackageReference Include="Blazored.LocalStorage.TestExtensions" Version="4.3.0" />
+        <PackageReference Include="bunit" Version="1.13.5" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.1" />
-        <PackageReference Include="System.Net.Http.Json" Version="7.0.0" />
-        <PackageReference Include="Snapshooter.Xunit" Version="0.12.0" />
         <PackageReference Include="xunit" Version="2.4.2" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -23,11 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\TaxCalculator.WebApi\TaxCalculator.WebApi.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="__snapshots__\" />
+      <ProjectReference Include="..\BlazorApp\BlazorApp.csproj" />
     </ItemGroup>
 
 </Project>

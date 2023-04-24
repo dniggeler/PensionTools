@@ -21,12 +21,26 @@ public class PersonService : IPersonService
         return await GetPersonsFromStorageAsync();
     }
 
-    public async Task AddPersonAsync(PersonViewModel person)
+    public async Task<PersonViewModel> GetAsync(Guid id)
+    {
+        var persons = await GetPersonsFromStorageAsync();
+
+        return persons.SingleOrDefault(p => p.Id == id);
+    }
+
+    public async Task AddAsync(PersonViewModel person)
     {
         List<PersonViewModel> persons = (await GetPersonsFromStorageAsync()).ToList();
         persons.Add(person);
 
         await localStorageService.SetItemAsync<IEnumerable<PersonViewModel>>(nameof(PersonViewModel), persons);
+    }
+
+    public async Task UpdateAsync(PersonViewModel person)
+    {
+        await DeletePersonAsync(person.Id);
+
+        await AddAsync(person);
     }
 
     public async Task DeletePersonAsync(Guid id)
