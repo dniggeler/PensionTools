@@ -75,7 +75,7 @@ public class MockedFullTaxCalculator
 
     public int[] GetSupportedTaxYears()
     {
-        int[] years = { 2022 };
+        int[] years = { 2022, 2023 };
 
         return years;
     }
