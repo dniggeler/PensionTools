@@ -1,0 +1,87 @@
+﻿@using BlazorApp.Services
+@using PensionCoach.Tools.CommonTypes
+@using PensionCoach.Tools.CommonTypes.Tax
+
+@inject IMunicipalityService MunicipalityService
+
+<div class="row">
+    <div class="col-xl-3">
+        <RadzenDropDown TextProperty="Name"
+                        ValueProperty="Canton"
+                        FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                        FilterOperator="StringFilterOperator.StartsWith"
+                        AllowFiltering="true"
+                        @bind-Value="CantonCode"
+                        Change="HandleCantonChangeAsync"
+                        Data="cantons"/>
+    </div>
+
+    <div class="col-xl-6">
+        <RadzenDropDown TextProperty="Name"
+                        ValueProperty="BfsMunicipalityNumber"
+                        FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                        FilterOperator="StringFilterOperator.StartsWith"
+                        AllowFiltering="true"
+                        @bind-Value="BfsMunicipalityId"
+                        Change="HandleChangeAsync"
+                        Data="municipalities"/>
+    </div>
+</div>
+
+@code {
+    internal record CantonHolder
+    {
+        public Canton Canton { get; init; }
+        public string Name { get; init; }
+    }
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public int BfsMunicipalityId { get; set; }
+
+    [Parameter]
+    public Canton CantonCode { get; set; }
+
+    [Parameter]
+    public EventCallback<TaxSupportedMunicipalityModel> OnSelected { get; set; }
+
+    private IReadOnlyCollection<TaxSupportedMunicipalityModel> municipalities = new List<TaxSupportedMunicipalityModel>();
+    private IReadOnlyCollection<CantonHolder> cantons = new List<CantonHolder>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        cantons = Enum.GetValues(typeof(Canton)).Cast<Canton>().Select(c => new CantonHolder{ Canton = c, Name = c.ToString()}).ToList();
+        municipalities = (await MunicipalityService.GetTaxSupportingAsync())
+            .Where(m => m.Canton == CantonCode)
+            .ToList();
+    }
+
+    private async Task HandleChangeAsync(object value)
+    {
+        BfsMunicipalityId = (int)value;
+
+        TaxSupportedMunicipalityModel selectedMunicipalityModel =
+            municipalities.Single(item => item.BfsMunicipalityNumber == BfsMunicipalityId);
+
+        await OnSelected.InvokeAsync(selectedMunicipalityModel);
+    }
+
+    private async Task HandleCantonChangeAsync(object value)
+    {
+        CantonCode = (Canton)value;
+
+        municipalities = (await MunicipalityService.GetTaxSupportingAsync())
+            .Where(m => m.Canton == CantonCode)
+            .ToList();
+
+        if (municipalities.Count > 0)
+        {
+            TaxSupportedMunicipalityModel selectedMunicipalityModel = municipalities.First();
+            BfsMunicipalityId = selectedMunicipalityModel.BfsMunicipalityNumber;
+
+            await OnSelected.InvokeAsync(selectedMunicipalityModel);
+        }
+    }
+}

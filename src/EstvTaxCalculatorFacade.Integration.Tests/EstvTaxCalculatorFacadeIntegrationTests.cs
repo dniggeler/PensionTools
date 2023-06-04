@@ -40,6 +40,7 @@ public class EstvTaxCalculatorFacadeIntegrationTests
 
 
     [Theory(DisplayName = "Income and Wealth Tax")]
+    [InlineData(2023, 800000000, 500_000, "Married", "Other", "Other")]
     [InlineData(2022, 800000000, 500_000, "Married", "Other", "Other")]
     [InlineData(2022, 800000000, 500_000, "Married", "Protestant", "Other")]
     [InlineData(2022, 800000000, 0, "Married", "Other", "Other")]
@@ -54,7 +55,7 @@ public class EstvTaxCalculatorFacadeIntegrationTests
         var result = await estvClient.CalculateIncomeAndWealthTaxAsync(
             taxLocationId, taxYear, GetPerson(wealth, civilStatusString, religiousType, religiousTypePartner));
 
-        Snapshot.Match(result, $"ESTV SimpleTax {taxLocationId}{wealth}{civilStatusString}{religiousType}{religiousTypePartner}");
+        Snapshot.Match(result, $"ESTV SimpleTax {taxYear}{taxLocationId}{wealth}{civilStatusString}{religiousType}{religiousTypePartner}");
     }
 
     [Theory(DisplayName = "Capital Benefit Tax")]

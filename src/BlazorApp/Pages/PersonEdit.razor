@@ -51,8 +51,9 @@
                 <b>@Person.Canton</b>
 
                 <div class="mt-3">Wohnort</div>
-                <MunicipalitySelector
+                <MunicipalityByCantonSelector
                     BfsMunicipalityId="Person.BfsMunicipalityId"
+                    CantonCode="Person.Canton"
                     OnSelected="HandleSetResidence"/>
 
                 <div class="mt-3">@Localizer["person.taxableincome"]</div>

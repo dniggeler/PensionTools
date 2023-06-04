@@ -45,15 +45,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 2,
-    "ZipCode": "8910",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Affoltern am Albis Obfelder",
-    "Canton": "ZH",
-    "DateOfValidity": "2021-08-09T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 3,
     "ZipCode": "8906",
     "ZipCodeAddOn": "00",
@@ -198,15 +189,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 21,
-    "ZipCode": "8452",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Adlikon b. Andelfingen",
-    "Canton": "ZH",
-    "DateOfValidity": "1994-03-18T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 22,
     "ZipCode": "8463",
     "ZipCodeAddOn": "00",
@@ -297,39 +279,12 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 30,
-    "ZipCode": "8450",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Andelfingen",
-    "Canton": "ZH",
-    "DateOfValidity": "1988-06-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 30,
-    "ZipCode": "8450",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Andelfingen Zustellung",
-    "Canton": "ZH",
-    "DateOfValidity": "2004-12-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 31,
     "ZipCode": "8444",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Henggart",
     "Canton": "ZH",
     "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 32,
-    "ZipCode": "8457",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Humlikon",
-    "Canton": "ZH",
-    "DateOfValidity": "1988-05-29T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -384,15 +339,6 @@
     "MunicipalityName": "Marthalen",
     "Canton": "ZH",
     "DateOfValidity": "1988-06-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 35,
-    "ZipCode": "8460",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Marthalen Güeterstrass",
-    "Canton": "ZH",
-    "DateOfValidity": "2019-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -560,15 +506,6 @@
   {
     "BfsCode": 56,
     "ZipCode": "8424",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Embrach Dorfstrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2018-06-25T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 56,
-    "ZipCode": "8424",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Embrach Zustellung",
     "Canton": "ZH",
@@ -677,15 +614,6 @@
   {
     "BfsCode": 62,
     "ZipCode": "8302",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Kloten Bahnhofstrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2020-09-09T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 62,
-    "ZipCode": "8302",
     "ZipCodeAddOn": "75",
     "MunicipalityName": "Kloten Kaserne",
     "Canton": "ZH",
@@ -726,15 +654,6 @@
     "MunicipalityName": "Glattbrugg",
     "Canton": "ZH",
     "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 66,
-    "ZipCode": "8152",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Glattbrugg Schaffhauserstr",
-    "Canton": "ZH",
-    "DateOfValidity": "2020-10-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -798,15 +717,6 @@
     "MunicipalityName": "Glattzentrum b. Wallisellen",
     "Canton": "ZH",
     "DateOfValidity": "1994-09-20T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 69,
-    "ZipCode": "8301",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Glattzentrum N. Wint.str.",
-    "Canton": "ZH",
-    "DateOfValidity": "2017-04-24T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -1344,7 +1254,7 @@
     "BfsCode": 117,
     "ZipCode": "8343",
     "ZipCodeAddOn": "00",
-    "MunicipalityName": "Hinwil Dist Ba",
+    "MunicipalityName": "Hinwil Zustellung Pakete",
     "Canton": "ZH",
     "DateOfValidity": "1998-11-23T00:00:00",
     "LanguageCode": 0
@@ -1379,15 +1289,6 @@
   {
     "BfsCode": 120,
     "ZipCode": "8636",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Wald ZH Poststrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2020-02-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 120,
-    "ZipCode": "8636",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Wald ZH Zustellung",
     "Canton": "ZH",
@@ -1410,24 +1311,6 @@
     "MunicipalityName": "Faltigberg",
     "Canton": "ZH",
     "DateOfValidity": "1988-05-29T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 121,
-    "ZipCode": "8620",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Wetzikon Kastellstrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2015-04-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 121,
-    "ZipCode": "8620",
-    "ZipCodeAddOn": "05",
-    "MunicipalityName": "Wetzikon Poststrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2016-09-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -1500,15 +1383,6 @@
     "MunicipalityName": "Adliswil 1 Zustellung",
     "Canton": "ZH",
     "DateOfValidity": "2003-04-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 131,
-    "ZipCode": "8134",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Adliswil Poststrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2020-02-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -1674,30 +1548,12 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 155,
-    "ZipCode": "8708",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Männedorf Zustellung",
-    "Canton": "ZH",
-    "DateOfValidity": "2003-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 156,
     "ZipCode": "8706",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Meilen",
     "Canton": "ZH",
     "DateOfValidity": "1996-03-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 156,
-    "ZipCode": "8706",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Meilen Dorfstrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2022-06-27T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -1725,6 +1581,15 @@
     "MunicipalityName": "Stäfa",
     "Canton": "ZH",
     "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 158,
+    "ZipCode": "8712",
+    "ZipCodeAddOn": "02",
+    "MunicipalityName": "Stäfa Bahnhofstrasse",
+    "Canton": "ZH",
+    "DateOfValidity": "2022-11-07T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -1828,15 +1693,6 @@
   },
   {
     "BfsCode": 176,
-    "ZipCode": "8310",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Kemptthal Kemptpark",
-    "Canton": "ZH",
-    "DateOfValidity": "2019-09-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 176,
     "ZipCode": "8312",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Winterberg ZH",
@@ -1869,15 +1725,6 @@
     "MunicipalityName": "Pfäffikon ZH",
     "Canton": "ZH",
     "DateOfValidity": "1996-08-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 177,
-    "ZipCode": "8330",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Pfäffikon ZH Bahnhofstrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2016-09-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -2034,15 +1881,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 191,
-    "ZipCode": "8600",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Dübendorf Wilstrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2017-11-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 192,
     "ZipCode": "8132",
     "ZipCodeAddOn": "00",
@@ -2076,6 +1914,15 @@
     "MunicipalityName": "Fällanden",
     "Canton": "ZH",
     "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 193,
+    "ZipCode": "8117",
+    "ZipCodeAddOn": "02",
+    "MunicipalityName": "Fällanden Wigartenstrasse",
+    "Canton": "ZH",
+    "DateOfValidity": "2023-03-13T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -2157,15 +2004,6 @@
     "MunicipalityName": "Schwerzenbach",
     "Canton": "ZH",
     "DateOfValidity": "1999-10-25T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 197,
-    "ZipCode": "8603",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Schwerzenbach Bahnstrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2018-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -2265,15 +2103,6 @@
     "MunicipalityName": "Volketswil",
     "Canton": "ZH",
     "DateOfValidity": "1988-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 199,
-    "ZipCode": "8604",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Volketswil Zentrum",
-    "Canton": "ZH",
-    "DateOfValidity": "2018-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -2400,15 +2229,6 @@
     "MunicipalityName": "Elsau",
     "Canton": "ZH",
     "DateOfValidity": "1997-04-11T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 219,
-    "ZipCode": "8352",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Elsau St. Gallerstrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2017-08-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -2724,15 +2544,6 @@
     "MunicipalityName": "Winterthur",
     "Canton": "ZH",
     "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 230,
-    "ZipCode": "8411",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Winterthur Pflanzschulstr",
-    "Canton": "ZH",
-    "DateOfValidity": "2015-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -3080,19 +2891,19 @@
   {
     "BfsCode": 250,
     "ZipCode": "8902",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "Urdorf Dist Ba",
+    "ZipCodeAddOn": "72",
+    "MunicipalityName": "Urdorf PL3",
     "Canton": "ZH",
-    "DateOfValidity": "2004-07-01T00:00:00",
+    "DateOfValidity": "2013-07-01T00:00:00",
     "LanguageCode": 0
   },
   {
     "BfsCode": 250,
     "ZipCode": "8902",
-    "ZipCodeAddOn": "72",
-    "MunicipalityName": "Urdorf PL3",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Urdorf Zustellung",
     "Canton": "ZH",
-    "DateOfValidity": "2013-07-01T00:00:00",
+    "DateOfValidity": "2004-07-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -3340,15 +3151,6 @@
   },
   {
     "BfsCode": 261,
-    "ZipCode": "8025",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Zürich Uraniastrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2016-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
     "ZipCode": "8026",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zürich Helvetiaplatz",
@@ -3376,15 +3178,6 @@
   },
   {
     "BfsCode": 261,
-    "ZipCode": "8027",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Zürich Gutenbergstrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2021-09-09T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
     "ZipCode": "8030",
     "ZipCodeAddOn": "01",
     "MunicipalityName": "Zürich",
@@ -3399,15 +3192,6 @@
     "MunicipalityName": "Zürich",
     "Canton": "ZH",
     "DateOfValidity": "1990-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
-    "ZipCode": "8031",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Zürich Limmatstrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2018-02-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -3462,6 +3246,15 @@
     "MunicipalityName": "Zürich 36 Zustellung",
     "Canton": "ZH",
     "DateOfValidity": "2020-01-08T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
+    "ZipCode": "8036",
+    "ZipCodeAddOn": "02",
+    "MunicipalityName": "Zürich Seebahnstrasse",
+    "Canton": "ZH",
+    "DateOfValidity": "2023-02-06T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -3565,6 +3358,15 @@
   },
   {
     "BfsCode": 261,
+    "ZipCode": "8045",
+    "ZipCodeAddOn": "03",
+    "MunicipalityName": "Zürich Sihlcity",
+    "Canton": "ZH",
+    "DateOfValidity": "2017-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 261,
     "ZipCode": "8046",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zürich",
@@ -3601,15 +3403,6 @@
   },
   {
     "BfsCode": 261,
-    "ZipCode": "8048",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Zürich Altstetterstrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2021-05-24T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 261,
     "ZipCode": "8049",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zürich",
@@ -3639,7 +3432,7 @@
     "BfsCode": 261,
     "ZipCode": "8050",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Zürich Dist Ba",
+    "MunicipalityName": "Zürich Oerlikon Zust Pakete",
     "Canton": "ZH",
     "DateOfValidity": "2004-07-01T00:00:00",
     "LanguageCode": 0
@@ -3906,6 +3699,42 @@
     "LanguageCode": 0
   },
   {
+    "BfsCode": 291,
+    "ZipCode": "8450",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Andelfingen",
+    "Canton": "ZH",
+    "DateOfValidity": "1988-06-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 291,
+    "ZipCode": "8450",
+    "ZipCodeAddOn": "60",
+    "MunicipalityName": "Andelfingen Zustellung",
+    "Canton": "ZH",
+    "DateOfValidity": "2004-12-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 291,
+    "ZipCode": "8452",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Adlikon b. Andelfingen",
+    "Canton": "ZH",
+    "DateOfValidity": "1994-03-18T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 291,
+    "ZipCode": "8457",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Humlikon",
+    "Canton": "ZH",
+    "DateOfValidity": "1988-05-29T00:00:00",
+    "LanguageCode": 0
+  },
+  {
     "BfsCode": 292,
     "ZipCode": "8468",
     "ZipCodeAddOn": "02",
@@ -3962,19 +3791,19 @@
   {
     "BfsCode": 293,
     "ZipCode": "8820",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "Wädenswil Dist Ba",
+    "ZipCodeAddOn": "60",
+    "MunicipalityName": "Wädenswil Zustellung",
     "Canton": "ZH",
-    "DateOfValidity": "2005-09-01T00:00:00",
+    "DateOfValidity": "2003-07-01T00:00:00",
     "LanguageCode": 0
   },
   {
     "BfsCode": 293,
     "ZipCode": "8820",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Wädenswil Zustellung",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Wädenswil Zustellung Pakete",
     "Canton": "ZH",
-    "DateOfValidity": "2003-07-01T00:00:00",
+    "DateOfValidity": "2005-09-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -4056,15 +3885,6 @@
     "MunicipalityName": "Horgen 1",
     "Canton": "ZH",
     "DateOfValidity": "1993-09-09T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 295,
-    "ZipCode": "8810",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Horgen Bahnhofstrasse",
-    "Canton": "ZH",
-    "DateOfValidity": "2020-10-24T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -4161,7 +3981,7 @@
     "BfsCode": 296,
     "ZipCode": "8325",
     "ZipCodeAddOn": "00",
-    "MunicipalityName": "Effretikon Dist Ba",
+    "MunicipalityName": "Effretikon Zust Pakete",
     "Canton": "ZH",
     "DateOfValidity": "1998-12-22T00:00:00",
     "LanguageCode": 0
@@ -4353,15 +4173,6 @@
     "MunicipalityName": "Lyss Kaserne",
     "Canton": "BE",
     "DateOfValidity": "2003-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 306,
-    "ZipCode": "3250",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Lyss Werkstrasse",
-    "Canton": "BE",
-    "DateOfValidity": "2018-08-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -4716,15 +4527,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 337,
-    "ZipCode": "4914",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Roggwil BE Dorfstrasse",
-    "Canton": "BE",
-    "DateOfValidity": "2021-03-11T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 338,
     "ZipCode": "4938",
     "ZipCodeAddOn": "00",
@@ -4767,15 +4569,6 @@
     "MunicipalityName": "Bützberg",
     "Canton": "BE",
     "DateOfValidity": "1996-09-12T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 342,
-    "ZipCode": "4922",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "Bützberg RPZ",
-    "Canton": "BE",
-    "DateOfValidity": "2021-07-28T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -4866,15 +4659,6 @@
     "MunicipalityName": "Bern 22",
     "Canton": "BE",
     "DateOfValidity": "1993-09-09T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 351,
-    "ZipCode": "3000",
-    "ZipCodeAddOn": "75",
-    "MunicipalityName": "Bern 22 Kaserne",
-    "Canton": "BE",
-    "DateOfValidity": "2003-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -5185,15 +4969,6 @@
   },
   {
     "BfsCode": 351,
-    "ZipCode": "3018",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Bern Freiburgstrasse",
-    "Canton": "BE",
-    "DateOfValidity": "2019-07-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 351,
     "ZipCode": "3019",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Bern",
@@ -5289,6 +5064,15 @@
     "MunicipalityName": "Bern PF Operations Center",
     "Canton": "BE",
     "DateOfValidity": "2006-03-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 351,
+    "ZipCode": "3040",
+    "ZipCodeAddOn": "13",
+    "MunicipalityName": "Bern BPMP",
+    "Canton": "BE",
+    "DateOfValidity": "2018-08-22T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -5625,15 +5409,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 361,
-    "ZipCode": "3052",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Zollikofen Waldstrasse",
-    "Canton": "BE",
-    "DateOfValidity": "2017-11-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 362,
     "ZipCode": "3048",
     "ZipCodeAddOn": "00",
@@ -5652,24 +5427,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 362,
-    "ZipCode": "3063",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Ittigen Talgut-Zentrum",
-    "Canton": "BE",
-    "DateOfValidity": "2020-08-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 363,
-    "ZipCode": "3071",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "Ostermundigen Distributions",
-    "Canton": "BE",
-    "DateOfValidity": "2004-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 363,
     "ZipCode": "3071",
     "ZipCodeAddOn": "01",
@@ -5685,6 +5442,15 @@
     "MunicipalityName": "Ostermundigen Sortierung",
     "Canton": "BE",
     "DateOfValidity": "2019-07-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 363,
+    "ZipCode": "3071",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Ostermundigen Zust Pakete",
+    "Canton": "BE",
+    "DateOfValidity": "2004-10-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -5816,28 +5582,10 @@
   {
     "BfsCode": 371,
     "ZipCode": "2500",
-    "ZipCodeAddOn": "11",
-    "MunicipalityName": "Biel/Bienne Bahnhof/Gare GK",
-    "Canton": "BE",
-    "DateOfValidity": "2019-07-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 371,
-    "ZipCode": "2500",
     "ZipCodeAddOn": "04",
     "MunicipalityName": "Biel/Bienne Jardin Paradis",
     "Canton": "BE",
     "DateOfValidity": "1988-12-19T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 371,
-    "ZipCode": "2500",
-    "ZipCodeAddOn": "12",
-    "MunicipalityName": "Biel/Bienne Rennweg",
-    "Canton": "BE",
-    "DateOfValidity": "2019-11-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -5898,7 +5646,7 @@
     "BfsCode": 371,
     "ZipCode": "2510",
     "ZipCodeAddOn": "00",
-    "MunicipalityName": "Biel/Bienne Dist Ba",
+    "MunicipalityName": "Biel/Bienne Zust Pakete",
     "Canton": "BE",
     "DateOfValidity": "1998-11-23T00:00:00",
     "LanguageCode": 0
@@ -6095,24 +5843,6 @@
   {
     "BfsCode": 404,
     "ZipCode": "3400",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Burgdorf Bahnhofstrasse",
-    "Canton": "BE",
-    "DateOfValidity": "2018-11-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 404,
-    "ZipCode": "3400",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "Burgdorf Dist Fil",
-    "Canton": "BE",
-    "DateOfValidity": "1999-01-14T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 404,
-    "ZipCode": "3400",
     "ZipCodeAddOn": "40",
     "MunicipalityName": "Burgdorf Filiale",
     "Canton": "BE",
@@ -6135,6 +5865,15 @@
     "MunicipalityName": "Burgdorf Zustellung",
     "Canton": "BE",
     "DateOfValidity": "1999-04-12T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 404,
+    "ZipCode": "3400",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Burgdorf Zustellung Pakete",
+    "Canton": "BE",
+    "DateOfValidity": "1999-01-14T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -6831,15 +6570,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 536,
-    "ZipCode": "3053",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Diemerswil",
-    "Canton": "BE",
-    "DateOfValidity": "1998-07-23T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 538,
     "ZipCode": "3306",
     "ZipCodeAddOn": "00",
@@ -6986,6 +6716,15 @@
   {
     "BfsCode": 546,
     "ZipCode": "3053",
+    "ZipCodeAddOn": "03",
+    "MunicipalityName": "Diemerswil",
+    "Canton": "BE",
+    "DateOfValidity": "1998-07-23T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 546,
+    "ZipCode": "3053",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Münchenbuchsee",
     "Canton": "BE",
@@ -7008,15 +6747,6 @@
     "MunicipalityName": "Urtenen-Schönbühl",
     "Canton": "BE",
     "DateOfValidity": "1996-06-10T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 551,
-    "ZipCode": "3322",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Urtenen-Schönbühl Z-Platz",
-    "Canton": "BE",
-    "DateOfValidity": "2021-01-13T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -7404,15 +7134,6 @@
     "MunicipalityName": "Interlaken",
     "Canton": "BE",
     "DateOfValidity": "1996-09-04T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 581,
-    "ZipCode": "3800",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Interlaken Bönigstrasse",
-    "Canton": "BE",
-    "DateOfValidity": "2016-05-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -7899,6 +7620,15 @@
     "MunicipalityName": "Worb",
     "Canton": "BE",
     "DateOfValidity": "1988-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 627,
+    "ZipCode": "3076",
+    "ZipCodeAddOn": "02",
+    "MunicipalityName": "Worb Bollstrasse",
+    "Canton": "BE",
+    "DateOfValidity": "1993-11-10T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -8568,15 +8298,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 743,
-    "ZipCode": "2560",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Nidau Weyermattstrasse",
-    "Canton": "BE",
-    "DateOfValidity": "2019-04-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 744,
     "ZipCode": "2552",
     "ZipCodeAddOn": "00",
@@ -8853,15 +8574,6 @@
     "MunicipalityName": "Wimmis",
     "Canton": "BE",
     "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 769,
-    "ZipCode": "3752",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Wimmis Herrenmattestr",
-    "Canton": "BE",
-    "DateOfValidity": "2020-10-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -9145,15 +8857,6 @@
   },
   {
     "BfsCode": 843,
-    "ZipCode": "3780",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Gstaad Zustellung",
-    "Canton": "BE",
-    "DateOfValidity": "2004-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 843,
     "ZipCode": "3781",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Turbach",
@@ -9294,15 +8997,6 @@
     "MunicipalityName": "Belp",
     "Canton": "BE",
     "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 861,
-    "ZipCode": "3123",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Belp Rubigenstrasse",
-    "Canton": "BE",
-    "DateOfValidity": "2022-03-28T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -9991,15 +9685,6 @@
   },
   {
     "BfsCode": 939,
-    "ZipCode": "3613",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Steffisburg alte Bernstr",
-    "Canton": "BE",
-    "DateOfValidity": "2016-07-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 939,
     "ZipCode": "3624",
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Schwendibach",
@@ -10046,17 +9731,8 @@
   {
     "BfsCode": 942,
     "ZipCode": "3600",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Thun Aarestrasse",
-    "Canton": "BE",
-    "DateOfValidity": "2019-05-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 942,
-    "ZipCode": "3600",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Thun Dist Ba",
+    "MunicipalityName": "Thun Zustellung Pakete",
     "Canton": "BE",
     "DateOfValidity": "1998-11-23T00:00:00",
     "LanguageCode": 0
@@ -10091,15 +9767,6 @@
   {
     "BfsCode": 942,
     "ZipCode": "3604",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Thun",
-    "Canton": "BE",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 942,
-    "ZipCode": "3605",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Thun",
     "Canton": "BE",
@@ -10149,15 +9816,6 @@
     "MunicipalityName": "Gwatt (Thun)",
     "Canton": "BE",
     "DateOfValidity": "1989-06-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 942,
-    "ZipCode": "3645",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Gwatt (Thun) Lohnerstrasse",
-    "Canton": "BE",
-    "DateOfValidity": "2018-07-13T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -10532,15 +10190,6 @@
   {
     "BfsCode": 979,
     "ZipCode": "3360",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Herzogenbuchsee Lagerstr",
-    "Canton": "BE",
-    "DateOfValidity": "2020-02-07T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 979,
-    "ZipCode": "3360",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Herzogenbuchsee Zustellung",
     "Canton": "BE",
@@ -10707,15 +10356,6 @@
     "MunicipalityName": "Wangen a. A. Kaserne",
     "Canton": "BE",
     "DateOfValidity": "2003-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 992,
-    "ZipCode": "3380",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Wangen a.d.A. Bahnhofallee",
-    "Canton": "BE",
-    "DateOfValidity": "2020-12-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -11025,15 +10665,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 1024,
-    "ZipCode": "6032",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Emmen Seetalstrasse",
-    "Canton": "LU",
-    "DateOfValidity": "2016-09-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 1025,
     "ZipCode": "6294",
     "ZipCodeAddOn": "00",
@@ -11130,15 +10761,6 @@
     "MunicipalityName": "Hochdorf",
     "Canton": "LU",
     "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1031,
-    "ZipCode": "6280",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Hochdorf Hauptstrasse",
-    "Canton": "LU",
-    "DateOfValidity": "2019-04-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -11253,7 +10875,7 @@
     "BfsCode": 1040,
     "ZipCode": "6023",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Rothenburg DIST BA",
+    "MunicipalityName": "Rothenburg Zust Pakete",
     "Canton": "LU",
     "DateOfValidity": "2011-05-01T00:00:00",
     "LanguageCode": 0
@@ -11289,18 +10911,9 @@
     "BfsCode": 1051,
     "ZipCode": "6043",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Adligenswil Dist Hub",
+    "MunicipalityName": "Adligenswil Zust Pakete",
     "Canton": "LU",
     "DateOfValidity": "2021-07-23T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1051,
-    "ZipCode": "6043",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Adligenswil Ebikonerstrasse",
-    "Canton": "LU",
-    "DateOfValidity": "2019-08-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -11319,15 +10932,6 @@
     "MunicipalityName": "Buchrain",
     "Canton": "LU",
     "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1052,
-    "ZipCode": "6033",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Buchrain Schiltwald",
-    "Canton": "LU",
-    "DateOfValidity": "2018-12-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -11364,15 +10968,6 @@
     "MunicipalityName": "Ebikon Mall of Switzerland",
     "Canton": "LU",
     "DateOfValidity": "2017-11-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1054,
-    "ZipCode": "6030",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Ebikon Riedmattstrasse",
-    "Canton": "LU",
-    "DateOfValidity": "2020-10-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -11445,15 +11040,6 @@
     "MunicipalityName": "Horw",
     "Canton": "LU",
     "DateOfValidity": "1996-04-10T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1058,
-    "ZipCode": "6048",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Horw Gemeindehausplatz",
-    "Canton": "LU",
-    "DateOfValidity": "2017-11-09T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -11540,10 +11126,10 @@
   {
     "BfsCode": 1059,
     "ZipCode": "6010",
-    "ZipCodeAddOn": "05",
-    "MunicipalityName": "Kriens Luzernerstrasse",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Kriens Zustellung Pakete",
     "Canton": "LU",
-    "DateOfValidity": "2017-11-01T00:00:00",
+    "DateOfValidity": "2022-11-07T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -11648,15 +11234,6 @@
   {
     "BfsCode": 1061,
     "ZipCode": "6000",
-    "ZipCodeAddOn": "17",
-    "MunicipalityName": "Luzern Altstadt",
-    "Canton": "LU",
-    "DateOfValidity": "2012-08-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1061,
-    "ZipCode": "6000",
     "ZipCodeAddOn": "75",
     "MunicipalityName": "Luzern Kaserne",
     "Canton": "LU",
@@ -11746,15 +11323,6 @@
   },
   {
     "BfsCode": 1061,
-    "ZipCode": "6003",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Luzern Hirschengraben",
-    "Canton": "LU",
-    "DateOfValidity": "2021-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1061,
     "ZipCode": "6004",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Luzern",
@@ -11769,15 +11337,6 @@
     "MunicipalityName": "Luzern",
     "Canton": "LU",
     "DateOfValidity": "1987-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1061,
-    "ZipCode": "6005",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Luzern Frohburgstrasse",
-    "Canton": "LU",
-    "DateOfValidity": "2021-11-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -11809,15 +11368,6 @@
   },
   {
     "BfsCode": 1061,
-    "ZipCode": "6014",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Luzern Littau Fanghöfli",
-    "Canton": "LU",
-    "DateOfValidity": "2017-12-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1061,
     "ZipCode": "6015",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Luzern",
@@ -11841,15 +11391,6 @@
     "MunicipalityName": "Malters",
     "Canton": "LU",
     "DateOfValidity": "1999-12-09T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1062,
-    "ZipCode": "6102",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Malters Luzernstrasse",
-    "Canton": "LU",
-    "DateOfValidity": "2020-08-27T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -12024,15 +11565,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 1082,
-    "ZipCode": "6233",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Büron Industriestrasse",
-    "Canton": "LU",
-    "DateOfValidity": "2018-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 1083,
     "ZipCode": "6018",
     "ZipCodeAddOn": "00",
@@ -12120,15 +11652,6 @@
     "MunicipalityName": "Hellbühl",
     "Canton": "LU",
     "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1093,
-    "ZipCode": "6203",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Sempach Bahnhof GK",
-    "Canton": "LU",
-    "DateOfValidity": "2014-04-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -12264,24 +11787,6 @@
     "MunicipalityName": "Sursee",
     "Canton": "LU",
     "DateOfValidity": "1995-12-07T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1103,
-    "ZipCode": "6210",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Sursee Schellenrain",
-    "Canton": "LU",
-    "DateOfValidity": "2019-12-02T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1103,
-    "ZipCode": "6210",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Sursee Wassergrabe",
-    "Canton": "LU",
-    "DateOfValidity": "2022-03-16T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -12575,15 +12080,6 @@
   {
     "BfsCode": 1140,
     "ZipCode": "6260",
-    "ZipCodeAddOn": "05",
-    "MunicipalityName": "Mehlsecken Dörflimatte",
-    "Canton": "LU",
-    "DateOfValidity": "2020-08-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1140,
-    "ZipCode": "6260",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Reiden",
     "Canton": "LU",
@@ -12672,15 +12168,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 1146,
-    "ZipCode": "6242",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Wauwil Dorfstrasse",
-    "Canton": "LU",
-    "DateOfValidity": "2015-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 1147,
     "ZipCode": "4806",
     "ZipCodeAddOn": "00",
@@ -12737,28 +12224,19 @@
   {
     "BfsCode": 1151,
     "ZipCode": "6130",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "Willisau Dist Hub",
-    "Canton": "LU",
-    "DateOfValidity": "2019-02-17T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1151,
-    "ZipCode": "6130",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Willisau Rotmatt",
-    "Canton": "LU",
-    "DateOfValidity": "2014-11-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1151,
-    "ZipCode": "6130",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Willisau Zustellung",
     "Canton": "LU",
     "DateOfValidity": "2003-09-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 1151,
+    "ZipCode": "6130",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Willisau Zustellung Pakete",
+    "Canton": "LU",
+    "DateOfValidity": "2019-02-17T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -13070,15 +12548,6 @@
   {
     "BfsCode": 1301,
     "ZipCode": "8840",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Einsiedeln Bahnhofplatz",
-    "Canton": "SZ",
-    "DateOfValidity": "2021-04-13T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1301,
-    "ZipCode": "8840",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Einsiedeln Zustellung",
     "Canton": "SZ",
@@ -13205,15 +12674,6 @@
   {
     "BfsCode": 1322,
     "ZipCode": "8808",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Pfäffikon SZ Poststrasse",
-    "Canton": "SZ",
-    "DateOfValidity": "2022-01-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1322,
-    "ZipCode": "8808",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Pfäffikon SZ Zustellung",
     "Canton": "SZ",
@@ -13251,18 +12711,9 @@
     "BfsCode": 1331,
     "ZipCode": "6403",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Küssnacht a.R. Dist Hub",
+    "MunicipalityName": "Küssnacht a. R. Zust Pakete",
     "Canton": "SZ",
     "DateOfValidity": "2016-09-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1331,
-    "ZipCode": "6403",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Küssnacht a.R. Zugstrasse",
-    "Canton": "SZ",
-    "DateOfValidity": "2017-11-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -13727,15 +13178,6 @@
   {
     "BfsCode": 1401,
     "ZipCode": "6055",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Alpnach Dorf Brünigstrasse",
-    "Canton": "OW",
-    "DateOfValidity": "2019-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1401,
-    "ZipCode": "6055",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Alpnach Zustellung",
     "Canton": "OW",
@@ -14078,15 +13520,6 @@
   {
     "BfsCode": 1509,
     "ZipCode": "6370",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Stans Bahnhofplatz",
-    "Canton": "NW",
-    "DateOfValidity": "2017-12-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1509,
-    "ZipCode": "6370",
     "ZipCodeAddOn": "75",
     "MunicipalityName": "Stans Kaserne",
     "Canton": "NW",
@@ -14232,7 +13665,7 @@
     "BfsCode": 1630,
     "ZipCode": "8867",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Niederurnen Dist Hub",
+    "MunicipalityName": "Niederurnen Zust Pakete",
     "Canton": "GL",
     "DateOfValidity": "1999-04-06T00:00:00",
     "LanguageCode": 0
@@ -14509,15 +13942,6 @@
   },
   {
     "BfsCode": 1701,
-    "ZipCode": "6340",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Baar Dorfstrasse",
-    "Canton": "ZG",
-    "DateOfValidity": "2019-02-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1701,
     "ZipCode": "6341",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Baar",
@@ -14538,7 +13962,7 @@
     "BfsCode": 1701,
     "ZipCode": "6346",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Baar 3 Dist Ba",
+    "MunicipalityName": "Baar 3 Zustellung Pakete",
     "Canton": "ZG",
     "DateOfValidity": "2006-08-01T00:00:00",
     "LanguageCode": 0
@@ -14550,15 +13974,6 @@
     "MunicipalityName": "Cham",
     "Canton": "ZG",
     "DateOfValidity": "1996-03-04T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 1702,
-    "ZipCode": "6330",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Cham Hinterbergstrasse",
-    "Canton": "ZG",
-    "DateOfValidity": "2017-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -14871,7 +14286,7 @@
     "BfsCode": 2016,
     "ZipCode": "1532",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Fétigny Dist Fil",
+    "MunicipalityName": "Fétigny Distribution colis",
     "Canton": "FR",
     "DateOfValidity": "2008-10-01T00:00:00",
     "LanguageCode": 0
@@ -15417,15 +14832,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 2096,
-    "ZipCode": "1680",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Romont FR Rte Anc. Ferme",
-    "Canton": "FR",
-    "DateOfValidity": "2022-08-22T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 2097,
     "ZipCode": "1673",
     "ZipCodeAddOn": "02",
@@ -15864,15 +15270,6 @@
     "MunicipalityName": "Bulle Jardins de la Pâla L",
     "Canton": "FR",
     "DateOfValidity": "2020-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2125,
-    "ZipCode": "1630",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Bulle rue du Moulin",
-    "Canton": "FR",
-    "DateOfValidity": "2019-07-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -16346,28 +15743,10 @@
   {
     "BfsCode": 2196,
     "ZipCode": "1700",
-    "ZipCodeAddOn": "75",
-    "MunicipalityName": "Fribourg Caserne",
-    "Canton": "FR",
-    "DateOfValidity": "2003-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2196,
-    "ZipCode": "1700",
     "ZipCodeAddOn": "48",
     "MunicipalityName": "Fribourg PostFinance Fil.",
     "Canton": "FR",
     "DateOfValidity": "2007-03-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2196,
-    "ZipCode": "1700",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Fribourg Route de la Glâne",
-    "Canton": "FR",
-    "DateOfValidity": "2022-09-12T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -16446,7 +15825,7 @@
     "BfsCode": 2197,
     "ZipCode": "1762",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Givisiez Dist Ba",
+    "MunicipalityName": "Givisiez Distribution",
     "Canton": "FR",
     "DateOfValidity": "1998-11-23T00:00:00",
     "LanguageCode": 0
@@ -16494,15 +15873,6 @@
     "MunicipalityName": "Marly Grand Pré",
     "Canton": "FR",
     "DateOfValidity": "1996-09-05T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2206,
-    "ZipCode": "1723",
-    "ZipCodeAddOn": "05",
-    "MunicipalityName": "Marly Route du Châtelet",
-    "Canton": "FR",
-    "DateOfValidity": "2021-06-10T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -17678,19 +17048,19 @@
   {
     "BfsCode": 2402,
     "ZipCode": "4620",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "Härkingen Dist Ba",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Härkingen Paketzentrum",
     "Canton": "SO",
-    "DateOfValidity": "1998-11-23T00:00:00",
+    "DateOfValidity": "1998-10-30T00:00:00",
     "LanguageCode": 0
   },
   {
     "BfsCode": 2402,
     "ZipCode": "4620",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Härkingen Paketzentrum",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Härkingen Zustellung",
     "Canton": "SO",
-    "DateOfValidity": "1998-10-30T00:00:00",
+    "DateOfValidity": "1998-11-23T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -17808,15 +17178,6 @@
     "MunicipalityName": "Oensingen Hub SecurePost",
     "Canton": "SO",
     "DateOfValidity": "2007-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2407,
-    "ZipCode": "4702",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Oensingen Solothurnstrasse",
-    "Canton": "SO",
-    "DateOfValidity": "2018-07-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -18594,15 +17955,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 2534,
-    "ZipCode": "4528",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Zuchwil Hauptstrasse",
-    "Canton": "SO",
-    "DateOfValidity": "2020-05-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 2535,
     "ZipCode": "4558",
     "ZipCodeAddOn": "02",
@@ -18684,6 +18036,15 @@
     "LanguageCode": 0
   },
   {
+    "BfsCode": 2543,
+    "ZipCode": "2544",
+    "ZipCodeAddOn": "60",
+    "MunicipalityName": "Bettlach Zustellung",
+    "Canton": "SO",
+    "DateOfValidity": "2022-11-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
     "BfsCode": 2544,
     "ZipCode": "4532",
     "ZipCodeAddOn": "00",
@@ -18722,28 +18083,10 @@
   {
     "BfsCode": 2546,
     "ZipCode": "2540",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Grenchen Maienstrasse",
-    "Canton": "SO",
-    "DateOfValidity": "2022-05-23T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2546,
-    "ZipCode": "2540",
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Grenchen Schmelzi",
     "Canton": "SO",
     "DateOfValidity": "1996-09-12T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2546,
-    "ZipCode": "2540",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Grenchen Zustellung",
-    "Canton": "SO",
-    "DateOfValidity": "2002-05-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -18983,15 +18326,6 @@
   {
     "BfsCode": 2581,
     "ZipCode": "4600",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Olten Bahnhofstrasse",
-    "Canton": "SO",
-    "DateOfValidity": "2020-08-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2581,
-    "ZipCode": "4600",
     "ZipCodeAddOn": "45",
     "MunicipalityName": "Olten Personal",
     "Canton": "SO",
@@ -19144,15 +18478,6 @@
   },
   {
     "BfsCode": 2601,
-    "ZipCode": "4503",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Solothurn Allmendstrasse",
-    "Canton": "SO",
-    "DateOfValidity": "2021-08-19T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2601,
     "ZipCode": "4509",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Solothurn",
@@ -19298,19 +18623,19 @@
   {
     "BfsCode": 2701,
     "ZipCode": "4000",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "Basel Dist Ba",
+    "ZipCodeAddOn": "76",
+    "MunicipalityName": "Basel Postauto Nordwestschw",
     "Canton": "BS",
-    "DateOfValidity": "1998-11-23T00:00:00",
+    "DateOfValidity": "1996-03-14T00:00:00",
     "LanguageCode": 0
   },
   {
     "BfsCode": 2701,
     "ZipCode": "4000",
-    "ZipCodeAddOn": "76",
-    "MunicipalityName": "Basel Postauto Nordwestschw",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Basel Zustellung Pakete",
     "Canton": "BS",
-    "DateOfValidity": "1996-03-14T00:00:00",
+    "DateOfValidity": "1998-11-23T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -19335,7 +18660,7 @@
     "BfsCode": 2701,
     "ZipCode": "4001",
     "ZipCodeAddOn": "03",
-    "MunicipalityName": "Basel Rüdengasse",
+    "MunicipalityName": "Basel Rümelinsplatz",
     "Canton": "BS",
     "DateOfValidity": "2021-11-15T00:00:00",
     "LanguageCode": 0
@@ -19353,7 +18678,7 @@
     "BfsCode": 2701,
     "ZipCode": "4002",
     "ZipCodeAddOn": "00",
-    "MunicipalityName": "Basel 2 Annahme",
+    "MunicipalityName": "Basel Bahnhof",
     "Canton": "BS",
     "DateOfValidity": "2011-03-01T00:00:00",
     "LanguageCode": 0
@@ -19410,15 +18735,6 @@
     "MunicipalityName": "Basel",
     "Canton": "BS",
     "DateOfValidity": "1993-11-10T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
-    "ZipCode": "4009",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Basel Ahornstrasse",
-    "Canton": "BS",
-    "DateOfValidity": "2021-08-09T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -19702,15 +19018,6 @@
   },
   {
     "BfsCode": 2701,
-    "ZipCode": "4057",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Basel Hochbergerstrasse",
-    "Canton": "BS",
-    "DateOfValidity": "2021-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2701,
     "ZipCode": "4058",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Basel",
@@ -19838,15 +19145,6 @@
   {
     "BfsCode": 2703,
     "ZipCode": "4125",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Riehen Bahnhofstrasse",
-    "Canton": "BS",
-    "DateOfValidity": "2021-07-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2703,
-    "ZipCode": "4125",
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Riehen Rauracher",
     "Canton": "BS",
@@ -19860,15 +19158,6 @@
     "MunicipalityName": "Aesch BL",
     "Canton": "BL",
     "DateOfValidity": "1997-08-18T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2761,
-    "ZipCode": "4147",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Aesch BL Hauptstrasse",
-    "Canton": "BL",
-    "DateOfValidity": "2019-09-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -19887,15 +19176,6 @@
     "MunicipalityName": "Allschwil 1",
     "Canton": "BL",
     "DateOfValidity": "1993-12-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2762,
-    "ZipCode": "4123",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Allschwil Baslerstrasse",
-    "Canton": "BL",
-    "DateOfValidity": "2019-12-09T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -19941,15 +19221,6 @@
     "MunicipalityName": "Arlesheim Postlogistics Hub",
     "Canton": "BL",
     "DateOfValidity": "2012-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2763,
-    "ZipCode": "4144",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Arlesheim Postplatz",
-    "Canton": "BL",
-    "DateOfValidity": "2018-11-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -20004,15 +19275,6 @@
     "MunicipalityName": "Birsfelden",
     "Canton": "BL",
     "DateOfValidity": "1993-12-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2766,
-    "ZipCode": "4127",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Birsfelden Hauptstrasse",
-    "Canton": "BL",
-    "DateOfValidity": "2018-11-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -20079,24 +19341,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 2769,
-    "ZipCode": "4142",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Münchenstein Stöckackerstr",
-    "Canton": "BL",
-    "DateOfValidity": "2021-08-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2769,
-    "ZipCode": "4142",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Münchenstein Zollweiden",
-    "Canton": "BL",
-    "DateOfValidity": "1993-12-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 2770,
     "ZipCode": "4132",
     "ZipCodeAddOn": "00",
@@ -20153,15 +19397,6 @@
   {
     "BfsCode": 2771,
     "ZipCode": "4104",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Oberwil BL Konsumstrasse",
-    "Canton": "BL",
-    "DateOfValidity": "2021-08-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2771,
-    "ZipCode": "4104",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Oberwil BL Zustellung",
     "Canton": "BL",
@@ -20193,15 +19428,6 @@
     "MunicipalityName": "Reinach BL 1",
     "Canton": "BL",
     "DateOfValidity": "1993-12-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2773,
-    "ZipCode": "4153",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Reinach BL Austrasse",
-    "Canton": "BL",
-    "DateOfValidity": "2019-09-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -20448,15 +19674,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 2828,
-    "ZipCode": "4415",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Lausen Grammontstrasse",
-    "Canton": "BL",
-    "DateOfValidity": "2020-10-05T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 2829,
     "ZipCode": "4410",
     "ZipCodeAddOn": "00",
@@ -20468,19 +19685,19 @@
   {
     "BfsCode": 2829,
     "ZipCode": "4410",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "Liestal Dist Ba",
+    "ZipCodeAddOn": "75",
+    "MunicipalityName": "Liestal Kaserne",
     "Canton": "BL",
-    "DateOfValidity": "1999-04-06T00:00:00",
+    "DateOfValidity": "2003-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
     "BfsCode": 2829,
     "ZipCode": "4410",
-    "ZipCodeAddOn": "75",
-    "MunicipalityName": "Liestal Kaserne",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Liestal Zustellung",
     "Canton": "BL",
-    "DateOfValidity": "2003-01-01T00:00:00",
+    "DateOfValidity": "1999-04-06T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -20522,24 +19739,6 @@
   {
     "BfsCode": 2831,
     "ZipCode": "4133",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Pratteln Bahnhofstrasse",
-    "Canton": "BL",
-    "DateOfValidity": "2020-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2831,
-    "ZipCode": "4133",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Pratteln Hohenrainstrasse",
-    "Canton": "BL",
-    "DateOfValidity": "2022-08-22T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2831,
-    "ZipCode": "4133",
     "ZipCodeAddOn": "72",
     "MunicipalityName": "Pratteln PL3",
     "Canton": "BL",
@@ -20549,19 +19748,19 @@
   {
     "BfsCode": 2831,
     "ZipCode": "4133",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "Pratteln RPZ",
+    "ZipCodeAddOn": "89",
+    "MunicipalityName": "Pratteln SPI Logistics",
     "Canton": "BL",
-    "DateOfValidity": "2020-05-28T00:00:00",
+    "DateOfValidity": "2007-09-01T00:00:00",
     "LanguageCode": 0
   },
   {
     "BfsCode": 2831,
     "ZipCode": "4133",
-    "ZipCodeAddOn": "89",
-    "MunicipalityName": "Pratteln SPI Logistics",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Pratteln Zustellung",
     "Canton": "BL",
-    "DateOfValidity": "2007-09-01T00:00:00",
+    "DateOfValidity": "2020-05-28T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -20805,15 +20004,6 @@
     "MunicipalityName": "Sissach",
     "Canton": "BL",
     "DateOfValidity": "1996-08-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2861,
-    "ZipCode": "4450",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Sissach Postgasse",
-    "Canton": "BL",
-    "DateOfValidity": "2018-02-12T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -21213,15 +20403,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 2937,
-    "ZipCode": "8212",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Neuhausen Rundbuck",
-    "Canton": "SH",
-    "DateOfValidity": "2011-11-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 2938,
     "ZipCode": "8455",
     "ZipCodeAddOn": "00",
@@ -21333,7 +20514,7 @@
     "BfsCode": 2939,
     "ZipCode": "8210",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Schaffhausen Dist Ba",
+    "MunicipalityName": "Schaffhausen Zust Pakete",
     "Canton": "SH",
     "DateOfValidity": "2001-07-01T00:00:00",
     "LanguageCode": 0
@@ -21444,15 +20625,6 @@
     "MunicipalityName": "Hallau",
     "Canton": "SH",
     "DateOfValidity": "1997-01-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 2971,
-    "ZipCode": "8215",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Hallau Neunkircherstrasse",
-    "Canton": "SH",
-    "DateOfValidity": "2021-08-19T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -21755,15 +20927,6 @@
   {
     "BfsCode": 3037,
     "ZipCode": "9428",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Platz AR",
-    "Canton": "AR",
-    "DateOfValidity": "1996-06-14T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3037,
-    "ZipCode": "9428",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Walzenhausen",
     "Canton": "AR",
@@ -21980,19 +21143,19 @@
   {
     "BfsCode": 3203,
     "ZipCode": "9000",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "St. Gallen Dist Ba",
+    "ZipCodeAddOn": "75",
+    "MunicipalityName": "St. Gallen Kaserne",
     "Canton": "SG",
-    "DateOfValidity": "1998-11-23T00:00:00",
+    "DateOfValidity": "2003-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
     "BfsCode": 3203,
     "ZipCode": "9000",
-    "ZipCodeAddOn": "75",
-    "MunicipalityName": "St. Gallen Kaserne",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "St. Gallen Zust Pakete",
     "Canton": "SG",
-    "DateOfValidity": "2003-01-01T00:00:00",
+    "DateOfValidity": "1998-11-23T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -22358,19 +21521,19 @@
   {
     "BfsCode": 3233,
     "ZipCode": "9442",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "Berneck Dist Ba",
+    "ZipCodeAddOn": "60",
+    "MunicipalityName": "Berneck Zustellung",
     "Canton": "SG",
-    "DateOfValidity": "1998-11-23T00:00:00",
+    "DateOfValidity": "2015-09-01T00:00:00",
     "LanguageCode": 0
   },
   {
     "BfsCode": 3233,
     "ZipCode": "9442",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Berneck Zustellung",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Berneck Zustellung Pakete",
     "Canton": "SG",
-    "DateOfValidity": "2015-09-01T00:00:00",
+    "DateOfValidity": "1998-11-23T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -22429,15 +21592,6 @@
   },
   {
     "BfsCode": 3237,
-    "ZipCode": "9423",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Altenrhein Dorfstrasse",
-    "Canton": "SG",
-    "DateOfValidity": "2015-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3237,
     "ZipCode": "9425",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Thal",
@@ -22452,15 +21606,6 @@
     "MunicipalityName": "Widnau",
     "Canton": "SG",
     "DateOfValidity": "1996-08-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3238,
-    "ZipCode": "9443",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Widnau Industriestrasse",
-    "Canton": "SG",
-    "DateOfValidity": "2017-03-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -22590,15 +21735,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 3256,
-    "ZipCode": "9464",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Rüthi (Rheintal) Staatstr",
-    "Canton": "SG",
-    "DateOfValidity": "2015-06-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 3271,
     "ZipCode": "9470",
     "ZipCodeAddOn": "00",
@@ -22677,15 +21813,6 @@
     "MunicipalityName": "Grabs",
     "Canton": "SG",
     "DateOfValidity": "1999-01-27T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3273,
-    "ZipCode": "9472",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Grabs Staatsstrasse",
-    "Canton": "SG",
-    "DateOfValidity": "2020-08-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -23105,6 +22232,15 @@
   {
     "BfsCode": 3296,
     "ZipCode": "7320",
+    "ZipCodeAddOn": "02",
+    "MunicipalityName": "Sargans Langgrabenstrasse",
+    "Canton": "SG",
+    "DateOfValidity": "2022-12-05T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3296,
+    "ZipCode": "7320",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Sargans Zustellung",
     "Canton": "SG",
@@ -23267,15 +22403,6 @@
   {
     "BfsCode": 3339,
     "ZipCode": "8730",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Uznach Zürcherstrasse",
-    "Canton": "SG",
-    "DateOfValidity": "2017-06-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3339,
-    "ZipCode": "8730",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Uznach Zustellung",
     "Canton": "SG",
@@ -23325,15 +22452,6 @@
     "MunicipalityName": "Jona",
     "Canton": "SG",
     "DateOfValidity": "1996-06-10T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3340,
-    "ZipCode": "8645",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Jona Buech Gewerbe",
-    "Canton": "SG",
-    "DateOfValidity": "2011-02-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -23553,111 +22671,12 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 3372,
-    "ZipCode": "9633",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Bächli (Hemberg)",
-    "Canton": "SG",
-    "DateOfValidity": "1998-12-14T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3372,
-    "ZipCode": "9633",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Hemberg",
-    "Canton": "SG",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 3374,
     "ZipCode": "9620",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Lichtensteig",
     "Canton": "SG",
     "DateOfValidity": "1996-03-07T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3375,
-    "ZipCode": "9126",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Necker",
-    "Canton": "SG",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3375,
-    "ZipCode": "9621",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Oberhelfenschwil",
-    "Canton": "SG",
-    "DateOfValidity": "1991-10-25T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3378,
-    "ZipCode": "9114",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Hoffeld",
-    "Canton": "SG",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3378,
-    "ZipCode": "9115",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Dicken",
-    "Canton": "SG",
-    "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3378,
-    "ZipCode": "9122",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Ebersol",
-    "Canton": "SG",
-    "DateOfValidity": "1989-09-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3378,
-    "ZipCode": "9122",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Mogelsberg",
-    "Canton": "SG",
-    "DateOfValidity": "1989-09-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3378,
-    "ZipCode": "9123",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Nassen",
-    "Canton": "SG",
-    "DateOfValidity": "2000-06-30T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3378,
-    "ZipCode": "9125",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Brunnadern",
-    "Canton": "SG",
-    "DateOfValidity": "1991-03-19T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3378,
-    "ZipCode": "9127",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "St. Peterzell",
-    "Canton": "SG",
-    "DateOfValidity": "1999-10-21T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -23847,6 +22866,105 @@
     "MunicipalityName": "Dietfurt",
     "Canton": "SG",
     "DateOfValidity": "1999-12-22T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3396,
+    "ZipCode": "9114",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Hoffeld",
+    "Canton": "SG",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3396,
+    "ZipCode": "9115",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Dicken",
+    "Canton": "SG",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3396,
+    "ZipCode": "9122",
+    "ZipCodeAddOn": "02",
+    "MunicipalityName": "Ebersol",
+    "Canton": "SG",
+    "DateOfValidity": "1989-09-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3396,
+    "ZipCode": "9122",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Mogelsberg",
+    "Canton": "SG",
+    "DateOfValidity": "1989-09-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3396,
+    "ZipCode": "9123",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Nassen",
+    "Canton": "SG",
+    "DateOfValidity": "2000-06-30T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3396,
+    "ZipCode": "9125",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Brunnadern",
+    "Canton": "SG",
+    "DateOfValidity": "1991-03-19T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3396,
+    "ZipCode": "9126",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Necker",
+    "Canton": "SG",
+    "DateOfValidity": "1986-05-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3396,
+    "ZipCode": "9127",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "St. Peterzell",
+    "Canton": "SG",
+    "DateOfValidity": "1999-10-21T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3396,
+    "ZipCode": "9621",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Oberhelfenschwil",
+    "Canton": "SG",
+    "DateOfValidity": "1991-10-25T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3396,
+    "ZipCode": "9633",
+    "ZipCodeAddOn": "02",
+    "MunicipalityName": "Bächli (Hemberg)",
+    "Canton": "SG",
+    "DateOfValidity": "1998-12-14T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3396,
+    "ZipCode": "9633",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Hemberg",
+    "Canton": "SG",
+    "DateOfValidity": "1986-05-21T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -24086,15 +23204,6 @@
   {
     "BfsCode": 3424,
     "ZipCode": "9245",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Oberbüren Unterdorf",
-    "Canton": "SG",
-    "DateOfValidity": "2021-08-19T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3424,
-    "ZipCode": "9245",
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Sonnental",
     "Canton": "SG",
@@ -24120,15 +23229,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 3426,
-    "ZipCode": "9524",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Zuzwil SG Gewerbestrasse",
-    "Canton": "SG",
-    "DateOfValidity": "2015-10-19T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 3427,
     "ZipCode": "9500",
     "ZipCodeAddOn": "00",
@@ -24144,15 +23244,6 @@
     "MunicipalityName": "Wil SG 1",
     "Canton": "SG",
     "DateOfValidity": "1996-03-07T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3427,
-    "ZipCode": "9500",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Wil SG Hubstrasse",
-    "Canton": "SG",
-    "DateOfValidity": "2019-04-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -24270,6 +23361,15 @@
     "MunicipalityName": "Gossau SG Mettendorf",
     "Canton": "SG",
     "DateOfValidity": "1997-02-24T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 3443,
+    "ZipCode": "9200",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Gossau SG Zustellung Pakete",
+    "Canton": "SG",
+    "DateOfValidity": "2023-02-06T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -26282,15 +25382,6 @@
   {
     "BfsCode": 3851,
     "ZipCode": "7270",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Davos Platz Talstrasse",
-    "Canton": "GR",
-    "DateOfValidity": "2021-07-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 3851,
-    "ZipCode": "7270",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Davos Zustellung",
     "Canton": "GR",
@@ -26777,8 +25868,8 @@
   {
     "BfsCode": 3946,
     "ZipCode": "7200",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "Untervaz RPZ",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Untervaz Sortierung",
     "Canton": "GR",
     "DateOfValidity": "2019-06-03T00:00:00",
     "LanguageCode": 0
@@ -26786,8 +25877,8 @@
   {
     "BfsCode": 3946,
     "ZipCode": "7200",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Untervaz Sortierung",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Untervaz Zustellung",
     "Canton": "GR",
     "DateOfValidity": "2019-06-03T00:00:00",
     "LanguageCode": 0
@@ -27272,15 +26363,6 @@
   {
     "BfsCode": 4001,
     "ZipCode": "5000",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Aarau 1 Zustellung",
-    "Canton": "AG",
-    "DateOfValidity": "1999-03-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4001,
-    "ZipCode": "5000",
     "ZipCodeAddOn": "04",
     "MunicipalityName": "Aarau Altstadt",
     "Canton": "AG",
@@ -27334,15 +26416,6 @@
   },
   {
     "BfsCode": 4001,
-    "ZipCode": "5004",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Aarau Tellistrasse",
-    "Canton": "AG",
-    "DateOfValidity": "2015-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4001,
     "ZipCode": "5032",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Aarau Rohr",
@@ -27380,8 +26453,17 @@
   {
     "BfsCode": 4003,
     "ZipCode": "5033",
+    "ZipCodeAddOn": "60",
+    "MunicipalityName": "Buchs AG Zustellung",
+    "Canton": "AG",
+    "DateOfValidity": "2003-10-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 4003,
+    "ZipCode": "5033",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Buchs AG RPZ",
+    "MunicipalityName": "Buchs AG Zustellung Pakete",
     "Canton": "AG",
     "DateOfValidity": "2021-09-01T00:00:00",
     "LanguageCode": 0
@@ -27596,15 +26678,6 @@
   {
     "BfsCode": 4021,
     "ZipCode": "5405",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Baden Täfern Gewerbe",
-    "Canton": "AG",
-    "DateOfValidity": "2011-02-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4021,
-    "ZipCode": "5405",
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Dättwil AG",
     "Canton": "AG",
@@ -27731,15 +26804,6 @@
   {
     "BfsCode": 4032,
     "ZipCode": "5506",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "Mägenwil Dist Ba",
-    "Canton": "AG",
-    "DateOfValidity": "2009-05-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4032,
-    "ZipCode": "5506",
     "ZipCodeAddOn": "71",
     "MunicipalityName": "Mägenwil GKA",
     "Canton": "AG",
@@ -27771,6 +26835,15 @@
     "MunicipalityName": "Mägenwil PL3i",
     "Canton": "AG",
     "DateOfValidity": "2013-07-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 4032,
+    "ZipCode": "5506",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Mägenwil Zustellung Pakete",
+    "Canton": "AG",
+    "DateOfValidity": "2009-05-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -27963,15 +27036,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 4045,
-    "ZipCode": "5430",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Wettingen Seminarstrasse",
-    "Canton": "AG",
-    "DateOfValidity": "2020-01-11T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 4046,
     "ZipCode": "5512",
     "ZipCodeAddOn": "00",
@@ -27987,15 +27051,6 @@
     "MunicipalityName": "Würenlingen",
     "Canton": "AG",
     "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4047,
-    "ZipCode": "5303",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Würenlingen Dorfstrasse",
-    "Canton": "AG",
-    "DateOfValidity": "2018-08-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -28460,15 +27515,6 @@
   {
     "BfsCode": 4095,
     "ZipCode": "5200",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Brugg AG Bahnhofstrasse",
-    "Canton": "AG",
-    "DateOfValidity": "2018-08-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4095,
-    "ZipCode": "5200",
     "ZipCodeAddOn": "75",
     "MunicipalityName": "Brugg AG Kaserne",
     "Canton": "AG",
@@ -28701,15 +27747,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 4133,
-    "ZipCode": "5736",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Burg AG",
-    "Canton": "AG",
-    "DateOfValidity": "2001-09-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 4134,
     "ZipCode": "5724",
     "ZipCodeAddOn": "00",
@@ -28756,20 +27793,20 @@
   },
   {
     "BfsCode": 4139,
-    "ZipCode": "5737",
+    "ZipCode": "5736",
     "ZipCodeAddOn": "00",
-    "MunicipalityName": "Menziken",
+    "MunicipalityName": "Burg AG",
     "Canton": "AG",
-    "DateOfValidity": "1995-12-07T00:00:00",
+    "DateOfValidity": "2001-09-06T00:00:00",
     "LanguageCode": 0
   },
   {
     "BfsCode": 4139,
     "ZipCode": "5737",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Menziken Gässli",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Menziken",
     "Canton": "AG",
-    "DateOfValidity": "2022-10-17T00:00:00",
+    "DateOfValidity": "1995-12-07T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -28788,15 +27825,6 @@
     "MunicipalityName": "Reinach AG",
     "Canton": "AG",
     "DateOfValidity": "1995-12-07T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4141,
-    "ZipCode": "5734",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Reinach AG Postplatz",
-    "Canton": "AG",
-    "DateOfValidity": "2017-11-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -28910,15 +27938,6 @@
   {
     "BfsCode": 4163,
     "ZipCode": "5070",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Frick Widenplatz",
-    "Canton": "AG",
-    "DateOfValidity": "2019-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4163,
-    "ZipCode": "5070",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Frick Zustellung",
     "Canton": "AG",
@@ -28939,15 +27958,6 @@
     "ZipCode": "5073",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Gipf-Oberfrick",
-    "Canton": "AG",
-    "DateOfValidity": "1995-12-07T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4166,
-    "ZipCode": "5027",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Herznach",
     "Canton": "AG",
     "DateOfValidity": "1995-12-07T00:00:00",
     "LanguageCode": 0
@@ -29040,15 +28050,6 @@
     "MunicipalityName": "Sisseln AG",
     "Canton": "AG",
     "DateOfValidity": "1995-12-07T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4179,
-    "ZipCode": "5028",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Ueken",
-    "Canton": "AG",
-    "DateOfValidity": "1995-12-18T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29160,6 +28161,24 @@
     "LanguageCode": 0
   },
   {
+    "BfsCode": 4186,
+    "ZipCode": "5027",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Herznach",
+    "Canton": "AG",
+    "DateOfValidity": "1995-12-07T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 4186,
+    "ZipCode": "5028",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Ueken",
+    "Canton": "AG",
+    "DateOfValidity": "1995-12-18T00:00:00",
+    "LanguageCode": 0
+  },
+  {
     "BfsCode": 4191,
     "ZipCode": "5600",
     "ZipCodeAddOn": "03",
@@ -29223,15 +28242,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 4196,
-    "ZipCode": "5615",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Fahrwangen Hintergasse",
-    "Canton": "AG",
-    "DateOfValidity": "2020-08-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 4197,
     "ZipCode": "5705",
     "ZipCodeAddOn": "00",
@@ -29283,15 +28293,6 @@
     "MunicipalityName": "Lenzburg 1",
     "Canton": "AG",
     "DateOfValidity": "1996-08-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4201,
-    "ZipCode": "5600",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Lenzburg Murackerstrasse",
-    "Canton": "AG",
-    "DateOfValidity": "2019-09-09T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29349,15 +28350,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 4203,
-    "ZipCode": "5103",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Wildegg Poststrasse",
-    "Canton": "AG",
-    "DateOfValidity": "2021-03-05T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 4204,
     "ZipCode": "5702",
     "ZipCodeAddOn": "00",
@@ -29391,6 +28383,15 @@
     "MunicipalityName": "Schafisheim",
     "Canton": "AG",
     "DateOfValidity": "1996-08-06T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 4207,
+    "ZipCode": "5503",
+    "ZipCodeAddOn": "02",
+    "MunicipalityName": "Schafisheim Coop Verteilz.",
+    "Canton": "AG",
+    "DateOfValidity": "2022-11-07T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29580,15 +28581,6 @@
     "MunicipalityName": "Muri AG",
     "Canton": "AG",
     "DateOfValidity": "1995-12-07T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4236,
-    "ZipCode": "5630",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Muri AG Seetalstrasse",
-    "Canton": "AG",
-    "DateOfValidity": "2019-12-02T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29787,6 +28779,15 @@
     "MunicipalityName": "Rheinfelden 2",
     "Canton": "AG",
     "DateOfValidity": "1996-08-06T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 4258,
+    "ZipCode": "4310",
+    "ZipCodeAddOn": "03",
+    "MunicipalityName": "Rheinfelden Kaiserstrasse",
+    "Canton": "AG",
+    "DateOfValidity": "2023-05-08T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29997,15 +28998,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 4280,
-    "ZipCode": "4665",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Oftringen Tychboden",
-    "Canton": "AG",
-    "DateOfValidity": "2020-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 4281,
     "ZipCode": "5056",
     "ZipCodeAddOn": "00",
@@ -30030,15 +29022,6 @@
     "MunicipalityName": "Rothrist",
     "Canton": "AG",
     "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4282,
-    "ZipCode": "4852",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Rothrist Bernstrasse",
-    "Canton": "AG",
-    "DateOfValidity": "2018-11-02T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -30081,7 +29064,7 @@
     "BfsCode": 4285,
     "ZipCode": "4802",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Strengelbach Dist Hub",
+    "MunicipalityName": "Strengelbach Zustellung",
     "Canton": "AG",
     "DateOfValidity": "2021-05-28T00:00:00",
     "LanguageCode": 0
@@ -30183,15 +29166,6 @@
     "MunicipalityName": "Zofingen PostFinance",
     "Canton": "AG",
     "DateOfValidity": "2007-03-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4289,
-    "ZipCode": "4800",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Zofingen Untere Grabenstr",
-    "Canton": "AG",
-    "DateOfValidity": "2020-08-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -30348,15 +29322,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 4309,
-    "ZipCode": "5313",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Klingnau Wiesenweg",
-    "Canton": "AG",
-    "DateOfValidity": "2014-07-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 4310,
     "ZipCode": "5322",
     "ZipCodeAddOn": "00",
@@ -30457,15 +29422,6 @@
   },
   {
     "BfsCode": 4324,
-    "ZipCode": "5330",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Bad Zurzach Hauptstrasse",
-    "Canton": "AG",
-    "DateOfValidity": "2018-08-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4324,
     "ZipCode": "5332",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Rekingen AG",
@@ -30534,15 +29490,6 @@
     "MunicipalityName": "Arbon",
     "Canton": "TG",
     "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4401,
-    "ZipCode": "9320",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Arbon Stickereistrasse",
-    "Canton": "TG",
-    "DateOfValidity": "2016-09-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -30669,6 +29616,15 @@
     "MunicipalityName": "Romanshorn",
     "Canton": "TG",
     "DateOfValidity": "1996-08-06T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 4436,
+    "ZipCode": "8590",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Romanshorn Zust Pakete",
+    "Canton": "TG",
+    "DateOfValidity": "1999-04-06T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31007,15 +29963,6 @@
   {
     "BfsCode": 4545,
     "ZipCode": "8253",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Diessenhofen Bahnhofstrasse",
-    "Canton": "TG",
-    "DateOfValidity": "2017-03-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4545,
-    "ZipCode": "8253",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Diessenhofen Zustellung",
     "Canton": "TG",
@@ -31142,15 +30089,6 @@
   {
     "BfsCode": 4566,
     "ZipCode": "8500",
-    "ZipCodeAddOn": "05",
-    "MunicipalityName": "Frauenfeld Murgstrasse",
-    "Canton": "TG",
-    "DateOfValidity": "2015-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4566,
-    "ZipCode": "8500",
     "ZipCodeAddOn": "76",
     "MunicipalityName": "Frauenfeld Postauto TG-SH",
     "Canton": "TG",
@@ -31179,7 +30117,7 @@
     "BfsCode": 4566,
     "ZipCode": "8502",
     "ZipCodeAddOn": "00",
-    "MunicipalityName": "Frauenfeld Talbach",
+    "MunicipalityName": "Frauenfeld Huben",
     "Canton": "TG",
     "DateOfValidity": "1996-08-06T00:00:00",
     "LanguageCode": 0
@@ -31709,17 +30647,8 @@
   {
     "BfsCode": 4696,
     "ZipCode": "8274",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Tägerwilen Hauptstrasse",
-    "Canton": "TG",
-    "DateOfValidity": "2021-07-02T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4696,
-    "ZipCode": "8274",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Tägerwilen Zustellung P",
+    "MunicipalityName": "Tägerwilen Zust Pakete",
     "Canton": "TG",
     "DateOfValidity": "2001-02-12T00:00:00",
     "LanguageCode": 0
@@ -31979,19 +30908,19 @@
   {
     "BfsCode": 4761,
     "ZipCode": "8370",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "Sirnach Distributionsbasis",
+    "ZipCodeAddOn": "60",
+    "MunicipalityName": "Sirnach Zustellung",
     "Canton": "TG",
-    "DateOfValidity": "2016-10-01T00:00:00",
+    "DateOfValidity": "2017-03-10T00:00:00",
     "LanguageCode": 0
   },
   {
     "BfsCode": 4761,
     "ZipCode": "8370",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Sirnach Zustellung",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Sirnach Zustellung Pakete",
     "Canton": "TG",
-    "DateOfValidity": "2017-03-10T00:00:00",
+    "DateOfValidity": "2016-10-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -32406,15 +31335,6 @@
     "MunicipalityName": "Bürglen TG",
     "Canton": "TG",
     "DateOfValidity": "1996-03-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4911,
-    "ZipCode": "8575",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Bürglen TG Postweg",
-    "Canton": "TG",
-    "DateOfValidity": "2018-10-12T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -32916,7 +31836,7 @@
     "BfsCode": 5003,
     "ZipCode": "6591",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Cadenazzo CPR",
+    "MunicipalityName": "Cadenazzo Dist pacchi",
     "Canton": "TI",
     "DateOfValidity": "2018-10-01T00:00:00",
     "LanguageCode": 0
@@ -33661,15 +32581,6 @@
   },
   {
     "BfsCode": 5115,
-    "ZipCode": "6616",
-    "ZipCodeAddOn": "01",
-    "MunicipalityName": "Losone via Locarno",
-    "Canton": "TI",
-    "DateOfValidity": "2017-05-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5115,
     "ZipCode": "6618",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Arcegno",
@@ -34146,15 +33057,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 5189,
-    "ZipCode": "6814",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Lamone-Cadempino via Cant.",
-    "Canton": "TI",
-    "DateOfValidity": "2018-11-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 5192,
     "ZipCode": "6900",
     "ZipCodeAddOn": "00",
@@ -34267,15 +33169,6 @@
     "ZipCode": "6906",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Lugano 6 Cassarate Caselle",
-    "Canton": "TI",
-    "DateOfValidity": "1996-06-10T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5192,
-    "ZipCode": "6907",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Lugano 7 Loreto Caselle",
     "Canton": "TI",
     "DateOfValidity": "1996-06-10T00:00:00",
     "LanguageCode": 0
@@ -35291,15 +34184,6 @@
   {
     "BfsCode": 5254,
     "ZipCode": "6850",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Mendrisio Staz St.Franscini",
-    "Canton": "TI",
-    "DateOfValidity": "2021-10-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5254,
-    "ZipCode": "6850",
     "ZipCodeAddOn": "01",
     "MunicipalityName": "Mendrisio Stazione",
     "Canton": "TI",
@@ -35421,15 +34305,6 @@
     "MunicipalityName": "Novazzano",
     "Canton": "TI",
     "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5260,
-    "ZipCode": "6883",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Novazzano Via P. Bernasconi",
-    "Canton": "TI",
-    "DateOfValidity": "2019-11-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -36110,15 +34985,6 @@
   {
     "BfsCode": 5401,
     "ZipCode": "1860",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Aigle Chemin des Orlons",
-    "Canton": "VD",
-    "DateOfValidity": "2022-06-20T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5401,
-    "ZipCode": "1860",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Aigle Distribution",
     "Canton": "VD",
@@ -36402,15 +35268,6 @@
     "MunicipalityName": "Villeneuve VD",
     "Canton": "VD",
     "DateOfValidity": "1998-09-10T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5414,
-    "ZipCode": "1844",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Villeneuve VD Ave C.d.S.",
-    "Canton": "VD",
-    "DateOfValidity": "2021-06-08T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -36813,7 +35670,7 @@
     "BfsCode": 5480,
     "ZipCode": "1310",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Daillens Dist Ba",
+    "MunicipalityName": "Daillens Distribution",
     "Canton": "VD",
     "DateOfValidity": "1998-11-23T00:00:00",
     "LanguageCode": 0
@@ -37567,6 +36424,15 @@
   },
   {
     "BfsCode": 5568,
+    "ZipCode": "1450",
+    "ZipCodeAddOn": "04",
+    "MunicipalityName": "Ste-Croix Rue Neuve",
+    "Canton": "VD",
+    "DateOfValidity": "2023-05-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 5568,
     "ZipCode": "1454",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "L'Auberson",
@@ -37680,15 +36546,6 @@
     "MunicipalityName": "Crissier 2 Closalet",
     "Canton": "VD",
     "DateOfValidity": "1999-04-08T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5583,
-    "ZipCode": "1023",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Crissier Chemin de Chisaz",
-    "Canton": "VD",
-    "DateOfValidity": "2020-08-19T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -38232,15 +37089,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 5606,
-    "ZipCode": "1095",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Lutry Route de Lavaux",
-    "Canton": "VD",
-    "DateOfValidity": "2022-04-04T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 5607,
     "ZipCode": "1070",
     "ZipCodeAddOn": "00",
@@ -38394,15 +37242,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 5624,
-    "ZipCode": "1030",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Bussigny rue de l'Industrie",
-    "Canton": "VD",
-    "DateOfValidity": "2021-11-25T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 5627,
     "ZipCode": "1022",
     "ZipCodeAddOn": "00",
@@ -38463,15 +37302,6 @@
     "MunicipalityName": "Echandens-Denges",
     "Canton": "VD",
     "DateOfValidity": "1999-04-20T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5633,
-    "ZipCode": "1026",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Echandens-Denges Rte Lonay",
-    "Canton": "VD",
-    "DateOfValidity": "2021-10-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -38607,15 +37437,6 @@
     "MunicipalityName": "Morges Grosse Pierre",
     "Canton": "VD",
     "DateOfValidity": "1989-11-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5642,
-    "ZipCode": "1110",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Morges Rue des Charpentiers",
-    "Canton": "VD",
-    "DateOfValidity": "2020-08-27T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -39278,19 +38099,19 @@
   {
     "BfsCode": 5721,
     "ZipCode": "1196",
-    "ZipCodeAddOn": "70",
-    "MunicipalityName": "Gland Dist Fil",
+    "ZipCodeAddOn": "60",
+    "MunicipalityName": "Gland Distribution",
     "Canton": "VD",
-    "DateOfValidity": "1999-04-06T00:00:00",
+    "DateOfValidity": "2003-10-01T00:00:00",
     "LanguageCode": 0
   },
   {
     "BfsCode": 5721,
     "ZipCode": "1196",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Gland Distribution",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Gland Distribution colis",
     "Canton": "VD",
-    "DateOfValidity": "2003-10-01T00:00:00",
+    "DateOfValidity": "1999-04-06T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -40024,15 +38845,6 @@
   },
   {
     "BfsCode": 5822,
-    "ZipCode": "1530",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Payerne Distribution",
-    "Canton": "VD",
-    "DateOfValidity": "2003-07-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5822,
     "ZipCode": "1551",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Vers-chez-Perrin",
@@ -40331,15 +39143,6 @@
   {
     "BfsCode": 5861,
     "ZipCode": "1180",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Rolle Chemin du Famolens",
-    "Canton": "VD",
-    "DateOfValidity": "2021-07-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5861,
-    "ZipCode": "1180",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Rolle Distribution",
     "Canton": "VD",
@@ -40537,15 +39340,6 @@
   },
   {
     "BfsCode": 5886,
-    "ZipCode": "1815",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Clarens rue du Collège",
-    "Canton": "VD",
-    "DateOfValidity": "2021-01-13T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5886,
     "ZipCode": "1816",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Chailly-Montreux",
@@ -40713,15 +39507,6 @@
     "MunicipalityName": "Vevey 1 Distribution",
     "Canton": "VD",
     "DateOfValidity": "1999-04-08T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5890,
-    "ZipCode": "1800",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Vevey Av. du Général-Guisan",
-    "Canton": "VD",
-    "DateOfValidity": "2019-11-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -40960,15 +39745,6 @@
   },
   {
     "BfsCode": 5922,
-    "ZipCode": "1440",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Montagny-Chamard En Chamard",
-    "Canton": "VD",
-    "DateOfValidity": "2021-02-23T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5922,
     "ZipCode": "1442",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Montagny-près-Yverdon",
@@ -41158,15 +39934,6 @@
   },
   {
     "BfsCode": 5938,
-    "ZipCode": "1400",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Yverdon-les-Bains Ch-Lovats",
-    "Canton": "VD",
-    "DateOfValidity": "2019-11-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5938,
     "ZipCode": "1401",
     "ZipCodeAddOn": "48",
     "MunicipalityName": "Yverdon Conseil et vente",
@@ -41253,15 +40020,6 @@
     "MunicipalityName": "Glis",
     "Canton": "VS",
     "DateOfValidity": "1996-09-02T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6002,
-    "ZipCode": "3902",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Glis Gliserallee",
-    "Canton": "VS",
-    "DateOfValidity": "2020-12-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -41667,6 +40425,15 @@
     "MunicipalityName": "Vétroz",
     "Canton": "VS",
     "DateOfValidity": "1996-08-06T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 6025,
+    "ZipCode": "1963",
+    "ZipCodeAddOn": "70",
+    "MunicipalityName": "Vétroz Distribution",
+    "Canton": "VS",
+    "DateOfValidity": "2022-11-07T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -42786,24 +41553,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 6136,
-    "ZipCode": "1920",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Martigny Bourg",
-    "Canton": "VS",
-    "DateOfValidity": "1996-09-02T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6136,
-    "ZipCode": "1920",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Martigny rue des Avouillons",
-    "Canton": "VS",
-    "DateOfValidity": "2020-03-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 6137,
     "ZipCode": "1921",
     "ZipCodeAddOn": "00",
@@ -42927,15 +41676,6 @@
     "MunicipalityName": "Monthey 2",
     "Canton": "VS",
     "DateOfValidity": "1996-09-03T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6153,
-    "ZipCode": "1870",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Monthey Avenue de la gare",
-    "Canton": "VS",
-    "DateOfValidity": "2018-04-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -43389,15 +42129,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 6217,
-    "ZipCode": "1890",
-    "ZipCodeAddOn": "75",
-    "MunicipalityName": "St-Maurice Caserne",
-    "Canton": "VS",
-    "DateOfValidity": "2003-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 6218,
     "ZipCode": "1922",
     "ZipCodeAddOn": "01",
@@ -43517,26 +42248,8 @@
   {
     "BfsCode": 6240,
     "ZipCode": "3963",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Crans-Montana",
-    "Canton": "VS",
-    "DateOfValidity": "1997-02-24T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6240,
-    "ZipCode": "3963",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Crans-Montana 2",
-    "Canton": "VS",
-    "DateOfValidity": "2003-06-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6240,
-    "ZipCode": "3963",
     "ZipCodeAddOn": "05",
-    "MunicipalityName": "Crans-sur-Sierre",
+    "MunicipalityName": "Crans VS",
     "Canton": "VS",
     "DateOfValidity": "2018-07-07T00:00:00",
     "LanguageCode": 0
@@ -43584,15 +42297,6 @@
     "MunicipalityName": "Sierre Distribution",
     "Canton": "VS",
     "DateOfValidity": "2003-08-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6248,
-    "ZipCode": "3960",
-    "ZipCodeAddOn": "06",
-    "MunicipalityName": "Sierre Rue de l'Ile Falcon",
-    "Canton": "VS",
-    "DateOfValidity": "2022-03-07T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -43737,6 +42441,15 @@
     "MunicipalityName": "Aminona",
     "Canton": "VS",
     "DateOfValidity": "1989-09-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 6253,
+    "ZipCode": "3963",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Crans-Montana",
+    "Canton": "VS",
+    "DateOfValidity": "1997-02-24T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -43939,15 +42652,6 @@
   },
   {
     "BfsCode": 6266,
-    "ZipCode": "1950",
-    "ZipCodeAddOn": "06",
-    "MunicipalityName": "Sion rue des Casernes",
-    "Canton": "VS",
-    "DateOfValidity": "2022-05-30T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6266,
     "ZipCode": "1951",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Sion",
@@ -44097,6 +42801,15 @@
     "MunicipalityName": "Baltschieder",
     "Canton": "VS",
     "DateOfValidity": "1996-09-02T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 6281,
+    "ZipCode": "3937",
+    "ZipCodeAddOn": "80",
+    "MunicipalityName": "SAB Baltschieder",
+    "Canton": "VS",
+    "DateOfValidity": "2022-11-14T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -44400,7 +43113,7 @@
     "BfsCode": 6416,
     "ZipCode": "2013",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Boudry Dist Ba",
+    "MunicipalityName": "Boudry Distribution colis",
     "Canton": "NE",
     "DateOfValidity": "2004-07-01T00:00:00",
     "LanguageCode": 0
@@ -44421,15 +43134,6 @@
     "MunicipalityName": "Colombier NE Caserne",
     "Canton": "NE",
     "DateOfValidity": "2003-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6416,
-    "ZipCode": "2013",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Colombier NE Distribution",
-    "Canton": "NE",
-    "DateOfValidity": "2003-06-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -44848,15 +43552,6 @@
   },
   {
     "BfsCode": 6458,
-    "ZipCode": "2001",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Neuchâtel Place Numa-Droz",
-    "Canton": "NE",
-    "DateOfValidity": "2021-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6458,
     "ZipCode": "2002",
     "ZipCodeAddOn": "01",
     "MunicipalityName": "Neuchâtel 2",
@@ -44938,15 +43633,6 @@
   },
   {
     "BfsCode": 6458,
-    "ZipCode": "2035",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Corcelles NE Distribution",
-    "Canton": "NE",
-    "DateOfValidity": "2005-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6458,
     "ZipCode": "2036",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Cormondrèche",
@@ -45006,15 +43692,6 @@
     "MunicipalityName": "Marin-Epagnier Distribution",
     "Canton": "NE",
     "DateOfValidity": "2003-11-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6461,
-    "ZipCode": "2074",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Marin-Epagnier Fleur de Lys",
-    "Canton": "NE",
-    "DateOfValidity": "2019-05-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -45432,15 +44109,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 6608,
-    "ZipCode": "1227",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Les Acacias Rte Grand-Lancy",
-    "Canton": "GE",
-    "DateOfValidity": "2021-11-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 6609,
     "ZipCode": "1236",
     "ZipCodeAddOn": "00",
@@ -45786,7 +44454,7 @@
     "BfsCode": 6621,
     "ZipCode": "1200",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Genève Dist Ba",
+    "MunicipalityName": "Genève Distribution colis",
     "Canton": "GE",
     "DateOfValidity": "1998-11-23T00:00:00",
     "LanguageCode": 0
@@ -46089,15 +44757,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 6621,
-    "ZipCode": "1240",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Genève",
-    "Canton": "GE",
-    "DateOfValidity": "2004-05-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 6622,
     "ZipCode": "1294",
     "ZipCodeAddOn": "00",
@@ -46334,15 +44993,6 @@
   {
     "BfsCode": 6630,
     "ZipCode": "1217",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Meyrin 2",
-    "Canton": "GE",
-    "DateOfValidity": "1996-06-10T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6630,
-    "ZipCode": "1217",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Meyrin Distribution",
     "Canton": "GE",
@@ -46374,15 +45024,6 @@
     "MunicipalityName": "Plan-les-Ouates",
     "Canton": "GE",
     "DateOfValidity": "1996-06-10T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6633,
-    "ZipCode": "1228",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Plan-les-Ouates Place des A",
-    "Canton": "GE",
-    "DateOfValidity": "2021-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -46437,15 +45078,6 @@
     "MunicipalityName": "Satigny",
     "Canton": "GE",
     "DateOfValidity": "1996-08-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6638,
-    "ZipCode": "1242",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Satigny Rte d'Aire-la-Ville",
-    "Canton": "GE",
-    "DateOfValidity": "2022-08-22T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -46509,15 +45141,6 @@
     "MunicipalityName": "Vernier Distribution",
     "Canton": "GE",
     "DateOfValidity": "2003-11-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6643,
-    "ZipCode": "1214",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Vernier rue du Village",
-    "Canton": "GE",
-    "DateOfValidity": "2021-10-07T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -46749,7 +45372,7 @@
     "BfsCode": 6711,
     "ZipCode": "2800",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Delémont Dist Ba",
+    "MunicipalityName": "Delémont Distribution colis",
     "Canton": "JU",
     "DateOfValidity": "1999-06-30T00:00:00",
     "LanguageCode": 0
@@ -46955,17 +45578,17 @@
   {
     "BfsCode": 6743,
     "ZipCode": "2345",
-    "ZipCodeAddOn": "00",
-    "MunicipalityName": "Les Breuleux",
+    "ZipCodeAddOn": "03",
+    "MunicipalityName": "La Chaux-des-Breuleux",
     "Canton": "JU",
     "DateOfValidity": "1996-09-19T00:00:00",
     "LanguageCode": 0
   },
   {
-    "BfsCode": 6744,
+    "BfsCode": 6743,
     "ZipCode": "2345",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "La Chaux-des-Breuleux",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Les Breuleux",
     "Canton": "JU",
     "DateOfValidity": "1996-09-19T00:00:00",
     "LanguageCode": 0
@@ -47223,15 +45846,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 6787,
-    "ZipCode": "2933",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Damphreux",
-    "Canton": "JU",
-    "DateOfValidity": "1996-09-13T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 6789,
     "ZipCode": "2916",
     "ZipCodeAddOn": "00",
@@ -47274,15 +45888,6 @@
     "MunicipalityName": "Grandfontaine",
     "Canton": "JU",
     "DateOfValidity": "1996-09-13T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 6793,
-    "ZipCode": "2933",
-    "ZipCodeAddOn": "03",
-    "MunicipalityName": "Lugnez",
-    "Canton": "JU",
-    "DateOfValidity": "1998-08-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -47526,6 +46131,24 @@
     "MunicipalityName": "Asuel",
     "Canton": "JU",
     "DateOfValidity": "2000-10-30T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 6811,
+    "ZipCode": "2933",
+    "ZipCodeAddOn": "02",
+    "MunicipalityName": "Damphreux",
+    "Canton": "JU",
+    "DateOfValidity": "1996-09-13T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 6811,
+    "ZipCode": "2933",
+    "ZipCodeAddOn": "03",
+    "MunicipalityName": "Lugnez",
+    "Canton": "JU",
+    "DateOfValidity": "1998-08-01T00:00:00",
     "LanguageCode": 0
   },
   {
