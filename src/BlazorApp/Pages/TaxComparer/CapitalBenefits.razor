@@ -4,12 +4,14 @@
 @using PensionCoach.Tools.CommonTypes
 @using Microsoft.AspNetCore.Components
 @using PensionCoach.Tools.TaxComparison
+@using Radzen
+@using Radzen.Blazor
 
 @inject ILogger<WealthPlanning> Logger
 @inject IPersonService PersonService
 @inject ITaxComparisonService TaxComparisonService
 
-<RadzenTemplateForm TItem="CapitalBenefitTaxComparerRequest" Data=@taxRequest Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
+<RadzenTemplateForm TItem="CapitalBenefitTaxComparerRequest" Data=@taxRequest Submit=@OnSubmit InvalidSubmit="OnInvalidSubmit">
     <RadzenContent Container="main">
         <ChildContent>
             <RadzenHeading Size="H1" Text="Gemeindevergleich Kapitalbezugssteuer"></RadzenHeading>
@@ -80,7 +82,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             
             <div class="row">
                 <div class="col-md-12 text-right mt-1">
-                    <RadzenButton ButtonType="ButtonType.Submit" Text="Berechne" Disabled="@(selectedPerson == null)"></RadzenButton>
+                    <MudButton ButtonType="MudBlazor.ButtonType.Submit" Text="Berechne" Disabled="@(selectedPerson == null)"></MudButton>
                 </div>
             </div>
 
@@ -110,10 +112,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     protected override async Task OnInitializedAsync()
     {
         isComputing = false;
-        taxRequest = new CapitalBenefitTaxComparerRequest
-        {
-            BfsNumberList = {}
-        };
+        taxRequest = new CapitalBenefitTaxComparerRequest();
         persons = (await PersonService.GetPersonsAsync()).ToList();
     }
 
@@ -127,7 +126,6 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
             CivilStatus = selectedPerson.CivilStatus,
             PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
             ReligiousGroup = selectedPerson.ReligiousGroupType,
-            BfsNumberList = {},
             TaxableBenefits = 1_000_000
         };
     }

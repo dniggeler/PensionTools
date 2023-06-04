@@ -1,23 +1,23 @@
 ﻿@page "/PersonListing"
 
 @inject IPersonService PersonService
-@inject DialogService DialogService
+@inject IDialogService DialogService
 
 <h3>Personenverzeichnis</h3>
 
 <div class="row">
     <div class="col-xl-6 offset-xl-2">
-        <RadzenCard class="m-4">
+        <MudContainer class="m-4">
             <div class="row">
                 <div class="col-xl-10">
                     <h3>Neue Person erstellen</h3>
                 </div>
                 <div class="col-xl-2">
-                    <RadzenButton Click=@(OpenPerson) Class="float-right" Icon="person_add" ButtonStyle="ButtonStyle.Secondary"></RadzenButton>
+                    <MudButton Click="@(OpenPerson)" Class="float-right" Icon="person_add" ButtonStyle="ButtonStyle.Secondary"></MudButton>
                 </div>
             </div>
             
-        </RadzenCard>
+        </MudContainer>
         
         @if (persons is not null)
         {
@@ -28,7 +28,6 @@
         }
     </div>
 </div>
-
 
 @code
 {
@@ -100,10 +99,10 @@
 
     private async Task<bool> OpenDialogAsync(string title, PersonViewModel person)
     {
-        dynamic result = await DialogService.OpenAsync<PersonEdit>(
+        dynamic result = await DialogService.ShowAsync<PersonEdit>(
             title,
-            new Dictionary<string, object> { { "Person", person } },
-            new DialogOptions { Width = "600px", Height = "550px", Resizable = true, Draggable = true });
+            new DialogParameters { { "Person", person } },
+            new DialogOptions { FullScreen = false, MaxWidth = MaxWidth.Large, FullWidth = true, CloseButton = true, CloseOnEscapeKey = true});
 
         return Convert.ToBoolean(result);
     }

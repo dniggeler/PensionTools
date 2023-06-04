@@ -8,6 +8,8 @@
 @using PensionCoach.Tools.CommonTypes.Tax
 @using Microsoft.AspNetCore.Components
 @using System.Text.Json
+@using Radzen
+@using Radzen.Blazor
 
 @inject IStringLocalizer<Resource> localizer
 @inject ILogger<WealthPlanning> logger
@@ -199,7 +201,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12 text-right">
-                                                <RadzenButton ButtonType="ButtonType.Submit" Text="Berechne"></RadzenButton>
+                                                <MudButton ButtonType="MudBlazor.ButtonType.Submit" Text="Berechne"></MudButton>
                                             </div>
                                         </div>
                                     </ChildContent>

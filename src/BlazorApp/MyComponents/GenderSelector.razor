@@ -1,24 +1,24 @@
 ﻿@using Microsoft.AspNetCore.Components
 @using Microsoft.Extensions.Localization
 @using PensionCoach.Tools.CommonTypes
-@using BlazorApp.Resources
 
 @inject IStringLocalizer<PensionComponents> localizer
 
 @if (IsReadOnly)
 {
-    <RadzenLabel Text="@GetViewModel().Name"/>
+    <MudText>@GetViewModel().Name</MudText>
 }
 else
 {
-    <RadzenDropDown Name="gender"
-                Disabled="@IsReadOnly"
-                Data=@genderModels
-                ValueProperty="Value"
-                TextProperty="Name"
-                @bind-Value="@SelectedGender"
-                Change="@(HandleChange)">
-    </RadzenDropDown>
+    <MudSelect Label="Geschlecht"
+               Disabled="@IsReadOnly"
+               @bind-Value="@SelectedGender"
+               Change="@(HandleChange)">
+        @foreach (var g in genderModels)
+        {
+            <MudSelectItem Value="g.Value">@g.Name</MudSelectItem>
+        }
+    </MudSelect>
 }
 
 

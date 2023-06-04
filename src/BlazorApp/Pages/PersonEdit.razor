@@ -1,7 +1,8 @@
 ﻿@using PensionCoach.Tools.CommonTypes
 @using PensionCoach.Tools.CommonTypes.Tax
+@using Radzen.Blazor
 
-@inject DialogService DialogService
+@inject Radzen.DialogService DialogService
 @inject IStringLocalizer<Resource> Localizer
 
 <EditForm Model="@Person" OnValidSubmit="HandleValidSubmit">
@@ -76,7 +77,7 @@
 
     <div class="row">
         <div class="col-md-12 text-right mt-2">
-            <RadzenButton Icon="done" Style="width: 60px" ButtonType="ButtonType.Submit" ButtonStyle="ButtonStyle.Secondary"/>
+            <MudButton Icon="done" Style="width: 60px" ButtonType="MudBlazor.ButtonType.Submit" ButtonStyle="ButtonStyle.Secondary"/>
         </div>
     </div>
 

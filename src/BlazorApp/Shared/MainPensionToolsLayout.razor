@@ -1,0 +1,79 @@
+﻿@using System.Globalization
+@using System.Threading
+
+@inherits LayoutComponentBase
+
+
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="DrawerToggle" />
+        <MudText>PensionTools</MudText>
+        <MudSpacer/>
+
+        <MudText>Light</MudText>
+        <MudSwitch @bind-Checked="@_isDarkMode" Color="Color.Primary" Class="ml-4" Label="Dark" LabelPosition="LabelPosition.End" T="bool"/>
+
+        <MudButtonGroup Variant="Variant.Outlined">
+            <MudButton>@_buttonText</MudButton>
+            <MudMenu Icon="@Icons.Material.Filled.ArrowDropDown">
+                <MudMenuItem OnClick="@(() => SetCulture("de-CH"))">DE</MudMenuItem>
+                <MudMenuItem OnClick="@(() => SetCulture("en-US"))">EN</MudMenuItem>
+            </MudMenu>
+        </MudButtonGroup>
+
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+
+    </MudAppBar>
+    
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+        <MudNavLink Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
+    
+        <MudNavLink Href="PersonListing" Match="NavLinkMatch.Prefix">Personen</MudNavLink>
+        <MudNavGroup Title="Steuerrechner" Expanded="false">
+            <MudNavLink Href="/SimpleTax/TaxCalculation" Match="NavLinkMatch.Prefix">Einkommen/Vermögen</MudNavLink>
+            <MudNavLink Href="/SimpleTax/MarginalTax" Match="NavLinkMatch.Prefix">Grenzsteuerkurve</MudNavLink>
+        </MudNavGroup>
+        <MudNavGroup Title="Gemeindevergleich">
+            <MudNavLink Href="/TaxComparer/IncomeAndWealth" Match="NavLinkMatch.Prefix">Einkommen/Vermögen</MudNavLink>
+            <MudNavLink Href="/TaxComparer/CapitalBenefits" Match="NavLinkMatch.Prefix">Kapitalbezug</MudNavLink>
+        </MudNavGroup>
+        <MudNavGroup Title="Szenario">
+            <MudNavLink Href="/TaxScenario/Purchase" Match="NavLinkMatch.Prefix">PK Einkauf</MudNavLink>
+        </MudNavGroup>
+        <MudNavLink Href="WealthPlanning" Match="NavLinkMatch.Prefix">About</MudNavLink>
+        <MudNavLink Href="/about" Match="NavLinkMatch.Prefix">Finanzplanung</MudNavLink>
+    </MudDrawer>
+
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private MudTheme _theme = new();
+    private bool _isDarkMode;
+    private bool _drawerOpen = true;
+    private string _buttonText = "DE    ";
+
+    private void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+
+    private void SetCulture(string cultureCode)
+    {
+        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.DefaultThreadCurrentUICulture =
+            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureCode);
+
+        _buttonText = cultureCode switch
+        {
+            "de-CH" => "DE",
+            "en-US" => "EN",
+            _ => "DE"
+        };
+    }
+}

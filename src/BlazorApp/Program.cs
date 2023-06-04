@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using BlazorApp.Services;
 using Blazored.LocalStorage;
 using Microsoft.Extensions.Logging;
-using Radzen;
 using BlazorApp.Services.Mock;
 using System.Globalization;
+using MudBlazor.Services;
 
 namespace BlazorApp
 {
@@ -46,13 +46,8 @@ namespace BlazorApp
 
             builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddScoped<DialogService>();
-            builder.Services.AddScoped<NotificationService>();
-            builder.Services.AddScoped<TooltipService>();
-            builder.Services.AddScoped<ContextMenuService>();
-
+            builder.Services.AddMudServices();
             builder.Services.AddBlazoredLocalStorage();
-
             builder.Services.AddLocalization();
             
             if (!builder.HostEnvironment.IsProduction())

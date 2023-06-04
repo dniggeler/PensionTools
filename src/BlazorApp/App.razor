@@ -1,9 +1,9 @@
 <Router AppAssembly="@typeof(Program).Assembly" PreferExactMatches="@true">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayoutRadzen)" />
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainPensionToolsLayout)" />
     </Found>
     <NotFound>
-        <LayoutView Layout="@typeof(MainLayoutRadzen)">
+        <LayoutView Layout="@typeof(MainPensionToolsLayout)">
             <p>Sorry, there's nothing at this address.</p>
         </LayoutView>
     </NotFound>
