@@ -2,18 +2,16 @@
 @using Microsoft.Extensions.Localization
 @using PensionCoach.Tools.CommonTypes
 @using BlazorApp.Resources
-@using Radzen.Blazor
 
 @inject IStringLocalizer<Resource> localizer
 
-<RadzenDropDown Name="civilStatus"
-                Disabled="@IsReadOnly"
-                Data=@civilStatusModels
-                ValueProperty="Value"
-                TextProperty="Name"
-                @bind-Value="@SelectedCivilStatus"
-                Change="@(HandleChange)">
-</RadzenDropDown>
+<MudSelect Disabled="@IsReadOnly"
+           @bind-Value="@SelectedCivilStatus">
+    @foreach (var m in civilStatusModels)
+    {
+        <MudSelectItem Value="m.Value">@m.Name</MudSelectItem>
+    }
+</MudSelect>
 
 @code {
     internal class CivilStatusViewModel

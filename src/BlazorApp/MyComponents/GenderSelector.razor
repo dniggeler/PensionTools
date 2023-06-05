@@ -10,10 +10,8 @@
 }
 else
 {
-    <MudSelect Label="Geschlecht"
-               Disabled="@IsReadOnly"
-               @bind-Value="@SelectedGender"
-               Change="@(HandleChange)">
+    <MudSelect Disabled="@IsReadOnly"
+               @bind-Value="@SelectedGender">
         @foreach (var g in genderModels)
         {
             <MudSelectItem Value="g.Value">@g.Name</MudSelectItem>

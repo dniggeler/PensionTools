@@ -1,19 +1,17 @@
 ﻿@using Microsoft.AspNetCore.Components
 @using Microsoft.Extensions.Localization
 @using PensionCoach.Tools.CommonTypes
-@using BlazorApp.Resources
-@using Radzen.Blazor
 
 @inject IStringLocalizer<Resource> localizer
 
-<RadzenDropDown Name="partnerReligousGroup"
-                Disabled="@IsReadOnly"
-                Data=@religiousGroupTypes
-                ValueProperty="Value"
-                TextProperty="Name"
-                @bind-Value="@SelectedReligiousGroupType"
-                Change="@(HandleChange)">
-</RadzenDropDown>
+<MudSelect Disabled="@IsReadOnly"
+           T="ReligiousGroupType?"
+           @bind-Value="@SelectedReligiousGroupType">
+    @foreach (var g in religiousGroupTypes)
+    {
+       @* <MudSelectItem Value="1">@g.Name</MudSelectItem>*@
+    }
+</MudSelect>
 
 @code {
 
