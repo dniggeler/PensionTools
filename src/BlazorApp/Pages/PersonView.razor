@@ -15,24 +15,24 @@
                 <MudPaper Elevation="0" Class="d-flex justify-end">
                     @if (OnEdit.HasDelegate)
                     {
-                        <MudIconButton Icon="@Icons.Material.Filled.Edit" Click="@HandleEdit"/>
+                        <MudIconButton Icon="@Icons.Material.Filled.Edit" OnClick="@HandleEdit"/>
                     }
 
                     @if (OnCopy.HasDelegate)
                     {
-                        <MudIconButton Icon="@Icons.Material.Filled.ContentCopy" Click="@HandleCopy"/>
+                        <MudIconButton Icon="@Icons.Material.Filled.ContentCopy" OnClick="@HandleCopy"/>
                     }
 
                     @if (OnDelete.HasDelegate)
                     {
-                        <MudIconButton Icon="@Icons.Material.Filled.Delete" Click="@HandleDelete"/>
+                        <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="@HandleDelete"/>
                     }
                 </MudPaper>
             </MudItem>
 
             <MudItem md="4">
                 <div class="mt-3">@Localizer["person.birthdate"]</div>
-                <MudDatePicker Disabled="true" @bind-Value="@Person.DateOfBirth" DateFormat="d.M.yyyy" Placeholder="@Localizer["person.birthdate"]" />
+                <MudDatePicker Disabled="true" @bind-Date="@BirthDate" DateFormat="d.M.yyyy" Placeholder="@Localizer["person.birthdate"]" />
 
                 <div class="mt-3">@Localizer["person.gender"]</div>
                 <GenderSelector IsReadOnly="true" SelectedGender="@Person.Gender" />
@@ -89,6 +89,13 @@
 
     [Parameter]
     public EventCallback<Guid> OnCopy { get; set; }
+
+    private DateTime? BirthDate { get; set; }
+
+    protected override void OnInitialized()
+    {
+        BirthDate = Person.DateOfBirth;
+    }
 
     private Task HandleDelete()
     {

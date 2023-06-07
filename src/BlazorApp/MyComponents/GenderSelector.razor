@@ -4,21 +4,13 @@
 
 @inject IStringLocalizer<PensionComponents> localizer
 
-@if (IsReadOnly)
-{
-    <MudText>@GetViewModel().Name</MudText>
-}
-else
-{
-    <MudSelect Disabled="@IsReadOnly"
-               @bind-Value="@SelectedGender">
-        @foreach (var g in genderModels)
-        {
-            <MudSelectItem Value="g.Value">@g.Name</MudSelectItem>
-        }
-    </MudSelect>
-}
+<MudSelect Disabled="@IsReadOnly" Label="@Label" @bind-Value="@SelectedGender">
 
+    @foreach (var g in genderModels)
+    {
+        <MudSelectItem Value="g.Value">@g.Name</MudSelectItem>
+    }
+</MudSelect>
 
 @code {
     internal class GenderViewModel
@@ -27,6 +19,9 @@ else
 
         public string Name { get; set;}
     }
+
+    [Parameter]
+    public string Label { get; set; }
 
     [Parameter]
     public bool IsReadOnly { get; set; }

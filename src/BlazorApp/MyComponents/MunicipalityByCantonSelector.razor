@@ -6,29 +6,25 @@
 
 @inject IMunicipalityService MunicipalityService
 
-<div class="row">
-    <div class="col-xl-3">
-        <RadzenDropDown TextProperty="Name"
-                        ValueProperty="Canton"
-                        FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
-                        FilterOperator="StringFilterOperator.StartsWith"
-                        AllowFiltering="true"
-                        @bind-Value="CantonCode"
-                        Change="HandleCantonChangeAsync"
-                        Data="cantons"/>
-    </div>
-
-    <div class="col-xl-6">
-        <RadzenDropDown TextProperty="Name"
-                        ValueProperty="BfsMunicipalityNumber"
-                        FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
-                        FilterOperator="StringFilterOperator.StartsWith"
-                        AllowFiltering="true"
-                        @bind-Value="BfsMunicipalityId"
-                        Change="HandleChangeAsync"
-                        Data="municipalities"/>
-    </div>
-</div>
+<MudGrid>
+    <MudItem md="6">
+        <MudSelect Label="Kanton" Disabled="@IsReadOnly" @bind-Value="@CantonCode">
+            @foreach (var m in cantons)
+            {
+                <MudSelectItem Value="m.Canton" OnClick="HandleCantonChangeAsync">@m.Name</MudSelectItem>
+            }
+        </MudSelect>
+    </MudItem>
+    
+    <MudItem md="6">
+        <MudSelect Label="Wohnort" Disabled="@IsReadOnly" @bind-Value="@BfsMunicipalityId">
+            @foreach (var m in municipalities)
+            {
+                <MudSelectItem Value="m.BfsMunicipalityNumber">@m.Name</MudSelectItem>
+            }
+        </MudSelect>
+    </MudItem>
+</MudGrid>
 
 @code {
     internal record CantonHolder
@@ -36,6 +32,9 @@
         public Canton Canton { get; init; }
         public string Name { get; init; }
     }
+
+    [Parameter]
+    public bool IsReadOnly { get; set; }
 
     [Parameter]
     public string Title { get; set; }

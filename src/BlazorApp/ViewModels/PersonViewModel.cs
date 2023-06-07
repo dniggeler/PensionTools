@@ -4,7 +4,7 @@ using PensionCoach.Tools.CommonTypes;
 
 namespace BlazorApp.ViewModels
 {
-    public class PersonViewModel
+    public record PersonViewModel
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         

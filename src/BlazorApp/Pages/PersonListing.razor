@@ -61,7 +61,19 @@
     {
         PersonViewModel person = persons.SingleOrDefault(p => p.Id == id);
 
-        await OpenDialogAsync("Person ändern", person);
+        if(person is null)
+        {
+            return;
+        }
+
+        PersonViewModel shadowPerson = person with { };
+
+        bool hasChange = await OpenDialogAsync("Person ändern", shadowPerson);
+
+        if(hasChange)
+        {
+            await PersonService.UpdateAsync(shadowPerson);
+        }
     }
 
     private async Task CopyPerson(Guid id)
@@ -99,11 +111,13 @@
 
     private async Task<bool> OpenDialogAsync(string title, PersonViewModel person)
     {
-        dynamic result = await DialogService.ShowAsync<PersonEdit>(
+        IDialogReference result = await DialogService.ShowAsync<PersonEdit>(
             title,
             new DialogParameters { { "Person", person } },
-            new DialogOptions { FullScreen = false, MaxWidth = MaxWidth.Large, FullWidth = true, CloseButton = true, CloseOnEscapeKey = true});
+            new DialogOptions { CloseButton = true, CloseOnEscapeKey = true });
 
-        return Convert.ToBoolean(result);
+        DialogResult dialogResult = await result.Result;
+
+        return !dialogResult.Canceled;
     }
 }

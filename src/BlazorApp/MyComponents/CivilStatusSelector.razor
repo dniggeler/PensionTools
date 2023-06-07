@@ -5,11 +5,10 @@
 
 @inject IStringLocalizer<Resource> localizer
 
-<MudSelect Disabled="@IsReadOnly"
-           @bind-Value="@SelectedCivilStatus">
+<MudSelect Label="@Label" Disabled="@IsReadOnly" @bind-Value="@SelectedCivilStatus">
     @foreach (var m in civilStatusModels)
     {
-        <MudSelectItem Value="m.Value">@m.Name</MudSelectItem>
+        <MudSelectItem Value="m.Value" OnClick="@HandleChange">@m.Name</MudSelectItem>
     }
 </MudSelect>
 
@@ -21,8 +20,9 @@
         public string Name { get; set;}
     }
 
-    [Parameter]
-    public bool IsReadOnly { get; set; }
+    [Parameter] public string Label { get; set; }
+    
+    [Parameter] public bool IsReadOnly { get; set; }
 
     [Parameter]
     public CivilStatus SelectedCivilStatus { get; set; } = CivilStatus.Undefined;
