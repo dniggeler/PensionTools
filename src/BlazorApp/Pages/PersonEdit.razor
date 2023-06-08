@@ -9,21 +9,23 @@
         <DataAnnotationsValidator />
         <ValidationSummary />
 
-        <MudGrid>
+        <MudGrid Class="ma-4">
             <MudItem md="6">
                 <MudTextField Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name" />
             </MudItem>
 
             <MudItem md="6">
-                <MudDatePicker Label="@(Localizer["person.birthdate"])" Editable="true" @bind-Date="@BirthDate" DateFormat="dd.MM.yyyy" Placeholder="Wähle Geburtstag" />
+                <MudDatePicker Label="@(Localizer["person.birthdate"])" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="dd.MM.yyyy" Placeholder="Wähle Geburtstag" />
             </MudItem>
             
             <MudItem md="4">
 
-                <GenderSelector Label="@(Localizer["person.gender"])" SelectedGender="@Person.Gender" OnSelected="@(args => Person.Gender = args)" />
-                <CivilStatusSelector Label="Zivilstand" SelectedCivilStatus="@Person.CivilStatus" OnSelected="@(args => Person.CivilStatus = args)" />
-                                <ReligiousGroupSelector Label="Konfession" SelectedReligiousGroupType="@Person.ReligiousGroupType"
-                                            OnSelected="@(r => Person.ReligiousGroupType = r ?? ReligiousGroupType.Other)" />
+                <GenderSelector IsReadOnly="false" Label="Geschlecht" SelectedGender="@Person.Gender" OnSelected="@(arg => Person.Gender = arg)" />
+
+                <CivilStatusSelector IsReadOnly="false" Label="Zivilstand" SelectedCivilStatus="@Person.CivilStatus" OnSelected="@(args => Person.CivilStatus = args)" />
+                
+                <ReligiousGroupSelector IsReadOnly="false" Label="Konfession" SelectedReligiousGroupType="@Person.ReligiousGroupType"
+                                        OnSelected="@(r => Person.ReligiousGroupType = r ?? ReligiousGroupType.Other)" />
                 @if (Person.CivilStatus == CivilStatus.Married)
                 {
                     <ReligiousGroupSelector Label="Konfession (Partner)" SelectedReligiousGroupType="@Person.PartnerReligiousGroupType"
@@ -62,17 +64,8 @@
 
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
-    private DateTime? BirthDate { get; set; }
-
-    protected override void OnInitialized()
-    {
-        BirthDate = Person.DateOfBirth;
-    }
-
     private void HandleValidSubmit()
     {
-        Person.DateOfBirth = BirthDate ?? new DateTime(1969, 12, 12);
-
         MudDialog.Close(DialogResult.Ok(Person));
     }
 

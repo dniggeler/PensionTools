@@ -1,76 +1,69 @@
 ﻿@using PensionCoach.Tools.CommonTypes
 @using Microsoft.Extensions.Localization
 @using BlazorApp.Resources
+@using System.Globalization
 
 @inject IStringLocalizer<Resource> Localizer
 
 <MudContainer Data=@Person>
-    <MudPaper Elevation="1" Class="ma-4 pa-4">
+    <MudPaper Elevation="1" Class="pa-4">
 
         <MudGrid>
-            <MudItem md="6">
-                <MudText Typo="Typo.h6">@Person.Name</MudText>
-            </MudItem>
-            <MudItem md="6">
+            <MudItem md="12">
                 <MudPaper Elevation="0" Class="d-flex justify-end">
                     @if (OnEdit.HasDelegate)
                     {
-                        <MudIconButton Icon="@Icons.Material.Filled.Edit" OnClick="@HandleEdit"/>
+                        <MudIconButton Icon="@Icons.Material.Filled.Edit" OnClick="@HandleEdit" />
                     }
 
                     @if (OnCopy.HasDelegate)
                     {
-                        <MudIconButton Icon="@Icons.Material.Filled.ContentCopy" OnClick="@HandleCopy"/>
+                        <MudIconButton Icon="@Icons.Material.Filled.ContentCopy" OnClick="@HandleCopy" />
                     }
 
                     @if (OnDelete.HasDelegate)
                     {
-                        <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="@HandleDelete"/>
+                        <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="@HandleDelete" />
                     }
                 </MudPaper>
             </MudItem>
+            
+            <MudItem md="6">
+                <MudTextField ReadOnly="true" Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name" />
+            </MudItem>
+
+            <MudItem md="6">
+                <MudDatePicker ReadOnly="true" Label="@(Localizer["person.birthdate"])" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="dd.MM.yyyy" Placeholder="Wähle Geburtstag" />
+            </MudItem>
+
 
             <MudItem md="4">
-                <div class="mt-3">@Localizer["person.birthdate"]</div>
-                <MudDatePicker Disabled="true" @bind-Date="@BirthDate" DateFormat="d.M.yyyy" Placeholder="@Localizer["person.birthdate"]" />
 
-                <div class="mt-3">@Localizer["person.gender"]</div>
-                <GenderSelector IsReadOnly="true" SelectedGender="@Person.Gender" />
-
-                <div class="mt-3">Zivilstand</div>
-                <CivilStatusSelector IsReadOnly="true" SelectedCivilStatus="@Person.CivilStatus" />
-
-                <div class="mt-3">Konfession</div>
-                <ReligiousGroupSelector IsReadOnly="true" SelectedReligiousGroupType="@Person.ReligiousGroupType" />
-
+                <GenderSelector IsReadOnly="true" Label="@(Localizer["person.gender"])" SelectedGender="@Person.Gender" OnSelected="gender => Person.Gender = gender"/>
+                <CivilStatusSelector IsReadOnly="true" Label="Zivilstand" SelectedCivilStatus="@Person.CivilStatus" OnSelected="@(args => Person.CivilStatus = args)" />
+                <ReligiousGroupSelector IsReadOnly="true" Label="Konfession" SelectedReligiousGroupType="@Person.ReligiousGroupType"
+                                        OnSelected="@(r => Person.ReligiousGroupType = r ?? ReligiousGroupType.Other)" />
                 @if (Person.CivilStatus == CivilStatus.Married)
                 {
-                    <div class="mt-3">Konfession (Partner)</div>
-                    <ReligiousGroupSelector IsReadOnly="true" SelectedReligiousGroupType="@Person.PartnerReligiousGroupType" />
+                    <ReligiousGroupSelector Label="Konfession (Partner)" SelectedReligiousGroupType="@Person.PartnerReligiousGroupType"
+                                            OnSelected="@(r => Person.PartnerReligiousGroupType = r)" />
                 }
             </MudItem>
 
             <MudItem md="4">
-                <div class="mt-3">Kanton</div>
-                <b>@Person.Canton</b>
+                <MunicipalityByCantonSelector BfsMunicipalityId="Person.BfsMunicipalityId"
+                                              CantonCode="Person.Canton"
+                                              Title="Wohnort" />
 
-                <div class="mt-3">@Localizer["person.residence"]</div>
-                <b>@Person.MunicipalityName</b>
-
-                <div class="mt-3">@Localizer["person.taxableincome"]</div>
-                <b>@Person.TaxableIncome</b>
-
-                <div class="mt-3">@Localizer["person.taxablewealth"]</div>
-                <b>@Person.TaxableWealth</b>
+                <MudNumericField ReadOnly="true" Label="@(Localizer["person.taxableincome"])" Step="1000" Format="n0" @bind-Value="Person.TaxableIncome" Culture="CultureInfo.InvariantCulture" />
+                <MudNumericField ReadOnly="true" Label="@(Localizer["person.taxablewealth"])" Step="1000" Format="n0" @bind-Value="Person.TaxableWealth" Culture="CultureInfo.InvariantCulture" />
             </MudItem>
 
             <MudItem md="4">
-                <div class="mt-3">Altersguthaben PK</div>
-                <b>@Person.FinalRetirementCapital</b>
-
-                <div class="mt-3">3a Guthaben</div>
-                <b>@Person.FinalCapital3a</b>
+                <MudNumericField ReadOnly="true" Label="Alterguthaben PK" Format="n0" Step="1000" @bind-Value="Person.FinalRetirementCapital" Culture="CultureInfo.InvariantCulture" />
+                <MudNumericField ReadOnly="true" Label="Guthaben 3.Säule" Format="n0" Step="1000" @bind-Value="Person.FinalCapital3a" Culture="CultureInfo.InvariantCulture" />
             </MudItem>
+
         </MudGrid>
     </MudPaper>
 
@@ -90,11 +83,9 @@
     [Parameter]
     public EventCallback<Guid> OnCopy { get; set; }
 
-    private DateTime? BirthDate { get; set; }
-
-    protected override void OnInitialized()
+    private DateTime? GetBirthDate()
     {
-        BirthDate = Person.DateOfBirth;
+        return Person.DateOfBirth;
     }
 
     private Task HandleDelete()

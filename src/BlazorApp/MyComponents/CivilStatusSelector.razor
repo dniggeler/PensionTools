@@ -3,12 +3,12 @@
 @using PensionCoach.Tools.CommonTypes
 @using BlazorApp.Resources
 
-@inject IStringLocalizer<Resource> localizer
+@inject IStringLocalizer<Resource> Localizer
 
-<MudSelect Label="@Label" Disabled="@IsReadOnly" @bind-Value="@SelectedCivilStatus">
+<MudSelect T="CivilStatus" Label="@Label" ReadOnly="@IsReadOnly" Value="@SelectedCivilStatus" ValueChanged="HandleChange">
     @foreach (var m in civilStatusModels)
     {
-        <MudSelectItem Value="m.Value" OnClick="@HandleChange">@m.Name</MudSelectItem>
+        <MudSelectItem Value="m.Value">@m.Name</MudSelectItem>
     }
 </MudSelect>
 
@@ -38,9 +38,9 @@
         civilStatusModels.Add(new CivilStatusViewModel { Name = "verheiratet", Value = CivilStatus.Married });
     }
 
-    private void HandleChange(object value)
+    private async Task HandleChange(CivilStatus value)
     {
-        SelectedCivilStatus = (CivilStatus)value;
-        OnSelected.InvokeAsync(SelectedCivilStatus);
+        SelectedCivilStatus = value;
+        await OnSelected.InvokeAsync(value);
     }
 }

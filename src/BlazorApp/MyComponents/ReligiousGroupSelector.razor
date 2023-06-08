@@ -4,7 +4,7 @@
 
 @inject IStringLocalizer<Resource> localizer
 
-<MudSelect Label="@Label" Disabled="@IsReadOnly" T="ReligiousGroupType?" @bind-Value="@SelectedReligiousGroupType">
+<MudSelect Label="@Label" ReadOnly="@IsReadOnly" T="ReligiousGroupType?" @bind-Value="@SelectedReligiousGroupType">
     @foreach (var g in religiousGroupTypes)
     {
         @*<MudSelectItem Value="g.Value">@g.Name</MudSelectItem>*@

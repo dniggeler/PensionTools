@@ -297,7 +297,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     private ChartDataItemModel[] totalDataItems = { };
     private bool isChangeResidenceActive;
     private bool isClearActionActive;
-    private DateOnly? birthdate = new DateOnly(1900, 1, 1);
+    private DateTime? birthdate = new DateTime( 1900, 1, 1);
 
     protected override async Task OnInitializedAsync()
     {
@@ -472,6 +472,6 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         model.Income = selectedPerson.TaxableIncome;
         model.Wealth = selectedPerson.TaxableWealth;
 
-        birthdate = DateOnly.FromDateTime(selectedPerson.DateOfBirth.Date);
+        birthdate = selectedPerson.DateOfBirth;
     }
 }

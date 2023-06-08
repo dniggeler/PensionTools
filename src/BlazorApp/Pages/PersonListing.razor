@@ -3,31 +3,24 @@
 @inject IPersonService PersonService
 @inject IDialogService DialogService
 
-<h3>Personenverzeichnis</h3>
+<MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+    <MudGrid>
+        <MudItem md="6" Class="d-flex justify-start align-center">
+                <MudText Typo="Typo.h5">Personenverzeichnis</MudText>
+        </MudItem>
+        <MudItem md="6" Class="d-flex justify-end">
+            <MudIconButton Click="@(OpenPerson)" Icon="@Icons.Material.Filled.PersonAddAlt1" />
+        </MudItem>
+    </MudGrid>
+</MudPaper>
 
-<div class="row">
-    <div class="col-xl-6 offset-xl-2">
-        <MudContainer class="m-4">
-            <div class="row">
-                <div class="col-xl-10">
-                    <h3>Neue Person erstellen</h3>
-                </div>
-                <div class="col-xl-2">
-                    <MudButton Click="@(OpenPerson)" Class="float-right" Icon="person_add" ButtonStyle="ButtonStyle.Secondary"></MudButton>
-                </div>
-            </div>
-            
-        </MudContainer>
-        
-        @if (persons is not null)
-        {
-            @foreach (var person in persons)
-            {
-                <PersonView Person="person" OnDelete="@DeletePerson" OnEdit="@EditPerson" OnCopy="@CopyPerson"/>
-            }
-        }
-    </div>
-</div>
+@if (persons is not null)
+{
+    @foreach (var person in persons)
+    {
+        <PersonView Person="person" OnDelete="@DeletePerson" OnEdit="@EditPerson" OnCopy="@CopyPerson"/>
+    }
+}
 
 @code
 {
@@ -72,7 +65,9 @@
 
         if(hasChange)
         {
-            await PersonService.UpdateAsync(shadowPerson);
+            person.Update(shadowPerson);
+            
+            await PersonService.UpdateAsync(person);
         }
     }
 
@@ -114,7 +109,7 @@
         IDialogReference result = await DialogService.ShowAsync<PersonEdit>(
             title,
             new DialogParameters { { "Person", person } },
-            new DialogOptions { CloseButton = true, CloseOnEscapeKey = true });
+            new DialogOptions { CloseButton = true, CloseOnEscapeKey = true, MaxWidth = MaxWidth.Large});
 
         DialogResult dialogResult = await result.Result;
 
