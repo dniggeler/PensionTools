@@ -16,14 +16,17 @@
 
         <MudText>Light</MudText>
         <MudSwitch @bind-Checked="@_isDarkMode" Color="Color.Primary" Class="ml-4" Label="Dark" LabelPosition="LabelPosition.End" T="bool"/>
+        
+        <MudPaper Elevation="0">
+            <MudButtonGroup Variant="Variant.Outlined">
+                <MudButton Class="mud-theme-primary">@_buttonText</MudButton>
+                <MudMenu Icon="@Icons.Material.Filled.ArrowDropDown">
+                    <MudMenuItem OnClick="@(() => SetCulture("de-CH"))">DE</MudMenuItem>
+                    <MudMenuItem OnClick="@(() => SetCulture("en-US"))">EN</MudMenuItem>
+                </MudMenu>
+            </MudButtonGroup>
+        </MudPaper>
 
-        <MudButtonGroup Variant="Variant.Outlined" Color="Color.Inherit">
-            <MudButton>@_buttonText</MudButton>
-            <MudMenu Icon="@Icons.Material.Filled.ArrowDropDown">
-                <MudMenuItem OnClick="@(() => SetCulture("de-CH"))">DE</MudMenuItem>
-                <MudMenuItem OnClick="@(() => SetCulture("en-US"))">EN</MudMenuItem>
-            </MudMenu>
-        </MudButtonGroup>
 
         <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
 
@@ -57,7 +60,7 @@
     private MudTheme _theme = new();
     private bool _isDarkMode;
     private bool _drawerOpen = true;
-    private string _buttonText = "DE    ";
+    private string _buttonText = "DE";
 
     private void DrawerToggle()
     {
