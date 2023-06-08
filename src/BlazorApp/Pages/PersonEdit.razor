@@ -4,12 +4,12 @@
 
 @inject IStringLocalizer<Resource> Localizer
 
-<MudCard>
+<MudCard Class="pa-4">
     <EditForm Model="@Person" OnValidSubmit="HandleValidSubmit">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
-        <MudGrid Class="ma-4">
+        <MudGrid>
             <MudItem md="6">
                 <MudTextField Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name" />
             </MudItem>

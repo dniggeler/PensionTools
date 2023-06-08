@@ -17,7 +17,7 @@
         <MudText>Light</MudText>
         <MudSwitch @bind-Checked="@_isDarkMode" Color="Color.Primary" Class="ml-4" Label="Dark" LabelPosition="LabelPosition.End" T="bool"/>
 
-        <MudButtonGroup Variant="Variant.Outlined">
+        <MudButtonGroup Variant="Variant.Outlined" Color="Color.Inherit">
             <MudButton>@_buttonText</MudButton>
             <MudMenu Icon="@Icons.Material.Filled.ArrowDropDown">
                 <MudMenuItem OnClick="@(() => SetCulture("de-CH"))">DE</MudMenuItem>

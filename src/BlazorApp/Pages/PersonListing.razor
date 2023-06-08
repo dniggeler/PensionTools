@@ -9,7 +9,7 @@
                 <MudText Typo="Typo.h5">Personenverzeichnis</MudText>
         </MudItem>
         <MudItem md="6" Class="d-flex justify-end">
-            <MudIconButton Click="@(OpenPerson)" Icon="@Icons.Material.Filled.PersonAddAlt1" />
+            <MudIconButton OnClick="@(OpenPerson)" Icon="@Icons.Material.Filled.PersonAddAlt1" />
         </MudItem>
     </MudGrid>
 </MudPaper>
@@ -35,9 +35,9 @@
     {
         PersonViewModel newPerson = new();
 
-        bool isDone = await OpenDialogAsync("Neue Person anlegen", newPerson);
+        bool ok = await OpenDialogAsync("Neue Person anlegen", newPerson);
 
-        if (isDone)
+        if (ok)
         {
             persons.Add(newPerson);
             await PersonService.AddAsync(newPerson);
@@ -109,7 +109,7 @@
         IDialogReference result = await DialogService.ShowAsync<PersonEdit>(
             title,
             new DialogParameters { { "Person", person } },
-            new DialogOptions { CloseButton = true, CloseOnEscapeKey = true, MaxWidth = MaxWidth.Large});
+            new DialogOptions { CloseButton = true, CloseOnEscapeKey = true, MaxWidth = MaxWidth.Medium});
 
         DialogResult dialogResult = await result.Result;
 
