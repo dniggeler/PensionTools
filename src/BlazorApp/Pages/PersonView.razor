@@ -5,7 +5,7 @@
 
 @inject IStringLocalizer<Resource> Localizer
 
-<MudContainer Data=@Person>
+<MudContainer>
     <MudPaper Elevation="1" Class="pa-4">
 
         <MudGrid>
@@ -51,9 +51,11 @@
             </MudItem>
 
             <MudItem md="4">
-                <MunicipalityByCantonSelector BfsMunicipalityId="Person.BfsMunicipalityId"
-                                              CantonCode="Person.Canton"
-                                              Title="Wohnort" />
+                <ResidenceSelector BfsMunicipalityId="@Person.BfsMunicipalityId"
+                                   CantonCode="@Person.Canton"
+                                   MunicipalityName="@Person.MunicipalityName"
+                                   IsReadOnly="true"
+                                   Label="Wohnort"/>
 
                 <MudNumericField ReadOnly="true" Label="@(Localizer["person.taxableincome"])" Step="1000" Format="n0" @bind-Value="Person.TaxableIncome" Culture="CultureInfo.InvariantCulture" />
                 <MudNumericField ReadOnly="true" Label="@(Localizer["person.taxablewealth"])" Step="1000" Format="n0" @bind-Value="Person.TaxableWealth" Culture="CultureInfo.InvariantCulture" />

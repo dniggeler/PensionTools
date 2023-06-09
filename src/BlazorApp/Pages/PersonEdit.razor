@@ -34,9 +34,10 @@
             </MudItem>
             
             <MudItem md="4">
-                <MunicipalityByCantonSelector BfsMunicipalityId="Person.BfsMunicipalityId"
-                                              CantonCode="Person.Canton"
-                                              Title="Wohnort"
+                <ResidenceSelector BfsMunicipalityId="@Person.BfsMunicipalityId"
+                                              CantonCode="@Person.Canton"
+                                              MunicipalityName="@Person.MunicipalityName"
+                                              Label="Wohnort"
                                               OnSelected="HandleSetResidence" />
 
                 <MudNumericField Label="@(Localizer["person.taxableincome"])" Step="1000" Format="n0" @bind-Value="Person.TaxableIncome" Culture="CultureInfo.InvariantCulture" />

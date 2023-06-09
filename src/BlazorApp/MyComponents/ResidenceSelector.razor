@@ -1,0 +1,104 @@
+﻿@using BlazorApp.Services
+@using PensionCoach.Tools.CommonTypes
+@using PensionCoach.Tools.CommonTypes.Tax
+@using Radzen
+@using Radzen.Blazor
+
+@inject IMunicipalityService MunicipalityService
+
+<MudGrid>
+    <MudItem md="6">
+        <MudSelect T="Canton" Label="@Label" ReadOnly="@IsReadOnly" Value="@CantonCode" ValueChanged="HandleCantonChangeAsync">
+            @foreach (var m in cantons)
+            {
+                <MudSelectItem Value="m.Canton">@m.Name</MudSelectItem>
+            }
+        </MudSelect>
+    </MudItem>
+    
+    <MudItem md="6">
+        <MudSelect T="int" Label="@Label" ReadOnly="@IsReadOnly" Value="@BfsMunicipalityId" Text="@MunicipalityName" ValueChanged="HandleMunicipalityIdChangeAsync">
+            @foreach (TaxSupportedMunicipalityModel m in municipalities)
+            {
+                <MudSelectItem Value="m.BfsMunicipalityNumber">@m.Name</MudSelectItem>
+            }
+        </MudSelect>
+    </MudItem>
+</MudGrid>
+
+@code {
+    internal record CantonHolder
+    {
+        public Canton Canton { get; init; }
+        public string Name { get; init; }
+    }
+
+    [Parameter]
+    public bool IsReadOnly { get; set; }
+
+    [Parameter]
+    public string Label { get; set; }
+
+    [Parameter]
+    public int BfsMunicipalityId { get; set; }
+
+    [Parameter]
+    public string MunicipalityName { get; set; }
+
+    [Parameter]
+    public Canton CantonCode { get; set; }
+
+    [Parameter]
+    public EventCallback<TaxSupportedMunicipalityModel> OnSelected { get; set; }
+
+    private List<TaxSupportedMunicipalityModel> municipalities = new();
+    private List<CantonHolder> cantons = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        cantons = Enum.GetValues(typeof(Canton))
+            .Cast<Canton>()
+            .Select(c => new CantonHolder{ Canton = c, Name = c.ToString()})
+            .ToList();
+
+        municipalities = await GetMunicipalitiesByCanton(CantonCode);
+    }
+
+    private async Task HandleMunicipalityIdChangeAsync(int value)
+    {
+        BfsMunicipalityId = value;
+
+        TaxSupportedMunicipalityModel selectedMunicipalityModel = GetMunicipality(BfsMunicipalityId);
+        MunicipalityName = selectedMunicipalityModel.Name;
+
+        await OnSelected.InvokeAsync(selectedMunicipalityModel);
+    }
+
+    private async Task HandleCantonChangeAsync(Canton value)
+    {
+        CantonCode = value;
+
+        municipalities = await GetMunicipalitiesByCanton(value);
+
+        if (municipalities.Count > 0)
+        {
+            TaxSupportedMunicipalityModel selectedMunicipalityModel = municipalities.First();
+            BfsMunicipalityId = selectedMunicipalityModel.BfsMunicipalityNumber;
+            MunicipalityName = selectedMunicipalityModel.Name;
+
+            await OnSelected.InvokeAsync(selectedMunicipalityModel);
+        }
+    }
+
+    private async Task<List<TaxSupportedMunicipalityModel>>  GetMunicipalitiesByCanton(Canton canton)
+    {
+        return (await MunicipalityService.GetTaxSupportingAsync())
+            .Where(m => m.Canton == canton)
+            .ToList();
+    }
+
+    private TaxSupportedMunicipalityModel GetMunicipality(int id)
+    {
+        return municipalities.Single(item => item.BfsMunicipalityNumber == id);
+    }
+}

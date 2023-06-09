@@ -84,12 +84,13 @@
             {
                 Id = Guid.NewGuid(),
                 BfsMunicipalityId = sourcePerson.BfsMunicipalityId,
+                Canton = sourcePerson.Canton,
+                MunicipalityName = sourcePerson.MunicipalityName,
                 Name = $"{sourcePerson.Name} (Copy)",
                 CivilStatus = sourcePerson.CivilStatus,
                 Gender = sourcePerson.Gender,
                 TaxableIncome = sourcePerson.TaxableIncome,
                 TaxableWealth = sourcePerson.TaxableWealth,
-                Canton = sourcePerson.Canton,
                 FinalCapital3a = sourcePerson.FinalCapital3a,
                 FinalRetirementCapital = sourcePerson.FinalRetirementCapital,
                 DateOfBirth = sourcePerson.DateOfBirth

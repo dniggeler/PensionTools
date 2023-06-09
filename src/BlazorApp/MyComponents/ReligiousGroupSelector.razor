@@ -2,7 +2,7 @@
 @using Microsoft.Extensions.Localization
 @using PensionCoach.Tools.CommonTypes
 
-@inject IStringLocalizer<Resource> localizer
+@inject IStringLocalizer<Resource> Localizer
 
 <MudSelect Label="@Label" ReadOnly="@IsReadOnly" T="ReligiousGroupType?" @bind-Value="@SelectedReligiousGroupType">
     @foreach (var g in religiousGroupTypes)

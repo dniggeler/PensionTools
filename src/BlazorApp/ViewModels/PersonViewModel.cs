@@ -49,6 +49,8 @@ public record PersonViewModel
         TaxableIncome = source.TaxableIncome;
         TaxableWealth = source.TaxableWealth;
         Canton = source.Canton;
+        MunicipalityName = source.MunicipalityName;
+        BfsMunicipalityId = source.BfsMunicipalityId;
         FinalCapital3a = source.FinalCapital3a;
         FinalRetirementCapital = source.FinalRetirementCapital;
 
