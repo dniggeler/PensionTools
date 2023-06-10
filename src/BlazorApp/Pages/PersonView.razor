@@ -5,75 +5,33 @@
 
 @inject IStringLocalizer<Resource> Localizer
 
-<MudContainer>
-    <MudPaper Elevation="1" Class="pa-4">
+<MudPaper Elevation="0" Class="pa-4">
 
-        <MudGrid>
-            <MudItem md="12">
-                <MudPaper Elevation="0" Class="d-flex justify-end">
-                    @if (OnEdit.HasDelegate)
-                    {
-                        <MudIconButton Icon="@Icons.Material.Filled.Edit" OnClick="@HandleEdit" />
-                    }
-
-                    @if (OnCopy.HasDelegate)
-                    {
-                        <MudIconButton Icon="@Icons.Material.Filled.ContentCopy" OnClick="@HandleCopy" />
-                    }
-
-                    @if (OnDelete.HasDelegate)
-                    {
-                        <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="@HandleDelete" />
-                    }
-                </MudPaper>
-            </MudItem>
-            
-            <MudItem md="6">
-                <MudTextField ReadOnly="true" Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name" />
-            </MudItem>
-
-            <MudItem md="6">
-                <MudDatePicker ReadOnly="true" Label="@(Localizer["person.birthdate"])" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="dd.MM.yyyy" Placeholder="Wähle Geburtstag" />
-            </MudItem>
-
-
-            <MudItem md="4">
-
-                <GenderSelector IsReadOnly="true" Label="@(Localizer["person.gender"])" SelectedGender="@Person.Gender" OnSelected="gender => Person.Gender = gender"/>
-                <CivilStatusSelector IsReadOnly="true" Label="Zivilstand" SelectedCivilStatus="@Person.CivilStatus" OnSelected="@(args => Person.CivilStatus = args)" />
-                <ReligiousGroupSelector
-                    IsReadOnly="true"
-                    Label="Konfession"
-                    SelectedReligiousGroupType="@Person.ReligiousGroupType"
-                    OnSelected="@(r => Person.ReligiousGroupType = r ?? ReligiousGroupType.Other)" />
-
-                @if (Person.CivilStatus == CivilStatus.Married)
+    <MudGrid>
+        <MudItem md="12">
+            <MudPaper Elevation="0" Class="d-flex justify-end">
+                @if (OnEdit.HasDelegate)
                 {
-                    <ReligiousGroupSelector Label="Konfession (Partner)" SelectedReligiousGroupType="@Person.PartnerReligiousGroupType"
-                                            OnSelected="@(r => Person.PartnerReligiousGroupType = r)" />
+                    <MudIconButton Icon="@Icons.Material.Filled.Edit" OnClick="@HandleEdit" />
                 }
-            </MudItem>
 
-            <MudItem md="4">
-                <ResidenceSelector BfsMunicipalityId="@Person.BfsMunicipalityId"
-                                   CantonCode="@Person.Canton"
-                                   MunicipalityName="@Person.MunicipalityName"
-                                   IsReadOnly="true"
-                                   Label="Domizil"/>
+                @if (OnCopy.HasDelegate)
+                {
+                    <MudIconButton Icon="@Icons.Material.Filled.ContentCopy" OnClick="@HandleCopy" />
+                }
 
-                <MudNumericField ReadOnly="true" Label="@(Localizer["person.taxableincome"])" Step="1000" Format="n0" @bind-Value="Person.TaxableIncome" Culture="CultureInfo.InvariantCulture" />
-                <MudNumericField ReadOnly="true" Label="@(Localizer["person.taxablewealth"])" Step="1000" Format="n0" @bind-Value="Person.TaxableWealth" Culture="CultureInfo.InvariantCulture" />
-            </MudItem>
+                @if (OnDelete.HasDelegate)
+                {
+                    <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="@HandleDelete" />
+                }
+            </MudPaper>
+        </MudItem>
+        
+        <PersonDetails Person="@Person" IsReadOnly="true" />
 
-            <MudItem md="4">
-                <MudNumericField ReadOnly="true" Label="Alterguthaben PK" Format="n0" Step="1000" @bind-Value="Person.FinalRetirementCapital" Culture="CultureInfo.InvariantCulture" />
-                <MudNumericField ReadOnly="true" Label="Guthaben 3.Säule" Format="n0" Step="1000" @bind-Value="Person.FinalCapital3a" Culture="CultureInfo.InvariantCulture" />
-            </MudItem>
+    </MudGrid>
+</MudPaper>
 
-        </MudGrid>
-    </MudPaper>
-
-</MudContainer>
 
 @code
 {
