@@ -1,7 +1,18 @@
 ﻿@page "/"
 
-<h1>Liste von Simulationen</h1>
-
-<ol>
-    <li><a href="/WealthPlanning" >Einkommen und Vermögen</a></li>
-</ol>
+<MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+    <MudGrid>
+        <MudItem md="12">
+            <MudText Typo="Typo.h5">Liste von Simulationen</MudText>
+        </MudItem>
+        <MudItem md="12">
+            
+            <MudList Clickable="false">
+                <MudListItem>
+                    <a href="/WealthPlanning">Einkommen und Vermögen</a>
+                </MudListItem>
+            </MudList>
+            
+        </MudItem>
+    </MudGrid>
+</MudPaper>
