@@ -87,7 +87,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor", "Blazor", "{06D695
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp.Services.Tests", "BlazorApp.Services.Tests\BlazorApp.Services.Tests.csproj", "{D934E764-94AB-412B-93B5-3C2E3A40E898}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp.Components.Tests", "BlazorApp.Components.Tests\BlazorApp.Components.Tests.csproj", "{D28B965D-73AB-4905-AB37-63AF2CB99567}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp.Components.Tests", "BlazorApp.Components.Tests\BlazorApp.Components.Tests.csproj", "{D28B965D-73AB-4905-AB37-63AF2CB99567}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

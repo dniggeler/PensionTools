@@ -1,13 +1,15 @@
 ﻿@using BlazorApp.Services
+@using LanguageExt
 @using PensionCoach.Tools.CommonTypes
 @using PensionCoach.Tools.CommonTypes.Tax
 @using Radzen
 @using Radzen.Blazor
+@using System.Runtime.CompilerServices
 
 @inject IMunicipalityService MunicipalityService
 
 <MudGrid>
-    <MudItem md="6">
+    <MudItem md="4">
         <MudSelect T="Canton" Label="@Label" ReadOnly="@IsReadOnly" Value="@CantonCode" ValueChanged="HandleCantonChangeAsync">
             @foreach (var m in cantons)
             {
@@ -15,18 +17,25 @@
             }
         </MudSelect>
     </MudItem>
-    
-    <MudItem md="6">
-        <MudSelect T="int" Label="@Label" ReadOnly="@IsReadOnly" Value="@BfsMunicipalityId" Text="@MunicipalityName" ValueChanged="HandleMunicipalityIdChangeAsync">
-            @foreach (TaxSupportedMunicipalityModel m in municipalities)
-            {
-                <MudSelectItem Value="m.BfsMunicipalityNumber">@m.Name</MudSelectItem>
-            }
-        </MudSelect>
+
+    <MudItem md="8">
+        <MudAutocomplete T="string"
+                         ReadOnly="@IsReadOnly"
+                         Label="@Label"
+                         Value="@MunicipalityName"
+                         Text="@MunicipalityName"
+                         SearchFunc="@SearchMunicipalities"
+                         ShowProgressIndicator="true"
+                         MinCharacters="2"
+                         ValueChanged="HandleResidenceChangeAsync"
+                         ResetValueOnEmptyText="false"
+                         AdornmentIcon="@Icons.Material.Filled.Search"
+                         AdornmentColor="Color.Primary"/>
     </MudItem>
 </MudGrid>
 
 @code {
+
     internal record CantonHolder
     {
         public Canton Canton { get; init; }
@@ -58,18 +67,18 @@
     {
         cantons = Enum.GetValues(typeof(Canton))
             .Cast<Canton>()
-            .Select(c => new CantonHolder{ Canton = c, Name = c.ToString()})
+            .Select(c => new CantonHolder { Canton = c, Name = c.ToString() })
             .ToList();
 
         municipalities = await GetMunicipalitiesByCanton(CantonCode);
     }
 
-    private async Task HandleMunicipalityIdChangeAsync(int value)
+    private async Task HandleResidenceChangeAsync(string value)
     {
-        BfsMunicipalityId = value;
+        MunicipalityName = value;
 
-        TaxSupportedMunicipalityModel selectedMunicipalityModel = GetMunicipality(BfsMunicipalityId);
-        MunicipalityName = selectedMunicipalityModel.Name;
+        TaxSupportedMunicipalityModel selectedMunicipalityModel = GetMunicipality(value);
+        BfsMunicipalityId = selectedMunicipalityModel.BfsMunicipalityNumber;
 
         await OnSelected.InvokeAsync(selectedMunicipalityModel);
     }
@@ -90,15 +99,27 @@
         }
     }
 
-    private async Task<List<TaxSupportedMunicipalityModel>>  GetMunicipalitiesByCanton(Canton canton)
+    private async Task<List<TaxSupportedMunicipalityModel>> GetMunicipalitiesByCanton(Canton canton)
     {
         return (await MunicipalityService.GetTaxSupportingAsync())
             .Where(m => m.Canton == canton)
             .ToList();
     }
 
-    private TaxSupportedMunicipalityModel GetMunicipality(int id)
+    private TaxSupportedMunicipalityModel GetMunicipality(string name)
     {
-        return municipalities.Single(item => item.BfsMunicipalityNumber == id);
+        return municipalities.Single(item => item.Name == name);
+    }
+
+    private Task<IEnumerable<string>> SearchMunicipalities(string name)
+    {
+        return string.IsNullOrEmpty(name)
+            ? municipalities
+                .Select(m => m.Name)
+                .AsTask()
+            : municipalities
+                .Where(m => m.Name.Contains(name, StringComparison.OrdinalIgnoreCase))
+                .Select(m => m.Name)
+                .AsTask();
     }
 }

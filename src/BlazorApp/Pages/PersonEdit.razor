@@ -24,12 +24,19 @@
 
                 <CivilStatusSelector IsReadOnly="false" Label="Zivilstand" SelectedCivilStatus="@Person.CivilStatus" OnSelected="@(args => Person.CivilStatus = args)" />
                 
-                <ReligiousGroupSelector IsReadOnly="false" Label="Konfession" SelectedReligiousGroupType="@Person.ReligiousGroupType"
-                                        OnSelected="@(r => Person.ReligiousGroupType = r ?? ReligiousGroupType.Other)" />
+                <ReligiousGroupSelector
+                    IsReadOnly="false"
+                    Label="Konfession"
+                    SelectedReligiousGroupType="@Person.ReligiousGroupType"
+                    OnSelected="@(r => Person.ReligiousGroupType = r ?? ReligiousGroupType.Other)" />
+
                 @if (Person.CivilStatus == CivilStatus.Married)
                 {
-                    <ReligiousGroupSelector Label="Konfession (Partner)" SelectedReligiousGroupType="@Person.PartnerReligiousGroupType"
-                                                OnSelected="@(r => Person.PartnerReligiousGroupType = r)" />
+                    <ReligiousGroupSelector
+                        IsReadOnly="false"
+                        Label="Konfession (Partner)"
+                        SelectedReligiousGroupType="@Person.PartnerReligiousGroupType"
+                        OnSelected="@(r => Person.PartnerReligiousGroupType = r)" />
                 }
             </MudItem>
             
@@ -37,7 +44,7 @@
                 <ResidenceSelector BfsMunicipalityId="@Person.BfsMunicipalityId"
                                               CantonCode="@Person.Canton"
                                               MunicipalityName="@Person.MunicipalityName"
-                                              Label="Wohnort"
+                                              Label="Domizil"
                                               OnSelected="HandleSetResidence" />
 
                 <MudNumericField Label="@(Localizer["person.taxableincome"])" Step="1000" Format="n0" @bind-Value="Person.TaxableIncome" Culture="CultureInfo.InvariantCulture" />

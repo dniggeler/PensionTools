@@ -44,6 +44,8 @@ public record PersonViewModel
     {
         Name = source.Name;
         CivilStatus = source.CivilStatus;
+        ReligiousGroupType = source.ReligiousGroupType;
+        PartnerReligiousGroupType = source.PartnerReligiousGroupType;
         DateOfBirth = source.DateOfBirth;
         Gender = source.Gender;
         TaxableIncome = source.TaxableIncome;

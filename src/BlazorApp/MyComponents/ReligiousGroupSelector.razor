@@ -4,10 +4,10 @@
 
 @inject IStringLocalizer<Resource> Localizer
 
-<MudSelect Label="@Label" ReadOnly="@IsReadOnly" T="ReligiousGroupType?" @bind-Value="@SelectedReligiousGroupType">
+<MudSelect Label="@Label" ReadOnly="@IsReadOnly" T="ReligiousGroupType" Value="@(SelectedReligiousGroupType ?? ReligiousGroupType.Other)" ValueChanged="HandleChangeAsync">
     @foreach (var g in religiousGroupTypes)
     {
-        @*<MudSelectItem Value="g.Value">@g.Name</MudSelectItem>*@
+        <MudSelectItem Value="g.Value">@g.Name</MudSelectItem>
     }
 </MudSelect>
 
@@ -42,9 +42,10 @@
         religiousGroupTypes.Add(new ReligiousGroupTypeViewModel { Name = "römisch-katholisch", Value = ReligiousGroupType.Roman });
     }
 
-    private void HandleChange(object value)
+    private async Task HandleChangeAsync(ReligiousGroupType value)
     {
-        SelectedReligiousGroupType = (ReligiousGroupType)value;
-        OnSelected.InvokeAsync(SelectedReligiousGroupType);
+        SelectedReligiousGroupType = value;
+
+        await OnSelected.InvokeAsync(SelectedReligiousGroupType);
     }
 }

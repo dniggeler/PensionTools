@@ -41,8 +41,12 @@
 
                 <GenderSelector IsReadOnly="true" Label="@(Localizer["person.gender"])" SelectedGender="@Person.Gender" OnSelected="gender => Person.Gender = gender"/>
                 <CivilStatusSelector IsReadOnly="true" Label="Zivilstand" SelectedCivilStatus="@Person.CivilStatus" OnSelected="@(args => Person.CivilStatus = args)" />
-                <ReligiousGroupSelector IsReadOnly="true" Label="Konfession" SelectedReligiousGroupType="@Person.ReligiousGroupType"
-                                        OnSelected="@(r => Person.ReligiousGroupType = r ?? ReligiousGroupType.Other)" />
+                <ReligiousGroupSelector
+                    IsReadOnly="true"
+                    Label="Konfession"
+                    SelectedReligiousGroupType="@Person.ReligiousGroupType"
+                    OnSelected="@(r => Person.ReligiousGroupType = r ?? ReligiousGroupType.Other)" />
+
                 @if (Person.CivilStatus == CivilStatus.Married)
                 {
                     <ReligiousGroupSelector Label="Konfession (Partner)" SelectedReligiousGroupType="@Person.PartnerReligiousGroupType"
@@ -55,7 +59,7 @@
                                    CantonCode="@Person.Canton"
                                    MunicipalityName="@Person.MunicipalityName"
                                    IsReadOnly="true"
-                                   Label="Wohnort"/>
+                                   Label="Domizil"/>
 
                 <MudNumericField ReadOnly="true" Label="@(Localizer["person.taxableincome"])" Step="1000" Format="n0" @bind-Value="Person.TaxableIncome" Culture="CultureInfo.InvariantCulture" />
                 <MudNumericField ReadOnly="true" Label="@(Localizer["person.taxablewealth"])" Step="1000" Format="n0" @bind-Value="Person.TaxableWealth" Culture="CultureInfo.InvariantCulture" />
