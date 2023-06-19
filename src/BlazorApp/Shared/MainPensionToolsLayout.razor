@@ -4,7 +4,7 @@
 @inherits LayoutComponentBase
 
 
-<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
+<MudThemeProvider @bind-IsDarkMode="@IsDarkMode" Theme="_theme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
@@ -15,7 +15,7 @@
         <MudSpacer/>
 
         <MudText>Light</MudText>
-        <MudSwitch @bind-Checked="@_isDarkMode" Color="Color.Primary" Class="ml-4" Label="Dark" LabelPosition="LabelPosition.End" T="bool"/>
+        <MudSwitch @bind-Checked="@IsDarkMode" Color="Color.Primary" Class="ml-4" Label="Dark" LabelPosition="LabelPosition.End" T="bool"/>
         
         <MudPaper Elevation="0">
             <MudButtonGroup Variant="Variant.Outlined">
@@ -50,15 +50,19 @@
         <MudNavLink Href="WealthPlanning" Match="NavLinkMatch.Prefix">Finanzplanung</MudNavLink>
         <MudNavLink Href="/Contact" Match="NavLinkMatch.Prefix">Kontakt</MudNavLink>
     </MudDrawer>
-
+    
     <MudMainContent>
-        @Body
+
+        <CascadingValue Value="@IsDarkMode">
+            @Body
+        </CascadingValue>
+
     </MudMainContent>
 </MudLayout>
 
 @code {
-    private MudTheme _theme = new();
-    private bool _isDarkMode;
+    private readonly MudTheme _theme = new();
+    private bool IsDarkMode;
     private bool _drawerOpen = true;
     private string _buttonText = "DE";
 

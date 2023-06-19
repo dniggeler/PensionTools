@@ -1,162 +1,109 @@
 ﻿@page "/SimpleTax/MarginalTax"
 
 @using PensionCoach.Tools.CommonTypes.Tax
-@using PensionCoach.Tools.CommonTypes
 @using Microsoft.AspNetCore.Components
 @using Microsoft.Extensions.Logging
-@using Radzen
-@using Radzen.Blazor
+@using System.Globalization
 
 @inject IPersonService PersonService
 @inject ILogger<WealthPlanning> Logger
 @inject IMarginalTaxCurveCalculationService MarginalTaxCurveCalculationService
 
-<RadzenTemplateForm TItem="MarginalTaxRequest" Data=@taxRequest Submit=@OnSubmit>
-    <RadzenContent Container="main">
-        <ChildContent>
-            <RadzenHeading Size="H1" Text="Grenzsteuersatz"></RadzenHeading>
-            <RadzenSteps NextText="Nächster" PreviousText="Vorheriger">
-                <Steps>
-                    <RadzenStepsItem Text="Personen" Selected="true">
-                        <FormStep Title="Auswahl" HelpText="Die Cashflow-Simulation basiert auf Angaben zur Person sowie steuerrevelanten Daten wie Wohnort, Einkommen und Vermögen.">
-                            <div class="row">
-                                <PersonSelector Persons="persons" OnSelect="@HandleSelectPerson"/>
-                            </div>
-                        </FormStep>
-                    </RadzenStepsItem>
-                    <RadzenStepsItem Text="Steuerperson ändern" Disabled="@(selectedPerson == null)">
-                        <ChildContent>
-                            <FormStep Title="Person"
-                                      HelpText="Steuerlich relevante Angaben zur Person sind der Zivilstand,
-die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter,
-welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.
-Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.">
-                                <ChildContent>
-                                    <div class="row">
-                                        <RadzenFieldset Text="Person">
-                                            <div class="row">
-                                                <div class="col-md-3"><RadzenLabel Text="Name" /></div>
-                                                <div class="col-md-9"><RadzenTextBox @bind-Value="taxRequest.Name" Name="simulationName" ReadOnly="true" /></div>
+<MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+    <MudGrid>
+        <MudItem md="12">
+            <MudText Typo="Typo.h5">Steuerberechnung</MudText>
+        </MudItem>
 
-                                                <div class="col-md-3"><RadzenLabel Text="Zivilstand" /></div>
-                                                <div class="col-md-9">
-                                                    <CivilStatusSelector
-                                                        SelectedCivilStatus="@taxRequest.CivilStatus"
-                                                        OnSelected="@(args => taxRequest.CivilStatus = args)"/>
-                                                </div>
+        <MudItem md="12">
 
-                                                <div class="col-md-3"><RadzenLabel Text="Konfession" /></div>
-                                                <div class="col-md-9">
-                                                    <ReligiousGroupSelector
-                                                        SelectedReligiousGroupType="@taxRequest.ReligiousGroup"
-                                                        OnSelected="@(args => taxRequest.ReligiousGroup = args ?? ReligiousGroupType.Other)" />
-                                                </div>
-                                                @if (taxRequest.CivilStatus == CivilStatus.Married)
-                                                {
-                                                    <div class="col-md-3"><RadzenLabel Text="Konfession Partner" /></div>
-                                                    <div class="col-md-9">
-                                                        <ReligiousGroupSelector
-                                                            SelectedReligiousGroupType="@taxRequest.PartnerReligiousGroup"
-                                                            OnSelected="@(args => taxRequest.PartnerReligiousGroup = args)" />
-                                                    </div>
-                                                }
-                                            </div>
+            <MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
 
-                                        </RadzenFieldset>
-                                    </div>
-                                    <div class="row">
+                <MudTabPanel Text="Auswahl">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Die Cashflow-Simulation basiert auf Angaben zur Person sowie steuerrevelanten Daten wie Wohnort, Einkommen und Vermögen.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <PersonSelector Persons="persons" OnSelect="@HandleSelectPerson"/>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+                
+                <MudTabPanel Text="Steuerdaten" Disabled="@(selectedPerson is null)">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Steuerlich relevante Angaben zur Person sind der Zivilstand,
+                                die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter,
+                                welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.
+                                Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <PersonDetails IsReadOnly="false" Person="@selectedPerson"/>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+                
+                <MudTabPanel Text="Simulation" Disabled="@(selectedPerson is null)">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <MudNumericField Label="Untergrenze" Format="n0" Step="1000" @bind-Value="taxRequest.LowerSalaryLimit" Culture="CultureInfo.InvariantCulture" />
+                            <MudNumericField Label="Obergrenze" Format="n0" Step="1000" @bind-Value="taxRequest.UpperSalaryLimit" Culture="CultureInfo.InvariantCulture" />
+                            <MudNumericField Label="Anzahl Kurvenpunkte" Format="n0" Step="5" @bind-Value="taxRequest.NumberOfSamples" Culture="CultureInfo.InvariantCulture" />
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
 
-                                        <RadzenFieldset Text="Steuerdaten">
-                                            <div class="row">
-                                                <div class="col-md-3"><RadzenLabel Text="Lohn" /></div>
-                                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.TaxableAmount" /></div>
-                                                
-                                                <div class="col-md-3"><RadzenLabel Text="Steuergemeinde" /></div>
-                                                <div class="col-md-9">
-                                                    <MunicipalitySelector
-                                                        BfsMunicipalityId="taxRequest.BfsMunicipalityId"
-                                                        OnSelected="m => { taxRequest.BfsMunicipalityId = m.BfsMunicipalityNumber; }" />
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <RadzenLabel Text="Steuerjahr"/>
-                                                </div>
-                                                <div class="col-md-9">
-                                                    <RadzenDropDown AllowClear="false" TValue="int" 
-                                                                    Data="@(supportedTaxYears)"
-                                                                    @bind-Value="@taxRequest.CalculationYear"/>
-                                                </div>
-                                            </div>
-                                        </RadzenFieldset>
-                                    </div>
-                                   
-                                </ChildContent>
-                            </FormStep>
-                        </ChildContent>
-                    </RadzenStepsItem>
-                    <RadzenStepsItem Text="Berechnung" Disabled="@(selectedPerson == null)">
-                        <ChildContent>
-                            <FormStep Title="Simulation" HelpText="Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern.">
-                                <div class="row">
-                                    <div class="col-md-3"><RadzenLabel Text="Untergrenze" /></div>
-                                    <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="taxRequest.LowerSalaryLimit" /></div>
+            </MudTabs>
+        </MudItem>
+        
+        <MudItem md="12">
+            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
+        </MudItem>
 
-                                    <div class="col-md-3"><RadzenLabel Text="Obergrenze" /></div>
-                                    <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="taxRequest.UpperSalaryLimit" /></div>
+    </MudGrid>
+</MudPaper>
 
-                                    <div class="col-md-3"><RadzenLabel Text="Anzahl Kurvenpunkte" /></div>
-                                    <div class="col-md-9"><RadzenNumeric TValue="int" @bind-Value="taxRequest.NumberOfSamples" /></div>
-
-                                    <div class="col-md-3"><RadzenLabel Text="Gemeinde" /></div>
-                                    <div class="col-md-9">
-                                        <MunicipalitySelector 
-                                            BfsMunicipalityId="taxRequest.BfsMunicipalityId"
-                                            OnSelected="HandleChangeResidence"/>
-                                    </div>
-                                </div>
-                            </FormStep>
-                        </ChildContent>
-                    </RadzenStepsItem>
-                </Steps>
-            </RadzenSteps>
-            
-            <div class="row">
-                <div class="col-md-12 text-right mt-1">
-                    <MudButton ButtonType="MudBlazor.ButtonType.Submit" Text="Berechne" Disabled="@(selectedPerson == null)"></MudButton>
-                </div>
-            </div>
-
-        </ChildContent>
-    </RadzenContent>
-</RadzenTemplateForm>
 
 @if(showLoading)
 {
-    <RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-7" />
 }
 
 @if (taxResponse is not null)
 {
-    <RadzenPanel AllowCollapse="true">
-        <TaxCurve
-            XMin="@taxRequest.LowerSalaryLimit"
-            XMax="@taxRequest.UpperSalaryLimit"
-            CurveTitle="Grenzsteuerkurve"
-            XAxisTitle="Einkommen"
-            YAxisTitle="Grenzsteuersatz"
-            IsInPercent="true"
-            CurrentPoint="@currentTaxRatePoint"
-            CurvePoints="@taxRateCurvePoints"/>
+    <MudExpansionPanels Class="mb-4 pa-6">
+        <MudExpansionPanel Text="Steuerkurven - Einkommen">
+            <TaxCurve
+                XMin="@taxRequest.LowerSalaryLimit"
+                XMax="@taxRequest.UpperSalaryLimit"
+                CurveTitle="Grenzsteuerkurve"
+                XAxisTitle="Einkommen"
+                YAxisTitle="Grenzsteuersatz"
+                IsInPercent="true"
+                CurrentPoint="@currentTaxRatePoint"
+                CurvePoints="@taxRateCurvePoints"/>
             
-        <TaxCurve
-            XMin="@taxRequest.LowerSalaryLimit"
-            XMax="@taxRequest.UpperSalaryLimit"
-            CurveTitle="Steuerkurve"
-            XAxisTitle="Einkommen"
-            YAxisTitle="Steuerbetrag"
-            IsInPercent="false"
-              CurrentPoint="@currentTotalTaxPoint"
-              CurvePoints="@totalTaxCurvePoints" />
-    </RadzenPanel>
+            <TaxCurve
+                XMin="@taxRequest.LowerSalaryLimit"
+                XMax="@taxRequest.UpperSalaryLimit"
+                CurveTitle="Steuerkurve"
+                XAxisTitle="Einkommen"
+                YAxisTitle="Steuerbetrag"
+                IsInPercent="false"
+                CurrentPoint="@currentTotalTaxPoint"
+                CurvePoints="@totalTaxCurvePoints" />
+            </MudExpansionPanel>
+    </MudExpansionPanels>
 }
 
 @code
@@ -203,14 +150,14 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
         };
     }
 
-    private async Task OnSubmit(MarginalTaxRequest request)
+    private async Task OnSubmit()
     {
         try
         {
             taxResponse = null;
             showLoading = true;
 
-            taxResponse = await MarginalTaxCurveCalculationService.CalculateIncomeCurveAsync(request);
+            taxResponse = await MarginalTaxCurveCalculationService.CalculateIncomeCurveAsync(taxRequest);
             
             taxRateCurvePoints = TaxRateCurvePoints();
             totalTaxCurvePoints = TotalTaxCurvePoints();

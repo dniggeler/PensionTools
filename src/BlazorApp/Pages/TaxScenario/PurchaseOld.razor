@@ -1,102 +1,14 @@
-﻿@page "/TaxScenario/Purchase"
+﻿@page "/TaxScenario/PurchaseOld"
 
 @using Microsoft.AspNetCore.Components
 @using PensionCoach.Tools.CommonTypes
 @using PensionCoach.Tools.CommonTypes.MultiPeriod
 @using PensionCoach.Tools.TaxComparison
 @using Radzen.Blazor
-@using System.Globalization
 
 @inject IPersonService PersonService
 @inject ITaxCalculationService TaxCalculationService
 @inject ITaxScenarioService TaxScenarioService
-
-<MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
-    <MudGrid>
-        <MudItem md="12">
-            <MudText Typo="Typo.h5">Einkauf in die Pensionskasse</MudText>
-        </MudItem>
-        <MudItem md="12">
-            <MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
-
-                <MudTabPanel Text="Auswahl">
-                    <MudGrid>
-                        <MudItem md="4">
-                            <MudText Typo="Typo.body2">
-                                Die Cashflow-Simulation basiert auf Angaben zur Person sowie steuerrevelanten Daten wie Wohnort, Einkommen und Vermögen.
-                            </MudText>
-                        </MudItem>
-                        <MudItem md="8">
-                            <PersonSelector Persons="persons" OnSelect="@HandleSelectPerson"/>
-                        </MudItem>
-                    </MudGrid>
-                </MudTabPanel>
-                
-                <MudTabPanel Text="Steuerdaten" Disabled="@(selectedPerson is null)">
-                    <MudGrid>
-                        <MudItem md="4">
-                            <MudText Typo="Typo.body2">
-                                Steuerlich relevante Angaben zur Person sind der Zivilstand,
-                                die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter,
-                                welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.
-                                Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.
-                            </MudText>
-                        </MudItem>
-                        <MudItem md="8">
-                            <PersonDetails IsReadOnly="false" Person="@selectedPerson"/>
-                        </MudItem>
-                    </MudGrid>
-                </MudTabPanel>
-
-                <MudTabPanel Text="Einkauf" Disabled="@(selectedPerson is null)">
-                    <MudGrid>
-                        <MudItem md="4">
-                            <MudText Typo="Typo.body2">
-                                Der Gesamtbetrag des Einkaufs wird auf die Anzahl Einkäufe aufgeteilt.
-                            </MudText>
-                        </MudItem>
-                        <MudItem md="8">
-                            <MudNumericField T="decimal" Label="Gesamtbetrag" Format="n0" Step="1000" @bind-Value="transferInAmount" Culture="CultureInfo.InvariantCulture"/>
-                            <MudNumericField T="int" Label="Anzahl Einkäufe" Format="n0" @bind-Value="numberOfTransferIns" Culture="CultureInfo.InvariantCulture"/>
-                        </MudItem>
-                    </MudGrid>
-                </MudTabPanel>
-                
-                <MudTabPanel Text="Kapitalbezug" Disabled="@(selectedPerson is null)">
-                    <MudGrid>
-                        <MudItem md="4">
-                            <MudText Typo="Typo.body2">
-                                Die Simulation kann auch einen Kapitalbezug simulieren. Der Bezug des Vorsorgekapital ist steuerpflichtig,
-                                weshalb die Höhe des vorhandenen Vorsorgekapital einen Einfluss auf die Steuerbelastung hat.
-                                Dabei wird das Vorsorgekapital zu einem bestimmten Zeitpunkt bezogen (oder über mehrere Jahre verteilt).
-                            </MudText>
-                        </MudItem>
-                        <MudItem md="8">
-                            <MudNumericField T="int" Label="Bezugsjahr" Format="n0" @bind-Value="yearOfFirstWithdrawal" Max="2099" Culture="CultureInfo.InvariantCulture" />
-                            <MudNumericField T="decimal" Label="Vorsorgekapital (ohne Einkauf)" Format="n0" Step="1000" @bind-Value="totalWithdrawalAmount" Culture="CultureInfo.InvariantCulture" />
-                            <MudNumericField T="int" Label="Anzahl Bezüge" Format="n0" @bind-Value="numberOfWithdrawals" Min="1" Culture="CultureInfo.InvariantCulture" />
-                        </MudItem>
-                    </MudGrid>
-                </MudTabPanel>
-                
-                <MudTabPanel Text="Berechnung" Disabled="@(selectedPerson is null)">
-                    <MudGrid>
-                        <MudItem md="4">
-                            <MudText Typo="Typo.body2">
-                                Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern.
-                            </MudText>
-                        </MudItem>
-                        <MudItem md="8">
-                            <MudNumericField T="decimal" Label="Rendite p.a. auf Vermögen" Format="p2" Step="0.005M" @bind-Value="taxRequest.NetWealthReturn" Culture="CultureInfo.InvariantCulture"/>
-                            <MudNumericField T="decimal" Label="Rendite p.a. Vorsorgekapitalien" Format="p2" Step="0.005M" @bind-Value="taxRequest.NetPensionCapitalReturn" Culture="CultureInfo.InvariantCulture"/>
-                        </MudItem>
-                    </MudGrid>
-                </MudTabPanel>
-
-            </MudTabs>
-        </MudItem>
-    </MudGrid>
-</MudPaper>
 
 <RadzenTemplateForm TItem="CapitalBenefitTransferInComparerRequest" Data=@taxRequest Submit=@OnSubmit>
     <RadzenContent Container="main">
