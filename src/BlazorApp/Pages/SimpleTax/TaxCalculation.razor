@@ -2,9 +2,20 @@
 
 @using PensionCoach.Tools.CommonTypes.Tax
 @using System.Text.Json
+@using System.Text.Encodings.Web
 
 @inject IPersonService PersonService
 @inject ITaxCalculationService TaxCalculationService
+
+<style>
+        /* Stilisierung des Containers */
+        .json-container {
+            white-space: pre-wrap;
+            padding: 20px;
+            margin: 10px;
+            overflow-x: auto;
+        }
+</style>
 
 <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
     <MudGrid>
@@ -69,56 +80,29 @@
 
 @if (taxResponse != null)
 {
-    <MudExpansionPanels>
-        <MudExpansionPanel Text="Result Steuerberechnung">
+    <MudExpansionPanels Class="mb-4 pa-6">
+        <MudExpansionPanel Text="Resultat Steuerberechnung">
             <Content>
-                <MudPaper Elevation="-1">
-                    <MudText Typo="Typo.h6">Rohdaten</MudText>
-                    <MudText Typo="Typo.body2">@(JsonSerializer.Serialize(taxResponse))</MudText>>
-                </MudPaper>
+
+                    <MudTreeView Items="TreeItems" @bind-ActivatedValue="ActivatedValue">
+                        <ItemTemplate>
+                            <MudTreeViewItem @bind-Expanded="@context.IsExpanded" Items="@context.TreeItems" Value="@context"
+                                             Icon="@context.Icon" Text="@context.Title" EndText="@context.Number?.ToString()" EndTextTypo="@Typo.body2"/>
+                        </ItemTemplate>
+                    </MudTreeView>
+            </Content>
+        </MudExpansionPanel>
+
+        <MudExpansionPanel Text="Rohdaten">
+            <Content>
+                <div class="json-container">
+                    <code>
+                        @(FormatTaxResponse(taxResponse))
+                    </code>
+                </div>
             </Content>
         </MudExpansionPanel>
     </MudExpansionPanels>
-    
-
-    <RadzenPanel AllowCollapse="true">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <RadzenLabel Text="@taxResponse.Name"/>
-                </div>
-                <div class="col-lg-9">
-                    <RadzenTree>
-                        <RadzenTreeItem Text="@("Total Steuerbetrag: " + taxResponse.TotalTaxAmount)" Expanded="false">
-                            <ChildContent>
-                                <RadzenTreeItem Text=@("Gemeindesteuer: " + taxResponse.MunicipalityTaxAmount)/>
-                                <RadzenTreeItem Text=@("Staatssteuer: " + taxResponse.CantonTaxAmount)/>
-                                <RadzenTreeItem Text=@("Bundessteuer: " + taxResponse.FederalTaxAmount)/>
-                                <RadzenTreeItem Text=@("Vermögenssteuer: " + taxResponse.WealthTaxAmount)/>
-                                <RadzenTreeItem Text="Details" Expanded="false">
-                                    <ChildContent>
-                                    </ChildContent>
-                                </RadzenTreeItem>
-                            </ChildContent>
-                        </RadzenTreeItem>
-                    </RadzenTree>
-
-                    <RadzenDataGrid AllowFiltering="false" AllowColumnResize="false" AllowPaging="false" AllowSorting="false"
-                                    Data="@(GetFullTaxResponses())" TItem="FullTaxResponse">
-                        <Columns>
-                            <RadzenDataGridColumn TItem="FullTaxResponse" Property="Name" Filterable="false" Title="Name" TextAlign="TextAlign.Center"/>
-                            <RadzenDataGridColumn TItem="FullTaxResponse" Property="TotalTaxAmount" Filterable="false" Title="Total Steuerbetrag" TextAlign="TextAlign.Right"/>
-                            <RadzenDataGridColumn TItem="FullTaxResponse" Property="MunicipalityTaxAmount" Filterable="false" Title="Gemeindesteuer" TextAlign="TextAlign.Right"/>
-                            <RadzenDataGridColumn TItem="FullTaxResponse" Property="CantonTaxAmount" Filterable="false" Title="Staatssteuer" TextAlign="TextAlign.Right"/>
-                            <RadzenDataGridColumn TItem="FullTaxResponse" Property="FederalTaxAmount" Filterable="false" Title="Bundessteuer" TextAlign="TextAlign.Right"/>
-                            <RadzenDataGridColumn TItem="FullTaxResponse" Property="WealthTaxAmount" Filterable="false" Title="Vermögenssteuer" TextAlign="TextAlign.Right"/>
-                            <RadzenDataGridColumn TItem="FullTaxResponse" Property="ChurchTaxAmount" Filterable="false" Title="Kirchensteuer" TextAlign="TextAlign.Right"/>
-                        </Columns>
-                    </RadzenDataGrid>
-                </div>
-            </div>
-        </div>
-    </RadzenPanel>
 }
 
 @code
@@ -128,6 +112,30 @@
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
     private int[] supportedTaxYears;
+
+    private TreeItemData ActivatedValue { get; set; }
+
+    private HashSet<TreeItemData> TreeItems { get; set; } = new();
+
+    public class TreeItemData
+    {
+        public string Title { get; set; }
+
+        public string Icon { get; set; }
+
+        public int? Number { get; set; }
+
+        public bool IsExpanded { get; set; }
+
+        public HashSet<TreeItemData> TreeItems { get; set; }
+
+        public TreeItemData(string title, string icon, int? number = null)
+        {
+            Title = title;
+            Icon = icon;
+            Number = number;
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -145,29 +153,64 @@
     private void HandleSelectPerson(Guid personId)
     {
         selectedPerson = persons.Single(item => item.Id == personId);
-
-        if (selectedPerson == null)
-        {
-            return;
-        }
-
-
-        taxRequest = new FullTaxRequest
-        {
-            Name = selectedPerson.Name,
-            CivilStatus = selectedPerson.CivilStatus,
-            TaxableIncome = selectedPerson.TaxableIncome,
-            TaxableWealth = selectedPerson.TaxableWealth,
-            TaxableFederalIncome = selectedPerson.TaxableIncome,
-            PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
-            ReligiousGroup = selectedPerson.ReligiousGroupType,
-            BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
-            CalculationYear = supportedTaxYears.Max()
-        };
     }
 
     private async Task Calculate()
     {
+        if (selectedPerson is null)
+        {
+            return;
+        }
+
+        taxRequest = new FullTaxRequest
+            {
+                Name = selectedPerson.Name,
+                CivilStatus = selectedPerson.CivilStatus,
+                TaxableIncome = selectedPerson.TaxableIncome,
+                TaxableWealth = selectedPerson.TaxableWealth,
+                TaxableFederalIncome = selectedPerson.TaxableIncome,
+                PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
+                ReligiousGroup = selectedPerson.ReligiousGroupType,
+                BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
+                CalculationYear = supportedTaxYears.Max()
+            };
+        
         taxResponse = await TaxCalculationService.CalculateAsync(taxRequest);
+
+        TreeItems.Add(new TreeItemData($"{selectedPerson.Name} {taxResponse.CalculationYear}", null, null)
+        {
+            IsExpanded = true,
+            TreeItems = new HashSet<TreeItemData>
+            {
+                new($"Gesamtsteuerbelastung", null, Convert.ToInt32(taxResponse.TotalTaxAmount))
+                {
+                    IsExpanded = true,
+                    TreeItems = new HashSet<TreeItemData>
+                    {
+                        new("Bundessteuer", null, Convert.ToInt32(taxResponse.FederalTaxAmount)),
+                        new("Gemeindesteuer", null, Convert.ToInt32(taxResponse.MunicipalityTaxAmount)),
+                        new("Staatssteuer", null, Convert.ToInt32(taxResponse.CantonTaxAmount)),
+                        new("Personensteuer", null, Convert.ToInt32(taxResponse.PollTaxAmount)),
+                    }
+                }
+            }
+        });
+    }
+
+    // format a json string nicely
+    private string FormatTaxResponse(FullTaxResponse calculationResult)
+    {
+        if (calculationResult is null)
+        {
+            return string.Empty;
+        }
+
+        var formattedText = JsonSerializer.Serialize(calculationResult, new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+        });
+
+        return formattedText;
     }
 }
