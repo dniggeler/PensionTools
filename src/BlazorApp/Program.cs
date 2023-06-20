@@ -45,7 +45,6 @@ namespace BlazorApp
             }
 
             builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
             builder.Services.AddMudServices();
             builder.Services.AddBlazoredLocalStorage();
             builder.Services.AddLocalization();

@@ -1,9 +1,8 @@
 ﻿using Radzen;
 
-namespace BlazorApp.Services
+namespace BlazorApp.Services;
+
+public interface IExportService
 {
-    public interface IExportService
-    {
-        public void Export(string table, string type, Query query = null);
-    }
+    public void Export(string table, string type, Query query = null);
 }

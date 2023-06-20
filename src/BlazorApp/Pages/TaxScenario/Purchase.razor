@@ -4,10 +4,12 @@
 @using PensionCoach.Tools.CommonTypes
 @using PensionCoach.Tools.CommonTypes.MultiPeriod
 @using PensionCoach.Tools.TaxComparison
-@using Radzen.Blazor
 @using System.Globalization
+@using ApexCharts;
+@using Color = MudBlazor.Color
 
 @inject IPersonService PersonService
+@inject IApexChartConfigurator ChartConfigurator
 @inject ITaxCalculationService TaxCalculationService
 @inject ITaxScenarioService TaxScenarioService
 
@@ -72,7 +74,7 @@
                             </MudText>
                         </MudItem>
                         <MudItem md="8">
-                            <MudSwitch @bind-Checked="taxRequest.WithCapitalBenefitTaxation" Color="Color.Primary">
+                            <MudSwitch @bind-Checked="taxRequest.WithCapitalBenefitTaxation" Color="MudBlazor.Color.Primary">
 
                             </MudSwitch>
 
@@ -101,7 +103,7 @@
         </MudItem>
         
         <MudItem md="12">
-            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
+            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
         </MudItem>
 
     </MudGrid>
@@ -114,31 +116,25 @@
 
 @if (taxResponse != null)
 {
+    <MudExpansionPanels Class="mb-4 pa-6">
+        <MudExpansionPanel Text="Netto Vermögenszuwachs" IsInitiallyExpanded="true">
+            <ApexChart TItem="TaxCurve.CurvePoint" Options="@options" FormatYAxisLabel="GetYAxisLabel">
+                <ApexPointSeries
+                    TItem="TaxCurve.CurvePoint"
+                    Items="@(GetChartData())"
+                    SeriesType="SeriesType.Bar"
+                    Color="@(ChartConfigurator.PrimaryColor(IsDarkMode))"
+                    XValue="p => p.XValue"
+                    YValue="p => p.YValue" />
+            </ApexChart>
+        </MudExpansionPanel>
+        
+        <MudExpansionPanel Text="Vermögensentwicklung mit und ohne Einkäufen">
+        </MudExpansionPanel>
+
+    </MudExpansionPanels>
+
 @*    <RadzenText TextStyle="TextStyle.H5">Relativer Vermögenszuwachs</RadzenText>
-    <div class="col-md-12">
-        <RadzenChart>
-            <RadzenColumnSeries
-                Data="@(GetChartData())"
-                CategoryProperty="XValue"
-                Title="Gewinn/Verlust"
-                LineType="LineType.Dashed"
-                ValueProperty="YValue">
-                <RadzenSeriesDataLabels Visible="false" />
-            </RadzenColumnSeries>
-
-            <RadzenColumnOptions Radius="5" Width="40" />
-            <RadzenCategoryAxis Padding="20" />
-
-            <RadzenCategoryAxis Min="@(taxResponse.StartingYear-1)" Max="@(taxResponse.StartingYear + taxResponse.NumberOfPeriods)">
-                <RadzenAxisTitle Text="Jahr" />
-            </RadzenCategoryAxis>
-
-            <RadzenValueAxis>
-                <RadzenGridLines Visible="true" />
-                <RadzenAxisTitle Text="Veränderung Gesamtvermögen" />
-            </RadzenValueAxis>
-        </RadzenChart>
-    </div>
 
     <RadzenText TextStyle="TextStyle.H5">Vermögensentwicklung mit Einkäufen</RadzenText>
     <div class="col-md-12">
@@ -223,9 +219,14 @@
     private int numberOfTransferIns;
     private int numberOfWithdrawals;
     private int yearOfFirstWithdrawal;
+    private ApexChartOptions<TaxCurve.CurvePoint> options;
+
+    [CascadingParameter] public bool IsDarkMode { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        options = ChartConfigurator.CurvePointOptions(IsDarkMode);
+
         Task<int[]> yearsTask = TaxCalculationService.SupportedTaxYearsAsync();
         persons = (await PersonService.GetPersonsAsync()).ToList();
 
@@ -308,7 +309,7 @@
         }
     }
 
-    private TaxCurve.CurvePoint[] GetChartData()
+    private IEnumerable<TaxCurve.CurvePoint> GetChartData()
     {
         List<TaxCurve.CurvePoint> points = new();
 
@@ -323,7 +324,7 @@
             });
         }
 
-        return points.ToArray();
+        return points;
     }
 
     private TaxCurve.CurvePoint[] GetSeriesData(IReadOnlyCollection<SinglePeriodCalculationResult> series, AccountType accountType)
@@ -343,5 +344,10 @@
         }
 
         return points.ToArray();
+    }
+
+    private string GetYAxisLabel(decimal value)
+    {
+        return value.ToString("N0");
     }
 }

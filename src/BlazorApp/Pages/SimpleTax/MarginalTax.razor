@@ -82,7 +82,7 @@
 @if (taxResponse is not null)
 {
     <MudExpansionPanels Class="mb-4 pa-6">
-        <MudExpansionPanel Text="Steuerkurven - Einkommen">
+        <MudExpansionPanel Text="Steuerkurven - Einkommen" IsInitiallyExpanded="true">
             <TaxCurve
                 XMin="@taxRequest.LowerSalaryLimit"
                 XMax="@taxRequest.UpperSalaryLimit"
