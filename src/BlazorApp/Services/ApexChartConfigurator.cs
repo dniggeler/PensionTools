@@ -33,23 +33,33 @@ public class ApexChartConfigurator : IApexChartConfigurator
                     },
                 },
             },
-            Stroke = new Stroke
-            {
-                Curve = Curve.Stepline,
-                Colors = new List<string> { PrimaryColor(isDarkMode), SecondaryColor(isDarkMode) },
-                Width = 2
-            },
-            Grid = new Grid
-            {
-                Show = true,
-                Xaxis = new GridXAxis
+            Stroke =
+                new Stroke
                 {
-                    Lines = new Lines
-                    {
-                        Show = true
-                    }
+                    Curve = Curve.Stepline,
+                    Colors = new List<string> { PrimaryColor(isDarkMode), SecondaryColor(isDarkMode) },
+                    Width = 2
+                },
+            Grid = new Grid { Show = true, Xaxis = new GridXAxis { Lines = new Lines { Show = true } }, },
+            Xaxis = new XAxis
+            {
+                Labels = new XAxisLabels
+                {
+                    Style = new AxisLabelStyle { Colors = new ApexCharts.Color(AxisColor(isDarkMode)) }
                 },
             },
+            Yaxis = new List<YAxis>
+            {
+                new()
+                {
+                    Labels = new YAxisLabels
+                    {
+                        Style = new AxisLabelStyle { Colors = new Color(AxisColor(isDarkMode)) }
+                    },
+                    TickAmount = 5,
+                    DecimalsInFloat = 2,
+                }
+            }
         };
 
         return options;
@@ -58,4 +68,6 @@ public class ApexChartConfigurator : IApexChartConfigurator
     public string PrimaryColor(bool isDarkMode) => isDarkMode ? PrimaryColorDark : PrimaryColorLight;
 
     public string SecondaryColor(bool isDarkMode) => isDarkMode ? SecondaryColorDark : SecondaryColorLight;
+
+    public string AxisColor(bool isDarkMode) => isDarkMode ? "lightgrey" : "darkgrey";
 }

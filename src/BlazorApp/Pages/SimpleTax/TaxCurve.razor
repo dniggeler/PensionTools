@@ -51,28 +51,29 @@
 
     protected override void OnInitialized()
     {
-        var configurator = ChartConfigurator.CurvePointOptions(IsDarkMode);
+        var configuratorOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
 
         options = new ApexChartOptions<CurvePoint>
         {
-            Chart = configurator.Chart,
+            Chart = configuratorOptions.Chart,
             Stroke = new Stroke
             {
                 Curve = Curve.Stepline,
                 Colors = new List<string> { PrimaryColor, SecondaryColor },
                 Width = 2
             },
-            Grid = configurator.Grid,
+            Grid = configuratorOptions.Grid,
+            Xaxis = configuratorOptions.Xaxis,
         };
     }
 
     protected override void OnParametersSet()
     {
+        var configuratorOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
+
         options.Stroke.Colors = new List<string> { PrimaryColor, SecondaryColor };
 
-        var axisColor = IsDarkMode
-        ? "lightgrey"
-        : "grey";
+        var axisColor = ChartConfigurator.AxisColor(IsDarkMode);
 
         options.Title = new Title
         {
@@ -92,15 +93,8 @@
                 {
                         Color = axisColor
                 },
-
             },
-            Labels = new XAxisLabels
-            {
-                Style = new AxisLabelStyle
-                {
-                    Colors = new ApexCharts.Color(axisColor)
-                }
-            },
+            Labels = configuratorOptions.Xaxis.Labels,
         };
 
         options.Yaxis = new List<YAxis>
