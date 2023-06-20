@@ -45,6 +45,7 @@ public class ApexChartConfigurator : IApexChartConfigurator
             {
                 Labels = new XAxisLabels
                 {
+                    Formatter = "function(val) { return val.toFixed(0) }",
                     Style = new AxisLabelStyle { Colors = new ApexCharts.Color(AxisColor(isDarkMode)) }
                 },
             },

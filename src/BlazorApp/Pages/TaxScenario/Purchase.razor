@@ -118,18 +118,85 @@
 {
     <MudExpansionPanels Class="mb-4 pa-6">
         <MudExpansionPanel Text="Netto Vermögenszuwachs" IsInitiallyExpanded="true">
-            <ApexChart TItem="TaxCurve.CurvePoint" Options="@options" FormatYAxisLabel="GetYAxisLabel">
+            <ApexChart
+                TItem="TaxCurve.CurvePoint"
+                Options="@netOptions"
+                Height="400"
+                XAxisType="XAxisType.Numeric"
+                FormatYAxisLabel="GetYAxisLabel">
+           
                 <ApexPointSeries
+                    Name="Netto Vermögen"
                     TItem="TaxCurve.CurvePoint"
-                    Items="@(GetChartData())"
+                    Items="@(NetWealthDataPoints())"
                     SeriesType="SeriesType.Bar"
                     Color="@(ChartConfigurator.PrimaryColor(IsDarkMode))"
+                    OrderBy="p => p.X"
                     XValue="p => p.XValue"
-                    YValue="p => p.YValue" />
+                    YValue="p => p.YValue"
+                    ShowDataLabels/>
+
             </ApexChart>
         </MudExpansionPanel>
         
-        <MudExpansionPanel Text="Vermögensentwicklung mit und ohne Einkäufen">
+        <MudExpansionPanel Text="Detailsicht">
+            <ApexChart
+                TItem="TaxCurve.CurvePoint"
+                Title="Vermögensentwicklung mit Einkäufen"
+                Options="@scenarioOptions"
+                Height="400"
+                XAxisType="XAxisType.Numeric"
+                FormatYAxisLabel="GetYAxisLabel">
+
+                <ApexPointSeries
+                    Name="Vermögen"
+                    TItem="TaxCurve.CurvePoint"
+                    Items="@(GetSeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.Wealth))"
+                    SeriesType="SeriesType.Bar"
+                    Color="@(ChartConfigurator.PrimaryColor(IsDarkMode))"
+                    OrderBy="p => p.X"
+                    XValue="p => p.XValue"
+                    YValue="p => p.YValue"/>
+
+                <ApexPointSeries
+                    Name="2.Säule"
+                    TItem="TaxCurve.CurvePoint"
+                    Items="@(GetSeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.OccupationalPension))"
+                    SeriesType="SeriesType.Bar"
+                    Color="@(ChartConfigurator.SecondaryColor(IsDarkMode))"
+                    OrderBy="p => p.X"
+                    XValue="p => p.XValue"
+                    YValue="p => p.YValue"/>
+            </ApexChart>
+            
+            <ApexChart
+                TItem="TaxCurve.CurvePoint"
+                Title="Vermögensentwicklung ohne Einkäufen"
+                Options="@benchmarkOptions"
+                Height="400"
+                XAxisType="XAxisType.Numeric"
+                FormatYAxisLabel="GetYAxisLabel">
+
+                <ApexPointSeries
+                    Name="Vermögen"
+                    TItem="TaxCurve.CurvePoint"
+                    Items="@(GetSeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.Wealth))"
+                    SeriesType="SeriesType.Bar"
+                    Color="@(ChartConfigurator.PrimaryColor(IsDarkMode))"
+                    OrderBy="p => p.X"
+                    XValue="p => p.XValue"
+                    YValue="p => p.YValue"/>
+
+                <ApexPointSeries
+                    Name="2.Säule"
+                    TItem="TaxCurve.CurvePoint"
+                    Items="@(GetSeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.OccupationalPension))"
+                    SeriesType="SeriesType.Bar"
+                    Color="@(ChartConfigurator.SecondaryColor(IsDarkMode))"
+                    OrderBy="p => p.X"
+                    XValue="p => p.XValue"
+                    YValue="p => p.YValue"/>
+            </ApexChart>
         </MudExpansionPanel>
 
     </MudExpansionPanels>
@@ -219,13 +286,21 @@
     private int numberOfTransferIns;
     private int numberOfWithdrawals;
     private int yearOfFirstWithdrawal;
-    private ApexChartOptions<TaxCurve.CurvePoint> options;
+    private ApexChartOptions<TaxCurve.CurvePoint> netOptions;
+    private ApexChartOptions<TaxCurve.CurvePoint> scenarioOptions;
+    private ApexChartOptions<TaxCurve.CurvePoint> benchmarkOptions;
 
     [CascadingParameter] public bool IsDarkMode { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        options = ChartConfigurator.CurvePointOptions(IsDarkMode);
+        netOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
+        
+        scenarioOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
+        scenarioOptions.Chart.Stacked = true;
+
+        benchmarkOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
+        benchmarkOptions.Chart.Stacked = true;
 
         Task<int[]> yearsTask = TaxCalculationService.SupportedTaxYearsAsync();
         persons = (await PersonService.GetPersonsAsync()).ToList();
@@ -309,7 +384,7 @@
         }
     }
 
-    private IEnumerable<TaxCurve.CurvePoint> GetChartData()
+    private TaxCurve.CurvePoint[] NetWealthDataPoints()
     {
         List<TaxCurve.CurvePoint> points = new();
 
@@ -324,7 +399,7 @@
             });
         }
 
-        return points;
+        return points.ToArray();
     }
 
     private TaxCurve.CurvePoint[] GetSeriesData(IReadOnlyCollection<SinglePeriodCalculationResult> series, AccountType accountType)
