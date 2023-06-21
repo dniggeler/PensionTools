@@ -74,9 +74,7 @@
                             </MudText>
                         </MudItem>
                         <MudItem md="8">
-                            <MudSwitch @bind-Checked="taxRequest.WithCapitalBenefitTaxation" Color="MudBlazor.Color.Primary">
-
-                            </MudSwitch>
+                            <MudSwitch @bind-Checked="taxRequest.WithCapitalBenefitTaxation" Color="MudBlazor.Color.Primary"/>
 
                             <MudNumericField T="int" Disabled="@(!taxRequest.WithCapitalBenefitTaxation)" Label="Bezugsjahr" Format="n0" @bind-Value="yearOfFirstWithdrawal" Max="2099" Culture="CultureInfo.InvariantCulture"/>
                             <MudNumericField T="decimal" Disabled="@(!taxRequest.WithCapitalBenefitTaxation)" Label="Vorsorgekapital (ohne Einkauf)" Format="n0" Step="1000" @bind-Value="totalWithdrawalAmount" Culture="CultureInfo.InvariantCulture"/>
@@ -118,7 +116,7 @@
 {
     <MudExpansionPanels Class="mb-4 pa-6">
         <MudExpansionPanel Text="Netto Vermögenszuwachs" IsInitiallyExpanded="true">
-            <ApexChart
+            <ApexChart @ref=netChart
                 TItem="TaxCurve.CurvePoint"
                 Options="@netOptions"
                 Height="400"
@@ -208,7 +206,7 @@
 
 @code {
     private bool showLoading;
-    private CapitalBenefitTransferInComparerRequest taxRequest = new();
+    private CapitalBenefitTransferInComparerRequest taxRequest;
     private CapitalBenefitsTransferInResponse taxResponse;
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
@@ -221,6 +219,7 @@
     private ApexChartOptions<TaxCurve.CurvePoint> netOptions;
     private ApexChartOptions<TaxCurve.CurvePoint> scenarioOptions;
     private ApexChartOptions<TaxCurve.CurvePoint> benchmarkOptions;
+    private ApexChart<TaxCurve.CurvePoint> netChart;
 
     [CascadingParameter]
     public bool IsDarkMode { get; set; }
@@ -243,7 +242,21 @@
         scenarioOptions.DataLabels = new DataLabels
         {
             Enabled = true,
-            Formatter = formatter
+            Formatter = formatter,
+
+        };
+        scenarioOptions.PlotOptions = new PlotOptions
+        {
+            Bar = new PlotOptionsBar
+            {
+                DataLabels = new PlotOptionsBarDataLabels()
+                {
+                    Total = new BarTotalDataLabels
+                    {
+                        Enabled = true,
+                    }
+                }
+            }
         };
 
         benchmarkOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
@@ -253,7 +266,21 @@
             Enabled = true,
             Formatter = formatter
         };
+        benchmarkOptions.PlotOptions = new PlotOptions
+            {
+                Bar = new PlotOptionsBar
+                {
+                    DataLabels = new PlotOptionsBarDataLabels()
+                    {
+                        Total = new BarTotalDataLabels
+                        {
+                            Enabled = true,
+                        }
+                    }
+                }
+            };
 
+        taxRequest = new CapitalBenefitTransferInComparerRequest();
         Task<int[]> yearsTask = TaxCalculationService.SupportedTaxYearsAsync();
         persons = (await PersonService.GetPersonsAsync()).ToList();
 
@@ -303,6 +330,11 @@
             taxRequest.Withdrawals = CreateWithdrawals(numberOfWithdrawals, beginOfWithdrawalYear);
 
             taxResponse = await TaxScenarioService.CalculateAsync(taxRequest);
+
+            if(netChart is not null)
+            {
+                await netChart.RenderAsync();
+            }
         }
         finally
         {

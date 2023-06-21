@@ -16,6 +16,10 @@ public class ApexChartConfigurator : IApexChartConfigurator
     {
         var options = new ApexChartOptions<CurvePoint>
         {
+            Theme = new Theme
+            {
+                Mode = isDarkMode ? Mode.Dark : Mode.Light,
+            },
             Chart = new Chart
             {
                 Toolbar = new Toolbar
