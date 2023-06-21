@@ -54,7 +54,9 @@
     <MudMainContent>
 
         <CascadingValue Value="@IsDarkMode">
-            @Body
+            <CascadingValue Value="@_theme">
+                @Body
+            </CascadingValue>
         </CascadingValue>
 
     </MudMainContent>
