@@ -331,6 +331,14 @@
             int beginOfTransferInYear = supportedTaxYears.Max();
             int beginOfWithdrawalYear = yearOfFirstWithdrawal;
 
+            taxRequest.TaxableIncome = selectedPerson.TaxableIncome;
+            taxRequest.TaxableFederalIncome = selectedPerson.TaxableIncome;
+            taxRequest.TaxableWealth = selectedPerson.TaxableWealth;
+            taxRequest.CivilStatus = selectedPerson.CivilStatus;
+            taxRequest.ReligiousGroup = selectedPerson.ReligiousGroupType;
+            taxRequest.PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType;
+            taxRequest.BfsMunicipalityId = selectedPerson.BfsMunicipalityId;
+
             taxRequest.CalculationYear = beginOfTransferInYear;
             taxRequest.CapitalBenefitsBeforeWithdrawal = totalWithdrawalAmount;
 
