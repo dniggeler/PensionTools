@@ -83,26 +83,31 @@
 {
     <MudExpansionPanels Class="mb-4 pa-6">
         <MudExpansionPanel Text="Steuerkurven - Einkommen" IsInitiallyExpanded="true">
-            <TaxCurve
-                XMin="@taxRequest.LowerSalaryLimit"
-                XMax="@taxRequest.UpperSalaryLimit"
-                CurveTitle="Grenzsteuerkurve"
-                XAxisTitle="Einkommen"
-                YAxisTitle="Grenzsteuersatz"
-                IsInPercent="true"
-                CurrentPoint="@currentTaxRatePoint"
-                CurvePoints="@taxRateCurvePoints"/>
-            
-            <TaxCurve
-                XMin="@taxRequest.LowerSalaryLimit"
-                XMax="@taxRequest.UpperSalaryLimit"
-                CurveTitle="Steuerkurve"
-                XAxisTitle="Einkommen"
-                YAxisTitle="Steuerbetrag"
-                IsInPercent="false"
-                CurrentPoint="@currentTotalTaxPoint"
-                CurvePoints="@totalTaxCurvePoints" />
-            </MudExpansionPanel>
+            <MudGrid>
+                <MudItem lg="6" md="12">
+                    <TaxCurve
+                        XMin="@taxRequest.LowerSalaryLimit"
+                        XMax="@taxRequest.UpperSalaryLimit"
+                        CurveTitle="Grenzsteuer"
+                        XAxisTitle="Einkommen"
+                        YAxisTitle="Grenzsteuersatz"
+                        IsInPercent="true"
+                        CurrentPoint="@currentTaxRatePoint"
+                        CurvePoints="@taxRateCurvePoints"/>
+                </MudItem>
+                <MudItem lg="6" md="12">
+                    <TaxCurve XMin="@taxRequest.LowerSalaryLimit"
+                              XMax="@taxRequest.UpperSalaryLimit"
+                              CurveTitle="Steuerbetrag"
+                              XAxisTitle="Einkommen"
+                              YAxisTitle="Steuerbetrag"
+                              IsInPercent="false"
+                              CurrentPoint="@currentTotalTaxPoint"
+                              CurvePoints="@totalTaxCurvePoints" />
+                </MudItem>
+
+            </MudGrid>
+        </MudExpansionPanel>
     </MudExpansionPanels>
 }
 
