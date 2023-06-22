@@ -3,20 +3,22 @@
 
 @inject IApexChartConfigurator ChartConfigurator
 
-<ApexChart TItem="CurvePoint"
-           Title="@CurveTitle"
-           Options="@options"
-           FormatYAxisLabel="GetYAxisLabel"
-           XAxisType="XAxisType.Numeric"
-           Height="450">
+<ApexChart
+    TItem="CurvePoint"
+    Title="@CurveTitle"
+    Options="@options"
+    FormatYAxisLabel="GetYAxisLabel"
+    XAxisType="XAxisType.Numeric"
+    Height="450">
 
-    <ApexPointSeries TItem="CurvePoint"
-                     Items="@CurvePoints"
-                     Name="@YAxisTitle"
-                     SeriesType="SeriesType.Line"
-                     OrderBy="@(e => e.X)"
-                     XValue="@(e => e.XValue)"
-                     YValue="@(e => e.YValue)"/>
+    <ApexPointSeries
+        TItem="CurvePoint"
+        Items="@CurvePoints"
+        Name="@YAxisTitle"
+        SeriesType="SeriesType.Line"
+        OrderBy="@(e => e.X)"
+        XValue="@(e => e.XValue)"
+        YValue="@(e => e.YValue)"/>
 </ApexChart>
 
 @code {
@@ -32,8 +34,6 @@
         public decimal YValue { get; set; }
     }
 
-    private ApexChartOptions<CurvePoint> options = new();
-
     [CascadingParameter] public bool IsDarkMode { get; set; }
 
     [Parameter] public CurvePoint CurrentPoint { get; set; }
@@ -48,6 +48,8 @@
     [Parameter] public string YAxisTitle { get; set; }
 
     [Parameter] public bool IsInPercent { get; set; }
+
+    private ApexChartOptions<CurvePoint> options = new();
 
     protected override void OnInitialized()
     {

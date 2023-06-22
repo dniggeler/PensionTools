@@ -135,19 +135,6 @@
     private void HandleSelectPerson(Guid personId)
     {
         selectedPerson = persons.Single(item => item.Id == personId);
-
-        taxRequest = new MarginalTaxRequest
-        {
-            Name = selectedPerson.Name,
-            CivilStatus = selectedPerson.CivilStatus,
-            TaxableAmount = selectedPerson.TaxableIncome,
-            PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
-            ReligiousGroup = selectedPerson.ReligiousGroupType,
-            BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
-            CalculationYear = supportedTaxYears.Max(),
-            UpperSalaryLimit = Convert.ToInt32(selectedPerson.TaxableIncome + 100_000),
-            NumberOfSamples = 20
-        };
     }
 
     private async Task OnSubmit()
@@ -156,6 +143,19 @@
         {
             taxResponse = null;
             showLoading = true;
+
+            taxRequest = new MarginalTaxRequest
+            {
+                Name = selectedPerson.Name,
+                CivilStatus = selectedPerson.CivilStatus,
+                TaxableAmount = selectedPerson.TaxableIncome,
+                PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
+                ReligiousGroup = selectedPerson.ReligiousGroupType,
+                BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
+                CalculationYear = supportedTaxYears.Max(),
+                UpperSalaryLimit = Convert.ToInt32(selectedPerson.TaxableIncome + 100_000),
+                NumberOfSamples = 20
+            };
 
             taxResponse = await MarginalTaxCurveCalculationService.CalculateIncomeCurveAsync(taxRequest);
             

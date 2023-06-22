@@ -126,7 +126,7 @@
                 <ApexPointSeries
                     Name="Netto Vermögen"
                     TItem="TaxCurve.CurvePoint"
-                    Items="@(NetWealthDataPoints())"
+                    Items="@netWealthDataPoints"
                     SeriesType="SeriesType.Bar"
                     Color="@(ChartConfigurator.PrimaryColor(IsDarkMode))"
                     OrderBy="p => p.X"
@@ -139,6 +139,7 @@
 
         <MudExpansionPanel Text="Detailsicht">
             <ApexChart
+                @ref=scenarioChart
                 TItem="TaxCurve.CurvePoint"
                 Title="Vermögensentwicklung mit Einkäufen"
                 Options="@scenarioOptions"
@@ -149,7 +150,7 @@
                 <ApexPointSeries
                     Name="Vermögen"
                     TItem="TaxCurve.CurvePoint"
-                    Items="@(GetSeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.Wealth))"
+                    Items="@(SeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.Wealth))"
                     SeriesType="SeriesType.Bar"
                     Color="@(ChartConfigurator.PrimaryColor(IsDarkMode))"
                     OrderBy="p => p.X"
@@ -160,7 +161,7 @@
                 <ApexPointSeries
                     Name="2.Säule"
                     TItem="TaxCurve.CurvePoint"
-                    Items="@(GetSeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.OccupationalPension))"
+                    Items="@(SeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.OccupationalPension))"
                     SeriesType="SeriesType.Bar"
                     Color="@(ChartConfigurator.SecondaryColor(IsDarkMode))"
                     OrderBy="p => p.X"
@@ -169,7 +170,7 @@
                     ShowDataLabels/>
             </ApexChart>
 
-            <ApexChart
+            <ApexChart @ref=benchmarkChart
                 TItem="TaxCurve.CurvePoint"
                 Title="Vermögensentwicklung ohne Einkäufen"
                 Options="@benchmarkOptions"
@@ -180,7 +181,7 @@
                 <ApexPointSeries
                     Name="Vermögen"
                     TItem="TaxCurve.CurvePoint"
-                    Items="@(GetSeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.Wealth))"
+                    Items="@(SeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.Wealth))"
                     SeriesType="SeriesType.Bar"
                     Color="@(ChartConfigurator.PrimaryColor(IsDarkMode))"
                     OrderBy="p => p.X"
@@ -191,7 +192,7 @@
                 <ApexPointSeries
                     Name="2.Säule"
                     TItem="TaxCurve.CurvePoint"
-                    Items="@(GetSeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.OccupationalPension))"
+                    Items="@(SeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.OccupationalPension))"
                     SeriesType="SeriesType.Bar"
                     Color="@(ChartConfigurator.SecondaryColor(IsDarkMode))"
                     OrderBy="p => p.X"
@@ -220,6 +221,13 @@
     private ApexChartOptions<TaxCurve.CurvePoint> scenarioOptions;
     private ApexChartOptions<TaxCurve.CurvePoint> benchmarkOptions;
     private ApexChart<TaxCurve.CurvePoint> netChart;
+    private ApexChart<TaxCurve.CurvePoint> scenarioChart;
+    private ApexChart<TaxCurve.CurvePoint> benchmarkChart;
+    private TaxCurve.CurvePoint[] netWealthDataPoints;
+    private TaxCurve.CurvePoint[] scenario1DataPoints;
+    private TaxCurve.CurvePoint[] scenario2DataPoints;
+    private TaxCurve.CurvePoint[] benchmark1DataPoints;
+    private TaxCurve.CurvePoint[] benchmark2DataPoints;
 
     [CascadingParameter]
     public bool IsDarkMode { get; set; }
@@ -331,9 +339,33 @@
 
             taxResponse = await TaxScenarioService.CalculateAsync(taxRequest);
 
-            if(netChart is not null)
+            netWealthDataPoints = NetWealthDataPoints();
+            scenario1DataPoints = SeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.Wealth);
+            scenario2DataPoints = SeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.OccupationalPension);
+            benchmark1DataPoints = SeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.Wealth);
+            benchmark2DataPoints = SeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.OccupationalPension);
+
+            if (netChart is not null)
             {
+                netChart.Series[0].Items = netWealthDataPoints;
+
                 await netChart.RenderAsync();
+            }
+
+            if (scenarioChart is not null)
+            {
+                scenarioChart.Series[0].Items = scenario1DataPoints;
+                scenarioChart.Series[1].Items = scenario2DataPoints;
+
+                await scenarioChart.RenderAsync();
+            }
+
+            if (benchmarkChart is not null)
+            {
+                benchmarkChart.Series[0].Items = benchmark1DataPoints;
+                benchmarkChart.Series[1].Items = benchmark2DataPoints;
+
+                await benchmarkChart.RenderAsync();
             }
         }
         finally
@@ -377,7 +409,7 @@
             points.Add(new TaxCurve.CurvePoint
             {
                 XValue = year,
-                YValue = taxResponse.DeltaSeries
+                    YValue = taxResponse.DeltaSeries
                     .Where(item => item.Year == year)
                     .Sum(item => item.Amount)
             });
@@ -386,7 +418,7 @@
         return points.ToArray();
     }
 
-    private TaxCurve.CurvePoint[] GetSeriesData(IReadOnlyCollection<SinglePeriodCalculationResult> series, AccountType accountType)
+    private TaxCurve.CurvePoint[] SeriesData(IReadOnlyCollection<SinglePeriodCalculationResult> series, AccountType accountType)
     {
         List<TaxCurve.CurvePoint> points = new();
 
