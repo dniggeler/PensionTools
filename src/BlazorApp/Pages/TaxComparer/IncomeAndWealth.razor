@@ -1,100 +1,56 @@
 ﻿@page "/TaxComparer/IncomeAndWealth"
 
-@using Microsoft.Extensions.Logging
-@using PensionCoach.Tools.CommonTypes
-@using Microsoft.AspNetCore.Components
 @using PensionCoach.Tools.TaxComparison
-@using Radzen
-@using Radzen.Blazor
 
-@inject ILogger<WealthPlanning> Logger
 @inject IPersonService PersonService
 @inject ITaxComparisonService TaxComparisonService
 
-<RadzenTemplateForm TItem="IncomeAndWealthComparerRequest" Data=@taxRequest Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
-    <RadzenContent Container="main">
-        <ChildContent>
-            <RadzenHeading Size="H1" Text="Einkommens- und Vermögenssteuer"></RadzenHeading>
-            <RadzenSteps NextText="Nächster" PreviousText="Vorheriger">
-                <Steps>
-                    <RadzenStepsItem Text="Personen" Selected="true">
-                        <FormStep Title="Auswahl" HelpText="Vergleiche Einkommens- und Vermögenssteuer zwischen allen Schweizer Gemeinden.">
-                            <div class="row">
-                                <PersonSelector Persons="persons" OnSelect="@HandleSelectPerson"/>
-                            </div>
-                        </FormStep>
-                    </RadzenStepsItem>
-                    <RadzenStepsItem Text="Steuerperson ändern" Disabled="@(selectedPerson == null)">
-                        <ChildContent>
-                            <FormStep Title="Person"
-                                      HelpText="Steuerlich relevante Angaben zur Person sind der Zivilstand,
-die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter,
-welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.
-Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.">
-                                <ChildContent>
-                                    <div class="row">
-                                        <RadzenFieldset Text="Person">
-                                            <div class="row">
-                                                <div class="col-md-3"><RadzenLabel Text="Name" /></div>
-                                                <div class="col-md-9"><RadzenTextBox @bind-Value="taxRequest.Name" Name="simulationName" ReadOnly="true" /></div>
+<MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+    <MudGrid>
+        <MudItem md="12">
+            <MudText Typo="Typo.h5">Gemeindevergleich der Einkommens- und Vermögenssteuer</MudText>
+        </MudItem>
+        <MudItem md="12">
+            <MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
 
-                                                <div class="col-md-3"><RadzenLabel Text="Zivilstand" /></div>
-                                                <div class="col-md-9">
-                                                    <CivilStatusSelector
-                                                        SelectedCivilStatus="@taxRequest.CivilStatus"
-                                                        OnSelected="@(args => taxRequest.CivilStatus = args)"/>
-                                                </div>
+                <MudTabPanel Text="Person">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Vergleiche Einkommens- und Vermögenssteuer zwischen allen Schweizer Gemeinden.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <PersonSelector Persons="persons" OnSelect="@HandleSelectPerson" />
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
 
-                                                <div class="col-md-3"><RadzenLabel Text="Konfession" /></div>
-                                                <div class="col-md-9">
-                                                    <ReligiousGroupSelector
-                                                        SelectedReligiousGroupType="@taxRequest.ReligiousGroup"
-                                                        OnSelected="@(args => taxRequest.ReligiousGroup = args ?? ReligiousGroupType.Other)" />
-                                                </div>
-                                                @if (taxRequest.CivilStatus == CivilStatus.Married)
-                                                {
-                                                    <div class="col-md-3"><RadzenLabel Text="Konfession Partner" /></div>
-                                                    <div class="col-md-9">
-                                                        <ReligiousGroupSelector
-                                                            SelectedReligiousGroupType="@taxRequest.PartnerReligiousGroup"
-                                                            OnSelected="@(args => taxRequest.PartnerReligiousGroup = args)" />
-                                                    </div>
-                                                }
-                                            </div>
+                <MudTabPanel Text="Steuerdaten" Disabled="@(selectedPerson is null)">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Steuerlich relevante Angaben zur Person sind der Zivilstand,
+                                die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter,
+                                welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.
+                                Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <PersonDetails IsReadOnly="false" Person="@selectedPerson" />
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
 
-                                        </RadzenFieldset>
-                                    </div>
-                                </ChildContent>
-                            </FormStep>
-                        </ChildContent>
-                    </RadzenStepsItem>
+            </MudTabs>
+        </MudItem>
 
-                    <RadzenStepsItem Text="Berechnung" Disabled="@(selectedPerson == null)">
-                        <ChildContent>
-                            <FormStep Title="Simulation" HelpText="Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern. Welcher Betrag soll bezogen werden und mit welchen Gemeinden soll verglichen werden?">
-                                <div class="col-md-3"><RadzenLabel Text="Steuerbares Einkommen Kanton" /></div>
-                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.TaxableIncome" Step="5000.0" /></div>
+        <MudItem md="12">
+            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
+        </MudItem>
 
-                                <div class="col-md-3"><RadzenLabel Text="Steuerbares Einkommen Bund" /></div>
-                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.TaxableFederalIncome" Step="5000.0" /></div>
-
-                                <div class="col-md-3"><RadzenLabel Text="Steuerbares Vermögen" /></div>
-                                <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="n0" @bind-Value="taxRequest.TaxableWealth" Step="50000.0" /></div>
-                            </FormStep>
-                        </ChildContent>
-                    </RadzenStepsItem>
-                </Steps>
-            </RadzenSteps>
-            
-            <div class="row">
-                <div class="col-md-12 text-right mt-1">
-                    <MudButton ButtonType="MudBlazor.ButtonType.Submit" Text="Berechne" Disabled="@(selectedPerson == null)"></MudButton>
-                </div>
-            </div>
-
-        </ChildContent>
-    </RadzenContent>
-</RadzenTemplateForm>
+    </MudGrid>
+</MudPaper>
 
 @if (isComputing)
 {
@@ -105,7 +61,7 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
 
 @code
 {
-    private IncomeAndWealthComparerRequest taxRequest;
+    private IncomeAndWealthComparerRequest taxRequest = new();
     private List<TaxComparerResultReportModel> taxCalculationResults = new();
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
@@ -124,21 +80,22 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
     private void HandleSelectPerson(Guid personId)
     {
         selectedPerson = persons.Single(item => item.Id == personId);
-
-        taxRequest = new IncomeAndWealthComparerRequest
-        {
-            Name = selectedPerson.Name,
-            CivilStatus = selectedPerson.CivilStatus,
-            PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
-            ReligiousGroup = selectedPerson.ReligiousGroupType,
-            TaxableFederalIncome = selectedPerson.TaxableFederalIncome,
-            TaxableIncome = selectedPerson.TaxableIncome,
-            TaxableWealth = selectedPerson.TaxableWealth,
-        };
     }
 
     private async Task OnSubmit()
     {
+        taxRequest = new IncomeAndWealthComparerRequest
+            {
+                Name = selectedPerson.Name,
+                CivilStatus = selectedPerson.CivilStatus,
+                PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
+                ReligiousGroup = selectedPerson.ReligiousGroupType,
+                TaxableFederalIncome = selectedPerson.TaxableFederalIncome,
+                TaxableIncome = selectedPerson.TaxableIncome,
+                TaxableWealth = selectedPerson.TaxableWealth,
+            };
+
+        taxRequest.BfsNumberList = new[] { 261, 329, 902, selectedPerson.BfsMunicipalityId };
         taxCalculationResults = new List<TaxComparerResultReportModel>();
         
         isComputing = true;
@@ -154,22 +111,15 @@ Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermöge
                 MunicipalityTaxAmount = item.TaxDetails.MunicipalityTaxAmount,
                 CantonTaxAmount = item.TaxDetails.CantonTaxAmount,
                 FederalTaxAmount = item.TaxDetails.FederalTaxAmount,
-                ChurchTaxAmount = item.TaxDetails.ChurchTaxAmount
+                ChurchTaxAmount = item.TaxDetails.ChurchTaxAmount,
             });
 
             progressBarValue = (int)(taxCalculationResults.Count / (item.TotalCount * 1.0) * 100);
-            StateHasChanged();
-            await Task.Delay(1);
         }
 
         taxComparisonGrid.Reload();
 
         isComputing = false;
         progressBarValue = 0;
-    }
-
-    private void OnInvalidSubmit(FormInvalidSubmitEventArgs args)
-    {
-        Logger.LogInformation("InvalidSubmit");
     }
 }

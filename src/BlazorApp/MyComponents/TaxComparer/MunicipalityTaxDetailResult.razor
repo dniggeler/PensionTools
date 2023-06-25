@@ -1,0 +1,27 @@
+﻿@using PensionCoach.Tools.CommonTypes
+
+<MudCard Class="pa-4">
+    <MudCardHeader>
+        <MudText Typo="Typo.subtitle1">@Title</MudText>
+        </MudCardHeader>
+    <MudCardContent>
+        <MudGrid>
+            <MudItem xs="12" md="6">
+                <MudTextField T="string" ReadOnly="true" Label="Gemeinde" Text="@MunicipalityName" />
+            </MudItem>
+            <MudItem xs="12" md="2">
+                <MudTextField T="string" ReadOnly="true" Label="Kanton" Text="@(Canton.ToString())" />
+            </MudItem>
+            <MudItem xs="12" md="4">
+                <MudTextField T="string" ReadOnly="true" Label="Steuertotal" Text="@string.Format(new System.Globalization.CultureInfo("de-CH"), "{0:F0}", TotalTaxAmount)" />
+            </MudItem>
+        </MudGrid>
+    </MudCardContent>
+</MudCard>
+
+@code {
+    [Parameter] public string Title { get; set; }
+    [Parameter] public string MunicipalityName { get; set; }
+    [Parameter] public Canton Canton { get; set; }
+    [Parameter] public decimal? TotalTaxAmount { get; set; }
+}

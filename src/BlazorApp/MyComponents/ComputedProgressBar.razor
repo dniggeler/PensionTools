@@ -1,9 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Components
 
-<RadzenCard>
-    <RadzenLabel Text="@Title" />
-    <RadzenProgressBar Value="@Value" ShowValue="true" Mode="ProgressBarMode.Determinate"/>
-</RadzenCard>
+<MudProgressLinear Color="Color.Info" Striped="true" Size="Size.Large" Value="@Value" Class="my-7">
+    <MudText Typo="Typo.body2" Color="Color.Dark">
+        <b>@Value%</b>
+    </MudText>
+</MudProgressLinear>
 
 @code {
     [Parameter]

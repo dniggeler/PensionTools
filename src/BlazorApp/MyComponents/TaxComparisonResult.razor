@@ -1,141 +1,61 @@
 ﻿@using Microsoft.AspNetCore.Components
+@using PensionCoach.Tools.CommonTypes
 @using PensionCoach.Tools.TaxComparison
-@using Radzen
-@using Radzen.Blazor
+@using BlazorApp.MyComponents.TaxComparer
 
-@inject IExportService ExportService
+<MudGrid>
+    <MudItem md="4" xs="12">
+        @if (SelectedPerson is not null)
+        {
+            <MunicipalityTaxDetailResult
+                Title="Meine Wohngemeinde"
+                MunicipalityName="@SelectedPerson.MunicipalityName"
+                Canton="@SelectedPerson.Canton"
+                TotalTaxAmount="@(GetMyMunicipalityTaxAmount())"/>
+        }
+    </MudItem>
 
-@if (SelectedPerson is not null)
-{
-    <RadzenPanel AllowCollapse="true">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <RadzenCard Visible="@(SelectedPerson is not null)">
-                        <RadzenText TextStyle="TextStyle.H6">
-                            <strong>Meine Wohngemeinde</strong>
-                        </RadzenText>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <RadzenText TextStyle="TextStyle.Overline" Class="d-flex mt-3 mb-0">Gemeinde</RadzenText>
-                                <RadzenText TextStyle="TextStyle.Body1">
-                                    <b>@(SelectedPerson.MunicipalityName)</b>
-                                </RadzenText>
-                                <RadzenText TextStyle="TextStyle.Overline" Class="d-flex mt-3 mb-0">Kanton</RadzenText>
-                                <RadzenText TextStyle="TextStyle.Body1">
-                                    <b>@(SelectedPerson.Canton)</b>
-                                </RadzenText>
-                            </div>
-                            <div class="col-md-6">
-                                <RadzenText TextStyle="TextStyle.Overline" Class="d-flex mt-3 mb-0">Steuertotal</RadzenText>
-                                <RadzenText TextStyle="TextStyle.Body1">
-                                    <b>@String.Format(new System.Globalization.CultureInfo("de-CH"), "{0:F0}", GetMyMunicipalityTaxAmount())</b>
-                                </RadzenText>
-                            </div>
-                        </div>
-                    </RadzenCard>
-                </div>
-                <div class="col-lg-4">
-                    <RadzenCard Visible="@(minimalTaxResult is not null)">
-                        <RadzenText TextStyle="TextStyle.H6">
-                            <strong>Minimale Belastung</strong>
-                        </RadzenText>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <RadzenText TextStyle="TextStyle.Overline" Class="d-flex mt-3 mb-0">Gemeinde</RadzenText>
-                                <RadzenText TextStyle="TextStyle.Body1">
-                                    <b>@(minimalTaxResult.MunicipalityName)</b>
-                                </RadzenText>
-                                <RadzenText TextStyle="TextStyle.Overline" Class="d-flex mt-3 mb-0">Kanton</RadzenText>
-                                <RadzenText TextStyle="TextStyle.Body1">
-                                    <b>@(minimalTaxResult.Canton)</b>
-                                </RadzenText>
-                            </div>
-                            <div class="col-md-6">
-                                <RadzenText TextStyle="TextStyle.Overline" Class="d-flex mt-3 mb-0">Steuertotal</RadzenText>
-                                <RadzenText TextStyle="TextStyle.Body1">
-                                    <b>@String.Format(new System.Globalization.CultureInfo("de-CH"), "{0:F0}", minimalTaxResult.TotalTaxAmount)</b>
-                                </RadzenText>
-                            </div>
-                        </div>
-                    </RadzenCard>
-                </div>
-                <div class="col-lg-4">
-                    <RadzenCard Visible="@(maximalTaxResult is not null)">
-                        <RadzenText TextStyle="TextStyle.H6">
-                            <strong>Maximale Belastung</strong>
-                        </RadzenText>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <RadzenText TextStyle="TextStyle.Overline" Class="d-flex mt-3 mb-0">Gemeinde</RadzenText>
-                                <RadzenText TextStyle="TextStyle.Body1">
-                                    <b>@(maximalTaxResult.MunicipalityName)</b>
-                                </RadzenText>
-                                <RadzenText TextStyle="TextStyle.Overline" Class="d-flex mt-3 mb-0">Kanton</RadzenText>
-                                <RadzenText TextStyle="TextStyle.Body1">
-                                    <b>@(maximalTaxResult.Canton)</b>
-                                </RadzenText>
-                            </div>
-                            <div class="col-md-6">
-                                <RadzenText TextStyle="TextStyle.Overline" Class="d-flex mt-3 mb-0">Steuertotal</RadzenText>
-                                <RadzenText TextStyle="TextStyle.Body1">
-                                    <b>@String.Format(new System.Globalization.CultureInfo("de-CH"), "{0:F0}", maximalTaxResult.TotalTaxAmount)</b>
-                                </RadzenText>
-                            </div>
-                        </div>
-                    </RadzenCard>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <RadzenButton Text="Export XLS" Icon="grid_on" Click="@(_ => Export("excel"))" Class="mb-4 mr-2"/>
-                </div>
-                <div class="col-lg-12">
-                    <RadzenDataGrid @ref="taxResultGrid" AllowFiltering="true" AllowColumnResize="false" AllowPaging="true" AllowSorting="true"
-                                    FilterMode="FilterMode.Simple" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" LogicalFilterOperator="LogicalFilterOperator.And"
-                                    Data="@TaxCompareResultModels" TItem="TaxComparerResultReportModel">
-                        <Columns>
-                            <RadzenDataGridColumn TItem="TaxComparerResultReportModel" Property="MunicipalityName" Filterable="true" Title="Name" TextAlign="TextAlign.Left"/>
-                            <RadzenDataGridColumn TItem="TaxComparerResultReportModel" Property="Canton" Filterable="true" Title="Kanton" TextAlign="TextAlign.Center"/>
-                            <RadzenDataGridColumn TItem="TaxComparerResultReportModel" Property="TotalTaxAmount" Filterable="false" Title="Total" TextAlign="TextAlign.Right">
-                                <Template Context="resultItem">
-                                    @String.Format(new System.Globalization.CultureInfo("de-CH"), "{0:F0}", resultItem.TotalTaxAmount)
-                                </Template>
-                            </RadzenDataGridColumn>
-                            <RadzenDataGridColumn TItem="TaxComparerResultReportModel" Property="MunicipalityTaxAmount" Filterable="false" Title="Gemeindesteuer" TextAlign="TextAlign.Right">
-                                <Template Context="resultItem">
-                                    @String.Format(new System.Globalization.CultureInfo("de-CH"), "{0:F0}", resultItem.MunicipalityTaxAmount)
-                                </Template>
-                            </RadzenDataGridColumn>
-                            <RadzenDataGridColumn TItem="TaxComparerResultReportModel" Property="CantonTaxAmount" Filterable="false" Title="Staatssteuer" TextAlign="TextAlign.Right">
-                                <Template Context="resultItem">
-                                    @String.Format(new System.Globalization.CultureInfo("de-CH"), "{0:F0}", resultItem.CantonTaxAmount)
-                                </Template>
-                            </RadzenDataGridColumn>
-                            <RadzenDataGridColumn TItem="TaxComparerResultReportModel" Property="FederalTaxAmount" Filterable="false" Title="Bundessteuer" TextAlign="TextAlign.Right">
-                                <Template Context="resultItem">
-                                    @String.Format(new System.Globalization.CultureInfo("de-CH"), "{0:F0}", resultItem.FederalTaxAmount)
-                                </Template>
-                            </RadzenDataGridColumn>
-                            <RadzenDataGridColumn TItem="TaxComparerResultReportModel" Property="ChurchTaxAmount" Filterable="false" Title="Kirchensteuer" TextAlign="TextAlign.Right">
-                                <Template Context="resultItem">
-                                    @String.Format(new System.Globalization.CultureInfo("de-CH"), "{0:F0}", resultItem.ChurchTaxAmount)
-                                </Template>
-                            </RadzenDataGridColumn>
-                        </Columns>
-                    </RadzenDataGrid>
-                </div>
-            </div>
-        </div>
-    </RadzenPanel>
-}
+    <MudItem md="4" xs="12">
+        @if(minimalTaxResult is not null)
+        {
+            <MunicipalityTaxDetailResult
+                Title="Gemeinde mit tiefster Steuerbelastung"
+                MunicipalityName="@minimalTaxResult.MunicipalityName"
+                Canton="@minimalTaxResult.Canton"
+                TotalTaxAmount="@minimalTaxResult.TotalTaxAmount"/>
+        }
+    </MudItem>
+    
+    <MudItem md="4" xs="12">
+        @if (maximalTaxResult is not null)
+        {
+            <MunicipalityTaxDetailResult
+                Title="Gemeinde mit tiefster Steuerbelastung"
+                MunicipalityName="@maximalTaxResult.MunicipalityName"
+                Canton="@maximalTaxResult.Canton"
+                TotalTaxAmount="@maximalTaxResult.TotalTaxAmount"/>
+        }
+    </MudItem>
+</MudGrid>
+
+<MudDataGrid @ref="taxResultGrid" Items="TaxCompareResultModels" T="TaxComparerResultReportModel" Striped="true">
+    <Columns>
+        <PropertyColumn Property="r => r.MunicipalityName" Title="Name" />
+        <PropertyColumn Property="r => r.Canton" Title="Kanton"/>
+        <PropertyColumn Property="r => r.TotalTaxAmount" Title="Total" Format="F0"/>
+        <PropertyColumn Property="r => r.MunicipalityTaxAmount" Title="Gemeindesteuer" Format="F0"/>
+        <PropertyColumn Property="r => r.CantonTaxAmount" Title="Staatssteuer" Format="F0"/>
+        <PropertyColumn Property="r => r.FederalTaxAmount" Title="Bundessteuer" Format="F0" CellStyle="text-align: right;"/>
+        <PropertyColumn Property="r => r.ChurchTaxAmount" Title="Kirchensteuer" Format="F0" CellStyle="text-align: right;" />
+    </Columns>
+</MudDataGrid>
 
 @code
 {
     private TaxComparerResultReportModel minimalTaxResult;
     private TaxComparerResultReportModel maximalTaxResult;
 
-    private RadzenDataGrid<TaxComparerResultReportModel> taxResultGrid;
+    private MudDataGrid<TaxComparerResultReportModel> taxResultGrid;
 
     [Parameter]
     public List<TaxComparerResultReportModel> TaxCompareResultModels { get; set; }
@@ -143,22 +63,12 @@
     [Parameter]
     public PersonViewModel SelectedPerson { get; set; }
 
-    public void Export(string type)
-    {
-        ExportService.Export("Vergleich Kapitalbezugssteuer", type, new Query() 
-        { 
-                OrderBy = taxResultGrid.Query.OrderBy,
-                Filter = taxResultGrid.Query.Filter,
-                Select = string.Join(",", taxResultGrid.ColumnsCollection.Where(c => c.GetVisible()).Select(c => c.Property))
-        });
-    }
-
     public void Reload()
     {
         minimalTaxResult = GetMinimumModel();
         maximalTaxResult = GetMaximumModel();
         
-        taxResultGrid.Reload();
+        //taxResultGrid.Reload();
     }
 
     private decimal? GetMyMunicipalityTaxAmount()
