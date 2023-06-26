@@ -7,12 +7,7 @@
 
 <MudGrid>
     <MudItem md="4">
-        <MudSelect T="Canton" Label="@Label" ReadOnly="@IsReadOnly" Value="@CantonCode" ValueChanged="HandleCantonChangeAsync">
-            @foreach (var m in cantons)
-            {
-                <MudSelectItem Value="m.Canton">@m.Name</MudSelectItem>
-            }
-        </MudSelect>
+        <CantonSelector Label="Kanton" IsReadOnly="@IsReadOnly" CantonCode="@CantonCode" OnSelected="HandleCantonChangeAsync" />
     </MudItem>
 
     <MudItem md="8">
@@ -58,15 +53,9 @@
     public EventCallback<TaxSupportedMunicipalityModel> OnSelected { get; set; }
 
     private List<TaxSupportedMunicipalityModel> municipalities = new();
-    private List<CantonHolder> cantons = new();
 
     protected override async Task OnInitializedAsync()
     {
-        cantons = Enum.GetValues(typeof(Canton))
-            .Cast<Canton>()
-            .Select(c => new CantonHolder { Canton = c, Name = c.ToString() })
-            .ToList();
-
         municipalities = await GetMunicipalitiesByCanton(CantonCode);
     }
 
