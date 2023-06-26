@@ -3,9 +3,11 @@
 @using Microsoft.AspNetCore.Components
 @using PensionCoach.Tools.TaxComparison
 @using System.Globalization
+@using PensionCoach.Tools.CommonTypes
 
 @inject IPersonService PersonService
 @inject ITaxComparisonService TaxComparisonService
+@inject IMunicipalityService MunicipalityService
 
 <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
     <MudGrid>
@@ -65,15 +67,15 @@
         </MudItem>
 
     </MudGrid>
+    
+    @if (isComputing)
+    {
+        <ComputedProgressBar Value="@progressBarValue" Title=""/>
+    }
+
+    <TaxComparisonResult @ref="taxComparisonGrid" SelectedPerson="@selectedPerson" TaxCompareResultModels="@taxCalculationResults" />
+
 </MudPaper>
-
-@if (isComputing)
-{
-    <ComputedProgressBar Value="@progressBarValue" Title=""/>
-}
-
-<TaxComparisonResult @ref="taxComparisonGrid" SelectedPerson="@selectedPerson" TaxCompareResultModels="@taxCalculationResults" />
-
 
 @code
 {
@@ -93,6 +95,20 @@
         taxRequest = new CapitalBenefitTaxComparerRequest();
         persons = (await PersonService.GetPersonsAsync()).ToList();
         taxableCapitalBenefit = 500_000;
+
+        var allMunicipalities = await MunicipalityService.GetTaxSupportingAsync(new MunicipalityFilter()
+        {
+            BfsNumberList = new[] { 261, 329, 902 },
+            CantonList = new []{ Canton.ZH },
+        });
+
+        List<int> bfsNumberList = new();
+        foreach (var municipality in allMunicipalities)
+        {
+            bfsNumberList.Add(municipality.BfsMunicipalityNumber);
+        }
+        
+        taxRequest.BfsNumberList = bfsNumberList.ToArray();
     }
 
     private void HandleSelectPerson(Guid personId)
@@ -104,6 +120,8 @@
     {
         taxCalculationResults = new List<TaxComparerResultReportModel>();
 
+        int[] updatedBfsNumberList = taxRequest.BfsNumberList.Union(new[] { selectedPerson.BfsMunicipalityId }).ToArray();
+
         taxRequest = new CapitalBenefitTaxComparerRequest
         {
             Name = selectedPerson.Name,
@@ -113,7 +131,7 @@
             TaxableBenefits = taxableCapitalBenefit,
         };
 
-        taxRequest.BfsNumberList = new[] { 261, 329, 902, selectedPerson.BfsMunicipalityId };
+        taxRequest.BfsNumberList = updatedBfsNumberList;
 
         isComputing = true;
 
@@ -133,7 +151,7 @@
 
             progressBarValue = (int)(taxCalculationResults.Count / (item.TotalCount * 1.0) * 100);
             StateHasChanged();
-            await Task.Delay(3);
+            await Task.Delay(1);
         }
 
         isComputing = false;

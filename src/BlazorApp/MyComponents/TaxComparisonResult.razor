@@ -38,15 +38,15 @@
     </MudItem>
 </MudGrid>
 
-<MudDataGrid @ref="taxResultGrid" Items="TaxCompareResultModels" T="TaxComparerResultReportModel" Striped="true">
+<MudDataGrid @ref="taxResultGrid" Items="TaxCompareResultModels" T="TaxComparerResultReportModel" Striped="true" Virtualize="true" Height="350px">
     <Columns>
         <PropertyColumn Property="r => r.MunicipalityName" Title="Name" />
         <PropertyColumn Property="r => r.Canton" Title="Kanton"/>
         <PropertyColumn Property="r => r.TotalTaxAmount" Title="Total" Format="F0"/>
-        <PropertyColumn Property="r => r.MunicipalityTaxAmount" Title="Gemeindesteuer" Format="F0"/>
-        <PropertyColumn Property="r => r.CantonTaxAmount" Title="Staatssteuer" Format="F0"/>
-        <PropertyColumn Property="r => r.FederalTaxAmount" Title="Bundessteuer" Format="F0" CellStyle="text-align: right;"/>
-        <PropertyColumn Property="r => r.ChurchTaxAmount" Title="Kirchensteuer" Format="F0" CellStyle="text-align: right;" />
+        <PropertyColumn Property="r => r.MunicipalityTaxAmount" Title="Gemeindesteuer" Format="F0" />
+        <PropertyColumn Property="r => r.CantonTaxAmount" Title="Staatssteuer" Format="F0" />
+        <PropertyColumn Property="r => r.FederalTaxAmount" Title="Bundessteuer" Format="F0" />
+        <PropertyColumn Property="r => r.ChurchTaxAmount" Title="Kirchensteuer" Format="F0" />
     </Columns>
 </MudDataGrid>
 
@@ -67,8 +67,6 @@
     {
         minimalTaxResult = GetMinimumModel();
         maximalTaxResult = GetMaximumModel();
-        
-        //taxResultGrid.Reload();
     }
 
     private decimal? GetMyMunicipalityTaxAmount()

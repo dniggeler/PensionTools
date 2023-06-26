@@ -1,9 +1,11 @@
 ﻿@page "/TaxComparer/IncomeAndWealth"
 
 @using PensionCoach.Tools.TaxComparison
+@using PensionCoach.Tools.CommonTypes
 
 @inject IPersonService PersonService
 @inject ITaxComparisonService TaxComparisonService
+@inject IMunicipalityService MunicipalityService
 
 <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
     <MudGrid>
@@ -50,14 +52,14 @@
         </MudItem>
 
     </MudGrid>
+    
+    @if (isComputing)
+    {
+        <ComputedProgressBar Value="@progressBarValue" Title=""/>
+    }
+
+    <TaxComparisonResult @ref="taxComparisonGrid" SelectedPerson="@selectedPerson" TaxCompareResultModels="@taxCalculationResults" />
 </MudPaper>
-
-@if (isComputing)
-{
-    <ComputedProgressBar Value="@progressBarValue" Title=""/>
-}
-
-<TaxComparisonResult @ref="taxComparisonGrid" SelectedPerson="@selectedPerson" TaxCompareResultModels="@taxCalculationResults" />
 
 @code
 {
@@ -75,6 +77,20 @@
         isComputing = false;
         taxRequest = new IncomeAndWealthComparerRequest();
         persons = (await PersonService.GetPersonsAsync()).ToList();
+
+        var allMunicipalities = await MunicipalityService.GetTaxSupportingAsync(new MunicipalityFilter()
+        {
+            BfsNumberList = new[] { 261, 329, 902 },
+            CantonList = new []{ Canton.ZH },
+        });
+
+        List<int> bfsNumberList = new();
+        foreach (var municipality in allMunicipalities)
+        {
+            bfsNumberList.Add(municipality.BfsMunicipalityNumber);
+        }
+        
+        taxRequest.BfsNumberList = bfsNumberList.ToArray();
     }
 
     private void HandleSelectPerson(Guid personId)
@@ -84,6 +100,8 @@
 
     private async Task OnSubmit()
     {
+        int[] updatedBfsNumberList = taxRequest.BfsNumberList.Union(new[] { selectedPerson.BfsMunicipalityId }).ToArray();
+
         taxRequest = new IncomeAndWealthComparerRequest
             {
                 Name = selectedPerson.Name,
@@ -95,7 +113,8 @@
                 TaxableWealth = selectedPerson.TaxableWealth,
             };
 
-        taxRequest.BfsNumberList = new[] { 261, 329, 902, selectedPerson.BfsMunicipalityId };
+        taxRequest.BfsNumberList = updatedBfsNumberList;
+
         taxCalculationResults = new List<TaxComparerResultReportModel>();
         
         isComputing = true;
