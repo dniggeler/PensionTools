@@ -43,7 +43,20 @@
                         </MudItem>
                     </MudGrid>
                 </MudTabPanel>
-
+                
+                <MudTabPanel Text="Berechnung" Disabled="@(selectedPerson is null)">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Geben Sie die Kapitalbezüge ein, für welche Sie die Steuer berechnen möchten. Die Berechnung der Steuer erfolgt nach der kantonalen Steuermethode und die kann
+                                von Kanton zu Kanton unterschiedlich sein.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <CantonSelector IsReadOnly="false" Label="Kanton" CantonCode="@filterPropertyCanton" OnSelected="@SetCanton"/>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
             </MudTabs>
         </MudItem>
 
@@ -68,6 +81,7 @@
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
     private TaxComparisonResult taxComparisonGrid;
+    private Canton filterPropertyCanton;
 
     private bool isComputing;
     private int progressBarValue;
@@ -77,31 +91,16 @@
         isComputing = false;
         taxRequest = new IncomeAndWealthComparerRequest();
         persons = (await PersonService.GetPersonsAsync()).ToList();
-
-        var allMunicipalities = await MunicipalityService.GetTaxSupportingAsync(new MunicipalityFilter()
-        {
-            BfsNumberList = new[] { 261, 329, 902 },
-            CantonList = new []{ Canton.ZH },
-        });
-
-        List<int> bfsNumberList = new();
-        foreach (var municipality in allMunicipalities)
-        {
-            bfsNumberList.Add(municipality.BfsMunicipalityNumber);
-        }
-        
-        taxRequest.BfsNumberList = bfsNumberList.ToArray();
     }
 
     private void HandleSelectPerson(Guid personId)
     {
         selectedPerson = persons.Single(item => item.Id == personId);
+        filterPropertyCanton = selectedPerson.Canton;
     }
 
     private async Task OnSubmit()
     {
-        int[] updatedBfsNumberList = taxRequest.BfsNumberList.Union(new[] { selectedPerson.BfsMunicipalityId }).ToArray();
-
         taxRequest = new IncomeAndWealthComparerRequest
             {
                 Name = selectedPerson.Name,
@@ -113,7 +112,7 @@
                 TaxableWealth = selectedPerson.TaxableWealth,
             };
 
-        taxRequest.BfsNumberList = updatedBfsNumberList;
+        taxRequest.BfsNumberList = await GetBfsNumberListAsync();
 
         taxCalculationResults = new List<TaxComparerResultReportModel>();
         
@@ -140,5 +139,29 @@
 
         isComputing = false;
         progressBarValue = 0;
+    }
+
+    private async Task<int[]> GetBfsNumberListAsync()
+    {
+        MunicipalityFilter filter = selectedPerson is null
+            ? new()
+            {
+                CantonList = new Canton[] { },
+                BfsNumberList = new[] { 261, 329, 902 },
+            }
+            : new MunicipalityFilter
+            {
+                CantonList = new[] { filterPropertyCanton },
+                BfsNumberList = new[] { 261, 329, 902, selectedPerson.BfsMunicipalityId },
+            };
+
+        var result = await MunicipalityService.GetTaxSupportingAsync(filter);
+      
+        return result.Select(m => m.BfsMunicipalityNumber).ToArray();
+    }
+
+    private void SetCanton(Canton canton)
+    {
+        filterPropertyCanton = canton;
     }
 }

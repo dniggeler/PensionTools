@@ -56,6 +56,8 @@
                         </MudItem>
                         <MudItem md="8">
                             <MudNumericField Label="Kapitalbezug" Format="n0" Step="10000" @bind-Value="taxableCapitalBenefit" Culture="CultureInfo.InvariantCulture"/>
+                            
+                            <CantonSelector IsReadOnly="false" Label="Kanton" CantonCode="@filterPropertyCanton" OnSelected="@SetCanton"/>
                         </MudItem>
                     </MudGrid>
                 </MudTabPanel>
@@ -85,6 +87,7 @@
     private IReadOnlyCollection<PersonViewModel> persons;
     private TaxComparisonResult taxComparisonGrid;
     private decimal taxableCapitalBenefit;
+    private Canton filterPropertyCanton;
 
     private bool isComputing;
     private int progressBarValue;
@@ -95,32 +98,17 @@
         taxRequest = new CapitalBenefitTaxComparerRequest();
         persons = (await PersonService.GetPersonsAsync()).ToList();
         taxableCapitalBenefit = 500_000;
-
-        var allMunicipalities = await MunicipalityService.GetTaxSupportingAsync(new MunicipalityFilter()
-        {
-            BfsNumberList = new[] { 261, 329, 902 },
-            CantonList = new []{ Canton.ZH },
-        });
-
-        List<int> bfsNumberList = new();
-        foreach (var municipality in allMunicipalities)
-        {
-            bfsNumberList.Add(municipality.BfsMunicipalityNumber);
-        }
-        
-        taxRequest.BfsNumberList = bfsNumberList.ToArray();
     }
 
     private void HandleSelectPerson(Guid personId)
     {
         selectedPerson = persons.Single(item => item.Id == personId);
+        filterPropertyCanton = selectedPerson.Canton;
     }
 
     private async Task OnSubmit()
     {
         taxCalculationResults = new List<TaxComparerResultReportModel>();
-
-        int[] updatedBfsNumberList = taxRequest.BfsNumberList.Union(new[] { selectedPerson.BfsMunicipalityId }).ToArray();
 
         taxRequest = new CapitalBenefitTaxComparerRequest
         {
@@ -131,7 +119,7 @@
             TaxableBenefits = taxableCapitalBenefit,
         };
 
-        taxRequest.BfsNumberList = updatedBfsNumberList;
+        taxRequest.BfsNumberList = await GetBfsNumberListAsync();
 
         isComputing = true;
 
@@ -159,5 +147,29 @@
         progressBarValue = 0;
 
         taxComparisonGrid.Reload();
+    }
+
+    private async Task<int[]> GetBfsNumberListAsync()
+    {
+        MunicipalityFilter filter = selectedPerson is null
+            ? new()
+            {
+                CantonList = new Canton[] { },
+                BfsNumberList = new[] { 261, 329, 902 },
+            }
+            : new MunicipalityFilter
+            {
+                CantonList = new[] { filterPropertyCanton },
+                BfsNumberList = new[] { 261, 329, 902, selectedPerson.BfsMunicipalityId },
+            };
+
+        var result = await MunicipalityService.GetTaxSupportingAsync(filter);
+      
+        return result.Select(m => m.BfsMunicipalityNumber).ToArray();
+    }
+
+    private void SetCanton(Canton canton)
+    {
+        filterPropertyCanton = canton;
     }
 }

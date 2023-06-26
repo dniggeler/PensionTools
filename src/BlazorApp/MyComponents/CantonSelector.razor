@@ -1,0 +1,48 @@
+﻿@using PensionCoach.Tools.CommonTypes
+@using PensionCoach.Tools.CommonTypes.Tax
+
+<MudSelect T="Canton" Label="@Label" ReadOnly="@IsReadOnly" Value="@CantonCode" ValueChanged="HandleCantonChange">
+    @foreach (var m in cantons)
+    {
+        <MudSelectItem Value="m.Canton">@m.Name</MudSelectItem>
+    }
+</MudSelect>
+
+
+@code {
+
+    internal record CantonHolder
+    {
+        public Canton Canton { get; init; }
+        public string Name { get; init; }
+    }
+
+    [Parameter]
+    public bool IsReadOnly { get; set; }
+
+    [Parameter]
+    public string Label { get; set; }
+
+    [Parameter]
+    public Canton CantonCode { get; set; }
+
+    [Parameter]
+    public EventCallback<Canton> OnSelected { get; set; }
+
+    private List<CantonHolder> cantons = new();
+
+    protected override void OnInitialized()
+    {
+        cantons = Enum.GetValues(typeof(Canton))
+            .Cast<Canton>()
+            .Select(c => new CantonHolder { Canton = c, Name = c.ToString() })
+            .ToList();
+            }
+
+    private async Task HandleCantonChange(Canton value)
+    {
+        CantonCode = value;
+
+        await OnSelected.InvokeAsync(CantonCode);
+    }
+}
