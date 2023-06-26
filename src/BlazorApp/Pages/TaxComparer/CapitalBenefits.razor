@@ -2,6 +2,7 @@
 
 @using Microsoft.AspNetCore.Components
 @using PensionCoach.Tools.TaxComparison
+@using System.Globalization
 
 @inject IPersonService PersonService
 @inject ITaxComparisonService TaxComparisonService
@@ -42,7 +43,20 @@
                         </MudItem>
                     </MudGrid>
                 </MudTabPanel>
-
+                
+                <MudTabPanel Text="Berechnung" Disabled="@(selectedPerson is null)">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Geben Sie die Kapitalbezüge ein, für welche Sie die Steuer berechnen möchten. Die Berechnung der Steuer erfolgt nach der kantonalen Steuermethode und die kann
+                                von Kanton zu Kanton unterschiedlich sein.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <MudNumericField Label="Kapitalbezug" Format="n0" Step="10000" @bind-Value="taxableCapitalBenefit" Culture="CultureInfo.InvariantCulture"/>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
             </MudTabs>
         </MudItem>
 
@@ -68,6 +82,7 @@
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
     private TaxComparisonResult taxComparisonGrid;
+    private decimal taxableCapitalBenefit;
 
     private bool isComputing;
     private int progressBarValue;
@@ -77,6 +92,7 @@
         isComputing = false;
         taxRequest = new CapitalBenefitTaxComparerRequest();
         persons = (await PersonService.GetPersonsAsync()).ToList();
+        taxableCapitalBenefit = 500_000;
     }
 
     private void HandleSelectPerson(Guid personId)
@@ -94,7 +110,7 @@
             CivilStatus = selectedPerson.CivilStatus,
             PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
             ReligiousGroup = selectedPerson.ReligiousGroupType,
-            TaxableBenefits = 1_000_000
+            TaxableBenefits = taxableCapitalBenefit,
         };
 
         taxRequest.BfsNumberList = new[] { 261, 329, 902, selectedPerson.BfsMunicipalityId };
