@@ -4,21 +4,19 @@
 @using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions
 @using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions
 @using PensionCoach.Tools.CommonTypes.Tax
-@using Radzen.Blazor
+@using System.Globalization
 
 @inject IStringLocalizer<Resource> Localizer
 
 <EditForm Model="Definition">
-    <div class="row">
-        <div class="col-md-3"><RadzenLabel Text="Titel"/></div>
-        <div class="col-md-9"><RadzenTextBox TValue="string" @bind-Value="@Definition.Header.Name"/></div>
-        <div class="col-md-3"><RadzenLabel Text="Jahr" /></div>
-        <div class="col-md-9"><RadzenDatePicker @bind-Value="@Definition.DateOfProcess" DateFormat="d.M.yyyy" Placeholder="@Localizer["person.birthdate"]" /></div>
-        <div class="col-md-3"><RadzenLabel Text="Anteil" /></div>
-        <div class="col-md-9"><RadzenNumeric TValue="decimal" Format="P2" @bind-Value="@Definition.TransferRatio" Min="0" Max="1M" Step="0.005" /></div>
-        <div class="col-md-3"><RadzenLabel Text="Versteuern" /></div>
-        <div class="col-md-9"><RadzenSwitch @bind-Value="@Definition.IsTaxable" /></div>
-    </div>
+    <MudGrid>
+        <MudItem md="12">
+            <MudTextField T="string" Label="Titel" Text="@Definition.Header.Name"/>
+            <MudDatePicker Label="Datum" @bind-Date="@dateOfTransferIn" DateFormat="dd.MM.yyyy" />
+            <MudNumericField Label="Anteil" Format="p2" Step="0.005M" @bind-Value="@Definition.TransferRatio" Culture="CultureInfo.InvariantCulture" />
+            <MudSwitch Label="Steuerbar" @bind-Checked="@Definition.IsTaxable" Color="Color.Primary" />
+        </MudItem>
+    </MudGrid>
 </EditForm>
 
 @code {
@@ -26,12 +24,18 @@
     [Parameter]
     public RelativeTransferAmountDefinition Definition { get; set; }
 
+    private DateTime? dateOfTransferIn;
+
     protected override void OnInitialized()
     {
         Definition.Flow = new FlowPair(AccountType.OccupationalPension, AccountType.Wealth);
         Definition.TaxType = TaxType.CapitalBenefits;
         Definition.IsTaxable = true;
-        Definition.Header.Name = "Kapitalbezug";
+        Definition.Header = new CashFlowHeader()
+        {
+            Id = Guid.NewGuid().ToString(),
+            Name = "Kapitalbezug"
+        };
         Definition.TransferRatio = 1M;
     }
 }

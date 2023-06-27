@@ -93,6 +93,8 @@
                                 Für ein gewähltes Jahr kann Guthaben von einem Ursrpungs- zu einem Zielkonto transferiert werden. Das Guthaben kann ein Betrag oder ein Prozentssatz sein.
                                 Transfer-Transaktionen dieser Art gibt es insbesondere in der Vorsorge: ein 3a-Konto wird aufgelöst oder bei Pensionierung lässt man sich das Geld auszahlen.
                                 Wie im Fall einer Auflösung des 3a-Kontos fallen auch Steuern an.
+                                <br />
+                                <i>Aktuell werden alle Vorsorge-Konti zum gewünschten Zeitpunkt geräumt und versteuert und dem Vermögenskonto gutgeschrieben.</i>
                             </MudText>
                         </MudItem>
                         <MudItem md="8">
@@ -101,8 +103,33 @@
                             @if (isClearActionActive)
                             {
                                 <MudPaper Elevation="1" Class="pa-4">
+                                    <ClearAccountActionDefinitionForm Definition="clearAccountAction"></ClearAccountActionDefinitionForm>
                                 </MudPaper>
                             }
+                        </MudItem>
+                        
+                        <MudItem md="4">
+                            <MudText Typo="Typo.subtitle1">
+                                Generische Zu- und Abflüsse
+                            </MudText>
+                            <MudText Typo="Typo.body2">
+                                Einmalige oder periodische Kapitalflüsse, die einer Steuer unterliegen. Mit einem Geldfluss sind immer zwei Konti verbunden.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <MudPaper Elevation="1" Class="pa-4">
+                                <MudText Typo="Typo.subtitle2">
+                                    Vorsorge
+                                </MudText>
+                                <MudExpansionPanels>
+                                    @foreach (StaticGenericCashFlowDefinition definition in genericCashFlowDefinitions)
+                                    {
+                                        <MudExpansionPanel Text="@definition.Header.Name">
+                                            <GenericCashFlowDefinitionForm Definition="definition" />
+                                        </MudExpansionPanel>
+                                    }
+                                </MudExpansionPanels>
+                            </MudPaper>
                         </MudItem>
                     </MudGrid>
 
@@ -115,6 +142,7 @@
                         </MudText>
                     </MudItem>
                     <MudItem md="8">
+                        
                     </MudItem>
                 </MudTabPanel>
             </MudTabs>

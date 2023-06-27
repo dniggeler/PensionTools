@@ -1,25 +1,15 @@
 ﻿@using BlazorApp.ViewModels
-@using Radzen.Blazor
+@using System.Globalization
 
 <EditForm Model="GenericDefinition">
-    <div class="row">
-        <div class="col-md-2">
-            <RadzenLabel Text="Startjahr" Component="year"/>
-            <RadzenNumeric TValue="int" @bind-Value="GenericDefinition.Year" Name="year" Change="HandleChange"/>
-        </div>
-        <div class="col-md-2">
-            <RadzenLabel Text="Startbetrag" Component="initialAmount" />
-            <RadzenNumeric TValue="decimal" @bind-Value="GenericDefinition.InitialAmount" Name="initialAmount" Step="100" Change="HandleChange" />
-        </div>
-        <div class="col-md-2">
-            <RadzenLabel Text="Jährlicher Betrag" Component="recurrentAmount" />
-            <RadzenNumeric TValue="decimal" @bind-Value="GenericDefinition.RecurrentAmount" Name="recurrentAmount" Step="100"  Change="HandleChange"/>
-        </div>
-        <div class="col-md-2">
-            <RadzenLabel Text="Wiederholungen" Component="periods" />
-            <RadzenNumeric TValue="int" @bind-Value="GenericDefinition.NumberOfPeriods" Name="periods" Change="HandleChange" />
-        </div>
-    </div>
+    <MudGrid>
+        <MudItem md="12">
+            <MudNumericField Label="Startjahr" Format="n0" @bind-Value="@GenericDefinition.Year" Culture="CultureInfo.InvariantCulture"  />
+            <MudNumericField Label="Startbetrag" Format="n0" @bind-Value="@GenericDefinition.InitialAmount" Culture="CultureInfo.InvariantCulture" />
+            <MudNumericField Label="Jährlicher Betrag" Format="n0" @bind-Value="@GenericDefinition.RecurrentAmount" Culture="CultureInfo.InvariantCulture" />
+            <MudNumericField Label="Wiederholungen" Format="n0" @bind-Value="@GenericDefinition.NumberOfPeriods" Culture="CultureInfo.InvariantCulture" />
+        </MudItem>
+    </MudGrid>
 </EditForm>
 
 

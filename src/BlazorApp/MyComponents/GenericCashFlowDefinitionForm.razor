@@ -1,29 +1,22 @@
 ﻿@using PensionCoach.Tools.CommonTypes.MultiPeriod
 @using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions
-@using Radzen.Blazor
+@using System.Globalization
 
 <EditForm Model="Definition">
-    <div class="row">
-        <div class="col-md-2">
-            <RadzenLabel Text="Titel" Component="name"/>
-            <RadzenTextBox TValue="string" @bind-Value="@Definition.Header.Name" Name="name"/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <InvestmentDefinitionForm GenericDefinition="@InvestmentDefinition" OnChanged="Set"/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3">
-            <RadzenLabel Text="Versteuern" Component="isTaxable" />
-            <RadzenSwitch @bind-Value="@Definition.IsTaxable" Name="isTaxable" />
-        </div>
-        <div class="col-md-3">
-            <RadzenLabel Text="Jährliche Zunahme" Component="netGrowthRate" />
-            <RadzenNumeric TValue="decimal" Format="P2" @bind-Value="@Definition.NetGrowthRate" Name="netGrowthRate" Min="0" Max="0.5M" Step="0.005" />
-        </div>
-    </div>
+    <MudGrid>
+        <MudItem md="12">
+            <MudTextField T="string" Label="Titel" Text="@Definition.Header.Name" />
+        </MudItem>
+        <MudItem md="12">
+            <InvestmentDefinitionForm GenericDefinition="@InvestmentDefinition" OnChanged="Set" />
+        </MudItem>
+        <MudItem md="6">
+            <MudSwitch Label="Steuerbar" @bind-Checked="@Definition.IsTaxable" Color="Color.Primary"/>
+        </MudItem>
+        <MudItem md="6">
+            <MudNumericField Label="Jährliche Zunahme" Format="p2" Step="0.005M" @bind-Value="Definition.NetGrowthRate" Culture="CultureInfo.InvariantCulture"/>
+        </MudItem>
+    </MudGrid>
 </EditForm>
 
 @code {
