@@ -1,0 +1,45 @@
+﻿@using BlazorApp.Services
+@using System.Text.Json
+@using System.Text.Encodings.Web
+
+<style>
+        /* Styling des Containers */
+        .json-container {
+            white-space: pre-wrap;
+            padding: 20px;
+            margin: 10px;
+            overflow-x: auto;
+        }
+</style>
+
+<MudContainer Class="json-container">
+    <code>
+        @FormatTaxResponse()
+    </code>
+</MudContainer>
+
+@code {
+    
+    [Parameter]
+    public bool IsReadOnly { get; set; }
+
+    [Parameter]
+    public object ObjectValue { get; set; }
+
+    // format a json string nicely
+    private string FormatTaxResponse()
+    {
+        if (ObjectValue is null)
+        {
+            return string.Empty;
+        }
+
+        var formattedText = JsonSerializer.Serialize(ObjectValue, new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+        });
+
+        return formattedText;
+    }
+}

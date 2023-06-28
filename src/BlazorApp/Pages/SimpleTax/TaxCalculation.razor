@@ -1,21 +1,9 @@
 ﻿@page "/SimpleTax/TaxCalculation"
 
 @using PensionCoach.Tools.CommonTypes.Tax
-@using System.Text.Json
-@using System.Text.Encodings.Web
 
 @inject IPersonService PersonService
 @inject ITaxCalculationService TaxCalculationService
-
-<style>
-        /* Stilisierung des Containers */
-        .json-container {
-            white-space: pre-wrap;
-            padding: 20px;
-            margin: 10px;
-            overflow-x: auto;
-        }
-</style>
 
 <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
     <MudGrid>
@@ -81,26 +69,17 @@
 @if (taxResponse != null)
 {
     <MudExpansionPanels Class="mb-4 pa-6">
-        <MudExpansionPanel Text="Resultat Steuerberechnung">
-            <Content>
-
-                    <MudTreeView Items="TreeItems" @bind-ActivatedValue="ActivatedValue">
-                        <ItemTemplate>
-                            <MudTreeViewItem @bind-Expanded="@context.IsExpanded" Items="@context.TreeItems" Value="@context"
-                                             Icon="@context.Icon" Text="@context.Title" EndText="@context.Number?.ToString()" EndTextTypo="@Typo.body2"/>
-                        </ItemTemplate>
-                    </MudTreeView>
-            </Content>
+        <MudExpansionPanel Text="Resultat Steuerberechnung" IsInitiallyExpanded="true">
+            <MudTreeView Items="TreeItems" @bind-ActivatedValue="ActivatedValue">
+                <ItemTemplate>
+                    <MudTreeViewItem @bind-Expanded="@context.IsExpanded" Items="@context.TreeItems" Value="@context"
+                                     Icon="@context.Icon" Text="@context.Title" EndText="@context.Number?.ToString()" EndTextTypo="@Typo.body2"/>
+                </ItemTemplate>
+            </MudTreeView>
         </MudExpansionPanel>
 
         <MudExpansionPanel Text="Rohdaten">
-            <Content>
-                <div class="json-container">
-                    <code>
-                        @(FormatTaxResponse(taxResponse))
-                    </code>
-                </div>
-            </Content>
+            <JsonPrettyFormat ObjectValue="taxResponse" />
         </MudExpansionPanel>
     </MudExpansionPanels>
 }
@@ -145,11 +124,6 @@
         supportedTaxYears = await yearsTask;
     }
 
-    private IEnumerable<FullTaxResponse> GetFullTaxResponses()
-    {
-        return new[] { taxResponse };
-    }
-
     private void HandleSelectPerson(Guid personId)
     {
         selectedPerson = persons.Single(item => item.Id == personId);
@@ -177,7 +151,7 @@
         
         taxResponse = await TaxCalculationService.CalculateAsync(taxRequest);
 
-        TreeItems.Add(new TreeItemData($"{selectedPerson.Name} {taxResponse.CalculationYear}", null, null)
+        TreeItems.Add(new TreeItemData($"{selectedPerson.Name} {taxResponse.CalculationYear}", null)
         {
             IsExpanded = true,
             TreeItems = new HashSet<TreeItemData>
@@ -195,22 +169,5 @@
                 }
             }
         });
-    }
-
-    // format a json string nicely
-    private string FormatTaxResponse(FullTaxResponse calculationResult)
-    {
-        if (calculationResult is null)
-        {
-            return string.Empty;
-        }
-
-        var formattedText = JsonSerializer.Serialize(calculationResult, new JsonSerializerOptions
-        {
-            WriteIndented = true,
-            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-        });
-
-        return formattedText;
     }
 }

@@ -178,11 +178,21 @@
 
 @if (multiPeriodCalculationResponse != null)
 {
+    <MudExpansionPanels Class="mb-4 pa-6">
+        <MudExpansionPanel Text="Entwicklung Finanzsituation" IsInitiallyExpanded="true">
+
+        </MudExpansionPanel>
+
+        <MudExpansionPanel Text="Rohdaten">
+            <JsonPrettyFormat ObjectValue="multiPeriodCalculationResponse"/>
+        </MudExpansionPanel>
+
+    </MudExpansionPanels>
     <RadzenPanel AllowCollapse="true">
         <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <RadzenChart>
+@*                <RadzenChart>
                     <RadzenLineSeries Smooth="false"
                                       Data="@wealthDataItems"
                                       CategoryProperty="Date"
@@ -212,16 +222,10 @@
                         <RadzenGridLines Visible="true"/>
                         <RadzenAxisTitle Text="Gesamtvermögen"/>
                     </RadzenValueAxis>
-                </RadzenChart>
+                </RadzenChart>*@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <label>Rohdaten</label>
-                <RadzenTextArea Name="output" Rows="10" ReadOnly="true" Value="@(JsonSerializer.Serialize(multiPeriodCalculationResponse))" Style="width: 100%"/>
-            </div>
-        </div>
         </div>
     </RadzenPanel>
 }

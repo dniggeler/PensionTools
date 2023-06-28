@@ -62,4 +62,12 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="MyComponents\JsonPrettyFormat.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="MyComponents\JsonPrettyFormat.razor" />
+  </ItemGroup>
+
 </Project>
