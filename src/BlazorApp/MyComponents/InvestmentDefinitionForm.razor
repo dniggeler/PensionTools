@@ -4,10 +4,10 @@
 <EditForm Model="GenericDefinition">
     <MudGrid>
         <MudItem md="12">
-            <MudNumericField Label="Startjahr" Format="n0" @bind-Value="@GenericDefinition.Year" Culture="CultureInfo.InvariantCulture"  />
-            <MudNumericField Label="Startbetrag" Format="n0" @bind-Value="@GenericDefinition.InitialAmount" Culture="CultureInfo.InvariantCulture" />
-            <MudNumericField Label="Jährlicher Betrag" Format="n0" @bind-Value="@GenericDefinition.RecurrentAmount" Culture="CultureInfo.InvariantCulture" />
-            <MudNumericField Label="Wiederholungen" Format="n0" @bind-Value="@GenericDefinition.NumberOfPeriods" Culture="CultureInfo.InvariantCulture" />
+            <MudNumericField T="int" Label="Startjahr" Format="n0" Culture="CultureInfo.InvariantCulture" ValueChanged="HandleChangeStartingYear" />
+            <MudNumericField T="decimal" Label="Startbetrag" Format="n0" Culture="CultureInfo.InvariantCulture" ValueChanged="HandleChangeInitialAmount" />
+            <MudNumericField T="decimal" Label="Jährlicher Betrag" Format="n0" Culture="CultureInfo.InvariantCulture" ValueChanged="HandleChangeRecurrentAmount"/>
+            <MudNumericField T="int" Label="Wiederholungen" Format="n0" Culture="CultureInfo.InvariantCulture" ValueChanged="HandleChangeNumberOfPeriods"/>
         </MudItem>
     </MudGrid>
 </EditForm>
@@ -20,8 +20,27 @@
     [Parameter]
     public EventCallback<InvestmentDefinitionViewModel> OnChanged { get; set; }
 
-    private void HandleChange()
+    private void HandleChangeStartingYear(int value)
     {
+        GenericDefinition.Year = value;
+        OnChanged.InvokeAsync(GenericDefinition);
+    }
+
+    private void HandleChangeNumberOfPeriods(int value)
+    {
+        GenericDefinition.NumberOfPeriods = value;
+        OnChanged.InvokeAsync(GenericDefinition);
+    }
+
+    private void HandleChangeRecurrentAmount(decimal value)
+    {
+        GenericDefinition.RecurrentAmount = value;
+        OnChanged.InvokeAsync(GenericDefinition);
+    }
+
+    private void HandleChangeInitialAmount(decimal value)
+    {
+        GenericDefinition.InitialAmount = value;
         OnChanged.InvokeAsync(GenericDefinition);
     }
 }

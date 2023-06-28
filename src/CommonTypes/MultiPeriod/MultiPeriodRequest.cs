@@ -43,6 +43,6 @@ namespace PensionCoach.Tools.CommonTypes.MultiPeriod
 
         public MultiPeriodOptions Options { get; set; } = new();
 
-        public CashFlowDefinitionHolder CashFlowDefinitionHolder { get; set; } = new();
+        public CashFlowDefinitionRequest CashFlowDefinitionRequest { get; set; } = new();
     }
 }

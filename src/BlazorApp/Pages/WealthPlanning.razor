@@ -9,7 +9,9 @@
 @using System.Text.Json
 @using Radzen.Blazor
 @using System.Globalization
+@using Microsoft.Extensions.Logging
 
+@inject ILogger<WealthPlanning> Logger
 @inject IMultiPeriodCalculationService MultiPeriodCalculationService
 @inject IPersonService PersonService
 
@@ -163,7 +165,7 @@
         </MudItem>
         
         <MudItem md="12">
-            <MudButton OnClick="OnSubmit" Variant="MudBlazor.Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
+            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
         </MudItem>
 
     </MudGrid>
@@ -283,7 +285,7 @@
                 Flow = new FlowPair(AccountType.Income, AccountType.ThirdPillar),
                 InvestmentPeriod = new InvestmentPeriod
                 {
-                    Year = 2021,
+                    Year = model.StartingYear,
                     NumberOfPeriods = 10,
                 },
                 IsTaxable = false,
@@ -306,7 +308,7 @@
                 Flow = new FlowPair(AccountType.Income, AccountType.OccupationalPension),
                 InvestmentPeriod = new InvestmentPeriod
                 {
-                    Year = 2021,
+                    Year = model.StartingYear,
                     NumberOfPeriods = 5,
                 },
                 IsTaxable = false,
@@ -337,8 +339,14 @@
             request.Wealth = selectedPerson.TaxableWealth;
 
             request.Options = simulationOptions;
-            request.CashFlowDefinitionHolder.StaticGenericCashFlowDefinitions = genericCashFlowDefinitions.ToList();
-            request.CashFlowDefinitionHolder.Composites = new List<ICompositeCashFlowDefinition> { clearAccountAction };
+            request.CashFlowDefinitionRequest.StaticGenericCashFlowDefinitions = genericCashFlowDefinitions.ToList();
+            if (isClearActionActive)
+            {
+                request.CashFlowDefinitionRequest.RelativeTransferAmountDefinition  = clearAccountAction;
+            }
+
+            Logger.LogWarning($"MultiPeriodRequest: {JsonSerializer.Serialize(request)}");
+            
             multiPeriodCalculationResponse = await MultiPeriodCalculationService.CalculateAsync(request);
 
             (ChartDataItemModel[] wealthData, ChartDataItemModel[] capitalBenefitsData, ChartDataItemModel[] totalData) = GetTotalDataItems();

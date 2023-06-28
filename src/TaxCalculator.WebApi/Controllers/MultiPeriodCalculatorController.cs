@@ -58,13 +58,18 @@ public class MultiPeriodCalculatorController : ControllerBase
         Either<string, MunicipalityModel> municipalityData =
             await municipalityResolver.GetAsync(request.BfsMunicipalityId, request.StartingYear);
 
+        CashFlowDefinitionHolder cashFlowDefinitionHolder = new()
+        {
+
+        };
+
         Either<string, MultiPeriodCalculationResult> result = await municipalityData
             .BindAsync(m =>
                 multiPeriodCashFlowCalculator.CalculateAsync(
                     request.StartingYear,
                     request.NumberOfPeriods,
                     person with { Canton = m.Canton },
-                    request.CashFlowDefinitionHolder,
+                    cashFlowDefinitionHolder,
                     request.Options));
 
         return result
