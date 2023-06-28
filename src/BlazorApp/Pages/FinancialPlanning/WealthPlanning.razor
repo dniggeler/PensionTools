@@ -1,4 +1,4 @@
-﻿@page "/WealthPlanning"
+﻿@page "/FinancialPlanning/WealthPlanning"
 
 @using PensionCoach.Tools.CommonTypes
 @using PensionCoach.Tools.CommonTypes.MultiPeriod
@@ -180,7 +180,11 @@
 {
     <MudExpansionPanels Class="mb-4 pa-6">
         <MudExpansionPanel Text="Entwicklung Finanzsituation" IsInitiallyExpanded="true">
-
+        <WealthTimeSeriesChart
+            CurveTitle="Vermögensentwicklung"
+            XAxisTitle="Jahr"
+            YAxisTitle="Vermögenswert"
+            TotalTimeSeries="@totalDataItems"/>
         </MudExpansionPanel>
 
         <MudExpansionPanel Text="Rohdaten">
@@ -232,12 +236,6 @@
 
 @code {
 
-    class ChartDataItemModel
-    {
-        public DateTime Date { get; set; }
-        public decimal Value { get; set; }
-    }
-
     private bool showLoading;
     private readonly MultiPeriodRequest model = GetDefaultValues();
     private readonly ChangeResidenceAction changeResidenceModel = new()
@@ -257,9 +255,9 @@
     private readonly MultiPeriodOptions simulationOptions = new();
 
     private MultiPeriodResponse multiPeriodCalculationResponse;
-    private ChartDataItemModel[] capitalBenefitsDataItems = { };
-    private ChartDataItemModel[] wealthDataItems = { };
-    private ChartDataItemModel[] totalDataItems = { };
+    private WealthTimeSeriesChart.TimeSeriesPoint[] capitalBenefitsDataItems = { };
+    private WealthTimeSeriesChart.TimeSeriesPoint[] wealthDataItems = { };
+    private WealthTimeSeriesChart.TimeSeriesPoint[] totalDataItems = { };
     private bool isChangeResidenceActive;
     private bool isClearActionActive;
     private DateTime? dateOfProcessChangeResidence;
@@ -353,7 +351,7 @@
             
             multiPeriodCalculationResponse = await MultiPeriodCalculationService.CalculateAsync(request);
 
-            (ChartDataItemModel[] wealthData, ChartDataItemModel[] capitalBenefitsData, ChartDataItemModel[] totalData) = GetTotalDataItems();
+            (WealthTimeSeriesChart.TimeSeriesPoint[] wealthData, WealthTimeSeriesChart.TimeSeriesPoint[] capitalBenefitsData, WealthTimeSeriesChart.TimeSeriesPoint[] totalData) = GetTotalDataItems();
             capitalBenefitsDataItems = capitalBenefitsData;
             wealthDataItems = wealthData;
             totalDataItems = totalData;
@@ -374,62 +372,63 @@
         };
     }
 
-    private (ChartDataItemModel[] wealthData, ChartDataItemModel[] capitalBenefitsData, ChartDataItemModel[] totalData) GetTotalDataItems()
+    private (WealthTimeSeriesChart.TimeSeriesPoint[] wealthData, WealthTimeSeriesChart.TimeSeriesPoint[] capitalBenefitsData, WealthTimeSeriesChart.TimeSeriesPoint[] totalData) GetTotalDataItems()
     {
-        ChartDataItemModel[] wealthData = GetWealthDataItems();
-        ChartDataItemModel[] capitalBenefitsData = GetOccupationalPensionDataItems();
-        ChartDataItemModel[] totalData = GetTotalSumDataItems();
+        WealthTimeSeriesChart.TimeSeriesPoint[] wealthData = GetWealthDataItems();
+        WealthTimeSeriesChart.TimeSeriesPoint[] capitalBenefitsData = GetOccupationalPensionDataItems();
+        WealthTimeSeriesChart.TimeSeriesPoint[] totalData = GetTotalSumDataItems();
 
         return (wealthData, capitalBenefitsData, totalData);
     }
 
-    private ChartDataItemModel[] GetWealthDataItems()
+    private WealthTimeSeriesChart.TimeSeriesPoint[] GetWealthDataItems()
     {
         if (multiPeriodCalculationResponse == null)
         {
-            return Enumerable.Empty<ChartDataItemModel>().ToArray();
+            return Enumerable.Empty<WealthTimeSeriesChart.TimeSeriesPoint>().ToArray();
         }
 
         return multiPeriodCalculationResponse.Accounts
             .Where(item => item.AccountType == AccountType.Wealth)
-            .Select(item => new ChartDataItemModel
+            .Select(item => new WealthTimeSeriesChart.TimeSeriesPoint
             {
-                Date = new DateTime(item.Year, 1, 1),
-                Value = Math.Round(item.Amount)
+                XValue = new DateTime(item.Year, 1, 1),
+                YValue = Math.Round(item.Amount)
             })
             .ToArray();
     }
 
-    private ChartDataItemModel[] GetOccupationalPensionDataItems()
+    private WealthTimeSeriesChart.TimeSeriesPoint[] GetOccupationalPensionDataItems()
     {
         if (multiPeriodCalculationResponse == null)
         {
-            return Enumerable.Empty<ChartDataItemModel>().ToArray();
+            return Enumerable.Empty<WealthTimeSeriesChart.TimeSeriesPoint>().ToArray();
         }
 
         return multiPeriodCalculationResponse.Accounts
             .Where(item => item.AccountType == AccountType.OccupationalPension)
-            .Select(item => new ChartDataItemModel
+            .Select(item => new WealthTimeSeriesChart.TimeSeriesPoint
             {
-                Date = new DateTime(item.Year, 1, 1),
-                Value = Math.Round(item.Amount)
+                XValue = new DateTime(item.Year, 1, 1),
+                YValue = Math.Round(item.Amount)
             })
             .ToArray();
     }
 
-    private ChartDataItemModel[] GetTotalSumDataItems()
+    private WealthTimeSeriesChart.TimeSeriesPoint[] GetTotalSumDataItems()
     {
         if (multiPeriodCalculationResponse == null)
         {
-            return Enumerable.Empty<ChartDataItemModel>().ToArray();
+            return Enumerable.Empty<WealthTimeSeriesChart.TimeSeriesPoint>().ToArray();
         }
 
         return multiPeriodCalculationResponse.Accounts
+            .Where(item => item.AccountType != AccountType.Exogenous)
             .GroupBy(keySelector => keySelector.Year)
-            .Select(g => new ChartDataItemModel
+            .Select(g => new WealthTimeSeriesChart.TimeSeriesPoint
             {
-                Date = new DateTime(g.Key, 1, 1),
-                Value = g.Sum(item => Math.Round(item.Amount))
+                XValue = new DateTime(g.Key, 1, 1),
+                YValue = g.Sum(item => Math.Round(item.Amount))
             })
             .ToArray();
     }
