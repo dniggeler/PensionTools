@@ -8,6 +8,7 @@ public static class BlazorServicesExtensions
     {
         services.AddScoped<IApexChartConfigurator, ApexChartConfigurator>();
         services.AddScoped<IPersonService, PersonService>();
+        services.AddScoped<IHealthCheckService, HealthCheckService>();
 
         return services;
     }

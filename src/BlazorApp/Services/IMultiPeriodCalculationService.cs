@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 
-namespace BlazorApp.Services
+namespace BlazorApp.Services;
+
+public interface IMultiPeriodCalculationService
 {
-    public interface IMultiPeriodCalculationService
-    {
-        Task<MultiPeriodResponse> CalculateAsync(MultiPeriodRequest request);
-    }
+    Task<MultiPeriodResponse> CalculateAsync(MultiPeriodRequest request);
 }

@@ -9,6 +9,7 @@ public static class BlazorMockServicesExtensions
     {
         services.AddScoped<IApexChartConfigurator, ApexChartConfigurator>();
         services.AddScoped<IPersonService, MockedPersonService>();
+        services.AddScoped<IHealthCheckService, MockedHealthCheck>();
         
         return services;
     }

@@ -16,6 +16,7 @@ using PensionCoach.Tools.TaxCalculator;
 using Swashbuckle.AspNetCore.Filters;
 using Tax.Data;
 using Tax.Tools.Comparison;
+using TaxCalculator.WebApi.HealthChecks;
 
 namespace TaxCalculator.WebApi
 {
@@ -52,6 +53,7 @@ namespace TaxCalculator.WebApi
                 }));
 
             services.AddHealthChecks()
+                .AddCheck<TaxCalculatorHealthCheck>("Tax calculator check")
                 .AddDbContextCheck<FederalTaxTariffDbContext>()
                 .AddDbContextCheck<TaxTariffDbContext>()
                 .AddDbContextCheck<TaxRateDbContext>()
@@ -110,6 +112,7 @@ namespace TaxCalculator.WebApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health");
             });
         }
     }

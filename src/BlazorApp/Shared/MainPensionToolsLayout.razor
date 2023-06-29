@@ -2,7 +2,7 @@
 @using System.Threading
 
 @inherits LayoutComponentBase
-
+@inject IDialogService DialogService
 
 <MudThemeProvider @bind-IsDarkMode="@IsDarkMode" Theme="_theme" />
 <MudDialogProvider />
@@ -28,7 +28,7 @@
         </MudPaper>
 
 
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" OnClick="OpenSettings" />
 
     </MudAppBar>
     
@@ -86,5 +86,14 @@
             "en-US" => "EN",
             _ => "DE"
         };
+    }
+
+    private async Task OpenSettings()
+    {
+        IDialogReference result = await DialogService.ShowAsync<SettingsViewer>(
+            "Settings",
+            new DialogOptions { CloseButton = true, CloseOnEscapeKey = true, FullWidth = true});
+
+        _ = await result.Result;
     }
 }
