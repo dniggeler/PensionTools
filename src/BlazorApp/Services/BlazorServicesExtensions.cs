@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BlazorApp.Services.CheckSettings;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazorApp.Services;
 
@@ -8,7 +9,7 @@ public static class BlazorServicesExtensions
     {
         services.AddScoped<IApexChartConfigurator, ApexChartConfigurator>();
         services.AddScoped<IPersonService, PersonService>();
-        services.AddScoped<IHealthCheckService, HealthCheckService>();
+        services.AddScoped<ICheckSettingsService, CheckSettingsService>();
 
         return services;
     }

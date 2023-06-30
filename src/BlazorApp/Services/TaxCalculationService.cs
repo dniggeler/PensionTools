@@ -36,10 +36,7 @@ public class TaxCalculationService : ITaxCalculationService, IMarginalTaxCurveCa
 
         response.EnsureSuccessStatusCode();
 
-        FullTaxResponse result =
-            await response.Content.ReadFromJsonAsync<FullTaxResponse>();
-
-        return result;
+        return await response.Content.ReadFromJsonAsync<FullTaxResponse>();
     }
 
     public async Task<int[]> SupportedTaxYearsAsync()

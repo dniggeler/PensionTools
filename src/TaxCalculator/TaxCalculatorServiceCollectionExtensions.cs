@@ -33,6 +33,7 @@ namespace PensionCoach.Tools.TaxCalculator
             collection.AddTransient<ITaxCalculatorConnector, TaxCalculatorConnector>();
             collection.AddTransient<IMarginalTaxCurveCalculatorConnector, MarginalTaxCurveCalculatorConnector>();
             collection.AddTransient<IAdminConnector, AdminConnector>();
+            collection.AddTransient<ICheckSettingsConnector, CheckSettingsConnector>();
 
             collection.AddFullTaxCalculators(configuration);
             

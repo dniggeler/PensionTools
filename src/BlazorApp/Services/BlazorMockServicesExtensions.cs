@@ -1,4 +1,5 @@
-﻿using BlazorApp.Services.Mock;
+﻿using BlazorApp.Services.CheckSettings;
+using BlazorApp.Services.Mock;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazorApp.Services;
@@ -9,7 +10,7 @@ public static class BlazorMockServicesExtensions
     {
         services.AddScoped<IApexChartConfigurator, ApexChartConfigurator>();
         services.AddScoped<IPersonService, MockedPersonService>();
-        services.AddScoped<IHealthCheckService, MockedHealthCheck>();
+        services.AddScoped<ICheckSettingsService, MockedCheckSettingsCheck>();
         
         return services;
     }

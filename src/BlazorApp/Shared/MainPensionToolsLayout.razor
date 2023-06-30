@@ -1,5 +1,6 @@
 ﻿@using System.Globalization
 @using System.Threading
+@using BlazorApp.MyComponents.CheckSettings
 
 @inherits LayoutComponentBase
 @inject IDialogService DialogService
@@ -90,8 +91,8 @@
 
     private async Task OpenSettings()
     {
-        IDialogReference result = await DialogService.ShowAsync<SettingsViewer>(
-            "Settings",
+        IDialogReference result = await DialogService.ShowAsync<CheckSettingsViewer>(
+            "Check Settings",
             new DialogOptions { CloseButton = true, CloseOnEscapeKey = true, FullWidth = true});
 
         _ = await result.Result;

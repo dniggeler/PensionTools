@@ -68,11 +68,6 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="MyComponents\JsonPrettyFormat.razor" />
-    <_ContentIncludedByDefault Remove="MyComponents\SettingsViewer.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="MyComponents\SettingsViewer.razor" />
   </ItemGroup>
 
 </Project>
