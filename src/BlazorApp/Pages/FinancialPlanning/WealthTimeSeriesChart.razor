@@ -13,7 +13,7 @@
         Items="@TotalTimeSeries"
         Name="@YAxisTitle"
         SeriesType="SeriesType.Line"
-        OrderBy="@(e => e.X)"
+                     OrderBy="@(e => e.X)"
         XValue="@(e => e.XValue)"
         YValue="@(e => e.YValue)"/>
 </ApexChart>
@@ -55,66 +55,66 @@
                 Colors = new List<string> { PrimaryColor, SecondaryColor },
                 Width = 2
             },
-            Grid = configuratorOptions.Grid,
-            Xaxis = configuratorOptions.Xaxis,
+            //Grid = configuratorOptions.Grid,
+            //Xaxis = configuratorOptions.Xaxis,
         };
     }
 
-    protected override void OnParametersSet()
-    {
-        var configuratorOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
+    //protected override void OnParametersSet()
+    //{
+    //    var configuratorOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
 
-        options.Stroke.Colors = new List<string> { PrimaryColor, SecondaryColor };
+    //    options.Stroke.Colors = new List<string> { PrimaryColor, SecondaryColor };
 
-        var axisColor = ChartConfigurator.AxisColor(IsDarkMode);
+    //    var axisColor = ChartConfigurator.AxisColor(IsDarkMode);
 
-        options.Title = new Title
-        {
-            Style = new TitleStyle
-            {
-                Color = axisColor
-            }
-        };
+    //    options.Title = new Title
+    //    {
+    //        Style = new TitleStyle
+    //        {
+    //            Color = axisColor
+    //        }
+    //    };
 
-        options.Xaxis = new XAxis
-        {
-            Title = new AxisTitle
-            {
-                OffsetY = 5,
-                    Text = XAxisTitle,
-                Style = new AxisTitleStyle
-                {
-                        Color = axisColor
-                },
-            },
-            Labels = configuratorOptions.Xaxis.Labels,
-        };
+    //    options.Xaxis = new XAxis
+    //    {
+    //        Title = new AxisTitle
+    //        {
+    //            OffsetY = 5,
+    //                Text = XAxisTitle,
+    //            Style = new AxisTitleStyle
+    //            {
+    //                    Color = axisColor
+    //            },
+    //        },
+    //        Labels = configuratorOptions.Xaxis.Labels,
+    //    };
 
-        options.Yaxis = new List<YAxis>
-        {
-            new()
-            {
-                Title = new AxisTitle
-                {
-                    OffsetX = 5,
-                    Text = YAxisTitle,
-                    Style = new AxisTitleStyle
-                    {
-                        Color = axisColor
-                    }
-                },
-                Labels = new YAxisLabels
-                {
-                    Style = new AxisLabelStyle
-                    {
-                        Colors = new ApexCharts.Color(axisColor)
-                    }
-                },
-                TickAmount = 5,
-                DecimalsInFloat = 2,
-            }
-        };
-    }
+    //    options.Yaxis = new List<YAxis>
+    //    {
+    //        new()
+    //        {
+    //            Title = new AxisTitle
+    //            {
+    //                OffsetX = 5,
+    //                Text = YAxisTitle,
+    //                Style = new AxisTitleStyle
+    //                {
+    //                    Color = axisColor
+    //                }
+    //            },
+    //            Labels = new YAxisLabels
+    //            {
+    //                Style = new AxisLabelStyle
+    //                {
+    //                    Colors = new ApexCharts.Color(axisColor)
+    //                }
+    //            },
+    //            TickAmount = 5,
+    //            DecimalsInFloat = 2,
+    //        }
+    //    };
+    //}
 
     private string PrimaryColor => IsDarkMode ? PrimaryColorDark : PrimaryColorLight;
     private string SecondaryColor => IsDarkMode ? SecondaryColorDark : SecondaryColorLight;

@@ -297,6 +297,16 @@
             if (isClearActionActive)
             {
                 request.CashFlowDefinitionRequest.RelativeTransferAmountDefinition  = clearAccountAction;
+                request.CashFlowDefinitionRequest.SetupAccountDefinition = new SetupAccountDefinition
+                {
+                    InitialThirdPillarAssets = selectedPerson.FinalCapital3a,
+                    InitialOccupationalPensionAssets = selectedPerson.FinalRetirementCapital,
+                    InitialWealth = selectedPerson.TaxableWealth,
+                };
+                request.CashFlowDefinitionRequest.SalaryPaymentsDefinition = new SalaryPaymentsDefinition()
+                {
+                    YearlyAmount = selectedPerson.TaxableIncome,
+                };
             }
 
             Logger.LogWarning($"MultiPeriodRequest: {JsonSerializer.Serialize(request)}");
@@ -374,7 +384,7 @@
             return Enumerable.Empty<WealthTimeSeriesChart.TimeSeriesPoint>().ToArray();
         }
 
-        return multiPeriodCalculationResponse.Accounts
+        var datas = multiPeriodCalculationResponse.Accounts
             .Where(item => item.AccountType != AccountType.Exogenous)
             .GroupBy(keySelector => keySelector.Year)
             .Select(g => new WealthTimeSeriesChart.TimeSeriesPoint
@@ -383,6 +393,8 @@
                 YValue = g.Sum(item => Math.Round(item.Amount))
             })
             .ToArray();
+
+        return datas;
     }
 
     private void HandleChangeResidence(TaxSupportedMunicipalityModel municipalityModel)
