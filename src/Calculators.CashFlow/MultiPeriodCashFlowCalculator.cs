@@ -41,6 +41,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
     /// <inheritdoc />
     public async Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
         int startingYear,
+        int minimumNumberOfPeriods,
         MultiPeriodCalculatorPerson person,
         CashFlowDefinitionHolder cashFlowDefinitionHolder,
         MultiPeriodOptions options)
@@ -80,9 +81,12 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
             .Concat(staticCashFlowsFromComposites)
             .ToList();
 
-        int finalYear = definitionFromComposites
-            .Concat(cashFlowDefinitionHolder.CashFlowActions)
-            .Max(d => d.DateOfProcess.Year);
+        var combinedList = definitionFromComposites
+            .Concat(cashFlowDefinitionHolder.CashFlowActions).ToList();
+
+        int finalYear = combinedList.Count > 0
+            ? combinedList.Max(d => d.DateOfProcess.Year)
+            : startingYear + minimumNumberOfPeriods;
 
         List<SinglePeriodCalculationResult> singlePeriodCalculationResults =
             Enumerable.Empty<SinglePeriodCalculationResult>().ToList();
@@ -168,10 +172,9 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
         };
     }
 
-    /// <inheritdoc />
-    public Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
+    public Task<Either<string, MultiPeriodCalculationResult>> CalculateWithSetupsAsync(
         int startingYear,
-        int numberOfPeriods,
+        int minimumNumberOfPeriods,
         MultiPeriodCalculatorPerson person,
         CashFlowDefinitionHolder cashFlowDefinitionHolder,
         MultiPeriodOptions options)
@@ -189,7 +192,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
                 .ToList()
         };
 
-        return CalculateAsync(startingYear, person, extendedDefinitionHolder, options);
+        return CalculateAsync(startingYear, minimumNumberOfPeriods, person, extendedDefinitionHolder, options);
     }
 
     private async Task<Dictionary<AccountType, ICashFlowAccount>> ProcessSimpleCashFlowAsync(

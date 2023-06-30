@@ -1,0 +1,31 @@
+﻿{
+  "startingYear": 2023,
+  "numberOfPeriods": 1,
+  "accounts": [
+    {
+      "year": 2023,
+      "amount": -499302.575,
+      "accountType": "Exogenous"
+    },
+    {
+      "year": 2023,
+      "amount": 0,
+      "accountType": "Income"
+    },
+    {
+      "year": 2023,
+      "amount": 499302.575,
+      "accountType": "Wealth"
+    },
+    {
+      "year": 2023,
+      "amount": 0,
+      "accountType": "OccupationalPension"
+    },
+    {
+      "year": 2023,
+      "amount": 0,
+      "accountType": "ThirdPillar"
+    }
+  ]
+}

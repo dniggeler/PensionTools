@@ -247,7 +247,7 @@
         },
     };
 
-    private IEnumerable<StaticGenericCashFlowDefinition> genericCashFlowDefinitions = new List<StaticGenericCashFlowDefinition>();
+    private IEnumerable<StaticGenericCashFlowDefinition> genericCashFlowDefinitions;
     private RelativeTransferAmountDefinition clearAccountAction = new();
 
     private PersonViewModel selectedPerson;
@@ -268,55 +268,7 @@
         persons = (await PersonService.GetPersonsAsync()).ToList();
         changeResidenceModel.DestinationMunicipalityId = model.BfsMunicipalityId;
         changeResidenceModel.DateOfProcess = new DateTime(Math.Max(model.StartingYear + model.NumberOfPeriods - 3, 0), 1, 1);
-        genericCashFlowDefinitions = new List<StaticGenericCashFlowDefinition>
-        {
-            new()
-            {
-                Header = new CashFlowHeader
-                {
-                    Id = "my 3a account",
-                    Name = "Säule 3a",
-                },
-
-                InitialAmount = 0,
-                RecurringInvestment = new RecurringInvestment
-                {
-                    Amount = 6883,
-                    Frequency = FrequencyType.Yearly,
-                },
-                Flow = new FlowPair(AccountType.Income, AccountType.ThirdPillar),
-                InvestmentPeriod = new InvestmentPeriod
-                {
-                    Year = model.StartingYear,
-                    NumberOfPeriods = 10,
-                },
-                IsTaxable = false,
-                TaxType = TaxType.Undefined,
-            },
-            new()
-            {
-                Header = new CashFlowHeader
-                {
-                    Id = "purchase",
-                    Name = "PK-Einkauf",
-                },
-                NetGrowthRate = 0,
-                InitialAmount = 0,
-                RecurringInvestment = new RecurringInvestment
-                {
-                    Amount = 10000,
-                    Frequency = FrequencyType.Yearly,
-                },
-                Flow = new FlowPair(AccountType.Income, AccountType.OccupationalPension),
-                InvestmentPeriod = new InvestmentPeriod
-                {
-                    Year = model.StartingYear,
-                    NumberOfPeriods = 5,
-                },
-                IsTaxable = false,
-                TaxType = TaxType.Undefined,
-            }
-        };
+        genericCashFlowDefinitions = CreateDefaultGenericCashFlows();
 
         clearAccountAction.DateOfProcess = new DateTime(Math.Max(model.StartingYear + model.NumberOfPeriods-1, 0));
     }
@@ -368,7 +320,7 @@
         {
             Name = "Unknown",
             NumberOfPeriods = 10,
-            StartingYear = 2021,
+            StartingYear = 2023,
         };
     }
 
@@ -451,5 +403,62 @@
         model.BfsMunicipalityId = selectedPerson.BfsMunicipalityId;
         model.Income = selectedPerson.TaxableIncome;
         model.Wealth = selectedPerson.TaxableWealth;
+    }
+
+    private IEnumerable<StaticGenericCashFlowDefinition> CreateDefaultGenericCashFlows()
+    {
+        return new List<StaticGenericCashFlowDefinition>
+        {
+            new()
+            {
+                DateOfProcess = new DateTime(model.StartingYear, 1, 1),
+
+                Header = new CashFlowHeader
+                {
+                    Id = "my 3a account",
+                    Name = "Säule 3a",
+                },
+
+                InitialAmount = 0,
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 6883,
+                    Frequency = FrequencyType.Yearly,
+                },
+                Flow = new FlowPair(AccountType.Income, AccountType.ThirdPillar),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = model.StartingYear,
+                    NumberOfPeriods = 10,
+                },
+                IsTaxable = false,
+                TaxType = TaxType.Undefined,
+            },
+            new()
+            {
+                DateOfProcess = new DateTime(model.StartingYear, 1, 1),
+
+                Header = new CashFlowHeader
+                {
+                    Id = "purchase",
+                    Name = "PK-Einkauf",
+                },
+                NetGrowthRate = 0,
+                InitialAmount = 0,
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 10000,
+                    Frequency = FrequencyType.Yearly,
+                },
+                Flow = new FlowPair(AccountType.Income, AccountType.OccupationalPension),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = model.StartingYear,
+                    NumberOfPeriods = 5,
+                },
+                IsTaxable = false,
+                TaxType = TaxType.Undefined,
+            }
+        };
     }
 }
