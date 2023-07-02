@@ -18,7 +18,6 @@
     <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.8" />
     <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="7.0.0" />
     <PackageReference Include="MudBlazor" Version="6.6.0" />
-    <PackageReference Include="Radzen.Blazor" Version="4.12.0" />
     <PackageReference Include="System.Net.Http.Json" Version="7.0.1" />
   </ItemGroup>
 

@@ -48,6 +48,29 @@ public class MultiPeriodCalculatorsIntegrationTests : IClassFixture<WebApplicati
         Snapshot.Match(result);
     }
 
+    [Fact(DisplayName = "Wealth And Income")]
+    public async Task Calculate_Wealth_And_Income()
+    {
+        // given
+        decimal income = 100000;
+
+        MultiPeriodRequest request = GetRequest();
+
+        request.CashFlowDefinitionRequest.SalaryPaymentsDefinition = new SalaryPaymentsDefinition
+        {
+            YearlyAmount = income,
+            DateOfEndOfPeriod = new DateTime(2034, 4, 1),
+        };
+
+        var response = await client.PostAsJsonAsync("multiperiod", request);
+
+        response.EnsureSuccessStatusCode();
+
+        var result = await response.Content.ReadAsStringAsync();
+
+        Snapshot.Match(result);
+    }
+
     private static MultiPeriodRequest GetRequest()
     {
         decimal wealth = 500000;

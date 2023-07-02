@@ -7,7 +7,6 @@
 @using PensionCoach.Tools.CommonTypes.Tax
 @using Microsoft.AspNetCore.Components
 @using System.Text.Json
-@using Radzen.Blazor
 @using System.Globalization
 @using Microsoft.Extensions.Logging
 
@@ -180,11 +179,13 @@
 {
     <MudExpansionPanels Class="mb-4 pa-6">
         <MudExpansionPanel Text="Entwicklung Finanzsituation" IsInitiallyExpanded="true">
-        <WealthTimeSeriesChart
-            CurveTitle="Vermögensentwicklung"
-            XAxisTitle="Jahr"
-            YAxisTitle="Vermögenswert"
-            TotalTimeSeries="@totalDataItems"/>
+            <WealthTimeSeriesChart
+                CurveTitle="Vermögensentwicklung"
+                XAxisTitle="Jahr"
+                YAxisTitle="Vermögenswert"
+                CapitalBenefitsTimeSeries="@capitalBenefitsDataItems"
+                WealthTimeSeries="@wealthDataItems"
+                TotalTimeSeries="@totalDataItems"/>
         </MudExpansionPanel>
 
         <MudExpansionPanel Text="Rohdaten">
@@ -192,46 +193,6 @@
         </MudExpansionPanel>
 
     </MudExpansionPanels>
-    <RadzenPanel AllowCollapse="true">
-        <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-@*                <RadzenChart>
-                    <RadzenLineSeries Smooth="false"
-                                      Data="@wealthDataItems"
-                                      CategoryProperty="Date"
-                                      Title="Steuerbares Vermögen"
-                                      ValueProperty="Value"
-                                      RenderingOrder="2">
-                    </RadzenLineSeries>
-
-                    <RadzenLineSeries Smooth="false"
-                                      Data="@capitalBenefitsDataItems"
-                                      CategoryProperty="Date"
-                                      Title="Kapitalleistungen"
-                                      ValueProperty="Value"
-                                      RenderingOrder="1">
-                    </RadzenLineSeries>
-                    
-                    <RadzenLineSeries Smooth="false"
-                                      Data="@totalDataItems"
-                                      CategoryProperty="Date"
-                                      Title="Total"
-                                      ValueProperty="Value"
-                                      RenderingOrder="3">
-                    </RadzenLineSeries>
-
-                    <RadzenCategoryAxis Padding="20" FormatString="{0:yyyy}"/>
-                    <RadzenValueAxis Min="0" Step="100000">
-                        <RadzenGridLines Visible="true"/>
-                        <RadzenAxisTitle Text="Gesamtvermögen"/>
-                    </RadzenValueAxis>
-                </RadzenChart>*@
-            </div>
-        </div>
-
-        </div>
-    </RadzenPanel>
 }
 
 @code {
@@ -297,21 +258,25 @@
             if (isClearActionActive)
             {
                 request.CashFlowDefinitionRequest.RelativeTransferAmountDefinition  = clearAccountAction;
-                request.CashFlowDefinitionRequest.SetupAccountDefinition = new SetupAccountDefinition
-                {
-                    InitialThirdPillarAssets = selectedPerson.FinalCapital3a,
-                    InitialOccupationalPensionAssets = selectedPerson.FinalRetirementCapital,
-                    InitialWealth = selectedPerson.TaxableWealth,
-                };
-                request.CashFlowDefinitionRequest.SalaryPaymentsDefinition = new SalaryPaymentsDefinition()
-                {
-                    YearlyAmount = selectedPerson.TaxableIncome,
-                };
             }
 
-            Logger.LogWarning($"MultiPeriodRequest: {JsonSerializer.Serialize(request)}");
+            request.CashFlowDefinitionRequest.SetupAccountDefinition = new SetupAccountDefinition
+            {
+                InitialThirdPillarAssets = selectedPerson.FinalCapital3a,
+                InitialOccupationalPensionAssets = selectedPerson.FinalRetirementCapital,
+                InitialWealth = selectedPerson.TaxableWealth,
+            };
+            request.CashFlowDefinitionRequest.SalaryPaymentsDefinition = new SalaryPaymentsDefinition()
+            {
+                YearlyAmount = selectedPerson.TaxableIncome,
+                DateOfEndOfPeriod = new DateTime(2034, 4, 1)
+            };
+
+            Logger.LogWarning($"Request: {JsonSerializer.Serialize(request)}");
             
             multiPeriodCalculationResponse = await MultiPeriodCalculationService.CalculateAsync(request);
+
+            Logger.LogWarning($"Response: {JsonSerializer.Serialize(multiPeriodCalculationResponse)}");
 
             (WealthTimeSeriesChart.TimeSeriesPoint[] wealthData, WealthTimeSeriesChart.TimeSeriesPoint[] capitalBenefitsData, WealthTimeSeriesChart.TimeSeriesPoint[] totalData) = GetTotalDataItems();
             capitalBenefitsDataItems = capitalBenefitsData;
@@ -368,11 +333,12 @@
         }
 
         return multiPeriodCalculationResponse.Accounts
-            .Where(item => item.AccountType == AccountType.OccupationalPension)
-            .Select(item => new WealthTimeSeriesChart.TimeSeriesPoint
+            .Where(item => item.AccountType is AccountType.OccupationalPension or AccountType.ThirdPillar)
+            .GroupBy(keySelector => keySelector.Year)
+            .Select(g => new WealthTimeSeriesChart.TimeSeriesPoint
             {
-                XValue = new DateTime(item.Year, 1, 1),
-                YValue = Math.Round(item.Amount)
+                XValue = new DateTime(g.Key, 1, 1),
+                    YValue = g.Sum(item => Math.Round(item.Amount))
             })
             .ToArray();
     }
