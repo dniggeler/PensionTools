@@ -3,7 +3,7 @@ using PensionCoach.Tools.CommonTypes.MultiPeriod;
 
 namespace Calculators.CashFlow.Models;
 
-public record CapitalBenefitsTransferInResult
+public record PurchaseInsuranceYearsResult
 {
     public int StartingYear { get; set; }
 

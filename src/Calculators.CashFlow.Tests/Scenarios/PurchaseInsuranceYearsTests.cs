@@ -1,30 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Calculators.CashFlow.Models;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxComparison;
 using Snapshooter.Xunit;
 using Xunit;
 
-namespace Calculators.CashFlow.Tests
+namespace Calculators.CashFlow.Tests.Scenarios
 {
-    [Trait("Higher Level Calculators", "Transfer-Ins")]
-    public class ScenarioCapitalBenefitTransferInsTests : IClassFixture<CashFlowFixture<ITaxScenarioCalculator>>
+    [Trait("Scenario Calculators", "Purchase Insurance Years")]
+    public class PurchaseInsuranceYearsTests : IClassFixture<CashFlowFixture<ITaxScenarioCalculator>>
     {
         private readonly CashFlowFixture<ITaxScenarioCalculator> fixture;
 
-        public ScenarioCapitalBenefitTransferInsTests(CashFlowFixture<ITaxScenarioCalculator> fixture)
+        public PurchaseInsuranceYearsTests(CashFlowFixture<ITaxScenarioCalculator> fixture)
         {
             this.fixture = fixture;
         }
 
-        [Fact(DisplayName = "Single Transfer-In With Withdrawal in 10 Years")]
-        public async Task Calculate_Single_TransferIn_With_Withdrawal_In_10_Years()
+        [Fact(DisplayName = "Single Purchase With Withdrawal in 10 Years")]
+        public async Task Calculate_Single_Purchase_With_Withdrawal_In_10_Years()
         {
             // given
-            int calculationYear = 2022;
-            int bfsMunicipalityId = 261;
+            var calculationYear = 2022;
+            var bfsMunicipalityId = 261;
             TaxPerson person = new()
             {
                 Name = "Unit Test Purchase",
@@ -36,7 +37,7 @@ namespace Calculators.CashFlow.Tests
                 TaxableWealth = 500_000
             };
 
-            TransferInCapitalBenefitsScenarioModel scenarioModel = new()
+            PurchaseInsuranceYearsScenarioModel scenarioModel = new()
             {
                 NetReturnCapitalBenefits = 0.0M,
                 TransferIns = new List<SingleTransferInModel>
@@ -53,7 +54,7 @@ namespace Calculators.CashFlow.Tests
             };
 
             // when
-            var result = await fixture.Calculator.TransferInCapitalBenefitsAsync(
+            var result = await fixture.Calculator.PurchaseInsuranceYearsAsync(
                 calculationYear, bfsMunicipalityId, person, scenarioModel);
 
             // then

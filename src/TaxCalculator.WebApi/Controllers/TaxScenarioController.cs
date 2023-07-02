@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Calculators.CashFlow;
+using Calculators.CashFlow.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PensionCoach.Tools.CommonTypes;
@@ -52,7 +53,7 @@ public class TaxScenarioController : ControllerBase
 
         var response = new CapitalBenefitsTransferInResponse();
 
-        await scenarioCalculator.TransferInCapitalBenefitsAsync(
+        await scenarioCalculator.PurchaseInsuranceYearsAsync(
             request.CalculationYear, request.BfsMunicipalityId, taxPerson, scenarioModel)
             .IterAsync(r =>
             {
@@ -65,9 +66,9 @@ public class TaxScenarioController : ControllerBase
 
         return response;
 
-        TransferInCapitalBenefitsScenarioModel MapScenarioModel()
+        PurchaseInsuranceYearsScenarioModel MapScenarioModel()
         {
-            return new TransferInCapitalBenefitsScenarioModel
+            return new PurchaseInsuranceYearsScenarioModel
             {
                 TransferIns = request.TransferIns,
                 NetReturnCapitalBenefits = request.NetPensionCapitalReturn,

@@ -7,7 +7,6 @@ using LanguageExt;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
-using PensionCoach.Tools.TaxComparison;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
@@ -27,8 +26,8 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
         this.municipalityResolver = municipalityResolver;
     }
 
-    public async Task<Either<string, CapitalBenefitsTransferInResult>> TransferInCapitalBenefitsAsync(
-        int startingYear, int bfsMunicipalityId, TaxPerson person, TransferInCapitalBenefitsScenarioModel scenarioModel)
+    public async Task<Either<string, PurchaseInsuranceYearsResult>> PurchaseInsuranceYearsAsync(
+        int startingYear, int bfsMunicipalityId, TaxPerson person, PurchaseInsuranceYearsScenarioModel scenarioModel)
     {
         var birthdate = new DateTime(1969, 3, 17);
 
@@ -64,7 +63,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
                from s in scenarioSeriesResult
                select CalculateDelta(b.ToList(), s.ToList());
 
-        CapitalBenefitsTransferInResult CalculateDelta(
+        PurchaseInsuranceYearsResult CalculateDelta(
             IReadOnlyCollection<SinglePeriodCalculationResult> benchmark,
             IReadOnlyCollection<SinglePeriodCalculationResult> scenario)
         {
@@ -92,7 +91,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
 
             List<SinglePeriodCalculationResult> deltaSeries = deltaResults.ToList();
             
-            return new CapitalBenefitsTransferInResult
+            return new PurchaseInsuranceYearsResult
             {
                 StartingYear = Math.Min(benchmark.Min(a => a.Year), scenario.Min(a => a.Year)),
                 NumberOfPeriods = deltaSeries.Count,
@@ -142,7 +141,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
         }
     }
 
-    private IEnumerable<ICashFlowDefinition> GetClearAccountAction(TransferInCapitalBenefitsScenarioModel scenarioModel)
+    private IEnumerable<ICashFlowDefinition> GetClearAccountAction(PurchaseInsuranceYearsScenarioModel scenarioModel)
     {
         if (scenarioModel is { WithCapitalBenefitWithdrawal: false })
         {
@@ -165,7 +164,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
         }
     }
 
-    private static IEnumerable<ICompositeCashFlowDefinition> CreateTransferInDefinitions(TransferInCapitalBenefitsScenarioModel scenarioModel)
+    private static IEnumerable<ICompositeCashFlowDefinition> CreateTransferInDefinitions(PurchaseInsuranceYearsScenarioModel scenarioModel)
     {
         // one purchase transfer-in for each single transfer-in
         // as they might not be continuously
@@ -182,7 +181,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
     }
 
     private static IEnumerable<ICompositeCashFlowDefinition> CreateDefaultComposites(
-        TaxPerson person, TransferInCapitalBenefitsScenarioModel scenarioModel)
+        TaxPerson person, PurchaseInsuranceYearsScenarioModel scenarioModel)
     {
         DateTime finalSalaryPaymentDate = scenarioModel.TransferIns.Max(t => t.DateOfTransferIn).AddYears(1);
 

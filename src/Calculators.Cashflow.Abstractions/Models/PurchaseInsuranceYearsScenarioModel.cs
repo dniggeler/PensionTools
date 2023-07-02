@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using PensionCoach.Tools.TaxComparison;
 
-namespace PensionCoach.Tools.TaxComparison;
+namespace Calculators.CashFlow.Models;
 
-public class TransferInCapitalBenefitsScenarioModel
+public class PurchaseInsuranceYearsScenarioModel
 {
     public IReadOnlyCollection<SingleTransferInModel> TransferIns { get; set; }
 
