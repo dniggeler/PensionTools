@@ -44,13 +44,13 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
 
         Either<string, MultiPeriodCalculationResult> scenarioResult = await municipalityData
             .BindAsync(m =>
-                multiPeriodCashFlowCalculator.CalculateAsync(startingYear, GetPerson(m, birthdate), cashFlowDefinitionHolder, options));
+                multiPeriodCashFlowCalculator.CalculateAsync(startingYear, 0,GetPerson(m, birthdate), cashFlowDefinitionHolder, options));
 
         CashFlowDefinitionHolder benchmarkDefinitions = CreateBenchmarkDefinitions();
 
         Either<string, MultiPeriodCalculationResult> benchmarkResult = await municipalityData
             .BindAsync(m =>
-                multiPeriodCashFlowCalculator.CalculateAsync(startingYear, GetPerson(m, birthdate), benchmarkDefinitions, options));
+                multiPeriodCashFlowCalculator.CalculateAsync(startingYear, 0,GetPerson(m, birthdate), benchmarkDefinitions, options));
 
         var benchmarkSeriesResult = benchmarkResult
             .Map(r => r.Accounts

@@ -1,26 +1,31 @@
 ﻿@using Microsoft.AspNetCore.Components
 @using Microsoft.Extensions.Localization
 @using PensionCoach.Tools.CommonTypes
-@using BlazorApp.Resources
 
-@inject IStringLocalizer<PensionComponents> localizer
+@inject IStringLocalizer<PensionComponents> Localizer
+
 
 @if (IsReadOnly)
 {
-    <RadzenLabel Text="@GetViewModel().Name"/>
+    @if (DisplayInGrid)
+    {
+       <MudText>@GetViewModel().Name</MudText>
+    }
+    else
+    {
+        <MudTextField T="string" Label="@Label" Text="@GetViewModel().Name" ReadOnly="@IsReadOnly"/>
+    }
 }
 else
 {
-    <RadzenDropDown Name="gender"
-                Disabled="@IsReadOnly"
-                Data=@genderModels
-                ValueProperty="Value"
-                TextProperty="Name"
-                @bind-Value="@SelectedGender"
-                Change="@(HandleChange)">
-    </RadzenDropDown>
-}
+    <MudSelect T="Gender" ReadOnly="@IsReadOnly" Label="@Label" ValueChanged="HandleChange" Value="@SelectedGender">
 
+        @foreach (var g in genderModels)
+        {
+            <MudSelectItem Value="g.Value">@g.Name</MudSelectItem>
+        }
+    </MudSelect>
+}
 
 @code {
     internal class GenderViewModel
@@ -30,8 +35,9 @@ else
         public string Name { get; set;}
     }
 
-    [Parameter]
-    public bool IsReadOnly { get; set; }
+    [Parameter] public string Label { get; set; }
+    [Parameter] public bool IsReadOnly { get; set; }
+    [Parameter] public bool DisplayInGrid { get; set; }
 
     [Parameter]
     public Gender SelectedGender { get; set; } = Gender.Undefined;
@@ -43,14 +49,14 @@ else
 
     protected override void OnInitialized()
     {
-        genderModels.Add(new GenderViewModel { Name = localizer["gender.male"], Value = Gender.Male });
-        genderModels.Add(new GenderViewModel { Name = localizer["gender.female"], Value = Gender.Female });
+        genderModels.Add(new GenderViewModel { Name = Localizer["gender.male"], Value = Gender.Male });
+        genderModels.Add(new GenderViewModel { Name = Localizer["gender.female"], Value = Gender.Female });
     }
 
-    private void HandleChange(object value)
+    private async Task HandleChange(Gender value)
     {
-        SelectedGender = (Gender)value;
-        OnSelected.InvokeAsync(SelectedGender);
+        SelectedGender = value;
+        await OnSelected.InvokeAsync(value);
     }
 
     private GenderViewModel GetViewModel()

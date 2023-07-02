@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
-using BlazorApp.Services.Mock;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes.Tax;
@@ -37,10 +36,7 @@ public class TaxCalculationService : ITaxCalculationService, IMarginalTaxCurveCa
 
         response.EnsureSuccessStatusCode();
 
-        FullTaxResponse result =
-            await response.Content.ReadFromJsonAsync<FullTaxResponse>();
-
-        return result;
+        return await response.Content.ReadFromJsonAsync<FullTaxResponse>();
     }
 
     public async Task<int[]> SupportedTaxYearsAsync()

@@ -1,0 +1,90 @@
+﻿@using BlazorApp.Services.CheckSettings
+
+@inject ICheckSettingsService SettingsService
+
+<MudCard Class="pa-4">
+    <MudCardHeader>
+        <MudText Typo="Typo.subtitle1">Health Check</MudText>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudGrid>
+            <MudItem md="4" Class="d-flex justify-start align-center">
+                <MudText Typo="Typo.body2">Backend</MudText>
+            </MudItem>
+            <MudItem md="8" Class="d-flex justify-end">
+                @if (healthCheckStatus)
+                {
+                    <MudIcon Icon="@Icons.Material.Filled.Done"/>
+                }
+                else
+                {
+                    <MudIcon Icon="@Icons.Material.Filled.CloudOff"/>
+                }
+            </MudItem>
+        </MudGrid>
+       
+    </MudCardContent>
+</MudCard>
+
+<MudDivider/>
+
+<MudCard Class="pa-4" Outlined="true">
+    <MudCardHeader>
+        <MudText Typo="Typo.subtitle1">Frontend</MudText>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudGrid>
+            @foreach (var key in frontendConfiguration)
+            {
+                <MudItem md="4" Class="d-flex justify-start align-center">
+                    <MudText Typo="Typo.body2">@(key.Key + ":")</MudText>
+                </MudItem>
+
+                <MudItem md="8" Class="d-flex justify-end">
+                    <MudText Typo="Typo.body2">
+                        <i>@(key.Value)</i>
+                    </MudText>
+                </MudItem>
+            }
+        </MudGrid>
+    </MudCardContent>
+</MudCard>
+
+<MudCard Class="pa-4" Outlined="true">
+    <MudCardHeader>
+        <MudText Typo="Typo.subtitle1">Backend</MudText>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudGrid>
+
+            @foreach (var key in backendConfiguration)
+            {
+                <MudItem md="4" Class="d-flex justify-start align-center">
+                    <MudText Typo="Typo.body2">
+                        @(key.Key + ":")
+                    </MudText>
+                </MudItem>
+
+                <MudItem md="8" Class="d-flex justify-end">
+                    <MudText Typo="Typo.body2">
+                        <i>@(key.Value)</i>
+                    </MudText>
+                </MudItem>
+            }
+
+        </MudGrid>
+    </MudCardContent>
+</MudCard>
+
+@code {
+    private bool healthCheckStatus;
+    private Dictionary<string, string> frontendConfiguration = new();
+    private Dictionary<string, string> backendConfiguration = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        healthCheckStatus = await SettingsService.HealthCheckAsync();
+        frontendConfiguration = await SettingsService.GetFrontendConfigurationAsync();
+        backendConfiguration = await SettingsService.GetBackendConfigurationAsync();
+    }
+}

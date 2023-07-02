@@ -5,7 +5,7 @@ namespace PensionCoach.Tools.TaxCalculator.Estv;
 
 public class EstvTaxSupportedYearProvider : ITaxSupportedYearProvider
 {
-    private readonly int[] supportedTaxYears = { 2019, 2020, 2021, 2022 };
+    private readonly int[] supportedTaxYears = { 2019, 2020, 2021, 2022, 2023 };
 
     public int[] GetSupportedTaxYears()
     {

@@ -1,38 +1,29 @@
 ﻿@page "/PersonListing"
 
 @inject IPersonService PersonService
-@inject DialogService DialogService
+@inject IDialogService DialogService
 
-<h3>Personenverzeichnis</h3>
+<MudPaper Class="mb-4 pa-4 align-center" Elevation="0">
+    <MudGrid>
+        <MudItem md="6" Class="d-flex justify-start align-center">
+            <MudText Typo="Typo.h5">Personenverzeichnis</MudText>
+        </MudItem>
+        <MudItem md="6" Class="d-flex justify-end">
+            <MudIconButton OnClick="@(OpenPerson)" Icon="@Icons.Material.Filled.PersonAddAlt1"/>
+        </MudItem>
+    </MudGrid>
+</MudPaper>
 
-<div class="row">
-    <div class="col-xl-6 offset-xl-2">
-        <RadzenCard class="m-4">
-            <div class="row">
-                <div class="col-xl-10">
-                    <h3>Neue Person erstellen</h3>
-                </div>
-                <div class="col-xl-2">
-                    <RadzenButton Click=@(OpenPerson) Class="float-right" Icon="person_add" ButtonStyle="ButtonStyle.Secondary"></RadzenButton>
-                </div>
-            </div>
-            
-        </RadzenCard>
-        
-        @if (persons is not null)
-        {
-            @foreach (var person in persons)
-            {
-                <PersonView Person="person" OnDelete="@DeletePerson" OnEdit="@EditPerson" OnCopy="@CopyPerson"/>
-            }
-        }
-    </div>
-</div>
-
+@foreach (var person in persons)
+{
+    <MudPaper Elevation="2" Class="ma-4 pa-4">
+        <PersonView Person="person" OnDelete="@DeletePerson" OnEdit="@EditPerson" OnCopy="@CopyPerson"/>
+    </MudPaper>
+}
 
 @code
 {
-    private List<PersonViewModel> persons;
+    private List<PersonViewModel> persons = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -43,12 +34,12 @@
     {
         PersonViewModel newPerson = new();
 
-        bool isDone = await OpenDialogAsync("Neue Person anlegen", newPerson);
+        bool ok = await OpenDialogAsync("Neue Person anlegen", newPerson);
 
-        if (isDone)
+        if (ok)
         {
             persons.Add(newPerson);
-            await PersonService.AddPersonAsync(newPerson);
+            await PersonService.AddAsync(newPerson);
         }
     }
 
@@ -62,11 +53,20 @@
     {
         PersonViewModel person = persons.SingleOrDefault(p => p.Id == id);
 
-        bool isDone = await OpenDialogAsync("Person ändern", person);
-
-        if (isDone)
+        if (person is null)
         {
-            await PersonService.AddPersonAsync(person);
+            return;
+        }
+
+        PersonViewModel shadowPerson = person with { };
+
+        bool hasChange = await OpenDialogAsync("Person ändern", shadowPerson);
+
+        if (hasChange)
+        {
+            person.Update(shadowPerson);
+
+            await PersonService.UpdateAsync(person);
         }
     }
 
@@ -74,37 +74,45 @@
     {
         PersonViewModel sourcePerson = persons.SingleOrDefault(p => p.Id == id);
 
+        if (sourcePerson is null)
+        {
+            return;
+        }
+
         PersonViewModel copyPerson = new()
-            {
-                Id = Guid.NewGuid(),
-                BfsMunicipalityId = sourcePerson.BfsMunicipalityId,
-                Name = $"{sourcePerson.Name} (Copy)",
-                CivilStatus = sourcePerson.CivilStatus,
-                Gender = sourcePerson.Gender,
-                TaxableIncome = sourcePerson.TaxableIncome,
-                TaxableWealth = sourcePerson.TaxableWealth,
-                Canton = sourcePerson.Canton,
-                FinalCapital3a = sourcePerson.FinalCapital3a,
-                FinalRetirementCapital = sourcePerson.FinalRetirementCapital,
-                DateOfBirth = sourcePerson.DateOfBirth
-            };
+        {
+            Id = Guid.NewGuid(),
+            BfsMunicipalityId = sourcePerson.BfsMunicipalityId,
+            Canton = sourcePerson.Canton,
+            MunicipalityName = sourcePerson.MunicipalityName,
+            Name = $"{sourcePerson.Name} (Copy)",
+            CivilStatus = sourcePerson.CivilStatus,
+            Gender = sourcePerson.Gender,
+            TaxableIncome = sourcePerson.TaxableIncome,
+            TaxableWealth = sourcePerson.TaxableWealth,
+            FinalCapital3a = sourcePerson.FinalCapital3a,
+            FinalRetirementCapital = sourcePerson.FinalRetirementCapital,
+            DateOfBirth = sourcePerson.DateOfBirth
+        };
 
         bool isDone = await OpenDialogAsync("Person ändern", copyPerson);
 
         if (isDone)
         {
             persons.Add(copyPerson);
-            await PersonService.AddPersonAsync(copyPerson);
+            await PersonService.AddAsync(copyPerson);
         }
     }
 
     private async Task<bool> OpenDialogAsync(string title, PersonViewModel person)
     {
-        dynamic result = await DialogService.OpenAsync<PersonEdit>(
+        IDialogReference result = await DialogService.ShowAsync<PersonEdit>(
             title,
-            new Dictionary<string, object> { { "Person", person } },
-            new DialogOptions { Width = "600px", Height = "550px", Resizable = true, Draggable = true });
+            new DialogParameters { { "Person", person } },
+            new DialogOptions { CloseButton = true, CloseOnEscapeKey = true, MaxWidth = MaxWidth.Medium });
 
-        return Convert.ToBoolean(result);
+        DialogResult dialogResult = await result.Result;
+
+        return !dialogResult.Canceled;
     }
 }

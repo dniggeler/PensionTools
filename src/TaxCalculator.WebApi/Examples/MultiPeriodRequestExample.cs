@@ -25,6 +25,7 @@ namespace TaxCalculator.WebApi.Examples
                 StartingYear = startingYear,
                 NumberOfPeriods = numberOfPeriods,
                 BfsMunicipalityId = 261,
+                Gender = Gender.Male,
                 CivilStatus = CivilStatus.Married,
                 Income = 100_000,
                 Wealth = 500_000,
@@ -32,12 +33,10 @@ namespace TaxCalculator.WebApi.Examples
                 CapitalBenefitsPension = 0,
                 ReligiousGroupType = ReligiousGroupType.Other,
                 PartnerReligiousGroupType = ReligiousGroupType.Other,
-                CashFlowDefinitionHolder = new CashFlowDefinitionHolder
+                CashFlowDefinitionRequest = new CashFlowDefinitionRequest
                 {
-                    Composites = new List<RelativeTransferAmountDefinition>
+                    RelativeTransferAmountDefinition  = new RelativeTransferAmountDefinition()
                     {
-                        new ()
-                        {
                             Header = new CashFlowHeader
                             {
                                 Id = "ClearCapitalBenefitAction",
@@ -48,7 +47,6 @@ namespace TaxCalculator.WebApi.Examples
                             Flow = new FlowPair(AccountType.OccupationalPension, AccountType.Wealth),
                             IsTaxable = true,
                             TaxType = TaxType.CapitalBenefits,
-                        }
                     },
 
                     ChangeResidenceActions = new List<ChangeResidenceAction>

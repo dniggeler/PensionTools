@@ -1,18 +1,15 @@
 ﻿@using Microsoft.AspNetCore.Components
 @using Microsoft.Extensions.Localization
 @using PensionCoach.Tools.CommonTypes
-@using BlazorApp.Resources
 
-@inject IStringLocalizer<Resource> localizer
+@inject IStringLocalizer<Resource> Localizer
 
-<RadzenDropDown Name="partnerReligousGroup"
-                Disabled="@IsReadOnly"
-                Data=@religiousGroupTypes
-                ValueProperty="Value"
-                TextProperty="Name"
-                @bind-Value="@SelectedReligiousGroupType"
-                Change="@(HandleChange)">
-</RadzenDropDown>
+<MudSelect Label="@Label" ReadOnly="@IsReadOnly" T="ReligiousGroupType" Value="@(SelectedReligiousGroupType ?? ReligiousGroupType.Other)" ValueChanged="HandleChangeAsync">
+    @foreach (var g in religiousGroupTypes)
+    {
+        <MudSelectItem Value="g.Value">@g.Name</MudSelectItem>
+    }
+</MudSelect>
 
 @code {
 
@@ -22,6 +19,9 @@
 
         public string Name { get; set;}
     }
+
+    [Parameter]
+    public string Label { get; set; }
 
     [Parameter]
     public bool IsReadOnly { get; set; }
@@ -42,9 +42,10 @@
         religiousGroupTypes.Add(new ReligiousGroupTypeViewModel { Name = "römisch-katholisch", Value = ReligiousGroupType.Roman });
     }
 
-    private void HandleChange(object value)
+    private async Task HandleChangeAsync(ReligiousGroupType value)
     {
-        SelectedReligiousGroupType = (ReligiousGroupType)value;
-        OnSelected.InvokeAsync(SelectedReligiousGroupType);
+        SelectedReligiousGroupType = value;
+
+        await OnSelected.InvokeAsync(SelectedReligiousGroupType);
     }
 }

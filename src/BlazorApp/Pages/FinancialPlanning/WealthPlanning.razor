@@ -1,0 +1,442 @@
+﻿@page "/FinancialPlanning/WealthPlanning"
+
+@using PensionCoach.Tools.CommonTypes
+@using PensionCoach.Tools.CommonTypes.MultiPeriod
+@using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions
+@using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions
+@using PensionCoach.Tools.CommonTypes.Tax
+@using Microsoft.AspNetCore.Components
+@using System.Text.Json
+@using System.Globalization
+@using Microsoft.Extensions.Logging
+
+@inject ILogger<WealthPlanning> Logger
+@inject IMultiPeriodCalculationService MultiPeriodCalculationService
+@inject IPersonService PersonService
+
+<MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+    <MudGrid>
+        <MudItem md="12">
+            <MudText Typo="Typo.h5">Finanzplanung</MudText>
+        </MudItem>
+
+        <MudItem md="12">
+
+            <MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+
+                <MudTabPanel Text="Person">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Die Cashflow-Simulation basiert auf Angaben zur Person sowie steuerrevelanten Daten wie Wohnort, Einkommen und Vermögen.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <PersonSelector Persons="persons" OnSelect="@HandleSelectPerson"/>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+                
+                <MudTabPanel Text="Steuerdaten" Disabled="@(selectedPerson is null)">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Steuerlich relevante Angaben zur Person sind der Zivilstand,
+                                die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter,
+                                welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.
+                                Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <PersonDetails IsReadOnly="false" Person="@selectedPerson"/>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+                
+                <MudTabPanel Text="Cash-Flow Actions" Disabled="@(selectedPerson is null)">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.subtitle1">
+                                Wohnortwechsel
+                            </MudText>
+                            <MudText Typo="Typo.body2">
+                                Ab einem gewünschten Jahr kann die Wohngemeinde geändert werden, was einen Einfluss auf alle Steuern hat,
+                                insbesondere wenn die neue Gemeinde in einem anderen Kanton liegt.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <MudSwitch @bind-Checked="isChangeResidenceActive" Color="Color.Primary"/>
+
+                            @if (isChangeResidenceActive)
+                            {
+                                <MudPaper Elevation="1" Class="pa-4">
+                                    <MudDatePicker Label="Gültig ab" Editable="true" @bind-Date="dateOfProcessChangeResidence" DateFormat="dd.MM.yyyy"/>
+                                    <MudNumericField Label="Kosten" Format="n0" Step="100" @bind-Value="changeResidenceModel.ChangeCost" Culture="CultureInfo.InvariantCulture" />
+                                    <ResidenceSelector BfsMunicipalityId="changeResidenceModel.DestinationMunicipalityId"
+                                                       CantonCode="changeResidenceModel.DestinationCanton"
+                                                       MunicipalityName="@newDomicileName"
+                                                       Label="Domizil"
+                                                       IsReadOnly="false"
+                                                       OnSelected="HandleChangeResidence" />
+                                </MudPaper>
+                            }
+
+                        </MudItem>
+                        
+                        <MudItem md="4">
+                            <MudText Typo="Typo.subtitle1">
+                                Transfers
+                            </MudText>
+                            <MudText Typo="Typo.body2">
+                                Für ein gewähltes Jahr kann Guthaben von einem Ursrpungs- zu einem Zielkonto transferiert werden. Das Guthaben kann ein Betrag oder ein Prozentssatz sein.
+                                Transfer-Transaktionen dieser Art gibt es insbesondere in der Vorsorge: ein 3a-Konto wird aufgelöst oder bei Pensionierung lässt man sich das Geld auszahlen.
+                                Wie im Fall einer Auflösung des 3a-Kontos fallen auch Steuern an.
+                                <br />
+                                <i>Aktuell werden alle Vorsorge-Konti zum gewünschten Zeitpunkt geräumt und versteuert und dem Vermögenskonto gutgeschrieben.</i>
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <MudSwitch @bind-Checked="isClearActionActive" Color="Color.Primary"/>
+
+                            @if (isClearActionActive)
+                            {
+                                <MudPaper Elevation="1" Class="pa-4">
+                                    <ClearAccountActionDefinitionForm Definition="clearAccountAction"></ClearAccountActionDefinitionForm>
+                                </MudPaper>
+                            }
+                        </MudItem>
+                        
+                        <MudItem md="4">
+                            <MudText Typo="Typo.subtitle1">
+                                Generische Zu- und Abflüsse
+                            </MudText>
+                            <MudText Typo="Typo.body2">
+                                Einmalige oder periodische Kapitalflüsse, die einer Steuer unterliegen. Mit einem Geldfluss sind immer zwei Konti verbunden.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <MudPaper Elevation="1" Class="pa-4">
+                                <MudText Typo="Typo.subtitle2">
+                                    Vorsorge
+                                </MudText>
+                                <MudExpansionPanels>
+                                    @foreach (StaticGenericCashFlowDefinition definition in genericCashFlowDefinitions)
+                                    {
+                                        <MudExpansionPanel Text="@definition.Header.Name">
+                                            <GenericCashFlowDefinitionForm Definition="definition" />
+                                        </MudExpansionPanel>
+                                    }
+                                </MudExpansionPanels>
+                            </MudPaper>
+                        </MudItem>
+                    </MudGrid>
+
+                </MudTabPanel>
+                
+                <MudTabPanel Text="Berechnung" Disabled="@(selectedPerson is null)">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <MudPaper Elevation="1" Class="pa-4">
+                                <MudExpansionPanels>
+                                    <MudExpansionPanel Text="Simulation">
+                                        <MudNumericField Label="Startjahr" Format="n0" @bind-Value="model.StartingYear" Culture="CultureInfo.InvariantCulture" />
+                                        <MudNumericField Label="Anzahl Perioden" Format="n0" @bind-Value="model.NumberOfPeriods" Culture="CultureInfo.InvariantCulture" />
+                                    </MudExpansionPanel>
+
+                                    <MudExpansionPanel Text="Wertentwicklung">
+                                        <MudNumericField Label="Sparquote" Format="p0" Step="0.01M" @bind-Value="simulationOptions.SavingsQuota" Culture="CultureInfo.InvariantCulture" />
+                                        <MudNumericField Label="Lohnwachstum" Format="p0" Step="0.01M" @bind-Value="simulationOptions.SalaryNetGrowthRate" Culture="CultureInfo.InvariantCulture" />
+                                        <MudNumericField Label="Vorsorgewachstum" Format="p0" Step="0.01M" @bind-Value="simulationOptions.CapitalBenefitsNetGrowthRate" Culture="CultureInfo.InvariantCulture" />
+                                        <MudNumericField Label="Vermögenswachstum" Format="p0" Step="0.01M" @bind-Value="simulationOptions.WealthNetGrowthRate" Culture="CultureInfo.InvariantCulture" />
+                                    </MudExpansionPanel>
+
+                                </MudExpansionPanels>
+                            </MudPaper>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+            </MudTabs>
+        </MudItem>
+        
+        <MudItem md="12">
+            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
+        </MudItem>
+
+    </MudGrid>
+</MudPaper>
+
+@if (showLoading)
+{
+    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-7"/>
+}
+
+@if (multiPeriodCalculationResponse != null)
+{
+    <MudExpansionPanels Class="mb-4 pa-6">
+        <MudExpansionPanel Text="Entwicklung Finanzsituation" IsInitiallyExpanded="true">
+            <WealthTimeSeriesChart
+                CurveTitle="Vermögensentwicklung"
+                XAxisTitle="Jahr"
+                YAxisTitle="Vermögenswert"
+                CapitalBenefitsTimeSeries="@capitalBenefitsDataItems"
+                WealthTimeSeries="@wealthDataItems"
+                TotalTimeSeries="@totalDataItems"/>
+        </MudExpansionPanel>
+
+        <MudExpansionPanel Text="Rohdaten">
+            <JsonPrettyFormat ObjectValue="multiPeriodCalculationResponse"/>
+        </MudExpansionPanel>
+
+    </MudExpansionPanels>
+}
+
+@code {
+
+    private bool showLoading;
+    private readonly MultiPeriodRequest model = GetDefaultValues();
+    private readonly ChangeResidenceAction changeResidenceModel = new()
+    {
+        Header = new CashFlowHeader
+        {
+            Id = "cra1",
+            Name = "Change Residence Action"
+        },
+    };
+
+    private IEnumerable<StaticGenericCashFlowDefinition> genericCashFlowDefinitions;
+    private RelativeTransferAmountDefinition clearAccountAction = new();
+
+    private PersonViewModel selectedPerson;
+    private IReadOnlyCollection<PersonViewModel> persons;
+    private readonly MultiPeriodOptions simulationOptions = new();
+
+    private MultiPeriodResponse multiPeriodCalculationResponse;
+    private WealthTimeSeriesChart.TimeSeriesPoint[] capitalBenefitsDataItems = { };
+    private WealthTimeSeriesChart.TimeSeriesPoint[] wealthDataItems = { };
+    private WealthTimeSeriesChart.TimeSeriesPoint[] totalDataItems = { };
+    private bool isChangeResidenceActive;
+    private bool isClearActionActive;
+    private DateTime? dateOfProcessChangeResidence;
+    private string newDomicileName;
+
+    protected override async Task OnInitializedAsync()
+    {
+        persons = (await PersonService.GetPersonsAsync()).ToList();
+        changeResidenceModel.DestinationMunicipalityId = model.BfsMunicipalityId;
+        changeResidenceModel.DateOfProcess = new DateTime(Math.Max(model.StartingYear + model.NumberOfPeriods - 3, 0), 1, 1);
+        genericCashFlowDefinitions = CreateDefaultGenericCashFlows();
+
+        clearAccountAction.DateOfProcess = new DateTime(Math.Max(model.StartingYear + model.NumberOfPeriods-1, 0));
+    }
+
+    private async Task OnSubmit()
+    {
+        showLoading = true;
+        multiPeriodCalculationResponse = null;
+        try
+        {
+            MultiPeriodRequest request = new();
+            request.Name = $"Finanzplanung - {selectedPerson.Name}";
+            request.StartingYear = model.StartingYear;
+            request.NumberOfPeriods = model.NumberOfPeriods;
+            request.BfsMunicipalityId = selectedPerson.BfsMunicipalityId;
+            request.Gender = selectedPerson.Gender;
+            request.ReligiousGroupType = selectedPerson.ReligiousGroupType;
+            request.PartnerReligiousGroupType = selectedPerson.PartnerReligiousGroupType;
+            request.CivilStatus = selectedPerson.CivilStatus;
+            request.DateOfBirth = selectedPerson.DateOfBirth ?? DateTime.Today;
+            request.Income = selectedPerson.TaxableIncome;
+            request.Wealth = selectedPerson.TaxableWealth;
+
+            request.Options = simulationOptions;
+            request.CashFlowDefinitionRequest.StaticGenericCashFlowDefinitions = genericCashFlowDefinitions.ToList();
+            if (isClearActionActive)
+            {
+                request.CashFlowDefinitionRequest.RelativeTransferAmountDefinition  = clearAccountAction;
+            }
+
+            request.CashFlowDefinitionRequest.SetupAccountDefinition = new SetupAccountDefinition
+            {
+                InitialThirdPillarAssets = selectedPerson.FinalCapital3a,
+                InitialOccupationalPensionAssets = selectedPerson.FinalRetirementCapital,
+                InitialWealth = selectedPerson.TaxableWealth,
+            };
+            request.CashFlowDefinitionRequest.SalaryPaymentsDefinition = new SalaryPaymentsDefinition()
+            {
+                YearlyAmount = selectedPerson.TaxableIncome,
+                DateOfEndOfPeriod = new DateTime(2034, 4, 1)
+            };
+
+            Logger.LogWarning($"Request: {JsonSerializer.Serialize(request)}");
+            
+            multiPeriodCalculationResponse = await MultiPeriodCalculationService.CalculateAsync(request);
+
+            Logger.LogWarning($"Response: {JsonSerializer.Serialize(multiPeriodCalculationResponse)}");
+
+            (WealthTimeSeriesChart.TimeSeriesPoint[] wealthData, WealthTimeSeriesChart.TimeSeriesPoint[] capitalBenefitsData, WealthTimeSeriesChart.TimeSeriesPoint[] totalData) = GetTotalDataItems();
+            capitalBenefitsDataItems = capitalBenefitsData;
+            wealthDataItems = wealthData;
+            totalDataItems = totalData;
+        }
+        finally
+        {
+            showLoading = false;
+        }
+    }
+
+    private static MultiPeriodRequest GetDefaultValues()
+    {
+        return new MultiPeriodRequest
+        {
+            Name = "Unknown",
+            NumberOfPeriods = 10,
+            StartingYear = 2023,
+        };
+    }
+
+    private (WealthTimeSeriesChart.TimeSeriesPoint[] wealthData, WealthTimeSeriesChart.TimeSeriesPoint[] capitalBenefitsData, WealthTimeSeriesChart.TimeSeriesPoint[] totalData) GetTotalDataItems()
+    {
+        WealthTimeSeriesChart.TimeSeriesPoint[] wealthData = GetWealthDataItems();
+        WealthTimeSeriesChart.TimeSeriesPoint[] capitalBenefitsData = GetOccupationalPensionDataItems();
+        WealthTimeSeriesChart.TimeSeriesPoint[] totalData = GetTotalSumDataItems();
+
+        return (wealthData, capitalBenefitsData, totalData);
+    }
+
+    private WealthTimeSeriesChart.TimeSeriesPoint[] GetWealthDataItems()
+    {
+        if (multiPeriodCalculationResponse == null)
+        {
+            return Enumerable.Empty<WealthTimeSeriesChart.TimeSeriesPoint>().ToArray();
+        }
+
+        return multiPeriodCalculationResponse.Accounts
+            .Where(item => item.AccountType == AccountType.Wealth)
+            .Select(item => new WealthTimeSeriesChart.TimeSeriesPoint
+            {
+                XValue = new DateTime(item.Year, 1, 1),
+                YValue = Math.Round(item.Amount)
+            })
+            .ToArray();
+    }
+
+    private WealthTimeSeriesChart.TimeSeriesPoint[] GetOccupationalPensionDataItems()
+    {
+        if (multiPeriodCalculationResponse == null)
+        {
+            return Enumerable.Empty<WealthTimeSeriesChart.TimeSeriesPoint>().ToArray();
+        }
+
+        return multiPeriodCalculationResponse.Accounts
+            .Where(item => item.AccountType is AccountType.OccupationalPension or AccountType.ThirdPillar)
+            .GroupBy(keySelector => keySelector.Year)
+            .Select(g => new WealthTimeSeriesChart.TimeSeriesPoint
+            {
+                XValue = new DateTime(g.Key, 1, 1),
+                    YValue = g.Sum(item => Math.Round(item.Amount))
+            })
+            .ToArray();
+    }
+
+    private WealthTimeSeriesChart.TimeSeriesPoint[] GetTotalSumDataItems()
+    {
+        if (multiPeriodCalculationResponse == null)
+        {
+            return Enumerable.Empty<WealthTimeSeriesChart.TimeSeriesPoint>().ToArray();
+        }
+
+        var datas = multiPeriodCalculationResponse.Accounts
+            .Where(item => item.AccountType != AccountType.Exogenous)
+            .GroupBy(keySelector => keySelector.Year)
+            .Select(g => new WealthTimeSeriesChart.TimeSeriesPoint
+            {
+                XValue = new DateTime(g.Key, 1, 1),
+                YValue = g.Sum(item => Math.Round(item.Amount))
+            })
+            .ToArray();
+
+        return datas;
+    }
+
+    private void HandleChangeResidence(TaxSupportedMunicipalityModel municipalityModel)
+    {
+        changeResidenceModel.DestinationMunicipalityId = municipalityModel.BfsMunicipalityNumber;
+        changeResidenceModel.DestinationCanton = municipalityModel.Canton;
+        newDomicileName = municipalityModel.Name;
+    }
+
+    private void HandleSelectPerson(Guid personId)
+    {
+        selectedPerson = persons.Single(item => item.Id == personId);
+     
+        model.CivilStatus = selectedPerson.CivilStatus;
+        model.ReligiousGroupType = selectedPerson.ReligiousGroupType;
+        model.PartnerReligiousGroupType = selectedPerson.PartnerReligiousGroupType;
+        model.Name = selectedPerson.Name;
+        model.BfsMunicipalityId = selectedPerson.BfsMunicipalityId;
+        model.Income = selectedPerson.TaxableIncome;
+        model.Wealth = selectedPerson.TaxableWealth;
+    }
+
+    private IEnumerable<StaticGenericCashFlowDefinition> CreateDefaultGenericCashFlows()
+    {
+        return new List<StaticGenericCashFlowDefinition>
+        {
+            new()
+            {
+                DateOfProcess = new DateTime(model.StartingYear, 1, 1),
+
+                Header = new CashFlowHeader
+                {
+                    Id = "my 3a account",
+                    Name = "Säule 3a",
+                },
+
+                InitialAmount = 0,
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 6883,
+                    Frequency = FrequencyType.Yearly,
+                },
+                Flow = new FlowPair(AccountType.Income, AccountType.ThirdPillar),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = model.StartingYear,
+                    NumberOfPeriods = 10,
+                },
+                IsTaxable = false,
+                TaxType = TaxType.Undefined,
+            },
+            new()
+            {
+                DateOfProcess = new DateTime(model.StartingYear, 1, 1),
+
+                Header = new CashFlowHeader
+                {
+                    Id = "purchase",
+                    Name = "PK-Einkauf",
+                },
+                NetGrowthRate = 0,
+                InitialAmount = 0,
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 10000,
+                    Frequency = FrequencyType.Yearly,
+                },
+                Flow = new FlowPair(AccountType.Income, AccountType.OccupationalPension),
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = model.StartingYear,
+                    NumberOfPeriods = 5,
+                },
+                IsTaxable = false,
+                TaxType = TaxType.Undefined,
+            }
+        };
+    }
+}

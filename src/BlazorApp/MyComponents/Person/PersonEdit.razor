@@ -1,0 +1,27 @@
+﻿<MudCard Class="pa-4">
+    <EditForm Model="@Person" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <PersonDetails IsReadOnly="false" Person="@Person"/>
+        
+        <MudCardActions>
+            <MudIconButton Icon="@Icons.Material.Filled.Done" ButtonType="ButtonType.Submit" />
+        </MudCardActions>
+
+    </EditForm>
+</MudCard>
+
+
+@code
+{
+    [Parameter]
+    public PersonViewModel Person { get; set; }
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    private void HandleValidSubmit()
+    {
+        MudDialog.Close(DialogResult.Ok(Person));
+    }
+}

@@ -2,25 +2,32 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>PensionTools</title>
-    <base href="/" />
-    <link href="assets/css/styles.css" rel="stylesheet" />
+    <base href="/"/>
+    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet"/>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
 <body>
-    <div id="app">Loading...</div>
+<div id="app">Loading...</div>
 
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
+<div id="blazor-error-ui">
+    <environment include="Staging,Production">
+        An error has occurred. This application may no longer respond until reloaded.
+    </environment>
+    <environment include="Development">
+        An unhandled exception has occurred. See browser dev tools for details.
+    </environment>
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
 
-    <script src="_framework/blazor.webassembly.js"></script>
-    <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
+<script src="_framework/blazor.webassembly.js"></script>
+<script src="_content/MudBlazor/MudBlazor.min.js"></script>
+<script src="_content/Blazor-ApexCharts/js/apex-charts.min.js"></script>
+<script src="_content/Blazor-ApexCharts/js/blazor-apex-charts.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,100 @@
+﻿@using System.Globalization
+@using System.Threading
+@using BlazorApp.MyComponents.CheckSettings
+
+@inherits LayoutComponentBase
+@inject IDialogService DialogService
+
+<MudThemeProvider @bind-IsDarkMode="@IsDarkMode" Theme="_theme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="DrawerToggle" />
+        <MudText>PensionTools</MudText>
+        <MudSpacer/>
+
+        <MudText>Light</MudText>
+        <MudSwitch @bind-Checked="@IsDarkMode" Color="Color.Primary" Class="ml-4" Label="Dark" LabelPosition="LabelPosition.End" T="bool"/>
+        
+        <MudPaper Elevation="0">
+            <MudButtonGroup Variant="Variant.Outlined">
+                <MudButton Class="mud-theme-primary">@_buttonText</MudButton>
+                <MudMenu Icon="@Icons.Material.Filled.ArrowDropDown">
+                    <MudMenuItem OnClick="@(() => SetCulture("de-CH"))">DE</MudMenuItem>
+                    <MudMenuItem OnClick="@(() => SetCulture("en-US"))">EN</MudMenuItem>
+                </MudMenu>
+            </MudButtonGroup>
+        </MudPaper>
+
+
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" OnClick="OpenSettings" />
+
+    </MudAppBar>
+    
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+        <MudNavLink Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
+    
+        <MudNavLink Href="PersonListing" Match="NavLinkMatch.Prefix">Personen</MudNavLink>
+        <MudNavGroup Title="Steuerrechner" Expanded="false">
+            <MudNavLink Href="/SimpleTax/TaxCalculation" Match="NavLinkMatch.Prefix">Einkommen/Vermögen</MudNavLink>
+            <MudNavLink Href="/SimpleTax/MarginalTax" Match="NavLinkMatch.Prefix">Grenzsteuerkurve</MudNavLink>
+        </MudNavGroup>
+        <MudNavGroup Title="Gemeindevergleich">
+            <MudNavLink Href="/TaxComparer/IncomeAndWealth" Match="NavLinkMatch.Prefix">Einkommen/Vermögen</MudNavLink>
+            <MudNavLink Href="/TaxComparer/CapitalBenefits" Match="NavLinkMatch.Prefix">Kapitalbezug</MudNavLink>
+        </MudNavGroup>
+        <MudNavGroup Title="Vordefinierte Szenarien">
+            <MudNavLink Href="/TaxScenario/Purchase" Match="NavLinkMatch.Prefix">PK Einkauf</MudNavLink>
+        </MudNavGroup>
+        <MudNavGroup Title="Eigene Szenarien">
+            <MudNavLink Href="/FinancialPlanning/WealthPlanning" Match="NavLinkMatch.Prefix">Vermögensentwicklung (exp.)</MudNavLink>
+        </MudNavGroup>
+        <MudNavLink Href="/Contact" Match="NavLinkMatch.Prefix">Kontakt</MudNavLink>
+    </MudDrawer>
+    
+    <MudMainContent>
+
+        <CascadingValue Value="@IsDarkMode">
+            <CascadingValue Value="@_theme">
+                @Body
+            </CascadingValue>
+        </CascadingValue>
+
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private readonly MudTheme _theme = new();
+    private bool IsDarkMode;
+    private bool _drawerOpen = true;
+    private string _buttonText = "DE";
+
+    private void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+
+    private void SetCulture(string cultureCode)
+    {
+        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.DefaultThreadCurrentUICulture =
+            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureCode);
+
+        _buttonText = cultureCode switch
+        {
+            "de-CH" => "DE",
+            "en-US" => "EN",
+            _ => "DE"
+        };
+    }
+
+    private async Task OpenSettings()
+    {
+        IDialogReference result = await DialogService.ShowAsync<CheckSettingsViewer>(
+            "Check Settings",
+            new DialogOptions { CloseButton = true, CloseOnEscapeKey = true, FullWidth = true});
+
+        _ = await result.Result;
+    }
+}

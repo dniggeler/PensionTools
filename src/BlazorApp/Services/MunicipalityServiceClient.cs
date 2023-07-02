@@ -77,5 +77,12 @@ namespace BlazorApp.Services
 
             return Enumerable.Empty<TaxSupportedMunicipalityModel>();
         }
+
+        public async Task<IEnumerable<TaxSupportedMunicipalityModel>> GetTaxSupportingAsync(MunicipalityFilter filter)
+        {
+            var all = await GetTaxSupportingAsync();
+
+            return all.Where(item => filter.BfsNumberList.Contains(item.BfsMunicipalityNumber) || filter.CantonList.Contains(item.Canton));
+        }
     }
 }

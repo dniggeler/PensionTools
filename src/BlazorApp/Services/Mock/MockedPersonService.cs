@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BlazorApp.ViewModels;
+using LanguageExt;
 using PensionCoach.Tools.CommonTypes;
 
 namespace BlazorApp.Services.Mock;
@@ -17,12 +19,33 @@ public class MockedPersonService : IPersonService
 
     public async Task<IEnumerable<PersonViewModel>> GetPersonsAsync()
     {
-        return await Task.FromResult(GetDefaultPersons());
+        return await Task.FromResult(Persons);
     }
 
-    public Task AddPersonAsync(PersonViewModel person)
+    public Task<PersonViewModel> GetAsync(Guid id)
+    {
+        return Persons.SingleOrDefault(p => p.Id == id).AsTask();
+    }
+
+    public Task AddAsync(PersonViewModel person)
     {
         Persons.Add(person);
+
+        return Task.CompletedTask;
+    }
+
+    public Task UpdateAsync(PersonViewModel person)
+    {
+        int deletedPersons = Persons.RemoveAll(p => p.Id == person.Id);
+
+        if (deletedPersons > 0)
+        {
+            Persons.Add(person);
+        }
+        else
+        {
+            throw new ArgumentException($"Person with id {person.Id} does not exists");
+        }
 
         return Task.CompletedTask;
     }

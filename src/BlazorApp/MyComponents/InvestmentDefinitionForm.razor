@@ -1,25 +1,14 @@
 ﻿@using BlazorApp.ViewModels
+@using System.Globalization
 
-<EditForm Model="GenericDefinition">
-    <div class="row">
-        <div class="col-md-2">
-            <RadzenLabel Text="Startjahr" Component="year"/>
-            <RadzenNumeric TValue="int" @bind-Value="GenericDefinition.Year" Name="year" Change="HandleChange"/>
-        </div>
-        <div class="col-md-2">
-            <RadzenLabel Text="Startbetrag" Component="initialAmount" />
-            <RadzenNumeric TValue="decimal" @bind-Value="GenericDefinition.InitialAmount" Name="initialAmount" Step="100" Change="HandleChange" />
-        </div>
-        <div class="col-md-2">
-            <RadzenLabel Text="Jährlicher Betrag" Component="recurrentAmount" />
-            <RadzenNumeric TValue="decimal" @bind-Value="GenericDefinition.RecurrentAmount" Name="recurrentAmount" Step="100"  Change="HandleChange"/>
-        </div>
-        <div class="col-md-2">
-            <RadzenLabel Text="Wiederholungen" Component="periods" />
-            <RadzenNumeric TValue="int" @bind-Value="GenericDefinition.NumberOfPeriods" Name="periods" Change="HandleChange" />
-        </div>
-    </div>
-</EditForm>
+<MudGrid>
+    <MudItem md="12">
+        <MudNumericField T="int" Label="Startjahr" Format="n0" Culture="CultureInfo.InvariantCulture" ValueChanged="HandleChangeStartingYear" Value="@GenericDefinition.Year" />
+        <MudNumericField T="decimal" Label="Startbetrag" Format="n0" Culture="CultureInfo.InvariantCulture" ValueChanged="HandleChangeInitialAmount" Value="@GenericDefinition.InitialAmount" />
+        <MudNumericField T="decimal" Label="Jährlicher Betrag" Format="n0" Culture="CultureInfo.InvariantCulture" ValueChanged="HandleChangeRecurrentAmount" Value="@GenericDefinition.RecurrentAmount" />
+        <MudNumericField T="int" Label="Wiederholungen" Format="n0" Culture="CultureInfo.InvariantCulture" ValueChanged="HandleChangeNumberOfPeriods" Value="@GenericDefinition.NumberOfPeriods" />
+    </MudItem>
+</MudGrid>
 
 
 @code {
@@ -29,8 +18,27 @@
     [Parameter]
     public EventCallback<InvestmentDefinitionViewModel> OnChanged { get; set; }
 
-    private void HandleChange()
+    private void HandleChangeStartingYear(int value)
     {
+        GenericDefinition.Year = value;
+        OnChanged.InvokeAsync(GenericDefinition);
+    }
+
+    private void HandleChangeNumberOfPeriods(int value)
+    {
+        GenericDefinition.NumberOfPeriods = value;
+        OnChanged.InvokeAsync(GenericDefinition);
+    }
+
+    private void HandleChangeRecurrentAmount(decimal value)
+    {
+        GenericDefinition.RecurrentAmount = value;
+        OnChanged.InvokeAsync(GenericDefinition);
+    }
+
+    private void HandleChangeInitialAmount(decimal value)
+    {
+        GenericDefinition.InitialAmount = value;
         OnChanged.InvokeAsync(GenericDefinition);
     }
 }

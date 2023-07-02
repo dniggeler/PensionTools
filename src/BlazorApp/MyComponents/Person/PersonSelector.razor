@@ -1,29 +1,37 @@
-﻿@inject IStringLocalizer<Resource> localizer
+﻿@using PensionCoach.Tools.CommonTypes
 
-<RadzenDataGrid
-    AllowPaging="true"
-    PageSize="4"
-    AllowSorting="true"
-    Data="@Persons"
-    TItem="PersonViewModel"
-    SelectionMode="DataGridSelectionMode.Single"
-    ValueChanged="@(ChangeSelectedPerson)">
-    <Columns>
-        <RadzenDataGridColumn TItem="PersonViewModel" Property="Name" Title="@localizer["person.name"]" />
-        <RadzenDataGridColumn TItem="PersonViewModel" Property="MunicipalityName" Title="@localizer["person.residence"]" />
-        <RadzenDataGridColumn TItem="PersonViewModel" Property="DateOfBirth" Title="@localizer["person.birthdate"]" FormatString="{0:d}" />
-        <RadzenDataGridColumn TItem="PersonViewModel" Property="Gender" Title="@localizer["person.gender"]">
-            <Template Context="person">
-                <GenderSelector SelectedGender="@person.Gender" IsReadOnly="true"/>
-            </Template>
-        </RadzenDataGridColumn>
-    </Columns>
-</RadzenDataGrid>
+@inject IStringLocalizer<Resource> Localizer
 
-@if (selectedPerson is { })
-{
-    <BlazorApp.Pages.PersonView Person="selectedPerson"/>
-}
+<style>
+    .selected {
+        background-color: 594ae2 !important;
+    }
+
+    .selected > td {
+        color: white !important;
+    }
+
+    .selected > td .mud-input {
+        color: white !important;
+    }
+</style>
+
+<MudTable Items="@Persons" Hover="true" Breakpoint="Breakpoint.Md" @ref="mudTable" RowClassFunc="@SelectedRowClassFunc" OnRowClick="HandleRowClickAsync" T="PersonViewModel">
+    <HeaderContent>
+        <MudTh>@Localizer["person.name"]</MudTh>
+        <MudTh>@Localizer["person.residence"]</MudTh>
+        <MudTh>@Localizer["person.birthdate"]</MudTh>
+        <MudTh>@Localizer["person.gender"]</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Name">@context.Name</MudTd>
+        <MudTd DataLabel="Gemeinde">@context.MunicipalityName</MudTd>
+        <MudTd DataLabel="Geburtstag">@context.DateOfBirth</MudTd>
+        <MudTd DataLabel="Geschlecht">
+            <GenderSelector IsReadOnly="true" DisplayInGrid="true" SelectedGender="@context.Gender" />
+        </MudTd>
+    </RowTemplate>
+</MudTable>
 
 @code {
     [Parameter]
@@ -32,11 +40,32 @@
     [Parameter]
     public EventCallback<Guid> OnSelect { get; set; }
 
-    private PersonViewModel selectedPerson { get; set; }
+    private PersonViewModel SelectedPerson { get; set; }
+    private int selectedRowNumber = -1;
+    private MudTable<PersonViewModel> mudTable;
 
-    private Task ChangeSelectedPerson(IList<PersonViewModel> persons)
+    private async Task HandleRowClickAsync(TableRowClickEventArgs<PersonViewModel> args)
     {
-        selectedPerson = persons[0];
-        return OnSelect.InvokeAsync(selectedPerson.Id);
+        SelectedPerson = args.Item;
+
+        await OnSelect.InvokeAsync(SelectedPerson.Id);
+    }
+
+    private string SelectedRowClassFunc(PersonViewModel element, int rowNumber)
+    {
+        if (selectedRowNumber == rowNumber)
+        {
+            selectedRowNumber = -1;
+            return string.Empty;
+        }
+
+        if (mudTable.SelectedItem == null || !mudTable.SelectedItem.Equals(element))
+        {
+            return string.Empty;
+        }
+        
+        selectedRowNumber = rowNumber;
+        
+        return "selected";
     }
 }

@@ -40,6 +40,7 @@ public class EstvTaxCalculatorFacadeIntegrationTests
 
 
     [Theory(DisplayName = "Income and Wealth Tax")]
+    [InlineData(2023, 800000000, 500_000, "Married", "Other", "Other")]
     [InlineData(2022, 800000000, 500_000, "Married", "Other", "Other")]
     [InlineData(2022, 800000000, 500_000, "Married", "Protestant", "Other")]
     [InlineData(2022, 800000000, 0, "Married", "Other", "Other")]
@@ -54,7 +55,7 @@ public class EstvTaxCalculatorFacadeIntegrationTests
         var result = await estvClient.CalculateIncomeAndWealthTaxAsync(
             taxLocationId, taxYear, GetPerson(wealth, civilStatusString, religiousType, religiousTypePartner));
 
-        Snapshot.Match(result, $"ESTV SimpleTax {taxLocationId}{wealth}{civilStatusString}{religiousType}{religiousTypePartner}");
+        Snapshot.Match(result, $"ESTV SimpleTax {taxYear}{taxLocationId}{wealth}{civilStatusString}{religiousType}{religiousTypePartner}");
     }
 
     [Theory(DisplayName = "Capital Benefit Tax")]
@@ -63,6 +64,7 @@ public class EstvTaxCalculatorFacadeIntegrationTests
     [InlineData(2022, 800000000, 0, "Married", "Other", "Other")]
     [InlineData(2022, 885300000, 1_000_000, "Married", "Protestant", "Other")]
     [InlineData(2022, 885300000, 1_000_000, "Married", "Protestant", "Roman")]
+    [InlineData(2023, 800000000, 1_000_000, "Married", "Protestant", "Other")]
     public async Task Calculate_Capital_Benefit_Tax_Successfully(
         int taxYear, int taxLocationId, decimal capitalBenefits, string civilStatusString, string religiousType, string religiousTypePartner)
     {
@@ -72,7 +74,7 @@ public class EstvTaxCalculatorFacadeIntegrationTests
         var result = await estvClient.CalculateCapitalBenefitTaxAsync(
             taxLocationId, taxYear, GetCapitalBenefitPerson(capitalBenefits, civilStatusString, religiousType, religiousTypePartner));
 
-        Snapshot.Match(result, $"ESTV CapitalBenefits {taxLocationId}{capitalBenefits}{civilStatusString}{religiousType}{religiousTypePartner}");
+        Snapshot.Match(result, $"ESTV CapitalBenefits {taxYear}{taxLocationId}{capitalBenefits}{civilStatusString}{religiousType}{religiousTypePartner}");
     }
 
     private static TaxPerson GetPerson(decimal wealth, string civilStatusString, string religiousTypePerson1, string religiousTypePerson2)

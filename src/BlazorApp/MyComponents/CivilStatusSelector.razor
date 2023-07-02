@@ -3,16 +3,14 @@
 @using PensionCoach.Tools.CommonTypes
 @using BlazorApp.Resources
 
-@inject IStringLocalizer<Resource> localizer
+@inject IStringLocalizer<Resource> Localizer
 
-<RadzenDropDown Name="civilStatus"
-                Disabled="@IsReadOnly"
-                Data=@civilStatusModels
-                ValueProperty="Value"
-                TextProperty="Name"
-                @bind-Value="@SelectedCivilStatus"
-                Change="@(HandleChange)">
-</RadzenDropDown>
+<MudSelect T="CivilStatus" Label="@Label" ReadOnly="@IsReadOnly" Value="@SelectedCivilStatus" ValueChanged="HandleChange">
+    @foreach (var m in civilStatusModels)
+    {
+        <MudSelectItem Value="m.Value">@m.Name</MudSelectItem>
+    }
+</MudSelect>
 
 @code {
     internal class CivilStatusViewModel
@@ -22,8 +20,9 @@
         public string Name { get; set;}
     }
 
-    [Parameter]
-    public bool IsReadOnly { get; set; }
+    [Parameter] public string Label { get; set; }
+    
+    [Parameter] public bool IsReadOnly { get; set; }
 
     [Parameter]
     public CivilStatus SelectedCivilStatus { get; set; } = CivilStatus.Undefined;
@@ -39,9 +38,9 @@
         civilStatusModels.Add(new CivilStatusViewModel { Name = "verheiratet", Value = CivilStatus.Married });
     }
 
-    private void HandleChange(object value)
+    private async Task HandleChange(CivilStatus value)
     {
-        SelectedCivilStatus = (CivilStatus)value;
-        OnSelected.InvokeAsync(SelectedCivilStatus);
+        SelectedCivilStatus = value;
+        await OnSelected.InvokeAsync(value);
     }
 }

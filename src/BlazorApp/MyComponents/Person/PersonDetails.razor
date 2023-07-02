@@ -1,0 +1,66 @@
+﻿@using System.Globalization
+@using PensionCoach.Tools.CommonTypes
+@using PensionCoach.Tools.CommonTypes.Tax
+
+@inject IStringLocalizer<Resource> Localizer
+
+<MudGrid>
+    <MudItem md="6">
+        <MudTextField Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name" />
+    </MudItem>
+
+    <MudItem md="6">
+        <MudDatePicker Label="@(Localizer["person.birthdate"])" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="dd.MM.yyyy" Placeholder="Wähle Geburtstag" />
+    </MudItem>
+
+    <MudItem md="4">
+
+        <GenderSelector IsReadOnly="@IsReadOnly" Label="Geschlecht" SelectedGender="@Person.Gender" OnSelected="@(arg => Person.Gender = arg)" />
+
+        <CivilStatusSelector IsReadOnly="@IsReadOnly" Label="Zivilstand" SelectedCivilStatus="@Person.CivilStatus" OnSelected="@(args => Person.CivilStatus = args)" />
+
+        <ReligiousGroupSelector IsReadOnly="@IsReadOnly"
+                                Label="Konfession"
+                                SelectedReligiousGroupType="@Person.ReligiousGroupType"
+                                OnSelected="@(r => Person.ReligiousGroupType = r ?? ReligiousGroupType.Other)" />
+
+        @if (Person.CivilStatus == CivilStatus.Married)
+        {
+            <ReligiousGroupSelector IsReadOnly="@IsReadOnly"
+                                    Label="Konfession (Partner)"
+                                    SelectedReligiousGroupType="@Person.PartnerReligiousGroupType"
+                                    OnSelected="@(r => Person.PartnerReligiousGroupType = r)" />
+        }
+    </MudItem>
+
+    <MudItem md="4">
+        <ResidenceSelector BfsMunicipalityId="@Person.BfsMunicipalityId"
+                           CantonCode="@Person.Canton"
+                           MunicipalityName="@Person.MunicipalityName"
+                           Label="Domizil"
+                           IsReadOnly="@IsReadOnly"
+                           OnSelected="HandleSetResidence" />
+
+        <MudNumericField Label="@(Localizer["person.taxableincome"])" Step="1000" Format="n0" @bind-Value="Person.TaxableIncome" Culture="CultureInfo.InvariantCulture" />
+        <MudNumericField Label="@(Localizer["person.taxablewealth"])" Step="1000" Format="n0" @bind-Value="Person.TaxableWealth" Culture="CultureInfo.InvariantCulture" />
+    </MudItem>
+
+    <MudItem md="4">
+        <MudNumericField Label="Alterguthaben PK" Format="n0" Step="1000" @bind-Value="Person.FinalRetirementCapital" Culture="CultureInfo.InvariantCulture" />
+        <MudNumericField Label="Guthaben 3.Säule" Format="n0" Step="1000" @bind-Value="Person.FinalCapital3a" Culture="CultureInfo.InvariantCulture" />
+    </MudItem>
+</MudGrid>
+
+@code {
+
+    [Parameter] public PersonViewModel Person { get; set; }
+
+    [Parameter] public bool IsReadOnly { get; set; }
+
+    private void HandleSetResidence(TaxSupportedMunicipalityModel municipalityModel)
+    {
+        Person.BfsMunicipalityId = municipalityModel.BfsMunicipalityNumber;
+        Person.Canton = municipalityModel.Canton;
+        Person.MunicipalityName = municipalityModel.Name;
+    }
+}

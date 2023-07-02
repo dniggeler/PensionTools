@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Calculators.CashFlow;
 using Calculators.CashFlow.Models;
@@ -58,13 +60,29 @@ public class MultiPeriodCalculatorController : ControllerBase
         Either<string, MunicipalityModel> municipalityData =
             await municipalityResolver.GetAsync(request.BfsMunicipalityId, request.StartingYear);
 
+        var composites = new List<ICompositeCashFlowDefinition>
+        {
+            request.CashFlowDefinitionRequest.SetupAccountDefinition,
+            request.CashFlowDefinitionRequest.SalaryPaymentsDefinition,
+            request.CashFlowDefinitionRequest.RelativeTransferAmountDefinition,
+            request.CashFlowDefinitionRequest.FixedTransferAmountDefinition,
+            request.CashFlowDefinitionRequest.ThirdPillarPaymentsDefinition,
+            request.CashFlowDefinitionRequest.PurchaseInsuranceYearsPaymentsDefinition,
+        };
+
+        CashFlowDefinitionHolder cashFlowDefinitionHolder = new()
+        {
+            Composites = composites.Where(c => c is not null).ToList(),
+            StaticGenericCashFlowDefinitions = request.CashFlowDefinitionRequest.StaticGenericCashFlowDefinitions.ToList()
+        };
+
         Either<string, MultiPeriodCalculationResult> result = await municipalityData
             .BindAsync(m =>
                 multiPeriodCashFlowCalculator.CalculateAsync(
                     request.StartingYear,
                     request.NumberOfPeriods,
                     person with { Canton = m.Canton },
-                    request.CashFlowDefinitionHolder,
+                    cashFlowDefinitionHolder,
                     request.Options));
 
         return result

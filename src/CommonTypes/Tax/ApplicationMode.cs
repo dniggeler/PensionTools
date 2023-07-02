@@ -1,9 +1,8 @@
-﻿namespace PensionCoach.Tools.CommonTypes.Tax
+﻿namespace PensionCoach.Tools.CommonTypes.Tax;
+
+public enum ApplicationMode
 {
-    public enum ApplicationMode
-    {
-        Proprietary = 0,
-        Estv = 1,
-        Mock = 2
-    }
+    Proprietary = 0,
+    Estv = 1,
+    Mock = 2
 }

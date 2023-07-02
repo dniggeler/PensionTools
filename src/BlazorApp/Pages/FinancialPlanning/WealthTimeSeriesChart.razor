@@ -1,0 +1,158 @@
+﻿@using ApexCharts;
+
+@inject IApexChartConfigurator ChartConfigurator
+
+<ApexChart TItem="TimeSeriesPoint"
+    Title="@CurveTitle"
+    Options="@options"
+    FormatYAxisLabel="GetYAxisLabel"
+    XAxisType="XAxisType.Datetime"
+    Height="450">
+
+    <ApexPointSeries TItem="TimeSeriesPoint"
+                     Items="@TotalTimeSeries"
+                     Name="Total"
+                     SeriesType="SeriesType.Line"
+                     OrderBy="@(e => e.X)"
+                     XValue="@(e => e.XValue)"
+                     YValue="@(e => e.YValue)"/>
+    
+    <ApexPointSeries TItem="TimeSeriesPoint"
+                     Items="@WealthTimeSeries"
+                     Name="Vermögen"
+                     SeriesType="SeriesType.Line"
+                     OrderBy="@(e => e.X)"
+                     XValue="@(e => e.XValue)"
+                     YValue="@(e => e.YValue)"/>
+    
+    <ApexPointSeries TItem="TimeSeriesPoint"
+                     Items="@CapitalBenefitsTimeSeries"
+                     Name="2.+3.Säule"
+                     SeriesType="SeriesType.Line"
+                     OrderBy="@(e => e.X)"
+                     XValue="@(e => e.XValue)"
+                     YValue="@(e => e.YValue)"/>
+</ApexChart>
+
+@code {
+        const string PrimaryColorLight = "#594ae2ff";
+        const string PrimaryColorDark = "#776be7ff";
+
+        const string SecondaryColorLight = "#00c853ff";
+        const string SecondaryColorDark = "#0bba83ff";
+
+        const string TernaryColorLight = "#FF9800";
+        const string TernaryColorDark = "#FFB74D";
+
+    public record TimeSeriesPoint
+    {
+        public DateTime XValue { get; set; }
+        public decimal YValue { get; set; }
+    }
+
+    [CascadingParameter] public bool IsDarkMode { get; set; }
+
+    [Parameter] public TimeSeriesPoint[] TotalTimeSeries { get; set; }
+    [Parameter] public TimeSeriesPoint[] WealthTimeSeries { get; set; }
+    [Parameter] public TimeSeriesPoint[] CapitalBenefitsTimeSeries { get; set; }
+
+    [Parameter] public string CurveTitle { get; set; }
+
+    [Parameter] public string XAxisTitle { get; set; }
+    [Parameter] public string YAxisTitle { get; set; }
+
+    private ApexChartOptions<TimeSeriesPoint> options = new();
+
+    protected override void OnInitialized()
+    {
+        var configuratorOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
+
+        options = new ApexChartOptions<TimeSeriesPoint>
+        {
+            Chart = configuratorOptions.Chart,
+            Stroke = new Stroke
+            {
+                Curve = Curve.Stepline,
+                Colors = new List<string> { PrimaryColor, SecondaryColor },
+                Width = 2
+            },
+            Xaxis = new XAxis
+            {
+                Title = new AxisTitle
+                {
+                    OffsetY = 5,
+                    Text = XAxisTitle,
+                    Style = new AxisTitleStyle
+                    {
+                        Color = ChartConfigurator.AxisColor(IsDarkMode)
+                    }
+                },
+            },
+        };
+    }
+
+    protected override void OnParametersSet()
+    {
+        var configuratorOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
+
+        options.Stroke.Colors = new List<string> { PrimaryColor, SecondaryColor, TernaryColor };
+
+        //var axisColor = ChartConfigurator.AxisColor(IsDarkMode);
+
+        //options.Title = new Title
+        //{
+        //    Style = new TitleStyle
+        //    {
+        //        Color = axisColor
+        //    }
+        //};
+
+        //options.Xaxis = new XAxis
+        //{
+        //    Title = new AxisTitle
+        //    {
+        //        OffsetY = 5,
+        //            Text = XAxisTitle,
+        //        Style = new AxisTitleStyle
+        //        {
+        //                Color = axisColor
+        //        },
+        //    },
+        //    Labels = configuratorOptions.Xaxis.Labels,
+        //};
+
+        //options.Yaxis = new List<YAxis>
+        //{
+        //    new()
+        //    {
+        //        Title = new AxisTitle
+        //        {
+        //            OffsetX = 5,
+        //            Text = YAxisTitle,
+        //            Style = new AxisTitleStyle
+        //            {
+        //                Color = axisColor
+        //            }
+        //        },
+        //        Labels = new YAxisLabels
+        //        {
+        //            Style = new AxisLabelStyle
+        //            {
+        //                Colors = new ApexCharts.Color(axisColor)
+        //            }
+        //        },
+        //        TickAmount = 5,
+        //        DecimalsInFloat = 2,
+        //    }
+        //};
+    }
+
+    private string PrimaryColor => IsDarkMode ? PrimaryColorDark : PrimaryColorLight;
+    private string SecondaryColor => IsDarkMode ? SecondaryColorDark : SecondaryColorLight;
+    private string TernaryColor => IsDarkMode ? TernaryColorDark : TernaryColorLight;
+
+    private string GetYAxisLabel(decimal value)
+    {
+        return value.ToString("N0");
+    }
+}

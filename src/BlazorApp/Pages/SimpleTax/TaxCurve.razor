@@ -1,51 +1,40 @@
-﻿<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <RadzenChart>
-                <RadzenLineSeries Smooth="false"
-                                  Data="@CurvePoints"
-                                  CategoryProperty="XValue"
-                                  Title="@CurveTitle"
-                                  ValueProperty="YValue"
-                                  RenderingOrder="2">
-                    <RadzenGridLines Visible="true" />
-                </RadzenLineSeries>
+﻿@using LanguageExt
+@using ApexCharts;
 
-                <RadzenLineSeries Smooth="false"
-                                  Data="@CurrentPointCurve"
-                                  CategoryProperty="XValue"
-                                  Title="Mein Einkommen"
-                                  ValueProperty="YValue"
-                                  RenderingOrder="1">
-                    <RadzenMarkers MarkerType="MarkerType.Circle" />
-                </RadzenLineSeries>
+@inject IApexChartConfigurator ChartConfigurator
 
-                <RadzenCategoryAxis Padding="10"
-                                    FormatString="{0}"
-                                    Step="50000"
-                                    Min="@XMin"
-                                    Max="@XMax">
-                    <RadzenAxisTitle Text="@XAxisTitle" />
-                </RadzenCategoryAxis>
+<ApexChart
+    TItem="CurvePoint"
+    Title="@CurveTitle"
+    Options="@options"
+    FormatYAxisLabel="GetYAxisLabel"
+    XAxisType="XAxisType.Numeric"
+    Height="450">
 
-                <RadzenValueAxis FormatString="@formatString">
-                    <RadzenGridLines Visible="true" />
-                    <RadzenAxisTitle Text="@YAxisTitle" />
-                </RadzenValueAxis>
-            </RadzenChart>
-        </div>
-    </div>
-</div>
+    <ApexPointSeries
+        TItem="CurvePoint"
+        Items="@CurvePoints"
+        Name="@YAxisTitle"
+        SeriesType="SeriesType.Line"
+        OrderBy="@(e => e.X)"
+        XValue="@(e => e.XValue)"
+        YValue="@(e => e.YValue)"/>
+</ApexChart>
 
 @code {
-    public class CurvePoint
+    const string PrimaryColorLight = "#594ae2ff";
+    const string PrimaryColorDark = "#776be7ff";
+
+    const string SecondaryColorLight = "#00c853ff";
+    const string SecondaryColorDark = "#0bba83ff";
+
+    public record CurvePoint
     {
         public int XValue { get; set; }
         public decimal YValue { get; set; }
     }
 
-    private CurvePoint[] CurrentPointCurve = { };
-    private string formatString;
+    [CascadingParameter] public bool IsDarkMode { get; set; }
 
     [Parameter] public CurvePoint CurrentPoint { get; set; }
     [Parameter] public CurvePoint[] CurvePoints { get; set; }
@@ -60,31 +49,110 @@
 
     [Parameter] public bool IsInPercent { get; set; }
 
-    protected override void OnParametersSet()
+    private ApexChartOptions<CurvePoint> options = new();
+
+    protected override void OnInitialized()
     {
-        CurrentPointCurve = CurrentPointAsCurve();
-        formatString = IsInPercent ? "{0:P1}" : "{0:N0}";
+        var configuratorOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
+
+        options = new ApexChartOptions<CurvePoint>
+        {
+            Chart = configuratorOptions.Chart,
+            Stroke = new Stroke
+            {
+                Curve = Curve.Stepline,
+                Colors = new List<string> { PrimaryColor, SecondaryColor },
+                Width = 2
+            },
+            Grid = configuratorOptions.Grid,
+            Xaxis = configuratorOptions.Xaxis,
+        };
     }
 
-    private CurvePoint[] CurrentPointAsCurve()
+    protected override void OnParametersSet()
     {
-        if (CurrentPoint == null)
-        {
-            return Enumerable.Empty<CurvePoint>().ToArray();
-        }
+        var configuratorOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
 
-        return new CurvePoint[]
+        options.Stroke.Colors = new List<string> { PrimaryColor, SecondaryColor };
+
+        var axisColor = ChartConfigurator.AxisColor(IsDarkMode);
+
+        options.Title = new Title
         {
-            new()
+            Style = new TitleStyle
             {
-                XValue = CurrentPoint.XValue,
-                YValue = decimal.Zero
-            },
-            new()
-            {
-                XValue = Convert.ToInt32(CurrentPoint.XValue),
-                YValue = CurrentPoint.YValue
+                Color = axisColor
             }
         };
+
+        options.Xaxis = new XAxis
+        {
+            Title = new AxisTitle
+            {
+                OffsetY = 5,
+                    Text = XAxisTitle,
+                Style = new AxisTitleStyle
+                {
+                        Color = axisColor
+                },
+            },
+            Labels = configuratorOptions.Xaxis.Labels,
+        };
+
+        options.Yaxis = new List<YAxis>
+        {
+            new()
+            {
+                Title = new AxisTitle
+                {
+                    OffsetX = 5,
+                    Text = YAxisTitle,
+                    Style = new AxisTitleStyle
+                    {
+                        Color = axisColor
+                    }
+                },
+                Labels = new YAxisLabels
+                {
+                    Style = new AxisLabelStyle
+                    {
+                        Colors = new ApexCharts.Color(axisColor)
+                    }
+                },
+                TickAmount = 5,
+                DecimalsInFloat = 2,
+            }
+        };
+
+        options.Annotations = new Annotations()
+        {
+            Points = new List<AnnotationsPoint>
+            {
+                new()
+                {
+                    X = CurrentPoint.XValue,
+                    Y = Convert.ToDouble(CurrentPoint.YValue),
+                    Label = new Label
+                    {
+                        Text = "Aktuelles Einkommen",
+                    },
+                    Marker = new AnnotationMarker()
+                    {
+                        StrokeColor = "red",
+                        Radius = 2,
+                    }
+                }
+            }
+        };
+    }
+
+    private IEnumerable<CurvePoint> SingleCurvePoint => new List<CurvePoint>{ CurrentPoint, CurrentPoint with { YValue = 0 } };
+
+    private string PrimaryColor => IsDarkMode ? PrimaryColorDark : PrimaryColorLight;
+    private string SecondaryColor => IsDarkMode ? SecondaryColorDark : SecondaryColorLight;
+
+    private string GetYAxisLabel(decimal value)
+    {
+        return value.ToString(IsInPercent ?"P1" : "N0");
     }
 }
