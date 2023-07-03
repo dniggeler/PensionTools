@@ -3,7 +3,7 @@ using PensionCoach.Tools.TaxComparison;
 
 namespace Calculators.CashFlow.Models;
 
-public class PurchaseInsuranceYearsScenarioModel
+public class CapitalBenefitTransferInsScenarioModel
 {
     public IReadOnlyCollection<SingleTransferInModel> TransferIns { get; set; }
 

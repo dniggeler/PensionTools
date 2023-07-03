@@ -12,9 +12,9 @@ public interface ITaxScenarioCalculator
     /// <param name="person"></param>
     /// <param name="scenarioModel"></param>
     /// <returns></returns>
-    Task<Either<string, PurchaseInsuranceYearsResult>> PurchaseInsuranceYearsAsync(
+    Task<Either<string, CapitalBenefitTransferInResult>> CapitalBenefitTransferInsAsync(
         int startingYear,
         int bfsMunicipalityId,
         TaxPerson person,
-        PurchaseInsuranceYearsScenarioModel scenarioModel);
+        CapitalBenefitTransferInsScenarioModel scenarioModel);
 }

@@ -38,10 +38,10 @@ public class TaxScenarioController : ControllerBase
     /// Kapitalleistungen berücksichtigt.
     /// </remarks>
     [HttpPost]
-    [Route(nameof(CalculateTransferInCapitalBenefits))]
+    [Route(nameof(CalculateCapitalBenefitTransferInsYears))]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<CapitalBenefitsTransferInResponse>> CalculateTransferInCapitalBenefits(CapitalBenefitTransferInComparerRequest request)
+    public async Task<ActionResult<CapitalBenefitsTransferInResponse>> CalculateCapitalBenefitTransferInsYears(CapitalBenefitTransferInComparerRequest request)
     {
         if (request == null)
         {
@@ -53,7 +53,7 @@ public class TaxScenarioController : ControllerBase
 
         var response = new CapitalBenefitsTransferInResponse();
 
-        await scenarioCalculator.PurchaseInsuranceYearsAsync(
+        await scenarioCalculator.CapitalBenefitTransferInsAsync(
             request.CalculationYear, request.BfsMunicipalityId, taxPerson, scenarioModel)
             .IterAsync(r =>
             {
@@ -66,9 +66,9 @@ public class TaxScenarioController : ControllerBase
 
         return response;
 
-        PurchaseInsuranceYearsScenarioModel MapScenarioModel()
+        CapitalBenefitTransferInsScenarioModel MapScenarioModel()
         {
-            return new PurchaseInsuranceYearsScenarioModel
+            return new CapitalBenefitTransferInsScenarioModel
             {
                 TransferIns = request.TransferIns,
                 NetReturnCapitalBenefits = request.NetPensionCapitalReturn,

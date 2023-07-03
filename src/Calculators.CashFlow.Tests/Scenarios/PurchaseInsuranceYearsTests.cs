@@ -37,7 +37,7 @@ namespace Calculators.CashFlow.Tests.Scenarios
                 TaxableWealth = 500_000
             };
 
-            PurchaseInsuranceYearsScenarioModel scenarioModel = new()
+            CapitalBenefitTransferInsScenarioModel scenarioModel = new()
             {
                 NetReturnCapitalBenefits = 0.0M,
                 TransferIns = new List<SingleTransferInModel>
@@ -54,7 +54,7 @@ namespace Calculators.CashFlow.Tests.Scenarios
             };
 
             // when
-            var result = await fixture.Calculator.PurchaseInsuranceYearsAsync(
+            var result = await fixture.Calculator.CapitalBenefitTransferInsAsync(
                 calculationYear, bfsMunicipalityId, person, scenarioModel);
 
             // then
