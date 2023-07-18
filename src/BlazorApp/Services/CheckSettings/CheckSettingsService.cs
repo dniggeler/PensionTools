@@ -33,11 +33,17 @@ public class CheckSettingsService : ICheckSettingsService
     {
         string urlPath = Path.Combine(BaseAddress(), "health");
 
-        var response = await httpClient.GetStringAsync(urlPath);
+        try
+        {
+            var response = await httpClient.GetStringAsync(urlPath);
 
-        logger.LogInformation($"Health check response: {response}");
-
-        return "Healthy" == response;
+            return "Healthy" == response;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, $"Health check failed: {ex.Message}");
+            return false;
+        }
     }
 
     public Task<Dictionary<string, string>> GetFrontendConfigurationAsync()
@@ -53,9 +59,16 @@ public class CheckSettingsService : ICheckSettingsService
     {
         string urlPath = Path.Combine(BaseAddress(), "api/check/settings");
 
-        Dictionary<string, string> response = await httpClient.GetFromJsonAsync<Dictionary<string,string>>(urlPath);
+        try
+        {
+            return await httpClient.GetFromJsonAsync<Dictionary<string,string>>(urlPath);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, $"Backend configuration failed to load: {ex.Message}");
+        }
 
-        return response;
+        return new Dictionary<string, string>();
     }
 
     private string BaseAddress()
