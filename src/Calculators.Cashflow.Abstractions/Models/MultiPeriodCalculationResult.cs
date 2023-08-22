@@ -21,4 +21,6 @@ public record MultiPeriodCalculationResult
     public OccupationalPensionAccount OccupationalPensionAccount { get; set; }
 
     public ThirdPillarAccount ThirdPillarAccount { get; set; }
+
+    public TaxAccount TaxAccount { get; set; }
 }

@@ -39,7 +39,7 @@ namespace Calculators.CashFlow.Integration.Tests
         {
             CapitalBenefitTransferInComparerRequest request = GetRequest();
 
-            var response = await client.PostAsJsonAsync("CalculateTransferInCapitalBenefits", request);
+            var response = await client.PostAsJsonAsync("CalculateCapitalBenefitTransferInsYears", request);
 
             response.EnsureSuccessStatusCode();
 

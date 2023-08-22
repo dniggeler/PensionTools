@@ -65,6 +65,8 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
             Name = "Third Pillar Account",
         };
 
+        TaxAccount taxAccount = new() { Id = Guid.NewGuid(), Name = "Tax Account", };
+
         IEnumerable<ICashFlowDefinition> definitionFromComposites = cashFlowDefinitionHolder.Composites
             .SelectMany(composite => composite.CreateGenericDefinition(person, dateOfStart));
 
@@ -97,7 +99,8 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
             { AccountType.Income, incomeAccount },
             { AccountType.Wealth, wealthAccount },
             { AccountType.OccupationalPension, occupationalPensionAccount },
-            { AccountType.ThirdPillar, thirdPillarAccount }
+            { AccountType.ThirdPillar, thirdPillarAccount },
+            { AccountType.Tax, taxAccount }
         };
 
         MultiPeriodCalculatorPerson currentPerson = person;
@@ -168,7 +171,8 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
             IncomeAccount = incomeAccount,
             WealthAccount = wealthAccount,
             OccupationalPensionAccount = occupationalPensionAccount,
-            ThirdPillarAccount = thirdPillarAccount
+            ThirdPillarAccount = thirdPillarAccount,
+            TaxAccount = taxAccount,
         };
     }
 
@@ -242,6 +246,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
         ICashFlowAccount exogenousAccount = currentAccounts[AccountType.Exogenous];
         ICashFlowAccount occupationalPensionAccount = currentAccounts[AccountType.OccupationalPension];
         ICashFlowAccount thirdPillarAccount = currentAccounts[AccountType.ThirdPillar];
+        ICashFlowAccount taxAccount = currentAccounts[AccountType.Tax];
 
         DateTime finalDateAsDateTime = finalDate.ToDateTime(TimeOnly.MinValue);
 
@@ -267,7 +272,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
         var totalTaxAmount =
             await CalculateIncomeAndWealthTaxAsync(finalDate.Year, person, incomeAccount.Balance, wealthAccount.Balance);
 
-        ExecuteTransaction(wealthAccount, exogenousAccount, "Yearly Income and Wealth Tax", finalDateAsDateTime, totalTaxAmount);
+        ExecuteTransaction(wealthAccount, taxAccount, "Yearly Income and Wealth Tax", finalDateAsDateTime, totalTaxAmount);
 
         // Clear income account as it begin at 0 in the new year
         ExecuteTransaction(incomeAccount, exogenousAccount, "Clear income account", finalDateAsDateTime, incomeAccount.Balance);

@@ -19,6 +19,11 @@ namespace PensionCoach.Tools.CommonTypes
         /// Capital benefit assets in third pillar account (3a) which
         /// are subject to capital benefits tax scheme. 
         /// </summary>
-        ThirdPillar
+        ThirdPillar,
+
+        /// <summary>
+        /// Accumulated tax assets which are subject to all tax types like income, wealth and capital benefits tax scheme.
+        /// </summary>
+        Tax
     }
 }

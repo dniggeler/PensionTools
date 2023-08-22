@@ -3623,7 +3623,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zürich",
     "Canton": "ZH",
-    "DateOfValidity": "2000-03-29T00:00:00",
+    "DateOfValidity": "1998-12-04T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -3686,7 +3686,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zürich",
     "Canton": "ZH",
-    "DateOfValidity": "2000-03-29T00:00:00",
+    "DateOfValidity": "1998-10-30T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -4664,6 +4664,15 @@
   {
     "BfsCode": 351,
     "ZipCode": "3000",
+    "ZipCodeAddOn": "75",
+    "MunicipalityName": "Bern 22 Kaserne",
+    "Canton": "BE",
+    "DateOfValidity": "2003-01-01T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 351,
+    "ZipCode": "3000",
     "ZipCodeAddOn": "06",
     "MunicipalityName": "Bern 6",
     "Canton": "BE",
@@ -4704,15 +4713,6 @@
     "MunicipalityName": "Bern 9",
     "Canton": "BE",
     "DateOfValidity": "1986-05-21T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 351,
-    "ZipCode": "3000",
-    "ZipCodeAddOn": "04",
-    "MunicipalityName": "Bern Bogenschützenstrasse",
-    "Canton": "BE",
-    "DateOfValidity": "2022-07-18T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -19774,6 +19774,15 @@
   },
   {
     "BfsCode": 2831,
+    "ZipCode": "4135",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Pratteln INT",
+    "Canton": "BL",
+    "DateOfValidity": "2023-06-19T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 2831,
     "ZipCode": "4140",
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Pratteln CIRCLE",
@@ -29669,7 +29678,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Amriswil",
     "Canton": "TG",
-    "DateOfValidity": "1996-08-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29678,7 +29687,7 @@
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Amriswil Zustellung",
     "Canton": "TG",
-    "DateOfValidity": "2003-09-01T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29696,7 +29705,7 @@
     "ZipCodeAddOn": "05",
     "MunicipalityName": "Hagenwil b. Amriswil",
     "Canton": "TG",
-    "DateOfValidity": "1998-09-08T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29705,7 +29714,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Schocherswil",
     "Canton": "TG",
-    "DateOfValidity": "2000-10-01T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29714,7 +29723,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Oberaach",
     "Canton": "TG",
-    "DateOfValidity": "1996-08-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29723,7 +29732,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Bischofszell",
     "Canton": "TG",
-    "DateOfValidity": "1997-05-07T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29732,7 +29741,7 @@
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Bischofszell Zustellung",
     "Canton": "TG",
-    "DateOfValidity": "2003-05-01T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29741,7 +29750,7 @@
     "ZipCodeAddOn": "01",
     "MunicipalityName": "Halden",
     "Canton": "TG",
-    "DateOfValidity": "1997-10-23T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29750,7 +29759,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Schweizersholz",
     "Canton": "TG",
-    "DateOfValidity": "1996-07-12T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29759,7 +29768,7 @@
     "ZipCodeAddOn": "07",
     "MunicipalityName": "Buchackern",
     "Canton": "TG",
-    "DateOfValidity": "1996-03-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29768,7 +29777,7 @@
     "ZipCodeAddOn": "08",
     "MunicipalityName": "Engishofen",
     "Canton": "TG",
-    "DateOfValidity": "1996-03-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29777,7 +29786,7 @@
     "ZipCodeAddOn": "09",
     "MunicipalityName": "Ennetaach",
     "Canton": "TG",
-    "DateOfValidity": "1996-03-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29786,7 +29795,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Erlen",
     "Canton": "TG",
-    "DateOfValidity": "1996-03-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29795,7 +29804,7 @@
     "ZipCodeAddOn": "03",
     "MunicipalityName": "Kümmertshausen",
     "Canton": "TG",
-    "DateOfValidity": "1998-09-10T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29804,7 +29813,7 @@
     "ZipCodeAddOn": "05",
     "MunicipalityName": "Riedt b. Erlen",
     "Canton": "TG",
-    "DateOfValidity": "1996-03-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29813,7 +29822,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Hauptwil",
     "Canton": "TG",
-    "DateOfValidity": "1996-07-12T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29822,7 +29831,7 @@
     "ZipCodeAddOn": "01",
     "MunicipalityName": "St. Pelagiberg",
     "Canton": "TG",
-    "DateOfValidity": "1996-07-12T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29831,7 +29840,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Wilen (Gottshaus)",
     "Canton": "TG",
-    "DateOfValidity": "1996-07-12T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29840,7 +29849,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Heldswil",
     "Canton": "TG",
-    "DateOfValidity": "1999-06-14T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29849,7 +29858,7 @@
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Hohentannen",
     "Canton": "TG",
-    "DateOfValidity": "1999-06-14T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29858,7 +29867,7 @@
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Kradolf",
     "Canton": "TG",
-    "DateOfValidity": "1998-08-18T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29867,7 +29876,7 @@
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Buhwil",
     "Canton": "TG",
-    "DateOfValidity": "1996-11-22T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29876,7 +29885,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Schönenberg an der Thur",
     "Canton": "TG",
-    "DateOfValidity": "1998-08-18T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29885,7 +29894,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Neukirch an der Thur",
     "Canton": "TG",
-    "DateOfValidity": "1997-03-10T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29894,7 +29903,7 @@
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Donzhausen",
     "Canton": "TG",
-    "DateOfValidity": "1996-08-27T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29903,7 +29912,7 @@
     "ZipCodeAddOn": "01",
     "MunicipalityName": "Götighofen",
     "Canton": "TG",
-    "DateOfValidity": "1996-08-27T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29912,7 +29921,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Sulgen",
     "Canton": "TG",
-    "DateOfValidity": "1996-09-09T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29921,7 +29930,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Zihlschlacht",
     "Canton": "TG",
-    "DateOfValidity": "1997-04-11T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29930,7 +29939,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Sitterdorf",
     "Canton": "TG",
-    "DateOfValidity": "1997-04-11T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29939,7 +29948,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Basadingen",
     "Canton": "TG",
-    "DateOfValidity": "1999-06-14T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29948,7 +29957,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Schlattingen",
     "Canton": "TG",
-    "DateOfValidity": "1999-06-14T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29957,16 +29966,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Diessenhofen",
     "Canton": "TG",
-    "DateOfValidity": "1996-03-06T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 4545,
-    "ZipCode": "8253",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Diessenhofen Zustellung",
-    "Canton": "TG",
-    "DateOfValidity": "2003-07-01T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29975,7 +29975,7 @@
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Willisdorf",
     "Canton": "TG",
-    "DateOfValidity": "1996-08-13T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -29984,7 +29984,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Schlatt TG",
     "Canton": "TG",
-    "DateOfValidity": "1999-06-14T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31028,7 +31028,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Berlingen",
     "Canton": "TG",
-    "DateOfValidity": "1996-03-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31037,7 +31037,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Eschenz",
     "Canton": "TG",
-    "DateOfValidity": "1996-08-05T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31046,7 +31046,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Lanzenneunforn",
     "Canton": "TG",
-    "DateOfValidity": "1998-02-16T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31055,7 +31055,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Herdern",
     "Canton": "TG",
-    "DateOfValidity": "1999-12-09T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31064,7 +31064,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Hörhausen",
     "Canton": "TG",
-    "DateOfValidity": "1999-06-14T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31073,7 +31073,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Homburg",
     "Canton": "TG",
-    "DateOfValidity": "1996-03-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31082,7 +31082,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Hüttwilen",
     "Canton": "TG",
-    "DateOfValidity": "1996-03-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31091,7 +31091,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Nussbaumen TG",
     "Canton": "TG",
-    "DateOfValidity": "1997-04-11T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31100,7 +31100,7 @@
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Uerschhausen",
     "Canton": "TG",
-    "DateOfValidity": "1998-04-14T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31109,7 +31109,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Mammern",
     "Canton": "TG",
-    "DateOfValidity": "1996-03-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31118,7 +31118,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Müllheim Dorf",
     "Canton": "TG",
-    "DateOfValidity": "1996-03-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31127,7 +31127,7 @@
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Dettighofen",
     "Canton": "TG",
-    "DateOfValidity": "1999-11-16T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31136,7 +31136,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Pfyn",
     "Canton": "TG",
-    "DateOfValidity": "1998-02-16T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31145,7 +31145,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Raperswilen",
     "Canton": "TG",
-    "DateOfValidity": "1997-04-11T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31154,7 +31154,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Mannenbach-Salenstein",
     "Canton": "TG",
-    "DateOfValidity": "1996-03-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31163,7 +31163,7 @@
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Salenstein",
     "Canton": "TG",
-    "DateOfValidity": "1996-03-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31172,7 +31172,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Fruthwilen",
     "Canton": "TG",
-    "DateOfValidity": "1996-03-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31181,7 +31181,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Steckborn",
     "Canton": "TG",
-    "DateOfValidity": "1997-04-11T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31190,7 +31190,7 @@
     "ZipCodeAddOn": "02",
     "MunicipalityName": "Etzwilen",
     "Canton": "TG",
-    "DateOfValidity": "1996-06-11T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31199,7 +31199,7 @@
     "ZipCodeAddOn": "00",
     "MunicipalityName": "Kaltenbach",
     "Canton": "TG",
-    "DateOfValidity": "1996-03-06T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31208,7 +31208,7 @@
     "ZipCodeAddOn": "03",
     "MunicipalityName": "Rheinklingen",
     "Canton": "TG",
-    "DateOfValidity": "1996-06-11T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31217,7 +31217,7 @@
     "ZipCodeAddOn": "04",
     "MunicipalityName": "Wagenhausen",
     "Canton": "TG",
-    "DateOfValidity": "1996-09-20T00:00:00",
+    "DateOfValidity": "2011-01-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -31325,7 +31325,7 @@
     "ZipCodeAddOn": "10",
     "MunicipalityName": "Buch b. Kümmertshausen",
     "Canton": "TG",
-    "DateOfValidity": "1999-11-22T00:00:00",
+    "DateOfValidity": "2005-12-01T00:00:00",
     "LanguageCode": 0
   },
   {
@@ -41553,6 +41553,15 @@
     "LanguageCode": 0
   },
   {
+    "BfsCode": 6136,
+    "ZipCode": "1920",
+    "ZipCodeAddOn": "02",
+    "MunicipalityName": "Martigny Bourg",
+    "Canton": "VS",
+    "DateOfValidity": "1996-09-02T00:00:00",
+    "LanguageCode": 0
+  },
+  {
     "BfsCode": 6137,
     "ZipCode": "1921",
     "ZipCodeAddOn": "00",
@@ -44993,6 +45002,15 @@
   {
     "BfsCode": 6630,
     "ZipCode": "1217",
+    "ZipCodeAddOn": "02",
+    "MunicipalityName": "Meyrin 2",
+    "Canton": "GE",
+    "DateOfValidity": "1996-06-10T00:00:00",
+    "LanguageCode": 0
+  },
+  {
+    "BfsCode": 6630,
+    "ZipCode": "1217",
     "ZipCodeAddOn": "60",
     "MunicipalityName": "Meyrin Distribution",
     "Canton": "GE",
@@ -46227,7 +46245,7 @@
     "BfsCode": 7005,
     "ZipCode": "9494",
     "ZipCodeAddOn": "68",
-    "MunicipalityName": "Schaan BZ GKS",
+    "MunicipalityName": "Schaan BZ Spezialkunden",
     "Canton": "FL",
     "DateOfValidity": "2008-03-01T00:00:00",
     "LanguageCode": 0
