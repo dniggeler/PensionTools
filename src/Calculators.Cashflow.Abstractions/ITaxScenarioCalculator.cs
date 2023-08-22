@@ -17,4 +17,10 @@ public interface ITaxScenarioCalculator
         int bfsMunicipalityId,
         TaxPerson person,
         CapitalBenefitTransferInsScenarioModel scenarioModel);
+
+    Task<Either<string, CapitalBenefitTransferInResult>> ThirdPillarVersusSelfInvestmentAsync(
+        int startingYear,
+        int bfsMunicipalityId,
+        TaxPerson person,
+        ThirdPillarVersusSelfInvestmentScenarioModel scenarioModel);
 }

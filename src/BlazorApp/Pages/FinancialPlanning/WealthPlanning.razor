@@ -351,7 +351,7 @@
         }
 
         var datas = multiPeriodCalculationResponse.Accounts
-            .Where(item => item.AccountType != AccountType.Exogenous)
+            .Where(item => item.AccountType is not (AccountType.Exogenous or AccountType.Tax))
             .GroupBy(keySelector => keySelector.Year)
             .Select(g => new WealthTimeSeriesChart.TimeSeriesPoint
             {

@@ -97,4 +97,64 @@ public class TaxScenarioController : ControllerBase
             };
         }
     }
+
+    [HttpPost]
+    [Route(nameof(CalculateThirdPillarVersusSelfInvestmentComparison))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<CapitalBenefitsTransferInResponse>> CalculateThirdPillarVersusSelfInvestmentComparison(ThirdPillarVersusSelfInvestmentComparerRequest request)
+    {
+        if (request == null)
+        {
+            return BadRequest(nameof(request));
+        }
+
+        var taxPerson = MapPerson();
+        var scenarioModel = MapScenarioModel();
+
+        var response = new CapitalBenefitsTransferInResponse();
+
+        await scenarioCalculator.ThirdPillarVersusSelfInvestmentAsync(
+            request.CalculationYear, request.BfsMunicipalityId, taxPerson, scenarioModel)
+            .IterAsync(r =>
+            {
+                response.NumberOfPeriods = r.NumberOfPeriods;
+                response.StartingYear = r.StartingYear;
+                response.DeltaSeries = r.DeltaSeries;
+                response.BenchmarkSeries = r.BenchmarkSeries;
+                response.ScenarioSeries = r.ScenarioSeries;
+            });
+
+        return response;
+
+        ThirdPillarVersusSelfInvestmentScenarioModel MapScenarioModel()
+        {
+            return new ThirdPillarVersusSelfInvestmentScenarioModel
+            {
+                FinalYear = request.FinalYear,
+                InvestmentAmount = request.InvestmentAmount,
+                NetSelfInvestmentReturn = request.NetSelfInvestmentReturn,
+                NetThirdPillarReturn = request.NetThirdPillarReturn
+            };
+        }
+
+        TaxPerson MapPerson()
+        {
+            var name = string.IsNullOrEmpty(request.Name)
+                ? Guid.NewGuid().ToString()[..6]
+                : request.Name;
+
+            return new TaxPerson
+            {
+                Name = name,
+                CivilStatus = request.CivilStatus,
+                ReligiousGroupType = request.ReligiousGroup,
+                PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
+                NumberOfChildren = 0,
+                TaxableFederalIncome = request.TaxableFederalIncome,
+                TaxableIncome = request.TaxableIncome,
+                TaxableWealth = request.TaxableWealth,
+            };
+        }
+    }
 }

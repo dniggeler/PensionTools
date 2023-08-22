@@ -141,6 +141,58 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
         }
     }
 
+    public Task<Either<string, CapitalBenefitTransferInResult>> ThirdPillarVersusSelfInvestmentAsync(int startingYear, int bfsMunicipalityId, TaxPerson person,
+        ThirdPillarVersusSelfInvestmentScenarioModel scenarioModel)
+    {
+        var birthdate = new DateTime(1969, 3, 17);
+
+        MultiPeriodOptions options = new();
+        options.CapitalBenefitsNetGrowthRate = decimal.Zero;
+        options.WealthNetGrowthRate = scenarioModel.NetThirdPillarReturn;
+        options.SavingsQuota = decimal.Zero;
+
+        CashFlowDefinitionHolder cashFlowDefinitionHolder = CreateScenarioDefinitions();
+
+        CashFlowDefinitionHolder CreateScenarioDefinitions()
+        {
+            CashFlowDefinitionHolder holder = new CashFlowDefinitionHolder();
+
+            var thirdPillarInvestmentDefinitions = new List<ICompositeCashFlowDefinition>
+            {
+                new ThirdPillarPaymentsDefinition
+                {
+                    DateOfStart = new DateTime(startingYear, 1, 1),
+                    NetGrowthRate = scenarioModel.NetThirdPillarReturn,
+                    NumberOfInvestments = scenarioModel.FinalYear - startingYear + 1,
+                    YearlyAmount = scenarioModel.InvestmentAmount,
+                }
+            };
+
+            var thirdPillarWithdrawalDefinitions = new List<ICashFlowDefinition>
+            {
+                new DynamicTransferAccountAction
+                {
+                    Header =
+                        new CashFlowHeader {Id = Guid.NewGuid().ToString(), Name = "Third Pillar Withdrawal"},
+                    DateOfProcess = new DateTime(scenarioModel.FinalYear, 12, 31),
+                    TransferRatio = decimal.One,
+                    Flow = new FlowPair(AccountType.ThirdPillar, AccountType.Wealth),
+                    IsTaxable = true,
+                    TaxType = TaxType.CapitalBenefits
+                }
+            };
+
+            holder.Composites = thirdPillarInvestmentDefinitions.ToList();
+            holder.CashFlowActions = thirdPillarWithdrawalDefinitions.ToList();
+
+            return holder;
+        }
+
+        Either<string, CapitalBenefitTransferInResult> result = "error";
+
+        return result.AsTask();
+    }
+
     private IEnumerable<ICashFlowDefinition> GetClearAccountAction(CapitalBenefitTransferInsScenarioModel scenarioModel)
     {
         if (scenarioModel is { WithCapitalBenefitWithdrawal: false })
