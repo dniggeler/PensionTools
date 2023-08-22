@@ -43,6 +43,8 @@ namespace TaxCalculator.WebApi
                         "https://localhost:5001",
                         "http://localhost:44331",
                         "https://localhost:44331",
+                        "http://localhost:44353",
+                        "https://localhost:44353",
                         "http://localhost:57094",
                         "https://localhost:57094",
                         "https://x14qsqjz-44331.euw.devtunnels.ms",

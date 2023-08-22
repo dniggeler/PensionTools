@@ -29,7 +29,7 @@ public class TaxScenarioService : ITaxScenarioService
 
     public Task<CapitalBenefitsTransferInResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
     {
-        return CalculateAsync(request, "CalculateTransferInCapitalBenefits");
+        return CalculateAsync(request, "CalculateCapitalBenefitTransferInsYears");
     }
 
     private async Task<CapitalBenefitsTransferInResponse> CalculateAsync<T>(T request, string urlMethodPart)
