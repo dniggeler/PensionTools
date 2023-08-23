@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-namespace Calculators.CashFlow.Models;
+﻿namespace Calculators.CashFlow.Models;
 
 public class ThirdPillarVersusSelfInvestmentScenarioModel
 {
@@ -15,13 +14,8 @@ public class ThirdPillarVersusSelfInvestmentScenarioModel
     public decimal InvestmentAmount { get; set; }
 
     /// <summary>
-    /// Gets or sets yearly net return on self-investment.
+    /// Gets or sets yearly excess return on the investment account compared to third pillar account.
+    /// There must be an excess return, otherwise the third pillar account is always better because of the tax deduction.
     /// </summary>
-    public decimal NetSelfInvestmentReturn { get; set; }
-
-    /// <summary>
-    /// Gets or sets yearly net return on third pillar account.
-    /// </summary>
-    public decimal NetThirdPillarReturn { get; set; }
-
+    public decimal InvestmentExcessReturn { get; set; }
 }

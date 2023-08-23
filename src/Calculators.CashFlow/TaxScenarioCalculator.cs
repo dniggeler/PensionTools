@@ -43,13 +43,15 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
 
         Either<string, MultiPeriodCalculationResult> scenarioResult = await municipalityData
             .BindAsync(m =>
-                multiPeriodCashFlowCalculator.CalculateAsync(startingYear, 0,GetPerson(m, birthdate), cashFlowDefinitionHolder, options));
+                multiPeriodCashFlowCalculator.CalculateAsync(startingYear, 0, GetPerson(m, birthdate, person),
+                    cashFlowDefinitionHolder, options));
 
         CashFlowDefinitionHolder benchmarkDefinitions = CreateBenchmarkDefinitions();
 
         Either<string, MultiPeriodCalculationResult> benchmarkResult = await municipalityData
             .BindAsync(m =>
-                multiPeriodCashFlowCalculator.CalculateAsync(startingYear, 0,GetPerson(m, birthdate), benchmarkDefinitions, options));
+                multiPeriodCashFlowCalculator.CalculateAsync(startingYear, 0, GetPerson(m, birthdate, person),
+                    benchmarkDefinitions, options));
 
         var benchmarkSeriesResult = benchmarkResult
             .Map(r => r.Accounts
@@ -63,44 +65,6 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
                from s in scenarioSeriesResult
                select CalculateDelta(b.ToList(), s.ToList());
 
-        CapitalBenefitTransferInResult CalculateDelta(
-            IReadOnlyCollection<SinglePeriodCalculationResult> benchmark,
-            IReadOnlyCollection<SinglePeriodCalculationResult> scenario)
-        {
-            var sumBenchmarkSeries =
-                from w in benchmark.Where(item => item.AccountType == AccountType.Wealth)
-                from p in benchmark.Where(item => item.AccountType == AccountType.OccupationalPension)
-                where w.Year == p.Year
-                select new { Sum = w.Amount + p.Amount, w.Year };
-
-            var sumScenarioSeries =
-                from w in scenario.Where(item => item.AccountType == AccountType.Wealth)
-                from p in scenario.Where(item => item.AccountType == AccountType.OccupationalPension)
-                where w.Year == p.Year
-                select new { Sum = w.Amount + p.Amount, w.Year };
-
-            IEnumerable<SinglePeriodCalculationResult> deltaResults = from bSum in sumBenchmarkSeries
-                from sSum in sumScenarioSeries
-                where bSum.Year == sSum.Year
-                select new SinglePeriodCalculationResult
-                {
-                    Amount = sSum.Sum - bSum.Sum,
-                    Year = bSum.Year,
-                    AccountType = AccountType.Exogenous
-                };
-
-            List<SinglePeriodCalculationResult> deltaSeries = deltaResults.ToList();
-            
-            return new CapitalBenefitTransferInResult
-            {
-                StartingYear = Math.Min(benchmark.Min(a => a.Year), scenario.Min(a => a.Year)),
-                NumberOfPeriods = deltaSeries.Count,
-                BenchmarkSeries = benchmark.ToList(),
-                ScenarioSeries = scenario.ToList(),
-                DeltaSeries = deltaSeries
-            };
-        }
-        
         CashFlowDefinitionHolder CreateBenchmarkDefinitions()
         {
             CashFlowDefinitionHolder holder = new CashFlowDefinitionHolder();
@@ -120,38 +84,52 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
 
             return holder;
         }
-
-        MultiPeriodCalculatorPerson GetPerson(MunicipalityModel municipality, DateTime birthday)
-        {
-            return new MultiPeriodCalculatorPerson
-            {
-                CivilStatus = person.CivilStatus,
-                DateOfBirth = birthday,
-                Gender =  Gender.Male,
-                Name = "Purchase Scenario",
-                Canton = municipality.Canton,
-                MunicipalityId = municipality.BfsNumber,
-                Income = person.TaxableIncome,
-                Wealth = person.TaxableWealth,
-                CapitalBenefits = (0, 0),
-                NumberOfChildren = 0,
-                PartnerReligiousGroupType = person.PartnerReligiousGroupType,
-                ReligiousGroupType = person.ReligiousGroupType,
-            };
-        }
     }
 
-    public Task<Either<string, CapitalBenefitTransferInResult>> ThirdPillarVersusSelfInvestmentAsync(int startingYear, int bfsMunicipalityId, TaxPerson person,
+    public async Task<Either<string, CapitalBenefitTransferInResult>> ThirdPillarVersusSelfInvestmentAsync(
+        int startingYear,
+        int bfsMunicipalityId,
+        TaxPerson person,
         ThirdPillarVersusSelfInvestmentScenarioModel scenarioModel)
     {
         var birthdate = new DateTime(1969, 3, 17);
 
         MultiPeriodOptions options = new();
         options.CapitalBenefitsNetGrowthRate = decimal.Zero;
-        options.WealthNetGrowthRate = scenarioModel.NetThirdPillarReturn;
+        options.WealthNetGrowthRate = decimal.Zero;
+        options.InvestmentNetGrowthRate = scenarioModel.InvestmentExcessReturn;
         options.SavingsQuota = decimal.Zero;
 
         CashFlowDefinitionHolder cashFlowDefinitionHolder = CreateScenarioDefinitions();
+
+        Either<string, MunicipalityModel> municipalityData =
+            await municipalityResolver.GetAsync(bfsMunicipalityId, startingYear);
+
+        Either<string, MultiPeriodCalculationResult> scenarioResult = await municipalityData
+            .BindAsync(m =>
+                multiPeriodCashFlowCalculator.CalculateAsync(startingYear, 0, GetPerson(m, birthdate, person),
+                    cashFlowDefinitionHolder, options));
+
+        var scenarioSeriesResult = scenarioResult
+            .Map(r => r.Accounts
+                .Where(a => a.AccountType is AccountType.Wealth or AccountType.ThirdPillar));
+
+        CashFlowDefinitionHolder benchmarkDefinitions = CreateBenchmarkDefinitions();
+
+        Either<string, MultiPeriodCalculationResult> benchmarkResult = await municipalityData
+            .BindAsync(m =>
+                multiPeriodCashFlowCalculator.CalculateAsync(
+                    startingYear,
+                    scenarioModel.FinalYear - startingYear,
+                    GetPerson(m, birthdate, person), benchmarkDefinitions, options));
+
+        var benchmarkSeriesResult = benchmarkResult
+            .Map(r => r.Accounts
+                .Where(a => a.AccountType is AccountType.Wealth or AccountType.ThirdPillar or AccountType.Investment));
+
+        return from b in benchmarkSeriesResult
+            from s in scenarioSeriesResult
+            select CalculateDeltaForThirdPillarComparison(b.ToList(), s.ToList());
 
         CashFlowDefinitionHolder CreateScenarioDefinitions()
         {
@@ -162,7 +140,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
                 new ThirdPillarPaymentsDefinition
                 {
                     DateOfStart = new DateTime(startingYear, 1, 1),
-                    NetGrowthRate = scenarioModel.NetThirdPillarReturn,
+                    NetGrowthRate = decimal.Zero,
                     NumberOfInvestments = scenarioModel.FinalYear - startingYear + 1,
                     YearlyAmount = scenarioModel.InvestmentAmount,
                 }
@@ -182,15 +160,57 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
                 }
             };
 
-            holder.Composites = thirdPillarInvestmentDefinitions.ToList();
+            holder.Composites = thirdPillarInvestmentDefinitions
+                .Concat(CreateSalaryPaymentDefinition(person, scenarioModel.FinalYear))
+                .ToList();
             holder.CashFlowActions = thirdPillarWithdrawalDefinitions.ToList();
 
             return holder;
         }
 
-        Either<string, CapitalBenefitTransferInResult> result = "error";
+        CashFlowDefinitionHolder CreateBenchmarkDefinitions()
+        {
+            CashFlowDefinitionHolder holder = new CashFlowDefinitionHolder();
 
-        return result.AsTask();
+            var selfInvestmentAccount = new List<IStaticCashFlowDefinition>
+            {
+                new StaticGenericCashFlowDefinition
+                {
+                    Header = new CashFlowHeader {Id = Guid.NewGuid().ToString(), Name = "Self Investment"},
+                    DateOfProcess = new DateTime(startingYear, 1, 1),
+                    Flow = new FlowPair(AccountType.Wealth, AccountType.Investment),
+                    NetGrowthRate = scenarioModel.InvestmentExcessReturn,
+                    InitialAmount = 0,
+                    RecurringInvestment = new RecurringInvestment
+                    {
+                        Amount = scenarioModel.InvestmentAmount,
+                        Frequency = FrequencyType.Yearly,
+                    },
+                    InvestmentPeriod = new InvestmentPeriod
+                    {
+                        Year = startingYear,
+                        NumberOfPeriods = scenarioModel.FinalYear - startingYear + 1,
+                    }
+                }
+            };
+
+            holder.Composites = CreateSalaryPaymentDefinition(person, scenarioModel.FinalYear).ToList();
+            holder.StaticGenericCashFlowDefinitions = selfInvestmentAccount.ToList();
+
+            return holder;
+        }
+    }
+
+    private static IEnumerable<ICompositeCashFlowDefinition> CreateSalaryPaymentDefinition(
+        TaxPerson person, int finalYear)
+    {
+        ICompositeCashFlowDefinition salaryPaymentDefinition = new SalaryPaymentsDefinition
+        {
+            YearlyAmount = person.TaxableIncome,
+            DateOfEndOfPeriod = new DateTime(finalYear, 1, 1),
+        };
+
+        return new List<ICompositeCashFlowDefinition> { salaryPaymentDefinition };
     }
 
     private IEnumerable<ICashFlowDefinition> GetClearAccountAction(CapitalBenefitTransferInsScenarioModel scenarioModel)
@@ -261,6 +281,101 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
             TransferAmount = scenarioModel.CapitalBenefitsBeforeWithdrawal,
             TaxType = TaxType.Undefined,
             IsTaxable = false,
+        };
+    }
+
+    private static CapitalBenefitTransferInResult CalculateDeltaForThirdPillarComparison(
+        IReadOnlyCollection<SinglePeriodCalculationResult> benchmark,
+        IReadOnlyCollection<SinglePeriodCalculationResult> scenario)
+    {
+        var sumBenchmarkSeries =
+            from w in benchmark.Where(item => item.AccountType == AccountType.Wealth)
+            from p in benchmark.Where(item => item.AccountType == AccountType.Investment)
+            where w.Year == p.Year
+            select new { Sum = w.Amount + p.Amount, w.Year };
+
+        var sumScenarioSeries =
+            from w in scenario.Where(item => item.AccountType == AccountType.Wealth)
+            from p in scenario.Where(item => item.AccountType == AccountType.ThirdPillar)
+            where w.Year == p.Year
+            select new { Sum = w.Amount + p.Amount, w.Year };
+
+        IEnumerable<SinglePeriodCalculationResult> deltaResults = from bSum in sumBenchmarkSeries
+            from sSum in sumScenarioSeries
+            where bSum.Year == sSum.Year
+            select new SinglePeriodCalculationResult
+            {
+                Amount = sSum.Sum - bSum.Sum,
+                Year = bSum.Year,
+                AccountType = AccountType.Exogenous
+            };
+
+        List<SinglePeriodCalculationResult> deltaSeries = deltaResults.ToList();
+
+        return new CapitalBenefitTransferInResult
+        {
+            StartingYear = Math.Min(benchmark.Min(a => a.Year), scenario.Min(a => a.Year)),
+            NumberOfPeriods = deltaSeries.Count,
+            BenchmarkSeries = benchmark.ToList(),
+            ScenarioSeries = scenario.ToList(),
+            DeltaSeries = deltaSeries
+        };
+    }
+
+    private static CapitalBenefitTransferInResult CalculateDelta(
+        IReadOnlyCollection<SinglePeriodCalculationResult> benchmark,
+        IReadOnlyCollection<SinglePeriodCalculationResult> scenario)
+    {
+        var sumBenchmarkSeries =
+            from w in benchmark.Where(item => item.AccountType == AccountType.Wealth)
+            from p in benchmark.Where(item => item.AccountType == AccountType.OccupationalPension)
+            where w.Year == p.Year
+            select new { Sum = w.Amount + p.Amount, w.Year };
+
+        var sumScenarioSeries =
+            from w in scenario.Where(item => item.AccountType == AccountType.Wealth)
+            from p in scenario.Where(item => item.AccountType == AccountType.OccupationalPension)
+            where w.Year == p.Year
+            select new { Sum = w.Amount + p.Amount, w.Year };
+
+        IEnumerable<SinglePeriodCalculationResult> deltaResults = from bSum in sumBenchmarkSeries
+            from sSum in sumScenarioSeries
+            where bSum.Year == sSum.Year
+            select new SinglePeriodCalculationResult
+            {
+                Amount = sSum.Sum - bSum.Sum,
+                Year = bSum.Year,
+                AccountType = AccountType.Exogenous
+            };
+
+        List<SinglePeriodCalculationResult> deltaSeries = deltaResults.ToList();
+
+        return new CapitalBenefitTransferInResult
+        {
+            StartingYear = Math.Min(benchmark.Min(a => a.Year), scenario.Min(a => a.Year)),
+            NumberOfPeriods = deltaSeries.Count,
+            BenchmarkSeries = benchmark.ToList(),
+            ScenarioSeries = scenario.ToList(),
+            DeltaSeries = deltaSeries
+        };
+    }
+
+    private static MultiPeriodCalculatorPerson GetPerson(MunicipalityModel municipality, DateTime birthday, TaxPerson person)
+    {
+        return new MultiPeriodCalculatorPerson
+        {
+            CivilStatus = person.CivilStatus,
+            DateOfBirth = birthday,
+            Gender = Gender.Male,
+            Name = "Purchase Scenario",
+            Canton = municipality.Canton,
+            MunicipalityId = municipality.BfsNumber,
+            Income = person.TaxableIncome,
+            Wealth = person.TaxableWealth,
+            CapitalBenefits = (0, 0),
+            NumberOfChildren = 0,
+            PartnerReligiousGroupType = person.PartnerReligiousGroupType,
+            ReligiousGroupType = person.ReligiousGroupType,
         };
     }
 }

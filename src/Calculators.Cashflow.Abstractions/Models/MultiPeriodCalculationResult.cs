@@ -18,6 +18,8 @@ public record MultiPeriodCalculationResult
 
     public WealthAccount WealthAccount { get; set; }
 
+    public InvestmentAccount InvestmentAccount { get; set; }
+
     public OccupationalPensionAccount OccupationalPensionAccount { get; set; }
 
     public ThirdPillarAccount ThirdPillarAccount { get; set; }

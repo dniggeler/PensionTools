@@ -54,6 +54,8 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
 
         WealthAccount wealthAccount = new() { Id = Guid.NewGuid(), Name = "Wealth Account", };
 
+        InvestmentAccount investmentAccount = new() { Id = Guid.NewGuid(), Name = "Investment Account", };
+
         OccupationalPensionAccount occupationalPensionAccount = new()
         {
             Id = Guid.NewGuid(), Name = "Occupational Pension Account",
@@ -98,6 +100,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
             { AccountType.Exogenous, exogenousAccount },
             { AccountType.Income, incomeAccount },
             { AccountType.Wealth, wealthAccount },
+            { AccountType.Investment, investmentAccount },
             { AccountType.OccupationalPension, occupationalPensionAccount },
             { AccountType.ThirdPillar, thirdPillarAccount },
             { AccountType.Tax, taxAccount }
@@ -170,6 +173,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
             ExogenousAccount = exogenousAccount,
             IncomeAccount = incomeAccount,
             WealthAccount = wealthAccount,
+            InvestmentAccount = investmentAccount,
             OccupationalPensionAccount = occupationalPensionAccount,
             ThirdPillarAccount = thirdPillarAccount,
             TaxAccount = taxAccount,
@@ -215,9 +219,9 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
                 var taxPaymentAmount = await CalculateCapitalBenefitsTaxAsync(cashFlow.DateOfProcess.Year, person, cashFlow.Amount);
 
                 ICashFlowAccount wealthAccount = currentAccounts[AccountType.Wealth];
-                ICashFlowAccount exogenousAccount = currentAccounts[AccountType.Exogenous];
+                ICashFlowAccount taxAccount = currentAccounts[AccountType.Tax];
 
-                ExecuteTransaction(wealthAccount, exogenousAccount, "Tax payment", cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue), taxPaymentAmount);
+                ExecuteTransaction(wealthAccount, taxAccount, "Tax payment", cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue), taxPaymentAmount);
             }
         }
 
@@ -243,6 +247,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
     {
         ICashFlowAccount incomeAccount = currentAccounts[AccountType.Income];
         ICashFlowAccount wealthAccount = currentAccounts[AccountType.Wealth];
+        ICashFlowAccount investmentAccount = currentAccounts[AccountType.Investment];
         ICashFlowAccount exogenousAccount = currentAccounts[AccountType.Exogenous];
         ICashFlowAccount occupationalPensionAccount = currentAccounts[AccountType.OccupationalPension];
         ICashFlowAccount thirdPillarAccount = currentAccounts[AccountType.ThirdPillar];
@@ -256,6 +261,9 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
         decimal wealthCompoundedReturn = wealthAccount.Balance * options.WealthNetGrowthRate;
         ExecuteTransaction(exogenousAccount, wealthAccount, "Compound Return Wealth", finalDateAsDateTime, wealthCompoundedReturn);
 
+        decimal investmentCompoundedReturn = investmentAccount .Balance * options.WealthNetGrowthRate;
+        ExecuteTransaction(exogenousAccount, investmentAccount, "Compound Return Investment", finalDateAsDateTime, investmentCompoundedReturn);
+
         decimal occupationalPensionCompoundedReturn = occupationalPensionAccount.Balance * options.CapitalBenefitsNetGrowthRate;
         ExecuteTransaction(exogenousAccount, occupationalPensionAccount, "Compound Return Occupational Pension", finalDateAsDateTime, occupationalPensionCompoundedReturn);
 
@@ -265,12 +273,12 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
         // savings quota: take share from current income account and move it to wealth
         decimal newSavings = incomeAccount.Balance * SavingsQuota(finalDate, options, person);
 
-        // savings are subject to wealth tax but are not deducted fr
+        // savings are subject to wealth tax but are not deducted from the income/salary account to keep taxable salary amount clean
         ExecuteTransaction(exogenousAccount, wealthAccount, "Savings Quota", finalDateAsDateTime, newSavings);
 
         // take each account amount, calculate tax, and deduct it from wealth
         var totalTaxAmount =
-            await CalculateIncomeAndWealthTaxAsync(finalDate.Year, person, incomeAccount.Balance, wealthAccount.Balance);
+            await CalculateIncomeAndWealthTaxAsync(finalDate.Year, person, incomeAccount.Balance, wealthAccount.Balance + investmentAccount.Balance);
 
         ExecuteTransaction(wealthAccount, taxAccount, "Yearly Income and Wealth Tax", finalDateAsDateTime, totalTaxAmount);
 
@@ -290,7 +298,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
             NumberOfChildren = calculatorPerson.NumberOfChildren,
             ReligiousGroupType = calculatorPerson.ReligiousGroupType,
             PartnerReligiousGroupType = calculatorPerson.PartnerReligiousGroupType,
-            TaxableWealth = wealth,
+            TaxableWealth = Math.Max(0, wealth),
             TaxableFederalIncome = income,
             TaxableIncome = income
         };

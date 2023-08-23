@@ -62,6 +62,7 @@ public class EstvTaxCalculatorFacadeIntegrationTests
     [InlineData(2022, 800000000, 1_000_000, "Married", "Other", "Other")]
     [InlineData(2022, 800000000, 1_000_000, "Married", "Protestant", "Other")]
     [InlineData(2022, 800000000, 0, "Married", "Other", "Other")]
+    [InlineData(2022, 800000000, 77616, "Married", "Other", "Other")]
     [InlineData(2022, 885300000, 1_000_000, "Married", "Protestant", "Other")]
     [InlineData(2022, 885300000, 1_000_000, "Married", "Protestant", "Roman")]
     [InlineData(2023, 800000000, 1_000_000, "Married", "Protestant", "Other")]

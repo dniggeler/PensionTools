@@ -10,6 +10,12 @@ namespace PensionCoach.Tools.CommonTypes
         Income,
 
         /// <summary>
+        /// A investment account which is subject to wealth tax scheme. Opposite to
+        /// the wealth account, its value may not change deterministically.
+        /// </summary>
+        Investment,
+
+        /// <summary>
         /// Capital benefit assets in second pillar account (BVG Vorsorgegelder, FZP) which
         /// are subject to capital benefits tax scheme.
         /// </summary>
