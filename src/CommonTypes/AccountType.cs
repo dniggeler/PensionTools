@@ -10,9 +10,12 @@ namespace PensionCoach.Tools.CommonTypes
         Income,
 
         /// <summary>
-        /// A investment account which is subject to wealth tax scheme. Opposite to
-        /// the wealth account, its value may not change deterministically.
+        /// A investment account which is subject to wealth tax scheme.
+        /// However, if it pays dividends, they are subjects to the income tax.
         /// </summary>
+        /// <remarks>
+        /// Planned feature: its value may change stochastically.
+        /// </remarks>
         Investment,
 
         /// <summary>
