@@ -1,0 +1,48 @@
+﻿[
+  {
+    "Header": {
+      "Id": "CapitalGrowth",
+      "Name": "Portfolio's Capital Growth"
+    },
+    "DateOfProcess": "2021-01-01T00:00:00",
+    "InitialAmount": 100000.0,
+    "RecurringInvestment": {
+      "Amount": 6723.0,
+      "Frequency": "Yearly"
+    },
+    "NetGrowthRate": 0.02,
+    "InvestmentPeriod": {
+      "Year": 2021,
+      "NumberOfPeriods": 10
+    },
+    "Flow": {
+      "Source": "Exogenous",
+      "Target": "Investment"
+    },
+    "IsTaxable": true,
+    "TaxType": "Wealth"
+  },
+  {
+    "Header": {
+      "Id": "InterestPayment",
+      "Name": "Portfolio's Interest"
+    },
+    "DateOfProcess": "2021-01-01T00:00:00",
+    "InitialAmount": 100000.0,
+    "RecurringInvestment": {
+      "Amount": 6723.0,
+      "Frequency": "Yearly"
+    },
+    "NetGrowthRate": 0.01,
+    "InvestmentPeriod": {
+      "Year": 2021,
+      "NumberOfPeriods": 10
+    },
+    "Flow": {
+      "Source": "Exogenous",
+      "Target": "Investment"
+    },
+    "IsTaxable": true,
+    "TaxType": "Income"
+  }
+]

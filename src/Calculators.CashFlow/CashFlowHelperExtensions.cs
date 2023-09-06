@@ -180,6 +180,28 @@ public static class CashFlowHelperExtensions
             IsTaxable = false,
             TaxType = TaxType.CapitalBenefits
         };
+
+        yield return new StaticGenericCashFlowDefinition
+        {
+            Header = new CashFlowHeader
+            {
+                Id = "setupInvestmentAccount",
+                Name = "Investment Account"
+            },
+            DateOfProcess = dateOfStart,
+            InitialAmount = accountDefinition.InitialInvestmentAssets,
+            Flow = new FlowPair(AccountType.Exogenous, AccountType.Investment),
+            RecurringInvestment = new RecurringInvestment
+            {
+                Amount = 0,
+                Frequency = FrequencyType.Yearly,
+            },
+            InvestmentPeriod = new InvestmentPeriod
+            {
+                Year = dateOfStart.Year,
+                NumberOfPeriods = 0
+            },
+        };
     }
 
     public static IEnumerable<ICashFlowDefinition> CreateGenericDefinition(
@@ -352,13 +374,65 @@ public static class CashFlowHelperExtensions
         };
     }
 
-    public static IEnumerable<ICashFlowDefinition> CreateGenericDefinition(
-        this ICompositeCashFlowDefinition cashFlowAction, MultiPeriodCalculatorPerson person, DateTime dateOfStart)
+    public static IEnumerable<IStaticCashFlowDefinition> CreateGenericDefinition(this InvestmentPortfolioDefinition investmentPortfolioDefinition)
     {
-        return cashFlowAction switch
+        yield return new StaticGenericCashFlowDefinition
+        {
+            Header = new CashFlowHeader
+            {
+                Id = "CapitalGrowth",
+                Name = "Portfolio's Capital Growth"
+            },
+            DateOfProcess = investmentPortfolioDefinition.DateOfProcess,
+            InitialAmount = Math.Max(
+                investmentPortfolioDefinition.InitialInvestment - investmentPortfolioDefinition.RecurringInvestment.Amount, decimal.Zero),
+            NetGrowthRate = investmentPortfolioDefinition.NetCapitalGrowthRate,
+            RecurringInvestment = investmentPortfolioDefinition.RecurringInvestment,
+            InvestmentPeriod = investmentPortfolioDefinition.InvestmentPeriod,
+            Flow = new FlowPair(AccountType.Wealth, AccountType.Investment),
+            IsTaxable = true,
+            TaxType = TaxType.Wealth
+        };
+
+        yield return new StaticGenericCashFlowDefinition
+        {
+            Header = new CashFlowHeader
+            {
+                Id = "InterestPayment",
+                Name = "Portfolio's Interest"
+            },
+            DateOfProcess = investmentPortfolioDefinition.DateOfProcess,
+            InitialAmount = decimal.Zero,
+            NetGrowthRate = decimal.Zero,
+            RecurringInvestment = investmentPortfolioDefinition.RecurringInvestment with
+            {
+                Amount = (investmentPortfolioDefinition.InitialInvestment + investmentPortfolioDefinition.RecurringInvestment.Amount) *
+                         investmentPortfolioDefinition.NetInterestRate,
+            },
+            InvestmentPeriod = investmentPortfolioDefinition.InvestmentPeriod,
+            Flow = new FlowPair(AccountType.Exogenous, AccountType.Income),
+            IsTaxable = true,
+            TaxType = TaxType.Income
+        };
+    }
+
+    public static IEnumerable<ICashFlowDefinition> CreateGenericDefinition(
+        this ICompositeCashFlowDefinition cashFlowDefinition, MultiPeriodCalculatorPerson person, DateTime dateOfStart)
+    {
+        return cashFlowDefinition switch
         {
             OrdinaryRetirementAction a => a.CreateCashFlows(person),
+            _ => CreateGenericDefinition(cashFlowDefinition, dateOfStart)
+        };
+    }
+
+    public static IEnumerable<ICashFlowDefinition> CreateGenericDefinition(
+        this ICompositeCashFlowDefinition cashFlowDefinition, DateTime dateOfStart)
+    {
+        return cashFlowDefinition switch
+        {
             SetupAccountDefinition s => s.CreateGenericDefinition(dateOfStart),
+            InvestmentPortfolioDefinition i => i.CreateGenericDefinition(),
             SalaryPaymentsDefinition p => p.CreateGenericDefinition(dateOfStart),
             FixedTransferAmountDefinition t => t.CreateGenericDefinition(),
             ThirdPillarPaymentsDefinition p => p.CreateGenericDefinition(),

@@ -52,6 +52,76 @@ public class MultiPeriodCashFlowCalculatorTests : IClassFixture<CashFlowFixture<
         Snapshot.Match(result, opt => opt.IgnoreFields("$..Id"));
     }
 
+    [Fact(DisplayName = "Investment Portfolio Simulation")]
+    public async Task Calculate_Investment_Portfolio()
+    {
+        // given
+        int startingYear = 2021;
+        int numberOfPeriods = 0;
+        int municipalityId = 261;
+        Canton canton = Canton.ZH;
+        decimal initialInvestmentAmount = 93277;
+        MultiPeriodOptions options = new();
+        MultiPeriodCalculatorPerson person = GetMarriedPerson(canton, municipalityId) with
+        {
+            Income = 100_000,
+            Wealth = 500_000,
+            CapitalBenefits = (decimal.Zero, decimal.Zero)
+        };
+
+        // when
+        var result = await _fixture.Service.CalculateAsync(
+            startingYear,
+            numberOfPeriods,
+            person,
+            new CashFlowDefinitionHolder
+            {
+                Composites = CreateInvestmentPortfolioComposite(person, initialInvestmentAmount).ToList()
+            },
+            options);
+
+        // then
+        Snapshot.Match(result, opt => opt.IgnoreFields("$..Id"));
+
+        static IEnumerable<ICompositeCashFlowDefinition> CreateInvestmentPortfolioComposite(
+            MultiPeriodCalculatorPerson person, decimal initialInvestmentAmount)
+        {
+            yield return new InvestmentPortfolioDefinition
+            {
+                Header = new CashFlowHeader()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "Investment Portfolio",
+                },
+                DateOfProcess = new DateTime(2021, 1, 1),
+                NetCapitalGrowthRate = 0.02M,
+                NetInterestRate = 0.01M,
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 6723,
+                    Frequency = FrequencyType.Yearly,
+                },
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = 2021,
+                    NumberOfPeriods = 10
+                },
+            };
+
+            yield return new SalaryPaymentsDefinition
+            {
+                YearlyAmount = person.Income,
+                DateOfEndOfPeriod = new DateTime(2021, 1, 1).AddYears(10)
+            };
+
+            yield return new SetupAccountDefinition
+            {
+                InitialWealth = person.Wealth,
+                InitialInvestmentAssets = initialInvestmentAmount
+            };
+        }
+    }
+
     [Fact(DisplayName = "Wealth Only Simulation")]
     public async Task Calculate_Wealth_Only_Simulation()
     {

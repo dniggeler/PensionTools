@@ -19,4 +19,12 @@ public record SetupAccountDefinition : ICompositeCashFlowDefinition
     /// Gets or sets the initial third pillar assets (3A Konto).
     /// </summary>
     public decimal InitialThirdPillarAssets { get; set; }
+
+    /// <summary>
+    /// Gets or sets the initial investment assets. Investment assets have two
+    /// cash flow streams:
+    /// 1. Capital growth
+    /// 2. Interest payments (eg. dividends) which are paid out (not accumulated)
+    /// </summary>
+    public decimal InitialInvestmentAssets { get; set; }
 }
