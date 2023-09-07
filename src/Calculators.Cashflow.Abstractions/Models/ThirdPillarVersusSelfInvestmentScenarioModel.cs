@@ -4,6 +4,7 @@ public class ThirdPillarVersusSelfInvestmentScenarioModel
 {
     /// <summary>
     /// Final transfer-in year. At this year the third-pillar account is closed and the money is transferred to the wealth.
+    /// The capital withdrawn from the third pillar account is taxed by the capital benefits tax.
     /// </summary>
     public int FinalYear { get; set; }
 
