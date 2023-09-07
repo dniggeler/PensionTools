@@ -11,5 +11,7 @@ public class TaxAccount : ICashFlowAccount
 
     public decimal Balance { get; set; }
 
+    public decimal NetGrowthRate { get; set; }
+
     public List<AccountTransaction> Transactions { get; set; } = new();
 }

@@ -76,15 +76,15 @@ public class MultiPeriodCashFlowCalculatorTests : IClassFixture<CashFlowFixture<
             person,
             new CashFlowDefinitionHolder
             {
-                Composites = CreateInvestmentPortfolioComposite(person, initialInvestmentAmount).ToList()
+                InvestmentDefinitions = CreateInvestmentPortfolios().ToList(),
+                Composites = CreateComposites(person, initialInvestmentAmount).ToList()
             },
             options);
 
         // then
         Snapshot.Match(result, opt => opt.IgnoreFields("$..Id"));
 
-        static IEnumerable<ICompositeCashFlowDefinition> CreateInvestmentPortfolioComposite(
-            MultiPeriodCalculatorPerson person, decimal initialInvestmentAmount)
+        static IEnumerable<InvestmentPortfolioDefinition> CreateInvestmentPortfolios()
         {
             yield return new InvestmentPortfolioDefinition
             {
@@ -107,7 +107,11 @@ public class MultiPeriodCashFlowCalculatorTests : IClassFixture<CashFlowFixture<
                     NumberOfPeriods = 10
                 },
             };
+        }
 
+        static IEnumerable<ICompositeCashFlowDefinition> CreateComposites(
+            MultiPeriodCalculatorPerson person, decimal initialInvestmentAmount)
+        {
             yield return new SalaryPaymentsDefinition
             {
                 YearlyAmount = person.Income,

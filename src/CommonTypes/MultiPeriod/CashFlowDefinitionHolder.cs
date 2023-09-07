@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
+using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod;
 
 public record CashFlowDefinitionHolder
 {
+    public IReadOnlyCollection<InvestmentPortfolioDefinition> InvestmentDefinitions { get; set; } =
+        Array.Empty<InvestmentPortfolioDefinition>().ToList();
+
     /// <summary>
-    /// Gets the change residence actions.
+    /// List of composite cash flow definitions.
+    /// A composite cash flow definition is composed by one or several more basic definitions.
     /// </summary>
-    /// <value>
-    /// The change residence actions.
-    /// </value>
     public IReadOnlyCollection<ICompositeCashFlowDefinition> Composites { get; set; } =
         Array.Empty<ICompositeCashFlowDefinition>().ToList();
 

@@ -11,5 +11,7 @@ public interface ICashFlowAccount
 
     decimal Balance { get; set; }
 
+    decimal NetGrowthRate { get; set; }
+
     List<AccountTransaction> Transactions { get; set; }
 }

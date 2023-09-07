@@ -27,7 +27,7 @@ public class InvestmentAccount : ICashFlowAccount
     /// Gets or sets the net rate of return. This is the yield before wealth taxes,
     /// and does not include the dividends.
     /// </summary>
-    public decimal NetRateOfReturn { get; set; }
+    public decimal NetGrowthRate { get; set; }
 
     public List<AccountTransaction> Transactions { get; set; } = new();
 }

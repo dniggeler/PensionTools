@@ -54,7 +54,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
 
         WealthAccount wealthAccount = new() { Id = Guid.NewGuid(), Name = "Wealth Account", };
 
-        InvestmentAccount investmentAccount = new() { Id = Guid.NewGuid(), Name = "Investment Account", };
+        InvestmentAccount investmentAccount = SetupInvestmentAccount(cashFlowDefinitionHolder);
 
         OccupationalPensionAccount occupationalPensionAccount = new()
         {
@@ -180,6 +180,24 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
         };
     }
 
+    private static InvestmentAccount SetupInvestmentAccount(CashFlowDefinitionHolder cashFlowDefinitionHolder)
+    {
+        InvestmentPortfolioDefinition firstInvestmentAccount = cashFlowDefinitionHolder.InvestmentDefinitions.FirstOrDefault();
+
+        if (firstInvestmentAccount == null)
+        {
+            throw new InvalidOperationException("No investment account definition found.");
+        }
+
+        return new()
+        {
+            Id = Guid.NewGuid(),
+            Name = firstInvestmentAccount.Header.Name,
+            NetGrowthRate = firstInvestmentAccount.NetCapitalGrowthRate,
+            NetIncomeYield = firstInvestmentAccount.NetInterestRate,
+        };
+    }
+
     public Task<Either<string, MultiPeriodCalculationResult>> CalculateWithSetupsAsync(
         int startingYear,
         int minimumNumberOfPeriods,
@@ -261,8 +279,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
         decimal wealthCompoundedReturn = wealthAccount.Balance * options.WealthNetGrowthRate;
         ExecuteTransaction(exogenousAccount, wealthAccount, "Compound Return Wealth", finalDateAsDateTime, wealthCompoundedReturn);
 
-        decimal investmentCompoundedReturn = investmentAccount .Balance * options.WealthNetGrowthRate;
-        ExecuteTransaction(exogenousAccount, investmentAccount, "Compound Return Investment", finalDateAsDateTime, investmentCompoundedReturn);
+        InvestmentTransactions(investmentAccount);
 
         decimal occupationalPensionCompoundedReturn = occupationalPensionAccount.Balance * options.CapitalBenefitsNetGrowthRate;
         ExecuteTransaction(exogenousAccount, occupationalPensionAccount, "Compound Return Occupational Pension", finalDateAsDateTime, occupationalPensionCompoundedReturn);
@@ -286,6 +303,25 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
         ExecuteTransaction(incomeAccount, exogenousAccount, "Clear income account", finalDateAsDateTime, incomeAccount.Balance);
 
         return currentAccounts;
+
+        void InvestmentTransactions(ICashFlowAccount cashFlowAccount)
+        {
+            var account = cashFlowAccount as InvestmentAccount;
+            
+            if (account == null)
+            {
+                throw new ArgumentException($"Account {cashFlowAccount.Name} is not a investment account", nameof(cashFlowAccount));
+            }
+
+            decimal investmentCapitalGain = account.Balance * account.NetGrowthRate;
+            decimal investmentIncome = account.Balance * account.NetIncomeYield;
+
+            ExecuteTransaction(exogenousAccount, investmentAccount, "Capital Gains", finalDateAsDateTime, investmentCapitalGain);
+            ExecuteTransaction(exogenousAccount, investmentAccount, "Income", finalDateAsDateTime, investmentIncome);
+
+            // income is taxable
+            ExecuteTransaction(exogenousAccount, incomeAccount, "Investement Income", finalDateAsDateTime, investmentCapitalGain);
+        }
     }
 
     private async Task<decimal> CalculateIncomeAndWealthTaxAsync(

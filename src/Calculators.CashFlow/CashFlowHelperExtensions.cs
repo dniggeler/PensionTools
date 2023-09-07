@@ -378,41 +378,13 @@ public static class CashFlowHelperExtensions
     {
         yield return new StaticGenericCashFlowDefinition
         {
-            Header = new CashFlowHeader
-            {
-                Id = "CapitalGrowth",
-                Name = "Portfolio's Capital Growth"
-            },
+            Header = investmentPortfolioDefinition.Header,
             DateOfProcess = investmentPortfolioDefinition.DateOfProcess,
-            InitialAmount = Math.Max(
-                investmentPortfolioDefinition.InitialInvestment - investmentPortfolioDefinition.RecurringInvestment.Amount, decimal.Zero),
+            InitialAmount = decimal.Zero,
             NetGrowthRate = investmentPortfolioDefinition.NetCapitalGrowthRate,
             RecurringInvestment = investmentPortfolioDefinition.RecurringInvestment,
             InvestmentPeriod = investmentPortfolioDefinition.InvestmentPeriod,
             Flow = new FlowPair(AccountType.Wealth, AccountType.Investment),
-            IsTaxable = true,
-            TaxType = TaxType.Wealth
-        };
-
-        yield return new StaticGenericCashFlowDefinition
-        {
-            Header = new CashFlowHeader
-            {
-                Id = "InterestPayment",
-                Name = "Portfolio's Interest"
-            },
-            DateOfProcess = investmentPortfolioDefinition.DateOfProcess,
-            InitialAmount = decimal.Zero,
-            NetGrowthRate = decimal.Zero,
-            RecurringInvestment = investmentPortfolioDefinition.RecurringInvestment with
-            {
-                Amount = (investmentPortfolioDefinition.InitialInvestment + investmentPortfolioDefinition.RecurringInvestment.Amount) *
-                         investmentPortfolioDefinition.NetInterestRate,
-            },
-            InvestmentPeriod = investmentPortfolioDefinition.InvestmentPeriod,
-            Flow = new FlowPair(AccountType.Exogenous, AccountType.Income),
-            IsTaxable = true,
-            TaxType = TaxType.Income
         };
     }
 
