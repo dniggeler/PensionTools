@@ -404,7 +404,6 @@ public static class CashFlowHelperExtensions
         return cashFlowDefinition switch
         {
             SetupAccountDefinition s => s.CreateGenericDefinition(dateOfStart),
-            InvestmentPortfolioDefinition i => i.CreateGenericDefinition(),
             SalaryPaymentsDefinition p => p.CreateGenericDefinition(dateOfStart),
             FixedTransferAmountDefinition t => t.CreateGenericDefinition(),
             ThirdPillarPaymentsDefinition p => p.CreateGenericDefinition(),

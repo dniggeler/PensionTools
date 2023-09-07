@@ -69,10 +69,14 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
 
         TaxAccount taxAccount = new() { Id = Guid.NewGuid(), Name = "Tax Account", };
 
+        IEnumerable<ICashFlowDefinition> definitionFromInvestments = cashFlowDefinitionHolder.InvestmentDefinitions
+            .SelectMany(investment => investment.CreateGenericDefinition());
+
         IEnumerable<ICashFlowDefinition> definitionFromComposites = cashFlowDefinitionHolder.Composites
             .SelectMany(composite => composite.CreateGenericDefinition(person, dateOfStart));
 
         IEnumerable<CashFlowModel> staticCashFlowsFromComposites = definitionFromComposites
+            .Concat(definitionFromInvestments)
             .OfType<StaticGenericCashFlowDefinition>()
             .SelectMany(d => d.GenerateCashFlow())
             .AggregateCashFlows();
