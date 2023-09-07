@@ -39,7 +39,7 @@ public class InvestmentPortfolioTests
         };
 
         // when
-        IEnumerable<ICashFlowDefinition> result = definition.CreateGenericDefinition(definition.DateOfProcess);
+        IEnumerable<ICashFlowDefinition> result = definition.CreateGenericDefinition();
 
         // then
         Snapshot.Match(result);
