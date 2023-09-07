@@ -190,7 +190,13 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
 
         if (firstInvestmentAccount == null)
         {
-            throw new InvalidOperationException("No investment account definition found.");
+            return new InvestmentAccount()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Investment Account",
+                NetGrowthRate = 0.0M,
+                NetIncomeYield = 0.0M,
+            };
         }
 
         return new()

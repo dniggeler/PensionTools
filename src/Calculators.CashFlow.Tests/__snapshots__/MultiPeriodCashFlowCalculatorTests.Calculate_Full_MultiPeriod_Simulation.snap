@@ -22,6 +22,11 @@
         },
         {
           "Year": 2021,
+          "Amount": 0.0,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2021,
           "Amount": 510000.0,
           "AccountType": "OccupationalPension"
         },
@@ -49,6 +54,11 @@
           "Year": 2022,
           "Amount": 496811.530000,
           "AccountType": "Wealth"
+        },
+        {
+          "Year": 2022,
+          "Amount": 0.0,
+          "AccountType": "Investment"
         },
         {
           "Year": 2022,
@@ -82,6 +92,11 @@
         },
         {
           "Year": 2023,
+          "Amount": 0.0,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2023,
           "Amount": 530000.0,
           "AccountType": "OccupationalPension"
         },
@@ -109,6 +124,11 @@
           "Year": 2024,
           "Amount": 494072.8400000000,
           "AccountType": "Wealth"
+        },
+        {
+          "Year": 2024,
+          "Amount": 0.0,
+          "AccountType": "Investment"
         },
         {
           "Year": 2024,
@@ -142,6 +162,11 @@
         },
         {
           "Year": 2025,
+          "Amount": 0.0,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2025,
           "Amount": 550000.0,
           "AccountType": "OccupationalPension"
         },
@@ -169,6 +194,11 @@
           "Year": 2026,
           "Amount": 502612.71180300000000,
           "AccountType": "Wealth"
+        },
+        {
+          "Year": 2026,
+          "Amount": 0.0,
+          "AccountType": "Investment"
         },
         {
           "Year": 2026,
@@ -202,6 +232,11 @@
         },
         {
           "Year": 2027,
+          "Amount": 0.0,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2027,
           "Amount": 550000.0,
           "AccountType": "OccupationalPension"
         },
@@ -229,6 +264,11 @@
           "Year": 2028,
           "Amount": 522265.506884240300000000,
           "AccountType": "Wealth"
+        },
+        {
+          "Year": 2028,
+          "Amount": 0.0,
+          "AccountType": "Investment"
         },
         {
           "Year": 2028,
@@ -262,6 +302,11 @@
         },
         {
           "Year": 2029,
+          "Amount": 0.0,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2029,
           "Amount": 550000.0,
           "AccountType": "OccupationalPension"
         },
@@ -289,6 +334,11 @@
           "Year": 2030,
           "Amount": 537990.03707127555478390619827,
           "AccountType": "Wealth"
+        },
+        {
+          "Year": 2030,
+          "Amount": 0.0,
+          "AccountType": "Investment"
         },
         {
           "Year": 2030,
@@ -322,6 +372,11 @@
         },
         {
           "Year": 2031,
+          "Amount": 0.0,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2031,
           "Amount": 550000.0,
           "AccountType": "OccupationalPension"
         },
@@ -349,6 +404,11 @@
           "Year": 2032,
           "Amount": 570744.46180909452818431866222,
           "AccountType": "Wealth"
+        },
+        {
+          "Year": 2032,
+          "Amount": 0.0,
+          "AccountType": "Investment"
         },
         {
           "Year": 2032,
@@ -382,6 +442,11 @@
         },
         {
           "Year": 2033,
+          "Amount": 0.0,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2033,
           "Amount": 550000.0,
           "AccountType": "OccupationalPension"
         },
@@ -397,7 +462,7 @@
         },
         {
           "Year": 2034,
-          "Amount": -806493.2412998682536034390300,
+          "Amount": -806630.8412998682536034390300,
           "AccountType": "Exogenous"
         },
         {
@@ -413,6 +478,11 @@
         {
           "Year": 2034,
           "Amount": 0.0,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2034,
+          "Amount": 0.0,
           "AccountType": "OccupationalPension"
         },
         {
@@ -422,15 +492,15 @@
         },
         {
           "Year": 2034,
-          "Amount": 182939.37538515205400596745296,
+          "Amount": 183076.97538515205400596745296,
           "AccountType": "Tax"
         }
       ],
       "ExogenousAccount": {
-        "Id": "116f84e3-2147-4552-9072-66cc719113b0",
+        "Id": "fdfd4287-f15d-4a24-96f9-e564bcbcd209",
         "Name": "Exogenous Account",
-        "Balance": -806493.2412998682536034390300,
-        "InterestRate": 0.0,
+        "Balance": -806630.8412998682536034390300,
+        "NetGrowthRate": 0.0,
         "Transactions": [
           {
             "Description": "Simple cash-flow: outflow to Income Account",
@@ -708,11 +778,6 @@
             "Amount": 20000.0
           },
           {
-            "Description": "Tax payment: inflow from Wealth Account",
-            "ValutaDate": "2034-04-01T00:00:00",
-            "Amount": 137.60
-          },
-          {
             "Description": "Simple cash-flow: inflow from Occupational Pension Account",
             "ValutaDate": "2034-04-01T00:00:00",
             "Amount": 550000.0
@@ -725,10 +790,10 @@
         ]
       },
       "IncomeAccount": {
-        "Id": "fbf4b776-8671-4bbf-8a71-b1aef53e369a",
+        "Id": "8a1a189f-ffec-4e72-83c9-4dfcfc9828ef",
         "Name": "Income Account",
         "Balance": 0.00000000000000000000000,
-        "InterestRate": 0.0,
+        "NetGrowthRate": 0.0,
         "Transactions": [
           {
             "Description": "Simple cash-flow: inflow from Exogenous Account",
@@ -953,7 +1018,7 @@
         ]
       },
       "WealthAccount": {
-        "Id": "450f0eac-39d4-45f7-a431-727406c1a460",
+        "Id": "6cfd51c6-6b61-4811-8e34-a1e726d00889",
         "Name": "Wealth Account",
         "Balance": 623553.86591471619959747157704,
         "NetGrowthRate": 0.0,
@@ -1159,7 +1224,7 @@
             "Amount": 68830.0
           },
           {
-            "Description": "Tax payment: outflow to Exogenous Account",
+            "Description": "Tax payment: outflow to Tax Account",
             "ValutaDate": "2034-04-01T00:00:00",
             "Amount": -137.60
           },
@@ -1170,8 +1235,16 @@
           }
         ]
       },
+      "InvestmentAccount": {
+        "Id": "3d1edc08-7e51-40a3-bc83-973924b5481a",
+        "Name": "Investment Account",
+        "Balance": 0.0,
+        "NetIncomeYield": 0.0,
+        "NetGrowthRate": 0.0,
+        "Transactions": []
+      },
       "OccupationalPensionAccount": {
-        "Id": "f402f2e9-5ff7-4f34-94ca-7d3730f2e0e6",
+        "Id": "642eff5a-c1d9-4305-98d8-d0b164fb1155",
         "Name": "Occupational Pension Account",
         "Balance": 0.0,
         "NetGrowthRate": 0.0,
@@ -1214,7 +1287,7 @@
         ]
       },
       "ThirdPillarAccount": {
-        "Id": "7d885d1f-3a05-4185-abdc-2387d748d9f1",
+        "Id": "97051005-5178-42e6-9ea4-5981e2e8ba5e",
         "Name": "Third Pillar Account",
         "Balance": 0.0,
         "NetGrowthRate": 0.0,
@@ -1277,9 +1350,10 @@
         ]
       },
       "TaxAccount": {
-        "Id": "1c8bfb96-9863-4a29-8443-a3da0eefb47e",
+        "Id": "44e30462-d306-4c68-8c3e-2eeda5285b6a",
         "Name": "Tax Account",
-        "Balance": 182939.37538515205400596745296,
+        "Balance": 183076.97538515205400596745296,
+        "NetGrowthRate": 0.0,
         "Transactions": [
           {
             "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
@@ -1345,6 +1419,11 @@
             "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
             "ValutaDate": "2034-01-01T00:00:00",
             "Amount": 17386.981996456626130407467213
+          },
+          {
+            "Description": "Tax payment: inflow from Wealth Account",
+            "ValutaDate": "2034-04-01T00:00:00",
+            "Amount": 137.60
           },
           {
             "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",

@@ -23,6 +23,11 @@
         {
           "Year": 2021,
           "Amount": 0.0,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2021,
+          "Amount": 0.0,
           "AccountType": "OccupationalPension"
         },
         {
@@ -37,21 +42,21 @@
         }
       ],
       "ExogenousAccount": {
-        "Id": "0a5e4286-ffb6-4b23-9827-86b975c71bc8",
+        "Id": "de74a9ef-779b-44c4-97a4-7cd421dbad82",
         "Name": "Exogenous Account",
         "Balance": 0.0,
-        "InterestRate": 0.0,
+        "NetGrowthRate": 0.0,
         "Transactions": []
       },
       "IncomeAccount": {
-        "Id": "e8ac2d57-31d2-41c0-9c92-a3b91efe0c6e",
+        "Id": "dcf7fa83-e643-48d4-b263-914cdd7f6a2b",
         "Name": "Income Account",
         "Balance": 0.0,
-        "InterestRate": 0.0,
+        "NetGrowthRate": 0.0,
         "Transactions": []
       },
       "WealthAccount": {
-        "Id": "01720c72-8f8b-46ab-87a4-7bf5b693d18b",
+        "Id": "f9f0086a-1f4b-4cb4-b64f-42a6f31b55a2",
         "Name": "Wealth Account",
         "Balance": -48.00,
         "NetGrowthRate": 0.0,
@@ -63,24 +68,33 @@
           }
         ]
       },
+      "InvestmentAccount": {
+        "Id": "cd0927d8-f646-49f4-a283-2aab7df2347c",
+        "Name": "Investment Account",
+        "Balance": 0.0,
+        "NetIncomeYield": 0.0,
+        "NetGrowthRate": 0.0,
+        "Transactions": []
+      },
       "OccupationalPensionAccount": {
-        "Id": "c621bf20-13f7-4e33-8c7b-3442f6314cbf",
+        "Id": "74c2ef3a-f252-4963-b26f-783f8cf3755d",
         "Name": "Occupational Pension Account",
         "Balance": 0.0,
         "NetGrowthRate": 0.0,
         "Transactions": []
       },
       "ThirdPillarAccount": {
-        "Id": "7d7771b3-ae11-42eb-bcf8-57902b6d446b",
+        "Id": "be281841-e5f3-4e5e-a3fa-c0931e74309b",
         "Name": "Third Pillar Account",
         "Balance": 0.0,
         "NetGrowthRate": 0.0,
         "Transactions": []
       },
       "TaxAccount": {
-        "Id": "ad5be0b1-ad42-4ac5-ad66-04c00ff27562",
+        "Id": "d51a4ec7-6049-43b8-9e97-e77c66bfcbf4",
         "Name": "Tax Account",
         "Balance": 48.00,
+        "NetGrowthRate": 0.0,
         "Transactions": [
           {
             "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",

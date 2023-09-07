@@ -6048,15 +6048,6 @@
     "LanguageCode": 0
   },
   {
-    "BfsCode": 412,
-    "ZipCode": "3422",
-    "ZipCodeAddOn": "60",
-    "MunicipalityName": "Kirchberg BE Zustellung",
-    "Canton": "BE",
-    "DateOfValidity": "2003-09-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
     "BfsCode": 413,
     "ZipCode": "3425",
     "ZipCodeAddOn": "00",
@@ -29529,6 +29520,15 @@
     "LanguageCode": 0
   },
   {
+    "BfsCode": 4401,
+    "ZipCode": "9321",
+    "ZipCodeAddOn": "00",
+    "MunicipalityName": "Arbon MS",
+    "Canton": "TG",
+    "DateOfValidity": "2023-09-04T00:00:00",
+    "LanguageCode": 0
+  },
+  {
     "BfsCode": 4406,
     "ZipCode": "8582",
     "ZipCodeAddOn": "00",
@@ -32136,15 +32136,6 @@
     "MunicipalityName": "Airolo Caserma",
     "Canton": "TI",
     "DateOfValidity": "2003-01-01T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 5061,
-    "ZipCode": "6780",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Madrano",
-    "Canton": "TI",
-    "DateOfValidity": "1995-12-06T00:00:00",
     "LanguageCode": 0
   },
   {
