@@ -21,7 +21,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\EstvTaxCalculatorFacade\EstvTaxCalculatorFacade.csproj" />
         <ProjectReference Include="..\TaxCalculator.WebApi\TaxCalculator.WebApi.csproj" />
     </ItemGroup>
 

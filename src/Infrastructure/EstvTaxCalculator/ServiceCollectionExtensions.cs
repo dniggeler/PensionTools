@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Infrastructure.EstvTaxCalculator.Client;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PensionCoach.Tools.EstvTaxCalculators.Abstractions;
 
-namespace PensionCoach.Tools.EstvTaxCalculators;
+namespace Infrastructure.EstvTaxCalculator;
 
 public static class ServiceCollectionExtensions
 {

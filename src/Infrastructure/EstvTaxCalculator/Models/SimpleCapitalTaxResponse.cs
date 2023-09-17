@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
-using PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
+using Infrastructure.EstvTaxCalculator.Client.Models;
 
-namespace PensionCoach.Tools.EstvTaxCalculators.Models;
+namespace Infrastructure.EstvTaxCalculator.Models;
 
 public class SimpleCapitalTaxResponse
 {

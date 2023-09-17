@@ -1,13 +1,11 @@
 ﻿using Domain.Models.Tax;
-using PensionCoach.Tools.CommonTypes.Tax;
-using PensionCoach.Tools.EstvTaxCalculators.Abstractions;
-using PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
+using Infrastructure.EstvTaxCalculator.Client;
+using Infrastructure.EstvTaxCalculator.Client.Models;
 
-namespace PensionCoach.Tools.EstvTaxCalculators;
+namespace Infrastructure.EstvTaxCalculator;
 
 public class EstvTaxCalculatorClientMock : IEstvTaxCalculatorClient
 {
-
     public Task<TaxLocation[]> GetTaxLocationsAsync(string zip, string city)
     {
         return Task.FromResult(new[]

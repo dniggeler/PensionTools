@@ -1,4 +1,4 @@
-﻿namespace PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
+﻿namespace Infrastructure.EstvTaxCalculator.Client.Models;
 
 public class SimpleTaxResult
 {

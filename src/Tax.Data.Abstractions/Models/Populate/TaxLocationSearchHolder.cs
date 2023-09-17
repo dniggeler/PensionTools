@@ -1,4 +1,4 @@
-﻿using PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
+﻿using Infrastructure.EstvTaxCalculator.Client.Models;
 
 namespace Tax.Data.Abstractions.Models.Populate;
 

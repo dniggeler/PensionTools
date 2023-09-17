@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
+using Infrastructure.EstvTaxCalculator.Client;
+using Infrastructure.EstvTaxCalculator.Client.Models;
 using LanguageExt;
-using PensionCoach.Tools.CommonTypes.Tax;
-using PensionCoach.Tools.EstvTaxCalculators.Abstractions;
-using PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 

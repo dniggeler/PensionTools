@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PensionCoach.Tools.EstvTaxCalculators.Models;
+namespace Infrastructure.EstvTaxCalculator.Models;
 
 public class SimpleCapitalTaxRequest
 {

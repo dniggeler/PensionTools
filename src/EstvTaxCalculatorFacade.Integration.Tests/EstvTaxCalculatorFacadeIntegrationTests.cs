@@ -2,11 +2,9 @@
 using System.Threading.Tasks;
 using Domain.Enums;
 using Domain.Models.Tax;
+using Infrastructure.EstvTaxCalculator;
+using Infrastructure.EstvTaxCalculator.Client;
 using Microsoft.Extensions.DependencyInjection;
-using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.CommonTypes.Tax;
-using PensionCoach.Tools.EstvTaxCalculators;
-using PensionCoach.Tools.EstvTaxCalculators.Abstractions;
 using Snapshooter.Xunit;
 using Xunit;
 
