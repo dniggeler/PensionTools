@@ -1,4 +1,5 @@
-﻿using PensionCoach.Tools.CommonTypes.Tax;
+﻿using Domain.Models.Tax;
+using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.EstvTaxCalculators.Abstractions.Models;
 
 namespace PensionCoach.Tools.EstvTaxCalculators.Abstractions;

@@ -9,9 +9,12 @@ using LanguageExt;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
-using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
-using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
+using Domain.Contracts;
+using Domain.Models.MultiPeriod;
+using Domain.Models.MultiPeriod.Actions;
+using Domain.Models.MultiPeriod.Definitions;
+using Domain.Models.Tax;
 
 namespace Calculators.CashFlow;
 

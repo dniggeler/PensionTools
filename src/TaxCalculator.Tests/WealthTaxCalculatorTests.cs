@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Domain.Enums;
+using Domain.Models.Tax;
 using FluentAssertions;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes;

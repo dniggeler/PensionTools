@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
-using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
+using Domain.Models.MultiPeriod.Actions;
+using Domain.Models.MultiPeriod.Definitions;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod;
 

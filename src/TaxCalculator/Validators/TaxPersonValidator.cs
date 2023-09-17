@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Domain.Models.Tax;
+using FluentValidation;
 using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace PensionCoach.Tools.TaxCalculator.Validators

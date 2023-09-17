@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Domain.Models.Tax;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxComparison;

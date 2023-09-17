@@ -1,4 +1,5 @@
 ﻿using Domain.Enums;
+using Domain.Models.Tax;
 using FluentValidation;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;

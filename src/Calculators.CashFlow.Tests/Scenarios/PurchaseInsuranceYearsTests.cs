@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Calculators.CashFlow.Models;
 using Domain.Enums;
+using Domain.Models.Tax;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxComparison;

@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Calculators.CashFlow.Models;
+using Domain.Contracts;
 using Domain.Enums;
+using Domain.Models.MultiPeriod;
+using Domain.Models.MultiPeriod.Actions;
+using Domain.Models.MultiPeriod.Definitions;
 using LanguageExt;
 using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
-using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 using Snapshooter.Xunit;
 using Xunit;
 

@@ -9,6 +9,7 @@ using Tax.Tools.Comparison.Abstractions;
 using System.Threading.Channels;
 using System.Threading;
 using Domain.Models.Municipality;
+using Domain.Models.Tax;
 using PensionCoach.Tools.TaxComparison;
 
 namespace Tax.Tools.Comparison

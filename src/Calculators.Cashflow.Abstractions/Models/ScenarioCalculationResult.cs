@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Domain.Models.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 
 namespace Calculators.CashFlow.Models;

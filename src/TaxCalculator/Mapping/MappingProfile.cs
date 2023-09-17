@@ -2,6 +2,7 @@
 using System.Globalization;
 using AutoMapper;
 using Domain.Models.Municipality;
+using Domain.Models.Tax;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Tax.Data.Abstractions.Models;

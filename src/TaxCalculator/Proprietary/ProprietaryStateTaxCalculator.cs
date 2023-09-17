@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Enums;
+using Domain.Models.Tax;
 using LanguageExt;
 using Microsoft.EntityFrameworkCore;
 using PensionCoach.Tools.CommonTypes;

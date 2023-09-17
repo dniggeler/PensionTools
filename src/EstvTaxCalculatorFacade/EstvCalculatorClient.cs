@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.Json;
 using Domain.Enums;
+using Domain.Models.Tax;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.EstvTaxCalculators.Abstractions;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.Enums;
+using Domain.Models.Tax;
 using LanguageExt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

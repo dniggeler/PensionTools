@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Enums;
+using Domain.Models.Tax;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;

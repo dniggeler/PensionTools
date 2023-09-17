@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
-using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace PensionCoach.Tools.CommonUtils;
 

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Enums;
+using Domain.Models.Tax;
 using FluentValidation;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes;

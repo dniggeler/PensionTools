@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Models.Municipality;
+using Domain.Models.Tax;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;

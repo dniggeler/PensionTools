@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Calculators.CashFlow.Models;
+using Domain.Models.Tax;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes.Tax;
 

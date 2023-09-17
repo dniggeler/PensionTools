@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain.Enums;
+using Domain.Models.Tax;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PensionCoach.Tools.CommonTypes;

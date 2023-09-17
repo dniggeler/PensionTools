@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Domain.Enums;
 using Domain.Models.Municipality;
+using Domain.Models.Tax;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;

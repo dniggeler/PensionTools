@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Calculators.CashFlow.Accounts;
 using Calculators.CashFlow.Models;
+using Domain.Contracts;
 using Domain.Enums;
+using Domain.Models.MultiPeriod;
+using Domain.Models.MultiPeriod.Actions;
+using Domain.Models.MultiPeriod.Definitions;
 using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
-using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.CommonUtils;
 
