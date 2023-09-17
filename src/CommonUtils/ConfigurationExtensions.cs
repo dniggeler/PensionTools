@@ -1,4 +1,5 @@
 ﻿using System;
+using Application.Enums;
 using Microsoft.Extensions.Configuration;
 
 namespace PensionCoach.Tools.CommonUtils;

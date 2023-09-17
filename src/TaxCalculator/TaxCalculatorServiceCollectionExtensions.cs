@@ -1,4 +1,5 @@
 ﻿using System;
+using Application.Enums;
 using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Tax;
