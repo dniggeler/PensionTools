@@ -39,9 +39,9 @@ public record InvestmentPortfolioDefinition : ICompositeCashFlowDefinition
     public RecurringInvestment RecurringInvestment { get; set; }
 
     /// <summary>
-    /// Gets or sets the net interest rate. It is based on the principal.
+    /// Gets or sets the net income rate.
     /// </summary>
-    public decimal NetInterestRate { get; set; }
+    public decimal NetIncomeRate { get; set; }
 
     /// <summary>
     /// Gets or sets the net rate of return of the capital.

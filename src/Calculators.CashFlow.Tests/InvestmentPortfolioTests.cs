@@ -24,7 +24,7 @@ public class InvestmentPortfolioTests
             },
             DateOfProcess = new DateTime(2021, 1, 1),
             NetCapitalGrowthRate = 0.02M,
-            NetInterestRate = 0.01M,
+            NetIncomeRate = 0.01M,
             InitialInvestment = 100_000,
             RecurringInvestment = new RecurringInvestment
             {

@@ -41,8 +41,17 @@ public class ThirdPillarVersusSelfInvestmentComparerRequest
     public decimal InvestmentAmount { get; set;}
 
     /// <summary>
-    /// Gets or sets yearly excess return on investment account compared to third-pillar account.
-    /// If there is no excess return, the third-pillar account is always better because of the tax deduction.
+    /// Gets or sets the net growth rate of the investment account which is taxed by the wealth tax scheme.
     /// </summary>
-    public decimal InvestmentExcessReturn { get; set; }
+    public decimal InvestmentNetGrowthRate { get; set; }
+
+    /// <summary>
+    /// Gets or sets the net income rate of the investment account which is taxed by the income tax scheme.
+    /// </summary>
+    public decimal InvestmentNetIncomeRate { get; set; }
+
+    /// <summary>
+    /// Gets or sets the net growth rate of the third-pillar account.
+    /// </summary>
+    public decimal ThirdPillarNetGrowthRate { get; set; }
 }

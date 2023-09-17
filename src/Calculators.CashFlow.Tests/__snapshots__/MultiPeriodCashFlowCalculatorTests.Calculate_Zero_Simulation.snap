@@ -41,67 +41,54 @@
           "AccountType": "Tax"
         }
       ],
-      "ExogenousAccount": {
-        "Id": "de74a9ef-779b-44c4-97a4-7cd421dbad82",
-        "Name": "Exogenous Account",
-        "Balance": 0.0,
-        "NetGrowthRate": 0.0,
-        "Transactions": []
-      },
-      "IncomeAccount": {
-        "Id": "dcf7fa83-e643-48d4-b263-914cdd7f6a2b",
-        "Name": "Income Account",
-        "Balance": 0.0,
-        "NetGrowthRate": 0.0,
-        "Transactions": []
-      },
-      "WealthAccount": {
-        "Id": "f9f0086a-1f4b-4cb4-b64f-42a6f31b55a2",
-        "Name": "Wealth Account",
-        "Balance": -48.00,
-        "NetGrowthRate": 0.0,
-        "Transactions": [
-          {
-            "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
-            "ValutaDate": "2022-01-01T00:00:00",
-            "Amount": -48.00
-          }
-        ]
-      },
-      "InvestmentAccount": {
-        "Id": "cd0927d8-f646-49f4-a283-2aab7df2347c",
-        "Name": "Investment Account",
-        "Balance": 0.0,
-        "NetIncomeYield": 0.0,
-        "NetGrowthRate": 0.0,
-        "Transactions": []
-      },
-      "OccupationalPensionAccount": {
-        "Id": "74c2ef3a-f252-4963-b26f-783f8cf3755d",
-        "Name": "Occupational Pension Account",
-        "Balance": 0.0,
-        "NetGrowthRate": 0.0,
-        "Transactions": []
-      },
-      "ThirdPillarAccount": {
-        "Id": "be281841-e5f3-4e5e-a3fa-c0931e74309b",
-        "Name": "Third Pillar Account",
-        "Balance": 0.0,
-        "NetGrowthRate": 0.0,
-        "Transactions": []
-      },
-      "TaxAccount": {
-        "Id": "d51a4ec7-6049-43b8-9e97-e77c66bfcbf4",
-        "Name": "Tax Account",
-        "Balance": 48.00,
-        "NetGrowthRate": 0.0,
-        "Transactions": [
-          {
-            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
-            "ValutaDate": "2022-01-01T00:00:00",
-            "Amount": 48.00
-          }
-        ]
+      "Transactions": {
+        "ExogenousAccount": {
+          "Id": "0b752015-5089-4a63-a810-813ec1c3de55",
+          "Name": "Exogenous Account",
+          "Transactions": []
+        },
+        "IncomeAccount": {
+          "Id": "90165b60-aa4e-4cb9-a73b-7ced6b3aa7b7",
+          "Name": "Income Account",
+          "Transactions": []
+        },
+        "WealthAccount": {
+          "Id": "feb957b6-874d-4a94-b6ff-0a098ab4fab3",
+          "Name": "Wealth Account",
+          "Transactions": [
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2022-01-01T00:00:00",
+              "Amount": -48.00
+            }
+          ]
+        },
+        "InvestmentAccount": {
+          "Id": "e5530baf-aae3-4a28-940c-79f4edbe038f",
+          "Name": "Investment Account",
+          "Transactions": []
+        },
+        "OccupationalPensionAccount": {
+          "Id": "ba3f2657-26ae-46aa-82fa-e4d2c73962eb",
+          "Name": "Occupational Pension Account",
+          "Transactions": []
+        },
+        "ThirdPillarAccount": {
+          "Id": "04085a38-35da-4886-8981-330446692b65",
+          "Name": "Third Pillar Account",
+          "Transactions": []
+        },
+        "TaxAccount": {
+          "Id": "6113b825-8eb6-4960-a8d8-7bb5eaad2011",
+          "Name": "Tax Account",
+          "Transactions": [
+            {
+              "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+              "ValutaDate": "2022-01-01T00:00:00",
+              "Amount": 48.00
+            }
+          ]
+        }
       }
     },
     "Left": null

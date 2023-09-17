@@ -15,8 +15,17 @@ public class ThirdPillarVersusSelfInvestmentScenarioModel
     public decimal InvestmentAmount { get; set; }
 
     /// <summary>
-    /// Gets or sets yearly excess return on the investment account compared to third pillar account.
-    /// There must be an excess return, otherwise the third pillar account is always better because of the tax deduction.
+    /// Gets or sets the net growth rate for the investment. The investment capital is fully taxed by the wealth tax.
     /// </summary>
-    public decimal InvestmentExcessReturn { get; set; }
+    public decimal InvestmentNetGrowthRate { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the net income yield for the investment. Income types are dividends and interests which are subject to income tax.
+    /// </summary>
+    public decimal InvestmentNetIncomeYield { get; set; }
+
+    /// <summary>
+    /// Gets or sets the net growth rate for the third pillar account.
+    /// </summary>
+    public decimal ThirdPillarNetGrowthRate { get; set; }
 }

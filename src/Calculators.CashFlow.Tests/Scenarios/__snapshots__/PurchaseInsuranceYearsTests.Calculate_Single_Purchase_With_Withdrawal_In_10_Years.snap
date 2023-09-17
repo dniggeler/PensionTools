@@ -309,7 +309,9 @@
           "Amount": 0.0,
           "AccountType": "OccupationalPension"
         }
-      ]
+      ],
+      "BenchmarkTransactions": null,
+      "ScenarioTransactions": null
     },
     "Left": null
   }

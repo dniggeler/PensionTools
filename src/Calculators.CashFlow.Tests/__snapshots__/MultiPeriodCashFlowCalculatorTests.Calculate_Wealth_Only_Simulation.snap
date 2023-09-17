@@ -41,88 +41,75 @@
           "AccountType": "Tax"
         }
       ],
-      "ExogenousAccount": {
-        "Id": "c3c0ed4f-1510-4916-9106-7388fe3bc6c8",
-        "Name": "Exogenous Account",
-        "Balance": -505000.00,
-        "NetGrowthRate": 0.0,
-        "Transactions": [
-          {
-            "Description": "Simple cash-flow: outflow to Wealth Account",
-            "ValutaDate": "2021-01-01T00:00:00",
-            "Amount": -500000.0
-          },
-          {
-            "Description": "Compound Return Wealth: outflow to Wealth Account",
-            "ValutaDate": "2022-01-01T00:00:00",
-            "Amount": -5000.00
-          }
-        ]
-      },
-      "IncomeAccount": {
-        "Id": "9d6627d3-56fe-48d0-8d59-c8a2bd415c2e",
-        "Name": "Income Account",
-        "Balance": 0.0,
-        "NetGrowthRate": 0.0,
-        "Transactions": []
-      },
-      "WealthAccount": {
-        "Id": "c1c349fd-29e8-46ed-84c1-6979f9c86ffe",
-        "Name": "Wealth Account",
-        "Balance": 504436.2550,
-        "NetGrowthRate": 0.0,
-        "Transactions": [
-          {
-            "Description": "Simple cash-flow: inflow from Exogenous Account",
-            "ValutaDate": "2021-01-01T00:00:00",
-            "Amount": 500000.0
-          },
-          {
-            "Description": "Compound Return Wealth: inflow from Exogenous Account",
-            "ValutaDate": "2022-01-01T00:00:00",
-            "Amount": 5000.00
-          },
-          {
-            "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
-            "ValutaDate": "2022-01-01T00:00:00",
-            "Amount": -563.7450
-          }
-        ]
-      },
-      "InvestmentAccount": {
-        "Id": "10ad98f3-c149-4039-816f-56dfe71476a2",
-        "Name": "Investment Account",
-        "Balance": 0.0,
-        "NetIncomeYield": 0.0,
-        "NetGrowthRate": 0.0,
-        "Transactions": []
-      },
-      "OccupationalPensionAccount": {
-        "Id": "c4f7720a-068a-4293-8abd-1d447c1ee8ee",
-        "Name": "Occupational Pension Account",
-        "Balance": 0.0,
-        "NetGrowthRate": 0.0,
-        "Transactions": []
-      },
-      "ThirdPillarAccount": {
-        "Id": "5b26c8b1-b0b7-4892-9006-0965a360fddc",
-        "Name": "Third Pillar Account",
-        "Balance": 0.0,
-        "NetGrowthRate": 0.0,
-        "Transactions": []
-      },
-      "TaxAccount": {
-        "Id": "8c0f210c-6566-45bc-83b7-790d2c069a22",
-        "Name": "Tax Account",
-        "Balance": 563.7450,
-        "NetGrowthRate": 0.0,
-        "Transactions": [
-          {
-            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
-            "ValutaDate": "2022-01-01T00:00:00",
-            "Amount": 563.7450
-          }
-        ]
+      "Transactions": {
+        "ExogenousAccount": {
+          "Id": "f38cbd4b-5a01-49b5-9a60-3f89efb8bebe",
+          "Name": "Exogenous Account",
+          "Transactions": [
+            {
+              "Description": "Simple cash-flow: outflow to Wealth Account",
+              "ValutaDate": "2021-01-01T00:00:00",
+              "Amount": -500000.0
+            },
+            {
+              "Description": "Compound Return Wealth: outflow to Wealth Account",
+              "ValutaDate": "2022-01-01T00:00:00",
+              "Amount": -5000.00
+            }
+          ]
+        },
+        "IncomeAccount": {
+          "Id": "ef2f59c5-47a0-4b1b-a39d-c56f1b08ec98",
+          "Name": "Income Account",
+          "Transactions": []
+        },
+        "WealthAccount": {
+          "Id": "74c9475c-2efd-42c5-83f0-492d6d599e70",
+          "Name": "Wealth Account",
+          "Transactions": [
+            {
+              "Description": "Simple cash-flow: inflow from Exogenous Account",
+              "ValutaDate": "2021-01-01T00:00:00",
+              "Amount": 500000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2022-01-01T00:00:00",
+              "Amount": 5000.00
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2022-01-01T00:00:00",
+              "Amount": -563.7450
+            }
+          ]
+        },
+        "InvestmentAccount": {
+          "Id": "236f7341-c5e7-45e8-8203-c93986c1ee80",
+          "Name": "Investment Account",
+          "Transactions": []
+        },
+        "OccupationalPensionAccount": {
+          "Id": "85496fce-9a73-4f00-954f-3b13049c0c5d",
+          "Name": "Occupational Pension Account",
+          "Transactions": []
+        },
+        "ThirdPillarAccount": {
+          "Id": "14c35e7a-4198-4357-aa22-136bcbd46a2c",
+          "Name": "Third Pillar Account",
+          "Transactions": []
+        },
+        "TaxAccount": {
+          "Id": "3a7075f4-bc63-493b-8cd7-262773b9ca63",
+          "Name": "Tax Account",
+          "Transactions": [
+            {
+              "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+              "ValutaDate": "2022-01-01T00:00:00",
+              "Amount": 563.7450
+            }
+          ]
+        }
       }
     },
     "Left": null

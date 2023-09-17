@@ -17,12 +17,12 @@ namespace Calculators.CashFlow.Tests.Scenarios
             this.fixture = fixture;
         }
 
-        [Fact(DisplayName = "Zero Return on Self-Investment")]
-        public async Task Calculate_Zero_Return_On_SelfInvestment()
+        [Fact(DisplayName = "Excess Return on Self-Investment")]
+        public async Task Calculate_Excess_Return_On_SelfInvestment()
         {
             // given
             var calculationYear = 2022;
-            var finalYear = calculationYear + 10;
+            var finalYear = calculationYear + 20;
             var bfsMunicipalityId = 261;
             TaxPerson person = new()
             {
@@ -38,7 +38,9 @@ namespace Calculators.CashFlow.Tests.Scenarios
             ThirdPillarVersusSelfInvestmentScenarioModel scenarioModel = new()
             {
                 FinalYear = finalYear,
-                InvestmentExcessReturn = 0.03M,
+                InvestmentNetGrowthRate = 0.02M,
+                InvestmentNetIncomeYield = 0.01M,
+                ThirdPillarNetGrowthRate = 0.00M,
                 InvestmentAmount = 7056,
             };
 

@@ -169,18 +169,70 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
                 .Iter(item => singlePeriodCalculationResults.Add(item));
         }
 
+        var accountTransactionResult = new AccountTransactionResult
+        {
+            Id = exogenousAccount.Id,
+            Name = exogenousAccount.Name,
+            Transactions = exogenousAccount.Transactions,
+        };
+
+        var incomeTransactionResult = new AccountTransactionResult
+        {
+            Id = incomeAccount.Id,
+            Name = incomeAccount.Name,
+            Transactions = incomeAccount.Transactions,
+        };
+
+        var wealthTransactionResult = new AccountTransactionResult
+        {
+            Id = wealthAccount.Id,
+            Name = wealthAccount.Name,
+            Transactions = wealthAccount.Transactions,
+        };
+
+        var investmentTransactionResult = new AccountTransactionResult
+        {
+            Id = investmentAccount.Id,
+            Name = investmentAccount.Name,
+            Transactions = investmentAccount.Transactions,
+        };
+
+        var occupationalTransactionResult = new AccountTransactionResult
+        {
+            Id = occupationalPensionAccount.Id,
+            Name = occupationalPensionAccount.Name,
+            Transactions = occupationalPensionAccount.Transactions,
+        };
+
+        var thirdPillarTransactionResult = new AccountTransactionResult
+        {
+            Id = thirdPillarAccount.Id,
+            Name = thirdPillarAccount.Name,
+            Transactions = thirdPillarAccount.Transactions,
+        };
+
+        var taxTransactionResult = new AccountTransactionResult
+        {
+            Id = taxAccount.Id,
+            Name = taxAccount.Name,
+            Transactions = taxAccount.Transactions,
+        };
+
         return new MultiPeriodCalculationResult
         {
             StartingYear = startingYear,
             NumberOfPeriods = finalYear - startingYear + 1,
             Accounts = singlePeriodCalculationResults,
-            ExogenousAccount = exogenousAccount,
-            IncomeAccount = incomeAccount,
-            WealthAccount = wealthAccount,
-            InvestmentAccount = investmentAccount,
-            OccupationalPensionAccount = occupationalPensionAccount,
-            ThirdPillarAccount = thirdPillarAccount,
-            TaxAccount = taxAccount,
+            Transactions = new AccountTransactionResultHolder
+            {
+                ExogenousAccount = accountTransactionResult,
+                IncomeAccount = incomeTransactionResult,
+                WealthAccount = wealthTransactionResult,
+                InvestmentAccount = investmentTransactionResult,
+                OccupationalPensionAccount = occupationalTransactionResult,
+                ThirdPillarAccount = thirdPillarTransactionResult,
+                TaxAccount = taxTransactionResult
+            }
         };
     }
 
@@ -190,7 +242,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
 
         if (firstInvestmentAccount == null)
         {
-            return new InvestmentAccount()
+            return new InvestmentAccount
             {
                 Id = Guid.NewGuid(),
                 Name = "Investment Account",
@@ -204,7 +256,7 @@ public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
             Id = Guid.NewGuid(),
             Name = firstInvestmentAccount.Header.Name,
             NetGrowthRate = firstInvestmentAccount.NetCapitalGrowthRate,
-            NetIncomeYield = firstInvestmentAccount.NetInterestRate,
+            NetIncomeYield = firstInvestmentAccount.NetIncomeRate,
         };
     }
 

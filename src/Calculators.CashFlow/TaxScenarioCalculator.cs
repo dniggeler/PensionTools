@@ -26,7 +26,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
         this.municipalityResolver = municipalityResolver;
     }
 
-    public async Task<Either<string, CapitalBenefitTransferInResult>> CapitalBenefitTransferInsAsync(
+    public async Task<Either<string, ScenarioCalculationResult>> CapitalBenefitTransferInsAsync(
         int startingYear, int bfsMunicipalityId, TaxPerson person, CapitalBenefitTransferInsScenarioModel scenarioModel)
     {
         var birthdate = new DateTime(1969, 3, 17);
@@ -86,7 +86,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
         }
     }
 
-    public async Task<Either<string, CapitalBenefitTransferInResult>> ThirdPillarVersusSelfInvestmentAsync(
+    public async Task<Either<string, ScenarioCalculationResult>> ThirdPillarVersusSelfInvestmentAsync(
         int startingYear,
         int bfsMunicipalityId,
         TaxPerson person,
@@ -97,7 +97,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
         MultiPeriodOptions options = new();
         options.CapitalBenefitsNetGrowthRate = decimal.Zero;
         options.WealthNetGrowthRate = decimal.Zero;
-        options.InvestmentNetGrowthRate = scenarioModel.InvestmentExcessReturn;
+        options.InvestmentNetGrowthRate = scenarioModel.InvestmentNetGrowthRate;
         options.SavingsQuota = decimal.Zero;
 
         CashFlowDefinitionHolder cashFlowDefinitionHolder = CreateScenarioDefinitions();
@@ -172,15 +172,15 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
         {
             CashFlowDefinitionHolder holder = new CashFlowDefinitionHolder();
 
-            var selfInvestmentAccount = new List<IStaticCashFlowDefinition>
+            holder.InvestmentDefinitions = new List<InvestmentPortfolioDefinition>
             {
-                new StaticGenericCashFlowDefinition
+                new()
                 {
                     Header = new CashFlowHeader {Id = Guid.NewGuid().ToString(), Name = "Self Investment"},
                     DateOfProcess = new DateTime(startingYear, 1, 1),
-                    Flow = new FlowPair(AccountType.Wealth, AccountType.Investment),
-                    NetGrowthRate = scenarioModel.InvestmentExcessReturn,
-                    InitialAmount = 0,
+                    NetCapitalGrowthRate = scenarioModel.InvestmentNetGrowthRate,
+                    NetIncomeRate = scenarioModel.InvestmentNetIncomeYield,
+                    InitialInvestment = 0,
                     RecurringInvestment = new RecurringInvestment
                     {
                         Amount = scenarioModel.InvestmentAmount,
@@ -195,7 +195,6 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
             };
 
             holder.Composites = CreateSalaryPaymentDefinition(person, scenarioModel.FinalYear).ToList();
-            holder.StaticGenericCashFlowDefinitions = selfInvestmentAccount.ToList();
 
             return holder;
         }
@@ -284,7 +283,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
         };
     }
 
-    private static CapitalBenefitTransferInResult CalculateDeltaForThirdPillarComparison(
+    private static ScenarioCalculationResult CalculateDeltaForThirdPillarComparison(
         IReadOnlyCollection<SinglePeriodCalculationResult> benchmark,
         IReadOnlyCollection<SinglePeriodCalculationResult> scenario)
     {
@@ -312,7 +311,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
 
         List<SinglePeriodCalculationResult> deltaSeries = deltaResults.ToList();
 
-        return new CapitalBenefitTransferInResult
+        return new ScenarioCalculationResult
         {
             StartingYear = Math.Min(benchmark.Min(a => a.Year), scenario.Min(a => a.Year)),
             NumberOfPeriods = deltaSeries.Count,
@@ -322,7 +321,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
         };
     }
 
-    private static CapitalBenefitTransferInResult CalculateDelta(
+    private static ScenarioCalculationResult CalculateDelta(
         IReadOnlyCollection<SinglePeriodCalculationResult> benchmark,
         IReadOnlyCollection<SinglePeriodCalculationResult> scenario)
     {
@@ -350,7 +349,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
 
         List<SinglePeriodCalculationResult> deltaSeries = deltaResults.ToList();
 
-        return new CapitalBenefitTransferInResult
+        return new ScenarioCalculationResult
         {
             StartingYear = Math.Min(benchmark.Min(a => a.Year), scenario.Min(a => a.Year)),
             NumberOfPeriods = deltaSeries.Count,

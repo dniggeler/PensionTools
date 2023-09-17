@@ -1,0 +1,648 @@
+﻿[
+  {
+    "State": "IsRight",
+    "Right": {
+      "StartingYear": 2022,
+      "NumberOfPeriods": 21,
+      "DeltaSeries": [
+        {
+          "Year": 2022,
+          "Amount": 2120.4400,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2023,
+          "Amount": 4051.326000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2024,
+          "Amount": 5814.38180800,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2025,
+          "Amount": 7398.2052808000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2026,
+          "Amount": 8758.254118155200,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2027,
+          "Amount": 9914.96119620968000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2028,
+          "Amount": 10855.5894256959908800,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2029,
+          "Amount": 11566.926119938891496000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2030,
+          "Amount": 12035.26685723851954827200,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2031,
+          "Amount": 12246.3988217311656682600000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2032,
+          "Amount": 12185.58360633410098251843680,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2033,
+          "Amount": 11870.24946087414436308883944,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2034,
+          "Amount": 11251.84296797738945209825115,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2035,
+          "Amount": 10346.65012875927230894028014,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2036,
+          "Amount": 9104.93683979946287495315163,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2037,
+          "Amount": 7541.76874231440740588130253,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2038,
+          "Amount": 5638.86042385121948563088908,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2039,
+          "Amount": 3377.26395221948352492442617,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2040,
+          "Amount": 737.34672075185003449126159,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2041,
+          "Amount": -2268.52141666049682057851588,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2042,
+          "Amount": -11248.01174297591212842247698,
+          "AccountType": "Exogenous"
+        }
+      ],
+      "BenchmarkSeries": [
+        {
+          "Year": 2022,
+          "Amount": -33252.5400,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2022,
+          "Amount": 7267.68,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2022,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2023,
+          "Amount": -66678.910000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2023,
+          "Amount": 14898.7440,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2023,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2024,
+          "Amount": -100314.64240000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2024,
+          "Amount": 22907.000592,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2024,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2025,
+          "Amount": -134162.6160480000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2025,
+          "Amount": 31306.73076720,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2025,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2026,
+          "Amount": -168193.057368960000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2026,
+          "Amount": 40112.7032508048,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2026,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2027,
+          "Amount": -202441.67151633920000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2027,
+          "Amount": 49340.190320129520,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2027,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2028,
+          "Amount": -236911.5135466659840000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2028,
+          "Amount": 59004.98412096999312,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2028,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2029,
+          "Amount": -271605.699617599303680000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2029,
+          "Amount": 69123.4134976604121840,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2029,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2030,
+          "Amount": -306527.40820995128975360000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2030,
+          "Amount": 79712.361352712770205328,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2030,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2031,
+          "Amount": -341679.8813741503155486720000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2031,
+          "Amount": 90789.28255241914988041200,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2031,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2032,
+          "Amount": -377066.42600163332185964544000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2032,
+          "Amount": 102372.2223952992208771270032,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2032,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2033,
+          "Amount": -412723.12512166598829683834880,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2033,
+          "Amount": 114479.83566079184393374950936,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2033,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2034,
+          "Amount": -448620.70922409930806277511578,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2034,
+          "Amount": 127131.40625612191861067686463,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2034,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2035,
+          "Amount": -484795.39760858129422403061810,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2035,
+          "Amount": 140346.86747982202191509033796,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2035,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2036,
+          "Amount": -521218.05976075292010851123046,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2036,
+          "Amount": 154146.82292095345723355807883,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2036,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2037,
+          "Amount": -557925.05675596797851068145507,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2037,
+          "Amount": 168552.56801365357110480015254,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2037,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2038,
+          "Amount": -594920.11269108733808089508417,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2038,
+          "Amount": 183586.11226723611859526419509,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2038,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2039,
+          "Amount": -632207.02614490908484251298585,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2039,
+          "Amount": 199270.20219268960131758855968,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2039,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2040,
+          "Amount": -669789.67166780726653936324557,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2040,
+          "Amount": 215628.34494705541650487198398,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2040,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2041,
+          "Amount": -707704.71130116341187015051048,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2041,
+          "Amount": 232684.83271782390869072902636,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2041,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2042,
+          "Amount": -718237.55612718668010755352069,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2042,
+          "Amount": 250464.76787016259223597599767,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2042,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        }
+      ],
+      "ScenarioSeries": [
+        {
+          "Year": 2022,
+          "Amount": -30920.42,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2022,
+          "Amount": 7056.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2023,
+          "Amount": -61840.84,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2023,
+          "Amount": 14112.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2024,
+          "Amount": -92761.26,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2024,
+          "Amount": 21168.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2025,
+          "Amount": -123681.68,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2025,
+          "Amount": 28224.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2026,
+          "Amount": -154602.10,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2026,
+          "Amount": 35280.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2027,
+          "Amount": -185522.52,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2027,
+          "Amount": 42336.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2028,
+          "Amount": -216442.94,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2028,
+          "Amount": 49392.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2029,
+          "Amount": -247363.36,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2029,
+          "Amount": 56448.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2030,
+          "Amount": -278283.78,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2030,
+          "Amount": 63504.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2031,
+          "Amount": -309204.20,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2031,
+          "Amount": 70560.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2032,
+          "Amount": -340124.62,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2032,
+          "Amount": 77616.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2033,
+          "Amount": -371045.04,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2033,
+          "Amount": 84672.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2034,
+          "Amount": -401965.46,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2034,
+          "Amount": 91728.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2035,
+          "Amount": -432885.88,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2035,
+          "Amount": 98784.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2036,
+          "Amount": -463806.30,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2036,
+          "Amount": 105840.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2037,
+          "Amount": -494726.72,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2037,
+          "Amount": 112896.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2038,
+          "Amount": -525647.14,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2038,
+          "Amount": 119952.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2039,
+          "Amount": -556567.56,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2039,
+          "Amount": 127008.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2040,
+          "Amount": -587487.98,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2040,
+          "Amount": 134064.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2041,
+          "Amount": -618408.40,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2041,
+          "Amount": 141120.0,
+          "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2042,
+          "Amount": -479020.800,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2042,
+          "Amount": 0.0,
+          "AccountType": "ThirdPillar"
+        }
+      ],
+      "BenchmarkTransactions": null,
+      "ScenarioTransactions": null
+    },
+    "Left": null
+  }
+]

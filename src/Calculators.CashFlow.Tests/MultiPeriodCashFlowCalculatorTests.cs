@@ -95,7 +95,7 @@ public class MultiPeriodCashFlowCalculatorTests : IClassFixture<CashFlowFixture<
                 },
                 DateOfProcess = new DateTime(2021, 1, 1),
                 NetCapitalGrowthRate = 0.02M,
-                NetInterestRate = 0.01M,
+                NetIncomeRate = 0.01M,
                 RecurringInvestment = new RecurringInvestment
                 {
                     Amount = 6723,

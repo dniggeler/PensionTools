@@ -12,13 +12,13 @@ public interface ITaxScenarioCalculator
     /// <param name="person"></param>
     /// <param name="scenarioModel"></param>
     /// <returns></returns>
-    Task<Either<string, CapitalBenefitTransferInResult>> CapitalBenefitTransferInsAsync(
+    Task<Either<string, ScenarioCalculationResult>> CapitalBenefitTransferInsAsync(
         int startingYear,
         int bfsMunicipalityId,
         TaxPerson person,
         CapitalBenefitTransferInsScenarioModel scenarioModel);
 
-    Task<Either<string, CapitalBenefitTransferInResult>> ThirdPillarVersusSelfInvestmentAsync(
+    Task<Either<string, ScenarioCalculationResult>> ThirdPillarVersusSelfInvestmentAsync(
         int startingYear,
         int bfsMunicipalityId,
         TaxPerson person,

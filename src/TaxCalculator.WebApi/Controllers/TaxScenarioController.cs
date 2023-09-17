@@ -133,7 +133,9 @@ public class TaxScenarioController : ControllerBase
             {
                 FinalYear = request.FinalYear,
                 InvestmentAmount = request.InvestmentAmount,
-                InvestmentExcessReturn = request.InvestmentExcessReturn,
+                InvestmentNetGrowthRate = request.InvestmentNetGrowthRate,
+                InvestmentNetIncomeYield = request.InvestmentNetIncomeRate,
+                ThirdPillarNetGrowthRate = request.ThirdPillarNetGrowthRate,
             };
         }
 
