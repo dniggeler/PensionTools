@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Domain.Enums;
+using FluentValidation;
 using PensionCoach.Tools.BvgCalculator.Models;
 using PensionCoach.Tools.CommonTypes;
 

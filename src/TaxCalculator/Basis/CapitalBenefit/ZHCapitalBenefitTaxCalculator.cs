@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Domain.Enums;
 using FluentValidation;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes;

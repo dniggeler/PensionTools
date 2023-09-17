@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Calculators.CashFlow;
 using Calculators.CashFlow.Models;
+using Domain.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PensionCoach.Tools.CommonTypes;

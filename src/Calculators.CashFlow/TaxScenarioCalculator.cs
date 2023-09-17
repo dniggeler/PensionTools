@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Calculators.CashFlow.Models;
+using Domain.Enums;
+using Domain.Models.Municipality;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
-using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
 

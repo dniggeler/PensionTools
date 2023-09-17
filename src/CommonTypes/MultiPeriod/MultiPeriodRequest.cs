@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using Domain.Enums;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod
 {

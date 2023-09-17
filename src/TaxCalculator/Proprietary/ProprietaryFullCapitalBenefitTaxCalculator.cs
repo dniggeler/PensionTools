@@ -2,9 +2,10 @@
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Domain.Enums;
+using Domain.Models.Municipality;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;

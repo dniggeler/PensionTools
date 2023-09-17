@@ -5,8 +5,8 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
+using Domain.Models.Municipality;
 using Microsoft.Extensions.Configuration;
-using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace BlazorApp.Services

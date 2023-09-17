@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Domain.Enums;
 using LanguageExt;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using PensionCoach.Tools.CommonTypes;

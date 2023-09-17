@@ -1,4 +1,6 @@
-﻿namespace PensionCoach.Tools.CommonTypes.Tax
+﻿using Domain.Enums;
+
+namespace PensionCoach.Tools.CommonTypes.Tax
 {
     public record TaxPersonBasic
     {

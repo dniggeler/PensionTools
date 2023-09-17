@@ -1,4 +1,6 @@
-﻿namespace PensionCoach.Tools.CommonTypes.Municipality
+﻿using Domain.Enums;
+
+namespace Domain.Models.Municipality
 {
     public class MunicipalitySearchFilter
     {

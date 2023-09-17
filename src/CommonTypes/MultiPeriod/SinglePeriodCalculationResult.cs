@@ -1,4 +1,6 @@
-﻿namespace PensionCoach.Tools.CommonTypes.MultiPeriod
+﻿using Domain.Enums;
+
+namespace PensionCoach.Tools.CommonTypes.MultiPeriod
 {
     public class SinglePeriodCalculationResult
     {

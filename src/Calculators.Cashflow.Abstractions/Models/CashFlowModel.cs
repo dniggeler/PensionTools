@@ -1,4 +1,5 @@
 ﻿using System;
+using Domain.Enums;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
 

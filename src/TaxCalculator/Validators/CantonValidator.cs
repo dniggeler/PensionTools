@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Domain.Enums;
 using FluentValidation;
 using PensionCoach.Tools.CommonTypes;
 

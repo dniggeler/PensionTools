@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Calculators.CashFlow.Models;
+using Domain.Enums;
 using LanguageExt;
 using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.CommonTypes;

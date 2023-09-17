@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Domain.Enums;
 
-namespace PensionCoach.Tools.CommonTypes.Municipality
+namespace Domain.Models.Municipality
 {
     public class MunicipalityModel
     {

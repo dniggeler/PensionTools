@@ -1,6 +1,7 @@
 ﻿using BlazorApp.Services;
 using BlazorApp.ViewModels;
 using Bunit;
+using Domain.Enums;
 using PensionCoach.Tools.CommonTypes;
 
 namespace BlazorApp.Components.Tests;

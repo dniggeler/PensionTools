@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PensionCoach.Tools.CommonTypes;
+namespace Domain.Enums;
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum Canton

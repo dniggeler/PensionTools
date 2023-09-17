@@ -1,8 +1,9 @@
-﻿namespace PensionCoach.Tools.CommonTypes.MultiPeriod
+﻿using Domain.Enums;
+
+namespace PensionCoach.Tools.CommonTypes.MultiPeriod;
+
+public record RecurringInvestment
 {
-    public record RecurringInvestment
-    {
-        public decimal Amount { get; set; }
-        public FrequencyType Frequency { get; set; }
-    }
+    public decimal Amount { get; set; }
+    public FrequencyType Frequency { get; set; }
 }

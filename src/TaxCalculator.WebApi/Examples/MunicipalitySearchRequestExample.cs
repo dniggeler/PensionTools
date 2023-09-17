@@ -1,5 +1,6 @@
-﻿using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.CommonTypes.Municipality;
+﻿using Domain.Enums;
+using Domain.Models.Municipality;
+using PensionCoach.Tools.CommonTypes;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace TaxCalculator.WebApi.Examples

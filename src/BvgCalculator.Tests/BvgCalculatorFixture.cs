@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Domain.Enums;
 using LanguageExt;
 using Microsoft.Extensions.DependencyInjection;
 using PensionCoach.Tools.BvgCalculator;

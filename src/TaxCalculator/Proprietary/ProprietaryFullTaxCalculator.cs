@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
+using Domain.Models.Municipality;
 using LanguageExt;
-using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models;

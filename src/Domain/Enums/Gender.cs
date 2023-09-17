@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PensionCoach.Tools.CommonTypes
+namespace Domain.Enums
 {
     /// <summary>
     /// Represents the gender of a human being.

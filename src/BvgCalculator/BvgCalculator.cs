@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Enums;
 using FluentValidation;
 using FluentValidation.Results;
 using LanguageExt;

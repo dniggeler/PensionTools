@@ -1,4 +1,5 @@
-﻿using PensionCoach.Tools.CommonTypes;
+﻿using Domain.Enums;
+using PensionCoach.Tools.CommonTypes;
 using Tax.Data.Abstractions.Models;
 
 namespace PensionCoach.Tools.TaxCalculator.Utils

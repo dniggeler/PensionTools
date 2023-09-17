@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Domain.Models.Municipality;
 using LanguageExt;
-using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions

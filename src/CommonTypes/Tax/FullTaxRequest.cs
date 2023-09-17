@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Domain.Enums;
 
 namespace PensionCoach.Tools.CommonTypes.Tax
 {

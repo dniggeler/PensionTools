@@ -3,12 +3,12 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentValidation;
-using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Tax.Tools.Comparison.Abstractions;
 using System.Threading.Channels;
 using System.Threading;
+using Domain.Models.Municipality;
 using PensionCoach.Tools.TaxComparison;
 
 namespace Tax.Tools.Comparison

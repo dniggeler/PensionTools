@@ -1,4 +1,5 @@
-﻿using PensionCoach.Tools.CommonTypes;
+﻿using Domain.Enums;
+using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxComparison;
 using Swashbuckle.AspNetCore.Filters;
 
