@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using PensionCoach.Tools.PostOpenApi.Models;
+using Infrastructure.PostOpenApi.Models;
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions;
 

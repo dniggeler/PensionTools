@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using PensionCoach.Tools.PostOpenApi.Models;
+using Infrastructure.PostOpenApi.Models;
 
 namespace TaxCalculator.WebApi.Controllers;
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace PensionCoach.Tools.PostOpenApi;
+namespace Infrastructure.PostOpenApi;
 
 public static class ServiceCollectionExtensions
 {

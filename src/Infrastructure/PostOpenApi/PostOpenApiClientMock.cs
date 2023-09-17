@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
+using Infrastructure.PostOpenApi.Models;
 using LanguageExt;
-using PensionCoach.Tools.PostOpenApi.Models;
 
-namespace PensionCoach.Tools.PostOpenApi;
+namespace Infrastructure.PostOpenApi;
 
 /// <summary>
 /// Not yet used as Post Open API is not part of any user calls.

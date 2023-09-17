@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PensionCoach.Tools.PostOpenApi.Models;
+namespace Infrastructure.PostOpenApi.Models;
 
 public class OpenApiZipFields
 {

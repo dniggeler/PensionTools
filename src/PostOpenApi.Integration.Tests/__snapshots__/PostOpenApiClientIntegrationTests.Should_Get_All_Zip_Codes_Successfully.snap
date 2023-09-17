@@ -2648,15 +2648,6 @@
   {
     "BfsCode": 243,
     "ZipCode": "8953",
-    "ZipCodeAddOn": "02",
-    "MunicipalityName": "Dietikon Glanzenberg",
-    "Canton": "ZH",
-    "DateOfValidity": "1995-12-13T00:00:00",
-    "LanguageCode": 0
-  },
-  {
-    "BfsCode": 243,
-    "ZipCode": "8953",
     "ZipCodeAddOn": "04",
     "MunicipalityName": "Dietikon Silbern",
     "Canton": "ZH",
@@ -15240,7 +15231,7 @@
     "BfsCode": 2125,
     "ZipCode": "1630",
     "ZipCodeAddOn": "70",
-    "MunicipalityName": "Bulle Dist Fil",
+    "MunicipalityName": "Bulle Distribution colis",
     "Canton": "FR",
     "DateOfValidity": "1999-04-06T00:00:00",
     "LanguageCode": 0

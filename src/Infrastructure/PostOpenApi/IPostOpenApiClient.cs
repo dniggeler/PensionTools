@@ -1,6 +1,6 @@
-﻿using PensionCoach.Tools.PostOpenApi.Models;
+﻿using Infrastructure.PostOpenApi.Models;
 
-namespace PensionCoach.Tools.PostOpenApi;
+namespace Infrastructure.PostOpenApi;
 
 public interface IPostOpenApiClient
 {

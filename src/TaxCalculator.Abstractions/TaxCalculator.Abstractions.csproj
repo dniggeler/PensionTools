@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CommonTypes\CommonTypes.csproj" />
-    <ProjectReference Include="..\PostOpenApi.Client\PostOpenApi.Client.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\Tax.Data.Abstractions\Tax.Data.Abstractions.csproj" />
   </ItemGroup>
 
