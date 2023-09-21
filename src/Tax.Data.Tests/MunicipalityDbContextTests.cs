@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Domain.Models.Municipality;
+using Domain.Models.Tax;
 using FluentAssertions;
+using Infrastructure.Tax.Data;
 using Microsoft.Extensions.DependencyInjection;
-using Tax.Data.Abstractions.Models;
 using Xunit;
 
 namespace Tax.Data.Tests;

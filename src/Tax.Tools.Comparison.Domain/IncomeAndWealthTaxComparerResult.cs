@@ -1,6 +1,5 @@
-﻿using Domain.Enums;
-using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
+﻿using Application.Tax.Proprietary.Abstractions.Models;
+using Domain.Enums;
 
 namespace PensionCoach.Tools.TaxComparison;
 

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Application.Tax.Proprietary;
+using Application.Tax.Proprietary.Abstractions;
+using Application.Tax.Proprietary.Abstractions.Models.Person;
 using Domain.Enums;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;
 using Xunit;
 

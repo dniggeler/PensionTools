@@ -1,5 +1,13 @@
 ﻿using System;
 using Application.Enums;
+using Application.Tax.Proprietary;
+using Application.Tax.Proprietary.Abstractions;
+using Application.Tax.Proprietary.Abstractions.Models;
+using Application.Tax.Proprietary.Abstractions.Models.Person;
+using Application.Tax.Proprietary.Basis.CapitalBenefit;
+using Application.Tax.Proprietary.Basis.Income;
+using Application.Tax.Proprietary.Basis.Wealth;
+using Application.Validators;
 using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Tax;
@@ -8,16 +16,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PensionCoach.Tools.CommonUtils;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
-using PensionCoach.Tools.TaxCalculator.Basis.CapitalBenefit;
-using PensionCoach.Tools.TaxCalculator.Basis.Income;
-using PensionCoach.Tools.TaxCalculator.Basis.Wealth;
 using PensionCoach.Tools.TaxCalculator.Estv;
 using PensionCoach.Tools.TaxCalculator.Mapping;
 using PensionCoach.Tools.TaxCalculator.Mock;
 using PensionCoach.Tools.TaxCalculator.Proprietary;
-using PensionCoach.Tools.TaxCalculator.Validators;
 
 namespace PensionCoach.Tools.TaxCalculator
 {

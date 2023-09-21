@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Domain.Enums;
-using PensionCoach.Tools.CommonTypes;
 
 namespace PensionCoach.Tools.TaxComparison;
 

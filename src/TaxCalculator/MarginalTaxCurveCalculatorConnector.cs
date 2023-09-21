@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Tax.Proprietary;
+using Application.Tax.Proprietary.Abstractions;
+using Application.Tax.Proprietary.Abstractions.Models;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using LanguageExt;
-using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
 namespace PensionCoach.Tools.TaxCalculator;
 

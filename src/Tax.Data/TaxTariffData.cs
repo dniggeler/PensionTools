@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Domain.Contracts.Data;
+using Domain.Models.Tax;
+using Infrastructure.Tax.Data;
 using Microsoft.EntityFrameworkCore;
-using Tax.Data.Abstractions;
-using Tax.Data.Abstractions.Models;
 
 namespace Tax.Data
 {

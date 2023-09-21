@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Tax.Proprietary.Abstractions.Models;
 using Domain.Enums;
 using Domain.Models.Tax;
 using LanguageExt;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
 namespace TaxCalculator.WebApi.HealthChecks;
 

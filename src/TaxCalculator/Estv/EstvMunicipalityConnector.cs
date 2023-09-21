@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Municipality;
+using Infrastructure.Tax.Data;
 using LanguageExt;
 using Microsoft.EntityFrameworkCore;
 using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Tax.Data;
-using Tax.Data.Abstractions.Models;
 
 namespace PensionCoach.Tools.TaxCalculator.Estv;
 

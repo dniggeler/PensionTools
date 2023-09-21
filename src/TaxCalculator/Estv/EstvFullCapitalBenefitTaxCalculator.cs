@@ -1,11 +1,13 @@
 ﻿using System.Threading.Tasks;
+using Application.Tax.Proprietary;
+using Application.Tax.Proprietary.Abstractions;
+using Application.Tax.Proprietary.Abstractions.Models;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using Infrastructure.EstvTaxCalculator.Client;
 using Infrastructure.EstvTaxCalculator.Client.Models;
 using LanguageExt;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 
 namespace PensionCoach.Tools.TaxCalculator.Estv;
 

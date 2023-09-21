@@ -1,8 +1,10 @@
 ﻿using System;
+using Domain.Contracts.Data;
+using Infrastructure.Tax.Data;
+using Infrastructure.Tax.Data.Populate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Tax.Data.Abstractions;
 
 namespace Tax.Data
 {

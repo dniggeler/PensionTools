@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using Domain.Models.Municipality;
 using Infrastructure.EstvTaxCalculator.Client;
 using Infrastructure.EstvTaxCalculator.Client.Models;
+using Infrastructure.Tax.Data;
+using Infrastructure.Tax.Data.Populate;
 using Microsoft.EntityFrameworkCore;
-using Tax.Data.Abstractions;
-using Tax.Data.Abstractions.Models;
-using Tax.Data.Abstractions.Models.Populate;
 
 namespace Tax.Data;
 

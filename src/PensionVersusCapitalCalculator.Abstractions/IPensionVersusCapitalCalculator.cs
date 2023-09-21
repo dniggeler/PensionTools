@@ -2,20 +2,16 @@
 using Domain.Enums;
 using Domain.Models.Tax;
 using LanguageExt;
-using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.CommonTypes.Tax;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 
-namespace PensionVersusCapitalCalculator.Abstractions
+namespace PensionVersusCapitalCalculator.Abstractions;
+
+public interface IPensionVersusCapitalCalculator
 {
-    public interface IPensionVersusCapitalCalculator
-    {
-        Task<Option<decimal>> CalculateAsync(
-            int calculationYear,
-            int municipalityId,
-            Canton canton,
-            decimal retirementPension,
-            decimal retirementCapital,
-            TaxPerson taxPerson);
-    }
+    Task<Option<decimal>> CalculateAsync(
+        int calculationYear,
+        int municipalityId,
+        Canton canton,
+        decimal retirementPension,
+        decimal retirementCapital,
+        TaxPerson taxPerson);
 }

@@ -1,7 +1,6 @@
 ﻿using LanguageExt;
-using PensionCoach.Tools.CommonTypes.Tax;
-using PensionCoach.Tools.TaxCalculator.Abstractions.Models;
 using System.Threading.Tasks;
+using Application.Tax.Proprietary.Abstractions.Models;
 using Domain.Models.Tax;
 
 namespace PensionCoach.Tools.TaxCalculator.Abstractions;

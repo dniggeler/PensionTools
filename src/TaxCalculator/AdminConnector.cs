@@ -5,15 +5,15 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using Domain.Models.Tax;
 using Infrastructure.PostOpenApi;
 using Infrastructure.PostOpenApi.Models;
+using Infrastructure.Tax.Data;
+using Infrastructure.Tax.Data.Populate;
 using LanguageExt;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonUtils;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
-using Tax.Data;
-using Tax.Data.Abstractions;
-using Tax.Data.Abstractions.Models;
 
 namespace PensionCoach.Tools.TaxCalculator;
 

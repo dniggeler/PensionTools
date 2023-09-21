@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Application.Tax.Proprietary;
+using Application.Tax.Proprietary.Abstractions;
 using Domain.Enums;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using FluentAssertions;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Snapshooter.Xunit;
 using Xunit;
 
