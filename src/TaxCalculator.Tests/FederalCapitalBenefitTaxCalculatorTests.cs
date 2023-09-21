@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Domain.Enums;
-using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
 using PensionCoach.Tools.TaxCalculator.Abstractions.Models.Person;
 using Snapshooter.Xunit;
