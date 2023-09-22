@@ -4,52 +4,53 @@ using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using LanguageExt;
 
-namespace Application.Features.FullTaxCalculation;
-
-public class TaxCalculatorConnector : ITaxCalculatorConnector
+namespace Application.Features.FullTaxCalculation
 {
-    private readonly int[] supportedTaxYears = { 2019 };
-
-    private readonly IFullWealthAndIncomeTaxCalculator fullWealthAndIncomeTaxCalculator;
-    private readonly IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator;
-    private readonly IMunicipalityConnector municipalityResolver;
-
-    public TaxCalculatorConnector(
-        IFullWealthAndIncomeTaxCalculator fullWealthAndIncomeTaxCalculator,
-        IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator,
-        IMunicipalityConnector municipalityResolver)
+    public class TaxCalculatorConnector : ITaxCalculatorConnector
     {
-        this.fullWealthAndIncomeTaxCalculator = fullWealthAndIncomeTaxCalculator;
-        this.fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;
-        this.municipalityResolver = municipalityResolver;
-    }
+        private readonly int[] supportedTaxYears = { 2019 };
 
-    public async Task<Either<string, FullTaxResult>> CalculateAsync(
-        int calculationYear, int bfsMunicipalityId, TaxPerson person, bool withMaxAvailableCalculationYear = false)
-    {
-        Either<string, MunicipalityModel> municipalityData =
-            await municipalityResolver.GetAsync(bfsMunicipalityId, calculationYear);
+        private readonly IFullWealthAndIncomeTaxCalculator fullWealthAndIncomeTaxCalculator;
+        private readonly IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator;
+        private readonly IMunicipalityConnector municipalityResolver;
 
-        return await municipalityData
-            .BindAsync(m => fullWealthAndIncomeTaxCalculator.CalculateAsync(
-                calculationYear, m, person));
-    }
+        public TaxCalculatorConnector(
+            IFullWealthAndIncomeTaxCalculator fullWealthAndIncomeTaxCalculator,
+            IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator,
+            IMunicipalityConnector municipalityResolver)
+        {
+            this.fullWealthAndIncomeTaxCalculator = fullWealthAndIncomeTaxCalculator;
+            this.fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;
+            this.municipalityResolver = municipalityResolver;
+        }
 
-    public async Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
-        int calculationYear, int bfsMunicipalityId, CapitalBenefitTaxPerson person, bool withMaxAvailableCalculationYear = false)
-    {
-        Either<string, MunicipalityModel> municipalityData =
-            await municipalityResolver.GetAsync(bfsMunicipalityId, calculationYear);
+        public async Task<Either<string, FullTaxResult>> CalculateAsync(
+            int calculationYear, int bfsMunicipalityId, TaxPerson person, bool withMaxAvailableCalculationYear = false)
+        {
+            Either<string, MunicipalityModel> municipalityData =
+                await municipalityResolver.GetAsync(bfsMunicipalityId, calculationYear);
 
-        return await municipalityData
+            return await municipalityData
+                .BindAsync(m => fullWealthAndIncomeTaxCalculator.CalculateAsync(
+                    calculationYear, m, person));
+        }
+
+        public async Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
+            int calculationYear, int bfsMunicipalityId, CapitalBenefitTaxPerson person, bool withMaxAvailableCalculationYear = false)
+        {
+            Either<string, MunicipalityModel> municipalityData =
+                await municipalityResolver.GetAsync(bfsMunicipalityId, calculationYear);
+
+            return await municipalityData
                 .BindAsync(m => fullCapitalBenefitTaxCalculator.CalculateAsync(
                     calculationYear,
                     m,
                     person));
-    }
+        }
 
-    public Task<int[]> GetSupportedTaxYears()
-    {
-        return supportedTaxYears.AsTask();
+        public Task<int[]> GetSupportedTaxYears()
+        {
+            return supportedTaxYears.AsTask();
+        }
     }
 }

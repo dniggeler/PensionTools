@@ -1,10 +1,11 @@
 ﻿using Domain.Models.Tax;
 
-namespace Application.Tax.Proprietary.Abstractions.Models;
-
-public class MarginalTaxCurveResult
+namespace Application.Tax.Proprietary.Abstractions.Models
 {
-    public MarginalTaxInfo CurrentMarginalTaxRate { get; set; }
+    public class MarginalTaxCurveResult
+    {
+        public MarginalTaxInfo CurrentMarginalTaxRate { get; set; }
 
-    public IList<MarginalTaxInfo> MarginalTaxCurve { get; set; } = new List<MarginalTaxInfo>();
+        public IList<MarginalTaxInfo> MarginalTaxCurve { get; set; } = new List<MarginalTaxInfo>();
+    }
 }

@@ -12,36 +12,37 @@ using Snapshooter.Xunit;
 using TaxCalculator.WebApi;
 using Xunit;
 
-namespace TaxCalculator.Integration.Tests;
-
-[Trait("Tax Calculator", "Integration")]
-public class TaxCalculatorIntegrationTests : IClassFixture<WebApplicationFactory<Startup>>
+namespace TaxCalculator.Integration.Tests
 {
-    private readonly HttpClient client;
-
-    public TaxCalculatorIntegrationTests()
+    [Trait("Tax Calculator", "Integration")]
+    public class TaxCalculatorIntegrationTests : IClassFixture<WebApplicationFactory<Startup>>
     {
-        var testServer = new TestServer(
-            new WebHostBuilder()
-                .ConfigureAppConfiguration((_, builder) =>
-                {
-                    builder.AddJsonFile("appsettings.integration.json");
-                })
-                .UseStartup<Startup>());
+        private readonly HttpClient client;
 
-        client = testServer.CreateClient();
-        client.BaseAddress = new Uri("http://localhost/api/calculators/tax/");
-    }
+        public TaxCalculatorIntegrationTests()
+        {
+            var testServer = new TestServer(
+                new WebHostBuilder()
+                    .ConfigureAppConfiguration((_, builder) =>
+                    {
+                        builder.AddJsonFile("appsettings.integration.json");
+                    })
+                    .UseStartup<Startup>());
 
-    [Fact(DisplayName = "Full Tax Supported Municipalities")]
-    public async Task Get_Full_Tax_Supported_Municipalities()
-    {
-        // given
+            client = testServer.CreateClient();
+            client.BaseAddress = new Uri("http://localhost/api/calculators/tax/");
+        }
 
-        // when
-        var result = await client.GetFromJsonAsync<IEnumerable<TaxSupportedMunicipalityModel>>("municipality");
+        [Fact(DisplayName = "Full Tax Supported Municipalities")]
+        public async Task Get_Full_Tax_Supported_Municipalities()
+        {
+            // given
 
-        // then
-        Snapshot.Match(result);
+            // when
+            var result = await client.GetFromJsonAsync<IEnumerable<TaxSupportedMunicipalityModel>>("municipality");
+
+            // then
+            Snapshot.Match(result);
+        }
     }
 }

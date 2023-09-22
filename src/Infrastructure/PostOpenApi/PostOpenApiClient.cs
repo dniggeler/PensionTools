@@ -1,28 +1,29 @@
 ﻿using System.Net.Http.Json;
 using Infrastructure.PostOpenApi.Models;
 
-namespace Infrastructure.PostOpenApi;
-
-public class PostOpenApiClient : IPostOpenApiClient
+namespace Infrastructure.PostOpenApi
 {
-    internal static string ClientName = "PostOpenApiClient";
-
-    private readonly IHttpClientFactory httpClientFactory;
-
-    public PostOpenApiClient(IHttpClientFactory httpClientFactory)
+    public class PostOpenApiClient : IPostOpenApiClient
     {
-        this.httpClientFactory = httpClientFactory;
-    }
+        internal static string ClientName = "PostOpenApiClient";
 
-    public Task<OpenApiZipInfo> GetZipCodesAsync(int limit, int offset)
-    {
-        string[] fieldNames = { "postleitzahl","plz_zz", "gilt_ab_dat", "bfsnr", "kanton", "ortbez27" } ;
+        private readonly IHttpClientFactory httpClientFactory;
 
-        HttpClient client = httpClientFactory.CreateClient(ClientName);
+        public PostOpenApiClient(IHttpClientFactory httpClientFactory)
+        {
+            this.httpClientFactory = httpClientFactory;
+        }
 
-        string partFields = string.Join("%2C%20", fieldNames);
+        public Task<OpenApiZipInfo> GetZipCodesAsync(int limit, int offset)
+        {
+            string[] fieldNames = { "postleitzahl","plz_zz", "gilt_ab_dat", "bfsnr", "kanton", "ortbez27" } ;
 
-        return client.GetFromJsonAsync<OpenApiZipInfo>(
-            $"plz_verzeichnis_v2/records?select={partFields}&limit={limit}&offset={offset}&timezone=UTC");
+            HttpClient client = httpClientFactory.CreateClient(ClientName);
+
+            string partFields = string.Join("%2C%20", fieldNames);
+
+            return client.GetFromJsonAsync<OpenApiZipInfo>(
+                $"plz_verzeichnis_v2/records?select={partFields}&limit={limit}&offset={offset}&timezone=UTC");
+        }
     }
 }

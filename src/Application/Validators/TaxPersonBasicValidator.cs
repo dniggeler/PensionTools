@@ -2,16 +2,17 @@
 using Domain.Models.Tax;
 using FluentValidation;
 
-namespace Application.Validators;
-
-public class TaxPersonBasicValidator : AbstractValidator<TaxPersonBasic>
+namespace Application.Validators
 {
-    public TaxPersonBasicValidator()
+    public class TaxPersonBasicValidator : AbstractValidator<TaxPersonBasic>
     {
-        RuleFor(x => x.Name).NotNull().NotEmpty();
+        public TaxPersonBasicValidator()
+        {
+            RuleFor(x => x.Name).NotNull().NotEmpty();
 
-        RuleFor(x => x.NumberOfChildren).GreaterThanOrEqualTo(0);
+            RuleFor(x => x.NumberOfChildren).GreaterThanOrEqualTo(0);
 
-        RuleFor(x => x.CivilStatus).Must(x => x != CivilStatus.Undefined);
+            RuleFor(x => x.CivilStatus).Must(x => x != CivilStatus.Undefined);
+        }
     }
 }

@@ -5,30 +5,31 @@ using Domain.Enums;
 using LanguageExt;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Tax.Proprietary.Basis.Income;
-
-/// <summary>
-/// Null basis income calculator for missing cantons.
-/// </summary>
-/// <seealso cref="IBasisIncomeTaxCalculator" />
-public class MissingBasisIncomeTaxCalculator : IBasisIncomeTaxCalculator
+namespace Application.Tax.Proprietary.Basis.Income
 {
-    private readonly ILogger<MissingBasisIncomeTaxCalculator> logger;
-
-    public MissingBasisIncomeTaxCalculator(ILogger<MissingBasisIncomeTaxCalculator> logger)
+    /// <summary>
+    /// Null basis income calculator for missing cantons.
+    /// </summary>
+    /// <seealso cref="IBasisIncomeTaxCalculator" />
+    public class MissingBasisIncomeTaxCalculator : IBasisIncomeTaxCalculator
     {
-        this.logger = logger;
-    }
+        private readonly ILogger<MissingBasisIncomeTaxCalculator> logger;
 
-    public Task<Either<string, BasisTaxResult>> CalculateAsync(
-        int calculationYear, Canton canton, BasisTaxPerson person)
-    {
-        string msg = $"No income tax calculator for canton {canton.ToString()} available";
+        public MissingBasisIncomeTaxCalculator(ILogger<MissingBasisIncomeTaxCalculator> logger)
+        {
+            this.logger = logger;
+        }
 
-        Either<string, BasisTaxResult> result = msg;
+        public Task<Either<string, BasisTaxResult>> CalculateAsync(
+            int calculationYear, Canton canton, BasisTaxPerson person)
+        {
+            string msg = $"No income tax calculator for canton {canton.ToString()} available";
 
-        logger.LogWarning(msg);
+            Either<string, BasisTaxResult> result = msg;
 
-        return Task.FromResult(result);
+            logger.LogWarning(msg);
+
+            return Task.FromResult(result);
+        }
     }
 }

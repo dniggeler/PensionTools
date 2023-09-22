@@ -1,11 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Domain.Enums;
-
-[JsonConverter(typeof(JsonStringEnumConverter))]
-public enum FrequencyType
+namespace Domain.Enums
 {
-    Daily,
-    Monthly,
-    Yearly
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public enum FrequencyType
+    {
+        Daily,
+        Monthly,
+        Yearly
+    }
 }

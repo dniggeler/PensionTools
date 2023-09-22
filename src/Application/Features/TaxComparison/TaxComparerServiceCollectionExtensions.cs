@@ -1,11 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.Features.TaxComparison;
-
-public static class TaxComparerServiceCollectionExtensions
+namespace Application.Features.TaxComparison
 {
-    public static void AddTaxComparers(this IServiceCollection collection)
+    public static class TaxComparerServiceCollectionExtensions
     {
-        collection.AddTransient<ITaxComparer, TaxComparer>();
+        public static void AddTaxComparers(this IServiceCollection collection)
+        {
+            collection.AddTransient<ITaxComparer, TaxComparer>();
+        }
     }
 }

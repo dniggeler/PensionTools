@@ -1,10 +1,11 @@
-﻿namespace PensionCoach.Tools.CommonTypes.Tax;
-
-public enum TaxType
+﻿namespace PensionCoach.Tools.CommonTypes.Tax
 {
-    Undefined = 0,
-    Income = 1,
-    CapitalBenefits = 2,
-    Person = 3,
-    Wealth = 4
+    public enum TaxType
+    {
+        Undefined = 0,
+        Income = 1,
+        CapitalBenefits = 2,
+        Person = 3,
+        Wealth = 4
+    }
 }

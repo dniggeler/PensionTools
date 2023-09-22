@@ -2,10 +2,11 @@
 using Application.Tax.Proprietary.Abstractions.Models.Person;
 using LanguageExt;
 
-namespace Application.Tax.Proprietary.Abstractions;
-
-public interface IFederalCapitalBenefitTaxCalculator
+namespace Application.Tax.Proprietary.Abstractions
 {
-    Task<Either<string, BasisTaxResult>> CalculateAsync(
-        int calculationYear, FederalTaxPerson person);
+    public interface IFederalCapitalBenefitTaxCalculator
+    {
+        Task<Either<string, BasisTaxResult>> CalculateAsync(
+            int calculationYear, FederalTaxPerson person);
+    }
 }

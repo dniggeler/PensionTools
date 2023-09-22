@@ -1,8 +1,9 @@
-﻿namespace Application.Tax.Proprietary.Abstractions.Models;
-
-public enum TariffType
+﻿namespace Application.Tax.Proprietary.Abstractions.Models
 {
-    Undefined = 0,
-    Base = 1, 
-    Married = 2
+    public enum TariffType
+    {
+        Undefined = 0,
+        Base = 1, 
+        Married = 2
+    }
 }

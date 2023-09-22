@@ -2,19 +2,20 @@
 using Domain.Enums;
 using Swashbuckle.AspNetCore.Filters;
 
-namespace TaxCalculator.WebApi.Examples;
-
-public class CapitalBenefitTaxComparerRequestExample : IExamplesProvider<CapitalBenefitTaxComparerRequest>
+namespace TaxCalculator.WebApi.Examples
 {
-    public CapitalBenefitTaxComparerRequest GetExamples()
+    public class CapitalBenefitTaxComparerRequestExample : IExamplesProvider<CapitalBenefitTaxComparerRequest>
     {
-        return new CapitalBenefitTaxComparerRequest
+        public CapitalBenefitTaxComparerRequest GetExamples()
         {
-            Name = "Test",
-            CivilStatus = CivilStatus.Single,
-            ReligiousGroup = ReligiousGroupType.Other,
-            TaxableBenefits = 1000_000,
-            BfsNumberList = new []{ 261, 24, 3 }
-        };
+            return new CapitalBenefitTaxComparerRequest
+            {
+                Name = "Test",
+                CivilStatus = CivilStatus.Single,
+                ReligiousGroup = ReligiousGroupType.Other,
+                TaxableBenefits = 1000_000,
+                BfsNumberList = new []{ 261, 24, 3 }
+            };
+        }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using LanguageExt;
 
-namespace Application.Tax.Proprietary.Abstractions.Models;
-
-public class PollTaxResult
+namespace Application.Tax.Proprietary.Abstractions.Models
 {
-    public Option<decimal> CantonTaxAmount { get; set; }
+    public class PollTaxResult
+    {
+        public Option<decimal> CantonTaxAmount { get; set; }
 
-    public Option<decimal> MunicipalityTaxAmount { get; set; }
+        public Option<decimal> MunicipalityTaxAmount { get; set; }
+    }
 }

@@ -2,16 +2,17 @@
 using BlazorApp.Services.Mock;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BlazorApp.Services;
-
-public static class BlazorMockServicesExtensions
+namespace BlazorApp.Services
 {
-    public static IServiceCollection AddMockServices(this IServiceCollection services)
+    public static class BlazorMockServicesExtensions
     {
-        services.AddScoped<IApexChartConfigurator, ApexChartConfigurator>();
-        services.AddScoped<IPersonService, MockedPersonService>();
-        services.AddScoped<ICheckSettingsService, MockedCheckSettingsCheck>();
+        public static IServiceCollection AddMockServices(this IServiceCollection services)
+        {
+            services.AddScoped<IApexChartConfigurator, ApexChartConfigurator>();
+            services.AddScoped<IPersonService, MockedPersonService>();
+            services.AddScoped<ICheckSettingsService, MockedCheckSettingsCheck>();
         
-        return services;
+            return services;
+        }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Domain.Models.Cashflows;
 using Domain.Models.MultiPeriod;
 
-namespace Calculators.CashFlow.Models;
+namespace Domain.Models.Scenarios;
 
 public record ScenarioCalculationResult
 {

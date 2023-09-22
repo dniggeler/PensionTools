@@ -1,3 +1,4 @@
-﻿namespace Domain.Contracts;
-
-public interface IStaticCashFlowDefinition : ICashFlowDefinition { }
+﻿namespace Domain.Contracts
+{
+    public interface IStaticCashFlowDefinition : ICashFlowDefinition { }
+}

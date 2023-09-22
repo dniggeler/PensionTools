@@ -1,6 +1,7 @@
-﻿namespace Domain.Models.Tax;
-
-public record CapitalBenefitTaxPerson : TaxPersonBasic
+﻿namespace Domain.Models.Tax
 {
-    public decimal TaxableCapitalBenefits { get; set; } 
+    public record CapitalBenefitTaxPerson : TaxPersonBasic
+    {
+        public decimal TaxableCapitalBenefits { get; set; } 
+    }
 }

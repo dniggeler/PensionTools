@@ -1,9 +1,10 @@
-﻿namespace Infrastructure.Tax.Data.Populate;
-
-public enum SearchResultType
+﻿namespace Infrastructure.Tax.Data.Populate
 {
-    None,
-    Match,
-    NotUnique,
-    NotSet
+    public enum SearchResultType
+    {
+        None,
+        Match,
+        NotUnique,
+        NotSet
+    }
 }

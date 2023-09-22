@@ -1,16 +1,17 @@
 ﻿using Domain.Enums;
 using FluentValidation;
 
-namespace Application.Validators;
-
-public class CantonValidator : AbstractValidator<Canton>
+namespace Application.Validators
 {
-    private static readonly Canton[] SupportedCantons = { Canton.ZH, Canton.SG, Canton.SO };
-
-    public CantonValidator()
+    public class CantonValidator : AbstractValidator<Canton>
     {
-        RuleFor(canton => canton)
-            .Must(c => SupportedCantons.Contains(c))
-            .WithMessage(c => $"Canton {c} is not yet supported");
+        private static readonly Canton[] SupportedCantons = { Canton.ZH, Canton.SG, Canton.SO };
+
+        public CantonValidator()
+        {
+            RuleFor(canton => canton)
+                .Must(c => SupportedCantons.Contains(c))
+                .WithMessage(c => $"Canton {c} is not yet supported");
+        }
     }
 }

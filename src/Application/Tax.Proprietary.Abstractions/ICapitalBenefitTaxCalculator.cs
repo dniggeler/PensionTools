@@ -2,13 +2,14 @@
 using Domain.Models.Tax;
 using LanguageExt;
 
-namespace Application.Tax.Proprietary.Abstractions;
-
-public interface ICapitalBenefitTaxCalculator
+namespace Application.Tax.Proprietary.Abstractions
 {
-    Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(
-        int calculationYear,
-        int taxId,
-        Canton canton,
-        CapitalBenefitTaxPerson person);
+    public interface ICapitalBenefitTaxCalculator
+    {
+        Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(
+            int calculationYear,
+            int taxId,
+            Canton canton,
+            CapitalBenefitTaxPerson person);
+    }
 }

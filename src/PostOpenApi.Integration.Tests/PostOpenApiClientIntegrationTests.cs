@@ -10,29 +10,30 @@ using Snapshooter.Xunit;
 using TaxCalculator.WebApi;
 using Xunit;
 
-namespace PostOpenApi.Integration.Tests;
-
-[Trait("Post OpenApi Tests", "Integration")]
-public class PostOpenApiClientIntegrationTests : IClassFixture<WebApplicationFactory<Startup>>
+namespace PostOpenApi.Integration.Tests
 {
-    private readonly HttpClient client;
-
-    public PostOpenApiClientIntegrationTests(WebApplicationFactory<Startup> factory)
+    [Trait("Post OpenApi Tests", "Integration")]
+    public class PostOpenApiClientIntegrationTests : IClassFixture<WebApplicationFactory<Startup>>
     {
-        client = factory.CreateDefaultClient(new Uri("http://localhost/api/admin/"));
-    }
+        private readonly HttpClient client;
 
-    [Fact(DisplayName = "All Zip Codes")]
-    public async Task Should_Get_All_Zip_Codes_Successfully()
-    {
-        IEnumerable<ZipModel> result = await client.GetFromJsonAsync<IEnumerable<ZipModel>>("zip") switch
+        public PostOpenApiClientIntegrationTests(WebApplicationFactory<Startup> factory)
         {
-            {} a => a.ToList().OrderBy(item => item.BfsCode)
-                .ThenBy(item => item.ZipCode)
-                .ThenBy(item => item.MunicipalityName),
-            null => Array.Empty<ZipModel>()
-        };
+            client = factory.CreateDefaultClient(new Uri("http://localhost/api/admin/"));
+        }
 
-        Snapshot.Match(result);
+        [Fact(DisplayName = "All Zip Codes")]
+        public async Task Should_Get_All_Zip_Codes_Successfully()
+        {
+            IEnumerable<ZipModel> result = await client.GetFromJsonAsync<IEnumerable<ZipModel>>("zip") switch
+            {
+                {} a => a.ToList().OrderBy(item => item.BfsCode)
+                    .ThenBy(item => item.ZipCode)
+                    .ThenBy(item => item.MunicipalityName),
+                null => Array.Empty<ZipModel>()
+            };
+
+            Snapshot.Match(result);
+        }
     }
 }

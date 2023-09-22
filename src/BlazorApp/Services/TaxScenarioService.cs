@@ -9,51 +9,52 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 
-namespace BlazorApp.Services;
-
-public class TaxScenarioService : ITaxScenarioService
+namespace BlazorApp.Services
 {
-    private readonly IConfiguration configuration;
-    private readonly HttpClient httpClient;
-    private readonly ILogger<TaxComparisonService> logger;
-
-    public TaxScenarioService(
-        IConfiguration configuration,
-        HttpClient httpClient,
-        ILogger<TaxComparisonService> logger)
+    public class TaxScenarioService : ITaxScenarioService
     {
-        this.configuration = configuration;
-        this.httpClient = httpClient;
-        this.logger = logger;
-    }
+        private readonly IConfiguration configuration;
+        private readonly HttpClient httpClient;
+        private readonly ILogger<TaxComparisonService> logger;
 
-    public Task<CapitalBenefitsTransferInResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
-    {
-        return CalculateAsync(request, "CalculateCapitalBenefitTransferInsYears");
-    }
-
-    private async Task<CapitalBenefitsTransferInResponse> CalculateAsync<T>(T request, string urlMethodPart)
-    {
-        string baseUri = configuration.GetSection("TaxScenarioServiceUrl").Value;
-        string urlPath = Path.Combine(baseUri, urlMethodPart);
-
-        logger.LogInformation(JsonSerializer.Serialize(request));
-
-        // Serialize our concrete class into a JSON String
-        var stringPayload = JsonSerializer.Serialize(request);
-
-        // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
-        var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
-
-        var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlPath)
+        public TaxScenarioService(
+            IConfiguration configuration,
+            HttpClient httpClient,
+            ILogger<TaxComparisonService> logger)
         {
-            Content = httpContent,
-        };
+            this.configuration = configuration;
+            this.httpClient = httpClient;
+            this.logger = logger;
+        }
 
-        var response = await httpClient.SendAsync(httpRequest, HttpCompletionOption.ResponseHeadersRead);
+        public Task<CapitalBenefitsTransferInResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
+        {
+            return CalculateAsync(request, "CalculateCapitalBenefitTransferInsYears");
+        }
 
-        response.EnsureSuccessStatusCode();
+        private async Task<CapitalBenefitsTransferInResponse> CalculateAsync<T>(T request, string urlMethodPart)
+        {
+            string baseUri = configuration.GetSection("TaxScenarioServiceUrl").Value;
+            string urlPath = Path.Combine(baseUri, urlMethodPart);
 
-        return await response.Content.ReadFromJsonAsync<CapitalBenefitsTransferInResponse>();
+            logger.LogInformation(JsonSerializer.Serialize(request));
+
+            // Serialize our concrete class into a JSON String
+            var stringPayload = JsonSerializer.Serialize(request);
+
+            // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
+            var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlPath)
+            {
+                Content = httpContent,
+            };
+
+            var response = await httpClient.SendAsync(httpRequest, HttpCompletionOption.ResponseHeadersRead);
+
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadFromJsonAsync<CapitalBenefitsTransferInResponse>();
+        }
     }
 }

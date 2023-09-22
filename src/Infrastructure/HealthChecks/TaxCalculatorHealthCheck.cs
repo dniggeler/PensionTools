@@ -6,40 +6,41 @@ using Domain.Models.Tax;
 using LanguageExt;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace Infrastructure.HealthChecks;
-
-public class TaxCalculatorHealthCheck : IHealthCheck
+namespace Infrastructure.HealthChecks
 {
-    private readonly ITaxCalculatorConnector taxCalculatorConnector;
-
-    public TaxCalculatorHealthCheck(ITaxCalculatorConnector taxCalculatorConnector)
+    public class TaxCalculatorHealthCheck : IHealthCheck
     {
-        this.taxCalculatorConnector = taxCalculatorConnector;
-    }
+        private readonly ITaxCalculatorConnector taxCalculatorConnector;
 
-    public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken)
-    {
-        try
+        public TaxCalculatorHealthCheck(ITaxCalculatorConnector taxCalculatorConnector)
         {
-            Either<string, FullTaxResult> result = await taxCalculatorConnector.CalculateAsync(2023, 261,
-                new TaxPerson()
-                {
-                    CivilStatus = CivilStatus.Single,
-                    Name = "HealthCheck",
-                    NumberOfChildren = 0,
-                    TaxableIncome = 100_000,
-                    TaxableWealth = 0,
-                    TaxableFederalIncome = 100_000,
-                    ReligiousGroupType = ReligiousGroupType.Other,
-                });
-
-            return result.Match(
-                Right: _ => HealthCheckResult.Healthy("Tax calculator ok"),
-                Left: error => HealthCheckResult.Unhealthy($"Tax calculator nok {error}"));
+            this.taxCalculatorConnector = taxCalculatorConnector;
         }
-        catch (Exception ex)
+
+        public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken)
         {
-            return HealthCheckResult.Unhealthy($"An unhealthy result: {ex.Message}");
+            try
+            {
+                Either<string, FullTaxResult> result = await taxCalculatorConnector.CalculateAsync(2023, 261,
+                    new TaxPerson()
+                    {
+                        CivilStatus = CivilStatus.Single,
+                        Name = "HealthCheck",
+                        NumberOfChildren = 0,
+                        TaxableIncome = 100_000,
+                        TaxableWealth = 0,
+                        TaxableFederalIncome = 100_000,
+                        ReligiousGroupType = ReligiousGroupType.Other,
+                    });
+
+                return result.Match(
+                    Right: _ => HealthCheckResult.Healthy("Tax calculator ok"),
+                    Left: error => HealthCheckResult.Unhealthy($"Tax calculator nok {error}"));
+            }
+            catch (Exception ex)
+            {
+                return HealthCheckResult.Unhealthy($"An unhealthy result: {ex.Message}");
+            }
         }
     }
 }

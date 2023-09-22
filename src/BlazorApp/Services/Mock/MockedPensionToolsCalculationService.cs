@@ -12,109 +12,110 @@ using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.Tax;
 
-namespace BlazorApp.Services.Mock;
-
-public class MockedPensionToolsCalculationService :
-    IMultiPeriodCalculationService, ITaxCalculationService, IMarginalTaxCurveCalculationService
-
+namespace BlazorApp.Services.Mock
 {
-    private readonly IConfiguration configuration;
-    private readonly HttpClient httpClient;
-    private readonly ILogger<MockedPensionToolsCalculationService> logger;
+    public class MockedPensionToolsCalculationService :
+        IMultiPeriodCalculationService, ITaxCalculationService, IMarginalTaxCurveCalculationService
 
-    public MockedPensionToolsCalculationService(
-        IConfiguration configuration,
-        HttpClient httpClient,
-        ILogger<MockedPensionToolsCalculationService> logger)
     {
-        this.configuration = configuration;
-        this.httpClient = httpClient;
-        this.logger = logger;
-    }
+        private readonly IConfiguration configuration;
+        private readonly HttpClient httpClient;
+        private readonly ILogger<MockedPensionToolsCalculationService> logger;
 
-    public async Task<MultiPeriodResponse> CalculateAsync(MultiPeriodRequest request)
-    {
-        var urlPath = configuration.GetSection("MultiPeriodCalculationServiceUrl").Value;
-        foreach (var keyValuePair in configuration.AsEnumerable())
+        public MockedPensionToolsCalculationService(
+            IConfiguration configuration,
+            HttpClient httpClient,
+            ILogger<MockedPensionToolsCalculationService> logger)
         {
-            logger.LogInformation($"{keyValuePair.Key}: {keyValuePair.Value}");
+            this.configuration = configuration;
+            this.httpClient = httpClient;
+            this.logger = logger;
         }
 
-        var response = await httpClient.GetFromJsonAsync<MultiPeriodResponse>(urlPath);
-
-        return response;
-    }
-
-    public Task<FullTaxResponse> CalculateAsync(FullTaxRequest request)
-    {
-        if (request.BfsMunicipalityId == 0)
+        public async Task<MultiPeriodResponse> CalculateAsync(MultiPeriodRequest request)
         {
-            throw new ArgumentException(nameof(request.BfsMunicipalityId));
-        }
-
-        logger.LogInformation(JsonSerializer.Serialize(request));
-
-        FullTaxResponse taxCalculationResponse = new()
-        {
-            Name = request.Name,
-            CalculationYear = request.CalculationYear,
-            CantonTaxAmount = 1000,
-            ChurchTaxAmount = 100,
-            FederalTaxAmount = 500,
-            MunicipalityTaxAmount = 1500,
-            PollTaxAmount = 5,
-            WealthTaxAmount = 200,
-            TotalTaxAmount = 3200,
-            TaxRateDetails = new TaxRateDetails
+            var urlPath = configuration.GetSection("MultiPeriodCalculationServiceUrl").Value;
+            foreach (var keyValuePair in configuration.AsEnumerable())
             {
-                CantonRate = 1M,
-                ChurchTaxRate = 0.02M,
-                MunicipalityRate = 1.19M
+                logger.LogInformation($"{keyValuePair.Key}: {keyValuePair.Value}");
             }
-        };
 
-        return Task.FromResult(taxCalculationResponse);
-    }
+            var response = await httpClient.GetFromJsonAsync<MultiPeriodResponse>(urlPath);
 
-    public Task<MarginalTaxResponse> CalculateIncomeCurveAsync(MarginalTaxRequest request)
-    {
-        if (request.BfsMunicipalityId == 0)
-        {
-            throw new ArgumentException(nameof(request.BfsMunicipalityId));
+            return response;
         }
 
-        var marginalTaxCurve = new List<MarginalTaxInfo>();
-
-        var stepSize = Convert.ToInt32(request.UpperSalaryLimit / 100M);
-        var taxRateStepSize = 0.45M / 100.0M;
-        var taxAmountStepSize = 20000M / 100.0M;
-        for (var ii = 0; ii < 20; ii++)
+        public Task<FullTaxResponse> CalculateAsync(FullTaxRequest request)
         {
-            for (var jj = 0; jj < 4; jj++)
+            if (request.BfsMunicipalityId == 0)
             {
-                var bucket = ii * 5;
+                throw new ArgumentException(nameof(request.BfsMunicipalityId));
+            }
+
+            logger.LogInformation(JsonSerializer.Serialize(request));
+
+            FullTaxResponse taxCalculationResponse = new()
+            {
+                Name = request.Name,
+                CalculationYear = request.CalculationYear,
+                CantonTaxAmount = 1000,
+                ChurchTaxAmount = 100,
+                FederalTaxAmount = 500,
+                MunicipalityTaxAmount = 1500,
+                PollTaxAmount = 5,
+                WealthTaxAmount = 200,
+                TotalTaxAmount = 3200,
+                TaxRateDetails = new TaxRateDetails
+                {
+                    CantonRate = 1M,
+                    ChurchTaxRate = 0.02M,
+                    MunicipalityRate = 1.19M
+                }
+            };
+
+            return Task.FromResult(taxCalculationResponse);
+        }
+
+        public Task<MarginalTaxResponse> CalculateIncomeCurveAsync(MarginalTaxRequest request)
+        {
+            if (request.BfsMunicipalityId == 0)
+            {
+                throw new ArgumentException(nameof(request.BfsMunicipalityId));
+            }
+
+            var marginalTaxCurve = new List<MarginalTaxInfo>();
+
+            var stepSize = Convert.ToInt32(request.UpperSalaryLimit / 100M);
+            var taxRateStepSize = 0.45M / 100.0M;
+            var taxAmountStepSize = 20000M / 100.0M;
+            for (var ii = 0; ii < 20; ii++)
+            {
+                for (var jj = 0; jj < 4; jj++)
+                {
+                    var bucket = ii * 5;
+                    marginalTaxCurve.Add(
+                        new MarginalTaxInfo((bucket + jj) * stepSize, taxRateStepSize * bucket, taxAmountStepSize * bucket));
+                }
+
+                var index = ii * 5 + 4;
                 marginalTaxCurve.Add(
-                    new MarginalTaxInfo((bucket + jj) * stepSize, taxRateStepSize * bucket, taxAmountStepSize * bucket));
+                    new MarginalTaxInfo(index * stepSize, taxRateStepSize * index, taxAmountStepSize * index));
             }
 
-            var index = ii * 5 + 4;
-            marginalTaxCurve.Add(
-                new MarginalTaxInfo(index * stepSize, taxRateStepSize * index, taxAmountStepSize * index));
+            var currentPoint = marginalTaxCurve.Skip(10).Take(1).First();
+
+            MarginalTaxResponse taxCalculationResponse = new()
+            {
+                CurrentMarginalTaxRate = currentPoint,
+                MarginalTaxCurve = marginalTaxCurve
+            };
+
+            return Task.FromResult(taxCalculationResponse);
         }
 
-        var currentPoint = marginalTaxCurve.Skip(10).Take(1).First();
-
-        MarginalTaxResponse taxCalculationResponse = new()
+        public Task<int[]> SupportedTaxYearsAsync()
         {
-            CurrentMarginalTaxRate = currentPoint,
-            MarginalTaxCurve = marginalTaxCurve
-        };
-
-        return Task.FromResult(taxCalculationResponse);
-    }
-
-    public Task<int[]> SupportedTaxYearsAsync()
-    {
-        return new[] { 2019, 2020, 2021, 2022 }.AsTask();
+            return new[] { 2019, 2020, 2021, 2022 }.AsTask();
+        }
     }
 }

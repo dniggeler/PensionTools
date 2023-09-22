@@ -10,43 +10,44 @@ using Infrastructure.Tax.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace PensionVersusCapitalCalculator.Tests;
-
-public class ToolsFixture<T>
-    where T : class
+namespace PensionVersusCapitalCalculator.Tests
 {
-    public ServiceProvider Provider { get; }
-
-    public T Calculator { get; }
-
-    public T Service { get; }
-
-    public ToolsFixture()
+    public class ToolsFixture<T>
+        where T : class
     {
-        var projectPath = Assembly.GetExecutingAssembly()
-            .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
-            .First();
+        public ServiceProvider Provider { get; }
 
-        var dbFile = Path.Combine(projectPath, @"src\Infrastructure\files\TaxDb.db");
+        public T Calculator { get; }
 
-        var configurationDict = new Dictionary<string, string>
+        public T Service { get; }
+
+        public ToolsFixture()
         {
-            {"ConnectionStrings:TaxDb", dbFile}
-        };
+            var projectPath = Assembly.GetExecutingAssembly()
+                .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
+                .First();
 
-        IConfiguration configuration = new ConfigurationBuilder()
-            .AddInMemoryCollection(configurationDict)
-            .Build();
+            var dbFile = Path.Combine(projectPath, @"src\Infrastructure\files\TaxDb.db");
 
-        ServiceCollection coll = new ServiceCollection();
-        coll.AddToolsCalculators();
-        coll.AddTaxCalculators(configuration.GetApplicationMode());
-        coll.AddTaxData(configuration);
+            var configurationDict = new Dictionary<string, string>
+            {
+                {"ConnectionStrings:TaxDb", dbFile}
+            };
 
-        Provider = coll.BuildServiceProvider();
+            IConfiguration configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection(configurationDict)
+                .Build();
 
-        Calculator = Provider.GetRequiredService<T>();
+            ServiceCollection coll = new ServiceCollection();
+            coll.AddToolsCalculators();
+            coll.AddTaxCalculators(configuration.GetApplicationMode());
+            coll.AddTaxData(configuration);
 
-        Service = Provider.GetRequiredService<T>();
+            Provider = coll.BuildServiceProvider();
+
+            Calculator = Provider.GetRequiredService<T>();
+
+            Service = Provider.GetRequiredService<T>();
+        }
     }
 }

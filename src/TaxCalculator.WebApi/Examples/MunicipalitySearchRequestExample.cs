@@ -2,17 +2,18 @@
 using Domain.Models.Municipality;
 using Swashbuckle.AspNetCore.Filters;
 
-namespace TaxCalculator.WebApi.Examples;
-
-public class MunicipalitySearchRequestExample : IExamplesProvider<MunicipalitySearchFilter>
+namespace TaxCalculator.WebApi.Examples
 {
-    public MunicipalitySearchFilter GetExamples()
+    public class MunicipalitySearchRequestExample : IExamplesProvider<MunicipalitySearchFilter>
     {
-        return new MunicipalitySearchFilter
+        public MunicipalitySearchFilter GetExamples()
         {
-            Name = "R",
-            Canton = Canton.ZH,
-            YearOfValidity = 2019,
-        };
+            return new MunicipalitySearchFilter
+            {
+                Name = "R",
+                Canton = Canton.ZH,
+                YearOfValidity = 2019,
+            };
+        }
     }
 }

@@ -1,8 +1,9 @@
 ﻿using Domain.Models.Tax;
 
-namespace Application.Tax.Proprietary.Abstractions.Repositories;
-
-public interface ITaxTariffRepository
+namespace Application.Tax.Proprietary.Abstractions.Repositories
 {
-    IReadOnlyCollection<TaxTariffModel> Get(TaxFilterModel filter);
+    public interface ITaxTariffRepository
+    {
+        IReadOnlyCollection<TaxTariffModel> Get(TaxFilterModel filter);
+    }
 }

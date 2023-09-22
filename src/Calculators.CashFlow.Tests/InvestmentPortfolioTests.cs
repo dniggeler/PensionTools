@@ -9,42 +9,43 @@ using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using Snapshooter.Xunit;
 using Xunit;
 
-namespace Calculators.CashFlow.Tests;
-
-[Trait("Higher Level Calculators", "Cash-Flow")]
-public class InvestmentPortfolioTests
+namespace Calculators.CashFlow.Tests
 {
-    [Fact(DisplayName = "Portfolio Growth")]
-    public void Calculate_Growth_Of_Investment_Portfolio()
+    [Trait("Higher Level Calculators", "Cash-Flow")]
+    public class InvestmentPortfolioTests
     {
-        // given
-        InvestmentPortfolioDefinition definition = new ()
+        [Fact(DisplayName = "Portfolio Growth")]
+        public void Calculate_Growth_Of_Investment_Portfolio()
         {
-            Header = new CashFlowHeader
+            // given
+            InvestmentPortfolioDefinition definition = new ()
             {
-                Id = "test",
-                Name = "Test",
-            },
-            DateOfProcess = new DateTime(2021, 1, 1),
-            NetCapitalGrowthRate = 0.02M,
-            NetIncomeRate = 0.01M,
-            InitialInvestment = 100_000,
-            RecurringInvestment = new RecurringInvestment
-            {
-                Amount = 6723,
-                Frequency = FrequencyType.Yearly,
-            },
-            InvestmentPeriod = new InvestmentPeriod
-            {
-                Year = 2021,
-                NumberOfPeriods = 10
-            },
-        };
+                Header = new CashFlowHeader
+                {
+                    Id = "test",
+                    Name = "Test",
+                },
+                DateOfProcess = new DateTime(2021, 1, 1),
+                NetCapitalGrowthRate = 0.02M,
+                NetIncomeRate = 0.01M,
+                InitialInvestment = 100_000,
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 6723,
+                    Frequency = FrequencyType.Yearly,
+                },
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = 2021,
+                    NumberOfPeriods = 10
+                },
+            };
 
-        // when
-        IEnumerable<ICashFlowDefinition> result = definition.CreateGenericDefinition();
+            // when
+            IEnumerable<ICashFlowDefinition> result = definition.CreateGenericDefinition();
 
-        // then
-        Snapshot.Match(result);
+            // then
+            Snapshot.Match(result);
+        }
     }
 }

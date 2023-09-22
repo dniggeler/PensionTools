@@ -5,35 +5,36 @@ using Domain.Enums;
 using Domain.Models.Tax;
 using Swashbuckle.AspNetCore.Filters;
 
-namespace TaxCalculator.WebApi.Examples;
-
-public class CapitalBenefitTransferInRequestExample : IExamplesProvider<CapitalBenefitTransferInComparerRequest>
+namespace TaxCalculator.WebApi.Examples
 {
-    public CapitalBenefitTransferInComparerRequest GetExamples()
+    public class CapitalBenefitTransferInRequestExample : IExamplesProvider<CapitalBenefitTransferInComparerRequest>
     {
-        return new CapitalBenefitTransferInComparerRequest
+        public CapitalBenefitTransferInComparerRequest GetExamples()
         {
-            Name = "Test",
-            CalculationYear = 2022,
-            CivilStatus = CivilStatus.Married,
-            BfsMunicipalityId = 261,
-            ReligiousGroup = ReligiousGroupType.Other,
-            PartnerReligiousGroup = ReligiousGroupType.Other,
-            TaxableIncome = 150_000M,
-            TaxableFederalIncome = 140_000M,
-            TaxableWealth = 500_000,
-            WithCapitalBenefitTaxation = true,
-            NetWealthReturn = 0.01M,
-            CapitalBenefitsBeforeWithdrawal = 800_000,
-            TransferIns = new List<SingleTransferInModel>
+            return new CapitalBenefitTransferInComparerRequest
             {
-                new(15_000, new DateTime(2022, 1, 1))
-            },
-            Withdrawals = new List<SingleTransferInModel>
-            {
-                new(0.5M, new DateTime(2032, 12, 31)),
-                new(1, new DateTime(2033, 12, 31))
-            }
-        };
+                Name = "Test",
+                CalculationYear = 2022,
+                CivilStatus = CivilStatus.Married,
+                BfsMunicipalityId = 261,
+                ReligiousGroup = ReligiousGroupType.Other,
+                PartnerReligiousGroup = ReligiousGroupType.Other,
+                TaxableIncome = 150_000M,
+                TaxableFederalIncome = 140_000M,
+                TaxableWealth = 500_000,
+                WithCapitalBenefitTaxation = true,
+                NetWealthReturn = 0.01M,
+                CapitalBenefitsBeforeWithdrawal = 800_000,
+                TransferIns = new List<SingleTransferInModel>
+                {
+                    new(15_000, new DateTime(2022, 1, 1))
+                },
+                Withdrawals = new List<SingleTransferInModel>
+                {
+                    new(0.5M, new DateTime(2032, 12, 31)),
+                    new(1, new DateTime(2033, 12, 31))
+                }
+            };
+        }
     }
 }

@@ -7,60 +7,61 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes.Tax;
 
-namespace BlazorApp.Services;
-
-public class TaxCalculationService : ITaxCalculationService, IMarginalTaxCurveCalculationService
+namespace BlazorApp.Services
 {
-    private readonly IConfiguration configuration;
-    private readonly HttpClient httpClient;
-    private readonly ILogger<TaxCalculationService> logger;
-
-    public TaxCalculationService(
-        IConfiguration configuration,
-        HttpClient httpClient,
-        ILogger<TaxCalculationService> logger)
+    public class TaxCalculationService : ITaxCalculationService, IMarginalTaxCurveCalculationService
     {
-        this.configuration = configuration;
-        this.httpClient = httpClient;
-        this.logger = logger;
-    }
+        private readonly IConfiguration configuration;
+        private readonly HttpClient httpClient;
+        private readonly ILogger<TaxCalculationService> logger;
 
-    public async Task<FullTaxResponse> CalculateAsync(FullTaxRequest request)
-    {
-        string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
-        string urlPath = Path.Combine(baseUri, "full/incomeandwealth");
+        public TaxCalculationService(
+            IConfiguration configuration,
+            HttpClient httpClient,
+            ILogger<TaxCalculationService> logger)
+        {
+            this.configuration = configuration;
+            this.httpClient = httpClient;
+            this.logger = logger;
+        }
 
-        logger.LogInformation(JsonSerializer.Serialize(request));
+        public async Task<FullTaxResponse> CalculateAsync(FullTaxRequest request)
+        {
+            string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+            string urlPath = Path.Combine(baseUri, "full/incomeandwealth");
 
-        HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
+            logger.LogInformation(JsonSerializer.Serialize(request));
 
-        response.EnsureSuccessStatusCode();
+            HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
 
-        return await response.Content.ReadFromJsonAsync<FullTaxResponse>();
-    }
+            response.EnsureSuccessStatusCode();
 
-    public async Task<int[]> SupportedTaxYearsAsync()
-    {
-        string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
-        string urlPath = Path.Combine(baseUri, "years");
+            return await response.Content.ReadFromJsonAsync<FullTaxResponse>();
+        }
 
-        return await httpClient.GetFromJsonAsync<int[]>(urlPath);
-    }
+        public async Task<int[]> SupportedTaxYearsAsync()
+        {
+            string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+            string urlPath = Path.Combine(baseUri, "years");
 
-    public async Task<MarginalTaxResponse> CalculateIncomeCurveAsync(MarginalTaxRequest request)
-    {
-        string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
-        string urlPath = Path.Combine(baseUri, "marginaltaxcurve/income");
+            return await httpClient.GetFromJsonAsync<int[]>(urlPath);
+        }
 
-        logger.LogInformation(JsonSerializer.Serialize(request));
+        public async Task<MarginalTaxResponse> CalculateIncomeCurveAsync(MarginalTaxRequest request)
+        {
+            string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+            string urlPath = Path.Combine(baseUri, "marginaltaxcurve/income");
 
-        HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
+            logger.LogInformation(JsonSerializer.Serialize(request));
 
-        response.EnsureSuccessStatusCode();
+            HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
 
-        MarginalTaxResponse result =
-            await response.Content.ReadFromJsonAsync<MarginalTaxResponse>();
+            response.EnsureSuccessStatusCode();
 
-        return result;
+            MarginalTaxResponse result =
+                await response.Content.ReadFromJsonAsync<MarginalTaxResponse>();
+
+            return result;
+        }
     }
 }

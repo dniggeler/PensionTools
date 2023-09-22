@@ -1,6 +1,7 @@
-﻿namespace Application.Tax.Estv.Client.Models;
-
-public class ChildModel
+﻿namespace Application.Tax.Estv.Client.Models
 {
-    public int Age { get; set; }
+    public class ChildModel
+    {
+        public int Age { get; set; }
+    }
 }

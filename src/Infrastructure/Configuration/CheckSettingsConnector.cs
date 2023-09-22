@@ -1,23 +1,24 @@
 ﻿using Application.Features.CheckSettings;
 using Microsoft.Extensions.Configuration;
 
-namespace Infrastructure.Configuration;
-
-public class CheckSettingsConnector : ICheckSettingsConnector
+namespace Infrastructure.Configuration
 {
-    private readonly IConfiguration _configuration;
-
-    public CheckSettingsConnector(IConfiguration configuration)
+    public class CheckSettingsConnector : ICheckSettingsConnector
     {
-        _configuration = configuration;
-    }
+        private readonly IConfiguration _configuration;
 
-    public Task<Dictionary<string, string>> GetAsync()
-    {
-        _configuration.GetApplicationMode();
+        public CheckSettingsConnector(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
 
-        var settings = new Dictionary<string, string> { { "Steuerrechner", _configuration.GetApplicationMode().ToString() } };
+        public Task<Dictionary<string, string>> GetAsync()
+        {
+            _configuration.GetApplicationMode();
 
-        return Task.FromResult(settings);
+            var settings = new Dictionary<string, string> { { "Steuerrechner", _configuration.GetApplicationMode().ToString() } };
+
+            return Task.FromResult(settings);
+        }
     }
 }

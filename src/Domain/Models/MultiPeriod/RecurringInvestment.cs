@@ -1,9 +1,10 @@
 ﻿using Domain.Enums;
 
-namespace Domain.Models.MultiPeriod;
-
-public record RecurringInvestment
+namespace Domain.Models.MultiPeriod
 {
-    public decimal Amount { get; set; }
-    public FrequencyType Frequency { get; set; }
+    public record RecurringInvestment
+    {
+        public decimal Amount { get; set; }
+        public FrequencyType Frequency { get; set; }
+    }
 }

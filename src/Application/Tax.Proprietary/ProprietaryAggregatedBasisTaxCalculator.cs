@@ -6,46 +6,47 @@ using Domain.Enums;
 using Domain.Models.Tax;
 using LanguageExt;
 
-namespace Application.Tax.Proprietary;
-
-public class ProprietaryAggregatedBasisTaxCalculator : IAggregatedBasisTaxCalculator
+namespace Application.Tax.Proprietary
 {
-    private readonly IMapper mapper;
-    private readonly Func<Canton, IBasisIncomeTaxCalculator> basisIncomeTaxCalculatorFunc;
-    private readonly Func<Canton, IBasisWealthTaxCalculator> basisWealthTaxCalculatorFunc;
-
-    public ProprietaryAggregatedBasisTaxCalculator(
-        IMapper mapper,
-        Func<Canton, IBasisIncomeTaxCalculator> basisIncomeTaxCalculatorFunc,
-        Func<Canton, IBasisWealthTaxCalculator> basisWealthTaxCalculatorFunc)
+    public class ProprietaryAggregatedBasisTaxCalculator : IAggregatedBasisTaxCalculator
     {
-        this.mapper = mapper;
-        this.basisIncomeTaxCalculatorFunc = basisIncomeTaxCalculatorFunc;
-        this.basisWealthTaxCalculatorFunc = basisWealthTaxCalculatorFunc;
-    }
+        private readonly IMapper mapper;
+        private readonly Func<Canton, IBasisIncomeTaxCalculator> basisIncomeTaxCalculatorFunc;
+        private readonly Func<Canton, IBasisWealthTaxCalculator> basisWealthTaxCalculatorFunc;
 
-    public async Task<Either<string, AggregatedBasisTaxResult>> CalculateAsync(
-        int calculationYear, Canton canton, TaxPerson person)
-    {
-        var basisTaxPerson = mapper.Map<BasisTaxPerson>(person);
+        public ProprietaryAggregatedBasisTaxCalculator(
+            IMapper mapper,
+            Func<Canton, IBasisIncomeTaxCalculator> basisIncomeTaxCalculatorFunc,
+            Func<Canton, IBasisWealthTaxCalculator> basisWealthTaxCalculatorFunc)
+        {
+            this.mapper = mapper;
+            this.basisIncomeTaxCalculatorFunc = basisIncomeTaxCalculatorFunc;
+            this.basisWealthTaxCalculatorFunc = basisWealthTaxCalculatorFunc;
+        }
 
-        var incomeTaxResultTask =
-            basisIncomeTaxCalculatorFunc(canton)
-                .CalculateAsync(calculationYear, canton, basisTaxPerson);
+        public async Task<Either<string, AggregatedBasisTaxResult>> CalculateAsync(
+            int calculationYear, Canton canton, TaxPerson person)
+        {
+            var basisTaxPerson = mapper.Map<BasisTaxPerson>(person);
 
-        basisTaxPerson.TaxableAmount = person.TaxableWealth;
-        var wealthTaxResultTask =
-            basisWealthTaxCalculatorFunc(canton)
-                .CalculateAsync(calculationYear, canton, basisTaxPerson);
+            var incomeTaxResultTask =
+                basisIncomeTaxCalculatorFunc(canton)
+                    .CalculateAsync(calculationYear, canton, basisTaxPerson);
 
-        await Task.WhenAll(incomeTaxResultTask, wealthTaxResultTask);
+            basisTaxPerson.TaxableAmount = person.TaxableWealth;
+            var wealthTaxResultTask =
+                basisWealthTaxCalculatorFunc(canton)
+                    .CalculateAsync(calculationYear, canton, basisTaxPerson);
 
-        return from income in incomeTaxResultTask.Result
-               from wealth in wealthTaxResultTask.Result
-               select new AggregatedBasisTaxResult
-               {
-                   IncomeTax = income,
-                   WealthTax = wealth,
-               };
+            await Task.WhenAll(incomeTaxResultTask, wealthTaxResultTask);
+
+            return from income in incomeTaxResultTask.Result
+                from wealth in wealthTaxResultTask.Result
+                select new AggregatedBasisTaxResult
+                {
+                    IncomeTax = income,
+                    WealthTax = wealth,
+                };
+        }
     }
 }

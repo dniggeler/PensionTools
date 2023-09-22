@@ -1,10 +1,11 @@
 ﻿using Domain.Models.Tax;
 
-namespace Application.Tax.Proprietary.Abstractions.Repositories;
-
-public interface IStateTaxRateRepository
+namespace Application.Tax.Proprietary.Abstractions.Repositories
 {
-    TaxRateEntity TaxRates(int calculationYear, int municipalityId);
+    public interface IStateTaxRateRepository
+    {
+        TaxRateEntity TaxRates(int calculationYear, int municipalityId);
 
-    IEnumerable<TaxRateEntity> TaxRates();
+        IEnumerable<TaxRateEntity> TaxRates();
+    }
 }

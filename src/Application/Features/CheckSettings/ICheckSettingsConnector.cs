@@ -1,6 +1,7 @@
-﻿namespace Application.Features.CheckSettings;
-
-public interface ICheckSettingsConnector
+﻿namespace Application.Features.CheckSettings
 {
-    Task<Dictionary<string, string>> GetAsync();
+    public interface ICheckSettingsConnector
+    {
+        Task<Dictionary<string, string>> GetAsync();
+    }
 }

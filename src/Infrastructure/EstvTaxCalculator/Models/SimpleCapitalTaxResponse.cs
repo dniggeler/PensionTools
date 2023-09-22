@@ -1,10 +1,11 @@
 ﻿using System.Text.Json.Serialization;
 using Application.Tax.Estv.Client.Models;
 
-namespace Infrastructure.EstvTaxCalculator.Models;
-
-public class SimpleCapitalTaxResponse
+namespace Infrastructure.EstvTaxCalculator.Models
 {
-    [JsonPropertyName("response")]
-    public SimpleCapitalTaxResult[] Response { get; set; }
+    public class SimpleCapitalTaxResponse
+    {
+        [JsonPropertyName("response")]
+        public SimpleCapitalTaxResult[] Response { get; set; }
+    }
 }

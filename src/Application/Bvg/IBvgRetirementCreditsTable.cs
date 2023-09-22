@@ -1,8 +1,9 @@
-﻿namespace Application.Bvg;
-
-public interface IBvgRetirementCredits
+﻿namespace Application.Bvg
 {
-    decimal GetRateInPercentage(int bvgAge);
+    public interface IBvgRetirementCredits
+    {
+        decimal GetRateInPercentage(int bvgAge);
 
-    decimal GetRate(int bvgAge);
+        decimal GetRate(int bvgAge);
+    }
 }

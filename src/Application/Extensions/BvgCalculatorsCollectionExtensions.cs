@@ -4,15 +4,16 @@ using Domain.Models.Bvg;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.Extensions;
-
-public static class BvgCalculatorsCollectionExtensions
+namespace Application.Extensions
 {
-    public static void AddBvgCalculators(this IServiceCollection serviceCollection)
+    public static class BvgCalculatorsCollectionExtensions
     {
-        serviceCollection.AddSingleton<IBvgRetirementCredits, BvgRetirementCreditsTable>();
-        serviceCollection.AddSingleton<IBvgCalculator, BvgCalculator>();
+        public static void AddBvgCalculators(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddSingleton<IBvgRetirementCredits, BvgRetirementCreditsTable>();
+            serviceCollection.AddSingleton<IBvgCalculator, BvgCalculator>();
 
-        serviceCollection.AddSingleton<IValidator<BvgPerson>, BvgPersonValidator>();
+            serviceCollection.AddSingleton<IValidator<BvgPerson>, BvgPersonValidator>();
+        }
     }
 }

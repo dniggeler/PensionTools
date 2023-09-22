@@ -1,14 +1,15 @@
 ﻿using Domain.Models.Municipality;
 
-namespace Application.Municipality;
-
-public interface IMunicipalityRepository
+namespace Application.Municipality
 {
-    IEnumerable<MunicipalityEntity> GetAll();
+    public interface IMunicipalityRepository
+    {
+        IEnumerable<MunicipalityEntity> GetAll();
 
-    MunicipalityEntity Get(int bfsNumber, int year);
+        MunicipalityEntity Get(int bfsNumber, int year);
 
-    IEnumerable<MunicipalityEntity> GetAllSupportTaxCalculation();
+        IEnumerable<MunicipalityEntity> GetAllSupportTaxCalculation();
 
-    IEnumerable<MunicipalityEntity> Search(MunicipalitySearchFilter searchFilter);
+        IEnumerable<MunicipalityEntity> Search(MunicipalitySearchFilter searchFilter);
+    }
 }

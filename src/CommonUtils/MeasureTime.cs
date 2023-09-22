@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace PensionCoach.Tools.CommonUtils;
-
-public sealed class MeasureTime : IDisposable
+namespace PensionCoach.Tools.CommonUtils
 {
-    private readonly Action<long> _action;
-    private readonly Stopwatch _sw;
-
-    public MeasureTime(Action<long> action)
+    public sealed class MeasureTime : IDisposable
     {
-        _action = action;
-        _sw = new Stopwatch();
-        _sw.Start();
-    }
+        private readonly Action<long> _action;
+        private readonly Stopwatch _sw;
 
-    public void Dispose()
-    {
-        _sw.Stop();
-        _action.Invoke(_sw.ElapsedMilliseconds);
+        public MeasureTime(Action<long> action)
+        {
+            _action = action;
+            _sw = new Stopwatch();
+            _sw.Start();
+        }
+
+        public void Dispose()
+        {
+            _sw.Stop();
+            _action.Invoke(_sw.ElapsedMilliseconds);
+        }
     }
 }

@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Calculators.CashFlow.Models;
 using Domain.Enums;
 using Domain.Models.Municipality;
 using Newtonsoft.Json;
-using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.CommonTypes.Tax;
 using Snapshooter.Xunit;
 using Xunit;
 

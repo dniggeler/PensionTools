@@ -2,15 +2,16 @@
 using Domain.Models.Tax;
 using LanguageExt;
 
-namespace Application.Features.PensionVersusCapital;
-
-public interface IPensionVersusCapitalCalculator
+namespace Application.Features.PensionVersusCapital
 {
-    Task<Option<decimal>> CalculateAsync(
-        int calculationYear,
-        int municipalityId,
-        Canton canton,
-        decimal retirementPension,
-        decimal retirementCapital,
-        TaxPerson taxPerson);
+    public interface IPensionVersusCapitalCalculator
+    {
+        Task<Option<decimal>> CalculateAsync(
+            int calculationYear,
+            int municipalityId,
+            Canton canton,
+            decimal retirementPension,
+            decimal retirementCapital,
+            TaxPerson taxPerson);
+    }
 }

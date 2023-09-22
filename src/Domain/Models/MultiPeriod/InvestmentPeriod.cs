@@ -1,7 +1,8 @@
-﻿namespace Domain.Models.MultiPeriod;
-
-public record InvestmentPeriod
+﻿namespace Domain.Models.MultiPeriod
 {
-    public int Year { get; set; }
-    public int NumberOfPeriods { get; set; }
+    public record InvestmentPeriod
+    {
+        public int Year { get; set; }
+        public int NumberOfPeriods { get; set; }
+    }
 }

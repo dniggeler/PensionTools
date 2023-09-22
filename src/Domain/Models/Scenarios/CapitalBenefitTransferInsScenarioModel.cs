@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using Domain.Models.Tax;
+﻿using Domain.Models.Tax;
 
-namespace Calculators.CashFlow.Models;
+namespace Domain.Models.Scenarios;
 
 public class CapitalBenefitTransferInsScenarioModel
 {

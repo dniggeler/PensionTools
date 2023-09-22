@@ -1,18 +1,19 @@
 ﻿using Domain.Models.Tax;
 using FluentValidation;
 
-namespace Application.Validators;
-
-public class CapitalBenefitsTaxPersonValidator : AbstractValidator<CapitalBenefitTaxPerson>
+namespace Application.Validators
 {
-    private const string ValueMustNotBeNegative = "Value must not be negative";
-
-    public CapitalBenefitsTaxPersonValidator()
+    public class CapitalBenefitsTaxPersonValidator : AbstractValidator<CapitalBenefitTaxPerson>
     {
-        Include(new TaxPersonBasicValidator());
+        private const string ValueMustNotBeNegative = "Value must not be negative";
 
-        RuleFor(p => p.TaxableCapitalBenefits)
-            .GreaterThanOrEqualTo(decimal.Zero)
-            .WithMessage(ValueMustNotBeNegative);
+        public CapitalBenefitsTaxPersonValidator()
+        {
+            Include(new TaxPersonBasicValidator());
+
+            RuleFor(p => p.TaxableCapitalBenefits)
+                .GreaterThanOrEqualTo(decimal.Zero)
+                .WithMessage(ValueMustNotBeNegative);
+        }
     }
 }

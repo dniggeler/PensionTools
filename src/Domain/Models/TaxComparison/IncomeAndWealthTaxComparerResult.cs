@@ -1,19 +1,20 @@
 ﻿using Domain.Enums;
 using Domain.Models.Tax;
 
-namespace Domain.Models.TaxComparison;
-
-public class IncomeAndWealthTaxComparerResult
+namespace Domain.Models.TaxComparison
 {
-    public int MunicipalityId { get; set; }
+    public class IncomeAndWealthTaxComparerResult
+    {
+        public int MunicipalityId { get; set; }
 
-    public string MunicipalityName { get; set; }
+        public string MunicipalityName { get; set; }
 
-    public Canton Canton { get; set; }
+        public Canton Canton { get; set; }
 
-    public int MaxSupportedTaxYear { get; set; }
+        public int MaxSupportedTaxYear { get; set; }
 
-    public FullTaxResult TaxResult { get; set; }
+        public FullTaxResult TaxResult { get; set; }
 
-    public int TotalCount { get; set; }
+        public int TotalCount { get; set; }
+    }
 }

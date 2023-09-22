@@ -1,18 +1,19 @@
 ﻿using Domain.Enums;
 using Microsoft.Extensions.Configuration;
 
-namespace Infrastructure.Configuration;
-
-public static class ConfigurationExtensions
+namespace Infrastructure.Configuration
 {
-    public static ApplicationMode GetApplicationMode(this IConfiguration configuration)
+    public static class ConfigurationExtensions
     {
-        const string key = "ApplicationMode";
-
-        return configuration[key] switch
+        public static ApplicationMode GetApplicationMode(this IConfiguration configuration)
         {
-            null => ApplicationMode.Proprietary,
-            { } v => Enum.Parse<ApplicationMode>(v),
-        };
+            const string key = "ApplicationMode";
+
+            return configuration[key] switch
+            {
+                null => ApplicationMode.Proprietary,
+                { } v => Enum.Parse<ApplicationMode>(v),
+            };
+        }
     }
 }

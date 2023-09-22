@@ -1,76 +1,77 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Domain.Enums;
-
-[JsonConverter(typeof(JsonStringEnumConverter))]
-public enum Canton
+namespace Domain.Enums
 {
-    /// <summary>
-    /// Undefined is not a valid and is treated as an error
-    /// </summary>
-    Undefined = 0,
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public enum Canton
+    {
+        /// <summary>
+        /// Undefined is not a valid and is treated as an error
+        /// </summary>
+        Undefined = 0,
 
-    AG = 1,
+        AG = 1,
 
-    AI = 2,
+        AI = 2,
 
-    AR = 3,
+        AR = 3,
     
-    /// <summary>
-    /// Bern
-    /// </summary>
-    BE = 4,
+        /// <summary>
+        /// Bern
+        /// </summary>
+        BE = 4,
 
-    BL = 5,
+        BL = 5,
 
-    BS = 6,
+        BS = 6,
 
-    FR = 7,
+        FR = 7,
 
-    GE = 8,
+        GE = 8,
 
-    GL = 9,
+        GL = 9,
 
-    GR = 10,
+        GR = 10,
 
-    JU = 11,
+        JU = 11,
     
-    LU = 12,
+        LU = 12,
     
-    NE = 13,
+        NE = 13,
 
-    NW = 14,
+        NW = 14,
 
-    OW = 15,
+        OW = 15,
 
-    SH = 16,
+        SH = 16,
 
-    /// <summary>
-    /// Solothurn
-    /// </summary>
-    SO = 17,
+        /// <summary>
+        /// Solothurn
+        /// </summary>
+        SO = 17,
 
-    /// <summary>
-    /// St.Gallen
-    /// </summary>
-    SG = 18,
+        /// <summary>
+        /// St.Gallen
+        /// </summary>
+        SG = 18,
     
-    SZ = 19,
+        SZ = 19,
 
-    TI = 20,
+        TI = 20,
 
-    TG = 21,
+        TG = 21,
 
-    UR = 22,
+        UR = 22,
 
-    VD = 23,
+        VD = 23,
 
-    VS = 24,
+        VS = 24,
 
-    ZG = 25,
+        ZG = 25,
 
-    /// <summary>
-    /// Zürich
-    /// </summary>
-    ZH = 26,
+        /// <summary>
+        /// Zürich
+        /// </summary>
+        ZH = 26,
+    }
 }

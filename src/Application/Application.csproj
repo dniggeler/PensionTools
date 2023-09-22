@@ -14,12 +14,14 @@
     </ItemGroup>
     
   <ItemGroup>
+    <ProjectReference Include="..\CommonTypes\CommonTypes.csproj" />
     <ProjectReference Include="..\CommonUtils\CommonUtils.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
     
   <ItemGroup>
-    <Folder Include="Tax\" />
+    <Folder Include="Features\MultiPeriodCalculation\" />
+    <Folder Include="Features\TaxScenarios\Models\" />
   </ItemGroup>
 
 </Project>

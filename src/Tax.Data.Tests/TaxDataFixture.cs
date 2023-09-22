@@ -7,35 +7,36 @@ using Infrastructure.Tax.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Tax.Data.Tests;
-
-public class TaxDataFixture
+namespace Tax.Data.Tests
 {
-    public ServiceProvider Provider { get; }
-
-    public TaxDataFixture()
+    public class TaxDataFixture
     {
-        var projectPath = Assembly.GetExecutingAssembly()
-            .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
-            .First();
+        public ServiceProvider Provider { get; }
 
-        var dbFile = Path.Combine(projectPath, @"src\Tax.Data\files\TaxDb.db");
-
-
-        var configurationDict = new Dictionary<string, string>
+        public TaxDataFixture()
         {
-            {"ConnectionStrings:TaxDb", dbFile}
-        };
+            var projectPath = Assembly.GetExecutingAssembly()
+                .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
+                .First();
 
-        IConfiguration configuration = new ConfigurationBuilder()
-            .AddInMemoryCollection(configurationDict)
-            .Build();
+            var dbFile = Path.Combine(projectPath, @"src\Tax.Data\files\TaxDb.db");
 
-        ServiceCollection coll = new ServiceCollection();
-        coll.AddScoped(c => configuration);
 
-        coll.AddTaxData(configuration);
+            var configurationDict = new Dictionary<string, string>
+            {
+                {"ConnectionStrings:TaxDb", dbFile}
+            };
 
-        Provider = coll.BuildServiceProvider();
+            IConfiguration configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection(configurationDict)
+                .Build();
+
+            ServiceCollection coll = new ServiceCollection();
+            coll.AddScoped(c => configuration);
+
+            coll.AddTaxData(configuration);
+
+            Provider = coll.BuildServiceProvider();
+        }
     }
 }

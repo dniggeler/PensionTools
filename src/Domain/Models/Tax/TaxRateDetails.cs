@@ -1,10 +1,11 @@
-﻿namespace Domain.Models.Tax;
-
-public class TaxRateDetails
+﻿namespace Domain.Models.Tax
 {
-    public decimal CantonRate { get; set; }
+    public class TaxRateDetails
+    {
+        public decimal CantonRate { get; set; }
 
-    public decimal MunicipalityRate { get; set; }
+        public decimal MunicipalityRate { get; set; }
 
-    public decimal ChurchTaxRate { get; set; }
+        public decimal ChurchTaxRate { get; set; }
+    }
 }

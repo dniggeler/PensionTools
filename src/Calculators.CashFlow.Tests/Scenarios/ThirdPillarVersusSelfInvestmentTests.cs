@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Calculators.CashFlow.Models;
+using Application.Features.TaxScenarios;
 using Domain.Enums;
+using Domain.Models.Scenarios;
 using Domain.Models.Tax;
-using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.CommonTypes.Tax;
 using Snapshooter.Xunit;
 using Xunit;
 

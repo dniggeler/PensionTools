@@ -2,26 +2,27 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.EstvTaxCalculator;
-
-public static class ServiceCollectionExtensions
+namespace Infrastructure.EstvTaxCalculator
 {
-    public static IServiceCollection AddEstvTaxCalculatorClient(this IServiceCollection services, IConfiguration configuration)
+    public static class ServiceCollectionExtensions
     {
-        string baseUrl = configuration["TaxCalculatorClient:EstvTaxCalculatorBaseUrl"];
-
-        return services.AddEstvTaxCalculatorClient(baseUrl);
-    }
-
-    public static IServiceCollection AddEstvTaxCalculatorClient(this IServiceCollection services, string baseUrl)
-    {
-        services.AddHttpClient(EstvTaxCalculatorClient.EstvTaxCalculatorClientName, c =>
+        public static IServiceCollection AddEstvTaxCalculatorClient(this IServiceCollection services, IConfiguration configuration)
         {
-            c.BaseAddress = new Uri(baseUrl);
-        });
+            string baseUrl = configuration["TaxCalculatorClient:EstvTaxCalculatorBaseUrl"];
 
-        services.AddTransient<IEstvTaxCalculatorClient, EstvTaxCalculatorClient>();
+            return services.AddEstvTaxCalculatorClient(baseUrl);
+        }
 
-        return services;
+        public static IServiceCollection AddEstvTaxCalculatorClient(this IServiceCollection services, string baseUrl)
+        {
+            services.AddHttpClient(EstvTaxCalculatorClient.EstvTaxCalculatorClientName, c =>
+            {
+                c.BaseAddress = new Uri(baseUrl);
+            });
+
+            services.AddTransient<IEstvTaxCalculatorClient, EstvTaxCalculatorClient>();
+
+            return services;
+        }
     }
 }

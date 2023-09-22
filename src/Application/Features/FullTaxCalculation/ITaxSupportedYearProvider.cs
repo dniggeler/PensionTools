@@ -1,8 +1,9 @@
-﻿namespace Application.Features.FullTaxCalculation;
-
-public interface ITaxSupportedYearProvider
+﻿namespace Application.Features.FullTaxCalculation
 {
-    int[] GetSupportedTaxYears();
+    public interface ITaxSupportedYearProvider
+    {
+        int[] GetSupportedTaxYears();
 
-    int MapToSupportedYear(int taxYear);
+        int MapToSupportedYear(int taxYear);
+    }
 }

@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using Domain.Models.MultiPeriod;
+﻿using Domain.Models.Cashflows;
 
-namespace Calculators.CashFlow.Models;
+namespace Domain.Models.MultiPeriod;
 
 public record MultiPeriodCalculationResult
 {

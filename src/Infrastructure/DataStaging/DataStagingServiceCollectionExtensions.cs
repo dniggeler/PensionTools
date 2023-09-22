@@ -3,14 +3,15 @@ using Infrastructure.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.DataStaging;
-
-public static class DataStagingServiceCollectionExtensions
+namespace Infrastructure.DataStaging
 {
-    public static void AddDataStagingServices(this IServiceCollection collection)
+    public static class DataStagingServiceCollectionExtensions
     {
-        collection.AddTransient<IDataStagingConnector, DataStagingConnector>();
-        collection.AddTransient<ICheckSettingsConnector, CheckSettingsConnector>();
+        public static void AddDataStagingServices(this IServiceCollection collection)
+        {
+            collection.AddTransient<IDataStagingConnector, DataStagingConnector>();
+            collection.AddTransient<ICheckSettingsConnector, CheckSettingsConnector>();
 
+        }
     }
 }

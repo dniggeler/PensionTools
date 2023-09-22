@@ -1,26 +1,27 @@
-﻿namespace Domain.Models.Bvg;
-
-/// <summary>
-/// Holds retirement credit
-/// </summary>
-public class RetirementCredit
+﻿namespace Domain.Models.Bvg
 {
     /// <summary>
-    /// Gets the age.
+    /// Holds retirement credit
     /// </summary>
-    /// <value>
-    /// The age.
-    /// </value>
-    public int Age { get; set; }
-
-    /// <summary>
-    /// BVG portion
-    /// </summary>
-    public decimal AmountRaw { get; set; }
-
-    public RetirementCredit(decimal amountRaw, int age)
+    public class RetirementCredit
     {
-        AmountRaw = amountRaw;
-        Age = age;
+        /// <summary>
+        /// Gets the age.
+        /// </summary>
+        /// <value>
+        /// The age.
+        /// </value>
+        public int Age { get; set; }
+
+        /// <summary>
+        /// BVG portion
+        /// </summary>
+        public decimal AmountRaw { get; set; }
+
+        public RetirementCredit(decimal amountRaw, int age)
+        {
+            AmountRaw = amountRaw;
+            Age = age;
+        }
     }
 }

@@ -4,52 +4,53 @@ using Domain.Models.Municipality;
 using Infrastructure.Tax.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Municipality;
-
-public class MunicipalityRepository : IMunicipalityRepository
+namespace Infrastructure.Municipality
 {
-    private readonly MunicipalityDbContext municipalityDbContext;
-
-    public MunicipalityRepository(MunicipalityDbContext municipalityDbContext)
+    public class MunicipalityRepository : IMunicipalityRepository
     {
-        this.municipalityDbContext = municipalityDbContext;
-        this.municipalityDbContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-    }
+        private readonly MunicipalityDbContext municipalityDbContext;
 
-    public IEnumerable<MunicipalityEntity> GetAll()
-    {
-        return municipalityDbContext.MunicipalityEntities.ToList();
-    }
-
-    public MunicipalityEntity Get(int bfsNumber, int year)
-    {
-        return municipalityDbContext.MunicipalityEntities
-            .FirstOrDefault(item => item.BfsNumber == bfsNumber && string.IsNullOrEmpty(item.DateOfMutation));
-    }
-
-    public IEnumerable<MunicipalityEntity> GetAllSupportTaxCalculation()
-    {
-        return municipalityDbContext.MunicipalityEntities
-            .Where(item => item.TaxLocationId != null)
-            .OrderBy(item => item.Canton)
-            .ThenBy(item => item.Name);
-    }
-
-    public IEnumerable<MunicipalityEntity> Search(MunicipalitySearchFilter searchFilter)
-    {
-        IQueryable<MunicipalityEntity> result = municipalityDbContext.MunicipalityEntities;
-
-        if (searchFilter.Canton != Canton.Undefined)
+        public MunicipalityRepository(MunicipalityDbContext municipalityDbContext)
         {
-            result = result.Where(item => item.Canton == searchFilter.Canton.ToString());
+            this.municipalityDbContext = municipalityDbContext;
+            this.municipalityDbContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
-        if (!string.IsNullOrEmpty(searchFilter.Name))
+        public IEnumerable<MunicipalityEntity> GetAll()
         {
-            result =
-                result.Where(item => item.Name.Contains(searchFilter.Name));
+            return municipalityDbContext.MunicipalityEntities.ToList();
         }
 
-        return result;
+        public MunicipalityEntity Get(int bfsNumber, int year)
+        {
+            return municipalityDbContext.MunicipalityEntities
+                .FirstOrDefault(item => item.BfsNumber == bfsNumber && string.IsNullOrEmpty(item.DateOfMutation));
+        }
+
+        public IEnumerable<MunicipalityEntity> GetAllSupportTaxCalculation()
+        {
+            return municipalityDbContext.MunicipalityEntities
+                .Where(item => item.TaxLocationId != null)
+                .OrderBy(item => item.Canton)
+                .ThenBy(item => item.Name);
+        }
+
+        public IEnumerable<MunicipalityEntity> Search(MunicipalitySearchFilter searchFilter)
+        {
+            IQueryable<MunicipalityEntity> result = municipalityDbContext.MunicipalityEntities;
+
+            if (searchFilter.Canton != Canton.Undefined)
+            {
+                result = result.Where(item => item.Canton == searchFilter.Canton.ToString());
+            }
+
+            if (!string.IsNullOrEmpty(searchFilter.Name))
+            {
+                result =
+                    result.Where(item => item.Name.Contains(searchFilter.Name));
+            }
+
+            return result;
+        }
     }
 }

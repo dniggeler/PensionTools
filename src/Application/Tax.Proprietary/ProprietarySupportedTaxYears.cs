@@ -1,18 +1,19 @@
 ﻿using Application.Features.FullTaxCalculation;
 
-namespace Application.Tax.Proprietary;
-
-public class ProprietarySupportedTaxYears : ITaxSupportedYearProvider
+namespace Application.Tax.Proprietary
 {
-    public int[] GetSupportedTaxYears()
+    public class ProprietarySupportedTaxYears : ITaxSupportedYearProvider
     {
-        int[] years = { 2019 };
+        public int[] GetSupportedTaxYears()
+        {
+            int[] years = { 2019 };
 
-        return years;
-    }
+            return years;
+        }
 
-    public int MapToSupportedYear(int taxYear)
-    {
-        return GetSupportedTaxYears().Max();
+        public int MapToSupportedYear(int taxYear)
+        {
+            return GetSupportedTaxYears().Max();
+        }
     }
 }

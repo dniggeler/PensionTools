@@ -1,12 +1,13 @@
 ﻿using Application.Tax.Proprietary.Abstractions.Models.Person;
 using FluentValidation;
 
-namespace Application.Validators;
-
-public class PollTaxPersonValidator : AbstractValidator<PollTaxPerson>
+namespace Application.Validators
 {
-    public PollTaxPersonValidator()
+    public class PollTaxPersonValidator : AbstractValidator<PollTaxPerson>
     {
-        Include(new TaxPersonBasicValidator());
+        public PollTaxPersonValidator()
+        {
+            Include(new TaxPersonBasicValidator());
+        }
     }
 }

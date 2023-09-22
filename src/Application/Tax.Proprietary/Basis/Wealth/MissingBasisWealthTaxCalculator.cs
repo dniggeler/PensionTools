@@ -5,29 +5,30 @@ using Domain.Enums;
 using LanguageExt;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Tax.Proprietary.Basis.Wealth;
-
-/// <summary>
-/// Null calculator for missing wealth calculators.
-/// </summary>
-public class MissingBasisWealthTaxCalculator : IBasisWealthTaxCalculator
+namespace Application.Tax.Proprietary.Basis.Wealth
 {
-    private readonly ILogger<MissingBasisWealthTaxCalculator> logger;
-
-    public MissingBasisWealthTaxCalculator(ILogger<MissingBasisWealthTaxCalculator> logger)
+    /// <summary>
+    /// Null calculator for missing wealth calculators.
+    /// </summary>
+    public class MissingBasisWealthTaxCalculator : IBasisWealthTaxCalculator
     {
-        this.logger = logger;
-    }
+        private readonly ILogger<MissingBasisWealthTaxCalculator> logger;
 
-    public Task<Either<string, BasisTaxResult>> CalculateAsync(
-        int calculationYear, Canton canton, BasisTaxPerson person)
-    {
-        string msg = $"No wealth tax calculator for canton {canton.ToString()} available";
+        public MissingBasisWealthTaxCalculator(ILogger<MissingBasisWealthTaxCalculator> logger)
+        {
+            this.logger = logger;
+        }
 
-        Either<string, BasisTaxResult> result = msg;
+        public Task<Either<string, BasisTaxResult>> CalculateAsync(
+            int calculationYear, Canton canton, BasisTaxPerson person)
+        {
+            string msg = $"No wealth tax calculator for canton {canton.ToString()} available";
 
-        logger.LogWarning(msg);
+            Either<string, BasisTaxResult> result = msg;
 
-        return Task.FromResult(result);
+            logger.LogWarning(msg);
+
+            return Task.FromResult(result);
+        }
     }
 }

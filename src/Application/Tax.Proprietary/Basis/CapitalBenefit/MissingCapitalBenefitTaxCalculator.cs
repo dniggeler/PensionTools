@@ -4,29 +4,30 @@ using Domain.Models.Tax;
 using LanguageExt;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Tax.Proprietary.Basis.CapitalBenefit;
-
-/// <summary>
-/// Null calculator for missing capital benefit calculator.
-/// </summary>
-public class MissingCapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
+namespace Application.Tax.Proprietary.Basis.CapitalBenefit
 {
-    private readonly ILogger<MissingCapitalBenefitTaxCalculator> logger;
-
-    public MissingCapitalBenefitTaxCalculator(ILogger<MissingCapitalBenefitTaxCalculator> logger)
+    /// <summary>
+    /// Null calculator for missing capital benefit calculator.
+    /// </summary>
+    public class MissingCapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
     {
-        this.logger = logger;
-    }
+        private readonly ILogger<MissingCapitalBenefitTaxCalculator> logger;
 
-    public Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(
-        int calculationYear, int municipalityId, Canton canton, CapitalBenefitTaxPerson person)
-    {
-        string msg = $"No capital benefit tax calculator for canton {canton} available";
+        public MissingCapitalBenefitTaxCalculator(ILogger<MissingCapitalBenefitTaxCalculator> logger)
+        {
+            this.logger = logger;
+        }
 
-        Either<string, CapitalBenefitTaxResult> result = msg;
+        public Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(
+            int calculationYear, int municipalityId, Canton canton, CapitalBenefitTaxPerson person)
+        {
+            string msg = $"No capital benefit tax calculator for canton {canton} available";
 
-        logger.LogWarning(msg);
+            Either<string, CapitalBenefitTaxResult> result = msg;
 
-        return Task.FromResult(result);
+            logger.LogWarning(msg);
+
+            return Task.FromResult(result);
+        }
     }
 }

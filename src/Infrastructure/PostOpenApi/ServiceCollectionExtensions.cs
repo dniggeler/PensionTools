@@ -1,21 +1,22 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.PostOpenApi;
-
-public static class ServiceCollectionExtensions
+namespace Infrastructure.PostOpenApi
 {
-    public static IServiceCollection AddPostOpenApiClient(this IServiceCollection services, IConfiguration configuration)
+    public static class ServiceCollectionExtensions
     {
-        string baseUrl = configuration["TaxCalculatorClient:PostOpenApiBaseUrl"];
-
-        services.AddHttpClient(PostOpenApiClient.ClientName, c =>
+        public static IServiceCollection AddPostOpenApiClient(this IServiceCollection services, IConfiguration configuration)
         {
-            c.BaseAddress = new Uri(baseUrl);
-        });
+            string baseUrl = configuration["TaxCalculatorClient:PostOpenApiBaseUrl"];
 
-        services.AddTransient<IPostOpenApiClient, PostOpenApiClient>();
+            services.AddHttpClient(PostOpenApiClient.ClientName, c =>
+            {
+                c.BaseAddress = new Uri(baseUrl);
+            });
 
-        return services;
+            services.AddTransient<IPostOpenApiClient, PostOpenApiClient>();
+
+            return services;
+        }
     }
 }
