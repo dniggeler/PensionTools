@@ -24,7 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\CommonTypes\CommonTypes.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Tax.Tools.Comparison.Domain\Tax.Tools.Comparison.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

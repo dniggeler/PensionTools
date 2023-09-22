@@ -1,20 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Domain.Enums;
+using Domain.Models.Tax;
 
-namespace PensionCoach.Tools.TaxComparison;
+namespace Application.Features.TaxComparison.Models;
 
-public class ThirdPillarVersusSelfInvestmentComparerRequest
+public class CapitalBenefitTransferInComparerRequest
 {
     [MaxLength(50)]
     public string Name { get; set; }
 
     [Range(2018, 2099, ErrorMessage = "Valid tax years start from 2018")]
     public int CalculationYear { get; set; }
-
-    /// <summary>
-    /// Final transfer-in year. At this year the third-pillar account is closed and the money is transferred to the wealth.
-    /// </summary>
-    public int FinalYear { get; set; }
 
     public CivilStatus CivilStatus { get; set; }
 
@@ -34,24 +30,23 @@ public class ThirdPillarVersusSelfInvestmentComparerRequest
     [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
     public decimal TaxableWealth { get; set; }
 
-    /// <summary>
-    /// The amount invested in the third pillar or self-investment account.
-    /// First investment is done in the calculation year up to final year.
-    /// </summary>
-    public decimal InvestmentAmount { get; set;}
+    public IReadOnlyCollection<SingleTransferInModel> TransferIns { get; set;}
 
     /// <summary>
-    /// Gets or sets the net growth rate of the investment account which is taxed by the wealth tax scheme.
+    /// Gets or sets yearly net return on transfer-ins.
     /// </summary>
-    public decimal InvestmentNetGrowthRate { get; set; }
+    public decimal NetWealthReturn { get; set; }
+
+    public decimal NetPensionCapitalReturn { get; set; }
+    
+    public bool WithCapitalBenefitTaxation { get; set; }
 
     /// <summary>
-    /// Gets or sets the net income rate of the investment account which is taxed by the income tax scheme.
+    /// Gets or sets available capital benefits.
+    /// The amount when starting withdrawals does not include the previously added transfer-ins.
     /// </summary>
-    public decimal InvestmentNetIncomeRate { get; set; }
+    public decimal CapitalBenefitsBeforeWithdrawal { get; set; }
+    
+    public IReadOnlyCollection<SingleTransferInModel> Withdrawals { get; set; }
 
-    /// <summary>
-    /// Gets or sets the net growth rate of the third-pillar account.
-    /// </summary>
-    public decimal ThirdPillarNetGrowthRate { get; set; }
 }

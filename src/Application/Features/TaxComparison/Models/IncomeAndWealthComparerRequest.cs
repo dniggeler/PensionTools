@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Domain.Enums;
 
-namespace PensionCoach.Tools.TaxComparison;
+namespace Application.Features.TaxComparison.Models;
 
-public class CapitalBenefitTaxComparerRequest
+public class IncomeAndWealthComparerRequest
 {
     [MaxLength(50)]
     public string Name { get; set; }
@@ -20,5 +20,11 @@ public class CapitalBenefitTaxComparerRequest
     public int[] BfsNumberList { get; set; }
 
     [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
-    public decimal TaxableBenefits { get; set; }
+    public decimal TaxableIncome { get; set; }
+    
+    [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
+    public decimal TaxableFederalIncome { get; set; }
+
+    [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
+    public decimal TaxableWealth { get; set; }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using PensionCoach.Tools.TaxComparison;
+using Application.Features.TaxComparison.Models;
 
 namespace BlazorApp.Services;
 

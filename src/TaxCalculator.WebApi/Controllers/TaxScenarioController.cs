@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Application.Features.TaxComparison.Models;
 using Calculators.CashFlow;
 using Calculators.CashFlow.Models;
 using Domain.Enums;
@@ -7,7 +8,6 @@ using Domain.Models.Tax;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.TaxComparison;
 
 namespace TaxCalculator.WebApi.Controllers;
 

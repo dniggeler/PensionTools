@@ -12,8 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Calculators.Cashflow.Abstractions\Calculators.CashFlow.Abstractions.csproj" />
-    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\CommonTypes\CommonTypes.csproj" />
   </ItemGroup>
 
 </Project>

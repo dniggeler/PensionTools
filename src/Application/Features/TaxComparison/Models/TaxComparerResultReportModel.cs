@@ -1,6 +1,6 @@
 ﻿using Domain.Enums;
 
-namespace PensionCoach.Tools.TaxComparison;
+namespace Application.Features.TaxComparison.Models;
 
 public class TaxComparerResultReportModel
 {

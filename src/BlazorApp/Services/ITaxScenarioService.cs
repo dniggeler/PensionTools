@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
+using Application.Features.TaxComparison.Models;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.TaxComparison;
 
 namespace BlazorApp.Services
 {

@@ -4,10 +4,10 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Application.Features.TaxComparison.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.TaxComparison;
 
 namespace BlazorApp.Services;
 

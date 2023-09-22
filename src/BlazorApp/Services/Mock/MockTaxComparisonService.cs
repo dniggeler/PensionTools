@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Features.TaxComparison.Models;
 using Domain.Enums;
 using Domain.Models.MultiPeriod;
 using Domain.Models.Tax;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.TaxComparison;
 
 namespace BlazorApp.Services.Mock;
 

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Application.Features.TaxComparison.Models;
 using Domain.Enums;
 using Domain.Models.Tax;
-using PensionCoach.Tools.TaxComparison;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace TaxCalculator.WebApi.Examples;

@@ -1,8 +1,8 @@
-﻿using BlazorApp.Services.Mock;
+﻿using Application.Features.TaxComparison.Models;
+using BlazorApp.Services.Mock;
 using Domain.Enums;
 using Domain.Models.Tax;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.TaxComparison;
 using Snapshooter.Xunit;
 
 namespace BlazorApp.Services.Tests
