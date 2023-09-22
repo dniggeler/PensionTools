@@ -26,7 +26,7 @@ namespace Tax.Tools.Comparison.Tests
                 .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
                 .First();
 
-            var dbFile = Path.Combine(projectPath, @"src\Tax.Data\files\TaxDb.db");
+            var dbFile = Path.Combine(projectPath, @"src\Infrastructure\files\TaxDb.db");
 
             var configurationDict = new Dictionary<string, string>
             {

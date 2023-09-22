@@ -1,7 +1,6 @@
-﻿using System.Linq;
-using Application.Features.FullTaxCalculation;
+﻿using Application.Features.FullTaxCalculation;
 
-namespace PensionCoach.Tools.TaxCalculator.Proprietary;
+namespace Application.Tax.Proprietary;
 
 public class ProprietarySupportedTaxYears : ITaxSupportedYearProvider
 {

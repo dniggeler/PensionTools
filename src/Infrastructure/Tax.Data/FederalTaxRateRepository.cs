@@ -18,6 +18,7 @@ public class FederalTaxRateRepository : IFederalTaxRateRepository
         using var dbContext = federalDbContextFunc();
         return dbContext.Tariffs
             .Where(item => item.Year == calculationYear)
-            .Where(item => item.TariffType == (int)typeId);
+            .Where(item => item.TariffType == (int)typeId)
+            .ToList();
     }
 }

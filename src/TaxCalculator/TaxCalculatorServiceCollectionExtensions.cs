@@ -24,7 +24,6 @@ using Infrastructure.DataStaging;
 using Infrastructure.Municipality;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PensionCoach.Tools.TaxCalculator.Proprietary;
 
 namespace PensionCoach.Tools.TaxCalculator
 {

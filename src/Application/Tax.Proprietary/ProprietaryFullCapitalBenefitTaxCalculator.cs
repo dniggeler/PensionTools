@@ -41,11 +41,9 @@ namespace Application.Tax.Proprietary
                 capitalBenefitCalculatorFunc(municipality.Canton)
                     .CalculateAsync(maxCalculationYear, municipality.BfsNumber, municipality.Canton, capitalBenefitTaxPerson);
 
-            var federalTaxPerson =
-                mapper.Map<FederalTaxPerson>(capitalBenefitTaxPerson);
+            var federalTaxPerson = mapper.Map<FederalTaxPerson>(capitalBenefitTaxPerson);
 
-            var federalTaxResultTask =
-                federalCalculator.CalculateAsync(maxCalculationYear, federalTaxPerson);
+            var federalTaxResultTask = federalCalculator.CalculateAsync(maxCalculationYear, federalTaxPerson);
 
             await Task.WhenAll(capitalBenefitTaxResultTask, federalTaxResultTask);
 
