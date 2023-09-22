@@ -1,7 +1,6 @@
-﻿using Application.Features.PensionVersusCapital;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace PensionVersusCapitalCalculator;
+namespace Application.Features.PensionVersusCapital;
 
 public static class ToolsCollectionExtensions
 {

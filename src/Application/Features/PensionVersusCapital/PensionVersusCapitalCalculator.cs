@@ -1,13 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using Application.Features.PensionVersusCapital;
-using Application.Tax.Proprietary.Abstractions;
+﻿using Application.Tax.Proprietary.Abstractions;
 using Application.Tax.Proprietary.Abstractions.Models;
 using Domain.Enums;
 using Domain.Models.Tax;
 using LanguageExt;
 
-namespace PensionVersusCapitalCalculator;
+namespace Application.Features.PensionVersusCapital;
 
 public class PensionVersusCapitalCalculator : IPensionVersusCapitalCalculator
 {

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Text.Json.Serialization;
+using Application.Extensions;
 using Calculators.CashFlow;
 using Infrastructure.EstvTaxCalculator;
 using Infrastructure.HealthChecks;
@@ -13,7 +14,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.TaxCalculator;
 using Swashbuckle.AspNetCore.Filters;
 using Tax.Tools.Comparison;
