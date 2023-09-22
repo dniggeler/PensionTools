@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
+using Application.Bvg;
+using Application.Bvg.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PensionCoach.Tools.BvgCalculator;
-using PensionCoach.Tools.BvgCalculator.Models;
 using TaxCalculator.WebApi.Models.Bvg;
 
 namespace TaxCalculator.WebApi.Controllers

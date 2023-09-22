@@ -1,8 +1,7 @@
-﻿using System;
-using Application.Enums;
+﻿using Application.Enums;
 using Microsoft.Extensions.Configuration;
 
-namespace PensionCoach.Tools.CommonUtils;
+namespace Infrastructure.Utils;
 
 public static class ConfigurationExtensions
 {
@@ -13,7 +12,7 @@ public static class ConfigurationExtensions
         return configuration[key] switch
         {
             null => ApplicationMode.Proprietary,
-            {} v => Enum.Parse<ApplicationMode>(v),
+            { } v => Enum.Parse<ApplicationMode>(v),
         };
     }
 }

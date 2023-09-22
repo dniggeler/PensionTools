@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Application.Bvg;
+using Application.Bvg.Models;
 using Domain.Enums;
 using LanguageExt;
 using Microsoft.Extensions.DependencyInjection;
 using PensionCoach.Tools.BvgCalculator;
-using PensionCoach.Tools.BvgCalculator.Models;
 
 namespace BvgCalculator.Tests
 {

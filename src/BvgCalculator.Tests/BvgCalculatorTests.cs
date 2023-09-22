@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Bvg.Models;
 using Domain.Enums;
 using FluentAssertions;
 using LanguageExt;

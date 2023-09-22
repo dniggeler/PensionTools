@@ -1,10 +1,9 @@
-﻿namespace PensionCoach.Tools.BvgCalculator.Models
+﻿namespace PensionCoach.Tools.BvgCalculator.Models;
+
+internal class BvgSalary
 {
-    internal class BvgSalary
-    {
-        public decimal ReportedSalary { get; set; }
-        public decimal EffectiveSalary { get; set; }
-        public decimal InsuredSalary { get; set; }
-        public decimal CoordinationDeduction { get; set; }
-    }
+    public decimal ReportedSalary { get; set; }
+    public decimal EffectiveSalary { get; set; }
+    public decimal InsuredSalary { get; set; }
+    public decimal CoordinationDeduction { get; set; }
 }
