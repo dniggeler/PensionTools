@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application.Extensions;
-using Application.MultiPeriodCalculator;
+﻿using Application.Extensions;
 using Application.Municipality;
 using Application.Tax.Proprietary.Abstractions;
 using Domain.Contracts;
@@ -20,7 +15,7 @@ using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.Tax;
 
-namespace Calculators.CashFlow
+namespace Application.MultiPeriodCalculator
 {
     public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
     {
@@ -40,8 +35,7 @@ namespace Calculators.CashFlow
             this.municipalityConnector = municipalityConnector;
             _logger = logger;
         }
-
-
+        
         /// <inheritdoc />
         public async Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
             int startingYear,

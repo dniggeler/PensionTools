@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application.Features.TaxScenarios;
-using Application.MultiPeriodCalculator;
+﻿using Application.MultiPeriodCalculator;
 using Application.Municipality;
-using Domain.Enums;
-using Domain.Models.Municipality;
-using LanguageExt;
-using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.CommonTypes.Tax;
 using Domain.Contracts;
+using Domain.Enums;
 using Domain.Models.MultiPeriod;
 using Domain.Models.MultiPeriod.Actions;
 using Domain.Models.MultiPeriod.Definitions;
-using Domain.Models.Tax;
+using Domain.Models.Municipality;
 using Domain.Models.Scenarios;
+using Domain.Models.Tax;
+using LanguageExt;
+using PensionCoach.Tools.CommonTypes.MultiPeriod;
+using PensionCoach.Tools.CommonTypes.Tax;
 
-namespace Calculators.CashFlow
+namespace Application.Features.TaxScenarios
 {
     public class TaxScenarioCalculator : ITaxScenarioCalculator
     {
