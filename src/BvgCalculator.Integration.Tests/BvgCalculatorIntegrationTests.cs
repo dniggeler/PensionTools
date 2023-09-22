@@ -6,9 +6,9 @@ using Domain.Enums;
 using Domain.Models.Bvg;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
+using PensionCoach.Tools.CommonTypes.Bvg;
 using Snapshooter.Xunit;
 using TaxCalculator.WebApi;
-using TaxCalculator.WebApi.Models.Bvg;
 using Xunit;
 
 namespace BvgCalculator.Integration.Tests
@@ -28,8 +28,7 @@ namespace BvgCalculator.Integration.Tests
         {
             var request = GetBvgRequest();
 
-            var response =
-                await client.PostAsJsonAsync("benefits", request);
+            var response = await client.PostAsJsonAsync("benefits", request);
 
             response.EnsureSuccessStatusCode();
 

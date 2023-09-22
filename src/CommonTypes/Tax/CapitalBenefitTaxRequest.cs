@@ -3,7 +3,7 @@ using Domain.Enums;
 
 namespace PensionCoach.Tools.CommonTypes.Tax;
 
-public class FullTaxRequest
+public class CapitalBenefitTaxRequest
 {
     [MaxLength(50)]
     public string Name { get; set; }
@@ -17,15 +17,10 @@ public class FullTaxRequest
 
     public ReligiousGroupType? PartnerReligiousGroup { get; set; }
 
-    [Range(typeof(int), "0", "100000", ErrorMessage = "BFS Number not valid")]
+    [Required]
+    [Range(typeof(int), "0", "10000", ErrorMessage = "BFS number not valid")]
     public int BfsMunicipalityId { get; set; }
 
     [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
-    public decimal TaxableIncome { get; set; }
-
-    [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
-    public decimal TaxableFederalIncome { get; set; }
-
-    [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
-    public decimal TaxableWealth { get; set; }
+    public decimal TaxableBenefits { get; set; }
 }

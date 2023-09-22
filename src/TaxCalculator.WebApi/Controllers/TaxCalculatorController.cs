@@ -11,7 +11,6 @@ using LanguageExt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PensionCoach.Tools.CommonTypes.Tax;
-using TaxCalculator.WebApi.Models;
 
 namespace TaxCalculator.WebApi.Controllers
 {

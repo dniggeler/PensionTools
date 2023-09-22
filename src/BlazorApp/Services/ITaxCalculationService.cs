@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Application.Features.FullTaxCalculation;
 using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace BlazorApp.Services

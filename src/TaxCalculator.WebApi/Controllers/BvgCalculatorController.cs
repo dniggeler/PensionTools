@@ -4,7 +4,7 @@ using Domain.Models.Bvg;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using TaxCalculator.WebApi.Models.Bvg;
+using PensionCoach.Tools.CommonTypes.Bvg;
 
 namespace TaxCalculator.WebApi.Controllers
 {
