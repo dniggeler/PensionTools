@@ -9,7 +9,6 @@
 
 <ItemGroup>
   <ProjectReference Include="..\CommonTypes\CommonTypes.csproj" />
-  <ProjectReference Include="..\TaxCalculator.Abstractions\TaxCalculator.Abstractions.csproj" />
 </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace Application.Tax;
+﻿namespace Application.Features.FullTaxCalculation;
 
 public interface ITaxSupportedYearProvider
 {

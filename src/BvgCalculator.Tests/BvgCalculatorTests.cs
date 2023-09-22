@@ -6,7 +6,6 @@ using FluentAssertions;
 using LanguageExt;
 using Newtonsoft.Json;
 using PensionCoach.Tools.BvgCalculator.Models;
-using PensionCoach.Tools.CommonTypes;
 using Snapshooter.Xunit;
 using Xunit;
 using Xunit.Abstractions;

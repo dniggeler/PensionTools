@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
+using Application.Features.CheckSettings;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
 
 namespace TaxCalculator.WebApi.Controllers;
 

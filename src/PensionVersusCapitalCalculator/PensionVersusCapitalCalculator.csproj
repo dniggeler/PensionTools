@@ -9,8 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PensionVersusCapitalCalculator.Abstractions\PensionVersusCapitalCalculator.Abstractions.csproj" />
-    <ProjectReference Include="..\TaxCalculator.Abstractions\TaxCalculator.Abstractions.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
   </ItemGroup>
 
 </Project>

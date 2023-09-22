@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Infrastructure.PostOpenApi.Models;
+using Domain.Models.Municipality;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Snapshooter.Xunit;
 using TaxCalculator.WebApi;

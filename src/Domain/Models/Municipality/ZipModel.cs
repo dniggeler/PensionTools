@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.PostOpenApi.Models;
+﻿namespace Domain.Models.Municipality;
 
 public class ZipModel
 {

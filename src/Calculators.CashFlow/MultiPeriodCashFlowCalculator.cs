@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Municipality;
-using Application.Tax.Proprietary;
 using Application.Tax.Proprietary.Abstractions;
 using Application.Tax.Proprietary.Abstractions.Models;
 using Calculators.CashFlow.Accounts;
@@ -20,7 +19,6 @@ using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.Tax;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
 
 namespace Calculators.CashFlow;
 

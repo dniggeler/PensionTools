@@ -1,4 +1,6 @@
-﻿namespace Application.Tax.Estv;
+﻿using Application.Features.FullTaxCalculation;
+
+namespace Application.Tax.Estv;
 
 public class EstvTaxSupportedYearProvider : ITaxSupportedYearProvider
 {

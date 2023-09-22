@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Tax.Tools.Comparison.Domain\Tax.Tools.Comparison.Domain.csproj" />
-    <ProjectReference Include="..\..\TaxCalculator.Abstractions\TaxCalculator.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

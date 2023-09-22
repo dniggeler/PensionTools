@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Features.CheckSettings;
 using Microsoft.Extensions.Configuration;
 using PensionCoach.Tools.CommonUtils;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
 
 namespace PensionCoach.Tools.TaxCalculator;
 

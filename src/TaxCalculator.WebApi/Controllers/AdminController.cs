@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using Infrastructure.PostOpenApi.Models;
-
-namespace TaxCalculator.WebApi.Controllers;
-
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
+using System.Collections.Generic;
+using Application.Features.Admin;
+using Domain.Models.Municipality;
+
+namespace TaxCalculator.WebApi.Controllers;
 
 [Produces("application/json")]
 [ApiController]

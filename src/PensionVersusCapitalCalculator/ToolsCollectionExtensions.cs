@@ -1,13 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using PensionVersusCapitalCalculator.Abstractions;
+﻿using Application.Features.PensionVersusCapital;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace PensionVersusCapitalCalculator
+namespace PensionVersusCapitalCalculator;
+
+public static class ToolsCollectionExtensions
 {
-    public static class ToolsCollectionExtensions
+    public static void AddToolsCalculators(this IServiceCollection serviceCollection)
     {
-        public static void AddToolsCalculators(this IServiceCollection serviceCollection)
-        {
-            serviceCollection.AddSingleton<IPensionVersusCapitalCalculator, PensionVersusCapitalCalculator>();
-        }
+        serviceCollection.AddSingleton<IPensionVersusCapitalCalculator, PensionVersusCapitalCalculator>();
     }
 }

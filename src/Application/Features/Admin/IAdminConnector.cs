@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Infrastructure.PostOpenApi.Models;
+﻿using Domain.Models.Municipality;
 
-namespace PensionCoach.Tools.TaxCalculator.Abstractions;
+namespace Application.Features.Admin;
 
 public interface IAdminConnector
 {

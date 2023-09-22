@@ -2,7 +2,7 @@
 using Domain.Models.Tax;
 using LanguageExt;
 
-namespace Application.Tax;
+namespace Application.Features.FullTaxCalculation;
 
 public interface ITaxCalculatorConnector
 {

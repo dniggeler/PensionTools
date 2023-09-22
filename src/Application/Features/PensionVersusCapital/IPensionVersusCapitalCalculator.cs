@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
-using Domain.Enums;
+﻿using Domain.Enums;
 using Domain.Models.Tax;
 using LanguageExt;
 
-namespace PensionVersusCapitalCalculator.Abstractions;
+namespace Application.Features.PensionVersusCapital;
 
 public interface IPensionVersusCapitalCalculator
 {
