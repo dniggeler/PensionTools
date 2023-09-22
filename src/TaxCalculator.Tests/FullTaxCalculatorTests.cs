@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Application.Tax.Proprietary;
 using Application.Tax.Proprietary.Abstractions;
 using Domain.Enums;
 using Domain.Models.Municipality;

@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator", "TaxCalculator\TaxCalculator.csproj", "{4290D0E0-FCE3-48AE-AD69-A96439870A12}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Data.Tests", "Tax.Data.Tests\Tax.Data.Tests.csproj", "{38D1A086-2A5D-4654-B465-04C662DDEA1A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.Tests", "TaxCalculator.Tests\TaxCalculator.Tests.csproj", "{1A039171-DE86-4DCE-8D47-8626666004E3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaxCalculators", "TaxCalculators", "{3B665A6F-1CE9-48B9-9736-A5C05C49335D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.WebApi", "TaxCalculator.WebApi\TaxCalculator.WebApi.csproj", "{19811879-AEFC-4F75-BF52-10CB8471F5CB}"
 EndProject
@@ -85,10 +81,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4290D0E0-FCE3-48AE-AD69-A96439870A12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4290D0E0-FCE3-48AE-AD69-A96439870A12}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4290D0E0-FCE3-48AE-AD69-A96439870A12}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4290D0E0-FCE3-48AE-AD69-A96439870A12}.Release|Any CPU.Build.0 = Release|Any CPU
 		{38D1A086-2A5D-4654-B465-04C662DDEA1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{38D1A086-2A5D-4654-B465-04C662DDEA1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38D1A086-2A5D-4654-B465-04C662DDEA1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -190,7 +182,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{4290D0E0-FCE3-48AE-AD69-A96439870A12} = {3B665A6F-1CE9-48B9-9736-A5C05C49335D}
 		{38D1A086-2A5D-4654-B465-04C662DDEA1A} = {318B773B-F7D6-4003-A92A-96E5E97A5C32}
 		{1A039171-DE86-4DCE-8D47-8626666004E3} = {1F650DE4-C5CB-4208-AE86-12C18C0C00F7}
 		{71DD068D-41A9-4084-8808-5190BB4D1AC0} = {73BEA53A-145A-4C04-A615-839C73C97755}

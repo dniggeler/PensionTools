@@ -22,11 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaxCalculator\TaxCalculator.csproj" />
+    <Folder Include="__snapshots__\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="__snapshots__\" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
