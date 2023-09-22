@@ -1,14 +1,10 @@
-﻿using System.Threading.Tasks;
-using Application.Features.FullTaxCalculation;
-using Application.Municipality;
-using Application.Tax;
+﻿using Application.Municipality;
 using Application.Tax.Proprietary.Abstractions;
-using Application.Tax.Proprietary.Abstractions.Models;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using LanguageExt;
 
-namespace PensionCoach.Tools.TaxCalculator;
+namespace Application.Features.FullTaxCalculation;
 
 public class TaxCalculatorConnector : ITaxCalculatorConnector
 {

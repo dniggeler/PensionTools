@@ -1,4 +1,4 @@
-﻿using Application.Enums;
+﻿using Domain.Enums;
 using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Configuration;

@@ -3,7 +3,11 @@ using System.IO;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using Application.Extensions;
+using Application.Features.FullTaxCalculation;
+using Application.Features.TaxComparison;
 using Calculators.CashFlow;
+using Infrastructure.Configuration;
+using Infrastructure.DataStaging;
 using Infrastructure.EstvTaxCalculator;
 using Infrastructure.HealthChecks;
 using Infrastructure.PostOpenApi;
@@ -14,9 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using PensionCoach.Tools.TaxCalculator;
 using Swashbuckle.AspNetCore.Filters;
-using Tax.Tools.Comparison;
 
 namespace TaxCalculator.WebApi
 {
@@ -65,8 +67,9 @@ namespace TaxCalculator.WebApi
                 .AddJsonOptions(options =>
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             services.AddTaxData(Configuration);
-            services.AddTaxCalculators(Configuration);
+            services.AddTaxCalculators(Configuration.GetApplicationMode());
             services.AddTaxComparers();
+            services.AddDataStagingServices();
             services.AddBvgCalculators();
             services.AddCashFlowCalculators();
             services.AddEstvTaxCalculatorClient(Configuration);

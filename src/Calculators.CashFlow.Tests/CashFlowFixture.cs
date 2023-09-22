@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Application.Features.FullTaxCalculation;
+using Infrastructure.Configuration;
 using Infrastructure.Tax.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PensionCoach.Tools.TaxCalculator;
 
 namespace Calculators.CashFlow.Tests
 {
@@ -41,7 +42,7 @@ namespace Calculators.CashFlow.Tests
             coll.AddOptions();
             coll.AddLogging();
             coll.AddCashFlowCalculators();
-            coll.AddTaxCalculators(configuration);
+            coll.AddTaxCalculators(configuration.GetApplicationMode());
             coll.AddTaxData(configuration);
 
 

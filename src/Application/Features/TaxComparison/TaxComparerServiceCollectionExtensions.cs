@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Tax.Tools.Comparison.Abstractions;
 
-namespace Tax.Tools.Comparison;
+namespace Application.Features.TaxComparison;
 
 public static class TaxComparerServiceCollectionExtensions
 {

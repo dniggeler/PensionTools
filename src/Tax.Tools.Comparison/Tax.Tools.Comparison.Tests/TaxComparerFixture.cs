@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Application.Features.FullTaxCalculation;
+using Application.Features.TaxComparison;
+using Infrastructure.Configuration;
 using Infrastructure.Tax.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PensionCoach.Tools.TaxCalculator;
 
 
 namespace Tax.Tools.Comparison.Tests
@@ -40,7 +42,7 @@ namespace Tax.Tools.Comparison.Tests
             ServiceCollection coll = new ServiceCollection();
 
             coll.AddLogging();
-            coll.AddTaxCalculators(configuration);
+            coll.AddTaxCalculators(configuration.GetApplicationMode());
             coll.AddTaxData(configuration);
             coll.AddTaxComparers();
 

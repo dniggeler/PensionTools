@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Features.TaxComparison;
 using Domain.Enums;
 using Domain.Models.Tax;
 using Domain.Models.TaxComparison;
 using LanguageExt;
 using Snapshooter.Xunit;
-using Tax.Tools.Comparison.Abstractions;
 using Xunit;
 
 namespace Tax.Tools.Comparison.Tests

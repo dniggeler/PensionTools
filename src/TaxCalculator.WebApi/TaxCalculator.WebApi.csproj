@@ -28,7 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Calculators.CashFlow\Calculators.CashFlow.csproj" />
-    <ProjectReference Include="..\Tax.Tools.Comparison\Tax.Tools.Comparison\Tax.Tools.Comparison.csproj" />
     <ProjectReference Include="..\TaxCalculator\TaxCalculator.csproj" />
   </ItemGroup>
 

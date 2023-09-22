@@ -1,8 +1,4 @@
-﻿using System;
-using Application.Enums;
-using Application.Features.CheckSettings;
-using Application.Features.FullTaxCalculation;
-using Application.Features.MarginalTaxCurve;
+﻿using Application.Features.MarginalTaxCurve;
 using Application.Mapping;
 using Application.Municipality;
 using Application.Tax.Estv;
@@ -19,17 +15,14 @@ using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Tax;
 using FluentValidation;
-using Infrastructure.Configuration;
-using Infrastructure.DataStaging;
-using Infrastructure.Municipality;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace PensionCoach.Tools.TaxCalculator
+namespace Application.Features.FullTaxCalculation
 {
     public static class TaxCalculatorServiceCollectionExtensions
     {
-        public static void AddTaxCalculators(this IServiceCollection collection, IConfiguration configuration)
+        public static void AddTaxCalculators(this IServiceCollection collection, ApplicationMode applicationMode)
         {
             collection.AddTransient<IIncomeTaxCalculator, ProprietaryIncomeTaxCalculator>();
             collection.AddTransient<IWealthTaxCalculator, ProprietaryWealthTaxCalculator>();
@@ -39,10 +32,8 @@ namespace PensionCoach.Tools.TaxCalculator
             collection.AddTransient<IStateTaxCalculator, ProprietaryStateTaxCalculator>();
             collection.AddTransient<ITaxCalculatorConnector, TaxCalculatorConnector>();
             collection.AddTransient<IMarginalTaxCurveCalculatorConnector, MarginalTaxCurveCalculatorConnector>();
-            collection.AddTransient<IDataStagingConnector, DataStagingConnector>();
-            collection.AddTransient<ICheckSettingsConnector, CheckSettingsConnector>();
 
-            collection.AddFullTaxCalculators(configuration);
+            collection.AddFullTaxCalculators(applicationMode);
             
             var mappingConfig = new MapperConfiguration(mc =>
             {
@@ -58,11 +49,9 @@ namespace PensionCoach.Tools.TaxCalculator
             collection.AddCantonCapitalBenefitTaxCalculatorFactory();
         }
 
-        private static void AddFullTaxCalculators(this IServiceCollection collection, IConfiguration configuration)
+        private static void AddFullTaxCalculators(this IServiceCollection collection, ApplicationMode applicationMode)
         {
-            ApplicationMode typeOfTaxCalculator = configuration.GetApplicationMode();
-
-            switch (typeOfTaxCalculator)
+            switch (applicationMode)
             {
                 case ApplicationMode.Proprietary:
                     collection.AddTransient<IFullWealthAndIncomeTaxCalculator, ProprietaryFullTaxCalculator>();

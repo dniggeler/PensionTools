@@ -15,12 +15,8 @@
           "TaxAmount": 307.5
         },
         "ChurchTax": {
-          "TaxAmount": [
-            858.4550
-          ],
-          "TaxAmountPartner": [
-            0.00
-          ],
+          "TaxAmount": 858.4550,
+          "TaxAmountPartner": 0.00,
           "TaxRate": 13.0
         },
         "CantonRate": 100.0,
@@ -31,9 +27,7 @@
         "TotalWealthTax": 642.675,
         "TotalIncomeTax": 14017.0950,
         "TotalTaxAmount": 14683.7700,
-        "PollTaxAmount": [
-          24.0
-        ]
+        "PollTaxAmount": 24.0
       },
       "FederalTaxResult": {
         "DeterminingFactorTaxableAmount": 100000.0,
@@ -59,12 +53,8 @@
           "TaxAmount": 307.5
         },
         "ChurchTax": {
-          "TaxAmount": [
-            660.350
-          ],
-          "TaxAmountPartner": [
-            0.00
-          ],
+          "TaxAmount": 660.350,
+          "TaxAmountPartner": 0.00,
           "TaxRate": 10.0
         },
         "CantonRate": 100.0,
@@ -75,9 +65,7 @@
         "TotalWealthTax": 673.425,
         "TotalIncomeTax": 14448.590,
         "TotalTaxAmount": 15146.015,
-        "PollTaxAmount": [
-          24.0
-        ]
+        "PollTaxAmount": 24.0
       },
       "FederalTaxResult": {
         "DeterminingFactorTaxableAmount": 100000.0,

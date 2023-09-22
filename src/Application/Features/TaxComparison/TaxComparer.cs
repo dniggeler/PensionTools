@@ -1,18 +1,13 @@
-﻿using LanguageExt;
-using System.Linq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using FluentValidation;
-using Tax.Tools.Comparison.Abstractions;
-using System.Threading.Channels;
-using System.Threading;
+﻿using System.Threading.Channels;
 using Application.Municipality;
 using Application.Tax.Proprietary.Abstractions;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using Domain.Models.TaxComparison;
+using FluentValidation;
+using LanguageExt;
 
-namespace Tax.Tools.Comparison
+namespace Application.Features.TaxComparison
 {
     public class TaxComparer : ITaxComparer
     {

@@ -5,4 +5,6 @@ namespace Application.Tax.Proprietary.Abstractions.Repositories;
 public interface IStateTaxRateRepository
 {
     TaxRateEntity TaxRates(int calculationYear, int municipalityId);
+
+    IEnumerable<TaxRateEntity> TaxRates();
 }

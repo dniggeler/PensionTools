@@ -1,5 +1,4 @@
-﻿using Application.Tax.Proprietary.Abstractions;
-using Application.Tax.Proprietary.Abstractions.Repositories;
+﻿using Application.Tax.Proprietary.Abstractions.Repositories;
 using Domain.Models.Tax;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,11 +13,16 @@ public class StateTaxRateRepository : IStateTaxRateRepository
         this.dbContextFunc = dbContextFunc;
     }
 
+    public IEnumerable<TaxRateEntity> TaxRates()
+    {
+        using var dbContext = dbContextFunc();
+        return dbContext.Rates.AsNoTracking().ToList();
+    }
+
     public TaxRateEntity TaxRates(int calculationYear, int municipalityId)
     {
         using var dbContext = dbContextFunc();
         return dbContext.Rates.AsNoTracking()
-            .FirstOrDefault(item => item.BfsId == municipalityId
-                                    && item.Year == calculationYear);
+            .FirstOrDefault(item => item.BfsId == municipalityId && item.Year == calculationYear);
     }
 }

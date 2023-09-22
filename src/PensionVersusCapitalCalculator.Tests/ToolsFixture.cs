@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Application.Features.FullTaxCalculation;
 using Application.Features.PensionVersusCapital;
+using Infrastructure.Configuration;
 using Infrastructure.Tax.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PensionCoach.Tools.TaxCalculator;
 
 namespace PensionVersusCapitalCalculator.Tests;
 
@@ -26,7 +27,7 @@ public class ToolsFixture<T>
             .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
             .First();
 
-        var dbFile = Path.Combine(projectPath, @"src\Tax.Data\files\TaxDb.db");
+        var dbFile = Path.Combine(projectPath, @"src\Infrastructure\files\TaxDb.db");
 
         var configurationDict = new Dictionary<string, string>
         {
@@ -39,7 +40,7 @@ public class ToolsFixture<T>
 
         ServiceCollection coll = new ServiceCollection();
         coll.AddToolsCalculators();
-        coll.AddTaxCalculators(configuration);
+        coll.AddTaxCalculators(configuration.GetApplicationMode());
         coll.AddTaxData(configuration);
 
         Provider = coll.BuildServiceProvider();

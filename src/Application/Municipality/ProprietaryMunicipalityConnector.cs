@@ -1,31 +1,26 @@
-﻿using Application.Municipality;
-using Application.Tax.Proprietary.Abstractions.Repositories;
+﻿using Application.Tax.Proprietary.Abstractions.Repositories;
 using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
-using Infrastructure.Tax.Data;
 using LanguageExt;
 
-namespace Infrastructure.Municipality;
+namespace Application.Municipality;
 
 public class ProprietaryMunicipalityConnector : IMunicipalityConnector
 {
     private readonly IMapper mapper;
     private readonly IMunicipalityRepository municipalityRepository;
     private readonly IStateTaxRateRepository stateTaxRateRepository;
-    private readonly Func<TaxRateDbContext> dbContext;
 
     public ProprietaryMunicipalityConnector(
         IMapper mapper,
         IMunicipalityRepository municipalityRepository,
-        IStateTaxRateRepository stateTaxRateRepository,
-        Func<TaxRateDbContext> dbContext)
+        IStateTaxRateRepository stateTaxRateRepository)
     {
         this.mapper = mapper;
         this.municipalityRepository = municipalityRepository;
         this.stateTaxRateRepository = stateTaxRateRepository;
-        this.dbContext = dbContext;
     }
 
     public Task<IEnumerable<MunicipalityModel>> GetAllAsync()
