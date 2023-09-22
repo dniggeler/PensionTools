@@ -1,4 +1,4 @@
-﻿using Infrastructure.EstvTaxCalculator.Client;
+﻿using Application.Tax.Estv.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

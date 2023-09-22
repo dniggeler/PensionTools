@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization;
-using Infrastructure.EstvTaxCalculator.Client.Models;
+using Application.Tax.Estv.Client.Models;
 
 namespace Infrastructure.EstvTaxCalculator.Models;
 

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Infrastructure.EstvTaxCalculator.Client.Models;
+namespace Application.Tax.Estv.Client.Models;
 
 public class TaxLocation
 {

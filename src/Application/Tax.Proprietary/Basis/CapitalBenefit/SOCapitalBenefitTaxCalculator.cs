@@ -4,7 +4,6 @@ using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Tax;
 using FluentValidation;
-using Infrastructure.Tax.Data;
 using LanguageExt;
 
 namespace Application.Tax.Proprietary.Basis.CapitalBenefit;
@@ -16,21 +15,15 @@ public class SOCapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
     private readonly IMapper mapper;
     private readonly IValidator<CapitalBenefitTaxPerson> validator;
     private readonly IStateTaxCalculator stateTaxCalculator;
-    private readonly IChurchTaxCalculator churchTaxCalculator;
-    private readonly Func<TaxRateDbContext> dbContext;
 
     public SOCapitalBenefitTaxCalculator(
         IMapper mapper,
         IValidator<CapitalBenefitTaxPerson> validator,
-        IStateTaxCalculator stateTaxCalculator,
-        IChurchTaxCalculator churchTaxCalculator,
-        Func<TaxRateDbContext> dbContext)
+        IStateTaxCalculator stateTaxCalculator)
     {
         this.mapper = mapper;
         this.validator = validator;
         this.stateTaxCalculator = stateTaxCalculator;
-        this.churchTaxCalculator = churchTaxCalculator;
-        this.dbContext = dbContext;
     }
 
     /// <inheritdoc />

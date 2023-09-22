@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.EstvTaxCalculator.Client.Models;
+﻿namespace Application.Tax.Estv.Client.Models;
 
 public class TaxLocationRequest
 {

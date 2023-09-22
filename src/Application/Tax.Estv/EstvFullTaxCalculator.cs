@@ -1,15 +1,12 @@
-﻿using System.Threading.Tasks;
-using Application.Tax.Proprietary;
+﻿using Application.Tax.Estv.Client;
+using Application.Tax.Estv.Client.Models;
 using Application.Tax.Proprietary.Abstractions;
 using Application.Tax.Proprietary.Abstractions.Models;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
-using Infrastructure.EstvTaxCalculator.Client;
-using Infrastructure.EstvTaxCalculator.Client.Models;
 using LanguageExt;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
 
-namespace PensionCoach.Tools.TaxCalculator.Estv;
+namespace Application.Tax.Estv;
 
 public class EstvFullTaxCalculator : IFullWealthAndIncomeTaxCalculator
 {

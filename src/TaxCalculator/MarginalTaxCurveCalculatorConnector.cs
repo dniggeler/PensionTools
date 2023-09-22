@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Application.Tax.Proprietary;
+using Application.Municipality;
 using Application.Tax.Proprietary.Abstractions;
 using Application.Tax.Proprietary.Abstractions.Models;
 using Domain.Models.Municipality;

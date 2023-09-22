@@ -5,30 +5,28 @@ using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Tax;
 using FluentValidation;
-using Infrastructure.Tax.Data;
 using LanguageExt;
-using Microsoft.EntityFrameworkCore;
 using static LanguageExt.Prelude;
 
 namespace Application.Tax.Proprietary.Basis.CapitalBenefit;
 
 public class SGCapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
 {
+    private readonly IStateTaxRateRepository stateTaxRateRepository;
     private readonly IMapper mapper;
     private readonly IValidator<CapitalBenefitTaxPerson> validator;
     private readonly IChurchTaxCalculator churchTaxCalculator;
-    private readonly Func<TaxRateDbContext> dbContext;
 
     public SGCapitalBenefitTaxCalculator(
         IMapper mapper,
         IValidator<CapitalBenefitTaxPerson> validator,
         IChurchTaxCalculator churchTaxCalculator,
-        Func<TaxRateDbContext> dbContext)
+        IStateTaxRateRepository stateTaxRateRepository)
     {
+        this.stateTaxRateRepository = stateTaxRateRepository;
         this.mapper = mapper;
         this.validator = validator;
         this.churchTaxCalculator = churchTaxCalculator;
-        this.dbContext = dbContext;
     }
 
     /// <inheritdoc />
@@ -48,10 +46,7 @@ public class SGCapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
                 string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
         }
 
-        await using var ctxt = dbContext();
-        var taxRateEntity = ctxt.Rates.AsNoTracking()
-            .FirstOrDefault(item => item.BfsId == municipalityId
-                                    && item.Year == calculationYear);
+        var taxRateEntity = stateTaxRateRepository.TaxRates(calculationYear, municipalityId);
 
         if (taxRateEntity == null)
         {

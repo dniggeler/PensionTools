@@ -1,5 +1,5 @@
 ﻿using Domain.Enums;
-using PensionCoach.Tools.CommonTypes.Tax;
+using Domain.Models.Tax;
 
 namespace PensionCoach.Tools.TaxComparison
 {

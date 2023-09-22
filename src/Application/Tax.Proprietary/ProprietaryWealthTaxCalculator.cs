@@ -5,27 +5,25 @@ using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Tax;
 using FluentValidation;
-using Infrastructure.Tax.Data;
 using LanguageExt;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Tax.Proprietary;
 
 public class ProprietaryWealthTaxCalculator : IWealthTaxCalculator
 {
     private readonly IValidator<TaxPerson> taxPersonValidator;
-    private readonly Func<TaxRateDbContext> rateDbContextFunc;
+    private readonly IStateTaxRateRepository stateTaxRateRepository;
     private readonly Func<Canton, IBasisWealthTaxCalculator> basisWealthTaxCalculatorFunc;
     private readonly IMapper mapper;
 
     public ProprietaryWealthTaxCalculator(
         IValidator<TaxPerson> taxPersonValidator,
-        Func<TaxRateDbContext> rateDbContextFunc,
+        IStateTaxRateRepository stateTaxRateRepository,
         Func<Canton, IBasisWealthTaxCalculator> basisWealthTaxCalculatorFunc,
         IMapper mapper)
     {
         this.taxPersonValidator = taxPersonValidator;
-        this.rateDbContextFunc = rateDbContextFunc;
+        this.stateTaxRateRepository = stateTaxRateRepository;
         this.basisWealthTaxCalculatorFunc = basisWealthTaxCalculatorFunc;
         this.mapper = mapper;
     }
@@ -57,10 +55,7 @@ public class ProprietaryWealthTaxCalculator : IWealthTaxCalculator
     private SingleTaxResult CalculateTax(
         int calculationYear, int municipalityId, BasisTaxResult basisTaxResult)
     {
-        using var dbContext = rateDbContextFunc();
-        var taxRate = dbContext.Rates.AsNoTracking()
-            .Single(item => item.BfsId == municipalityId
-                            && item.Year == calculationYear);
+        var taxRate = stateTaxRateRepository.TaxRates(calculationYear, municipalityId);
 
         return new SingleTaxResult
         {

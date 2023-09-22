@@ -5,7 +5,6 @@ using Domain.Enums;
 using Domain.Models.Tax;
 using FluentValidation;
 using FluentValidation.Results;
-using Infrastructure.Tax.Data;
 using LanguageExt;
 
 namespace Application.Tax.Proprietary
@@ -13,14 +12,14 @@ namespace Application.Tax.Proprietary
     public class ProprietaryFederalTaxCalculator : IFederalTaxCalculator
     {
         private readonly IValidator<FederalTaxPerson> taxPersonValidator;
-        private readonly Func<FederalTaxTariffDbContext> federalDbContextFunc;
+        private readonly IFederalTaxRateRepository federalTaxRateRepository;
 
         public ProprietaryFederalTaxCalculator(
             IValidator<FederalTaxPerson> taxPersonValidator,
-            Func<FederalTaxTariffDbContext> federalDbContextFunc)
+            IFederalTaxRateRepository federalTaxRateRepository)
         {
             this.taxPersonValidator = taxPersonValidator;
-            this.federalDbContextFunc = federalDbContextFunc;
+            this.federalTaxRateRepository = federalTaxRateRepository;
         }
 
         /// <inheritdoc/>
@@ -28,7 +27,6 @@ namespace Application.Tax.Proprietary
         {
             Option<ValidationResult> validationResult = taxPersonValidator.Validate(person);
 
-            using var dbContext = federalDbContextFunc();
             return validationResult
                 .Where(r => !r.IsValid)
                 .Map<Either<string, bool>>(r =>
@@ -40,9 +38,8 @@ namespace Application.Tax.Proprietary
                 .Bind(_ => Map(person.CivilStatus))
 
                 // get all income level candidate
-                .Map(typeId => dbContext.Tariffs
-                    .Where(item => item.Year == calculationYear)
-                    .Where(item => item.TariffType == (int)typeId)
+                .Map(typeId => federalTaxRateRepository
+                    .TaxRates(calculationYear, typeId)
                     .ToList()
                     .Where(item => item.IncomeLevel <= person.TaxableAmount)
                     .OrderByDescending(item => item.IncomeLevel)

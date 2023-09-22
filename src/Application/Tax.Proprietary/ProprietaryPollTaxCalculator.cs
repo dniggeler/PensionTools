@@ -4,9 +4,7 @@ using Application.Tax.Proprietary.Abstractions.Models.Person;
 using Domain.Enums;
 using Domain.Models.Tax;
 using FluentValidation;
-using Infrastructure.Tax.Data;
 using LanguageExt;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Tax.Proprietary;
 
@@ -20,13 +18,14 @@ public class ProprietaryPollTaxCalculator : IPollTaxCalculator
     };
 
     private readonly IValidator<PollTaxPerson> personValidator;
-    private readonly Func<TaxRateDbContext> dbContextFunc;
+    private readonly IStateTaxRateRepository stateTaxRateRepository;
 
     public ProprietaryPollTaxCalculator(
-        IValidator<PollTaxPerson> personValidator, Func<TaxRateDbContext> dbContextFunc)
+        IValidator<PollTaxPerson> personValidator,
+        IStateTaxRateRepository stateTaxRateRepository)
     {
         this.personValidator = personValidator;
-        this.dbContextFunc = dbContextFunc;
+        this.stateTaxRateRepository = stateTaxRateRepository;
     }
 
     public Task<Either<string, PollTaxResult>> CalculateAsync(
@@ -47,10 +46,7 @@ public class ProprietaryPollTaxCalculator : IPollTaxCalculator
                     $"validation failed: {errorMessageLine}");
         }
 
-        using var dbContext = dbContextFunc();
-        Option<TaxRateEntity> taxRate = dbContext.Rates.AsNoTracking()
-            .FirstOrDefault(item => item.BfsId == municipalityId
-                                    && item.Year == calculationYear);
+        Option<TaxRateEntity> taxRate = stateTaxRateRepository.TaxRates(calculationYear, municipalityId);
 
         return (from nbrOfPolls in GetNumberOfPolls(person.CivilStatus)
                 from rate in taxRate

@@ -65,7 +65,7 @@ public class MockedPensionToolsCalculationService :
             PollTaxAmount = 5,
             WealthTaxAmount = 200,
             TotalTaxAmount = 3200,
-            TaxRateDetails = new TaxRateDetails()
+            TaxRateDetails = new TaxRateDetails
             {
                 CantonRate = 1M,
                 ChurchTaxRate = 0.02M,

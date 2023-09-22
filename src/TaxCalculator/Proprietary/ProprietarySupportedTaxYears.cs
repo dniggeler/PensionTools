@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
+using Application.Tax;
 
 namespace PensionCoach.Tools.TaxCalculator.Proprietary;
 

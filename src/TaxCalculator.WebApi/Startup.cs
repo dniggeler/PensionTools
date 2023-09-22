@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Text.Json.Serialization;
 using Calculators.CashFlow;
 using Infrastructure.EstvTaxCalculator;
+using Infrastructure.HealthChecks;
 using Infrastructure.PostOpenApi;
 using Infrastructure.Tax.Data;
 using Microsoft.AspNetCore.Builder;
@@ -17,7 +18,6 @@ using PensionCoach.Tools.TaxCalculator;
 using Swashbuckle.AspNetCore.Filters;
 using Tax.Data;
 using Tax.Tools.Comparison;
-using TaxCalculator.WebApi.HealthChecks;
 
 namespace TaxCalculator.WebApi
 {

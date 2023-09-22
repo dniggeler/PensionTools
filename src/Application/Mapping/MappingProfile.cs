@@ -1,11 +1,10 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using Application.Tax.Proprietary.Abstractions.Models.Person;
 using AutoMapper;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
 
-namespace PensionCoach.Tools.TaxCalculator.Mapping
+namespace Application.Mapping
 {
     public class MappingProfile : Profile
     {

@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Municipality;
 using Calculators.CashFlow.Models;
 using Domain.Enums;
 using Domain.Models.Municipality;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.Tax;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
 using Domain.Contracts;
 using Domain.Models.MultiPeriod;
 using Domain.Models.MultiPeriod.Actions;

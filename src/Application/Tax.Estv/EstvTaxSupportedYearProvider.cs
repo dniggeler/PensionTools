@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
-
-namespace PensionCoach.Tools.TaxCalculator.Estv;
+﻿namespace Application.Tax.Estv;
 
 public class EstvTaxSupportedYearProvider : ITaxSupportedYearProvider
 {

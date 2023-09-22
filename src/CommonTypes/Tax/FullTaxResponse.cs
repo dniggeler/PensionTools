@@ -1,4 +1,6 @@
-﻿namespace PensionCoach.Tools.CommonTypes.Tax;
+﻿using Domain.Models.Tax;
+
+namespace PensionCoach.Tools.CommonTypes.Tax;
 
 public class FullTaxResponse
 {

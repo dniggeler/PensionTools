@@ -1,7 +1,7 @@
-﻿using Domain.Models.Tax;
-using Infrastructure.EstvTaxCalculator.Client.Models;
+﻿using Application.Tax.Estv.Client.Models;
+using Domain.Models.Tax;
 
-namespace Infrastructure.EstvTaxCalculator.Client;
+namespace Application.Tax.Estv.Client;
 
 public interface IEstvTaxCalculatorClient
 {

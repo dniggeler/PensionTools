@@ -4,9 +4,7 @@ using Application.Tax.Proprietary.Abstractions.Models.Person;
 using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Tax;
-using Infrastructure.Tax.Data;
 using LanguageExt;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Tax.Proprietary;
 
@@ -16,20 +14,20 @@ public class ProprietaryStateTaxCalculator : IStateTaxCalculator
     private readonly IChurchTaxCalculator churchTaxCalculator;
     private readonly IPollTaxCalculator pollTaxCalculator;
     private readonly IMapper mapper;
-    private readonly Func<TaxRateDbContext> dbContext;
+    private readonly IStateTaxRateRepository stateTaxRateRepository;
 
     public ProprietaryStateTaxCalculator(
         IAggregatedBasisTaxCalculator basisTaxCalculator,
         IChurchTaxCalculator churchTaxCalculator,
         IPollTaxCalculator pollTaxCalculator,
         IMapper mapper,
-        Func<TaxRateDbContext> dbContext)
+        IStateTaxRateRepository stateTaxRateRepository)
     {
+        this.stateTaxRateRepository = stateTaxRateRepository;
         this.basisTaxCalculator = basisTaxCalculator;
         this.churchTaxCalculator = churchTaxCalculator;
         this.pollTaxCalculator = pollTaxCalculator;
         this.mapper = mapper;
-        this.dbContext = dbContext;
     }
 
     public async Task<Either<string, StateTaxResult>> CalculateAsync(
@@ -38,7 +36,6 @@ public class ProprietaryStateTaxCalculator : IStateTaxCalculator
         Canton canton,
         TaxPerson person)
     {
-        await using var ctxt = dbContext();
         var aggregatedTaxResultTask =
             basisTaxCalculator.CalculateAsync(calculationYear, canton, person);
 
@@ -58,9 +55,7 @@ public class ProprietaryStateTaxCalculator : IStateTaxCalculator
 
         var pollTaxResult = await pollTaxResultTask;
 
-        Option<TaxRateEntity> taxRate = ctxt.Rates.AsNoTracking()
-            .FirstOrDefault(item => item.BfsId == municipalityId
-                                    && item.Year == calculationYear);
+        Option<TaxRateEntity> taxRate = stateTaxRateRepository.TaxRates(calculationYear, municipalityId);
 
         var stateTaxResult = new StateTaxResult();
 

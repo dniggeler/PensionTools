@@ -1,10 +1,10 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using Application.Tax.Estv.Client;
+using Application.Tax.Estv.Client.Models;
 using Domain.Enums;
 using Domain.Models.Tax;
-using Infrastructure.EstvTaxCalculator.Client;
-using Infrastructure.EstvTaxCalculator.Client.Models;
 using Infrastructure.EstvTaxCalculator.Models;
 
 namespace Infrastructure.EstvTaxCalculator;

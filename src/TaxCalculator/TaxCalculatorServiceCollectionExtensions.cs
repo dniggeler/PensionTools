@@ -1,5 +1,10 @@
 ﻿using System;
 using Application.Enums;
+using Application.Mapping;
+using Application.Municipality;
+using Application.Tax;
+using Application.Tax.Estv;
+using Application.Tax.Mock;
 using Application.Tax.Proprietary;
 using Application.Tax.Proprietary.Abstractions;
 using Application.Tax.Proprietary.Abstractions.Models;
@@ -16,9 +21,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PensionCoach.Tools.CommonUtils;
 using PensionCoach.Tools.TaxCalculator.Abstractions;
-using PensionCoach.Tools.TaxCalculator.Estv;
-using PensionCoach.Tools.TaxCalculator.Mapping;
-using PensionCoach.Tools.TaxCalculator.Mock;
 using PensionCoach.Tools.TaxCalculator.Proprietary;
 
 namespace PensionCoach.Tools.TaxCalculator

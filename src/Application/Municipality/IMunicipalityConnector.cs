@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Domain.Models.Municipality;
+﻿using Domain.Models.Municipality;
+using Domain.Models.Tax;
 using LanguageExt;
-using PensionCoach.Tools.CommonTypes.Tax;
 
-namespace PensionCoach.Tools.TaxCalculator.Abstractions
+namespace Application.Municipality
 {
     public interface IMunicipalityConnector
     {

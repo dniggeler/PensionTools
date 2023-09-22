@@ -4,9 +4,7 @@ using Application.Tax.Proprietary.Abstractions.Models.Person;
 using Domain.Enums;
 using Domain.Models.Tax;
 using FluentValidation;
-using Infrastructure.Tax.Data;
 using LanguageExt;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Tax.Proprietary;
 
@@ -14,16 +12,17 @@ public class ProprietaryChurchTaxCalculator : IChurchTaxCalculator
 {
     private readonly IValidator<ChurchTaxPerson> churchTaxPersonValidator;
     private readonly IValidator<AggregatedBasisTaxResult> taxResultValidator;
-    private readonly Func<TaxRateDbContext> taxRateContext;
+    private readonly IStateTaxRateRepository stateTaxRateRepository;
 
     public ProprietaryChurchTaxCalculator(
         IValidator<ChurchTaxPerson> churchTaxPersonValidator,
         IValidator<AggregatedBasisTaxResult> basisTaxResultValidator,
-        Func<TaxRateDbContext> taxRateContext)
+        IStateTaxRateRepository stateTaxRateRepository)
     {
+        this.stateTaxRateRepository = stateTaxRateRepository;
         this.churchTaxPersonValidator = churchTaxPersonValidator;
         taxResultValidator = basisTaxResultValidator;
-        this.taxRateContext = taxRateContext;
+        this.stateTaxRateRepository = stateTaxRateRepository;
     }
 
     /// <inheritdoc />
@@ -33,10 +32,8 @@ public class ProprietaryChurchTaxCalculator : IChurchTaxCalculator
         ChurchTaxPerson person,
         AggregatedBasisTaxResult taxResult)
     {
-        using var ctxt = taxRateContext();
-        var taxRateEntity = ctxt.Rates.AsNoTracking()
-            .FirstOrDefault(item => item.Year == calculationYear
-                                    && item.BfsId == municipalityId);
+        var taxRateEntity = stateTaxRateRepository.TaxRates(calculationYear, municipalityId);
+
         if (taxRateEntity == null)
         {
             Either<string, ChurchTaxResult> msg =

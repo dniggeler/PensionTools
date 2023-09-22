@@ -1,4 +1,4 @@
-﻿namespace PensionCoach.Tools.CommonTypes.Tax;
+﻿namespace Domain.Models.Tax;
 
 public class TaxRateDetails
 {

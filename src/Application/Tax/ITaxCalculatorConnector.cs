@@ -1,9 +1,8 @@
-﻿using LanguageExt;
-using System.Threading.Tasks;
-using Application.Tax.Proprietary.Abstractions.Models;
+﻿using Application.Tax.Proprietary.Abstractions.Models;
 using Domain.Models.Tax;
+using LanguageExt;
 
-namespace PensionCoach.Tools.TaxCalculator.Abstractions;
+namespace Application.Tax;
 
 public interface ITaxCalculatorConnector
 {

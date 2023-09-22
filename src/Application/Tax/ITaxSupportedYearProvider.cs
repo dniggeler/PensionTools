@@ -1,4 +1,4 @@
-﻿namespace PensionCoach.Tools.TaxCalculator.Abstractions;
+﻿namespace Application.Tax;
 
 public interface ITaxSupportedYearProvider
 {

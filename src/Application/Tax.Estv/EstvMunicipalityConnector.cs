@@ -1,39 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Application.Municipality;
 using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Municipality;
-using Infrastructure.Tax.Data;
+using Domain.Models.Tax;
 using LanguageExt;
-using Microsoft.EntityFrameworkCore;
-using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.CommonTypes.Tax;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
-using Tax.Data;
 
-namespace PensionCoach.Tools.TaxCalculator.Estv;
+namespace Application.Tax.Estv;
 
 public class EstvMunicipalityConnector : IMunicipalityConnector
 {
     private readonly IMapper mapper;
-    private readonly MunicipalityDbContext municipalityDbContext;
+    private readonly IMunicipalityRepository municipalityRepository;
 
     public EstvMunicipalityConnector(
         IMapper mapper,
-        MunicipalityDbContext municipalityDbContext)
+        IMunicipalityRepository municipalityRepository)
     {
         this.mapper = mapper;
-        this.municipalityDbContext = municipalityDbContext;
-        this.municipalityDbContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+        this.municipalityRepository = municipalityRepository;
     }
 
     public Task<IEnumerable<MunicipalityModel>> GetAllAsync()
     {
         return Task.FromResult(
-            mapper.Map<IEnumerable<MunicipalityModel>>(
-                municipalityDbContext.MunicipalityEntities.ToList()));
+            mapper.Map<IEnumerable<MunicipalityModel>>(municipalityRepository.GetAll()));
     }
 
     /// <summary>
@@ -43,20 +33,7 @@ public class EstvMunicipalityConnector : IMunicipalityConnector
     /// <returns>List of municipalities.</returns>
     public IEnumerable<MunicipalityModel> Search(MunicipalitySearchFilter searchFilter)
     {
-        IQueryable<MunicipalityEntity> result = municipalityDbContext.MunicipalityEntities;
-
-        if (searchFilter.Canton != Canton.Undefined)
-        {
-            result = result.Where(item => item.Canton == searchFilter.Canton.ToString());
-        }
-
-        if (!string.IsNullOrEmpty(searchFilter.Name))
-        {
-            result =
-                result.Where(item => item.Name.Contains(searchFilter.Name));
-        }
-
-        foreach (MunicipalityEntity entity in result)
+        foreach (MunicipalityEntity entity in municipalityRepository.Search(searchFilter))
         {
             var model = mapper.Map<MunicipalityModel>(entity);
 
@@ -81,9 +58,7 @@ public class EstvMunicipalityConnector : IMunicipalityConnector
     public Task<Either<string, MunicipalityModel>> GetAsync(int bfsNumber, int year)
     {
         Option<MunicipalityEntity> entity =
-            municipalityDbContext.MunicipalityEntities
-                .FirstOrDefault(item => item.BfsNumber == bfsNumber
-                                        && string.IsNullOrEmpty(item.DateOfMutation));
+            municipalityRepository.Get(bfsNumber, year);
 
         return entity
             .Match<Either<string, MunicipalityModel>>(
@@ -97,10 +72,8 @@ public class EstvMunicipalityConnector : IMunicipalityConnector
     {
         const int maxEstvSupportedYear = 2022;
 
-        IReadOnlyCollection<TaxSupportedMunicipalityModel> list = municipalityDbContext.MunicipalityEntities
-            .Where(item => item.TaxLocationId != null)
-            .OrderBy(item => item.Canton)
-            .ThenBy(item => item.Name)
+        IReadOnlyCollection<TaxSupportedMunicipalityModel> list = municipalityRepository
+            .GetAllSupportTaxCalculation()
             .Select(item => new TaxSupportedMunicipalityModel
             {
                 BfsMunicipalityNumber = item.BfsNumber,

@@ -1,5 +1,5 @@
-﻿using Domain.Models.Municipality;
-using Infrastructure.EstvTaxCalculator.Client.Models;
+﻿using Application.Tax.Estv.Client.Models;
+using Domain.Models.Municipality;
 
 namespace Infrastructure.Tax.Data.Populate;
 

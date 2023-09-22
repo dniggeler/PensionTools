@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Municipality;
 using Domain.Models.Municipality;
 using LanguageExt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
 
 namespace TaxCalculator.WebApi.Controllers;
 

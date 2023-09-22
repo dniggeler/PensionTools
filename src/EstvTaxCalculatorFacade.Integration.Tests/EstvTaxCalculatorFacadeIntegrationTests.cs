@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Application.Tax.Estv.Client;
 using Domain.Enums;
 using Domain.Models.Tax;
 using Infrastructure.EstvTaxCalculator;
-using Infrastructure.EstvTaxCalculator.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Snapshooter.Xunit;
 using Xunit;
