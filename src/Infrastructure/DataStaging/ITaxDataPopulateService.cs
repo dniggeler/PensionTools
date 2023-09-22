@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Tax.Data.Populate;
+﻿namespace Infrastructure.DataStaging;
 
 public interface ITaxDataPopulateService
 {

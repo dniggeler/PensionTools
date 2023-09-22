@@ -1,5 +1,5 @@
-﻿using FluentAssertions;
-using PensionCoach.Tools.BvgCalculator;
+﻿using Application.Bvg;
+using FluentAssertions;
 using Xunit;
 
 namespace BvgCalculator.Tests

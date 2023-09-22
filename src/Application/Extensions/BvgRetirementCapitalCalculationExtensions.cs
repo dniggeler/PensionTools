@@ -1,8 +1,7 @@
-﻿using System;
-using Application.Bvg.Models;
+﻿using Domain.Models.Bvg;
 using PensionCoach.Tools.CommonUtils;
 
-namespace PensionCoach.Tools.BvgCalculator;
+namespace Application.Extensions;
 
 public static class BvgCalculationExtensions
 {

@@ -1,8 +1,8 @@
-﻿using Application.Bvg.Models;
-using Domain.Enums;
+﻿using Domain.Enums;
+using Domain.Models.Bvg;
 using FluentValidation;
 
-namespace PensionCoach.Tools.BvgCalculator.Validators;
+namespace Application.Validators;
 
 public class BvgPersonValidator : AbstractValidator<BvgPerson>
 {

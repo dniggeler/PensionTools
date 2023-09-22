@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Application.Bvg;
-using Application.Bvg.Models;
+using Domain.Models.Bvg;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

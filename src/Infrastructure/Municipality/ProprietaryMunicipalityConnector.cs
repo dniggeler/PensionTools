@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application.Municipality;
+﻿using Application.Municipality;
 using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Municipality;
@@ -11,7 +7,7 @@ using Infrastructure.Tax.Data;
 using LanguageExt;
 using Microsoft.EntityFrameworkCore;
 
-namespace PensionCoach.Tools.TaxCalculator.Proprietary;
+namespace Infrastructure.Municipality;
 
 public class ProprietaryMunicipalityConnector : IMunicipalityConnector
 {

@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Application.Features.Admin;
 using Domain.Models.Municipality;
+using Infrastructure.DataStaging;
 
 namespace TaxCalculator.WebApi.Controllers;
 
@@ -12,9 +12,9 @@ namespace TaxCalculator.WebApi.Controllers;
 [Route("api/admin")]
 public class AdminController : ControllerBase
 {
-    private readonly IAdminConnector adminConnector;
+    private readonly IDataStagingConnector adminConnector;
 
-    public AdminController(IAdminConnector adminConnector)
+    public AdminController(IDataStagingConnector adminConnector)
     {
         this.adminConnector = adminConnector;
     }

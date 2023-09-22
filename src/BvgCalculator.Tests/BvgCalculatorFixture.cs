@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Application.Bvg;
-using Application.Bvg.Models;
 using Domain.Enums;
+using Domain.Models.Bvg;
 using LanguageExt;
 using Microsoft.Extensions.DependencyInjection;
 using PensionCoach.Tools.BvgCalculator;

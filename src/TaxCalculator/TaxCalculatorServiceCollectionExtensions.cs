@@ -1,6 +1,5 @@
 ﻿using System;
 using Application.Enums;
-using Application.Features.Admin;
 using Application.Features.CheckSettings;
 using Application.Features.FullTaxCalculation;
 using Application.Features.MarginalTaxCurve;
@@ -20,10 +19,11 @@ using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Tax;
 using FluentValidation;
-using Infrastructure.Utils;
+using Infrastructure.Configuration;
+using Infrastructure.DataStaging;
+using Infrastructure.Municipality;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PensionCoach.Tools.CommonUtils;
 using PensionCoach.Tools.TaxCalculator.Proprietary;
 
 namespace PensionCoach.Tools.TaxCalculator
@@ -40,7 +40,7 @@ namespace PensionCoach.Tools.TaxCalculator
             collection.AddTransient<IStateTaxCalculator, ProprietaryStateTaxCalculator>();
             collection.AddTransient<ITaxCalculatorConnector, TaxCalculatorConnector>();
             collection.AddTransient<IMarginalTaxCurveCalculatorConnector, MarginalTaxCurveCalculatorConnector>();
-            collection.AddTransient<IAdminConnector, AdminConnector>();
+            collection.AddTransient<IDataStagingConnector, DataStagingConnector>();
             collection.AddTransient<ICheckSettingsConnector, CheckSettingsConnector>();
 
             collection.AddFullTaxCalculators(configuration);

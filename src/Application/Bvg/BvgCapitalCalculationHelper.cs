@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Application.Bvg.Models;
-using PensionCoach.Tools.BvgCalculator.Models;
+﻿using Application.Bvg.Models;
+using Application.Extensions;
+using Domain.Models.Bvg;
 using PensionCoach.Tools.CommonUtils;
 using static LanguageExt.Prelude;
 
-namespace PensionCoach.Tools.BvgCalculator;
+namespace Application.Bvg;
 
 /// <summary>
 /// 
@@ -183,7 +181,7 @@ public static class BvgCapitalCalculationHelper
         // Difference in without interest from without interest by plan:
         //   by plan takes the rounded retirement credits (to 0.1CHF) while
         //   the other calculates with effective credits
-        decimal x1Capital = xCapital * (1M + iProjection) + retirementCredit.AmountRounded10;
+        decimal x1Capital = xCapital * (1M + iProjection) + MathUtils.Round10(retirementCredit.AmountRaw);
         decimal x1CapitalWoI = xCapitalWoI + retirementCredit.AmountRaw;
 
         return new RetirementCapital(

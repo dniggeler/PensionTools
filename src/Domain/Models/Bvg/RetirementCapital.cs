@@ -1,4 +1,4 @@
-﻿namespace Application.Bvg.Models;
+﻿namespace Domain.Models.Bvg;
 
 public class RetirementCapital
 {
@@ -19,10 +19,6 @@ public class RetirementCapital
     /// The value without interest BVG by raw retirement credits.
     /// </value>
     public decimal ValueWithoutInterest { get; }
-
-    public RetirementCapital()
-    {
-    }
 
     public RetirementCapital(DateTime date, decimal value, decimal valueWithoutInterest)
     {

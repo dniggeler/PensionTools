@@ -2,8 +2,8 @@
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Application.Bvg.Models;
 using Domain.Enums;
+using Domain.Models.Bvg;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Snapshooter.Xunit;

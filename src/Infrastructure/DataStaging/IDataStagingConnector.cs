@@ -1,8 +1,8 @@
 ﻿using Domain.Models.Municipality;
 
-namespace Application.Features.Admin;
+namespace Infrastructure.DataStaging;
 
-public interface IAdminConnector
+public interface IDataStagingConnector
 {
     /// <summary>
     /// Copy zip code data from stage table to data store.

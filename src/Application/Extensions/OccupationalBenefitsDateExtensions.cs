@@ -1,7 +1,6 @@
-﻿using System;
-using Domain.Enums;
+﻿using Domain.Enums;
 
-namespace PensionCoach.Tools.BvgCalculator;
+namespace Application.Extensions;
 
 /// <summary>
 /// Extension methods related to date calculations in
@@ -21,7 +20,7 @@ public static class OccupationalBenefitsDateExtensions
     public static DateTime GetRetirementDate(this DateTime birthdate, Gender gender)
     {
         // FinalAgeByPlan BVG
-        int xsBvg = Bvg.GetRetirementAge(gender);
+        int xsBvg = Bvg.Bvg.GetRetirementAge(gender);
 
         // Date of retirement
         return GetRetirementDate(birthdate, xsBvg);

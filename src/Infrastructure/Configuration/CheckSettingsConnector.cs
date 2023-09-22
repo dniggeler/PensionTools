@@ -1,11 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Application.Features.CheckSettings;
-using Infrastructure.Utils;
+﻿using Application.Features.CheckSettings;
 using Microsoft.Extensions.Configuration;
-using PensionCoach.Tools.CommonUtils;
 
-namespace PensionCoach.Tools.TaxCalculator;
+namespace Infrastructure.Configuration;
 
 public class CheckSettingsConnector : ICheckSettingsConnector
 {

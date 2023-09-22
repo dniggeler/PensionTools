@@ -1,4 +1,4 @@
-﻿namespace PensionCoach.Tools.BvgCalculator.Models;
+﻿namespace Application.Bvg.Models;
 
 internal class BvgSalary
 {

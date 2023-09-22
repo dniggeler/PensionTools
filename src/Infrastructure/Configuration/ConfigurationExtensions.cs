@@ -1,7 +1,7 @@
 ﻿using Application.Enums;
 using Microsoft.Extensions.Configuration;
 
-namespace Infrastructure.Utils;
+namespace Infrastructure.Configuration;
 
 public static class ConfigurationExtensions
 {

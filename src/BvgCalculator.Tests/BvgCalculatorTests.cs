@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Application.Bvg.Models;
 using Domain.Enums;
+using Domain.Models.Bvg;
 using FluentAssertions;
 using LanguageExt;
 using Newtonsoft.Json;
-using PensionCoach.Tools.BvgCalculator.Models;
 using Snapshooter.Xunit;
 using Xunit;
 using Xunit.Abstractions;

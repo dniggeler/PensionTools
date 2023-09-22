@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Domain.Enums;
+﻿using Domain.Enums;
 using PensionCoach.Tools.CommonUtils;
 
-namespace PensionCoach.Tools.BvgCalculator;
+namespace Application.Bvg;
 
 /// <summary>
 /// 

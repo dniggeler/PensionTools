@@ -1,36 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
+﻿using System.Globalization;
 using System.Threading.Channels;
-using System.Threading.Tasks;
-using Application.Features.Admin;
+using Application.Municipality;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using Infrastructure.PostOpenApi;
 using Infrastructure.PostOpenApi.Models;
 using Infrastructure.Tax.Data;
-using Infrastructure.Tax.Data.Populate;
 using LanguageExt;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonUtils;
 
-namespace PensionCoach.Tools.TaxCalculator;
+namespace Infrastructure.DataStaging;
 
-public class AdminConnector : IAdminConnector
+public class DataStagingConnector : IDataStagingConnector
 {
+    private readonly IMunicipalityRepository municipalityRepository;
     private readonly MunicipalityDbContext municipalityDbContext;
     private readonly ITaxDataPopulateService populateTaxDataService;
     private readonly IPostOpenApiClient postOpenApiClient;
-    private readonly ILogger<AdminConnector> logger;
+    private readonly ILogger<DataStagingConnector> logger;
 
-    public AdminConnector(
+    public DataStagingConnector(
+        IMunicipalityRepository municipalityRepository,
         MunicipalityDbContext municipalityDbContext,
         ITaxDataPopulateService populateTaxDataService,
         IPostOpenApiClient postOpenApiClient,
-        ILogger<AdminConnector> logger)
+        ILogger<DataStagingConnector> logger)
     {
+        this.municipalityRepository = municipalityRepository;
         this.municipalityDbContext = municipalityDbContext;
         this.populateTaxDataService = populateTaxDataService;
         this.postOpenApiClient = postOpenApiClient;

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application.Bvg;
-using Application.Bvg.Models;
+﻿using Application.Bvg.Models;
+using Application.Extensions;
 using Domain.Enums;
+using Domain.Models.Bvg;
 using FluentValidation;
 using FluentValidation.Results;
 using LanguageExt;
-using PensionCoach.Tools.BvgCalculator.Models;
 using PensionCoach.Tools.CommonUtils;
 
-namespace PensionCoach.Tools.BvgCalculator;
+namespace Application.Bvg;
 
 public class BvgCalculator : IBvgCalculator
 {

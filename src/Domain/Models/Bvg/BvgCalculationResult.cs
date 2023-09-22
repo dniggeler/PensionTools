@@ -1,4 +1,4 @@
-﻿namespace Application.Bvg.Models;
+﻿namespace Domain.Models.Bvg;
 
 public class BvgCalculationResult
 {

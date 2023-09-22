@@ -1,15 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application.Features.MarginalTaxCurve;
-using Application.Municipality;
+﻿using Application.Municipality;
 using Application.Tax.Proprietary.Abstractions;
 using Application.Tax.Proprietary.Abstractions.Models;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using LanguageExt;
 
-namespace PensionCoach.Tools.TaxCalculator;
+namespace Application.Features.MarginalTaxCurve;
 
 public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorConnector
 {

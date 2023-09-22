@@ -2,6 +2,7 @@
 using Application.Tax.Estv.Client;
 using Application.Tax.Estv.Client.Models;
 using Domain.Models.Municipality;
+using Infrastructure.DataStaging;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Tax.Data.Populate;

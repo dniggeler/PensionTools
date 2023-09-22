@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Application.Features.FullTaxCalculation;
-using Application.Tax;
 
 namespace PensionCoach.Tools.TaxCalculator.Proprietary;
 

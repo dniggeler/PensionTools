@@ -1,4 +1,4 @@
-﻿using Application.Bvg.Models;
+﻿using Domain.Models.Bvg;
 using LanguageExt;
 
 namespace Application.Bvg;

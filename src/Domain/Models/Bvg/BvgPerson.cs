@@ -1,6 +1,6 @@
 ﻿using Domain.Enums;
 
-namespace Application.Bvg.Models;
+namespace Domain.Models.Bvg;
 
 public class BvgPerson
 {

@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using Application.Bvg;
-using static PensionCoach.Tools.CommonUtils.LevelValueDictionaryExtensions;
+﻿using static PensionCoach.Tools.CommonUtils.LevelValueDictionaryExtensions;
 
-namespace PensionCoach.Tools.BvgCalculator;
+namespace Application.Bvg;
 
 public class BvgRetirementCreditsTable : IBvgRetirementCredits
 {
