@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using PensionCoach.Tools.TaxComparison;
+using Domain.Models.Tax;
 
 namespace Calculators.CashFlow.Models;
 

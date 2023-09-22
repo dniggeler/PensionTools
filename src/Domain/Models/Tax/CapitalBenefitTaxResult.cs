@@ -1,4 +1,6 @@
-﻿namespace Application.Tax.Proprietary.Abstractions.Models;
+﻿using Application.Tax.Proprietary.Abstractions.Models;
+
+namespace Domain.Models.Tax;
 
 public class CapitalBenefitTaxResult
 {
@@ -9,8 +11,8 @@ public class CapitalBenefitTaxResult
     public decimal MunicipalityTaxAmount => MunicipalityRate / 100M * BasisTax.TaxAmount;
     public decimal CantonTaxAmount => CantonRate / 100M * BasisTax.TaxAmount;
 
-    public decimal ChurchTaxAmount => ChurchTax.TaxAmount.IfNone(0) +
-                                      ChurchTax.TaxAmountPartner.IfNone(0);
+    public decimal ChurchTaxAmount => (ChurchTax.TaxAmount ?? 0) +
+                                      (ChurchTax.TaxAmountPartner ?? 0);
 
     public decimal TotalTaxAmount => MunicipalityTaxAmount +
                                      CantonTaxAmount +

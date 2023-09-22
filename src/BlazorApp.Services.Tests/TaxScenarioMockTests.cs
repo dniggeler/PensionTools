@@ -1,6 +1,6 @@
 ﻿using BlazorApp.Services.Mock;
 using Domain.Enums;
-using PensionCoach.Tools.CommonTypes;
+using Domain.Models.Tax;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.TaxComparison;
 using Snapshooter.Xunit;
@@ -9,12 +9,7 @@ namespace BlazorApp.Services.Tests
 {
     public class TaxScenarioMockTests
     {
-        private readonly ITaxScenarioService service;
-
-        public TaxScenarioMockTests()
-        {
-            service = new MockTaxComparisonService();
-        }
+        private readonly ITaxScenarioService service = new MockTaxComparisonService();
 
         [Fact(DisplayName = "Mock Tax Scenario Purchase")]
         public async Task Calculate_Tax_Scenario_Purchase_With_Mocked_Service()

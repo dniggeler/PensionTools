@@ -1,5 +1,4 @@
-﻿using Application.Tax.Proprietary.Abstractions.Models;
-using Domain.Models.Municipality;
+﻿using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using LanguageExt;
 

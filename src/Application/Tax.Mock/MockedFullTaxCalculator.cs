@@ -2,7 +2,6 @@
 using Application.Municipality;
 using Application.Tax.Proprietary;
 using Application.Tax.Proprietary.Abstractions;
-using Application.Tax.Proprietary.Abstractions.Models;
 using Domain.Enums;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;

@@ -1,5 +1,4 @@
 ﻿using Application.Tax.Proprietary.Abstractions;
-using Application.Tax.Proprietary.Abstractions.Models;
 using Application.Tax.Proprietary.Abstractions.Models.Person;
 using Application.Tax.Proprietary.Abstractions.Repositories;
 using AutoMapper;
@@ -77,9 +76,10 @@ public class ProprietaryStateTaxCalculator : IStateTaxCalculator
             .Bind(r =>
             {
                 stateTaxResult.PollTaxAmount =
-                    from cTax in r.CantonTaxAmount
-                    from mTax in r.MunicipalityTaxAmount
-                    select cTax + mTax;
+                    (from cTax in r.CantonTaxAmount
+                        from mTax in r.MunicipalityTaxAmount
+                        select cTax + mTax)
+                    .IfNone(0);
 
                 return taxRate.ToEither("No tax rate found");
             })

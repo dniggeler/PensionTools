@@ -1,4 +1,6 @@
-﻿namespace Application.Tax.Proprietary.Abstractions.Models;
+﻿using Application.Tax.Proprietary.Abstractions.Models;
+
+namespace Domain.Models.Tax;
 
 public class FullTaxResult
 {

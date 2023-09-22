@@ -10,7 +10,7 @@ using Application.Municipality;
 using Application.Tax.Proprietary.Abstractions;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
-using PensionCoach.Tools.TaxComparison;
+using Domain.Models.TaxComparison;
 
 namespace Tax.Tools.Comparison
 {

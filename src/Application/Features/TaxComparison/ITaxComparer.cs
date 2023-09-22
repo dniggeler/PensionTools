@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Domain.Models.Tax;
+﻿using Domain.Models.Tax;
 using Domain.Models.TaxComparison;
 using LanguageExt;
 
-namespace Tax.Tools.Comparison.Abstractions
+namespace Application.Features.TaxComparison
 {
     public interface ITaxComparer
     {

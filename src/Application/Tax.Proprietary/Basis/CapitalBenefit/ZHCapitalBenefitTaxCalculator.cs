@@ -68,13 +68,8 @@ public class ZHCapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
             },
             ChurchTax = new ChurchTaxResult
             {
-                TaxAmount = intermediateResult.ChurchTax.TaxAmount.Match(
-                    Some: r => r * scaleFactor,
-                    None: () => Option<decimal>.None),
-
-                TaxAmountPartner = intermediateResult.ChurchTax.TaxAmountPartner.Match(
-                    Some: r => r * scaleFactor,
-                    None: () => Option<decimal>.None),
+                TaxAmount = intermediateResult.ChurchTax.TaxAmount * scaleFactor,
+                TaxAmountPartner = intermediateResult.ChurchTax.TaxAmountPartner * scaleFactor
             },
             CantonRate = intermediateResult.CantonRate,
             MunicipalityRate = intermediateResult.MunicipalityRate,

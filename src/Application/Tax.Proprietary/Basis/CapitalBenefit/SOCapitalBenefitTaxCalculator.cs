@@ -61,13 +61,8 @@ public class SOCapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
                 },
                 ChurchTax = new ChurchTaxResult
                 {
-                    TaxAmount = intermediateResult.ChurchTax.TaxAmount.Match(
-                        Some: r => r * ScaleFactor,
-                        None: () => Option<decimal>.None),
-
-                    TaxAmountPartner = intermediateResult.ChurchTax.TaxAmountPartner.Match(
-                        Some: r => r * ScaleFactor,
-                        None: () => Option<decimal>.None),
+                    TaxAmount = intermediateResult.ChurchTax.TaxAmount * ScaleFactor,
+                    TaxAmountPartner = intermediateResult.ChurchTax.TaxAmountPartner * ScaleFactor
                 },
                 CantonRate = intermediateResult.CantonRate,
                 MunicipalityRate = intermediateResult.MunicipalityRate,

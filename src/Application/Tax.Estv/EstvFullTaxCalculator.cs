@@ -67,7 +67,7 @@ public class EstvFullTaxCalculator : IFullWealthAndIncomeTaxCalculator
                 ChurchTax = new ChurchTaxResult
                 {
                     TaxAmount = estvResult.IncomeTaxChurch + estvResult.FortuneTaxChurch,
-                    TaxAmountPartner = Option<decimal>.None,
+                    TaxAmountPartner = null,
                 },
                 PollTaxAmount = estvResult.PersonalTax,
                 CantonRate = 100M,

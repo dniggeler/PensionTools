@@ -1,6 +1,6 @@
-﻿using LanguageExt;
+﻿using Application.Tax.Proprietary.Abstractions.Models;
 
-namespace Application.Tax.Proprietary.Abstractions.Models;
+namespace Domain.Models.Tax;
 
 public class StateTaxResult
 {
@@ -17,8 +17,8 @@ public class StateTaxResult
     public decimal MunicipalityTaxAmount => MunicipalityRate / 100M * (BasisIncomeTax.TaxAmount + BasisWealthTax.TaxAmount);
     public decimal CantonTaxAmount => CantonRate / 100M * (BasisIncomeTax.TaxAmount + BasisWealthTax.TaxAmount);
 
-    public decimal ChurchTaxAmount => ChurchTax.TaxAmount.IfNone(0) +
-                                      ChurchTax.TaxAmountPartner.IfNone(0);
+    public decimal ChurchTaxAmount => (ChurchTax.TaxAmount ?? 0) +
+                                      (ChurchTax.TaxAmountPartner ?? 0);
 
     public decimal TotalWealthTax => BasisWealthTax.TaxAmount * (MunicipalityRate / 100M + 1);
 
@@ -27,6 +27,6 @@ public class StateTaxResult
     public decimal TotalTaxAmount => MunicipalityTaxAmount +
                                      CantonTaxAmount +
                                      ChurchTaxAmount +
-                                     PollTaxAmount.IfNone(0);
-    public Option<decimal> PollTaxAmount { get; set; }
+                                     PollTaxAmount ?? 0m;
+    public decimal? PollTaxAmount { get; set; }
 }

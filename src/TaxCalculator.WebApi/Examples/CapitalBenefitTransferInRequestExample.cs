@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain.Enums;
+using Domain.Models.Tax;
 using PensionCoach.Tools.TaxComparison;
 using Swashbuckle.AspNetCore.Filters;
 

@@ -1,7 +1,7 @@
-﻿using Application.Tax.Proprietary.Abstractions.Models;
-using Domain.Enums;
+﻿using Domain.Enums;
+using Domain.Models.Tax;
 
-namespace PensionCoach.Tools.TaxComparison;
+namespace Domain.Models.TaxComparison;
 
 public class IncomeAndWealthTaxComparerResult
 {
