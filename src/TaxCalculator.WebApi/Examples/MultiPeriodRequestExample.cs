@@ -4,7 +4,6 @@ using Domain.Enums;
 using Domain.Models.MultiPeriod;
 using Domain.Models.MultiPeriod.Actions;
 using Domain.Models.MultiPeriod.Definitions;
-using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 using PensionCoach.Tools.CommonTypes.Tax;
 using Swashbuckle.AspNetCore.Filters;

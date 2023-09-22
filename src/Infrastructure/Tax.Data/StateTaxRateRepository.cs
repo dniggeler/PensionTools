@@ -1,6 +1,5 @@
 ﻿using Application.Tax.Proprietary.Abstractions;
 using Domain.Models.Tax;
-using LanguageExt;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Tax.Data;

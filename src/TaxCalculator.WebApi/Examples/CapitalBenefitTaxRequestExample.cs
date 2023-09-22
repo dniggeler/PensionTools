@@ -1,5 +1,4 @@
 ﻿using Domain.Enums;
-using PensionCoach.Tools.CommonTypes;
 using Swashbuckle.AspNetCore.Filters;
 using TaxCalculator.WebApi.Models;
 

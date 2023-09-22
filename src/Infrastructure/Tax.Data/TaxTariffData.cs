@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Domain.Contracts.Data;
+﻿using Application.Tax.Proprietary.Abstractions.Repositories;
 using Domain.Models.Tax;
-using Infrastructure.Tax.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Tax.Data
+namespace Infrastructure.Tax.Data
 {
-    public class TaxTariffData : ITaxTariffData
+    public class TaxTariffData : ITaxTariffRepository
     {
         private readonly Func<TaxTariffDbContext> dbContext;
 

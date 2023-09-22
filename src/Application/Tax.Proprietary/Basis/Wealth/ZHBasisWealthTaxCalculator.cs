@@ -1,7 +1,7 @@
 ﻿using Application.Tax.Proprietary.Abstractions;
 using Application.Tax.Proprietary.Abstractions.Models;
 using Application.Tax.Proprietary.Abstractions.Models.Person;
-using Domain.Contracts.Data;
+using Application.Tax.Proprietary.Abstractions.Repositories;
 using Domain.Enums;
 using Domain.Models.Tax;
 using FluentValidation;
@@ -19,11 +19,11 @@ public class ZHBasisWealthTaxCalculator : IBasisWealthTaxCalculator
     private const int TaxTypeId = (int)TaxType.Wealth;
 
     private readonly IValidator<BasisTaxPerson> taxPersonValidator;
-    private readonly ITaxTariffData tariffData;
+    private readonly ITaxTariffRepository tariffData;
 
     public ZHBasisWealthTaxCalculator(
         IValidator<BasisTaxPerson> taxPersonValidator,
-        ITaxTariffData tariffData)
+        ITaxTariffRepository tariffData)
     {
         this.taxPersonValidator = taxPersonValidator;
         this.tariffData = tariffData;

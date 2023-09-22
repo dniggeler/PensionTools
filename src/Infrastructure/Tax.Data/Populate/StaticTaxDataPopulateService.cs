@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Channels;
-using System.Threading.Tasks;
+﻿using System.Threading.Channels;
 using Application.Tax.Estv.Client;
 using Application.Tax.Estv.Client.Models;
 using Domain.Models.Municipality;
-using Infrastructure.Tax.Data;
-using Infrastructure.Tax.Data.Populate;
 using Microsoft.EntityFrameworkCore;
 
-namespace Tax.Data;
+namespace Infrastructure.Tax.Data.Populate;
 
 public class StaticTaxDataPopulateService : ITaxDataPopulateService
 {

@@ -16,7 +16,6 @@
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\CommonUtils\CommonUtils.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-    <ProjectReference Include="..\Tax.Data\Tax.Data.csproj" />
     <ProjectReference Include="..\TaxCalculator.Abstractions\TaxCalculator.Abstractions.csproj" />
   </ItemGroup>
 

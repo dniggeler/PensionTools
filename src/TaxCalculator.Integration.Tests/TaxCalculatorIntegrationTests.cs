@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
-using PensionCoach.Tools.CommonTypes.Tax;
 using Snapshooter.Xunit;
 using TaxCalculator.WebApi;
 using Xunit;

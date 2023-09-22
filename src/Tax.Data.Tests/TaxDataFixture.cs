@@ -1,41 +1,41 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Infrastructure.Tax.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Tax.Data.Tests
+namespace Tax.Data.Tests;
+
+public class TaxDataFixture
 {
-    public class TaxDataFixture
+    public ServiceProvider Provider { get; }
+
+    public TaxDataFixture()
     {
-        public ServiceProvider Provider { get; }
+        var projectPath = Assembly.GetExecutingAssembly()
+            .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
+            .First();
 
-        public TaxDataFixture()
+        var dbFile = Path.Combine(projectPath, @"src\Tax.Data\files\TaxDb.db");
+
+
+        var configurationDict = new Dictionary<string, string>
         {
-            var projectPath = Assembly.GetExecutingAssembly()
-                .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
-                .First();
+            {"ConnectionStrings:TaxDb", dbFile}
+        };
 
-            var dbFile = Path.Combine(projectPath, @"src\Tax.Data\files\TaxDb.db");
+        IConfiguration configuration = new ConfigurationBuilder()
+            .AddInMemoryCollection(configurationDict)
+            .Build();
 
+        ServiceCollection coll = new ServiceCollection();
+        coll.AddScoped(c => configuration);
 
-            var configurationDict = new Dictionary<string, string>
-            {
-                {"ConnectionStrings:TaxDb", dbFile}
-            };
+        coll.AddTaxData(configuration);
 
-            IConfiguration configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(configurationDict)
-                .Build();
-
-            ServiceCollection coll = new ServiceCollection();
-            coll.AddScoped(c => configuration);
-
-            coll.AddTaxData(configuration);
-
-            Provider = coll.BuildServiceProvider();
-        }
+        Provider = coll.BuildServiceProvider();
     }
 }

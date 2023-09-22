@@ -16,7 +16,6 @@ using Microsoft.OpenApi.Models;
 using PensionCoach.Tools.BvgCalculator;
 using PensionCoach.Tools.TaxCalculator;
 using Swashbuckle.AspNetCore.Filters;
-using Tax.Data;
 using Tax.Tools.Comparison;
 
 namespace TaxCalculator.WebApi

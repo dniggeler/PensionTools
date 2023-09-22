@@ -1,5 +1,5 @@
-﻿using Application.Tax.Proprietary.Abstractions;
-using Application.Tax.Proprietary.Abstractions.Models;
+﻿using Application.Tax.Proprietary.Abstractions.Models;
+using Application.Tax.Proprietary.Abstractions.Repositories;
 using Domain.Models.Tax;
 
 namespace Infrastructure.Tax.Data;

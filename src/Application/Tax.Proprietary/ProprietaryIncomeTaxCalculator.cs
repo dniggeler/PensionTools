@@ -1,6 +1,7 @@
 ﻿using Application.Tax.Proprietary.Abstractions;
 using Application.Tax.Proprietary.Abstractions.Models;
 using Application.Tax.Proprietary.Abstractions.Models.Person;
+using Application.Tax.Proprietary.Abstractions.Repositories;
 using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Tax;

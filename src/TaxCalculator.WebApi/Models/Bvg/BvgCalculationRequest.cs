@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Domain.Enums;
-using PensionCoach.Tools.CommonTypes;
 
 namespace TaxCalculator.WebApi.Models.Bvg
 {

@@ -1,12 +1,13 @@
-﻿using System;
-using Domain.Contracts.Data;
-using Infrastructure.Tax.Data;
+﻿using Application.Municipality;
+using Application.Tax.Proprietary.Abstractions;
+using Application.Tax.Proprietary.Abstractions.Repositories;
+using Infrastructure.Municipality;
 using Infrastructure.Tax.Data.Populate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Tax.Data
+namespace Infrastructure.Tax.Data
 {
     public static class TaxDataExtensions
     {
@@ -73,7 +74,10 @@ namespace Tax.Data
             collection.AddSingleton<Func<MunicipalityDbContext>>(provider => provider.GetRequiredService<MunicipalityDbContext>);
 
             collection.AddTransient<ITaxDataPopulateService, StaticTaxDataPopulateService>();
-            collection.AddSingleton<ITaxTariffData,TaxTariffData>();
+            collection.AddSingleton<ITaxTariffRepository,TaxTariffData>();
+            collection.AddTransient<IStateTaxRateRepository, StateTaxRateRepository>();
+            collection.AddTransient<IFederalTaxRateRepository, FederalTaxRateRepository>();
+            collection.AddTransient<IMunicipalityRepository, MunicipalityRepository>();
         }
     }
 }

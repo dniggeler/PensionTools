@@ -1,7 +1,7 @@
 ﻿using Application.Tax.Proprietary.Abstractions;
 using Application.Tax.Proprietary.Abstractions.Models;
 using Application.Tax.Proprietary.Abstractions.Models.Person;
-using Domain.Contracts.Data;
+using Application.Tax.Proprietary.Abstractions.Repositories;
 using Domain.Enums;
 using Domain.Models.Tax;
 using FluentValidation;
@@ -20,11 +20,11 @@ public class DefaultBasisIncomeTaxCalculator : IDefaultBasisIncomeTaxCalculator
     private const int IncomeTaxTypeId = (int)TaxType.Income;
 
     private readonly IValidator<BasisTaxPerson> taxPersonValidator;
-    private readonly ITaxTariffData tariffData;
+    private readonly ITaxTariffRepository tariffData;
 
     public DefaultBasisIncomeTaxCalculator(
         IValidator<BasisTaxPerson> taxPersonValidator,
-        ITaxTariffData tariffData)
+        ITaxTariffRepository tariffData)
     {
         this.taxPersonValidator = taxPersonValidator;
         this.tariffData = tariffData;
