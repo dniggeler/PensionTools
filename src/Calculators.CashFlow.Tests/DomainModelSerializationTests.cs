@@ -6,31 +6,30 @@ using Newtonsoft.Json;
 using Snapshooter.Xunit;
 using Xunit;
 
-namespace Calculators.CashFlow.Tests
+namespace Calculators.CashFlow.Tests;
+
+[Trait("Domain Model", "Serialization")]
+public class DomainModelSerializationTests
 {
-    [Trait("Domain Model", "Serialization")]
-    public class DomainModelSerializationTests
+    [Fact(DisplayName = "Deserialize Municipality")]
+    public void Deserialize_MunicipalityModel()
     {
-        [Fact(DisplayName = "Deserialize Municipality")]
-        public void Deserialize_MunicipalityModel()
+        // given
+        MunicipalityModel model = new MunicipalityModel
         {
-            // given
-            MunicipalityModel model = new MunicipalityModel
-            {
-                BfsNumber = 261,
-                Canton = Canton.ZH,
-                Name = "Zürich",
-                MutationId = 1911,
-                SuccessorId = 33,
-                DateOfMutation = new DateTime(2020,1,1)
-            };
-            string json = JsonConvert.SerializeObject(new[]{ model });
+            BfsNumber = 261,
+            Canton = Canton.ZH,
+            Name = "Zürich",
+            MutationId = 1911,
+            SuccessorId = 33,
+            DateOfMutation = new DateTime(2020,1,1)
+        };
+        string json = JsonConvert.SerializeObject(new[]{ model });
 
-            // when
-            var result = JsonConvert.DeserializeObject<IEnumerable<MunicipalityModel>>(json);
+        // when
+        var result = JsonConvert.DeserializeObject<IEnumerable<MunicipalityModel>>(json);
 
-            // then
-            Snapshot.Match(result);
-        }
+        // then
+        Snapshot.Match(result);
     }
 }

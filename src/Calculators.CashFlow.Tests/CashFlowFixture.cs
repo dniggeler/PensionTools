@@ -10,48 +10,47 @@ using Infrastructure.Tax.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Calculators.CashFlow.Tests
+namespace Calculators.CashFlow.Tests;
+
+public class CashFlowFixture<T>
+    where T : class
 {
-    public class CashFlowFixture<T>
-        where T : class
+    public ServiceProvider Provider { get; }
+
+    public T Calculator { get; }
+
+    public T Service { get; }
+
+    public CashFlowFixture()
     {
-        public ServiceProvider Provider { get; }
+        var projectPath = Assembly.GetExecutingAssembly()
+            .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
+            .First();
 
-        public T Calculator { get; }
+        var dbFile = Path.Combine(projectPath, @"src\Infrastructure\files\TaxDb.db");
 
-        public T Service { get; }
-
-        public CashFlowFixture()
+        var configurationDict = new Dictionary<string, string>
         {
-            var projectPath = Assembly.GetExecutingAssembly()
-                .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
-                .First();
+            {"ConnectionStrings:TaxDb", dbFile}
+        };
 
-            var dbFile = Path.Combine(projectPath, @"src\Infrastructure\files\TaxDb.db");
+        IConfiguration configuration = new ConfigurationBuilder()
+            .AddInMemoryCollection(configurationDict)
+            .Build();
 
-            var configurationDict = new Dictionary<string, string>
-            {
-                {"ConnectionStrings:TaxDb", dbFile}
-            };
-
-            IConfiguration configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(configurationDict)
-                .Build();
-
-            ServiceCollection coll = new ServiceCollection();
-            coll.AddSingleton(configuration);
-            coll.AddOptions();
-            coll.AddLogging();
-            coll.AddCashFlowCalculators();
-            coll.AddTaxCalculators(configuration.GetApplicationMode());
-            coll.AddTaxData(configuration);
+        ServiceCollection coll = new ServiceCollection();
+        coll.AddSingleton(configuration);
+        coll.AddOptions();
+        coll.AddLogging();
+        coll.AddCashFlowCalculators();
+        coll.AddTaxCalculators(configuration.GetApplicationMode());
+        coll.AddTaxData(configuration);
 
 
-            Provider = coll.BuildServiceProvider();
+        Provider = coll.BuildServiceProvider();
 
-            Calculator = Provider.GetRequiredService<T>();
+        Calculator = Provider.GetRequiredService<T>();
 
-            Service = Provider.GetRequiredService<T>();
-        }
+        Service = Provider.GetRequiredService<T>();
     }
 }

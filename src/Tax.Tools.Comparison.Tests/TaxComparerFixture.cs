@@ -10,47 +10,45 @@ using Infrastructure.Tax.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+namespace Tax.Tools.Comparison.Tests;
 
-namespace Tax.Tools.Comparison.Tests
+public class TaxComparerFixture<T>
+    where T : class
 {
-    public class TaxComparerFixture<T>
-        where T : class
+    public ServiceProvider Provider { get; }
+
+    public T Calculator { get; }
+
+    public T Service { get; }
+
+    public TaxComparerFixture()
     {
-        public ServiceProvider Provider { get; }
+        var projectPath = Assembly.GetExecutingAssembly()
+            .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
+            .First();
 
-        public T Calculator { get; }
+        var dbFile = Path.Combine(projectPath, @"src\Infrastructure\files\TaxDb.db");
 
-        public T Service { get; }
-
-        public TaxComparerFixture()
+        var configurationDict = new Dictionary<string, string>
         {
-            var projectPath = Assembly.GetExecutingAssembly()
-                .Location.Split("src", StringSplitOptions.RemoveEmptyEntries)
-                .First();
+            {"ConnectionStrings:TaxDb", dbFile},
+        };
 
-            var dbFile = Path.Combine(projectPath, @"src\Infrastructure\files\TaxDb.db");
+        IConfiguration configuration = new ConfigurationBuilder()
+            .AddInMemoryCollection(configurationDict)
+            .Build();
 
-            var configurationDict = new Dictionary<string, string>
-            {
-                {"ConnectionStrings:TaxDb", dbFile},
-            };
+        ServiceCollection coll = new ServiceCollection();
 
-            IConfiguration configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(configurationDict)
-                .Build();
+        coll.AddLogging();
+        coll.AddTaxCalculators(configuration.GetApplicationMode());
+        coll.AddTaxData(configuration);
+        coll.AddTaxComparers();
 
-            ServiceCollection coll = new ServiceCollection();
+        Provider = coll.BuildServiceProvider();
 
-            coll.AddLogging();
-            coll.AddTaxCalculators(configuration.GetApplicationMode());
-            coll.AddTaxData(configuration);
-            coll.AddTaxComparers();
+        Calculator = Provider.GetRequiredService<T>();
 
-            Provider = coll.BuildServiceProvider();
-
-            Calculator = Provider.GetRequiredService<T>();
-
-            Service = Provider.GetRequiredService<T>();
-        }
+        Service = Provider.GetRequiredService<T>();
     }
 }
