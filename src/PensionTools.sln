@@ -18,6 +18,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonUtils", "CommonUtils\CommonUtils.csproj", "{6A4CA971-D78F-48A7-84A0-81B7ADC92AFE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C1ED00D3-E701-4E17-9117-1B95EBD423D1}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.txt = LICENSE.txt
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BvgCalculator.Tests", "BvgCalculator.Tests\BvgCalculator.Tests.csproj", "{43E1CB25-89F2-4257-B95D-D2CFDA7CA472}"
 EndProject
