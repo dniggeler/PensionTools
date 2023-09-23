@@ -1,4 +1,4 @@
-﻿using Application.Tax.Proprietary.Abstractions.Models;
+﻿using Application.Tax.Proprietary.Models;
 using Domain.Models.Tax;
 using LanguageExt;
 

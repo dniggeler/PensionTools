@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Application.Features.FullTaxCalculation;
 using Application.Features.MarginalTaxCurve;
 using Application.Municipality;
-using Application.Tax.Proprietary.Abstractions.Models;
+using Application.Tax.Proprietary.Models;
 using Domain.Enums;
 using Domain.Models.Tax;
 using LanguageExt;

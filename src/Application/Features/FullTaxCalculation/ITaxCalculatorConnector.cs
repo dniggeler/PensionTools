@@ -1,5 +1,4 @@
-﻿using Application.Tax.Proprietary.Abstractions.Models;
-using Domain.Models.Tax;
+﻿using Domain.Models.Tax;
 using LanguageExt;
 
 namespace Application.Features.FullTaxCalculation

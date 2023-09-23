@@ -1,7 +1,7 @@
 ﻿using Application.Tax.Proprietary.Abstractions.Models;
-using Application.Tax.Proprietary.Abstractions.Models.Person;
 using Application.Tax.Proprietary.Contracts;
 using Domain.Enums;
+using Domain.Models.Tax.Person;
 using LanguageExt;
 using Microsoft.Extensions.Logging;
 
@@ -22,7 +22,7 @@ public class MissingBasisWealthTaxCalculator : IBasisWealthTaxCalculator
     public Task<Either<string, BasisTaxResult>> CalculateAsync(
         int calculationYear, Canton canton, BasisTaxPerson person)
     {
-        string msg = $"No wealth tax calculator for canton {canton.ToString()} available";
+        string msg = $"No wealth tax calculator for canton {canton} available";
 
         Either<string, BasisTaxResult> result = msg;
 

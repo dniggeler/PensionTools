@@ -1,4 +1,4 @@
-﻿using Application.Tax.Proprietary.Abstractions.Repositories;
+﻿using Application.Tax.Proprietary.Repositories;
 using Domain.Models.Tax;
 using Microsoft.EntityFrameworkCore;
 

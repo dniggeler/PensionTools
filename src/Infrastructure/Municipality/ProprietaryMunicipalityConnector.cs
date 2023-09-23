@@ -1,5 +1,5 @@
 ﻿using Application.Municipality;
-using Application.Tax.Proprietary.Abstractions.Repositories;
+using Application.Tax.Proprietary.Repositories;
 using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Municipality;

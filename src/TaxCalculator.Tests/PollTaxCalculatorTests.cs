@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Application.Tax.Proprietary.Abstractions.Models.Person;
 using Application.Tax.Proprietary.Contracts;
 using Domain.Enums;
+using Domain.Models.Tax.Person;
 using FluentAssertions;
 using Snapshooter.Xunit;
 using Xunit;

@@ -2,14 +2,13 @@
 using Domain.Models.Bvg;
 using FluentValidation;
 
-namespace Application.Validators
+namespace Application.Validators;
+
+public class BvgPersonValidator : AbstractValidator<BvgPerson>
 {
-    public class BvgPersonValidator : AbstractValidator<BvgPerson>
+    public BvgPersonValidator()
     {
-        public BvgPersonValidator()
-        {
-            RuleFor(x => x.Gender).Must(x => x != Gender.Undefined);
-            RuleFor(x => x.PartTimeDegree).Must(x => x > decimal.Zero);
-        }
+        RuleFor(x => x.Gender).Must(x => x != Gender.Undefined);
+        RuleFor(x => x.PartTimeDegree).Must(x => x > decimal.Zero);
     }
 }

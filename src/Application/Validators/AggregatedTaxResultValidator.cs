@@ -1,15 +1,14 @@
-﻿using Application.Tax.Proprietary.Abstractions.Models;
+﻿using Application.Tax.Proprietary.Models;
 using FluentValidation;
 
-namespace Application.Validators
+namespace Application.Validators;
+
+/// <inheritdoc />
+public class AggregatedTaxResultValidator : AbstractValidator<AggregatedBasisTaxResult>
 {
-    /// <inheritdoc />
-    public class AggregatedTaxResultValidator : AbstractValidator<AggregatedBasisTaxResult>
+    public AggregatedTaxResultValidator()
     {
-        public AggregatedTaxResultValidator()
-        {
-            RuleFor(x => x.IncomeTax).NotNull();
-            RuleFor(x => x.WealthTax).NotNull();
-        }
+        RuleFor(x => x.IncomeTax).NotNull();
+        RuleFor(x => x.WealthTax).NotNull();
     }
 }

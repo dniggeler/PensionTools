@@ -1,7 +1,7 @@
 ﻿using Application.Tax.Proprietary.Abstractions.Models;
-using Application.Tax.Proprietary.Abstractions.Models.Person;
 using Application.Tax.Proprietary.Contracts;
 using AutoMapper;
+using Domain.Models.Tax.Person;
 using LanguageExt;
 
 namespace Application.Tax.Proprietary;

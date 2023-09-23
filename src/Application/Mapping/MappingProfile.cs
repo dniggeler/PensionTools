@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
-using Application.Tax.Proprietary.Abstractions.Models.Person;
 using AutoMapper;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
+using Domain.Models.Tax.Person;
 
 namespace Application.Mapping
 {

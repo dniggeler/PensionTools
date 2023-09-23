@@ -1,19 +1,18 @@
-﻿using Application.Tax.Proprietary.Abstractions.Models.Person;
+﻿using Domain.Models.Tax.Person;
 using FluentValidation;
 
-namespace Application.Validators
+namespace Application.Validators;
+
+public class FederalTaxPersonValidator : AbstractValidator<FederalTaxPerson>
 {
-    public class FederalTaxPersonValidator : AbstractValidator<FederalTaxPerson>
+    private const string ValueMustNotBeNegative = "Value must not be negative";
+
+    public FederalTaxPersonValidator()
     {
-        private const string ValueMustNotBeNegative = "Value must not be negative";
+        Include(new TaxPersonBasicValidator());
 
-        public FederalTaxPersonValidator()
-        {
-            Include(new TaxPersonBasicValidator());
-
-            RuleFor(p => p.TaxableAmount)
-                .GreaterThanOrEqualTo(decimal.Zero)
-                .WithMessage(ValueMustNotBeNegative);
-        }
+        RuleFor(p => p.TaxableAmount)
+            .GreaterThanOrEqualTo(decimal.Zero)
+            .WithMessage(ValueMustNotBeNegative);
     }
 }

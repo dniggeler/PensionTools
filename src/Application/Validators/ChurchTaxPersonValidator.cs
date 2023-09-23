@@ -1,14 +1,13 @@
-﻿using Application.Tax.Proprietary.Abstractions.Models.Person;
+﻿using Domain.Models.Tax.Person;
 using FluentValidation;
 
-namespace Application.Validators
+namespace Application.Validators;
+
+/// <inheritdoc />
+public class ChurchTaxPersonValidator : AbstractValidator<ChurchTaxPerson>
 {
-    /// <inheritdoc />
-    public class ChurchTaxPersonValidator : AbstractValidator<ChurchTaxPerson>
+    public ChurchTaxPersonValidator()
     {
-        public ChurchTaxPersonValidator()
-        {
-            Include(new TaxPersonBasicValidator());
-        }
+        Include(new TaxPersonBasicValidator());
     }
 }

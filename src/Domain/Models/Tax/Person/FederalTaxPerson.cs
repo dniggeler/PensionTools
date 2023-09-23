@@ -1,6 +1,4 @@
-﻿using Domain.Models.Tax;
-
-namespace Application.Tax.Proprietary.Abstractions.Models.Person
+﻿namespace Domain.Models.Tax.Person
 {
     public record FederalTaxPerson : TaxPersonBasic
     {
