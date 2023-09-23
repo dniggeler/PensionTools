@@ -1,5 +1,5 @@
-﻿using Application.Tax.Proprietary.Abstractions;
-using Application.Tax.Proprietary.Abstractions.Models;
+﻿using Application.Tax.Proprietary.Abstractions.Models;
+using Application.Tax.Proprietary.Contracts;
 using Domain.Enums;
 using Domain.Models.Tax;
 using LanguageExt;

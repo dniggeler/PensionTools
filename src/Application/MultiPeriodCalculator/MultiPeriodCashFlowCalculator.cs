@@ -1,6 +1,6 @@
 ﻿using Application.Extensions;
 using Application.Municipality;
-using Application.Tax.Proprietary.Abstractions;
+using Application.Tax.Proprietary.Contracts;
 using Domain.Contracts;
 using Domain.Enums;
 using Domain.Models.Cashflows;

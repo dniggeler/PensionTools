@@ -1,81 +1,80 @@
-﻿using Application.Tax.Proprietary.Abstractions;
-using Application.Tax.Proprietary.Abstractions.Models;
+﻿using Application.Tax.Proprietary.Abstractions.Models;
+using Application.Tax.Proprietary.Contracts;
 using AutoMapper;
 using Domain.Enums;
 using Domain.Models.Tax;
 using FluentValidation;
 using LanguageExt;
 
-namespace Application.Tax.Proprietary.Basis.CapitalBenefit
+namespace Application.Tax.Proprietary.Basis.CapitalBenefit;
+
+public class ZHCapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
 {
-    public class ZHCapitalBenefitTaxCalculator : ICapitalBenefitTaxCalculator
+    private readonly IStateTaxCalculator stateTaxCalculator;
+    private readonly IValidator<CapitalBenefitTaxPerson> validator;
+    private readonly IMapper mapper;
+
+    public ZHCapitalBenefitTaxCalculator(
+        IStateTaxCalculator stateTaxCalculator,
+        IValidator<CapitalBenefitTaxPerson> validator,
+        IMapper mapper)
     {
-        private readonly IStateTaxCalculator stateTaxCalculator;
-        private readonly IValidator<CapitalBenefitTaxPerson> validator;
-        private readonly IMapper mapper;
+        this.stateTaxCalculator = stateTaxCalculator;
+        this.validator = validator;
+        this.mapper = mapper;
+    }
 
-        public ZHCapitalBenefitTaxCalculator(
-            IStateTaxCalculator stateTaxCalculator,
-            IValidator<CapitalBenefitTaxPerson> validator,
-            IMapper mapper)
+    /// <inheritdoc />
+    public async Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(
+        int calculationYear,
+        int municipalityId,
+        Canton canton,
+        CapitalBenefitTaxPerson capitalBenefitTaxPerson)
+    {
+        var validationResult = validator.Validate(capitalBenefitTaxPerson);
+        if (!validationResult.IsValid)
         {
-            this.stateTaxCalculator = stateTaxCalculator;
-            this.validator = validator;
-            this.mapper = mapper;
+            var errorMessageLine =
+                string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
+
+            return errorMessageLine;
         }
 
-        /// <inheritdoc />
-        public async Task<Either<string, CapitalBenefitTaxResult>> CalculateAsync(
-            int calculationYear,
-            int municipalityId,
-            Canton canton,
-            CapitalBenefitTaxPerson capitalBenefitTaxPerson)
+        const decimal annuitizeFactor = 10;
+        TaxPerson taxPerson = mapper.Map<TaxPerson>(capitalBenefitTaxPerson);
+
+        taxPerson.TaxableIncome = capitalBenefitTaxPerson.TaxableCapitalBenefits / annuitizeFactor;
+
+        var stateTaxResult = await stateTaxCalculator.CalculateAsync(
+            calculationYear,
+            municipalityId,
+            canton,
+            taxPerson);
+
+        return stateTaxResult
+            .Map(r => Scale(r, annuitizeFactor));
+    }
+
+    private CapitalBenefitTaxResult Scale(StateTaxResult intermediateResult, decimal scaleFactor)
+    {
+        var result = new CapitalBenefitTaxResult
         {
-            var validationResult = validator.Validate(capitalBenefitTaxPerson);
-            if (!validationResult.IsValid)
+            BasisTax = new BasisTaxResult
             {
-                var errorMessageLine =
-                    string.Join(";", validationResult.Errors.Select(x => x.ErrorMessage));
-
-                return errorMessageLine;
-            }
-
-            const decimal annuitizeFactor = 10;
-            TaxPerson taxPerson = mapper.Map<TaxPerson>(capitalBenefitTaxPerson);
-
-            taxPerson.TaxableIncome = capitalBenefitTaxPerson.TaxableCapitalBenefits / annuitizeFactor;
-
-            var stateTaxResult = await stateTaxCalculator.CalculateAsync(
-                calculationYear,
-                municipalityId,
-                canton,
-                taxPerson);
-
-            return stateTaxResult
-                .Map(r => Scale(r, annuitizeFactor));
-        }
-
-        private CapitalBenefitTaxResult Scale(StateTaxResult intermediateResult, decimal scaleFactor)
-        {
-            var result = new CapitalBenefitTaxResult
+                DeterminingFactorTaxableAmount =
+                    intermediateResult.BasisIncomeTax.DeterminingFactorTaxableAmount * scaleFactor,
+                TaxAmount =
+                    intermediateResult.BasisIncomeTax.TaxAmount * scaleFactor,
+            },
+            ChurchTax = new ChurchTaxResult
             {
-                BasisTax = new BasisTaxResult
-                {
-                    DeterminingFactorTaxableAmount =
-                        intermediateResult.BasisIncomeTax.DeterminingFactorTaxableAmount * scaleFactor,
-                    TaxAmount =
-                        intermediateResult.BasisIncomeTax.TaxAmount * scaleFactor,
-                },
-                ChurchTax = new ChurchTaxResult
-                {
-                    TaxAmount = intermediateResult.ChurchTax.TaxAmount * scaleFactor,
-                    TaxAmountPartner = intermediateResult.ChurchTax.TaxAmountPartner * scaleFactor
-                },
-                CantonRate = intermediateResult.CantonRate,
-                MunicipalityRate = intermediateResult.MunicipalityRate,
-            };
+                TaxAmount = intermediateResult.ChurchTax.TaxAmount * scaleFactor,
+                TaxAmountPartner = intermediateResult.ChurchTax.TaxAmountPartner * scaleFactor
+            },
+            CantonRate = intermediateResult.CantonRate,
+            MunicipalityRate = intermediateResult.MunicipalityRate,
+        };
 
-            return result;
-        }
+        return result;
     }
 }

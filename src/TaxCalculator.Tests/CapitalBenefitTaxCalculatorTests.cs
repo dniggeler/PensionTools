@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Application.Tax.Proprietary.Abstractions;
+using Application.Tax.Proprietary.Contracts;
 using Domain.Enums;
 using Domain.Models.Tax;
 using Snapshooter.Xunit;

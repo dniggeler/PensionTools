@@ -1,7 +1,7 @@
 ﻿using Application.Features.FullTaxCalculation;
 using Application.Municipality;
 using Application.Tax.Proprietary;
-using Application.Tax.Proprietary.Abstractions;
+using Application.Tax.Proprietary.Contracts;
 using Domain.Enums;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
