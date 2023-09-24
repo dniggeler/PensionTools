@@ -4,8 +4,10 @@ using System.Reflection;
 using System.Text.Json.Serialization;
 using Application.Extensions;
 using Application.Features.FullTaxCalculation;
+using Application.Features.PensionVersusCapital;
 using Application.Features.TaxComparison;
 using Application.MultiPeriodCalculator;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Infrastructure.Configuration;
 using Infrastructure.DataStaging;
 using Infrastructure.EstvTaxCalculator;
@@ -72,6 +74,7 @@ namespace TaxCalculator.WebApi
             services.AddDataStagingServices();
             services.AddBvgCalculators();
             services.AddCashFlowCalculators();
+            services.AddToolsCalculators();
             services.AddEstvTaxCalculatorClient(Configuration);
             services.AddPostOpenApiClient(Configuration);
             services.AddSwaggerExamplesFromAssemblyOf<Examples.CapitalBenefitTaxRequestExample>();

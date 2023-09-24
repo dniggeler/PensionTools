@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Application.Features.PensionVersusCapital;
 using Domain.Enums;
 using Domain.Models.Tax;
@@ -40,9 +41,10 @@ public class PensionVersusCapitalCalculatorTests : IClassFixture<ToolsFixture<IP
             TaxableWealth = decimal.Zero
         };
 
-        decimal result =
-            (await fixture.Service.CalculateAsync(calculationYear, municipalityId, canton, retirementPension, retirementCapital, taxPerson))
-            .IfNone(decimal.Zero);
+        var response = await fixture.Service.CalculateAsync(
+            calculationYear, municipalityId, canton, retirementPension, retirementCapital, taxPerson);
+
+        var result = response.IfLeft(error => throw new ApplicationException(error));
 
         Assert.InRange(result, expectedBreakEvenFactor - epsilon, expectedBreakEvenFactor + epsilon);
     }

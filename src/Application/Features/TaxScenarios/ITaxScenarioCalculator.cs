@@ -1,26 +1,34 @@
-﻿using Domain.Models.Scenarios;
+﻿using Domain.Enums;
+using Domain.Models.Scenarios;
 using Domain.Models.Tax;
 using LanguageExt;
 
-namespace Application.Features.TaxScenarios
-{
-    public interface ITaxScenarioCalculator
-    {
-        /// <param name="startingYear"></param>
-        /// <param name="bfsMunicipalityId"></param>
-        /// <param name="person"></param>
-        /// <param name="scenarioModel"></param>
-        /// <returns></returns>
-        Task<Either<string, ScenarioCalculationResult>> CapitalBenefitTransferInsAsync(
-            int startingYear,
-            int bfsMunicipalityId,
-            TaxPerson person,
-            CapitalBenefitTransferInsScenarioModel scenarioModel);
+namespace Application.Features.TaxScenarios;
 
-        Task<Either<string, ScenarioCalculationResult>> ThirdPillarVersusSelfInvestmentAsync(
-            int startingYear,
-            int bfsMunicipalityId,
-            TaxPerson person,
-            ThirdPillarVersusSelfInvestmentScenarioModel scenarioModel);
-    }
+public interface ITaxScenarioCalculator
+{
+    /// <param name="startingYear"></param>
+    /// <param name="bfsMunicipalityId"></param>
+    /// <param name="person"></param>
+    /// <param name="scenarioModel"></param>
+    /// <returns></returns>
+    Task<Either<string, ScenarioCalculationResult>> CapitalBenefitTransferInsAsync(
+        int startingYear,
+        int bfsMunicipalityId,
+        TaxPerson person,
+        CapitalBenefitTransferInsScenarioModel scenarioModel);
+
+    Task<Either<string, ScenarioCalculationResult>> ThirdPillarVersusSelfInvestmentAsync(
+        int startingYear,
+        int bfsMunicipalityId,
+        TaxPerson person,
+        ThirdPillarVersusSelfInvestmentScenarioModel scenarioModel);
+
+    Task<Either<string, decimal>> PensionVersusCapitalComparisonAsync(
+        int calculationYear,
+        int municipalityId,
+        Canton canton,
+        decimal retirementPension,
+        decimal retirementCapital,
+        TaxPerson taxPerson);
 }

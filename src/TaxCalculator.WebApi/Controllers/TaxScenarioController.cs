@@ -158,4 +158,13 @@ public class TaxScenarioController : ControllerBase
             };
         }
     }
+
+    [HttpPost]
+    [Route(nameof(CalculatePensionVersusCapitalComparison))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<CapitalBenefitsTransferInResponse>> CalculatePensionVersusCapitalComparison(PensionVersusCapitalRequest request)
+    {
+        return await Task.FromResult(new CapitalBenefitsTransferInResponse());
+    }
 }

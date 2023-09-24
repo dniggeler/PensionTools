@@ -6,7 +6,7 @@ namespace Application.Features.PensionVersusCapital;
 
 public interface IPensionVersusCapitalCalculator
 {
-    Task<Option<decimal>> CalculateAsync(
+    Task<Either<string, decimal>> CalculateAsync(
         int calculationYear,
         int municipalityId,
         Canton canton,

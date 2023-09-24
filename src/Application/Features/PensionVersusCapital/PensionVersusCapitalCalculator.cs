@@ -14,7 +14,7 @@ public class PensionVersusCapitalCalculator : IPensionVersusCapitalCalculator
         this.taxCalculatorConnector = taxCalculatorConnector;
     }
 
-    public async Task<Option<decimal>> CalculateAsync(
+    public async Task<Either<string, decimal>> CalculateAsync(
         int calculationYear,
         int municipalityId,
         Canton canton,
@@ -47,14 +47,14 @@ public class PensionVersusCapitalCalculator : IPensionVersusCapitalCalculator
         Either<string, FullTaxResult> withPensionIncomeTaxCalculationResult =
             await taxCalculatorConnector.CalculateAsync(calculationYear, municipalityId, taxPersonWithPensionIncome, true);
 
-        var r = from benefitsTax in capitalBenefitTaxCalculationResult
+        Either<string, decimal> r = from benefitsTax in capitalBenefitTaxCalculationResult
             from otherIncomeTax in justOtherIncomeTaxCalculationResult
             from withPensionIncomeTax in withPensionIncomeTaxCalculationResult
             select CalculateBreakEvenFactor(benefitsTax, otherIncomeTax, withPensionIncomeTax);
 
-        return r.IfLeft(()=>Option<decimal>.None);
+        return r;
 
-        Option<decimal> CalculateBreakEvenFactor(
+        decimal CalculateBreakEvenFactor(
             FullCapitalBenefitTaxResult benefitTaxResult,
             FullTaxResult otherIncomeTaxResult,
             FullTaxResult withPensionIncomeTaxResult)
@@ -65,7 +65,7 @@ public class PensionVersusCapitalCalculator : IPensionVersusCapitalCalculator
 
             if (incomeNet == decimal.Zero)
             {
-                return Option<decimal>.None;
+                return 0m;
             }
 
             return capitalBenefitNet / (incomeNet - totalTaxNet);

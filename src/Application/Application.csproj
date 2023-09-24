@@ -21,6 +21,7 @@
     
   <ItemGroup>
     <Folder Include="Features\MultiPeriodCalculation\" />
+    <Folder Include="Features\PensionVersusCapital\Models\" />
   </ItemGroup>
 
 </Project>

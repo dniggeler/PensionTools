@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Application.Features.FullTaxCalculation;
+using Application.Features.PensionVersusCapital;
 using Application.MultiPeriodCalculator;
 using Infrastructure.Configuration;
 using Infrastructure.Tax.Data;
@@ -43,6 +44,7 @@ public class CashFlowFixture<T>
         coll.AddOptions();
         coll.AddLogging();
         coll.AddCashFlowCalculators();
+        coll.AddToolsCalculators();
         coll.AddTaxCalculators(configuration.GetApplicationMode());
         coll.AddTaxData(configuration);
 
