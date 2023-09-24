@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Application.Features.TaxComparison.Models;
+using Application.Features.TaxScenarios.Models;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 
 namespace BlazorApp.Services

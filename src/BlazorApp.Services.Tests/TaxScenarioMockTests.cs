@@ -1,4 +1,4 @@
-﻿using Application.Features.TaxComparison.Models;
+﻿using Application.Features.TaxScenarios.Models;
 using BlazorApp.Services.Mock;
 using Domain.Enums;
 using Domain.Models.Tax;

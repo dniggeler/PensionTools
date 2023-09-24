@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Features.TaxComparison.Models;
+using Application.Features.TaxScenarios.Models;
 using Domain.Enums;
 using Domain.Models.MultiPeriod;
 using Domain.Models.Tax;

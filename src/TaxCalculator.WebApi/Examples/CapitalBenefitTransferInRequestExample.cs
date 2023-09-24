@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Application.Features.TaxComparison.Models;
+using Application.Features.TaxScenarios.Models;
 using Domain.Enums;
 using Domain.Models.Tax;
 using Swashbuckle.AspNetCore.Filters;

@@ -21,7 +21,6 @@
     
   <ItemGroup>
     <Folder Include="Features\MultiPeriodCalculation\" />
-    <Folder Include="Features\TaxScenarios\Models\" />
   </ItemGroup>
 
 </Project>

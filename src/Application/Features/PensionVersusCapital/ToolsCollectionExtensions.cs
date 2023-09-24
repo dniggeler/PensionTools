@@ -1,12 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.Features.PensionVersusCapital
+namespace Application.Features.PensionVersusCapital;
+
+public static class ToolsCollectionExtensions
 {
-    public static class ToolsCollectionExtensions
+    public static void AddToolsCalculators(this IServiceCollection serviceCollection)
     {
-        public static void AddToolsCalculators(this IServiceCollection serviceCollection)
-        {
-            serviceCollection.AddSingleton<IPensionVersusCapitalCalculator, PensionVersusCapitalCalculator>();
-        }
+        serviceCollection.AddSingleton<IPensionVersusCapitalCalculator, PensionVersusCapitalCalculator>();
     }
 }

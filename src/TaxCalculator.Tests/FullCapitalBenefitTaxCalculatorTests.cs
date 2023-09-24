@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Application.Tax.Proprietary.Contracts;
+using Application.Tax.Contracts;
 using Domain.Enums;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;

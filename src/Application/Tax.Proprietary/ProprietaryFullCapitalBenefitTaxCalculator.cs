@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Application.Tax.Contracts;
 using Application.Tax.Proprietary.Contracts;
 using AutoMapper;
 using Domain.Enums;

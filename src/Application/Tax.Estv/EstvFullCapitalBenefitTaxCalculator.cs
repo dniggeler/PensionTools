@@ -1,8 +1,8 @@
 ﻿using Application.Features.FullTaxCalculation;
+using Application.Tax.Contracts;
 using Application.Tax.Estv.Client;
 using Application.Tax.Estv.Client.Models;
 using Application.Tax.Proprietary.Abstractions.Models;
-using Application.Tax.Proprietary.Contracts;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using LanguageExt;

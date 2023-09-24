@@ -1,6 +1,7 @@
 ﻿using Application.Features.MarginalTaxCurve;
 using Application.Mapping;
 using Application.Municipality;
+using Application.Tax.Contracts;
 using Application.Tax.Estv;
 using Application.Tax.Mock;
 using Application.Tax.Proprietary;

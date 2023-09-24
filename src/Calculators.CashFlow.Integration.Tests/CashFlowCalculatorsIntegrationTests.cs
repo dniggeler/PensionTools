@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Application.Features.TaxComparison.Models;
+using Application.Features.TaxScenarios.Models;
 using Domain.Enums;
 using Domain.Models.Tax;
 using Microsoft.AspNetCore.Hosting;

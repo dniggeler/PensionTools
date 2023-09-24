@@ -2,7 +2,7 @@
 using Domain.Models.Tax;
 using LanguageExt;
 
-namespace Application.Tax.Proprietary.Contracts;
+namespace Application.Tax.Contracts;
 
 public interface IFullCapitalBenefitTaxCalculator
 {
