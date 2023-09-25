@@ -1,28 +1,27 @@
-﻿@page "/TaxScenario/Purchase"
+﻿@page "/TaxScenario/PensionVersusCapital"
 
 @using Microsoft.AspNetCore.Components
-@using PensionCoach.Tools.CommonTypes.MultiPeriod
 @using System.Globalization
 @using ApexCharts;
-@using Application.Features.TaxScenarios.Models
 @using Domain.Enums
 @using Domain.Models.MultiPeriod
 @using Domain.Models.Tax
+@using PensionCoach.Tools.CommonTypes.Features.PensionVersusCapital
+@using PensionCoach.Tools.CommonTypes.MultiPeriod
 @using Color = MudBlazor.Color
 
 @inject IPersonService PersonService
 @inject IApexChartConfigurator ChartConfigurator
-@inject ITaxCalculationService TaxCalculationService
 @inject ITaxScenarioService TaxScenarioService
 
 <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
     <MudGrid>
         <MudItem md="12">
-            <MudText Typo="Typo.h5">Einkauf in die Pensionskasse</MudText>
+            <MudText Typo="Typo.h5">Rente vs. Kapitalbezug</MudText>
         </MudItem>
         <MudItem md="12">
             <MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
-
+                
                 <MudTabPanel Text="Person">
                     <MudGrid>
                         <MudItem md="4">
@@ -35,7 +34,7 @@
                         </MudItem>
                     </MudGrid>
                 </MudTabPanel>
-
+                
                 <MudTabPanel Text="Steuerdaten" Disabled="@(selectedPerson is null)">
                     <MudGrid>
                         <MudItem md="4">
@@ -52,59 +51,28 @@
                     </MudGrid>
                 </MudTabPanel>
 
-                <MudTabPanel Text="Einkauf" Disabled="@(selectedPerson is null)">
+                <MudTabPanel Text="Szenario" Disabled="@(selectedPerson is null)">
                     <MudGrid>
                         <MudItem md="4">
                             <MudText Typo="Typo.body2">
-                                Der Gesamtbetrag des Einkaufs wird auf die Anzahl Einkäufe aufgeteilt.
+                                Höhe der jährlichen Rente und wieviel Vorsorgekapital bei der Pensionierung vorhanden ist. Aus steuerlicher Sicht ist auch wichtig, wie hoch das
+                                Vermögen ist und welches Einkommen nach der Pensionierung erzielt wird (z.B. AHV-Rente).
                             </MudText>
                         </MudItem>
                         <MudItem md="8">
-                            <MudNumericField T="decimal" Label="Gesamtbetrag" Format="n0" Step="1000" @bind-Value="transferInAmount" Culture="CultureInfo.InvariantCulture"/>
-                            <MudNumericField T="int" Label="Anzahl Einkäufe" Format="n0" @bind-Value="numberOfTransferIns" Culture="CultureInfo.InvariantCulture"/>
+                            <MudNumericField T="decimal" Label="Sonstiges Einkommen (z.B. AHV)" Format="n0" Step="100" @bind-Value="otherIncome" Culture="CultureInfo.InvariantCulture"/>
+                            <MudNumericField T="decimal" Label="Sonstiges Vermögen" Format="n0" Step="1000" @bind-Value="taxRequest.TaxPerson.TaxableWealth" Culture="CultureInfo.InvariantCulture"/>
+                            <MudNumericField T="decimal" Label="Altersrente" Format="n0" Step="100" @bind-Value="taxRequest.RetirementPension" Culture="CultureInfo.InvariantCulture" />
+                            <MudNumericField T="decimal" Label="Altersguthaben" Format="n0" Step="1000" @bind-Value="taxRequest.RetirementCapital" Culture="CultureInfo.InvariantCulture" />
+                            <MudNumericField T="decimal" Label="Rendite p.a. auf Vermögen" Format="p2" Step="0.005M" @bind-Value="taxRequest.NetWealthReturn" Culture="CultureInfo.InvariantCulture" />
                         </MudItem>
                     </MudGrid>
                 </MudTabPanel>
-
-                <MudTabPanel Text="Kapitalbezug" Disabled="@(selectedPerson is null)">
-                    <MudGrid>
-                        <MudItem md="4">
-                            <MudText Typo="Typo.body2">
-                                Die Simulation kann auch einen Kapitalbezug simulieren. Der Bezug des Vorsorgekapital ist steuerpflichtig,
-                                weshalb die Höhe des vorhandenen Vorsorgekapital einen Einfluss auf die Steuerbelastung hat.
-                                Dabei wird das Vorsorgekapital zu einem bestimmten Zeitpunkt bezogen (oder über mehrere Jahre verteilt).
-                            </MudText>
-                        </MudItem>
-                        <MudItem md="8">
-                            <MudSwitch @bind-Checked="taxRequest.WithCapitalBenefitTaxation" Color="Color.Primary"/>
-
-                            <MudNumericField T="int" Disabled="@(!taxRequest.WithCapitalBenefitTaxation)" Label="Bezugsjahr" Format="n0" @bind-Value="yearOfFirstWithdrawal" Max="2099" Culture="CultureInfo.InvariantCulture"/>
-                            <MudNumericField T="decimal" Disabled="@(!taxRequest.WithCapitalBenefitTaxation)" Label="Vorsorgekapital (ohne Einkauf)" Format="n0" Step="1000" @bind-Value="totalWithdrawalAmount" Culture="CultureInfo.InvariantCulture"/>
-                            <MudNumericField T="int" Disabled="@(!taxRequest.WithCapitalBenefitTaxation)" Label="Anzahl Bezüge" Format="n0" @bind-Value="numberOfWithdrawals" Min="1" Culture="CultureInfo.InvariantCulture"/>
-                        </MudItem>
-                    </MudGrid>
-                </MudTabPanel>
-
-                <MudTabPanel Text="Berechnung" Disabled="@(selectedPerson is null)">
-                    <MudGrid>
-                        <MudItem md="4">
-                            <MudText Typo="Typo.body2">
-                                Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern.
-                            </MudText>
-                        </MudItem>
-                        <MudItem md="8">
-                            <MudSwitch @bind-Checked="@WithSalary" Color="Color.Primary" Label="Jährliches Einkommen berücksichtigen" Size="Size.Small"/>
-                            <MudNumericField T="decimal" Label="Rendite p.a. auf Vermögen" Format="p2" Step="0.005M" @bind-Value="taxRequest.NetWealthReturn" Culture="CultureInfo.InvariantCulture"/>
-                            <MudNumericField T="decimal" Label="Rendite p.a. Vorsorgekapitalien" Format="p2" Step="0.005M" @bind-Value="taxRequest.NetPensionCapitalReturn" Culture="CultureInfo.InvariantCulture"/>
-                        </MudItem>
-                    </MudGrid>
-                </MudTabPanel>
-
             </MudTabs>
         </MudItem>
 
         <MudItem md="12">
-            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
+            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="Color.Primary">Berechne</MudButton>
         </MudItem>
 
     </MudGrid>
@@ -210,17 +178,11 @@
 
 @code {
     private bool showLoading;
-    private bool WithSalary;
-    private CapitalBenefitTransferInComparerRequest taxRequest;
-    private ScenarioCalculationResponse taxResponse;
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
-    private int[] supportedTaxYears;
-    private decimal totalWithdrawalAmount;
-    private decimal transferInAmount;
-    private int numberOfTransferIns;
-    private int numberOfWithdrawals;
-    private int yearOfFirstWithdrawal;
+    private PensionVersusCapitalRequest taxRequest;
+    private ScenarioCalculationResponse taxResponse;
+    private decimal otherIncome;
     private ApexChartOptions<TaxCurve.CurvePoint> netOptions;
     private ApexChartOptions<TaxCurve.CurvePoint> scenarioOptions;
     private ApexChartOptions<TaxCurve.CurvePoint> benchmarkOptions;
@@ -261,7 +223,7 @@
         {
             Bar = new PlotOptionsBar
             {
-                DataLabels = new PlotOptionsBarDataLabels()
+                DataLabels = new PlotOptionsBarDataLabels
                 {
                     Total = new BarTotalDataLabels
                     {
@@ -282,7 +244,7 @@
             {
                 Bar = new PlotOptionsBar
                 {
-                    DataLabels = new PlotOptionsBarDataLabels()
+                    DataLabels = new PlotOptionsBarDataLabels
                     {
                         Total = new BarTotalDataLabels
                         {
@@ -292,38 +254,7 @@
                 }
             };
 
-        taxRequest = new CapitalBenefitTransferInComparerRequest();
-        Task<int[]> yearsTask = TaxCalculationService.SupportedTaxYearsAsync();
         persons = (await PersonService.GetPersonsAsync()).ToList();
-
-        supportedTaxYears = await yearsTask;
-
-        transferInAmount = 15000;
-        totalWithdrawalAmount = 500_000;
-        numberOfTransferIns = 3;
-        numberOfWithdrawals = 1;
-        yearOfFirstWithdrawal = DateTime.Today.Year + 10;
-    }
-
-    private void HandleSelectPerson(Guid personId)
-    {
-        selectedPerson = persons.Single(item => item.Id == personId);
-
-        totalWithdrawalAmount = selectedPerson.FinalRetirementCapital;
-
-        taxRequest = new CapitalBenefitTransferInComparerRequest
-        {
-            Name = selectedPerson.Name,
-            CivilStatus = selectedPerson.CivilStatus,
-            TaxableIncome = selectedPerson.TaxableIncome,
-            TaxableWealth = selectedPerson.TaxableWealth,
-            TaxableFederalIncome = selectedPerson.TaxableIncome,
-            PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
-            ReligiousGroup = selectedPerson.ReligiousGroupType,
-            BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
-            WithCapitalBenefitTaxation = false,
-            NetWealthReturn = 0.01M,
-        };
     }
 
     private async Task OnSubmit()
@@ -332,23 +263,7 @@
 
         try
         {
-            int beginOfTransferInYear = supportedTaxYears.Max();
-            int beginOfWithdrawalYear = yearOfFirstWithdrawal;
-
-            taxRequest.TaxableIncome = selectedPerson.TaxableIncome;
-            taxRequest.TaxableFederalIncome = selectedPerson.TaxableIncome;
-            taxRequest.TaxableWealth = selectedPerson.TaxableWealth;
-            taxRequest.CivilStatus = selectedPerson.CivilStatus;
-            taxRequest.ReligiousGroup = selectedPerson.ReligiousGroupType;
-            taxRequest.PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType;
-            taxRequest.BfsMunicipalityId = selectedPerson.BfsMunicipalityId;
-
-            taxRequest.CalculationYear = beginOfTransferInYear;
-            taxRequest.CapitalBenefitsBeforeWithdrawal = totalWithdrawalAmount;
-
-            taxRequest.TransferIns = CreateTransferIns(transferInAmount, numberOfTransferIns, beginOfTransferInYear);
-            taxRequest.Withdrawals = CreateWithdrawals(numberOfWithdrawals, beginOfWithdrawalYear);
-
+            taxRequest.TaxPerson.TaxableFederalIncome = taxRequest.TaxPerson.TaxableIncome = otherIncome;
             taxResponse = await TaxScenarioService.CalculateAsync(taxRequest);
 
             netWealthDataPoints = NetWealthDataPoints();
@@ -384,32 +299,32 @@
         {
             showLoading = false;
         }
+    }
 
-        IReadOnlyCollection<SingleTransferInModel> CreateWithdrawals(int years, int startingYear)
+    private void HandleSelectPerson(Guid personId)
+    {
+        selectedPerson = persons.Single(item => item.Id == personId);
+
+        taxRequest = new PensionVersusCapitalRequest
         {
-            List<SingleTransferInModel> transferIns = new();
-
-            for (int ii = 0; ii < years; ii++)
+            TaxPerson = new TaxPerson
             {
-                decimal fraction = decimal.One / (years - ii);
-                transferIns.Add(new SingleTransferInModel(fraction, new DateTime(startingYear + ii, 1, 1)));
-            }
+                Name = selectedPerson.Name,
+                TaxableWealth = selectedPerson.TaxableWealth,
+                TaxableIncome = selectedPerson.TaxableIncome,
+                TaxableFederalIncome = selectedPerson.TaxableFederalIncome,
+                CivilStatus = selectedPerson.CivilStatus,
+                PartnerReligiousGroupType = selectedPerson.PartnerReligiousGroupType,
+                ReligiousGroupType = selectedPerson.ReligiousGroupType,
 
-            return transferIns.ToList();
-        }
+            },
+            RetirementPension = selectedPerson.FinalRetirementPension,
+            RetirementCapital = selectedPerson.FinalRetirementCapital,
+            MunicipalityId = selectedPerson.BfsMunicipalityId,
+            NetWealthReturn = 0.01M,
+        };
 
-        IReadOnlyCollection<SingleTransferInModel> CreateTransferIns(decimal amount, int years, int startingYear)
-        {
-            List<SingleTransferInModel> transferIns = new();
-            decimal amountPerYear = amount / years;
-
-            for (int ii = 0; ii < years; ii++)
-            {
-                transferIns.Add(new SingleTransferInModel(amountPerYear, new DateTime(startingYear + ii, 1, 1)));
-            }
-
-            return transferIns.ToList();
-        }
+        otherIncome = selectedPerson.TaxableIncome;
     }
 
     private TaxCurve.CurvePoint[] NetWealthDataPoints()

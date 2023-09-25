@@ -42,7 +42,7 @@ public class TaxScenarioController : ControllerBase
     [Route(nameof(CalculateCapitalBenefitTransferInsYears))]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<CapitalBenefitsTransferInResponse>> CalculateCapitalBenefitTransferInsYears(CapitalBenefitTransferInComparerRequest request)
+    public async Task<ActionResult<ScenarioCalculationResponse>> CalculateCapitalBenefitTransferInsYears(CapitalBenefitTransferInComparerRequest request)
     {
         if (request == null)
         {
@@ -52,7 +52,7 @@ public class TaxScenarioController : ControllerBase
         var taxPerson = MapPerson();
         var scenarioModel = MapScenarioModel();
 
-        var response = new CapitalBenefitsTransferInResponse();
+        var response = new ScenarioCalculationResponse();
 
         await scenarioCalculator.CapitalBenefitTransferInsAsync(
                 request.CalculationYear, request.BfsMunicipalityId, taxPerson, scenarioModel)
@@ -103,7 +103,7 @@ public class TaxScenarioController : ControllerBase
     [Route(nameof(CalculateThirdPillarVersusSelfInvestmentComparison))]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<CapitalBenefitsTransferInResponse>> CalculateThirdPillarVersusSelfInvestmentComparison(ThirdPillarVersusSelfInvestmentComparerRequest request)
+    public async Task<ActionResult<ScenarioCalculationResponse>> CalculateThirdPillarVersusSelfInvestmentComparison(ThirdPillarVersusSelfInvestmentComparerRequest request)
     {
         if (request == null)
         {
@@ -113,7 +113,7 @@ public class TaxScenarioController : ControllerBase
         var taxPerson = MapPerson();
         var scenarioModel = MapScenarioModel();
 
-        var response = new CapitalBenefitsTransferInResponse();
+        var response = new ScenarioCalculationResponse();
 
         await scenarioCalculator.ThirdPillarVersusSelfInvestmentAsync(
                 request.CalculationYear, request.BfsMunicipalityId, taxPerson, scenarioModel)
@@ -164,23 +164,22 @@ public class TaxScenarioController : ControllerBase
     [Route(nameof(CalculatePensionVersusCapitalComparison))]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<PensionVersusCapitalResponse>> CalculatePensionVersusCapitalComparison(PensionVersusCapitalRequest request)
+    public async Task<ActionResult<ScenarioCalculationResponse>> CalculatePensionVersusCapitalComparison(PensionVersusCapitalRequest request)
     {
         if (request == null)
         {
             return BadRequest(nameof(request));
         }
 
-        var response = new PensionVersusCapitalResponse();
+        var response = new ScenarioCalculationResponse();
 
-        await scenarioCalculator.PensionVersusCapitalComparisonAsync(
+        var result = await scenarioCalculator.PensionVersusCapitalComparisonAsync(
                 request.CalculationYear,
                 request.MunicipalityId,
                 request.Canton,
                 request.RetirementPension,
                 request.RetirementCapital,
-                request.TaxPerson)
-            .IterAsync(f => response.CapitalConsumptionFactor = f);
+                request.TaxPerson);
 
         return response;
     }

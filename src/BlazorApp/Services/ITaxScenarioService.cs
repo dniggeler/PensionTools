@@ -7,7 +7,7 @@ namespace BlazorApp.Services;
 
 public interface ITaxScenarioService
 {
-    Task<CapitalBenefitsTransferInResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request);
+    Task<ScenarioCalculationResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request);
 
-    Task<PensionVersusCapitalResponse> CalculateAsync(PensionVersusCapitalRequest request);
+    Task<ScenarioCalculationResponse> CalculateAsync(PensionVersusCapitalRequest request);
 }

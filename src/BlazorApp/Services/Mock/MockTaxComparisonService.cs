@@ -47,7 +47,7 @@ namespace BlazorApp.Services.Mock
             }
         }
 
-        public Task<CapitalBenefitsTransferInResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
+        public Task<ScenarioCalculationResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
         {
             PurchaseScenarioYears scenarioPeriod = GetPeriod();
         
@@ -77,7 +77,7 @@ namespace BlazorApp.Services.Mock
                 };
 
 
-            var result = new CapitalBenefitsTransferInResponse
+            var result = new ScenarioCalculationResponse
             {
                 NumberOfPeriods = scenarioPeriod.EndYearWithdrawal - scenarioPeriod.StartYearTransferIn + 1,
                 StartingYear = scenarioPeriod.StartYearTransferIn,
@@ -218,9 +218,9 @@ namespace BlazorApp.Services.Mock
             }
         }
 
-        public Task<PensionVersusCapitalResponse> CalculateAsync(PensionVersusCapitalRequest request)
+        public Task<ScenarioCalculationResponse> CalculateAsync(PensionVersusCapitalRequest request)
         {
-            var response = new PensionVersusCapitalResponse() { CapitalConsumptionFactor = 0.1987M };
+            var response = new ScenarioCalculationResponse();
 
             return response.AsTask();
         }

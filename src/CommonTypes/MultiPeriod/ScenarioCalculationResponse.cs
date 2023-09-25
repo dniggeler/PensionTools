@@ -3,7 +3,7 @@ using Domain.Models.MultiPeriod;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod;
 
-public class CapitalBenefitsTransferInResponse
+public class ScenarioCalculationResponse
 {
     public int StartingYear { get; set; }
 

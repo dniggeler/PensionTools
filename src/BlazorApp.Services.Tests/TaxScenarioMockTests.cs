@@ -44,7 +44,7 @@ public class TaxScenarioMockTests
         };
 
         // when
-        CapitalBenefitsTransferInResponse result = await service.CalculateAsync(request);
+        ScenarioCalculationResponse result = await service.CalculateAsync(request);
 
         Snapshot.Match(result);
     }

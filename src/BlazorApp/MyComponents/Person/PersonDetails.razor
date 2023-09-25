@@ -51,6 +51,7 @@
     </MudItem>
 
     <MudItem md="4">
+        <MudNumericField Label="Altersrente" Format="n0" Step="100" @bind-Value="Person.FinalRetirementPension" Culture="CultureInfo.InvariantCulture" />
         <MudNumericField Label="Alterguthaben PK" Format="n0" Step="1000" @bind-Value="Person.FinalRetirementCapital" Culture="CultureInfo.InvariantCulture" />
         <MudNumericField Label="Guthaben 3.Säule" Format="n0" Step="1000" @bind-Value="Person.FinalCapital3a" Culture="CultureInfo.InvariantCulture" />
     </MudItem>

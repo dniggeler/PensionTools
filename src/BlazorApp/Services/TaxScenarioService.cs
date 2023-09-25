@@ -28,20 +28,17 @@ public class TaxScenarioService : ITaxScenarioService
         this.logger = logger;
     }
 
-    public Task<CapitalBenefitsTransferInResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
+    public Task<ScenarioCalculationResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
     {
         return CalculateAsync(request, "CalculateCapitalBenefitTransferInsYears");
     }
 
-    public async Task<PensionVersusCapitalResponse> CalculateAsync(PensionVersusCapitalRequest request)
+    public Task<ScenarioCalculationResponse> CalculateAsync(PensionVersusCapitalRequest request)
     {
-        var response = await CalculateAsync<PensionVersusCapitalRequest, PensionVersusCapitalResponse>(
-            request, "CalculatePensionVersusCapitalComparison");
-
-        return response;
+        return CalculateAsync(request, "CalculatePensionVersusCapitalComparison");
     }
 
-    private async Task<CapitalBenefitsTransferInResponse> CalculateAsync<T>(T request, string urlMethodPart)
+    private async Task<ScenarioCalculationResponse> CalculateAsync<T>(T request, string urlMethodPart)
     {
         string baseUri = configuration.GetSection("TaxScenarioServiceUrl").Value;
         string urlPath = Path.Combine(baseUri, urlMethodPart);
@@ -63,31 +60,6 @@ public class TaxScenarioService : ITaxScenarioService
 
         response.EnsureSuccessStatusCode();
 
-        return await response.Content.ReadFromJsonAsync<CapitalBenefitsTransferInResponse>();
-    }
-
-    private async Task<TResponse> CalculateAsync<TRequest,TResponse>(TRequest request, string urlMethodPart)
-    {
-        string baseUri = configuration.GetSection("TaxScenarioServiceUrl").Value;
-        string urlPath = Path.Combine(baseUri, urlMethodPart);
-
-        logger.LogInformation(JsonSerializer.Serialize(request));
-
-        // Serialize our concrete class into a JSON String
-        var stringPayload = JsonSerializer.Serialize(request);
-
-        // Wrap our JSON inside a StringContent which then can be used by the HttpClient class
-        var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
-
-        var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlPath)
-        {
-            Content = httpContent,
-        };
-
-        var response = await httpClient.SendAsync(httpRequest, HttpCompletionOption.ResponseHeadersRead);
-
-        response.EnsureSuccessStatusCode();
-
-        return await response.Content.ReadFromJsonAsync<TResponse>();
+        return await response.Content.ReadFromJsonAsync<ScenarioCalculationResponse>();
     }
 }

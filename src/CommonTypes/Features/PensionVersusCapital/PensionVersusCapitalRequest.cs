@@ -5,10 +5,13 @@ namespace PensionCoach.Tools.CommonTypes.Features.PensionVersusCapital;
 
 public record PensionVersusCapitalRequest
 {
-    public int CalculationYear { get; init; }
-    public int MunicipalityId { get; init; }
-    public Canton Canton { get; init; }
-    public decimal RetirementPension { get; init; }
-    public decimal RetirementCapital { get; init; }
-    public TaxPerson TaxPerson { get; init; }
+    public int CalculationYear { get; set; }
+    public int MunicipalityId { get; set; }
+    public Canton Canton { get; set; }
+    public decimal RetirementPension { get; set; }
+    public decimal RetirementCapital { get; set; }
+
+    public decimal NetWealthReturn { get; set; }
+
+    public TaxPerson TaxPerson { get; set; }
 }
