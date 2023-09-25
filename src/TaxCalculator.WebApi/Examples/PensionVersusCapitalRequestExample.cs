@@ -1,6 +1,7 @@
 ﻿using Application.Features.TaxScenarios.Models;
 using Domain.Enums;
 using Domain.Models.Tax;
+using PensionCoach.Tools.CommonTypes.Features.PensionVersusCapital;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace TaxCalculator.WebApi.Examples;

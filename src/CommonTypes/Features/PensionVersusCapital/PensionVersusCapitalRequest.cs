@@ -1,7 +1,7 @@
 ﻿using Domain.Enums;
 using Domain.Models.Tax;
 
-namespace Application.Features.TaxScenarios.Models;
+namespace PensionCoach.Tools.CommonTypes.Features.PensionVersusCapital;
 
 public record PensionVersusCapitalRequest
 {

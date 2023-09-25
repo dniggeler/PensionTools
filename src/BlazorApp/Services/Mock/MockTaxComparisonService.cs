@@ -8,6 +8,7 @@ using Domain.Enums;
 using Domain.Models.MultiPeriod;
 using Domain.Models.Tax;
 using LanguageExt;
+using PensionCoach.Tools.CommonTypes.Features.PensionVersusCapital;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 
 namespace BlazorApp.Services.Mock
@@ -215,6 +216,13 @@ namespace BlazorApp.Services.Mock
                     beginOfPeriodWithdrawalYear,
                     endOfPeriodWithdrawalYear);
             }
+        }
+
+        public Task<PensionVersusCapitalResponse> CalculateAsync(PensionVersusCapitalRequest request)
+        {
+            var response = new PensionVersusCapitalResponse() { CapitalConsumptionFactor = 0.1987M };
+
+            return response.AsTask();
         }
 
         private async IAsyncEnumerable<TaxComparerResponse> CalculateRandomlyAsync(decimal anchorAmount)

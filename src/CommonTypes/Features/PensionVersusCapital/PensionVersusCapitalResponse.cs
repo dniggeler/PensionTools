@@ -1,4 +1,4 @@
-﻿namespace PensionCoach.Tools.CommonTypes.MultiPeriod;
+﻿namespace PensionCoach.Tools.CommonTypes.Features.PensionVersusCapital;
 
 public class PensionVersusCapitalResponse
 {

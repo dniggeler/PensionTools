@@ -7,6 +7,7 @@ using Domain.Models.Scenarios;
 using Domain.Models.Tax;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PensionCoach.Tools.CommonTypes.Features.PensionVersusCapital;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
 
 namespace TaxCalculator.WebApi.Controllers;
