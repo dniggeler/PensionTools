@@ -163,8 +163,24 @@ public class TaxScenarioController : ControllerBase
     [Route(nameof(CalculatePensionVersusCapitalComparison))]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<CapitalBenefitsTransferInResponse>> CalculatePensionVersusCapitalComparison(PensionVersusCapitalRequest request)
+    public async Task<ActionResult<PensionVersusCapitalResponse>> CalculatePensionVersusCapitalComparison(PensionVersusCapitalRequest request)
     {
-        return await Task.FromResult(new CapitalBenefitsTransferInResponse());
+        if (request == null)
+        {
+            return BadRequest(nameof(request));
+        }
+
+        var response = new PensionVersusCapitalResponse();
+
+        await scenarioCalculator.PensionVersusCapitalComparisonAsync(
+                request.CalculationYear,
+                request.MunicipalityId,
+                request.Canton,
+                request.RetirementPension,
+                request.RetirementCapital,
+                request.TaxPerson)
+            .IterAsync(f => response.CapitalConsumptionFactor = f);
+
+        return response;
     }
 }
