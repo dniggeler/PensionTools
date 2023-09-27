@@ -273,6 +273,22 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
             CashFlowDefinitionHolder holder = new CashFlowDefinitionHolder();
 
             holder.Composites = CreateScenarioDefinitions(calculationYear + numberOfYears).ToList();
+            holder.CashFlowActions = new List<ICashFlowDefinition>
+            {
+                new DynamicTransferAccountAction()
+                {
+                    Header =
+                        new CashFlowHeader
+                        {
+                            Id = Guid.NewGuid().ToString(), Name = "Capital Benefit Withdrawal"
+                        },
+                    DateOfProcess = new DateTime(calculationYear, 1, 2),
+                    TransferRatio = decimal.One,
+                    Flow = new FlowPair(AccountType.OccupationalPension, AccountType.Wealth),
+                    IsTaxable = true,
+                    TaxType = TaxType.CapitalBenefits
+                }
+            };
 
             return holder;
         }
@@ -316,16 +332,6 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
             {
                 InitialOccupationalPensionAssets = retirementCapital,
                 InitialWealth = taxPerson.TaxableWealth
-            };
-
-            yield return new RelativeTransferAmountDefinition
-            {
-                Header = new CashFlowHeader { Id = Guid.NewGuid().ToString(), Name = "Capital Benefit Withdrawal" },
-                DateOfProcess = new DateTime(calculationYear, 1, 1),
-                TransferRatio = decimal.One,
-                Flow = new FlowPair(AccountType.OccupationalPension, AccountType.Wealth),
-                IsTaxable = true,
-                TaxType = TaxType.CapitalBenefits
             };
 
             decimal deltaWealthConsumption = taxPerson.TaxableIncome - yearConsumptionAmount;

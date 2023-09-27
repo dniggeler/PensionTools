@@ -1,5 +1,4 @@
-﻿using System;
-using Domain.Models.MultiPeriod.Definitions;
+﻿using Domain.Models.MultiPeriod.Definitions;
 
 namespace Domain.Contracts
 {
