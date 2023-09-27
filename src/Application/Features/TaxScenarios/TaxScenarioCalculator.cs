@@ -1,5 +1,4 @@
-﻿using Application.Features.PensionVersusCapital;
-using Application.MultiPeriodCalculator;
+﻿using Application.MultiPeriodCalculator;
 using Application.Municipality;
 using Domain.Contracts;
 using Domain.Enums;
@@ -19,16 +18,13 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
 {
     private readonly IMultiPeriodCashFlowCalculator multiPeriodCashFlowCalculator;
     private readonly IMunicipalityConnector municipalityResolver;
-    private readonly IPensionVersusCapitalCalculator pensionVersusCapitalCalculator;
 
     public TaxScenarioCalculator(
         IMultiPeriodCashFlowCalculator multiPeriodCashFlowCalculator,
-        IMunicipalityConnector municipalityResolver,
-        IPensionVersusCapitalCalculator pensionVersusCapitalCalculator)
+        IMunicipalityConnector municipalityResolver)
     {
         this.multiPeriodCashFlowCalculator = multiPeriodCashFlowCalculator;
         this.municipalityResolver = municipalityResolver;
-        this.pensionVersusCapitalCalculator = pensionVersusCapitalCalculator;
     }
 
     public async Task<Either<string, ScenarioCalculationResult>> CapitalBenefitTransferInsAsync(
@@ -205,23 +201,156 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
         }
     }
 
-    public async Task<Either<string, decimal>> PensionVersusCapitalComparisonAsync(
+    /// <summary>
+    /// Compares the pension income versus capital consumption scenario. Pension income is the benchmark scenario.
+    /// </summary>
+    /// <param name="calculationYear"></param>
+    /// <param name="municipalityId"></param>
+    /// <param name="yearConsumptionAmount"></param>
+    /// <param name="retirementPension"></param>
+    /// <param name="retirementCapital"></param>
+    /// <param name="netWealthReturn"></param>
+    /// <param name="taxPerson"></param>
+    /// <returns></returns>
+    public async Task<Either<string, ScenarioCalculationResult>> PensionVersusCapitalComparisonAsync(
         int calculationYear,
         int municipalityId,
-        Canton canton,
+        decimal yearConsumptionAmount,
         decimal retirementPension,
         decimal retirementCapital,
+        decimal netWealthReturn,
         TaxPerson taxPerson)
     {
-        var result = await pensionVersusCapitalCalculator.CalculateAsync(
-            calculationYear,
-            municipalityId,
-            canton,
-            retirementPension,
-            retirementCapital,
-            taxPerson);
+        const int numberOfYears = 25;
 
-        return result;
+        var birthdate = new DateTime(1969, 3, 17);
+
+        MultiPeriodOptions options = new()
+        {
+            CapitalBenefitsNetGrowthRate = decimal.Zero,
+            WealthNetGrowthRate = netWealthReturn,
+            SavingsQuota = decimal.Zero
+        };
+
+        CashFlowDefinitionHolder benchmarkDefinitionHolder = CreateBenchmarkCashFlowDefinitions();
+
+        Either<string, MunicipalityModel> municipalityData =
+            await municipalityResolver.GetAsync(municipalityId, calculationYear);
+
+        Either<string, MultiPeriodCalculationResult> benchmarkScenarioResult = await municipalityData
+            .BindAsync(m => multiPeriodCashFlowCalculator.CalculateAsync(
+                calculationYear, 0, GetPerson(m, birthdate, taxPerson), benchmarkDefinitionHolder, options));
+
+        var benchmarkSeriesResult = benchmarkScenarioResult
+            .Map(r => r.Accounts
+                .Where(a => a.AccountType is AccountType.Wealth));
+
+        CashFlowDefinitionHolder scenarioDefinitionHolder = CreateScenarioCashFlowDefinitions();
+
+        Either<string, MultiPeriodCalculationResult> scenarioResult = await municipalityData
+            .BindAsync(m => multiPeriodCashFlowCalculator.CalculateAsync(
+                calculationYear, 0, GetPerson(m, birthdate, taxPerson), scenarioDefinitionHolder, options));
+
+        var scenarioSeriesResult = scenarioResult
+            .Map(r => r.Accounts
+                .Where(a => a.AccountType is AccountType.Wealth));
+
+        return from b in benchmarkSeriesResult
+            from s in scenarioSeriesResult
+               select CalculateDeltaForPensionVersusCapitalComparison(b.ToList(), s.ToList());
+
+        CashFlowDefinitionHolder CreateBenchmarkCashFlowDefinitions()
+        {
+            CashFlowDefinitionHolder holder = new CashFlowDefinitionHolder();
+
+            holder.Composites = CreateBenchmarkDefinitions(calculationYear + numberOfYears).ToList();
+
+            return holder;
+        }
+
+        CashFlowDefinitionHolder CreateScenarioCashFlowDefinitions()
+        {
+            CashFlowDefinitionHolder holder = new CashFlowDefinitionHolder();
+
+            holder.Composites = CreateScenarioDefinitions(calculationYear + numberOfYears).ToList();
+
+            return holder;
+        }
+
+        IEnumerable<ICompositeCashFlowDefinition> CreateBenchmarkDefinitions(int finalYear)
+        {
+            yield return new SalaryPaymentsDefinition
+            {
+                YearlyAmount = taxPerson.TaxableIncome,
+                DateOfEndOfPeriod = new DateTime(finalYear, 1, 1),
+            };
+
+            yield return new SalaryPaymentsDefinition
+            {
+                YearlyAmount = retirementPension,
+                DateOfEndOfPeriod = new DateTime(finalYear, 1, 1),
+            };
+
+            yield return new SetupAccountDefinition
+            {
+                InitialWealth = taxPerson.TaxableWealth
+            };
+
+            decimal deltaWealthConsumption = (taxPerson.TaxableIncome + retirementPension) - yearConsumptionAmount;
+
+            foreach (var fixedTransferDefinition in CreateYearlyWealthConsumption(deltaWealthConsumption))
+            {
+                yield return fixedTransferDefinition;
+            }
+        }
+
+        IEnumerable<ICompositeCashFlowDefinition> CreateScenarioDefinitions(int finalYear)
+        {
+            yield return new SalaryPaymentsDefinition
+            {
+                YearlyAmount = taxPerson.TaxableIncome,
+                DateOfEndOfPeriod = new DateTime(finalYear, 1, 1),
+            };
+
+            yield return new SetupAccountDefinition
+            {
+                InitialOccupationalPensionAssets = retirementCapital,
+                InitialWealth = taxPerson.TaxableWealth
+            };
+
+            yield return new RelativeTransferAmountDefinition
+            {
+                Header = new CashFlowHeader { Id = Guid.NewGuid().ToString(), Name = "Capital Benefit Withdrawal" },
+                DateOfProcess = new DateTime(calculationYear, 1, 1),
+                TransferRatio = decimal.One,
+                Flow = new FlowPair(AccountType.OccupationalPension, AccountType.Wealth),
+                IsTaxable = true,
+                TaxType = TaxType.CapitalBenefits
+            };
+
+            decimal deltaWealthConsumption = taxPerson.TaxableIncome - yearConsumptionAmount;
+
+            foreach (var fixedTransferDefinition in CreateYearlyWealthConsumption(deltaWealthConsumption))
+            {
+                yield return fixedTransferDefinition;
+            }
+        }
+
+        IEnumerable<ICompositeCashFlowDefinition> CreateYearlyWealthConsumption(decimal deltaWealthConsumption)
+        {
+            foreach (var year in Enumerable.Range(calculationYear, numberOfYears))
+            {
+                yield return new FixedTransferAmountDefinition
+                {
+                    Header = new CashFlowHeader { Id = Guid.NewGuid().ToString(), Name = $"Wealth Consumption in {year}" },
+                    DateOfProcess = new DateTime(year, 12, 31),
+                    TransferAmount = Math.Abs(deltaWealthConsumption),
+                    Flow = new FlowPair(AccountType.Wealth, AccountType.Exogenous),
+                    IsTaxable = false,
+                    TaxType = TaxType.Undefined
+                };
+            }
+        }
     }
 
     private static IEnumerable<ICompositeCashFlowDefinition> CreateSalaryPaymentDefinition(
@@ -304,6 +433,33 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
             TransferAmount = scenarioModel.CapitalBenefitsBeforeWithdrawal,
             TaxType = TaxType.Undefined,
             IsTaxable = false,
+        };
+    }
+
+    private static ScenarioCalculationResult CalculateDeltaForPensionVersusCapitalComparison(
+        IReadOnlyCollection<SinglePeriodCalculationResult> benchmark,
+        IReadOnlyCollection<SinglePeriodCalculationResult> scenario)
+    {
+        IEnumerable<SinglePeriodCalculationResult> deltaResults =
+            from b in benchmark.Where(item => item.AccountType == AccountType.Wealth)
+            from s in scenario.Where(item => item.AccountType == AccountType.Wealth)
+            where b.Year == s.Year
+            select new SinglePeriodCalculationResult
+            {
+                Amount = s.Amount - b.Amount,
+                Year = b.Year,
+                AccountType = AccountType.Exogenous
+            };
+
+        List<SinglePeriodCalculationResult> deltaSeries = deltaResults.ToList();
+
+        return new ScenarioCalculationResult
+        {
+            StartingYear = Math.Min(benchmark.Min(a => a.Year), scenario.Min(a => a.Year)),
+            NumberOfPeriods = deltaSeries.Count,
+            BenchmarkSeries = benchmark.ToList(),
+            ScenarioSeries = scenario.ToList(),
+            DeltaSeries = deltaSeries
         };
     }
 

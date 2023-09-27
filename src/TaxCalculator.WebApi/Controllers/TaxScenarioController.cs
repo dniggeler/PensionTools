@@ -176,9 +176,10 @@ public class TaxScenarioController : ControllerBase
         var result = await scenarioCalculator.PensionVersusCapitalComparisonAsync(
                 request.CalculationYear,
                 request.MunicipalityId,
-                request.Canton,
+                request.YearlyConsumptionAmount,
                 request.RetirementPension,
                 request.RetirementCapital,
+                request.NetWealthReturn,
                 request.TaxPerson);
 
         return response;

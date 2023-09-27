@@ -64,6 +64,7 @@
                             <MudNumericField T="decimal" Label="Sonstiges Vermögen" Format="n0" Step="1000" @bind-Value="taxRequest.TaxPerson.TaxableWealth" Culture="CultureInfo.InvariantCulture"/>
                             <MudNumericField T="decimal" Label="Altersrente" Format="n0" Step="100" @bind-Value="taxRequest.RetirementPension" Culture="CultureInfo.InvariantCulture" />
                             <MudNumericField T="decimal" Label="Altersguthaben" Format="n0" Step="1000" @bind-Value="taxRequest.RetirementCapital" Culture="CultureInfo.InvariantCulture" />
+                            <MudNumericField T="decimal" Label="Vermögensverzehr p.a." Format="n0" Step="1000" @bind-Value="taxRequest.YearlyConsumptionAmount" Culture="CultureInfo.InvariantCulture" />
                             <MudNumericField T="decimal" Label="Rendite p.a. auf Vermögen" Format="p2" Step="0.005M" @bind-Value="taxRequest.NetWealthReturn" Culture="CultureInfo.InvariantCulture" />
                         </MudItem>
                     </MudGrid>
@@ -318,6 +319,7 @@
                 ReligiousGroupType = selectedPerson.ReligiousGroupType,
 
             },
+            YearlyConsumptionAmount = selectedPerson.FinalRetirementPension,
             RetirementPension = selectedPerson.FinalRetirementPension,
             RetirementCapital = selectedPerson.FinalRetirementCapital,
             MunicipalityId = selectedPerson.BfsMunicipalityId,

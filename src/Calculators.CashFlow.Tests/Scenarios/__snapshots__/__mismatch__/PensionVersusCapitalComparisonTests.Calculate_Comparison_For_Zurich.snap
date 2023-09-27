@@ -1,0 +1,408 @@
+﻿[
+  {
+    "State": "IsRight",
+    "Right": {
+      "StartingYear": 2019,
+      "NumberOfPeriods": 26,
+      "DeltaSeries": [
+        {
+          "Year": 2019,
+          "Amount": -41152.7600,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2020,
+          "Amount": -82627.25760000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2021,
+          "Amount": -124424.520176000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2022,
+          "Amount": -166547.7753777600000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2023,
+          "Amount": -209052.843131537600000000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2024,
+          "Amount": -251943.54156285297600000000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2025,
+          "Amount": -295223.72697848150576000000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2026,
+          "Amount": -338898.38924826632081760000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2027,
+          "Amount": -382992.27814074898402577600000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2028,
+          "Amount": -427542.43592215647386603376000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2029,
+          "Amount": -472555.61528137803860469409760,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2030,
+          "Amount": -518034.25643419181899074103858,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2031,
+          "Amount": -563983.01399853373718064844897,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2032,
+          "Amount": -610408.77913851907455245493346,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2033,
+          "Amount": -657316.32192990426529797948279,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2034,
+          "Amount": -704708.27014920330795095927762,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2035,
+          "Amount": -752591.65785069534103046887040,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2036,
+          "Amount": -800971.3994292022944407735591,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2037,
+          "Amount": -849852.4584234943173851812947,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2038,
+          "Amount": -899237.6580077292605590331076,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2039,
+          "Amount": -949134.2295878065531646234387,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2040,
+          "Amount": -999547.2868836846186962696731,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2041,
+          "Amount": -1050481.9947525214648832323698,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2042,
+          "Amount": -1101945.7597000466795320646935,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2043,
+          "Amount": -1153941.6822970471463273853404,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2044,
+          "Amount": -1165210.6341200176177906591939,
+          "AccountType": "Exogenous"
+        }
+      ],
+      "BenchmarkSeries": [
+        {
+          "Year": 2019,
+          "Amount": 493207.1050,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2020,
+          "Amount": 486361.61105000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2021,
+          "Amount": 479462.992160500000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2022,
+          "Amount": 472510.7170821050000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2023,
+          "Amount": 465504.24925292605000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2024,
+          "Amount": 458443.04674545531050000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2025,
+          "Amount": 451326.56221290986360500000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2026,
+          "Amount": 444156.43283503896224105000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2027,
+          "Amount": 436929.93216338935186346050000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2028,
+          "Amount": 429646.49648502324538209510500,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2029,
+          "Amount": 422307.74644987347783591605605,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2030,
+          "Amount": 414910.93891437221261427521661,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2031,
+          "Amount": 407455.49330351593474041796878,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2032,
+          "Amount": 399943.01323655109408782214847,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2033,
+          "Amount": 392372.92836891660502870036995,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2034,
+          "Amount": 384742.47265260577107898737365,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2035,
+          "Amount": 377053.23237913182878977724739,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2036,
+          "Amount": 369304.61970292314707767501986,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2037,
+          "Amount": 361496.04089995237854845177006,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2038,
+          "Amount": 353624.70630895190233393628776,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2039,
+          "Amount": 345692.17837204142135727565064,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2040,
+          "Amount": 337697.84515576183557084840715,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2041,
+          "Amount": 329641.08860731945392655689122,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2042,
+          "Amount": 321523.47449339264846582246013,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2043,
+          "Amount": 313342.20423832657495048068473,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2044,
+          "Amount": 316181.16128070984069998549158,
+          "AccountType": "Wealth"
+        }
+      ],
+      "ScenarioSeries": [
+        {
+          "Year": 2019,
+          "Amount": 452054.3450,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2020,
+          "Amount": 403734.35345000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2021,
+          "Amount": 355038.471984500000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2022,
+          "Amount": 305962.9417043450000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2023,
+          "Amount": 256451.406121388450000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2024,
+          "Amount": 206499.50518260233450000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2025,
+          "Amount": 156102.83523442835784500000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2026,
+          "Amount": 105258.04358677264142345000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2027,
+          "Amount": 53937.654022640367837684500000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2028,
+          "Amount": 2104.0605628667715160613450000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2029,
+          "Amount": -50247.868831504560768778041550,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2030,
+          "Amount": -103123.31751981960637646582197,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2031,
+          "Amount": -156527.52069501780244023048019,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2032,
+          "Amount": -210465.76590196798046463278499,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2033,
+          "Amount": -264943.39356098766026927911284,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2034,
+          "Amount": -319965.79749659753687197190397,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2035,
+          "Amount": -375538.42547156351224069162301,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2036,
+          "Amount": -431666.77972627914736309853924,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2037,
+          "Amount": -488356.41752354193883672952463,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2038,
+          "Amount": -545612.95169877735822509681988,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2039,
+          "Amount": -603442.05121576513180734778808,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2040,
+          "Amount": -661849.44172792278312542126596,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2041,
+          "Amount": -720840.90614520201095667547862,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2042,
+          "Amount": -780422.28520665403106624223341,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2043,
+          "Amount": -840599.4780587205713769046557,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2044,
+          "Amount": -849029.4728393077770906737023,
+          "AccountType": "Wealth"
+        }
+      ],
+      "BenchmarkTransactions": null,
+      "ScenarioTransactions": null
+    },
+    "Left": null
+  }
+]

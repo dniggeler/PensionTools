@@ -23,9 +23,10 @@ public class PensionVersusCapitalComparisonTests : IClassFixture<CashFlowFixture
         // given
         var calculationYear = 2019;
         var bfsMunicipalityId = 261;
-        var canton = Canton.ZH;
         decimal retirementPension = 50_000;
-        decimal retirementCapital = 1_000_000;
+        decimal retirementCapital = 500_000;
+        decimal yearConsumptionAmount = 78_800;
+        decimal netWealthReturn = 0.01m;
 
         TaxPerson person = new()
         {
@@ -35,12 +36,12 @@ public class PensionVersusCapitalComparisonTests : IClassFixture<CashFlowFixture
             PartnerReligiousGroupType = ReligiousGroupType.Other,
             TaxableIncome = 28_800,
             TaxableFederalIncome = 28_800,
-            TaxableWealth = 0
+            TaxableWealth = 500000
         };
 
         // when
         var result = await fixture.Calculator.PensionVersusCapitalComparisonAsync(
-            calculationYear, bfsMunicipalityId, canton, retirementPension, retirementCapital, person);
+            calculationYear, bfsMunicipalityId, yearConsumptionAmount, retirementPension, retirementCapital, netWealthReturn, person);
 
         // then
         Snapshot.Match(result, opt => opt.IgnoreFields("$..Id"));

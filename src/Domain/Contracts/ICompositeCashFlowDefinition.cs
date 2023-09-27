@@ -1,4 +1,3 @@
-﻿namespace Domain.Contracts
-{
-    public interface ICompositeCashFlowDefinition { }
-}
+﻿namespace Domain.Contracts;
+
+public interface ICompositeCashFlowDefinition { }

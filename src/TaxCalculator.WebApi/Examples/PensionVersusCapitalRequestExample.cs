@@ -1,5 +1,4 @@
-﻿using Application.Features.TaxScenarios.Models;
-using Domain.Enums;
+﻿using Domain.Enums;
 using Domain.Models.Tax;
 using PensionCoach.Tools.CommonTypes.Features.PensionVersusCapital;
 using Swashbuckle.AspNetCore.Filters;
@@ -14,7 +13,6 @@ public class PensionVersusCapitalRequestExample : IExamplesProvider<PensionVersu
         {
             CalculationYear = 2019,
             MunicipalityId = 261,
-            Canton = Canton.ZH,
             RetirementPension = 50_000,
             RetirementCapital = 500_000,
             TaxPerson = new TaxPerson

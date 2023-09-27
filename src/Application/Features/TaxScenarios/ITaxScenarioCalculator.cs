@@ -1,5 +1,4 @@
-﻿using Domain.Enums;
-using Domain.Models.Scenarios;
+﻿using Domain.Models.Scenarios;
 using Domain.Models.Tax;
 using LanguageExt;
 
@@ -24,11 +23,12 @@ public interface ITaxScenarioCalculator
         TaxPerson person,
         ThirdPillarVersusSelfInvestmentScenarioModel scenarioModel);
 
-    Task<Either<string, decimal>> PensionVersusCapitalComparisonAsync(
+    Task<Either<string, ScenarioCalculationResult>> PensionVersusCapitalComparisonAsync(
         int calculationYear,
         int municipalityId,
-        Canton canton,
+        decimal yearConsumptionAmount,
         decimal retirementPension,
         decimal retirementCapital,
+        decimal netWealthReturn,
         TaxPerson taxPerson);
 }
