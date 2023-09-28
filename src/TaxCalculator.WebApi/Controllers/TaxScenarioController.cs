@@ -182,6 +182,15 @@ public class TaxScenarioController : ControllerBase
                 request.NetWealthReturn,
                 request.TaxPerson);
 
+        result.Iter(r =>
+        {
+            response.NumberOfPeriods = r.NumberOfPeriods;
+            response.StartingYear = r.StartingYear;
+            response.DeltaSeries = r.DeltaSeries;
+            response.BenchmarkSeries = r.BenchmarkSeries;
+            response.ScenarioSeries = r.ScenarioSeries;
+        });
+
         return response;
     }
 }

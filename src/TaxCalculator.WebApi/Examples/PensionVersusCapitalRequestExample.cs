@@ -15,6 +15,7 @@ public class PensionVersusCapitalRequestExample : IExamplesProvider<PensionVersu
             MunicipalityId = 261,
             RetirementPension = 50_000,
             RetirementCapital = 500_000,
+            YearlyConsumptionAmount = 78_800,
             TaxPerson = new TaxPerson
             {
                 Name = "Test",
