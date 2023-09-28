@@ -2,6 +2,7 @@
 using Application.Municipality;
 using Domain.Contracts;
 using Domain.Enums;
+using Domain.Models.Cashflows;
 using Domain.Models.MultiPeriod;
 using Domain.Models.MultiPeriod.Actions;
 using Domain.Models.MultiPeriod.Definitions;
@@ -241,7 +242,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
             .BindAsync(m => multiPeriodCashFlowCalculator.CalculateAsync(
                 calculationYear, 0, GetPerson(m, birthdate, taxPerson), benchmarkDefinitionHolder, options));
 
-        var benchmarkSeriesResult = benchmarkScenarioResult
+        Either<string, IEnumerable<SinglePeriodCalculationResult>> benchmarkSeriesResult = benchmarkScenarioResult
             .Map(r => r.Accounts
                 .Where(a => a.AccountType is AccountType.Wealth));
 
@@ -251,13 +252,35 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
             .BindAsync(m => multiPeriodCashFlowCalculator.CalculateAsync(
                 calculationYear, 0, GetPerson(m, birthdate, taxPerson), scenarioDefinitionHolder, options));
 
-        var scenarioSeriesResult = scenarioResult
+        Either<string, IEnumerable<SinglePeriodCalculationResult>> scenarioSeriesResult = scenarioResult
             .Map(r => r.Accounts
                 .Where(a => a.AccountType is AccountType.Wealth));
 
-        return from b in benchmarkSeriesResult
+        var result = from b in benchmarkSeriesResult
             from s in scenarioSeriesResult
                select CalculateDeltaForPensionVersusCapitalComparison(b.ToList(), s.ToList());
+
+        return from r in result
+            from br in benchmarkScenarioResult
+            from sr in scenarioResult
+            select SetTransactions(r, br, sr);
+
+        ScenarioCalculationResult SetTransactions(
+            ScenarioCalculationResult finalResult, MultiPeriodCalculationResult multiPeriodBenchmarkResult, MultiPeriodCalculationResult multiPeriodScenarioResult)
+        {
+            finalResult.BenchmarkTransactions = new AccountTransactionResultHolder()
+            {
+                WealthAccount = multiPeriodBenchmarkResult.Transactions.WealthAccount
+            };
+
+            // set scenario transactions
+            finalResult.ScenarioTransactions = new AccountTransactionResultHolder()
+            {
+                WealthAccount = multiPeriodScenarioResult.Transactions.WealthAccount
+            };
+
+            return finalResult;
+        }
 
         CashFlowDefinitionHolder CreateBenchmarkCashFlowDefinitions()
         {

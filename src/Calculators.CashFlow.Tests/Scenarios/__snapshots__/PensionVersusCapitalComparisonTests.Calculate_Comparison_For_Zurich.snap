@@ -1,7 +1,1099 @@
 ﻿[
   {
     "State": "IsRight",
-    "Right": 20.584543640353298032967450806,
+    "Right": {
+      "StartingYear": 2019,
+      "NumberOfPeriods": 26,
+      "DeltaSeries": [
+        {
+          "Year": 2019,
+          "Amount": 413573.3814000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2020,
+          "Amount": 382680.262842000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2021,
+          "Amount": 350958.90072726000000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2022,
+          "Amount": 318389.9227490778000000000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2023,
+          "Amount": 284948.9954315501340000000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2024,
+          "Amount": 250615.43529449663802000000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2025,
+          "Amount": 215365.74835333153716060000000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2026,
+          "Amount": 179170.26080393148327541800000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2027,
+          "Amount": 141989.64862804942777368054000,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2028,
+          "Amount": 103779.02808689091060689095620,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2029,
+          "Amount": 64507.49892949763792509768489,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2030,
+          "Amount": 24145.42389738256706285061544,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2031,
+          "Amount": -17337.72338569595592526386609,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2032,
+          "Amount": -59971.19508726683460302178207,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2033,
+          "Amount": -103785.12093988483964111243553,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2034,
+          "Amount": -148814.91456808138483034580859,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2035,
+          "Amount": -195097.05200512382637525618285,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2036,
+          "Amount": -242660.34356527754116651386834,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2037,
+          "Amount": -291565.12387223586740150928439,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2038,
+          "Amount": -341876.82258840294342355456292,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2039,
+          "Amount": -393634.36226605503172626119981,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2040,
+          "Amount": -446881.11813403668267804903580,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2041,
+          "Amount": -501658.48167805778315839050687,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2042,
+          "Amount": -558040.84112839951665314222208,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2043,
+          "Amount": -616101.53136225150215273648874,
+          "AccountType": "Exogenous"
+        },
+        {
+          "Year": 2044,
+          "Amount": -633624.26230311904721731858341,
+          "AccountType": "Exogenous"
+        }
+      ],
+      "BenchmarkSeries": [
+        {
+          "Year": 2019,
+          "Amount": 503185.2050,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2020,
+          "Amount": 506459.39615000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2021,
+          "Amount": 509825.243034500000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2022,
+          "Amount": 513283.3053255350000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2023,
+          "Amount": 516838.53948530105000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2024,
+          "Amount": 520491.67066986008150000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2025,
+          "Amount": 524245.63578995588394500000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2026,
+          "Amount": 528105.64986365456046335000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2027,
+          "Amount": 532072.70435956419727725050000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2028,
+          "Amount": 536147.82049035112319556801500,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2029,
+          "Amount": 540336.43010506165689143505545,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2030,
+          "Amount": 544641.93800821350659817810711,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2031,
+          "Amount": 549067.85114845991179612345032,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2032,
+          "Amount": 553615.59168291370915000715383,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2033,
+          "Amount": 558288.81443340112042450736844,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2034,
+          "Amount": 563091.28386640315403724258949,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2035,
+          "Amount": 568029.06738239524865835986718,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2036,
+          "Amount": 573101.84440386710611811066320,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2037,
+          "Amount": 578315.85473598311930165398310,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2038,
+          "Amount": 583675.33537806261288070360259,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2039,
+          "Amount": 589182.46043940449126712471067,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2040,
+          "Amount": 594843.84925258662600513845199,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2041,
+          "Amount": 600661.93973016422478529260555,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2042,
+          "Amount": 606641.43292206915152885138372,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2043,
+          "Amount": 612787.17090973122607471692523,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2044,
+          "Amount": 630186.47103702316285695843299,
+          "AccountType": "Wealth"
+        }
+      ],
+      "ScenarioSeries": [
+        {
+          "Year": 2019,
+          "Amount": 916758.5864000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2020,
+          "Amount": 889139.658992000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2021,
+          "Amount": 860784.14376176000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2022,
+          "Amount": 831673.2280746128000000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2023,
+          "Amount": 801787.5349168511840000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2024,
+          "Amount": 771107.10596435671952000000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2025,
+          "Amount": 739611.38414328742110560000000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2026,
+          "Amount": 707275.91066758604373876800000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2027,
+          "Amount": 674062.35298761362505093104000,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2028,
+          "Amount": 639926.84857724203380245897120,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2029,
+          "Amount": 604843.92903455929481653274034,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2030,
+          "Amount": 568787.36190559607366102872255,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2031,
+          "Amount": 531730.12776276395587085958423,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2032,
+          "Amount": 493644.39659564687454698537176,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2033,
+          "Amount": 454503.69349351628078339493291,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2034,
+          "Amount": 414276.36929832176920689678090,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2035,
+          "Amount": 372932.01537727142228310368433,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2036,
+          "Amount": 330441.50083858956495159679486,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2037,
+          "Amount": 286750.73086374725190014469871,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2038,
+          "Amount": 241798.51278965966945714903967,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2039,
+          "Amount": 195548.09817334945954086351086,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2040,
+          "Amount": 147962.73111854994332708941619,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2041,
+          "Amount": 99003.45805210644162690209868,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2042,
+          "Amount": 48600.591793669634875709161640,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2043,
+          "Amount": -3314.3604525202760780195635108,
+          "AccountType": "Wealth"
+        },
+        {
+          "Year": 2044,
+          "Amount": -3437.7912660958843603601504161,
+          "AccountType": "Wealth"
+        }
+      ],
+      "BenchmarkTransactions": {
+        "ExogenousAccount": null,
+        "IncomeAccount": null,
+        "WealthAccount": {
+          "Id": "22678fef-7787-4784-b966-86b201958dde",
+          "Name": "Wealth Account",
+          "Transactions": [
+            {
+              "Description": "Simple cash-flow: inflow from Exogenous Account",
+              "ValutaDate": "2019-01-01T00:00:00",
+              "Amount": 500000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2020-01-01T00:00:00",
+              "Amount": 15000.00
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2020-01-01T00:00:00",
+              "Amount": -11814.7950
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2021-01-01T00:00:00",
+              "Amount": 15095.556150
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2021-01-01T00:00:00",
+              "Amount": -11821.36500000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2022-01-01T00:00:00",
+              "Amount": 15193.7818845000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2022-01-01T00:00:00",
+              "Amount": -11827.935000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2023-01-01T00:00:00",
+              "Amount": 15294.75729103500000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2023-01-01T00:00:00",
+              "Amount": -11836.6950000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2024-01-01T00:00:00",
+              "Amount": 15398.499159766050000000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2024-01-01T00:00:00",
+              "Amount": -11843.26500000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2025-01-01T00:00:00",
+              "Amount": 15505.1561845590315000000000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2025-01-01T00:00:00",
+              "Amount": -11852.025000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2026-01-01T00:00:00",
+              "Amount": 15614.750120095802445000000000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2026-01-01T00:00:00",
+              "Amount": -11860.785000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2027-01-01T00:00:00",
+              "Amount": 15727.369073698676518350000000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2027-01-01T00:00:00",
+              "Amount": -11867.355000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2028-01-01T00:00:00",
+              "Amount": 15843.169495909636813900500000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2028-01-01T00:00:00",
+              "Amount": -11876.115000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2029-01-01T00:00:00",
+              "Amount": 15962.181130786925918317515000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2029-01-01T00:00:00",
+              "Amount": -11887.065000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2030-01-01T00:00:00",
+              "Amount": 16084.434614710533695867040450
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2030-01-01T00:00:00",
+              "Amount": -11895.825000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2031-01-01T00:00:00",
+              "Amount": 16210.092903151849706743051664
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2031-01-01T00:00:00",
+              "Amount": -11904.585000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2032-01-01T00:00:00",
+              "Amount": 16339.258140246405197945343213
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2032-01-01T00:00:00",
+              "Amount": -11913.345000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2033-01-01T00:00:00",
+              "Amount": 16472.035534453797353883703510
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2033-01-01T00:00:00",
+              "Amount": -11924.295000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2034-01-01T00:00:00",
+              "Amount": 16608.467750487411274500214615
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2034-01-01T00:00:00",
+              "Amount": -11935.245000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2035-01-01T00:00:00",
+              "Amount": 16748.664433002033612735221053
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2035-01-01T00:00:00",
+              "Amount": -11946.195000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2036-01-01T00:00:00",
+              "Amount": 16892.738515992094621117277685
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2036-01-01T00:00:00",
+              "Amount": -11954.955000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2037-01-01T00:00:00",
+              "Amount": 17040.872021471857459750796015
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2037-01-01T00:00:00",
+              "Amount": -11968.095000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2038-01-01T00:00:00",
+              "Amount": 17193.055332116013183543319896
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2038-01-01T00:00:00",
+              "Amount": -11979.045000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2039-01-01T00:00:00",
+              "Amount": 17349.475642079493579049619493
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2039-01-01T00:00:00",
+              "Amount": -11989.995000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2040-01-01T00:00:00",
+              "Amount": 17510.260061341878386421108078
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2040-01-01T00:00:00",
+              "Amount": -12003.135000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2041-01-01T00:00:00",
+              "Amount": 17675.473813182134738013741320
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2041-01-01T00:00:00",
+              "Amount": -12014.085000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2042-01-01T00:00:00",
+              "Amount": 17845.315477577598780154153560
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2042-01-01T00:00:00",
+              "Amount": -12027.225000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2043-01-01T00:00:00",
+              "Amount": 18019.858191904926743558778166
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2043-01-01T00:00:00",
+              "Amount": -12040.365000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2044-01-01T00:00:00",
+              "Amount": 18199.242987662074545865541512
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2044-01-01T00:00:00",
+              "Amount": -12053.505000000000000000000000
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2045-01-01T00:00:00",
+              "Amount": 18383.615127291936782241507757
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2045-01-01T00:00:00",
+              "Amount": -984.3150000000000000000000000
+            }
+          ]
+        },
+        "InvestmentAccount": null,
+        "OccupationalPensionAccount": null,
+        "ThirdPillarAccount": null,
+        "TaxAccount": null
+      },
+      "ScenarioTransactions": {
+        "ExogenousAccount": null,
+        "IncomeAccount": null,
+        "WealthAccount": {
+          "Id": "7476bed3-4f04-48e3-8d20-2d9fa5a1679d",
+          "Name": "Wealth Account",
+          "Transactions": [
+            {
+              "Description": "Simple cash-flow: inflow from Exogenous Account",
+              "ValutaDate": "2019-01-01T00:00:00",
+              "Amount": 500000.0
+            },
+            {
+              "Description": "Simple cash-flow: inflow from Occupational Pension Account",
+              "ValutaDate": "2019-01-02T00:00:00",
+              "Amount": 500000.0
+            },
+            {
+              "Description": "Tax payment: outflow to Tax Account",
+              "ValutaDate": "2019-01-02T00:00:00",
+              "Amount": -56337.62
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2019-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2020-01-01T00:00:00",
+              "Amount": 26809.8714
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2020-01-01T00:00:00",
+              "Amount": -3713.6650000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2020-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2021-01-01T00:00:00",
+              "Amount": 26002.757592000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2021-01-01T00:00:00",
+              "Amount": -3621.685000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2021-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2022-01-01T00:00:00",
+              "Amount": 25174.18976976000000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2022-01-01T00:00:00",
+              "Amount": -3529.70500000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2022-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2023-01-01T00:00:00",
+              "Amount": 24323.5243128528000000000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2023-01-01T00:00:00",
+              "Amount": -3434.4400000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2023-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2024-01-01T00:00:00",
+              "Amount": 23450.196842238384000000000000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2024-01-01T00:00:00",
+              "Amount": -3335.8900000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2024-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2025-01-01T00:00:00",
+              "Amount": 22553.626047505535520000000000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2025-01-01T00:00:00",
+              "Amount": -3234.0550000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2025-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2026-01-01T00:00:00",
+              "Amount": 21633.213178930701585600000000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2026-01-01T00:00:00",
+              "Amount": -3128.9350000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2026-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2027-01-01T00:00:00",
+              "Amount": 20688.341524298622633168000000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2027-01-01T00:00:00",
+              "Amount": -3023.8150000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2027-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2028-01-01T00:00:00",
+              "Amount": 19718.277320027581312163040000
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2028-01-01T00:00:00",
+              "Amount": -2931.8350000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2028-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2029-01-01T00:00:00",
+              "Amount": 18721.870589628408751527931200
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2029-01-01T00:00:00",
+              "Amount": -2857.3750000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2029-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2030-01-01T00:00:00",
+              "Amount": 17697.805457317261014073769136
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2030-01-01T00:00:00",
+              "Amount": -2780.7250000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2030-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2031-01-01T00:00:00",
+              "Amount": 16645.317871036778844495982210
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2031-01-01T00:00:00",
+              "Amount": -2701.8850000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2031-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2032-01-01T00:00:00",
+              "Amount": 15563.620857167882209830861676
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2032-01-01T00:00:00",
+              "Amount": -2620.8550000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2032-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2033-01-01T00:00:00",
+              "Amount": 14451.903832882918676125787527
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2033-01-01T00:00:00",
+              "Amount": -2537.6350000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2033-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2034-01-01T00:00:00",
+              "Amount": 13309.331897869406236409561153
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2034-01-01T00:00:00",
+              "Amount": -2450.0350000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2034-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2035-01-01T00:00:00",
+              "Amount": 12135.110804805488423501847987
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2035-01-01T00:00:00",
+              "Amount": -2362.4350000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2035-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2036-01-01T00:00:00",
+              "Amount": 10928.291078949653076206903427
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2036-01-01T00:00:00",
+              "Amount": -2272.6450000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2036-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2037-01-01T00:00:00",
+              "Amount": 9687.960461318142668493110530
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2037-01-01T00:00:00",
+              "Amount": -2178.4750000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2037-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2038-01-01T00:00:00",
+              "Amount": 8413.245025157686948547903846
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2038-01-01T00:00:00",
+              "Amount": -2104.0150000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2038-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2039-01-01T00:00:00",
+              "Amount": 7102.5219259124175570043409613
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2039-01-01T00:00:00",
+              "Amount": -2054.7400000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2039-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2040-01-01T00:00:00",
+              "Amount": 5753.9553836897900837144711901
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2040-01-01T00:00:00",
+              "Amount": -2004.3700000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2040-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2041-01-01T00:00:00",
+              "Amount": 4366.4429452004837862259053258
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2041-01-01T00:00:00",
+              "Amount": -1951.8100000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2041-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2042-01-01T00:00:00",
+              "Amount": 2938.8819335564982998126824857
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2042-01-01T00:00:00",
+              "Amount": -1898.1550000000000000000000000
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2042-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2043-01-01T00:00:00",
+              "Amount": 1470.1037415631932488070629604
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2043-01-01T00:00:00",
+              "Amount": -1872.97
+            },
+            {
+              "Description": "Simple cash-flow: outflow to Exogenous Account",
+              "ValutaDate": "2043-12-31T00:00:00",
+              "Amount": -50000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2044-01-01T00:00:00",
+              "Amount": -41.98224618991095372872515080
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2044-01-01T00:00:00",
+              "Amount": -1872.97
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2045-01-01T00:00:00",
+              "Amount": -99.43081357560828234058690532
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2045-01-01T00:00:00",
+              "Amount": -24.00
+            }
+          ]
+        },
+        "InvestmentAccount": null,
+        "OccupationalPensionAccount": null,
+        "ThirdPillarAccount": null,
+        "TaxAccount": null
+      }
+    },
     "Left": null
   }
 ]

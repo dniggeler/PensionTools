@@ -26,7 +26,7 @@ public class PensionVersusCapitalComparisonTests : IClassFixture<CashFlowFixture
         decimal retirementPension = 50_000;
         decimal retirementCapital = 500_000;
         decimal yearConsumptionAmount = 78_800;
-        decimal netWealthReturn = 0.01m;
+        decimal netWealthReturn = 0.03m;
 
         TaxPerson person = new()
         {
