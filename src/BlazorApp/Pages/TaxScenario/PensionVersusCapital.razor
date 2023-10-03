@@ -55,11 +55,12 @@
                     <MudGrid>
                         <MudItem md="4">
                             <MudText Typo="Typo.body2">
-                                Höhe der jährlichen Rente und wieviel Vorsorgekapital bei der Pensionierung vorhanden ist. Aus steuerlicher Sicht ist auch wichtig, wie hoch das
+                                Höhe der jährlichen Rente und wie viel Vorsorgekapital bei der Pensionierung vorhanden ist. Aus steuerlicher Sicht ist auch wichtig, wie hoch das
                                 Vermögen ist und welches Einkommen nach der Pensionierung erzielt wird (z.B. AHV-Rente).
                             </MudText>
                         </MudItem>
                         <MudItem md="8">
+                            <MudNumericField Label="Pensionierungsjahr" Step="1" @bind-Value="taxRequest.CalculationYear"/>
                             <MudNumericField T="decimal" Label="Sonstiges Einkommen (z.B. AHV)" Format="n0" Step="100" @bind-Value="otherIncome" Culture="CultureInfo.InvariantCulture"/>
                             <MudNumericField T="decimal" Label="Sonstiges Vermögen" Format="n0" Step="1000" @bind-Value="taxRequest.TaxPerson.TaxableWealth" Culture="CultureInfo.InvariantCulture"/>
                             <MudNumericField T="decimal" Label="Altersrente" Format="n0" Step="100" @bind-Value="taxRequest.RetirementPension" Culture="CultureInfo.InvariantCulture" />
@@ -87,7 +88,7 @@
 @if (taxResponse != null)
 {
     <MudExpansionPanels Class="mb-4 pa-6">
-        <MudExpansionPanel Text="Netto Vermögenszuwachs" IsInitiallyExpanded="true">
+        <MudExpansionPanel Text="Vermögen Rente vs Kapital" IsInitiallyExpanded="true">
             <ApexChart @ref=netChart
                 TItem="TaxCurve.CurvePoint"
                 Options="@netOptions"
@@ -113,7 +114,7 @@
             <ApexChart
                 @ref=scenarioChart
                 TItem="TaxCurve.CurvePoint"
-                Title="Vermögensentwicklung mit Einkäufen"
+                Title="Vermögensentwicklung Kapitalbezug"
                 Options="@scenarioOptions"
                 Height="400"
                 XAxisType="XAxisType.Numeric"
@@ -129,22 +130,11 @@
                     XValue="p => p.XValue"
                     YValue="p => p.YValue"
                     ShowDataLabels/>
-
-                <ApexPointSeries
-                    Name="2.Säule"
-                    TItem="TaxCurve.CurvePoint"
-                    Items="@(SeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.OccupationalPension))"
-                    SeriesType="SeriesType.Bar"
-                    Color="@(ChartConfigurator.SecondaryColor(IsDarkMode))"
-                    OrderBy="p => p.X"
-                    XValue="p => p.XValue"
-                    YValue="p => p.YValue"
-                    ShowDataLabels/>
             </ApexChart>
 
             <ApexChart @ref=benchmarkChart
                 TItem="TaxCurve.CurvePoint"
-                Title="Vermögensentwicklung ohne Einkäufen"
+                Title="Vermögensentwicklung Rente"
                 Options="@benchmarkOptions"
                 Height="400"
                 XAxisType="XAxisType.Numeric"
@@ -156,17 +146,6 @@
                     Items="@(SeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.Wealth))"
                     SeriesType="SeriesType.Bar"
                     Color="@(ChartConfigurator.PrimaryColor(IsDarkMode))"
-                    OrderBy="p => p.X"
-                    XValue="p => p.XValue"
-                    YValue="p => p.YValue"
-                    ShowDataLabels/>
-
-                <ApexPointSeries
-                    Name="2.Säule"
-                    TItem="TaxCurve.CurvePoint"
-                    Items="@(SeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.OccupationalPension))"
-                    SeriesType="SeriesType.Bar"
-                    Color="@(ChartConfigurator.SecondaryColor(IsDarkMode))"
                     OrderBy="p => p.X"
                     XValue="p => p.XValue"
                     YValue="p => p.YValue"
@@ -192,9 +171,7 @@
     private ApexChart<TaxCurve.CurvePoint> benchmarkChart;
     private TaxCurve.CurvePoint[] netWealthDataPoints;
     private TaxCurve.CurvePoint[] scenario1DataPoints;
-    private TaxCurve.CurvePoint[] scenario2DataPoints;
     private TaxCurve.CurvePoint[] benchmark1DataPoints;
-    private TaxCurve.CurvePoint[] benchmark2DataPoints;
 
     [CascadingParameter]
     public bool IsDarkMode { get; set; }
@@ -205,11 +182,12 @@
     protected override async Task OnInitializedAsync()
     {
         string formatter = "function(val) { return val.toFixed(0) }";
+        string emptyFormatter = "function(val) { return '' }";
         netOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
         netOptions.DataLabels = new DataLabels
         {
-            Enabled = true,
-            Formatter = formatter
+            Enabled = false,
+                Formatter = emptyFormatter
         };
 
         scenarioOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
@@ -269,9 +247,7 @@
 
             netWealthDataPoints = NetWealthDataPoints();
             scenario1DataPoints = SeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.Wealth);
-            scenario2DataPoints = SeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.OccupationalPension);
             benchmark1DataPoints = SeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.Wealth);
-            benchmark2DataPoints = SeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.OccupationalPension);
 
             if (netChart is not null)
             {
@@ -283,7 +259,6 @@
             if (scenarioChart is not null)
             {
                 scenarioChart.Series[0].Items = scenario1DataPoints;
-                scenarioChart.Series[1].Items = scenario2DataPoints;
 
                 await scenarioChart.RenderAsync();
             }
@@ -291,7 +266,6 @@
             if (benchmarkChart is not null)
             {
                 benchmarkChart.Series[0].Items = benchmark1DataPoints;
-                benchmarkChart.Series[1].Items = benchmark2DataPoints;
 
                 await benchmarkChart.RenderAsync();
             }
@@ -308,6 +282,7 @@
 
         taxRequest = new PensionVersusCapitalRequest
         {
+            CalculationYear = (selectedPerson.DateOfBirth??DateTime.Today).AddYears(65).Year,
             TaxPerson = new TaxPerson
             {
                 Name = selectedPerson.Name,
