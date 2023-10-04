@@ -1,13 +1,13 @@
 ﻿@page "/TaxScenario/PensionVersusCapital"
 
 @using Microsoft.AspNetCore.Components
-@using System.Globalization
 @using ApexCharts;
 @using Domain.Enums
 @using Domain.Models.MultiPeriod
 @using Domain.Models.Tax
 @using PensionCoach.Tools.CommonTypes.Features.PensionVersusCapital
 @using PensionCoach.Tools.CommonTypes.MultiPeriod
+@using BlazorApp.Pages.Converters
 @using Color = MudBlazor.Color
 
 @inject IPersonService PersonService
@@ -61,12 +61,12 @@
                         </MudItem>
                         <MudItem md="8">
                             <MudNumericField Label="Pensionierungsjahr" Step="1" @bind-Value="taxRequest.CalculationYear"/>
-                            <MudNumericField T="decimal" Label="Sonstiges Einkommen (z.B. AHV)" Format="n0" Step="100" @bind-Value="otherIncome" Culture="CultureInfo.InvariantCulture"/>
-                            <MudNumericField T="decimal" Label="Sonstiges Vermögen" Format="n0" Step="1000" @bind-Value="taxRequest.TaxPerson.TaxableWealth" Culture="CultureInfo.InvariantCulture"/>
-                            <MudNumericField T="decimal" Label="Altersrente" Format="n0" Step="100" @bind-Value="taxRequest.RetirementPension" Culture="CultureInfo.InvariantCulture" />
-                            <MudNumericField T="decimal" Label="Altersguthaben" Format="n0" Step="1000" @bind-Value="taxRequest.RetirementCapital" Culture="CultureInfo.InvariantCulture" />
-                            <MudNumericField T="decimal" Label="Vermögensverzehr p.a." Format="n0" Step="1000" @bind-Value="taxRequest.YearlyConsumptionAmount" Culture="CultureInfo.InvariantCulture" />
-                            <MudNumericField T="decimal" Label="Rendite p.a. auf Vermögen" Format="p2" Step="0.005M" @bind-Value="taxRequest.NetWealthReturn" Culture="CultureInfo.InvariantCulture" />
+                            <MudNumericField T="decimal" Label="Sonstiges Einkommen (z.B. AHV)" Format="n0" Step="100" @bind-Value="otherIncome" />
+                            <MudNumericField T="decimal" Label="Sonstiges Vermögen" Format="n0" Step="1000" @bind-Value="taxRequest.TaxPerson.TaxableWealth" />
+                            <MudNumericField T="decimal" Label="Altersrente" Format="n0" Step="100" @bind-Value="taxRequest.RetirementPension" />
+                            <MudNumericField T="decimal" Label="Altersguthaben" Format="n0" Step="1000" @bind-Value="taxRequest.RetirementCapital" />
+                            <MudNumericField T="decimal" Label="Vermögensverzehr" Format="N0" Step="1000" @bind-Value="taxRequest.YearlyConsumptionAmount" />
+                            <MudNumericField T="decimal" Label="Rendite auf Vermögen" Converter=@PercentConverter.DecimalConverter Format="P2" Step="0.005M" @bind-Value="netWealthReturn" Min="0" />
                         </MudItem>
                     </MudGrid>
                 </MudTabPanel>
@@ -160,9 +160,18 @@
     private bool showLoading;
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
-    private PensionVersusCapitalRequest taxRequest;
+    private PensionVersusCapitalRequest taxRequest = new ()
+    {
+        TaxPerson = new TaxPerson
+        {
+            CivilStatus = CivilStatus.Single,
+            ReligiousGroupType = ReligiousGroupType.Other,
+            PartnerReligiousGroupType = ReligiousGroupType.Other,
+        }
+    };
     private ScenarioCalculationResponse taxResponse;
     private decimal otherIncome;
+    private decimal netWealthReturn;
     private ApexChartOptions<TaxCurve.CurvePoint> netOptions;
     private ApexChartOptions<TaxCurve.CurvePoint> scenarioOptions;
     private ApexChartOptions<TaxCurve.CurvePoint> benchmarkOptions;
@@ -243,6 +252,7 @@
         try
         {
             taxRequest.TaxPerson.TaxableFederalIncome = taxRequest.TaxPerson.TaxableIncome = otherIncome;
+            taxRequest.NetWealthReturn = netWealthReturn;
             taxResponse = await TaxScenarioService.CalculateAsync(taxRequest);
 
             netWealthDataPoints = NetWealthDataPoints();
@@ -298,7 +308,6 @@
             RetirementPension = selectedPerson.FinalRetirementPension,
             RetirementCapital = selectedPerson.FinalRetirementCapital,
             MunicipalityId = selectedPerson.BfsMunicipalityId,
-            NetWealthReturn = 0.01M,
         };
 
         otherIncome = selectedPerson.TaxableIncome;
