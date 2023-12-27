@@ -60,8 +60,8 @@
                             </MudText>
                         </MudItem>
                         <MudItem md="8">
-                            <MudNumericField T="decimal" Label="Gesamtbetrag" Format="n0" Step="1000" @bind-Value="transferInAmount" Culture="CultureInfo.InvariantCulture"/>
-                            <MudNumericField T="int" Label="Anzahl Einkäufe" Format="n0" @bind-Value="numberOfTransferIns" Culture="CultureInfo.InvariantCulture"/>
+                            <MudNumericField T="decimal" Label="Gesamtbetrag" Format="n0" Step="5000" Min="1000"@bind-Value="transferInAmount" Culture="CultureInfo.InvariantCulture"/>
+                            <MudNumericField T="int" Label="Anzahl Einkäufe" Format="n0" @bind-Value="numberOfTransferIns" Min="1" Culture="CultureInfo.InvariantCulture"/>
                         </MudItem>
                     </MudGrid>
                 </MudTabPanel>
@@ -387,6 +387,11 @@
 
         IReadOnlyCollection<SingleTransferInModel> CreateWithdrawals(int years, int startingYear)
         {
+            if(years == 0)
+            {
+                return new List<SingleTransferInModel>();
+            }
+            
             List<SingleTransferInModel> transferIns = new();
 
             for (int ii = 0; ii < years; ii++)
@@ -400,6 +405,11 @@
 
         IReadOnlyCollection<SingleTransferInModel> CreateTransferIns(decimal amount, int years, int startingYear)
         {
+            if(years == 0)
+            {
+                return new List<SingleTransferInModel>();
+            }
+
             List<SingleTransferInModel> transferIns = new();
             decimal amountPerYear = amount / years;
 
