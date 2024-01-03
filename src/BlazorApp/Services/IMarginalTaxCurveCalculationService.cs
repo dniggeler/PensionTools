@@ -7,5 +7,7 @@ public interface IMarginalTaxCurveCalculationService
 {
     Task<MarginalTaxResponse> CalculateIncomeCurveAsync(MarginalTaxRequest request);
 
+    Task<MarginalTaxResponse> CalculateCapitalBenefitsCurveAsync(MarginalTaxRequest request);
+
     Task<int[]> SupportedTaxYearsAsync();
 }

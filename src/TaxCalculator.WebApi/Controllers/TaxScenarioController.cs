@@ -34,7 +34,7 @@ public class TaxScenarioController : ControllerBase
     /// If request is incomplete or cannot be validated.
     /// </response>
     /// <remarks>
-    /// Berechnet die Wertentwicklung von ein oder mehreren Kapitaleinlagen in die Pensionkasse oder auf ein 3a Konto.
+    /// Berechnet die Wertentwicklung von ein oder mehreren Kapitaleinlagen in die Pensionskasse oder auf ein 3a Konto.
     /// Dabei werden steuerliche Aspekte bei der Einlage (Abzugsmöglichkeit) sowie die anfallende Kapitalbezugssteuer beim Bezug der
     /// Kapitalleistungen berücksichtigt.
     /// </remarks>

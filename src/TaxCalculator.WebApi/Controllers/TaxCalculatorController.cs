@@ -250,7 +250,7 @@ namespace TaxCalculator.WebApi.Controllers
         [Route("marginaltaxcurve/capitalbenefits")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<FullTaxResponse>> CalculateMarginalCapitalBenefitsTaxCurve(MarginalTaxRequest request)
+        public async Task<ActionResult<MarginalTaxCurveResult>> CalculateMarginalCapitalBenefitsTaxCurve(MarginalTaxRequest request)
         {
             if (request == null)
             {

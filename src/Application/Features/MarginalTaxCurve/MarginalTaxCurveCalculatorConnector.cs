@@ -70,6 +70,7 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
 
             int currentSalary = lowerLimit;
 
+            decimal previousMarginalTaxRate = 0;
             while (currentSalary <= upperLimit)
             {
                 var currentPerson = person with
@@ -81,11 +82,18 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
                 (await CalculateSingleMarginalTaxRate(municipalityModel, currentPerson))
                     .Iter(r =>
                     {
-                        incomeTaxes.Add(new MarginalTaxInfo(r.Salary, r.Rate, r.TotalTaxAmount));
+                        if (r.Rate > previousMarginalTaxRate)
+                        {
+                            incomeTaxes.Add(new MarginalTaxInfo(r.Salary, r.Rate, r.TotalTaxAmount));
+                            previousMarginalTaxRate = r.Rate;
+                        }
                     });
 
                 currentSalary += stepSize;
             }
+
+            // assume the marginal tax rate curve is not decreasing. If a tax rate is smaller that the previous one,
+            // remove it.
 
             return incomeTaxes;
         }
@@ -93,7 +101,7 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
         async Task<Either<string, MarginalTaxInfo>> CalculateSingleMarginalTaxRate(
             MunicipalityModel municipalityModel, TaxPerson taxPerson)
         {
-            const decimal delta = 100M;
+            const decimal delta = 1000M;
             
             var x0Person = person with
             {
@@ -113,7 +121,8 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
             Either<string, FullTaxResult> tax1 =
                 await fullWealthAndIncomeTaxCalculator.CalculateAsync(calculationYear, municipalityModel, x1Person);
 
-            var r = from t0 in tax0
+            var r =
+                from t0 in tax0
                 from t1 in tax1
                 select new MarginalTaxInfo(
                     taxPerson.TaxableIncome,
@@ -180,6 +189,7 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
 
             int currentSalary = lowerLimit;
 
+            decimal previousMarginalTaxRate = 0;
             while (currentSalary <= upperLimit)
             {
                 var currentPerson = person with
@@ -188,7 +198,26 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
                 };
 
                 (await CalculateSingleMarginalTaxRate(municipalityModel, currentPerson))
-                    .Iter(taxes.Add);
+                    .Iter(r =>
+                    {
+                        if (r.Rate <= previousMarginalTaxRate)
+                        {
+                            if (taxes.Count == 0)
+                            {
+                                taxes.Add(new MarginalTaxInfo(r.Salary, r.Rate, r.TotalTaxAmount));
+                                previousMarginalTaxRate = r.Rate;
+                            }
+                            else
+                            {
+                                taxes.Add(taxes[^1] with {Salary = r.Salary});
+                            }
+                        }
+                        else if (r.Rate > previousMarginalTaxRate)
+                        {
+                            taxes.Add(new MarginalTaxInfo(r.Salary, r.Rate, r.TotalTaxAmount));
+                            previousMarginalTaxRate = r.Rate;
+                        }
+                    });
 
                 currentSalary += stepSize;
             }

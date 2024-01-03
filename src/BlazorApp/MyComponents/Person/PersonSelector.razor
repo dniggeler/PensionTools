@@ -2,20 +2,6 @@
 
 @inject IStringLocalizer<Resource> Localizer
 
-<style>
-    .selected {
-        background-color: 594ae2 !important;
-    }
-
-    .selected > td {
-        color: white !important;
-    }
-
-    .selected > td .mud-input {
-        color: white !important;
-    }
-</style>
-
 <MudTable Items="@Persons" Hover="true" Breakpoint="Breakpoint.Md" @ref="mudTable" RowClassFunc="@SelectedRowClassFunc" OnRowClick="HandleRowClickAsync" T="PersonViewModel">
     <HeaderContent>
         <MudTh>@Localizer["person.name"]</MudTh>

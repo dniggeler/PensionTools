@@ -35,12 +35,19 @@
     
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <MudNavLink Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
-    
+
         <MudNavLink Href="PersonListing" Match="NavLinkMatch.Prefix">Personen</MudNavLink>
         <MudNavGroup Title="Steuerrechner">
-            <MudNavLink Href="/SimpleTax/TaxCalculation" Match="NavLinkMatch.Prefix">Einkommen/Vermögen</MudNavLink>
-            <MudNavLink Href="/SimpleTax/MarginalTax" Match="NavLinkMatch.Prefix">Grenzsteuerkurve</MudNavLink>
+                <MudNavGroup Title="Einkommen/Vermögen">
+                    <MudNavLink Href="/SimpleTax/TaxCalculation" Match="NavLinkMatch.Prefix">Detailliert</MudNavLink>
+                    <MudNavLink Href="/SimpleTax/MarginalTax/IncomeAndWealth" Match="NavLinkMatch.Prefix">Steuerkurven</MudNavLink>
+            </MudNavGroup>
+            <MudNavGroup Title="Kapitalbezug">
+                    <MudNavLink Href="/SimpleTax/TaxCalculation/CapitalBenefits" Match="NavLinkMatch.Prefix">Detailliert</MudNavLink>
+                    <MudNavLink Href="/SimpleTax/MarginalTax/CapitalBenefits" Match="NavLinkMatch.Prefix">Steuerkurven</MudNavLink>
+            </MudNavGroup>
         </MudNavGroup>
+
         <MudNavGroup Title="Gemeindevergleich">
             <MudNavLink Href="/TaxComparer/IncomeAndWealth" Match="NavLinkMatch.Prefix">Einkommen/Vermögen</MudNavLink>
             <MudNavLink Href="/TaxComparer/CapitalBenefits" Match="NavLinkMatch.Prefix">Kapitalbezug</MudNavLink>

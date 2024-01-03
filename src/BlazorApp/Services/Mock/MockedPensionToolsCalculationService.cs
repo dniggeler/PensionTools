@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Application.Features.FullTaxCalculation;
 using Domain.Models.Tax;
 using LanguageExt;
 using Microsoft.Extensions.Configuration;
@@ -112,6 +111,11 @@ namespace BlazorApp.Services.Mock
             };
 
             return Task.FromResult(taxCalculationResponse);
+        }
+
+        public Task<MarginalTaxResponse> CalculateCapitalBenefitsCurveAsync(MarginalTaxRequest request)
+        {
+            return CalculateIncomeCurveAsync(request);
         }
 
         public Task<int[]> SupportedTaxYearsAsync()
