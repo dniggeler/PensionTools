@@ -1,4 +1,5 @@
-﻿using Application.Municipality;
+﻿using System.Runtime.InteropServices.ComTypes;
+using Application.Municipality;
 using Application.Tax.Contracts;
 using Application.Tax.Proprietary.Models;
 using Domain.Models.Municipality;
@@ -154,6 +155,18 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
                 .MapAsync(model => CalculateSingleMarginalTaxRate(model, person)))
             .Iter(taxRate => taxRate.Iter(rate => result.CurrentMarginalTaxRate = rate));
 
+        // Create pairs of tax rates from the curve and check if the current tax rate is between them.
+        // If it is, adjust the current tax rate to the one from the curve.
+        foreach (var pair in result.MarginalTaxCurve.Zip(result.MarginalTaxCurve.Skip(1)))
+        {
+            if (pair.Item1.Salary <= result.CurrentMarginalTaxRate.Salary &&
+                pair.Item2.Salary > result.CurrentMarginalTaxRate.Salary)
+            {
+                result.CurrentMarginalTaxRate = result.CurrentMarginalTaxRate with { Rate = pair.Item1.Rate };
+            }
+        }
+
+
         return result;
 
         async Task<Either<string, MarginalTaxInfo>> CalculateSingleMarginalTaxRate(
@@ -209,7 +222,7 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
                             }
                             else
                             {
-                                taxes.Add(taxes[^1] with {Salary = r.Salary});
+                                taxes.Add(taxes[^1] with {Salary = r.Salary, TotalTaxAmount = r.TotalTaxAmount });
                             }
                         }
                         else if (r.Rate > previousMarginalTaxRate)
