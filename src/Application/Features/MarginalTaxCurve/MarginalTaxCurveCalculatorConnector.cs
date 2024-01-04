@@ -1,10 +1,10 @@
-﻿using System.Runtime.InteropServices.ComTypes;
-using Application.Municipality;
+﻿using Application.Municipality;
 using Application.Tax.Contracts;
 using Application.Tax.Proprietary.Models;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using LanguageExt;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Application.Features.MarginalTaxCurve;
 
@@ -38,7 +38,7 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
             .GetAsync(bfsMunicipalityId, calculationYear);
 
         (await municipalityResult
-                .MapAsync(CalculateInternalAsync))
+                .MapAsync(model => CalculateInternalAsync(model, person)))
             .Iter(t => result.MarginalTaxCurve = t);
 
         (await municipalityResult
@@ -56,29 +56,22 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
                 return;
             }
 
-            if (beforeMergeResult.MarginalTaxCurve.All(p => p.Salary != beforeMergeResult.CurrentMarginalTaxRate.Salary))
+            if (beforeMergeResult.MarginalTaxCurve.All(p =>
+                    p.Salary != beforeMergeResult.CurrentMarginalTaxRate.Salary))
             {
                 beforeMergeResult.MarginalTaxCurve.Add(beforeMergeResult.CurrentMarginalTaxRate);
             }
         }
 
         async Task<IList<MarginalTaxInfo>> CalculateInternalAsync(
-            MunicipalityModel municipalityModel)
+            MunicipalityModel municipalityModel, TaxPerson taxPerson)
         {
-            int stepSize = (upperLimit - lowerLimit) / numberOfSamples;
-
             List<MarginalTaxInfo> incomeTaxes = new();
 
-            int currentSalary = lowerLimit;
-
             decimal previousMarginalTaxRate = 0;
-            while (currentSalary <= upperLimit)
+            foreach (decimal currentSalary in LinearSpace(lowerLimit, upperLimit, numberOfSamples))
             {
-                var currentPerson = person with
-                {
-                    TaxableIncome = currentSalary,
-                    TaxableFederalIncome = currentSalary
-                };
+                var currentPerson = taxPerson with { TaxableIncome = currentSalary, TaxableFederalIncome = currentSalary };
 
                 (await CalculateSingleMarginalTaxRate(municipalityModel, currentPerson))
                     .Iter(r =>
@@ -89,12 +82,7 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
                             previousMarginalTaxRate = r.Rate;
                         }
                     });
-
-                currentSalary += stepSize;
             }
-
-            // assume the marginal tax rate curve is not decreasing. If a tax rate is smaller that the previous one,
-            // remove it.
 
             return incomeTaxes;
         }
@@ -103,11 +91,10 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
             MunicipalityModel municipalityModel, TaxPerson taxPerson)
         {
             const decimal delta = 1000M;
-            
+
             var x0Person = person with
             {
-                TaxableIncome = taxPerson.TaxableIncome,
-                TaxableFederalIncome = taxPerson.TaxableFederalIncome
+                TaxableIncome = taxPerson.TaxableIncome, TaxableFederalIncome = taxPerson.TaxableFederalIncome
             };
 
             Either<string, FullTaxResult> tax0 =
@@ -148,7 +135,7 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
             .GetAsync(bfsMunicipalityId, calculationYear);
 
         (await municipalityResult
-                .MapAsync(CalculateInternalAsync))
+                .MapAsync(model => CalculateInternalAsync(model, person)))
             .Iter(t => result.MarginalTaxCurve = t);
 
         (await municipalityResult
@@ -194,21 +181,19 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
         }
 
         async Task<IList<MarginalTaxInfo>> CalculateInternalAsync(
-            MunicipalityModel municipalityModel)
+            MunicipalityModel municipalityModel, CapitalBenefitTaxPerson taxPerson)
         {
-            int stepSize = (upperLimit - lowerLimit) / numberOfSamples;
+            int currentSalary = (int)taxPerson.TaxableCapitalBenefits;
+            int[] linearSpace = LinearSpace(lowerLimit, upperLimit, numberOfSamples);
+            int currentValueIndex = SortedIndex(linearSpace, currentSalary);
+            linearSpace = InsertAt(linearSpace, (int)taxPerson.TaxableCapitalBenefits, currentValueIndex);
 
             List<MarginalTaxInfo> taxes = new();
 
-            int currentSalary = lowerLimit;
-
             decimal previousMarginalTaxRate = 0;
-            while (currentSalary <= upperLimit)
+            foreach (decimal salary in linearSpace)
             {
-                var currentPerson = person with
-                {
-                    TaxableCapitalBenefits = currentSalary
-                };
+                var currentPerson = taxPerson with { TaxableCapitalBenefits = salary };
 
                 (await CalculateSingleMarginalTaxRate(municipalityModel, currentPerson))
                     .Iter(r =>
@@ -222,7 +207,7 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
                             }
                             else
                             {
-                                taxes.Add(taxes[^1] with {Salary = r.Salary, TotalTaxAmount = r.TotalTaxAmount });
+                                taxes.Add(taxes[^1] with { Salary = r.Salary, TotalTaxAmount = r.TotalTaxAmount });
                             }
                         }
                         else if (r.Rate > previousMarginalTaxRate)
@@ -231,11 +216,75 @@ public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorCo
                             previousMarginalTaxRate = r.Rate;
                         }
                     });
-
-                currentSalary += stepSize;
             }
 
             return taxes;
         }
+    }
+
+    protected static int[] LinearSpace(int start, int end, int size)
+    {
+        int[] result = new int[size];
+        decimal step = (end - start) / (size - 1M);
+
+        for (int i = 0; i < size; i++)
+        {
+            result[i] = (int)(start + (i * step));
+        }
+
+        // Ensure the end value is exactly as specified, avoiding floating-point arithmetic errors
+        if (size > 1)
+        {
+            result[size - 1] = end;
+        }
+        
+        return result;
+    }
+
+    private static int SortedIndex(int[] array, int value)
+    {
+        int low = 0;
+        int high = array.Length;
+
+        while (low < high)
+        {
+            var mid = (low + high) >>> 1;
+            if (array[mid] < value) low = mid + 1;
+            else high = mid;
+        }
+
+        return low;
+    }
+
+    private static int[] InsertAt(int[] originalArray, int value, int index)
+    {
+        // Handle the case where index is out of bounds
+        if (index < 0 || index > originalArray.Length)
+        {
+            index = originalArray.Length; // Append to the end if index is out of bounds
+        }
+        else if (originalArray[index] == value)
+        {
+            return originalArray;
+        }
+
+        // Create a new array with one extra space
+        int[] newArray = new int[originalArray.Length + 1];
+
+        for (int i = 0, j = 0; i < newArray.Length; i++)
+        {
+            if (i == index)
+            {
+                // Insert the new value at the specified index
+                newArray[i] = value;
+            }
+            else
+            {
+                // Copy the value from the original array
+                newArray[i] = originalArray[j++];
+            }
+        }
+
+        return newArray;
     }
 }
