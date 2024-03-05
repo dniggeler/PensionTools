@@ -1,6 +1,7 @@
 ﻿namespace Application.Tax.Estv.Client.Models
 {
-    public class SimpleCapitalTaxResult
+    public class 
+        SimpleCapitalTaxResult
     {
         public int TaxCanton { get; set; }
         public int TaxChurch { get; set; }
