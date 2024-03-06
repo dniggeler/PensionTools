@@ -4,21 +4,21 @@ using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace BlazorApp.Services.CheckSettings
 {
     public class CheckSettingsService : ICheckSettingsService
     {
-        private readonly IWebAssemblyHostEnvironment webAssemblyHostEnvironment;
+        private readonly IHostEnvironment webAssemblyHostEnvironment;
         private readonly IConfiguration configuration;
         private readonly HttpClient httpClient;
         private readonly ILogger<TaxCalculationService> logger;
 
         public CheckSettingsService(
-            IWebAssemblyHostEnvironment webAssemblyHostEnvironment,
+            IHostEnvironment webAssemblyHostEnvironment,
             IConfiguration configuration,
             HttpClient httpClient,
             ILogger<TaxCalculationService> logger)
@@ -50,7 +50,7 @@ namespace BlazorApp.Services.CheckSettings
         {
             var configs = new Dictionary<string, string>();
 
-            configs.TryAdd("Environment", webAssemblyHostEnvironment.Environment);
+            configs.TryAdd("Environment", webAssemblyHostEnvironment.EnvironmentName);
         
             return Task.FromResult(configs);
         }

@@ -8,78 +8,77 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes.Tax;
 
-namespace BlazorApp.Services
+namespace BlazorApp.Services;
+
+public class TaxCalculationService : ITaxCalculationService, IMarginalTaxCurveCalculationService
 {
-    public class TaxCalculationService : ITaxCalculationService, IMarginalTaxCurveCalculationService
+    private readonly IConfiguration configuration;
+    private readonly HttpClient httpClient;
+    private readonly ILogger<TaxCalculationService> logger;
+
+    public TaxCalculationService(
+        IConfiguration configuration,
+        HttpClient httpClient,
+        ILogger<TaxCalculationService> logger)
     {
-        private readonly IConfiguration configuration;
-        private readonly HttpClient httpClient;
-        private readonly ILogger<TaxCalculationService> logger;
+        this.configuration = configuration;
+        this.httpClient = httpClient;
+        this.logger = logger;
+    }
 
-        public TaxCalculationService(
-            IConfiguration configuration,
-            HttpClient httpClient,
-            ILogger<TaxCalculationService> logger)
-        {
-            this.configuration = configuration;
-            this.httpClient = httpClient;
-            this.logger = logger;
-        }
+    public async Task<FullTaxResponse> CalculateAsync(FullTaxRequest request)
+    {
+        string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+        string urlPath = Path.Combine(baseUri, "full/incomeandwealth");
 
-        public async Task<FullTaxResponse> CalculateAsync(FullTaxRequest request)
-        {
-            string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
-            string urlPath = Path.Combine(baseUri, "full/incomeandwealth");
+        logger.LogInformation(JsonSerializer.Serialize(request));
 
-            logger.LogInformation(JsonSerializer.Serialize(request));
+        HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
 
-            HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
+        response.EnsureSuccessStatusCode();
 
-            response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<FullTaxResponse>();
+    }
 
-            return await response.Content.ReadFromJsonAsync<FullTaxResponse>();
-        }
+    public async Task<MarginalTaxResponse> CalculateCapitalBenefitsCurveAsync(MarginalTaxRequest request)
+    {
+        string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+        string urlPath = Path.Combine(baseUri, "marginaltaxcurve/capitalbenefits");
 
-        public async Task<MarginalTaxResponse> CalculateCapitalBenefitsCurveAsync(MarginalTaxRequest request)
-        {
-            string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
-            string urlPath = Path.Combine(baseUri, "marginaltaxcurve/capitalbenefits");
+        logger.LogInformation(JsonSerializer.Serialize(request));
 
-            logger.LogInformation(JsonSerializer.Serialize(request));
+        HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
 
-            HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
+        response.EnsureSuccessStatusCode();
 
-            response.EnsureSuccessStatusCode();
+        MarginalTaxResponse result =
+            await response.Content.ReadFromJsonAsync<MarginalTaxResponse>();
 
-            MarginalTaxResponse result =
-                await response.Content.ReadFromJsonAsync<MarginalTaxResponse>();
+        return result;
+    }
 
-            return result;
-        }
+    public async Task<int[]> SupportedTaxYearsAsync()
+    {
+        string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+        string urlPath = Path.Combine(baseUri, "years");
 
-        public async Task<int[]> SupportedTaxYearsAsync()
-        {
-            string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
-            string urlPath = Path.Combine(baseUri, "years");
+        return await httpClient.GetFromJsonAsync<int[]>(urlPath);
+    }
 
-            return await httpClient.GetFromJsonAsync<int[]>(urlPath);
-        }
+    public async Task<MarginalTaxResponse> CalculateIncomeCurveAsync(MarginalTaxRequest request)
+    {
+        string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+        string urlPath = Path.Combine(baseUri, "marginaltaxcurve/income");
 
-        public async Task<MarginalTaxResponse> CalculateIncomeCurveAsync(MarginalTaxRequest request)
-        {
-            string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
-            string urlPath = Path.Combine(baseUri, "marginaltaxcurve/income");
+        logger.LogInformation(JsonSerializer.Serialize(request));
 
-            logger.LogInformation(JsonSerializer.Serialize(request));
+        HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
 
-            HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
+        response.EnsureSuccessStatusCode();
 
-            response.EnsureSuccessStatusCode();
+        MarginalTaxResponse result =
+            await response.Content.ReadFromJsonAsync<MarginalTaxResponse>();
 
-            MarginalTaxResponse result =
-                await response.Content.ReadFromJsonAsync<MarginalTaxResponse>();
-
-            return result;
-        }
+        return result;
     }
 }

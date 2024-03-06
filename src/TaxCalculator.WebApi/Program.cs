@@ -37,6 +37,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(myAllowSpecificOrigins, corsBuilder =>
     {
         corsBuilder.WithOrigins(
+                "http://localhost:5167",
                 "http://localhost:8080",
                 "https://localhost:8080",
                 "https://localhost:5001",
@@ -93,6 +94,7 @@ builder.Services.AddSwaggerGen(opt =>
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     opt.IncludeXmlComments(xmlPath);
 });
+
 var app = builder.Build();
 app.UseExceptionHandler();
 
