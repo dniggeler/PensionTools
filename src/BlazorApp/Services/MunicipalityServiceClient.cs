@@ -8,7 +8,6 @@ using Blazored.LocalStorage;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using Microsoft.Extensions.Configuration;
-using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace BlazorApp.Services
 {

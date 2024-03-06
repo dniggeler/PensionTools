@@ -7,7 +7,6 @@ using Application.Features.FullTaxCalculation;
 using Application.Features.PensionVersusCapital;
 using Application.Features.TaxComparison;
 using Application.MultiPeriodCalculator;
-using DocumentFormat.OpenXml.Spreadsheet;
 using Infrastructure.Configuration;
 using Infrastructure.DataStaging;
 using Infrastructure.EstvTaxCalculator;

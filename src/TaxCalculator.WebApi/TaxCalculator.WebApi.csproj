@@ -16,17 +16,18 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.HealthChecks" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="8.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="8.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.3.7" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.3.10" />
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.20.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Aspire\Aspire.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
