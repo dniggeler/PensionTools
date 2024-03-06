@@ -76,6 +76,32 @@ namespace BlazorApp.Services.Mock
             return Task.FromResult(taxCalculationResponse);
         }
 
+        public Task<CapitalBenefitTaxResponse> CalculateAsync(CapitalBenefitTaxRequest request)
+        {
+            if (request.BfsMunicipalityId == 0)
+            {
+                throw new ArgumentException(nameof(request.BfsMunicipalityId));
+            }
+
+            logger.LogInformation(JsonSerializer.Serialize(request));
+
+            CapitalBenefitTaxResponse taxCalculationResponse = new()
+            {
+                Name = request.Name,
+                CalculationYear = request.CalculationYear,
+                TotalTaxAmount = 42_300,
+                TaxDetails = new TaxAmountDetail()
+                {
+                    MunicipalityTaxAmount = 17_000,
+                    FederalTaxAmount = 10_000,
+                    CantonTaxAmount = 15_000,
+                    ChurchTaxAmount = 300,
+                }
+            };
+
+            return Task.FromResult(taxCalculationResponse);
+        }
+
         public Task<MarginalTaxResponse> CalculateIncomeCurveAsync(MarginalTaxRequest request)
         {
             if (request.BfsMunicipalityId == 0)

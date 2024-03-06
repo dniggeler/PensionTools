@@ -22,6 +22,9 @@ builder.Services
 
 builder.Services.AddHttpClient<TaxCalculationService>(client => client.BaseAddress = new("http://apiservice"));
 builder.Services.AddHttpClient<MunicipalityServiceClient>(client => client.BaseAddress = new("http://apiservice"));
+builder.Services.AddHttpClient<TaxScenarioService>(client => client.BaseAddress = new("http://apiservice"));
+builder.Services.AddHttpClient<MultiPeriodCalculationService>(client => client.BaseAddress = new("http://apiservice"));
+builder.Services.AddHttpClient<TaxComparisonService>(client => client.BaseAddress = new("http://apiservice"));
 
 
 if (builder.Environment.IsEnvironment("Mock"))

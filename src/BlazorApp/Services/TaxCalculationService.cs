@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Application.Features.FullTaxCalculation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes.Tax;
@@ -38,6 +37,20 @@ public class TaxCalculationService : ITaxCalculationService, IMarginalTaxCurveCa
         response.EnsureSuccessStatusCode();
 
         return await response.Content.ReadFromJsonAsync<FullTaxResponse>();
+    }
+
+    public async Task<CapitalBenefitTaxResponse> CalculateAsync(CapitalBenefitTaxRequest request)
+    {
+        string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+        string urlPath = Path.Combine(baseUri, "full/capitalbenefit");
+
+        logger.LogInformation(JsonSerializer.Serialize(request));
+
+        HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
+
+        response.EnsureSuccessStatusCode();
+
+        return await response.Content.ReadFromJsonAsync<CapitalBenefitTaxResponse>();
     }
 
     public async Task<MarginalTaxResponse> CalculateCapitalBenefitsCurveAsync(MarginalTaxRequest request)

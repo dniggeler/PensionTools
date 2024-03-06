@@ -93,7 +93,7 @@
                             </MudText>
                         </MudItem>
                         <MudItem md="8">
-                            <MudSwitch @bind-Checked="@WithSalary" Color="Color.Primary" Label="Jährliches Einkommen berücksichtigen" Size="Size.Small"/>
+                            <MudSwitch @bind-Checked="@WithSalary" Color="Color.Primary" Label="Jährliches Einkommen berücksichtigen" Size="MudBlazor.Size.Small"/>
                             <MudNumericField T="decimal" Label="Rendite p.a. auf Vermögen" Format="p2" Step="0.005M" @bind-Value="taxRequest.NetWealthReturn" Culture="CultureInfo.InvariantCulture"/>
                             <MudNumericField T="decimal" Label="Rendite p.a. Vorsorgekapitalien" Format="p2" Step="0.005M" @bind-Value="taxRequest.NetPensionCapitalReturn" Culture="CultureInfo.InvariantCulture"/>
                         </MudItem>
