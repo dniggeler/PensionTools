@@ -61,7 +61,7 @@
         </MudItem>
         
         <MudItem md="12">
-            <MudButton OnClick="Calculate" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
+            <MudButton OnClick="Calculate" Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
         </MudItem>
     </MudGrid>
 </MudPaper>
@@ -164,6 +164,7 @@
                         new("Bundessteuer", null, Convert.ToInt32(taxResponse.FederalTaxAmount)),
                         new("Gemeindesteuer", null, Convert.ToInt32(taxResponse.MunicipalityTaxAmount)),
                         new("Staatssteuer", null, Convert.ToInt32(taxResponse.CantonTaxAmount)),
+                        new("Kirchensteuer", null, Convert.ToInt32(taxResponse.ChurchTaxAmount)),
                         new("Personensteuer", null, Convert.ToInt32(taxResponse.PollTaxAmount)),
                     }
                 }

@@ -68,7 +68,7 @@
         </MudItem>
         
         <MudItem md="12">
-            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
+            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
         </MudItem>
         
     </MudGrid>
@@ -77,7 +77,7 @@
 
 @if(showLoading)
 {
-    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-7" />
+    <MudProgressLinear Color="MudBlazor.Color.Primary" Indeterminate="true" Class="my-7" />
 }
 
 @if (taxResponse is not null)

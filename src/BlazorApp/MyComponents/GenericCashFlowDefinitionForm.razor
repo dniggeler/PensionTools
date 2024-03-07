@@ -10,7 +10,7 @@
         <InvestmentDefinitionForm GenericDefinition="@InvestmentDefinition" OnChanged="Set" />
     </MudItem>
     <MudItem md="6">
-        <MudSwitch Label="Steuerbar" @bind-Checked="@Definition.IsTaxable" Color="Color.Primary"/>
+        <MudSwitch Label="Steuerbar" @bind-Checked="@Definition.IsTaxable" Color="MudBlazor.Color.Primary" />
     </MudItem>
     <MudItem md="6">
         <MudNumericField Label="Jährliche Zunahme" Format="p2" Step="0.005M" @bind-Value="Definition.NetGrowthRate" Culture="CultureInfo.InvariantCulture"/>

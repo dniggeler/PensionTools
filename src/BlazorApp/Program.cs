@@ -8,13 +8,8 @@ using System.Globalization;
 using BlazorApp;
 using Microsoft.Extensions.Hosting;
 using MudBlazor.Services;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
-
-//builder.Configuration.AddJsonFile("appsettings.json")
-//    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true)
-//    .AddEnvironmentVariables();
 
 builder.Services
     .AddRazorComponents()

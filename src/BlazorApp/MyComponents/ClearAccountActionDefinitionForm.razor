@@ -15,7 +15,7 @@
             <MudTextField T="string" Label="Titel" Text="@Definition.Header.Name"/>
             <MudDatePicker Label="Datum" @bind-Date="@dateOfTransferIn" DateFormat="dd.MM.yyyy" />
             <MudNumericField Label="Anteil" Format="p2" Step="0.005M" @bind-Value="@Definition.TransferRatio" Culture="CultureInfo.InvariantCulture" />
-            <MudSwitch Label="Steuerbar" @bind-Checked="@Definition.IsTaxable" Color="Color.Primary" />
+            <MudSwitch Label="Steuerbar" @bind-Checked="@Definition.IsTaxable" Color="MudBlazor.Color.Primary" />
         </MudItem>
     </MudGrid>
 </EditForm>

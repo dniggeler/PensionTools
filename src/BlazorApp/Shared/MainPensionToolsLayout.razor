@@ -11,12 +11,12 @@
 
 <MudLayout>
     <MudAppBar Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="DrawerToggle" />
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="MudBlazor.Color.Inherit" Edge="Edge.Start" OnClick="DrawerToggle" />
         <MudText>PensionTools</MudText>
         <MudSpacer/>
 
         <MudText>Light</MudText>
-        <MudSwitch @bind-Checked="@IsDarkMode" Color="Color.Primary" Class="ml-4" Label="Dark" LabelPosition="LabelPosition.End" T="bool"/>
+        <MudSwitch @bind-Checked="@IsDarkMode" Color="MudBlazor.Color.Primary" Class="ml-4" Label="Dark" LabelPosition="MudBlazor.LabelPosition.End" T="bool" />
         
         <MudPaper Elevation="0">
             <MudButtonGroup Variant="Variant.Outlined">
@@ -29,7 +29,7 @@
         </MudPaper>
 
 
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" OnClick="OpenSettings" />
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="MudBlazor.Color.Inherit" Edge="Edge.End" OnClick="OpenSettings" />
 
     </MudAppBar>
     

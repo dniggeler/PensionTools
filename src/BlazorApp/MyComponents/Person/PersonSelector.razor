@@ -2,7 +2,7 @@
 
 @inject IStringLocalizer<Resource> Localizer
 
-<MudTable Items="@Persons" Hover="true" Breakpoint="Breakpoint.Md" @ref="mudTable" RowClassFunc="@SelectedRowClassFunc" OnRowClick="HandleRowClickAsync" T="PersonViewModel">
+<MudTable Items="@Persons" Hover="true" Breakpoint="Breakpoint.Md" @ref="mudTable" OnRowClick="HandleRowClickAsync" T="PersonViewModel">
     <HeaderContent>
         <MudTh>@Localizer["person.name"]</MudTh>
         <MudTh>@Localizer["person.residence"]</MudTh>
@@ -12,7 +12,7 @@
     <RowTemplate>
         <MudTd DataLabel="Name">@context.Name</MudTd>
         <MudTd DataLabel="Gemeinde">@context.MunicipalityName</MudTd>
-        <MudTd DataLabel="Geburtstag">@context.DateOfBirth</MudTd>
+        <MudTd DataLabel="Geburtstag">@(context.DateOfBirth.HasValue ? DateOnly.FromDateTime(context.DateOfBirth.Value) : "-")</MudTd>
         <MudTd DataLabel="Geschlecht">
             <GenderSelector IsReadOnly="true" DisplayInGrid="true" SelectedGender="@context.Gender" />
         </MudTd>
@@ -35,23 +35,5 @@
         SelectedPerson = args.Item;
 
         await OnSelect.InvokeAsync(SelectedPerson.Id);
-    }
-
-    private string SelectedRowClassFunc(PersonViewModel element, int rowNumber)
-    {
-        if (selectedRowNumber == rowNumber)
-        {
-            selectedRowNumber = -1;
-            return string.Empty;
-        }
-
-        if (mudTable.SelectedItem == null || !mudTable.SelectedItem.Equals(element))
-        {
-            return string.Empty;
-        }
-        
-        selectedRowNumber = rowNumber;
-        
-        return "selected";
     }
 }
