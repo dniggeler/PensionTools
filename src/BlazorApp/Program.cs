@@ -1,28 +1,27 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using BlazorApp.Services;
 using Blazored.LocalStorage;
 using Microsoft.Extensions.Logging;
 using BlazorApp.Services.Mock;
 using System.Globalization;
 using BlazorApp;
-using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
+using System.Net.Http;
+using System;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+builder.RootComponents.Add<App>("#app");
 
-builder.Services
-    .AddRazorComponents()
-    .AddInteractiveServerComponents();
-
-builder.Services.AddHttpClient<TaxCalculationService>(client => client.BaseAddress = new("http://apiservice"));
-builder.Services.AddHttpClient<MunicipalityServiceClient>(client => client.BaseAddress = new("http://apiservice"));
-builder.Services.AddHttpClient<TaxScenarioService>(client => client.BaseAddress = new("http://apiservice"));
-builder.Services.AddHttpClient<MultiPeriodCalculationService>(client => client.BaseAddress = new("http://apiservice"));
-builder.Services.AddHttpClient<TaxComparisonService>(client => client.BaseAddress = new("http://apiservice"));
+builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+//builder.Services.AddHttpClient<TaxCalculationService>(client => client.BaseAddress = new("http://apiservice"));
+//builder.Services.AddHttpClient<MunicipalityServiceClient>(client => client.BaseAddress = new("http://apiservice"));
+//builder.Services.AddHttpClient<TaxScenarioService>(client => client.BaseAddress = new("http://apiservice"));
+//builder.Services.AddHttpClient<MultiPeriodCalculationService>(client => client.BaseAddress = new("http://apiservice"));
+//builder.Services.AddHttpClient<TaxComparisonService>(client => client.BaseAddress = new("http://apiservice"));
 
 
-if (builder.Environment.IsEnvironment("Mock"))
+if (builder.HostEnvironment.IsEnvironment("Mock"))
 {
     builder.Services.AddScoped<IMultiPeriodCalculationService, MockedPensionToolsCalculationService>();
     builder.Services.AddScoped<ITaxCalculationService, MockedPensionToolsCalculationService>();
@@ -49,7 +48,7 @@ builder.Services.AddMudServices();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddLocalization();
             
-if (!builder.Environment.IsProduction())
+if (!builder.HostEnvironment.IsProduction())
 {
     builder.Services.AddLogging(b => b.SetMinimumLevel(LogLevel.Debug).AddFilter("Microsoft", LogLevel.Information));
 }
@@ -58,11 +57,5 @@ CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("de-CH");
 CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("de-CH");
 
 var app = builder.Build();
-
-app.UseStaticFiles();
-app.UseAntiforgery();
-
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
 
 await app.RunAsync();

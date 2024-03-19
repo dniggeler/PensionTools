@@ -1,6 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
         <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
     </PropertyGroup>
@@ -16,12 +15,13 @@
     <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="8.0.0" />
     <PackageReference Include="MudBlazor" Version="6.17.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.2" PrivateAssets="all" />
     <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
-    <ProjectReference Include="..\Aspire\Aspire.csproj" />
     <ProjectReference Include="..\CommonTypes\CommonTypes.csproj" />
   </ItemGroup>
 

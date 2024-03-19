@@ -17,12 +17,12 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.HealthChecks" Version="2.2.0" />
-        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.2" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
         <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
-        <PackageReference Include="LanguageExt.Core" Version="4.4.7" />
+        <PackageReference Include="LanguageExt.Core" Version="4.4.8" />
     </ItemGroup>
 
     <ItemGroup>
