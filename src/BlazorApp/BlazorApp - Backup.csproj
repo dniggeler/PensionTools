@@ -4,6 +4,8 @@
         <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
     </PropertyGroup>
   <ItemGroup>
+    <None Remove="Features\BvgRevision21\BvgRevision21Comparison.razor.css" />
+    <None Remove="Features\BvgRevision21\BvgRevision21Comparison.razor.js" />
     <None Remove="Pages\IncomeWealth.razor.css" />
   </ItemGroup>
 
@@ -26,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\BvgRevision21\NewFolder\" />
     <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 
@@ -64,7 +67,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Features\BvgRevision21\BvgPersonDetails.razor" />
     <_ContentIncludedByDefault Remove="Features\BvgRevision21\BvgRevision21Comparison.razor" />
     <_ContentIncludedByDefault Remove="MyComponents\JsonPrettyFormat.razor" />
   </ItemGroup>
@@ -74,7 +76,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Features\BvgRevision21\BvgPersonDetails.razor" />
+    <Content Include="Features\BvgRevision21\BvgRevision21Comparison.razor.css" />
+    <Content Include="Features\BvgRevision21\BvgRevision21Comparison.razor.js" />
   </ItemGroup>
 
 </Project>

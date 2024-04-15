@@ -1,0 +1,17 @@
+﻿@using BlazorApp.Features.BvgRevision21.Models
+
+@inject IStringLocalizer<Resource> Localizer
+
+<MudGrid>
+    <MudItem md="6">
+        <MudTextField Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name" />
+    </MudItem>
+
+    <MudItem md="6">
+        <MudDatePicker Label="@(Localizer["person.birthdate"])" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="dd.MM.yyyy" Placeholder="Wähle Geburtstag" />
+    </MudItem>
+</MudGrid>
+
+@code {
+    [Parameter] public BvgPersonViewModel Person { get; set; }
+}

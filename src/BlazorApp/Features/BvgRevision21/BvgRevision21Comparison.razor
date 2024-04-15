@@ -1,0 +1,71 @@
+﻿@page "/SocialSecurity/BvgRevision21Comparison"
+@using BlazorApp.Features.BvgRevision21.Models
+
+@inject IPersonService PersonService
+
+<MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+    <MudGrid>
+        <MudItem md="12">
+            <MudText Typo="Typo.h5">Vergleich mit BVG Reform 21</MudText>
+        </MudItem>
+
+        <MudItem md="12">
+            <MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+
+                <MudTabPanel Text="Person">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Die BVG-Reform 21 zielt darauf ab, die Finanzierung der 2. Säule zu stärken,
+                                das Leistungsniveau insgesamt zu erhalten und die Absicherung von Teilzeitbeschäftigten – insbesondere von Frauen
+                                – zu verbessern. Sie umfasst Massnahmen wie die Senkung des Umwandlungssatzes und die Verstärkung des Sparprozesses.
+                            </MudText>
+                            <br/>
+                            <MudLink Href="https://www.bsv.admin.ch/bsv/de/home/sozialversicherungen/bv/reformen-und-revisionen.html" Target="_blank">Link zur offiziellen Dokumentation</MudLink>
+                        </MudItem>
+                        <MudItem md="8">
+                            <PersonSelector Persons="persons" OnSelect="@HandleSelectPerson"/>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+
+                <MudTabPanel Text="BVG Grunddaten" Disabled="@(selectedPerson is null)">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Neben Angaben zur Person wie Geschlecht und Geburtsdatum, braucht es zusätzliche Werte aus dem Vorsorgeausweis,
+                                um die voraussichtlichen BVG-Altersleistungen (wie Alters-, Invaliden- und Partnerrente und das Altersguthaben zum Zeitpunkt der Pensionierung) zu berechnen:
+                                - AHV-Jahreslohn
+                                - das aktuelle Altersguthaben
+                                - das voraussichtliche Altersguthaben der eigenen Pensionskasse
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <BvgPersonDetails IsReadOnly="false" Person="@selectedPerson"/>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+            </MudTabs>
+        </MudItem>
+    </MudGrid>
+</MudPaper>
+
+@code {
+    private BvgPersonViewModel selectedPerson;
+    private IReadOnlyCollection<PersonViewModel> persons;
+
+    protected override async Task OnInitializedAsync()
+    {
+        persons = (await PersonService.GetPersonsAsync()).ToList();
+    }
+
+    private void HandleSelectPerson(Guid personId)
+    {
+        selectedPerson = persons.Where(item => item.Id == personId)
+            .Select(p => new BvgPersonViewModel
+            {
+                DateOfBirth = p.DateOfBirth,
+            })
+            .Single();
+    }
+}
