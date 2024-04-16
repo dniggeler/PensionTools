@@ -1,6 +1,4 @@
-﻿@using PensionCoach.Tools.CommonTypes
-
-@inject IStringLocalizer<Resource> Localizer
+﻿@inject IStringLocalizer<Resource> Localizer
 
 <MudTable Items="@Persons" Hover="true" Breakpoint="Breakpoint.Md" @ref="mudTable" OnRowClick="HandleRowClickAsync" T="PersonViewModel">
     <HeaderContent>
