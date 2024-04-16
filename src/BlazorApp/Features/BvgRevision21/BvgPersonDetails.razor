@@ -3,12 +3,14 @@
 @inject IStringLocalizer<Resource> Localizer
 
 <MudGrid>
-    <MudItem md="6">
+    <MudItem md="4">
         <MudTextField Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name" />
     </MudItem>
-
-    <MudItem md="6">
+    <MudItem md="4">
         <MudDatePicker Label="@(Localizer["person.birthdate"])" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="dd.MM.yyyy" Placeholder="Wähle Geburtstag" />
+    </MudItem>
+    <MudItem md="4">
+        <GenderSelector Label="Geschlecht" SelectedGender="@Person.Gender" OnSelected="@(arg => Person.Gender = arg)" />
     </MudItem>
 </MudGrid>
 
