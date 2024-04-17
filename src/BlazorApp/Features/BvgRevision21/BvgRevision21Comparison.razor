@@ -1,9 +1,14 @@
 ﻿@page "/SocialSecurity/BvgRevision21Comparison"
 
+@using Application.Bvg
 @using BlazorApp.Features.BvgRevision21.Models
-@using BlazorApp.MyComponents.CheckSettings.Person
+@using Domain.Models.Bvg
+@using LanguageExt
+@using Microsoft.Extensions.Logging
 
+@inject ILogger<BvgRevision21Comparison> Logger
 @inject IPersonService PersonService
+@inject IBvgCalculator BvgCalculator
 
 <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
     <MudGrid>
@@ -49,16 +54,66 @@
                 </MudTabPanel>
             </MudTabs>
         </MudItem>
+        <MudItem md="12">
+            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
+        </MudItem>
     </MudGrid>
 </MudPaper>
+
+@if (bvgResult != null)
+{
+    <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+        <MudGrid>
+            <MudItem md="12">
+                <MudText Typo="Typo.h5">Resultat</MudText>
+            </MudItem>
+            <MudItem md="12">
+                <MudText Typo="Typo.body2">@bvgResult.FinalRetirementCapital</MudText>
+            </MudItem>
+        </MudGrid>
+    </MudPaper>
+}
 
 @code {
     private BvgPersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
+    private BvgCalculationResult bvgResult;
 
     protected override async Task OnInitializedAsync()
     {
         persons = (await PersonService.GetPersonsAsync()).ToList();
+    }
+
+    private async Task OnSubmit()
+    {
+        DateTime endOfYear = new DateTime(DateTime.Now.Year, 12, 31).AddDays(1);
+
+        BvgPerson bvgPerson = new()
+        {
+            DateOfBirth = selectedPerson.DateOfBirth ?? DateTime.MaxValue,
+            Gender = selectedPerson.Gender,
+            ReportedSalary = 100000,
+            PartTimeDegree = decimal.One
+        };
+
+        PredecessorRetirementCapital predecessorRetirementCapital = new PredecessorRetirementCapital()
+        {
+            BeginOfYearAmount = selectedPerson.BvgRetirementCapitalEndOfYear,
+            CurrentAmount = selectedPerson.BvgRetirementCapitalEndOfYear,
+            EndOfYearAmount = selectedPerson.BvgRetirementCapitalEndOfYear,
+            DateOfProcess = endOfYear
+        };
+
+        Either<string, BvgCalculationResult> result = await BvgCalculator.CalculateAsync(predecessorRetirementCapital, endOfYear, bvgPerson);
+
+        bvgResult = result.Match(
+            Right: r => r,
+            Left: e =>
+            {
+                Logger.LogWarning($"Error: {e}");
+
+                return null;
+            });
     }
 
     private void HandleSelectPerson(Guid personId)
@@ -68,7 +123,8 @@
             {
                 Name = p.   Name,
                 DateOfBirth = p.DateOfBirth,
-                Gender = p.Gender
+                Gender = p.Gender,
+                FinalRetirementCapital = p.FinalRetirementCapital
             })
             .Single();
     }

@@ -9,18 +9,9 @@ using PensionCoach.Tools.CommonUtils;
 
 namespace Application.Bvg
 {
-    public class BvgCalculator : IBvgCalculator
+    public class BvgCalculator(IBvgRetirementCredits retirementCredits, IValidator<BvgPerson> bvgPersonValidator)
+        : IBvgCalculator
     {
-        private readonly IBvgRetirementCredits RetirementCredits;
-        private readonly IValidator<BvgPerson> bvgPersonValidator;
-
-        public BvgCalculator(
-            IBvgRetirementCredits retirementCredits, IValidator<BvgPerson> bvgPersonValidator)
-        {
-            RetirementCredits = retirementCredits;
-            this.bvgPersonValidator = bvgPersonValidator;
-        }
-
         public Task<Either<string, BvgCalculationResult>> CalculateAsync(
             PredecessorRetirementCapital predecessorCapital, DateTime dateOfProcess, BvgPerson person)
         {
@@ -38,7 +29,8 @@ namespace Application.Bvg
                 .AsTask();
         }
 
-        private Either<string, BvgCalculationResult> CalculateInternal(PredecessorRetirementCapital predecessorCapital, in DateTime dateOfProcess, BvgPerson person)
+        private Either<string, BvgCalculationResult> CalculateInternal(
+            PredecessorRetirementCapital predecessorCapital, in DateTime dateOfProcess, BvgPerson person)
         {
             BvgSalary salary = GetBvgSalary(dateOfProcess, person);
 
@@ -254,7 +246,7 @@ namespace Application.Bvg
         {
             int xBvg = dateOfProcess.Year - person.DateOfBirth.Year;
 
-            return RetirementCredits.GetRate(xBvg);
+            return retirementCredits.GetRate(xBvg);
         }
 
         private static decimal GetInsuredSalary(BvgPerson person, DateTime dateOfProcess)

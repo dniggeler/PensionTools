@@ -15,4 +15,8 @@ public class BvgPersonViewModel
     public DateTime? DateOfBirth { get; set; }
 
     public Gender Gender { get; set; }
+
+    public decimal BvgRetirementCapitalEndOfYear { get; set; }
+    
+    public decimal FinalRetirementCapital { get; set; }
 }

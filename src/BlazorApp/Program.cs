@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 using System.Net.Http;
 using System;
+using Application.Bvg;
+using Application.Extensions;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -43,6 +45,8 @@ else
 
     builder.Services.AddServices();
 }
+
+builder.Services.AddBvgCalculators();
 
 builder.Services.AddMudServices();
 builder.Services.AddBlazoredLocalStorage();

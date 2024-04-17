@@ -1,4 +1,5 @@
-﻿@using BlazorApp.Features.BvgRevision21.Models
+﻿@using System.Globalization
+@using BlazorApp.Features.BvgRevision21.Models
 
 @inject IStringLocalizer<Resource> Localizer
 
@@ -11,6 +12,14 @@
     </MudItem>
     <MudItem md="4">
         <GenderSelector Label="Geschlecht" SelectedGender="@Person.Gender" OnSelected="@(arg => Person.Gender = arg)" />
+    </MudItem>
+    
+    <MudItem md="4">
+        <MudNumericField Label="BVG Alterguthaben Ende des Jahres" Format="n0" Step="1000" @bind-Value="Person.BvgRetirementCapitalEndOfYear" Culture="CultureInfo.InvariantCulture" />
+    </MudItem>
+    
+    <MudItem md="4">
+        <MudNumericField Label="Alterguthaben PK im Schlussalter" Format="n0" Step="1000" @bind-Value="Person.FinalRetirementCapital" Culture="CultureInfo.InvariantCulture" />
     </MudItem>
 </MudGrid>
 
