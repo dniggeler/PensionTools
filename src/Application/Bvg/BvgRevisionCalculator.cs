@@ -9,12 +9,17 @@ using PensionCoach.Tools.CommonUtils;
 
 namespace Application.Bvg;
 
-public class BvgCalculator(
+public class BvgRevisionCalculator(
+    BvgCalculator bvgCalculator,
     BvgRetirementDateCalculator retirementDateCalculator,
     IBvgRetirementCredits retirementCredits,
     IValidator<BvgPerson> bvgPersonValidator)
     : IBvgCalculator
 {
+    private const decimal SalaryThresholdFactor = 0.675M;
+    private const decimal CoordinationDeductionFactor = 0.2M;
+    private static readonly DateTime StartOfBvgRevision = new(2026, 1, 1);
+    
     public Task<Either<string, BvgCalculationResult>> CalculateAsync(
         PredecessorRetirementCapital predecessorCapital, DateTime dateOfProcess, BvgPerson person)
     {
@@ -34,9 +39,7 @@ public class BvgCalculator(
 
     public Either<string, decimal> InsuredSalary(DateTime dateOfProcess, BvgPerson person)
     {
-        BvgSalary salary = GetBvgSalary(dateOfProcess, person);
-
-        return salary.InsuredSalary;
+        return InsuredSalaryInternal(dateOfProcess, person);
     }
 
     public Either<string, BvgDataPoint[]> InsuredSalaries(DateTime dateOfProcess, BvgPerson person)
@@ -45,9 +48,10 @@ public class BvgCalculator(
         DateTime retirementDate = retirementDateCalculator.DateOfRetirement(person.Gender, person.DateOfBirth);
 
         List<BvgDataPoint> salaries = [];
-        decimal salary = InsuredSalary(dateOfProcess, person).IfLeft(decimal.Zero);
-        while (currentDate <= retirementDate)
+        while (currentDate < retirementDate)
         {
+            decimal salary = InsuredSalary(currentDate, person).IfLeft(decimal.Zero);
+
             salaries.Add(new BvgDataPoint(currentDate, salary));
             currentDate = currentDate.AddYears(1);
         }
@@ -133,6 +137,13 @@ public class BvgCalculator(
     public (int Years, int Months) GetRetirementAge(Gender typeOfGender, DateTime birthdate)
     {
         return retirementDateCalculator.RetirementAge(typeOfGender, birthdate);
+    }
+
+    private Either<string, decimal> InsuredSalaryInternal(DateTime dateOfProcess, BvgPerson person)
+    {
+        return dateOfProcess < StartOfBvgRevision
+            ? bvgCalculator.InsuredSalary(dateOfProcess, person)
+            : GetBvgSalary(dateOfProcess, person).InsuredSalary;
     }
 
     private BvgSalary GetBvgSalary(DateTime dateOfProcess, BvgPerson person)
@@ -240,12 +251,12 @@ public class BvgCalculator(
 
         // Retirement assets at end of insurance period Bvg portion
         int age = dateOfProcess.Year - personDetails.DateOfBirth.Year;
-        var retirementAgeBvg = GetRetirementAge(personDetails.Gender, personDetails.DateOfBirth);
+        int retirementAgeBvg = GetRetirementAge(personDetails.Gender, personDetails.DateOfBirth).Years;
 
         return BvgCapitalCalculationHelper.GetRetirementCapitalSequence(dateOfProcess,
             dateOfRetirement,
             age,
-            retirementAgeBvg.Years,
+            retirementAgeBvg,
             iBvg,
             predecessorCapital,
             retirementCreditSequence);
@@ -279,6 +290,7 @@ public class BvgCalculator(
         const decimal fullEmployedDegree = 1.0M;
 
         int year = dateOfProcess.Year;
+        decimal maxAhvPension = Bvg.GetPensionMaximum(year);
 
         Option<decimal> insuredSalary = 0M;
 
@@ -298,28 +310,26 @@ public class BvgCalculator(
 
         return MathUtils.Round5(insuredSalary.IfNone(0M));
 
+
         Option<decimal> GetInsuredSalaryWhenNotDisabled()
         {
-            decimal ahvMax = Bvg.GetPensionMaximum(year);
-
             return Prelude.Some(person.ReportedSalary)
 
                 // check salary entrance level
-                .Where(v => v > Bvg.GetEntranceThreshold(ahvMax))
+                .Where(v => v > maxAhvPension * SalaryThresholdFactor)
 
                 // restrict by BVG salary max
-                .Map(v => Math.Min(v, Bvg.GetMaximumSalary(ahvMax)))
+                .Map(v => Math.Min(v, Bvg.GetMaximumSalary(maxAhvPension)))
 
                 // reduce by coordination deduction
-                .Map(v => v - GetCoordinationDeduction())
+                .Map(v => v * (decimal.One - CoordinationDeductionFactor))
 
-                .Map(v => Math.Max(v, Bvg.GetMinimumSalary(ahvMax)))
-                .Map(v => Math.Round(v, 0, MidpointRounding.AwayFromZero));
+                .Map(v => Math.Round(v, 1, MidpointRounding.AwayFromZero));
         }
 
         Option<decimal> GetInsuredSalaryWhenDisabled()
         {
-            decimal minSalary = Bvg.GetMinimumSalary(Bvg.GetPensionMaximum(year));
+            decimal minSalary = Bvg.GetMinimumSalary(maxAhvPension);
 
             Option<decimal> disabilityDegree = person.DisabilityDegree;
 
@@ -331,22 +341,17 @@ public class BvgCalculator(
                 .Map(v => person.ReportedSalary / v)
 
                 // check salary entrance level
-                .Where(v => v > Bvg.GetEntranceThreshold(Bvg.GetPensionMaximum(year)))
+                .Where(v => v > Bvg.GetEntranceThreshold(maxAhvPension))
 
-                .Map(v => Math.Min(v, Bvg.GetMaximumSalary(Bvg.GetPensionMaximum(dateOfProcess.Year))))
+                .Map(v => Math.Min(v, Bvg.GetMaximumSalary(maxAhvPension)))
 
                 // reduce by coordination deduction
-                .Map(v => v - GetCoordinationDeduction())
+                .Map(v => v * (decimal.One - CoordinationDeductionFactor))
 
                 // restrict by BVG salary max
                 .Map(v => v * (fullEmployedDegree - person.DisabilityDegree))
                 .Map(v => v < minSalary ? minSalary : v)
                 .Map(MathUtils.Round5);
-        }
-
-        decimal GetCoordinationDeduction()
-        {
-            return Bvg.GetCoordinationDeduction(Bvg.GetPensionMaximum(year));
         }
     }
 }

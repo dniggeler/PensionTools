@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Bvg.Models;
 using Domain.Enums;
 using Domain.Models.Bvg;
 using FluentAssertions;
@@ -13,12 +14,12 @@ using Xunit.Abstractions;
 namespace BvgCalculator.Tests;
 
 [Trait("BVG", "Calculator")]
-public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application.Bvg.BvgCalculator>>
+public class BvgRevisionCalculatorTests : IClassFixture<BvgCalculatorFixture<Application.Bvg.BvgRevisionCalculator>>
 {
-    private readonly BvgCalculatorFixture<Application.Bvg.BvgCalculator> _fixture;
+    private readonly BvgCalculatorFixture<Application.Bvg.BvgRevisionCalculator> _fixture;
     private readonly ITestOutputHelper _outputHelper;
 
-    public BvgCalculatorTests(BvgCalculatorFixture<Application.Bvg.BvgCalculator> fixture, ITestOutputHelper outputHelper)
+    public BvgRevisionCalculatorTests(BvgCalculatorFixture<Application.Bvg.BvgRevisionCalculator> fixture, ITestOutputHelper outputHelper)
     {
         _fixture = fixture;
         _outputHelper = outputHelper;
@@ -174,6 +175,9 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
     [InlineData("2024-01-01", 100_000, "1969-03-17", 1, 62475)]
     [InlineData("2024-01-01", 20_000, "1969-03-17", 1, 0)]
     [InlineData("2024-01-01", 18_000, "1969-03-17", 1, 0)]
+    [InlineData("2026-01-01", 100_000, "1969-03-17", 1, 70560)]
+    [InlineData("2026-01-01", 20_000, "1969-03-17", 1, 16000)]
+    [InlineData("2026-01-01", 18_000, "1969-03-17", 1, 0)]
     public void Calculate_Insured_Salary(
         string dateOfProcessString,
         decimal effectiveSalary,
@@ -196,14 +200,58 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
         result.Should().Be(expectedInsuredSalary);
     }
 
+    [Fact(DisplayName = "Salary Array for BVG Maximum")]
+    public void Calculate_Insured_Salaries_For_BVG_Maximum()
+    {
+        // given
+        DateTime dateOfProcess = new(2024, 1, 1);
+        DateTime dateOfBirth = new(1969, 12, 17);
+        Gender gender = Gender.Male;
+        decimal reportedSalary = 100_000;
+
+        BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, reportedSalary, 1M);
+        person.Gender = gender;
+
+        Either<string, BvgDataPoint[]> response = _fixture.Calculator().InsuredSalaries(dateOfProcess, person);
+
+        BvgDataPoint[] result = response.IfLeft(err => throw new ApplicationException(err));
+
+        // then
+        result.Should().NotBeNullOrEmpty();
+        Snapshot.Match(result);
+    }
+
+    [Fact(DisplayName = "Salary Array For Between Thresholds")]
+    public void Calculate_Insured_Salaries_Between_Threshold()
+    {
+        // given
+        DateTime dateOfProcess = new(2024, 1, 1);
+        DateTime dateOfBirth = new(1974, 8, 31);
+        Gender gender = Gender.Female;
+        decimal reportedSalary = 20_000;
+
+        BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, reportedSalary, 1M);
+        person.Gender = gender;
+
+        Either<string, BvgDataPoint[]> response = _fixture.Calculator().InsuredSalaries(dateOfProcess, person);
+
+        BvgDataPoint[] result = response.IfLeft(err => throw new ApplicationException(err));
+
+        // then
+        result.Should().NotBeNullOrEmpty();
+        Snapshot.Match(result);
+    }
+
     public static IEnumerable<object[]> GetTestData()
     {
-        yield return new object[]
-        { "2017-01-01",
+        yield return
+        [
+            "2017-01-01",
             100_000,
             "1969-03-17",
             Gender.Male,
             107202,
-            20610 };
+            20610
+        ];
     }
 }

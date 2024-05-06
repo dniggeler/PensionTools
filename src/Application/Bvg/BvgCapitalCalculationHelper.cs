@@ -111,29 +111,6 @@ namespace Application.Bvg
             return (beginOfPeriodValue, endOfPeriodValue);
         }
 
-        /// <summary>
-        /// Gets the retirement credit sequence.
-        /// </summary>
-        /// <param name="personDetails">The person details.</param>
-        /// <param name="processDate">The process date.</param>
-        /// <param name="salaryDetails"></param>
-        /// <exception cref="ApplicationException">Process date {processDate} after date of retirement {dateOfRetirement}</exception>
-        internal static IReadOnlyCollection<RetirementCredit> GetRetirementCreditSequence(
-            BvgPerson personDetails,
-            DateTime processDate,
-            BvgSalary salaryDetails)
-        {
-            int xsBvg = BvgCalculator.GetRetirementAge(personDetails.Gender);
-            int xBvg = personDetails.DateOfBirth.GetBvgAge(processDate.Year);
-
-            BvgRetirementCreditsTable bvgRetirementCreditTable = new BvgRetirementCreditsTable();
-
-            return Enumerable.Range(xBvg, xsBvg - xBvg + 1)
-                .Select(x =>
-                    new RetirementCredit(bvgRetirementCreditTable.GetRate(x) * salaryDetails.InsuredSalary, x))
-                .ToList();
-        }
-
         private static List<RetirementCapital> GetProjection(
             int age,
             DateTime dateOfRetirement,

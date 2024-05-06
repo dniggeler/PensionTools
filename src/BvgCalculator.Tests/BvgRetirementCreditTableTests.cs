@@ -5,7 +5,7 @@ using Xunit;
 namespace BvgCalculator.Tests;
 
 [Trait("BVG", "Retirement Credit Table")]
-public class BvgRetirementCreditTableTests : IClassFixture<BvgCalculatorFixture>
+public class BvgRetirementCreditTableTests : IClassFixture<BvgCalculatorFixture<Application.Bvg.BvgCalculator>>
 {
     [Theory(DisplayName = "Retirement Credit Rate")]
     [InlineData(30, 0.07)]

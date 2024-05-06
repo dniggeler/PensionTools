@@ -9,9 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BvgCalculator.Tests;
 
-public class BvgCalculatorFixture
+public class BvgCalculatorFixture<T> where T : IBvgCalculator
 {
-    private readonly IBvgCalculator _calculator;
+    private readonly T _calculator;
 
     public BvgCalculatorFixture()
     {
@@ -19,7 +19,7 @@ public class BvgCalculatorFixture
         serviceCollection.AddBvgCalculators();
         ServiceProvider provider = serviceCollection.BuildServiceProvider();
 
-        _calculator = provider.GetRequiredService<IBvgCalculator>();
+        _calculator = provider.GetRequiredService<T>();
     }
 
     internal BvgPerson GetCurrentPersonDetails(DateTime birthdate, decimal salary, decimal partTimeDegree)
@@ -32,6 +32,11 @@ public class BvgCalculatorFixture
             ReportedSalary = salary,
             DisabilityDegree = 0,
         };
+    }
+
+    public T Calculator()
+    {
+        return _calculator;
     }
 
     public BvgPerson GetTestPerson(

@@ -68,6 +68,9 @@
                 <MudText Typo="Typo.h5">Resultat</MudText>
             </MudItem>
             <MudItem md="12">
+                <MudText Typo="Typo.body2">@bvgResult.FinalRetirementCapitalWithoutInterest</MudText>
+            </MudItem>
+            <MudItem md="12">
                 <MudText Typo="Typo.body2">@bvgResult.FinalRetirementCapital</MudText>
             </MudItem>
         </MudGrid>
@@ -106,14 +109,7 @@
 
         Either<string, BvgCalculationResult> result = await BvgCalculator.CalculateAsync(predecessorRetirementCapital, endOfYear, bvgPerson);
 
-        bvgResult = result.Match(
-            Right: r => r,
-            Left: e =>
-            {
-                Logger.LogWarning($"Error: {e}");
-
-                return null;
-            });
+        result.IfRight(r => bvgResult = r);
     }
 
     private void HandleSelectPerson(Guid personId)
