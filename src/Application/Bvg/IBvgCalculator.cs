@@ -10,5 +10,9 @@ public interface IBvgCalculator
 
     Either<string, decimal> InsuredSalary(DateTime dateOfProcess, BvgPerson person);
 
-    Either<string, BvgDataPoint[]> InsuredSalaries(DateTime dateOfProcess, BvgPerson person);
+    Either<string, BvgTimeSeriesPoint[]> InsuredSalaries(DateTime dateOfProcess, BvgPerson person);
+    
+    Either<string, BvgTimeSeriesPoint[]> RetirementCreditFactors(DateTime dateOfProcess, BvgPerson person);
+    
+    Either<string, BvgTimeSeriesPoint[]> RetirementCredits(DateTime dateOfProcess, BvgPerson person);
 }

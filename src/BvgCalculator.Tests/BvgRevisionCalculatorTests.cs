@@ -120,7 +120,7 @@ public class BvgRevisionCalculatorTests : IClassFixture<BvgCalculatorFixture<App
         {
             DateOfRetirement = new DateTime(2039, 9, 1),
             EffectiveSalary = 20000M,
-            InsuredSalary = 0M,
+            InsuredSalary = 16000M,
             RetirementCredit = 0M,
             RetirementCreditFactor = 0.15M,
         };
@@ -212,9 +212,9 @@ public class BvgRevisionCalculatorTests : IClassFixture<BvgCalculatorFixture<App
         BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, reportedSalary, 1M);
         person.Gender = gender;
 
-        Either<string, BvgDataPoint[]> response = _fixture.Calculator().InsuredSalaries(dateOfProcess, person);
+        Either<string, BvgTimeSeriesPoint[]> response = _fixture.Calculator().InsuredSalaries(dateOfProcess, person);
 
-        BvgDataPoint[] result = response.IfLeft(err => throw new ApplicationException(err));
+        BvgTimeSeriesPoint[] result = response.IfLeft(err => throw new ApplicationException(err));
 
         // then
         result.Should().NotBeNullOrEmpty();
@@ -233,9 +233,9 @@ public class BvgRevisionCalculatorTests : IClassFixture<BvgCalculatorFixture<App
         BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, reportedSalary, 1M);
         person.Gender = gender;
 
-        Either<string, BvgDataPoint[]> response = _fixture.Calculator().InsuredSalaries(dateOfProcess, person);
+        Either<string, BvgTimeSeriesPoint[]> response = _fixture.Calculator().InsuredSalaries(dateOfProcess, person);
 
-        BvgDataPoint[] result = response.IfLeft(err => throw new ApplicationException(err));
+        BvgTimeSeriesPoint[] result = response.IfLeft(err => throw new ApplicationException(err));
 
         // then
         result.Should().NotBeNullOrEmpty();

@@ -42,21 +42,33 @@ public class BvgRevisionCalculator(
         return InsuredSalaryInternal(dateOfProcess, person);
     }
 
-    public Either<string, BvgDataPoint[]> InsuredSalaries(DateTime dateOfProcess, BvgPerson person)
+    public Either<string, BvgTimeSeriesPoint[]> InsuredSalaries(DateTime dateOfProcess, BvgPerson person)
     {
         DateTime currentDate = dateOfProcess.BeginOfYear();
         DateTime retirementDate = retirementDateCalculator.DateOfRetirement(person.Gender, person.DateOfBirth);
 
-        List<BvgDataPoint> salaries = [];
+        List<BvgTimeSeriesPoint> salaries = [];
         while (currentDate < retirementDate)
         {
             decimal salary = InsuredSalary(currentDate, person).IfLeft(decimal.Zero);
 
-            salaries.Add(new BvgDataPoint(currentDate, salary));
+            salaries.Add(new BvgTimeSeriesPoint(currentDate, salary));
             currentDate = currentDate.AddYears(1);
         }
 
         return salaries.ToArray();
+    }
+
+    public Either<string, BvgTimeSeriesPoint[]> RetirementCreditFactors(DateTime dateOfProcess, BvgPerson person)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Either<string, BvgTimeSeriesPoint[]> RetirementCredits(DateTime dateOfProcess, BvgPerson person)
+    {
+        return from f in RetirementCreditFactors(dateOfProcess, person)
+            from s in InsuredSalaries(dateOfProcess, person)
+            where 
     }
 
     private Either<string, BvgCalculationResult> CalculateInternal(
