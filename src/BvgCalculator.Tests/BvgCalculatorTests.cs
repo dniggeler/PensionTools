@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Bvg.Models;
 using Domain.Enums;
 using Domain.Models.Bvg;
 using FluentAssertions;
@@ -194,6 +195,69 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
 
         // then
         result.Should().Be(expectedInsuredSalary);
+    }
+
+    [Fact(DisplayName = "Salary Array for BVG Maximum")]
+    public void Calculate_Insured_Salaries_For_BVG_Maximum()
+    {
+        // given
+        DateTime dateOfProcess = new(2024, 1, 1);
+        DateTime dateOfBirth = new(1969, 12, 17);
+        Gender gender = Gender.Male;
+        decimal reportedSalary = 100_000;
+
+        BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, reportedSalary, 1M);
+        person.Gender = gender;
+
+        Either<string, BvgTimeSeriesPoint[]> response = _fixture.Calculator().InsuredSalaries(dateOfProcess, person);
+
+        BvgTimeSeriesPoint[] result = response.IfLeft(err => throw new ApplicationException(err));
+
+        // then
+        result.Should().NotBeNullOrEmpty();
+        Snapshot.Match(result);
+    }
+
+    [Fact(DisplayName = "Retirement Credits Array")]
+    public void Calculate_Retirement_Credits_Array()
+    {
+        // given
+        DateTime dateOfProcess = new(2024, 1, 1);
+        DateTime dateOfBirth = new(1969, 12, 17);
+        Gender gender = Gender.Male;
+        decimal reportedSalary = 100_000;
+
+        BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, reportedSalary, 1M);
+        person.Gender = gender;
+
+        Either<string, BvgTimeSeriesPoint[]> response = _fixture.Calculator().RetirementCredits(dateOfProcess, person);
+
+        BvgTimeSeriesPoint[] result = response.IfLeft(err => throw new ApplicationException(err));
+
+        // then
+        result.Should().NotBeNullOrEmpty();
+        Snapshot.Match(result);
+    }
+
+    [Fact(DisplayName = "Retirement Credit Factors Array")]
+    public void Calculate_Retirement_Credit_Factors_Array()
+    {
+        // given
+        DateTime dateOfProcess = new(2024, 1, 1);
+        DateTime dateOfBirth = new(1969, 12, 17);
+        Gender gender = Gender.Male;
+        decimal reportedSalary = 100_000;
+
+        BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, reportedSalary, 1M);
+        person.Gender = gender;
+
+        Either<string, BvgTimeSeriesPoint[]> response = _fixture.Calculator().RetirementCreditFactors(dateOfProcess, person);
+
+        BvgTimeSeriesPoint[] result = response.IfLeft(err => throw new ApplicationException(err));
+
+        // then
+        result.Should().NotBeNullOrEmpty();
+        Snapshot.Match(result);
     }
 
     public static IEnumerable<object[]> GetTestData()

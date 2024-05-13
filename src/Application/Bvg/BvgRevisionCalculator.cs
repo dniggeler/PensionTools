@@ -61,14 +61,33 @@ public class BvgRevisionCalculator(
 
     public Either<string, BvgTimeSeriesPoint[]> RetirementCreditFactors(DateTime dateOfProcess, BvgPerson person)
     {
-        throw new NotImplementedException();
+        List<BvgTimeSeriesPoint> points = [];
+        foreach (var xBvg in Enumerable.Range(Bvg.EntryAgeBvg, Bvg.FinalAge - Bvg.EntryAgeBvg + 1))
+        {
+            DateTime calculationDate = new DateTime(person.DateOfBirth.Year + xBvg, 1, 1);
+            decimal factor = calculationDate < StartOfBvgRevision
+                ? retirementCredits.GetRate(xBvg)
+                : RetirementCreditFactor(xBvg);
+
+            points.Add(new BvgTimeSeriesPoint(calculationDate, factor));
+        }
+
+        return points.ToArray();
     }
 
     public Either<string, BvgTimeSeriesPoint[]> RetirementCredits(DateTime dateOfProcess, BvgPerson person)
     {
-        return from f in RetirementCreditFactors(dateOfProcess, person)
-            from s in InsuredSalaries(dateOfProcess, person)
-            where 
+        return from factors in RetirementCreditFactors(dateOfProcess, person)
+            from salaries in InsuredSalaries(dateOfProcess, person)
+               select Combine(factors, salaries).ToArray();
+
+        IEnumerable<BvgTimeSeriesPoint> Combine(BvgTimeSeriesPoint[] factors, BvgTimeSeriesPoint[] salaries)
+        {
+            return from f in factors
+                from s in salaries
+                    where f.Date == s.Date
+                    select f with {Value = f.Value * s.Value};
+        }
     }
 
     private Either<string, BvgCalculationResult> CalculateInternal(
@@ -365,5 +384,15 @@ public class BvgRevisionCalculator(
                 .Map(v => v < minSalary ? minSalary : v)
                 .Map(MathUtils.Round5);
         }
+    }
+
+    private static decimal RetirementCreditFactor(int xBvg)
+    {
+        return xBvg switch
+        {
+            > 24 and <= 44 => 0.09M,
+            > 44 and <= 65 => 0.14M,
+            _ => 0
+        };
     }
 }

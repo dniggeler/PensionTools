@@ -57,12 +57,28 @@ public class BvgCalculator(
 
     public Either<string, BvgTimeSeriesPoint[]> RetirementCreditFactors(DateTime dateOfProcess, BvgPerson person)
     {
-        throw new NotImplementedException();
+        List<BvgTimeSeriesPoint> points = [];
+        foreach (var xBvg in Enumerable.Range(Bvg.EntryAgeBvg, Bvg.FinalAge - Bvg.EntryAgeBvg + 1))
+        {
+            points.Add(new BvgTimeSeriesPoint(new DateTime(person.DateOfBirth.Year + xBvg, 1, 1), retirementCredits.GetRate(xBvg)));
+        }
+
+        return points.ToArray();
     }
 
     public Either<string, BvgTimeSeriesPoint[]> RetirementCredits(DateTime dateOfProcess, BvgPerson person)
     {
-        throw new NotImplementedException();
+        return from factors in RetirementCreditFactors(dateOfProcess, person)
+            from salaries in InsuredSalaries(dateOfProcess, person)
+            select Combine(factors, salaries).ToArray();
+
+        IEnumerable<BvgTimeSeriesPoint> Combine(BvgTimeSeriesPoint[] factors, BvgTimeSeriesPoint[] salaries)
+        {
+            return from f in factors
+                from s in salaries
+                where f.Date == s.Date
+                select f with { Value = f.Value * s.Value };
+        }
     }
 
     private Either<string, BvgCalculationResult> CalculateInternal(
