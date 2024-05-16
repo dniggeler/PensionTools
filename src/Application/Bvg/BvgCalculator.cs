@@ -43,12 +43,15 @@ public class BvgCalculator(
     {
         DateTime currentDate = dateOfProcess.BeginOfYear();
         DateTime retirementDate = retirementDateCalculator.DateOfRetirement(person.Gender, person.DateOfBirth);
+        DateTime technicalBirthdate = person.DateOfBirth.GetBirthdateTechnical();
+        TechnicalAge birthdateAsAge = TechnicalAge.From(technicalBirthdate.Year, technicalBirthdate.Month);
 
         List<BvgTimeSeriesPoint> salaries = [];
         decimal salary = InsuredSalary(dateOfProcess, person).IfLeft(decimal.Zero);
         while (currentDate <= retirementDate)
         {
-            salaries.Add(new BvgTimeSeriesPoint(currentDate, salary));
+            TechnicalAge age = TechnicalAge.From(currentDate.Year, currentDate.Month) - birthdateAsAge;
+            salaries.Add(new BvgTimeSeriesPoint(age, currentDate, salary));
             currentDate = currentDate.AddYears(1);
         }
 
@@ -57,10 +60,15 @@ public class BvgCalculator(
 
     public Either<string, BvgTimeSeriesPoint[]> RetirementCreditFactors(DateTime dateOfProcess, BvgPerson person)
     {
+        DateTime technicalBirthdate = person.DateOfBirth.GetBirthdateTechnical();
+        TechnicalAge birthdateAsAge = TechnicalAge.From(technicalBirthdate.Year, technicalBirthdate.Month);
+
         List<BvgTimeSeriesPoint> points = [];
         foreach (var xBvg in Enumerable.Range(Bvg.EntryAgeBvg, Bvg.FinalAge - Bvg.EntryAgeBvg + 1))
         {
-            points.Add(new BvgTimeSeriesPoint(new DateTime(person.DateOfBirth.Year + xBvg, 1, 1), retirementCredits.GetRate(xBvg)));
+            DateTime calculationDate = new DateTime(person.DateOfBirth.Year + xBvg, 1, 1);
+            TechnicalAge age = TechnicalAge.From(calculationDate.Year, calculationDate.Month) - birthdateAsAge;
+            points.Add(new BvgTimeSeriesPoint(age, calculationDate, retirementCredits.GetRate(xBvg)));
         }
 
         return points.ToArray();
