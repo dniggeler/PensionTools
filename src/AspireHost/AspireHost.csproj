@@ -9,12 +9,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting" Version="8.0.0-preview.3.24105.21" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorApp\BlazorApp.csproj" />
     <ProjectReference Include="..\TaxCalculator.WebApi\TaxCalculator.WebApi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\launchSettings.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
