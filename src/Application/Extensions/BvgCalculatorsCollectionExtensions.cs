@@ -10,6 +10,7 @@ namespace Application.Extensions
     {
         public static void AddBvgCalculators(this IServiceCollection serviceCollection)
         {
+            serviceCollection.AddSingleton<ISavingsProcessProjectionCalculator, SingleSavingsProcessProjectionCalculator>();
             serviceCollection.AddSingleton<IBvgRetirementCredits, BvgRetirementCreditsTable>();
             serviceCollection.AddSingleton<IBvgCalculator, BvgCalculator>();
             serviceCollection.AddSingleton<BvgCalculator>();

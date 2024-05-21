@@ -81,6 +81,11 @@ public record TechnicalAge(int Years, int Months)
         return !(a < b);
     }
 
+    public static implicit operator TechnicalAge((int Years, int Months) age)
+    {
+        return new TechnicalAge(age.Years, age.Months);
+    }
+
     public static TechnicalAge From(int years, int months)
     {
         return new TechnicalAge(years, months);
