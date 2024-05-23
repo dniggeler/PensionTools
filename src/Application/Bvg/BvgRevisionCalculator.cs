@@ -72,7 +72,7 @@ public class BvgRevisionCalculator(
         List<BvgTimeSeriesPoint> points = [];
         for (DateTime currentDate = dateOfProcess; currentDate <= dateOfFinalAge; currentDate = currentDate.AddMonths(1))
         {
-            int xBvg = currentDate.Year - technicalBirthdate.Year;
+            int xBvg = currentDate.Year - person.DateOfBirth.Year;
             decimal factor = currentDate <= StartOfBvgRevision
                 ? retirementCredits.GetRate(xBvg)
                 : RetirementCreditFactor(xBvg);
