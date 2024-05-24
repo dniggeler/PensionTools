@@ -1,28 +1,55 @@
 ﻿{
-  "DateOfRetirement": "2019-04-01T00:00:00",
+  "DateOfRetirement": "2024-04-01T00:00:00",
   "EffectiveSalary": 85000.0,
-  "InsuredSalary": 68000.00,
-  "RetirementCredit": 12240.0000,
+  "InsuredSalary": 59275.00,
+  "RetirementCredit": 10669.5000,
   "RetirementCreditFactor": 0.18,
-  "RetirementCapitalEndOfYear": 0.0,
-  "FinalRetirementCapital": 0.0,
-  "FinalRetirementCapitalWithoutInterest": 0.0,
-  "RetirementPension": 0.0,
-  "DisabilityPension": 0.0,
-  "PartnerPension": 0.0,
-  "OrphanPension": 0.0,
-  "ChildPensionForDisabled": 0.0,
+  "RetirementCapitalEndOfYear": 2667.375000,
+  "FinalRetirementCapital": 2667.375000,
+  "FinalRetirementCapitalWithoutInterest": 2667.375000,
+  "RetirementPension": 181.0,
+  "DisabilityPension": 181.0,
+  "PartnerPension": 108.6,
+  "OrphanPension": 36.2,
+  "ChildPensionForDisabled": 36.2,
   "RetirementCreditSequence": [
     {
+      "Age": 64,
+      "AmountRaw": 10669.5000
+    },
+    {
+      "Age": 64,
+      "AmountRaw": 10669.5000
+    },
+    {
+      "Age": 64,
+      "AmountRaw": 10669.5000
+    },
+    {
       "Age": 65,
-      "AmountRaw": 12240.0000
+      "AmountRaw": 0.00
     }
   ],
   "RetirementCapitalSequence": [
     {
-      "Date": "2019-04-01T00:00:00",
+      "Date": "2024-01-01T00:00:00",
       "Value": 0.0,
       "ValueWithoutInterest": 0.0
+    },
+    {
+      "Date": "2024-02-01T00:00:00",
+      "Value": 889.1249999999999999999999996,
+      "ValueWithoutInterest": 889.1249999999999999999999996
+    },
+    {
+      "Date": "2024-03-01T00:00:00",
+      "Value": 1778.2500000000000000000000004,
+      "ValueWithoutInterest": 1778.2500000000000000000000004
+    },
+    {
+      "Date": "2024-04-01T00:00:00",
+      "Value": 2667.375000,
+      "ValueWithoutInterest": 2667.375000
     }
   ]
 }

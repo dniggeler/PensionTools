@@ -87,7 +87,7 @@
         persons = (await PersonService.GetPersonsAsync()).ToList();
     }
 
-    private async Task OnSubmit()
+    private void OnSubmit()
     {
         DateTime endOfYear = new DateTime(DateTime.Now.Year, 12, 31).AddDays(1);
 
@@ -107,7 +107,7 @@
             DateOfProcess = endOfYear
         };
 
-        Either<string, BvgCalculationResult> result = await BvgCalculator.CalculateAsync(predecessorRetirementCapital, endOfYear, bvgPerson);
+        Either<string, BvgCalculationResult> result = BvgCalculator.Calculate(predecessorRetirementCapital, endOfYear, bvgPerson);
 
         result.IfRight(r => bvgResult = r);
     }

@@ -43,7 +43,7 @@ public class SingleSavingsProcessProjectionCalculator : ISavingsProcessProjectio
         TechnicalAge birthdateAsAge = TechnicalAge.From(dateOfTechnicalBirth.Year, dateOfTechnicalBirth.Month);
         TechnicalAge startingAge = TechnicalAge.From(startingDate.Year, startingDate.Month) - birthdateAsAge;
 
-        decimal startingAgsj = retirementCreditGetter(startingAge);
+        decimal agsj = retirementCreditGetter(startingAge);
 
         RetirementSavingsProcessResult lastResult = new(
             DateOfCalculation: startingDate,
@@ -51,7 +51,7 @@ public class SingleSavingsProcessProjectionCalculator : ISavingsProcessProjectio
             TechnicalAge: startingAge,
             ProRatedFactor: decimal.One,
             GrossInterestRate: projectionInterestRate,
-            RetirementCredit: startingAgsj,
+            RetirementCredit: agsj,
             RetirementCapitalWithoutInterest: beginOfRetirementCapital,
             RetirementCapital: beginOfRetirementCapital,
             dateOfRetirement == startingDate,
@@ -71,8 +71,6 @@ public class SingleSavingsProcessProjectionCalculator : ISavingsProcessProjectio
 
             // pro-rated factor
             decimal phi = offset / 12M;
-
-            decimal agsj = retirementCreditGetter(currentAge);
 
             decimal agsPhi = agsj * phi;
 
@@ -101,6 +99,8 @@ public class SingleSavingsProcessProjectionCalculator : ISavingsProcessProjectio
                 aghmz = aghmz * (1M + projectionInterestRate) + agsj;
                 offset = 0;
             }
+
+            agsj = retirementCreditGetter(currentAge);
 
             offset++;
         }

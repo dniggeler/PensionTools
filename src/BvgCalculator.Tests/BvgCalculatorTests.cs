@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Application.Bvg.Models;
 using Domain.Enums;
 using Domain.Models.Bvg;
@@ -26,7 +25,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
     }
 
     [Fact(DisplayName = "BVG Result When Retiring")]
-    public async Task ShouldCalculateResultWhenRetiring()
+    public void ShouldCalculateResultWhenRetiring()
     {
         // given
         DateTime processDate = new DateTime(2019, 1, 1);
@@ -37,8 +36,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
         person.PartTimeDegree = 0.8M;
 
         // when
-        Either<string, BvgCalculationResult> response =
-            await _fixture.GetBvgBenefitsAsync(0, person, processDate);
+        Either<string, BvgCalculationResult> response = _fixture.GetBvgBenefits(0, person, processDate);
 
         BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
 
@@ -49,7 +47,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
     }
 
     [Fact(DisplayName = "Default BVG Result")]
-    public async Task ShouldCalculateDefaultResult()
+    public void ShouldCalculateDefaultResult()
     {
         // given
         DateTime processDate = new DateTime(2019, 1, 1);
@@ -58,8 +56,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
         BvgPerson person = _fixture.GetTestPerson(birthdate);
 
         // when
-        var response =
-            await _fixture.GetBvgBenefitsAsync(0, person, processDate);
+        var response = _fixture.GetBvgBenefits(0, person, processDate);
 
         BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
 
@@ -70,7 +67,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
     }
 
     [Fact(DisplayName = "Calculate Benefits")]
-    public async Task ShouldReturnBenefitsCalculationResult()
+    public void ShouldReturnBenefitsCalculationResult()
     {
         // given
         BvgCalculationResult expectedResult = new BvgCalculationResult
@@ -96,8 +93,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
         BvgPerson person = _fixture.GetTestPerson(birthdate);
 
         // when
-        var response =
-            await _fixture.GetBvgBenefitsAsync(9065, person, processDate);
+        var response = _fixture.GetBvgBenefits(9065, person, processDate);
 
         BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
 
@@ -113,7 +109,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
     }
 
     [Fact(DisplayName = "Benefits If Below Salary Threshold")]
-    public async Task ShouldReturnBenefitsIfBelowSalaryThreshold()
+    public void ShouldReturnBenefitsIfBelowSalaryThreshold()
     {
         // given
         BvgCalculationResult expectedResult = new BvgCalculationResult
@@ -130,8 +126,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
         BvgPerson person = _fixture.GetCurrentPersonDetails(new DateTime(1974, 8, 31), 20_000, 1M);
 
         // when
-        var response =
-            await _fixture.GetBvgBenefitsAsync(0, person, processDate);
+        var response = _fixture.GetBvgBenefits(0, person, processDate);
 
         BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
 
@@ -147,7 +142,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
 
     [Theory(DisplayName = "BVG Benefits")]
     [MemberData(nameof(GetTestData))]
-    public async Task Calculate_Bvg_Benefits(
+    public void Calculate_Bvg_Benefits(
         string dateOfProcessString,
         decimal salary,
         string dateOfBirthString,
@@ -162,8 +157,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
         BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, salary, 1M);
         person.Gender = gender;
 
-        var response =
-            await _fixture.GetBvgBenefitsAsync(currentRetirementCapital, person, dateOfProcess);
+        var response = _fixture.GetBvgBenefits(currentRetirementCapital, person, dateOfProcess);
 
         BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
 

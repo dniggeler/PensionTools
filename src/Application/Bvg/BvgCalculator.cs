@@ -15,7 +15,7 @@ public class BvgCalculator(
     IValidator<BvgPerson> bvgPersonValidator)
     : IBvgCalculator
 {
-    public Task<Either<string, BvgCalculationResult>> CalculateAsync(
+    public Either<string, BvgCalculationResult> Calculate(
         PredecessorRetirementCapital predecessorCapital, DateTime dateOfProcess, BvgPerson person)
     {
         Option<ValidationResult> validationResult = bvgPersonValidator.Validate(person);
@@ -28,8 +28,7 @@ public class BvgCalculator(
                 return $"validation failed: {errorMessageLine}";
             })
             .IfNone(true)
-            .Bind(_ => CalculateInternal(predecessorCapital, dateOfProcess, person))
-            .AsTask();
+            .Bind(_ => CalculateInternal(predecessorCapital, dateOfProcess, person));
     }
 
     public Either<string, decimal> InsuredSalary(DateTime dateOfProcess, BvgPerson person)

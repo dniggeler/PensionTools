@@ -45,21 +45,7 @@ public class BvgCalculatorFixture<T> where T : IBvgCalculator
         return GetCurrentPersonDetails(birthdate, reportedSalary, partTimeDegree);
     }
 
-    public BvgPerson GetDefaultPerson()
-    {
-        BvgPerson personDetails = new BvgPerson
-        {
-            DateOfBirth = new DateTime(1974, 8, 31),
-            Gender = Gender.Male,
-            PartTimeDegree = 1.0M,
-            ReportedSalary = 100000,
-        };
-
-        return personDetails;
-    }
-
-    public Task<Either<string, BvgCalculationResult>> GetBvgBenefitsAsync(
-        decimal currentRetirementCapital, BvgPerson person, DateTime processDate)
+    public Either<string, BvgCalculationResult> GetBvgBenefits(decimal currentRetirementCapital, BvgPerson person, DateTime processDate)
     {
         var predecessorCapital = new PredecessorRetirementCapital
         {
@@ -69,6 +55,6 @@ public class BvgCalculatorFixture<T> where T : IBvgCalculator
             EndOfYearAmount = currentRetirementCapital,
         };
             
-        return _calculator.CalculateAsync(predecessorCapital, processDate, person);
+        return _calculator.Calculate(predecessorCapital, processDate, person);
     }
 }
