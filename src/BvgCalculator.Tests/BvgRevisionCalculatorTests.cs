@@ -26,7 +26,7 @@ public class BvgRevisionCalculatorTests : IClassFixture<BvgCalculatorFixture<App
         // given
         DateTime processDate = new DateTime(2024, 1, 1);
         DateTime birthdate = new DateTime(1959, 3, 13);
-        decimal retirementCapitalEndOfYear = 0;
+        decimal retirementCapitalEndOfYear = 2667.375M;
 
         BvgPerson person = _fixture.GetTestPerson(birthdate);
         person.ReportedSalary = 85000M;
@@ -49,7 +49,7 @@ public class BvgRevisionCalculatorTests : IClassFixture<BvgCalculatorFixture<App
         // given
         DateTime processDate = new DateTime(2024, 1, 1);
         DateTime birthdate = new DateTime(1969, 12, 17);
-        decimal retirementCapitalEndOfYear = 0;
+        decimal retirementCapitalEndOfYear = 11245.5M;
 
         BvgPerson person = _fixture.GetTestPerson(birthdate);
 
@@ -70,7 +70,7 @@ public class BvgRevisionCalculatorTests : IClassFixture<BvgCalculatorFixture<App
         // given
         DateTime processDate = new DateTime(2024, 1, 1);
         DateTime birthdate = new DateTime(1962, 3, 17);
-        decimal retirementCapitalEndOfYear = 0;
+        decimal retirementCapitalEndOfYear = 11245.5M;
 
         BvgPerson person = _fixture.GetTestPerson(birthdate);
         person.Gender = Gender.Female;
@@ -92,11 +92,12 @@ public class BvgRevisionCalculatorTests : IClassFixture<BvgCalculatorFixture<App
         // given
         DateTime processDate = new DateTime(2024, 1, 1);
         DateTime birthdate = new DateTime(1974, 8, 31);
+        decimal retirementCapitalEndOfYear = 9371.25M;
 
         BvgPerson person = _fixture.GetTestPerson(birthdate);
 
         // when
-        var response = _fixture.GetBvgBenefits(0, person, processDate);
+        var response = _fixture.GetBvgBenefits(retirementCapitalEndOfYear, person, processDate);
 
         BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
 
@@ -290,7 +291,7 @@ public class BvgRevisionCalculatorTests : IClassFixture<BvgCalculatorFixture<App
             100_000,
             "1969-03-17",
             Gender.Male,
-            0,
+            11245.5,
             6622
         ];
     }

@@ -4,10 +4,10 @@
   "InsuredSalary": 62475.00,
   "RetirementCredit": 11245.5000,
   "RetirementCreditFactor": 0.18,
-  "RetirementCapitalEndOfYear": 11245.5000,
-  "FinalRetirementCapital": 30252.53970703125000,
+  "RetirementCapitalEndOfYear": 11245.5,
+  "FinalRetirementCapital": 30252.53970703125,
   "FinalRetirementCapitalWithoutInterest": 29899.800000,
-  "RetirementPension": 1815.1523824218750000,
+  "RetirementPension": 1815.1523824218750,
   "DisabilityPension": 1793.98800000,
   "PartnerPension": 1076.392800000,
   "OrphanPension": 358.797600000,
@@ -152,69 +152,9 @@
   ],
   "RetirementCapitalSequence": [
     {
-      "Date": "2024-01-01T00:00:00",
-      "Value": 0.0,
-      "ValueWithoutInterest": 0.0
-    },
-    {
-      "Date": "2024-02-01T00:00:00",
-      "Value": 937.1249999999999999999999996,
-      "ValueWithoutInterest": 937.1249999999999999999999996
-    },
-    {
-      "Date": "2024-03-01T00:00:00",
-      "Value": 1874.2500000000000000000000004,
-      "ValueWithoutInterest": 1874.2500000000000000000000004
-    },
-    {
-      "Date": "2024-04-01T00:00:00",
-      "Value": 2811.375000,
-      "ValueWithoutInterest": 2811.375000
-    },
-    {
-      "Date": "2024-05-01T00:00:00",
-      "Value": 3748.4999999999999999999999996,
-      "ValueWithoutInterest": 3748.4999999999999999999999996
-    },
-    {
-      "Date": "2024-06-01T00:00:00",
-      "Value": 4685.6250000000000000000000004,
-      "ValueWithoutInterest": 4685.6250000000000000000000004
-    },
-    {
-      "Date": "2024-07-01T00:00:00",
-      "Value": 5622.75000,
-      "ValueWithoutInterest": 5622.75000
-    },
-    {
-      "Date": "2024-08-01T00:00:00",
-      "Value": 6559.8749999999999999999999996,
-      "ValueWithoutInterest": 6559.8749999999999999999999996
-    },
-    {
-      "Date": "2024-09-01T00:00:00",
-      "Value": 7497.0000000000000000000000004,
-      "ValueWithoutInterest": 7497.0000000000000000000000004
-    },
-    {
-      "Date": "2024-10-01T00:00:00",
-      "Value": 8434.125000,
-      "ValueWithoutInterest": 8434.125000
-    },
-    {
-      "Date": "2024-11-01T00:00:00",
-      "Value": 9371.250000000000000000000000,
-      "ValueWithoutInterest": 9371.250000000000000000000000
-    },
-    {
-      "Date": "2024-12-01T00:00:00",
-      "Value": 10308.375000000000000000000000,
-      "ValueWithoutInterest": 10308.375000000000000000000000
-    },
-    {
       "Date": "2025-01-01T00:00:00",
-      "Value": 11245.5000,
-      "ValueWithoutInterest": 11245.5000
+      "Value": 11245.5,
+      "ValueWithoutInterest": 11245.5
     },
     {
       "Date": "2025-02-01T00:00:00",
@@ -228,7 +168,7 @@
     },
     {
       "Date": "2025-04-01T00:00:00",
-      "Value": 14092.0171875000,
+      "Value": 14092.0171875,
       "ValueWithoutInterest": 14056.875000
     },
     {
@@ -243,7 +183,7 @@
     },
     {
       "Date": "2025-07-01T00:00:00",
-      "Value": 16938.534375000,
+      "Value": 16938.534375,
       "ValueWithoutInterest": 16868.25000
     },
     {
@@ -258,7 +198,7 @@
     },
     {
       "Date": "2025-10-01T00:00:00",
-      "Value": 19785.0515625000,
+      "Value": 19785.0515625,
       "ValueWithoutInterest": 19679.625000
     },
     {
@@ -273,7 +213,7 @@
     },
     {
       "Date": "2026-01-01T00:00:00",
-      "Value": 22631.56875000,
+      "Value": 22631.56875,
       "ValueWithoutInterest": 22491.0000
     },
     {
@@ -288,7 +228,7 @@
     },
     {
       "Date": "2026-04-01T00:00:00",
-      "Value": 25171.89240234375000,
+      "Value": 25171.89240234375,
       "ValueWithoutInterest": 24960.600000
     },
     {
@@ -303,7 +243,7 @@
     },
     {
       "Date": "2026-07-01T00:00:00",
-      "Value": 27712.2160546875000,
+      "Value": 27712.2160546875,
       "ValueWithoutInterest": 27430.20000
     },
     {
@@ -318,7 +258,7 @@
     },
     {
       "Date": "2026-10-01T00:00:00",
-      "Value": 30252.53970703125000,
+      "Value": 30252.53970703125,
       "ValueWithoutInterest": 29899.800000
     }
   ]

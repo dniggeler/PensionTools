@@ -4,7 +4,7 @@
   "InsuredSalary": 0.00,
   "RetirementCredit": 0.0000,
   "RetirementCreditFactor": 0.15,
-  "RetirementCapitalEndOfYear": 0.0000,
+  "RetirementCapitalEndOfYear": 0.0,
   "FinalRetirementCapital": 33162.360526458060842147412360,
   "FinalRetirementCapitalWithoutInterest": 30613.333333333333333333333333,
   "RetirementPension": 1989.7416315874836505288447416,
@@ -772,128 +772,68 @@
   ],
   "RetirementCapitalSequence": [
     {
-      "Date": "2024-01-01T00:00:00",
-      "Value": 0.0,
-      "ValueWithoutInterest": 0.0
-    },
-    {
-      "Date": "2024-02-01T00:00:00",
-      "Value": 0.0,
-      "ValueWithoutInterest": 0.0
-    },
-    {
-      "Date": "2024-03-01T00:00:00",
-      "Value": 0.0,
-      "ValueWithoutInterest": 0.0
-    },
-    {
-      "Date": "2024-04-01T00:00:00",
-      "Value": 0.000000,
-      "ValueWithoutInterest": 0.000000
-    },
-    {
-      "Date": "2024-05-01T00:00:00",
-      "Value": 0.0,
-      "ValueWithoutInterest": 0.0
-    },
-    {
-      "Date": "2024-06-01T00:00:00",
-      "Value": 0.0,
-      "ValueWithoutInterest": 0.0
-    },
-    {
-      "Date": "2024-07-01T00:00:00",
-      "Value": 0.00000,
-      "ValueWithoutInterest": 0.00000
-    },
-    {
-      "Date": "2024-08-01T00:00:00",
-      "Value": 0.0,
-      "ValueWithoutInterest": 0.0
-    },
-    {
-      "Date": "2024-09-01T00:00:00",
-      "Value": 0.0,
-      "ValueWithoutInterest": 0.0
-    },
-    {
-      "Date": "2024-10-01T00:00:00",
-      "Value": 0.000000,
-      "ValueWithoutInterest": 0.000000
-    },
-    {
-      "Date": "2024-11-01T00:00:00",
-      "Value": 0.0,
-      "ValueWithoutInterest": 0.0
-    },
-    {
-      "Date": "2024-12-01T00:00:00",
-      "Value": 0.0,
-      "ValueWithoutInterest": 0.0
-    },
-    {
       "Date": "2025-01-01T00:00:00",
-      "Value": 0.0000,
-      "ValueWithoutInterest": 0.0000
+      "Value": 0.0,
+      "ValueWithoutInterest": 0.0
     },
     {
       "Date": "2025-02-01T00:00:00",
       "Value": 0.0,
-      "ValueWithoutInterest": 0.0000
+      "ValueWithoutInterest": 0.0
     },
     {
       "Date": "2025-03-01T00:00:00",
       "Value": 0.0,
-      "ValueWithoutInterest": 0.0000
+      "ValueWithoutInterest": 0.0
     },
     {
       "Date": "2025-04-01T00:00:00",
-      "Value": 0.0000000000,
+      "Value": 0.000000,
       "ValueWithoutInterest": 0.000000
     },
     {
       "Date": "2025-05-01T00:00:00",
       "Value": 0.0,
-      "ValueWithoutInterest": 0.0000
+      "ValueWithoutInterest": 0.0
     },
     {
       "Date": "2025-06-01T00:00:00",
       "Value": 0.0,
-      "ValueWithoutInterest": 0.0000
+      "ValueWithoutInterest": 0.0
     },
     {
       "Date": "2025-07-01T00:00:00",
-      "Value": 0.000000000,
+      "Value": 0.00000,
       "ValueWithoutInterest": 0.00000
     },
     {
       "Date": "2025-08-01T00:00:00",
       "Value": 0.0,
-      "ValueWithoutInterest": 0.0000
+      "ValueWithoutInterest": 0.0
     },
     {
       "Date": "2025-09-01T00:00:00",
       "Value": 0.0,
-      "ValueWithoutInterest": 0.0000
+      "ValueWithoutInterest": 0.0
     },
     {
       "Date": "2025-10-01T00:00:00",
-      "Value": 0.0000000000,
+      "Value": 0.000000,
       "ValueWithoutInterest": 0.000000
     },
     {
       "Date": "2025-11-01T00:00:00",
       "Value": 0.0,
-      "ValueWithoutInterest": 0.0000
+      "ValueWithoutInterest": 0.0
     },
     {
       "Date": "2025-12-01T00:00:00",
       "Value": 0.0,
-      "ValueWithoutInterest": 0.0000
+      "ValueWithoutInterest": 0.0
     },
     {
       "Date": "2026-01-01T00:00:00",
-      "Value": 0.00000000,
+      "Value": 0.0000,
       "ValueWithoutInterest": 0.0000
     },
     {
@@ -908,7 +848,7 @@
     },
     {
       "Date": "2026-04-01T00:00:00",
-      "Value": 560.00000000000000,
+      "Value": 560.0000000000,
       "ValueWithoutInterest": 560.000000
     },
     {
@@ -923,7 +863,7 @@
     },
     {
       "Date": "2026-07-01T00:00:00",
-      "Value": 1120.0000000000000,
+      "Value": 1120.000000000,
       "ValueWithoutInterest": 1120.00000
     },
     {
@@ -938,7 +878,7 @@
     },
     {
       "Date": "2026-10-01T00:00:00",
-      "Value": 1680.00000000000000,
+      "Value": 1680.0000000000,
       "ValueWithoutInterest": 1680.000000
     },
     {
@@ -953,7 +893,7 @@
     },
     {
       "Date": "2027-01-01T00:00:00",
-      "Value": 2240.000000000000,
+      "Value": 2240.00000000,
       "ValueWithoutInterest": 2240.0000
     },
     {
@@ -968,7 +908,7 @@
     },
     {
       "Date": "2027-04-01T00:00:00",
-      "Value": 2807.000000000000000000,
+      "Value": 2807.00000000000000,
       "ValueWithoutInterest": 2800.000000
     },
     {
@@ -983,7 +923,7 @@
     },
     {
       "Date": "2027-07-01T00:00:00",
-      "Value": 3374.00000000000000000,
+      "Value": 3374.0000000000000,
       "ValueWithoutInterest": 3360.00000
     },
     {
@@ -998,7 +938,7 @@
     },
     {
       "Date": "2027-10-01T00:00:00",
-      "Value": 3941.000000000000000000,
+      "Value": 3941.00000000000000,
       "ValueWithoutInterest": 3920.000000
     },
     {
@@ -1013,7 +953,7 @@
     },
     {
       "Date": "2028-01-01T00:00:00",
-      "Value": 4508.0000000000000000,
+      "Value": 4508.000000000000,
       "ValueWithoutInterest": 4480.0000
     },
     {
@@ -1028,7 +968,7 @@
     },
     {
       "Date": "2028-04-01T00:00:00",
-      "Value": 5082.0875000000000000000000,
+      "Value": 5082.087500000000000000,
       "ValueWithoutInterest": 5040.000000
     },
     {
@@ -1043,7 +983,7 @@
     },
     {
       "Date": "2028-07-01T00:00:00",
-      "Value": 5656.175000000000000000000,
+      "Value": 5656.17500000000000000,
       "ValueWithoutInterest": 5600.00000
     },
     {
@@ -1058,7 +998,7 @@
     },
     {
       "Date": "2028-10-01T00:00:00",
-      "Value": 6230.2625000000000000000000,
+      "Value": 6230.262500000000000000,
       "ValueWithoutInterest": 6160.000000
     },
     {
@@ -1073,7 +1013,7 @@
     },
     {
       "Date": "2029-01-01T00:00:00",
-      "Value": 6804.35000000000000000000,
+      "Value": 6804.3500000000000000,
       "ValueWithoutInterest": 6720.0000
     },
     {
@@ -1088,7 +1028,7 @@
     },
     {
       "Date": "2029-04-01T00:00:00",
-      "Value": 7385.6135937500000000000000000,
+      "Value": 7385.6135937500000000000000,
       "ValueWithoutInterest": 7280.000000
     },
     {
@@ -1103,7 +1043,7 @@
     },
     {
       "Date": "2029-07-01T00:00:00",
-      "Value": 7966.877187500000000000000000,
+      "Value": 7966.877187500000000000000,
       "ValueWithoutInterest": 7840.00000
     },
     {
@@ -1118,7 +1058,7 @@
     },
     {
       "Date": "2029-10-01T00:00:00",
-      "Value": 8548.140781250000000000000000,
+      "Value": 8548.1407812500000000000000,
       "ValueWithoutInterest": 8400.000000
     },
     {
@@ -1133,7 +1073,7 @@
     },
     {
       "Date": "2030-01-01T00:00:00",
-      "Value": 9129.404375000000000000000000,
+      "Value": 9129.40437500000000000000,
       "ValueWithoutInterest": 8960.0000
     },
     {

@@ -4,9 +4,9 @@
   "InsuredSalary": 59275.00,
   "RetirementCredit": 10669.5000,
   "RetirementCreditFactor": 0.18,
-  "RetirementCapitalEndOfYear": 2667.375000,
-  "FinalRetirementCapital": 2667.375000,
-  "FinalRetirementCapitalWithoutInterest": 2667.375000,
+  "RetirementCapitalEndOfYear": 2667.375,
+  "FinalRetirementCapital": 2667.375,
+  "FinalRetirementCapitalWithoutInterest": 2667.375,
   "RetirementPension": 181.0,
   "DisabilityPension": 181.0,
   "PartnerPension": 108.6,
@@ -32,24 +32,9 @@
   ],
   "RetirementCapitalSequence": [
     {
-      "Date": "2024-01-01T00:00:00",
-      "Value": 0.0,
-      "ValueWithoutInterest": 0.0
-    },
-    {
-      "Date": "2024-02-01T00:00:00",
-      "Value": 889.1249999999999999999999996,
-      "ValueWithoutInterest": 889.1249999999999999999999996
-    },
-    {
-      "Date": "2024-03-01T00:00:00",
-      "Value": 1778.2500000000000000000000004,
-      "ValueWithoutInterest": 1778.2500000000000000000000004
-    },
-    {
       "Date": "2024-04-01T00:00:00",
-      "Value": 2667.375000,
-      "ValueWithoutInterest": 2667.375000
+      "Value": 2667.375,
+      "ValueWithoutInterest": 2667.375
     }
   ]
 }

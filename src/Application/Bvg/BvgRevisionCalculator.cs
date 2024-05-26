@@ -263,13 +263,18 @@ public class BvgRevisionCalculator(
             return retirementCreditSequence.SingleOrDefault(p => p.Age == age)?.Value ?? decimal.Zero;
         };
 
+        if (IsRetired(personDetails, new(calculationYear+1, 1, 1)))
+        {
+            return [new RetirementCapital(dateOfRetirement, retirementCapitalEndOfYear, retirementCapitalEndOfYear)];
+        }
+
         return projectionCalculator.ProjectionTable(
             iBvg,
             dateOfRetirement,
             dateOfRetirement,
             retirementAgeBvg,
             retirementAgeBvg,
-            calculationYear,
+            calculationYear+1,
             retirementCapitalEndOfYear,
             retirementCreditGetter)
             .Select(item => new RetirementCapital(item.DateOfCalculation, item.RetirementCapital, item.RetirementCapitalWithoutInterest))
