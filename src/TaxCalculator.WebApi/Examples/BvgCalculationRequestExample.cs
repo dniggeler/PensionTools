@@ -13,10 +13,9 @@ public class BvgCalculationRequestExample : IExamplesProvider<BvgCalculationRequ
         {
             Name = "Test",
             DateOfBirth = new DateTime(2000, 4, 19),
-            DateOfCalculation = new DateTime(2019, 1, 1),
+            CalculationYear = 2019,
             Gender = Gender.Male,
             Salary = 100_000,
-            RetirementCapitalBeginOfYear = 0,
             RetirementCapitalEndOfYear = 0,
         };
     }

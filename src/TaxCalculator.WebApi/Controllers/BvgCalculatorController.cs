@@ -35,15 +35,8 @@ public class BvgCalculatorController(IBvgCalculator bvgCalculator) : ControllerB
         }
 
         var bvgPerson = MapBvgPerson();
-        var capital = new PredecessorRetirementCapital
-        {
-            BeginOfYearAmount = request.RetirementCapitalBeginOfYear,
-            DateOfProcess = request.DateOfCalculation,
-            CurrentAmount = request.RetirementCapitalBeginOfYear,
-            EndOfYearAmount = request.RetirementCapitalEndOfYear,
-        };
 
-        var result = bvgCalculator.Calculate(capital, request.DateOfCalculation, bvgPerson);
+        var result = bvgCalculator.Calculate(request.CalculationYear, request.RetirementCapitalEndOfYear, bvgPerson);
 
         return result
             .Match<ActionResult>(

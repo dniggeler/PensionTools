@@ -9,11 +9,8 @@ public class BvgCalculationRequest
     [MaxLength(50)]
     public string Name { get; set; }
 
-    [Range(typeof(DateTime), "1/1/1970", "1/1/2099", ErrorMessage = "Valid calculation years start from 1970")]
-    public DateTime DateOfCalculation { get; set; }
-
-    [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
-    public decimal RetirementCapitalBeginOfYear { get; set; }
+    [Range(typeof(int), "1970", "2099", ErrorMessage = "Valid calculation years start from 1970")]
+    public int CalculationYear { get; set; }
 
     [Range(typeof(decimal), "0", "1000000000", ErrorMessage = "No negative values allowed")]
     public decimal RetirementCapitalEndOfYear { get; set; }

@@ -47,14 +47,6 @@ public class BvgCalculatorFixture<T> where T : IBvgCalculator
 
     public Either<string, BvgCalculationResult> GetBvgBenefits(decimal currentRetirementCapital, BvgPerson person, DateTime processDate)
     {
-        var predecessorCapital = new PredecessorRetirementCapital
-        {
-            DateOfProcess = processDate,
-            BeginOfYearAmount = 0,
-            CurrentAmount = 0,
-            EndOfYearAmount = currentRetirementCapital,
-        };
-            
-        return _calculator.Calculate(predecessorCapital, processDate, person);
+        return _calculator.Calculate(processDate.Year, currentRetirementCapital, person);
     }
 }

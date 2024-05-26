@@ -6,13 +6,13 @@ namespace Application.Bvg;
 
 public interface IBvgCalculator
 {
-    Either<string, BvgCalculationResult> Calculate(PredecessorRetirementCapital predecessorCapital, DateTime dateOfProcess, BvgPerson person);
+    Either<string, BvgCalculationResult> Calculate(int calculationYear, decimal retirementCapitalEndOfYear, BvgPerson person);
 
-    Either<string, decimal> InsuredSalary(DateTime dateOfProcess, BvgPerson person);
+    Either<string, decimal> InsuredSalary(int calculationYear, BvgPerson person);
 
-    Either<string, BvgTimeSeriesPoint[]> InsuredSalaries(DateTime dateOfProcess, BvgPerson person);
+    Either<string, BvgTimeSeriesPoint[]> InsuredSalaries(int calculationYear, BvgPerson person);
     
-    Either<string, BvgTimeSeriesPoint[]> RetirementCreditFactors(DateTime dateOfProcess, BvgPerson person);
+    Either<string, BvgTimeSeriesPoint[]> RetirementCreditFactors(int calculationYear, BvgPerson person);
     
-    Either<string, BvgTimeSeriesPoint[]> RetirementCredits(DateTime dateOfProcess, BvgPerson person);
+    Either<string, BvgTimeSeriesPoint[]> RetirementCredits(int calculationYear, BvgPerson person);
 }

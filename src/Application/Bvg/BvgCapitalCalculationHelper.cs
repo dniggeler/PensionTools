@@ -1,5 +1,4 @@
-﻿using Application.Bvg.Models;
-using Application.Extensions;
+﻿using Application.Extensions;
 using Domain.Models.Bvg;
 using PensionCoach.Tools.CommonUtils;
 using static LanguageExt.Prelude;
@@ -14,36 +13,35 @@ namespace Application.Bvg
         /// <summary>
         /// Gets the retirement capital sequence.
         /// </summary>
-        /// <param name="processDate"></param>
+        /// <param name="calculationYear"></param>
         /// <param name="retirementDate">The date of retirement.</param>
         /// <param name="ageBvg">The age BVG.</param>
         /// <param name="retirementAgeBvg">The retirement age BVG.</param>
         /// <param name="iBvg">The i BVG.</param>
-        /// <param name="predecessorCapital">The actuarial reserve accounting year.</param>
+        /// <param name="retirementCapitalEndOfYear">The actuarial reserve accounting year.</param>
         /// <param name="retirementCreditSequence">The retirement credit sequence.</param>
         /// <returns></returns>
         public static IReadOnlyCollection<RetirementCapital> GetRetirementCapitalSequence(
-            DateTime processDate,
+            int calculationYear,
             DateTime retirementDate,
             int ageBvg,
             int retirementAgeBvg,
             decimal iBvg,
-            PredecessorRetirementCapital predecessorCapital,
+            decimal retirementCapitalEndOfYear,
             IReadOnlyCollection<RetirementCredit> retirementCreditSequence)
         {
             // Begin of financial year = January 1 fo the financial year
-            DateTime beginOfFinancialYear = new DateTime(processDate.Year, 1, 1);
+            DateTime beginOfFinancialYear = new DateTime(calculationYear, 1, 1);
             DateTime endOfFinancialYear = beginOfFinancialYear.AddYears(1);
 
             if (retirementDate <= endOfFinancialYear)
             {
-                decimal aghBoYProRata = predecessorCapital.BeginOfYearAmount;
-                decimal aghEoYProRata = predecessorCapital.EndOfYearAmount;
+                decimal aghEoYProRata = retirementCapitalEndOfYear;
 
                 RetirementCapital aghProRataBoY =
                     new RetirementCapital(beginOfFinancialYear,
-                        aghBoYProRata,
-                        aghBoYProRata);
+                        decimal.Zero,
+                        decimal.Zero);
                 RetirementCapital aghProRataEoY =
                     new RetirementCapital(endOfFinancialYear,
                         aghEoYProRata,
@@ -58,22 +56,16 @@ namespace Application.Bvg
                 return List(aghProRataEndOfPeriod);
             }
 
+            RetirementCapital retirementCapitalItem = new (endOfFinancialYear, retirementCapitalEndOfYear, retirementCapitalEndOfYear);
 
-            RetirementCapital retirementCapitalEndOfYear =
-                new RetirementCapital(
-                        endOfFinancialYear,
-                        predecessorCapital.EndOfYearAmount,
-                        predecessorCapital.EndOfYearAmount)
-                    .Round();
-
-            var retirementAssets = List(retirementCapitalEndOfYear);
+            var retirementAssets = List(retirementCapitalItem);
 
             retirementAssets = retirementAssets.AddRange(
                 GetProjection(
                     ageBvg + 1,
                     retirementDate,
                     endOfFinancialYear,
-                    retirementCapitalEndOfYear,
+                    retirementCapitalItem,
                     iBvg,
                     retirementAgeBvg,
                     retirementCreditSequence));

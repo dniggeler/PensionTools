@@ -166,24 +166,23 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
     }
 
     [Theory(DisplayName = "Insured Salary")]
-    [InlineData("2024-01-01", 100_000, "1969-03-17", 1, 62475)]
-    [InlineData("2024-01-01", 20_000, "1969-03-17", 1, 0)]
-    [InlineData("2024-01-01", 18_000, "1969-03-17", 1, 0)]
+    [InlineData(2024, 100_000, "1969-03-17", 1, 62475)]
+    [InlineData(2024, 20_000, "1969-03-17", 1, 0)]
+    [InlineData(2024, 18_000, "1969-03-17", 1, 0)]
     public void Calculate_Insured_Salary(
-        string dateOfProcessString,
+        int processingYear,
         decimal effectiveSalary,
         string dateOfBirthString,
         int genderCode,
         decimal expectedInsuredSalary)
     {
-        DateTime dateOfProcess = DateTime.Parse(dateOfProcessString);
         DateTime dateOfBirth = DateTime.Parse(dateOfBirthString);
         Gender gender = (Gender)genderCode;
 
         BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, effectiveSalary, 1M);
         person.Gender = gender;
 
-        Either<string, decimal> response = _fixture.Calculator().InsuredSalary(dateOfProcess, person);
+        Either<string, decimal> response = _fixture.Calculator().InsuredSalary(processingYear, person);
 
         decimal result = response.IfLeft(err => throw new ApplicationException(err));
 
@@ -195,7 +194,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
     public void Calculate_Insured_Salaries_For_BVG_Maximum()
     {
         // given
-        DateTime dateOfProcess = new(2024, 1, 1);
+        int processingYear = 2024;
         DateTime dateOfBirth = new(1969, 12, 17);
         Gender gender = Gender.Male;
         decimal reportedSalary = 100_000;
@@ -203,7 +202,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
         BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, reportedSalary, 1M);
         person.Gender = gender;
 
-        Either<string, BvgTimeSeriesPoint[]> response = _fixture.Calculator().InsuredSalaries(dateOfProcess, person);
+        Either<string, BvgTimeSeriesPoint[]> response = _fixture.Calculator().InsuredSalaries(processingYear, person);
 
         BvgTimeSeriesPoint[] result = response.IfLeft(err => throw new ApplicationException(err));
 
@@ -216,7 +215,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
     public void Calculate_Retirement_Credits_Array()
     {
         // given
-        DateTime dateOfProcess = new(2024, 1, 1);
+        int processingYear = 2024;
         DateTime dateOfBirth = new(1969, 12, 17);
         Gender gender = Gender.Male;
         decimal reportedSalary = 100_000;
@@ -224,7 +223,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
         BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, reportedSalary, 1M);
         person.Gender = gender;
 
-        Either<string, BvgTimeSeriesPoint[]> response = _fixture.Calculator().RetirementCredits(dateOfProcess, person);
+        Either<string, BvgTimeSeriesPoint[]> response = _fixture.Calculator().RetirementCredits(processingYear, person);
 
         BvgTimeSeriesPoint[] result = response.IfLeft(err => throw new ApplicationException(err));
 
@@ -237,7 +236,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
     public void Calculate_Retirement_Credit_Factors_Array()
     {
         // given
-        DateTime dateOfProcess = new(2024, 1, 1);
+        int processingYear = 2024;
         DateTime dateOfBirth = new(1969, 12, 17);
         Gender gender = Gender.Male;
         decimal reportedSalary = 100_000;
@@ -245,7 +244,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
         BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, reportedSalary, 1M);
         person.Gender = gender;
 
-        Either<string, BvgTimeSeriesPoint[]> response = _fixture.Calculator().RetirementCreditFactors(dateOfProcess, person);
+        Either<string, BvgTimeSeriesPoint[]> response = _fixture.Calculator().RetirementCreditFactors(processingYear, person);
 
         BvgTimeSeriesPoint[] result = response.IfLeft(err => throw new ApplicationException(err));
 
