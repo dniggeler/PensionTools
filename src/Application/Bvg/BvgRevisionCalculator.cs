@@ -63,7 +63,7 @@ public class BvgRevisionCalculator(
         List<BvgTimeSeriesPoint> salaries = [];
         for (DateTime currentDate = new DateTime(calculationYear, 1, 1); currentDate <= dateOfFinalAge; currentDate = currentDate.AddMonths(1))
         {
-            decimal salary = InsuredSalary(calculationYear, person).IfLeft(decimal.Zero);
+            decimal salary = InsuredSalary(currentDate.Year, person).IfLeft(decimal.Zero);
 
             TechnicalAge age = TechnicalAge.From(currentDate.Year, currentDate.Month) - birthdateAsAge;
 
@@ -123,13 +123,17 @@ public class BvgRevisionCalculator(
         IReadOnlyCollection<RetirementCapital> retirementCapitalSequence =
             GetRetirementCapitalSequence(retirementCapitalEndOfYear, calculationYear, person, retirementCreditSequence);
 
-        decimal retirementCredit = retirementCreditSequence.SingleOrDefault(item => item.Date.Year == calculationYear) switch
+        DateTime processingDate = new(calculationYear, 1, 1);
+
+        decimal retirementCredit = retirementCreditSequence.SingleOrDefault(item => item.Date == processingDate) switch
         {
             null => decimal.Zero,
             { } item => item.Value
         };
 
         RetirementCapital finalRetirementCapital = retirementCapitalSequence.SingleOrDefault(item => item.Date == retirementDate);
+
+        decimal actualRetirementCapitalEndOfYear = ActualRetirementCapitalEndOfYear(calculationYear, retirementCapitalSequence, retirementDate);
 
         decimal finalRetirementCapitalWithInterest = finalRetirementCapital switch
         {
@@ -159,7 +163,7 @@ public class BvgRevisionCalculator(
             RetirementCredit = retirementCredit,
             RetirementCreditFactor = retirementCreditFactor,
             RetirementPension = retirementPension,
-            RetirementCapitalEndOfYear = retirementCapitalEndOfYear,
+            RetirementCapitalEndOfYear = actualRetirementCapitalEndOfYear,
             FinalRetirementCapital = finalRetirementCapitalWithInterest,
             FinalRetirementCapitalWithoutInterest = finalRetirementCapitalWithoutInterest,
             DisabilityPension = disabilityPension,
@@ -176,6 +180,28 @@ public class BvgRevisionCalculator(
         {
             return () => bvgCalculator.Calculate(calculationYear, currentRetirementCapitalEndOfYear, person).IfLeft(() => null);
         }
+    }
+
+    private static decimal ActualRetirementCapitalEndOfYear(int calculationYear,
+        IReadOnlyCollection<RetirementCapital> retirementCapitalSequence, DateTime retirementDate)
+    {
+        DateTime followingYearDate = new DateTime(calculationYear + 1, 1, 1);
+
+        RetirementCapital match = retirementCapitalSequence.SingleOrDefault(item => item.Date == followingYearDate);
+
+        if (match is null)
+        {
+            if (followingYearDate > retirementDate)
+            {
+                return retirementCapitalSequence
+                    .Where(item => item.Date.Year == calculationYear)
+                    .MaxBy(item => item.Date)
+                    .Value;
+            }
+            return decimal.Zero;
+        }
+
+        return match.Value;
     }
 
     private static decimal DisabilityPension(decimal finalRetirementCapitalWithoutInterest, DateTime retirementDate, Func<BvgCalculationResult> currentBvgCalculatorFunc)
