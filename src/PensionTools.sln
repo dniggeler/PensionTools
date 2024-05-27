@@ -86,7 +86,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireHost", "AspireHost\As
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{F1743BB6-65C2-44D3-940C-F0BF17C0557F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Tests", "Domain.Tests\Domain.Tests.csproj", "{C68CF325-C730-4111-9F11-E4CF453B620A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Tests", "Domain.Tests\Domain.Tests.csproj", "{C68CF325-C730-4111-9F11-E4CF453B620A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBvgRevisionApp", "BlazorBvgRevisionApp\BlazorBvgRevisionApp.csproj", "{435F6D3D-DFAA-4A87-A9B5-2B7B0AF2DD0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -190,6 +192,10 @@ Global
 		{C68CF325-C730-4111-9F11-E4CF453B620A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C68CF325-C730-4111-9F11-E4CF453B620A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C68CF325-C730-4111-9F11-E4CF453B620A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{435F6D3D-DFAA-4A87-A9B5-2B7B0AF2DD0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{435F6D3D-DFAA-4A87-A9B5-2B7B0AF2DD0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{435F6D3D-DFAA-4A87-A9B5-2B7B0AF2DD0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{435F6D3D-DFAA-4A87-A9B5-2B7B0AF2DD0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -230,6 +236,7 @@ Global
 		{5099CEDA-9354-44A6-ABE6-DED73307FF02} = {C564FA3C-70E4-4C36-93FC-04088D491984}
 		{F1743BB6-65C2-44D3-940C-F0BF17C0557F} = {955F3700-AC87-456C-B645-3F9451EAFA57}
 		{C68CF325-C730-4111-9F11-E4CF453B620A} = {F1743BB6-65C2-44D3-940C-F0BF17C0557F}
+		{435F6D3D-DFAA-4A87-A9B5-2B7B0AF2DD0F} = {89C541A7-00DE-42C9-A51D-D3E23A22FFB5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB937E37-4C08-4EB0-86F7-87F74A7F6C44}

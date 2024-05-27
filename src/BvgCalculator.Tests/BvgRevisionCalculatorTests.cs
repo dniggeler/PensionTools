@@ -111,7 +111,7 @@ public class BvgRevisionCalculatorTests : IClassFixture<BvgCalculatorFixture<App
         // given
         DateTime processDate = new DateTime(2024, 1, 1);
 
-        BvgPerson person = _fixture.GetCurrentPersonDetails(new DateTime(1974, 8, 31), 20_000, 1M);
+        BvgPerson person = _fixture.GetCurrentPersonDetails(new DateTime(1969, 3, 17), 20_000, 1M);
 
         // when
         var response = _fixture.GetBvgBenefits(0, person, processDate);
