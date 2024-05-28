@@ -255,12 +255,14 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
 
     public static IEnumerable<object[]> GetTestData()
     {
-        yield return new object[]
-        { "2017-01-01",
+        yield return
+        [
+            "2017-01-01",
             100_000,
             "1969-03-17",
             Gender.Male,
             107202,
-            20610 };
+            20610
+        ];
     }
 }
