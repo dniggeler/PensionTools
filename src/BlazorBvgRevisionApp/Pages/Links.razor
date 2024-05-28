@@ -6,7 +6,9 @@
         @foreach ((string Title, string Url) link in links)
         {
             <MudListItem>
-                <MudLink target="_blank" Href="@link.Url">@link.Title</MudLink>
+                <MudLink Typo="Typo.body2" target="_blank" Href="@link.Url">
+                    @link.Title
+                </MudLink>
             </MudListItem>
         }
     </MudList>
