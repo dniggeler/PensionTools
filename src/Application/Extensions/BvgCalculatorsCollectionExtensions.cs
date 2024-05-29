@@ -16,6 +16,7 @@ namespace Application.Extensions
             serviceCollection.AddSingleton<BvgCalculator>();
             serviceCollection.AddSingleton<BvgRevisionCalculator>();
             serviceCollection.AddSingleton<BvgRetirementDateCalculator>();
+            serviceCollection.AddSingleton<IPensionSupplementCalculator, BvgRevisionPensionSupplementCalculator>();
 
             serviceCollection.AddSingleton<IValidator<BvgPerson>, BvgPersonValidator>();
         }

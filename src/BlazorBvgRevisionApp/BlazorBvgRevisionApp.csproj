@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\PensionToolsComponentLibrary\PensionToolsComponentLibrary.csproj" />
   </ItemGroup>
 

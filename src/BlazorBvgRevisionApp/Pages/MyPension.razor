@@ -1,5 +1,121 @@
 ﻿@page "/MeineVorsorge"
 
+@using System.Text.Json
+@using Application.Bvg
+@using BlazorBvgRevisionApp.MyComponents.Models
+@using Domain.Enums
+@using Domain.Models.Bvg
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@using BvgPerson = BlazorBvgRevisionApp.MyComponents.BvgPerson
+
+@inject IWebAssemblyHostEnvironment EnvironmentService
+@inject BvgRevisionCalculator BvgCalculator
+@inject IPensionSupplementCalculator BvgPensionSupplementCalculator
+@inject ILogger<MyPension> Logger
+
 <PageTitle>Meine Vorsorge</PageTitle>
 
-<GenderSelector Label="Geschlecht" IsReadOnly="false"></GenderSelector>
+<MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+    <MudText Class="mb-4" Typo="Typo.body2">
+        Die Höhe Deines angesparten Guthabens und der daraus resultierenden Rente wird durch verschiedene Faktoren bestimmt.
+        Zum Vergleich mit der BVG Reform 21 ist es zudem notwendig, das reglementarische Altersguthaben zum Rentenbeginn zu berücksichtigen,
+        denn davon hängt die Höhe des Rentenzuschlags ab.
+    </MudText>
+
+    <MudText Class="mb-4" Typo="Typo.body2">
+        Alle diese Werte sind auf Ihrem Vorsorgeausweis, den Sie mindestens einmal jährlich erhalten, aufgeführt.
+    </MudText>
+
+    <BvgPerson Person="@Person"></BvgPerson>
+
+    <MudGrid>
+        <MudItem md="12">
+            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(IsPersonNotValid())">Berechne</MudButton>
+        </MudItem>
+    </MudGrid>
+</MudPaper>
+
+@if(CalculationResult is not null)
+{
+    <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+        <MudText Typo="Typo.h5">BVG Berechnungsergebnis</MudText>
+        <MudText Typo="Typo.body2">Das Ergebnis der Berechnung zeigt die voraussichtlichen BVG-Altersleistungen.</MudText>
+        
+        <MudTable Items="@(ResultItems)" Class="mt-4">
+            <HeaderContent>
+                <MudTh>Pensionierung:@CalculationResult.DateOfRetirement</MudTh>
+                <MudTh Style="text-align:right">ohne Reform</MudTh>
+                <MudTh Style="text-align:right">mit Reform</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd><strong>@context.Benefit</strong></MudTd>
+                <MudTd Style="text-align:right">@context.ValueCurrentBvg</MudTd>
+                <MudTd Style="text-align:right">@context.ValueBvgRevision</MudTd>
+            </RowTemplate>
+            </MudTable>
+    </MudPaper>
+}
+
+
+@code
+{
+    private BvgPersonViewModel Person { get; set; } = new ();
+    private BvgCalculationResult? CalculationResult { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (EnvironmentService.IsDevelopment())
+        {
+            Person = GetTestPerson();
+        }
+    }
+
+    private BvgPersonViewModel GetTestPerson()
+    {
+        return new BvgPersonViewModel
+        {
+            Name = "Toni Vorsorger",
+            DateOfBirth = new DateTime(1969, 3, 17),
+            ReportedSalary = 100_000,
+            BvgRetirementCapitalEndOfYear = 11245,
+            FinalRetirementCapital = 250_000,
+            Gender = Gender.Male,
+        };
+    }
+
+    private void OnSubmit(MouseEventArgs obj)
+    {
+        int calculationYear = DateTime.Now.Year;
+
+        BvgCalculator.Calculate(calculationYear, Person.BvgRetirementCapitalEndOfYear, new Domain.Models.Bvg.BvgPerson
+        {
+            ReportedSalary = Person.ReportedSalary,
+            Gender = Person.Gender,
+            DateOfBirth = Person.DateOfBirth ?? DateTime.MinValue,
+            PartTimeDegree = 1
+        })
+        .Match(
+            Right: calculationResult =>
+            {
+                CalculationResult = calculationResult;
+                Logger.LogInformation($"Calculation Result: {JsonSerializer.Serialize(calculationResult)}");
+            },
+            Left: error =>
+            {
+                Logger.LogWarning($"Fehler: {error}");
+                CalculationResult = null;
+            });
+    }
+
+    private (string Benefit, decimal ValueCurrentBvg, decimal? ValueBvgRevision)[] ResultItems => 
+    [
+        ("Altersguthaben", 0M, Math.Round(CalculationResult?.FinalRetirementCapital ?? decimal.Zero)),
+    ("Altersrente", 0M, Math.Round(CalculationResult?.RetirementPension ?? decimal.Zero)),
+    ];
+
+    private bool IsPersonNotValid()
+    {
+        return !(Person.Gender is not Gender.Undefined &&
+               Person.DateOfBirth is not null);
+    }
+}
