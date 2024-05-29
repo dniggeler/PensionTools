@@ -20,4 +20,8 @@
     <_ContentIncludedByDefault Remove="MyComponents\BibLink.razor" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PensionToolsComponentLibrary\PensionToolsComponentLibrary.csproj" />
+  </ItemGroup>
+
 </Project>
