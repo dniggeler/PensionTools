@@ -7,9 +7,7 @@
         {
             <MudListItem>
                 @link.Title
-                <MudLink Typo="Typo.body2" Underline="Underline.Always" target="_blank" Href="@link.Url">
-                    @link.Url
-                </MudLink>
+                <BibLink Url="@link.Url" MaxLength="50" />
             </MudListItem>
         }
     </MudList>
