@@ -6,7 +6,7 @@
         <MudTextField Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name" />
     </MudItem>
     <MudItem md="4">
-        <MudDatePicker Label="Geburtsdatum" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="dd.MM.yyyy" Placeholder="Geburtstag" />
+        <MudDatePicker Label="Geburtsdatum" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="yyyy-MM-dd" Placeholder="Geburtstag" Mask="@(new DateMask("0000-00-00"))" />
     </MudItem>
     <MudItem md="4">
         <GenderSelector Label="Geschlecht" SelectedGender="@Person.Gender" OnSelected="@(arg => Person.Gender = arg)" />
