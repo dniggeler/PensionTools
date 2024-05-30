@@ -16,7 +16,7 @@
 <PageTitle>Meine Vorsorge</PageTitle>
 
 <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
-    <MudText Class="mb-4" Typo="Typo.h4">Vergleich Ihrer Vorsorge</MudText>
+    <MudText Class="mb-4" Typo="Typo.h4">Schritt 1: Nur BVG vergleichen</MudText>
     <MudText Class="mb-4" Typo="Typo.body2">
         Die Höhe Deines angesparten Guthabens und der daraus resultierenden Rente wird durch verschiedene Faktoren bestimmt.
         Zum Vergleich mit der BVG Reform 21 ist es zudem notwendig, das reglementarische Altersguthaben zum Rentenbeginn zu berücksichtigen,
@@ -57,7 +57,14 @@
                 <MudTd Style="text-align:right">@context.ValueCurrentBvg</MudTd>
                 <MudTd Style="text-align:right">@($"{context.Difference:+0;-0;0}")</MudTd>
             </RowTemplate>
-            </MudTable>
+        </MudTable>
+    </MudPaper>
+
+    <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+        <MudText Class="mb-4" Typo="Typo.h4">Schritt 2: Anspruch auf einen Rentenzuschlag</MudText>
+        <MudText Typo="Typo.body2">Falls Sie die Vorraussetzungen für einen Rentenzuschlag erfüllen, erhöht sich die im vorangegangenen Schritt berechnete BVG Altersrente:</MudText>
+
+        <EligibleForPension PreCondition="@PreCondition"/>
     </MudPaper>
 }
 
@@ -71,6 +78,7 @@
     private BvgPersonViewModel Person { get; set; } = new ();
     private BvgCalculationResult? RevisionCalculationResult { get; set; }
     private BvgCalculationResult? CurrentCalculationResult { get; set; }
+    private EligibleForPensionViewModel PreCondition { get; } = new();
 
     protected override void OnInitialized()
     {
