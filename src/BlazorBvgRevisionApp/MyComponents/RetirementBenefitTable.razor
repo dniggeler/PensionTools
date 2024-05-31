@@ -1,0 +1,22 @@
+﻿@if (Benefits is not null)
+{
+    <MudTable Items="Benefits" Class="mt-4" Dense="true">
+        <HeaderContent>
+            <MudTh></MudTh>
+            <MudTh Style="text-align:right">mit Reform</MudTh>
+            <MudTh Style="text-align:right">ohne Reform</MudTh>
+            <MudTh Style="text-align:right">&#916;</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd><strong>@context.Benefit</strong></MudTd>
+            <MudTd Style="text-align:right">@context.ValueBvgRevision</MudTd>
+            <MudTd Style="text-align:right">@context.ValueCurrentBvg</MudTd>
+            <MudTd Style="text-align:right">@($"{context.Difference:+0;-0;0}")</MudTd>
+        </RowTemplate>
+    </MudTable>
+}
+
+@code
+{
+    [Parameter] public TableResult[]? Benefits { get; set; }
+}

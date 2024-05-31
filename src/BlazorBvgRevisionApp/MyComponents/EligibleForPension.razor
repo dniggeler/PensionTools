@@ -1,22 +1,14 @@
 ﻿@using BlazorBvgRevisionApp.MyComponents.Models
 
-<div class="form-row">
-
-    <div class="mb-3 form-group col-md-6">
-        <div class="form-group form-check">
-            <label for="ConditionBvg" class="form-check-label">BVG: mind. 15 Jahre versichert</label>
-            <input type="checkbox" class="form-check-input" id="ConditionBvg" @bind="PreCondition.IsEligibleBvg">
-        </div>
-    </div>
-
-    <div class="mb-3 form-group col-md-6">
-        <div class="form-group form-check">
-            <label for="ConditionAhv" class="form-check-label">AHV: 10 Jahre kein Unterbruch</label>
-            <input type="checkbox" class="form-check-input" id="ConditionAhv" @bind="PreCondition.IsEligibleAhv">
-        </div>
-    </div>
-</div>
+<MudGrid Spacing="0">
+    <MudItem md="12">
+        <MudCheckBox T="bool" @bind-Value="PreCondition.IsEligibleBvg">BVG: mind. 15 Jahre versichert</MudCheckBox>
+    </MudItem>
+    <MudItem md="12">
+        <MudCheckBox T="bool" @bind-Value="PreCondition.IsEligibleAhv">AHV: 10 Jahre kein Unterbruch</MudCheckBox>
+    </MudItem>
+</MudGrid>
 
 @code {
-    [Parameter] public EligibleForPensionViewModel PreCondition { get; set; }
+    [Parameter] public required EligibleForPensionViewModel PreCondition { get; set; }
 }

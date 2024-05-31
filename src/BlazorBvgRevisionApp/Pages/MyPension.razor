@@ -16,22 +16,34 @@
 <PageTitle>Meine Vorsorge</PageTitle>
 
 <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
-    <MudText Class="mb-4" Typo="Typo.h4">Schritt 1: Nur BVG vergleichen</MudText>
-    <MudText Class="mb-4" Typo="Typo.body2">
+    <MudText Class="mb-4" Typo="Typo.h4">Nur BVG vergleichen</MudText>
+    
+    <MudText Class="mb-4" Typo="Typo.h6">Schritt 1: notwendige persönliche Angaben</MudText>
+
+    <MudText Class="mb-4">
         Die Höhe Deines angesparten Guthabens und der daraus resultierenden Rente wird durch verschiedene Faktoren bestimmt.
         Zum Vergleich mit der BVG Reform 21 ist es zudem notwendig, das reglementarische Altersguthaben zum Rentenbeginn zu berücksichtigen,
         denn davon hängt die Höhe des Rentenzuschlags ab.
     </MudText>
 
-    <MudText Class="mb-4" Typo="Typo.body2">
+    <MudText Class="mb-4">
         Alle diese Werte sind auf Ihrem Vorsorgeausweis, den Sie mindestens einmal jährlich erhalten, aufgeführt.
     </MudText>
 
     <BvgPersonForm Person="@Person"></BvgPersonForm>
+    
+    <MudText Class="mt-8" Typo="Typo.h6">Schritt 2: Haben Sie Anspruch auf einen Rentenzuschlag?</MudText>
+
+    <MudText Class="mt-4">
+        Falls Sie die beiden Vorraussetzungen für einen Rentenzuschlag erfüllen und Sie einer Übergangsgeneration angehören,
+        erhöht sich BVG Altersrente. Details dazu finden Sie <MudLink Target="_blank" Href="https://www.bsv.admin.ch/bsv/de/home/sozialversicherungen/bv/reformen-und-revisionen.html">hier</MudLink>.
+    </MudText>
+
+    <EligibleForPension PreCondition="@PreCondition"/>
 
     <MudGrid>
         <MudItem md="12">
-            <MudButton OnClick="OnBvgCalculate" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(IsPersonNotValid())">Berechne</MudButton>
+            <MudButton OnClick="OnBvgCalculate" Variant="Variant.Filled" Color="Color.Primary" Disabled="@IsPersonNotValid()">Berechne</MudButton>
         </MudItem>
     </MudGrid>
 </MudPaper>
@@ -44,37 +56,12 @@
 
         <MudText Typo="Typo.body1" Class="mt-4">Ihr Pensionierungsdatum: @RevisionCalculationResult.DateOfRetirement.ToString("d. MMMM, yyyy")</MudText>
 
-        <MudTable Items="@(ResultItems)" Class="mt-4" Dense="true">
-            <HeaderContent>
-                <MudTh></MudTh>
-                <MudTh Style="text-align:right">mit Reform</MudTh>
-                <MudTh Style="text-align:right">ohne Reform</MudTh>
-                <MudTh Style="text-align:right">&#916;</MudTh>
-            </HeaderContent>
-            <RowTemplate>
-                <MudTd><strong>@context.Benefit</strong></MudTd>
-                <MudTd Style="text-align:right">@context.ValueBvgRevision</MudTd>
-                <MudTd Style="text-align:right">@context.ValueCurrentBvg</MudTd>
-                <MudTd Style="text-align:right">@($"{context.Difference:+0;-0;0}")</MudTd>
-            </RowTemplate>
-        </MudTable>
-    </MudPaper>
-
-    <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
-        <MudText Class="mb-4" Typo="Typo.h4">Schritt 2: Anspruch auf einen Rentenzuschlag</MudText>
-        <MudText Typo="Typo.body2">Falls Sie die Vorraussetzungen für einen Rentenzuschlag erfüllen, erhöht sich die im vorangegangenen Schritt berechnete BVG Altersrente:</MudText>
-
-        <EligibleForPension PreCondition="@PreCondition"/>
+        <RetirementBenefitTable Benefits="@ResultItems()"/>
     </MudPaper>
 }
 
 @code
 {
-    internal record TableResult(string Benefit, decimal ValueCurrentBvg, decimal? ValueBvgRevision)
-    {
-        public decimal? Difference => ValueBvgRevision.HasValue ? Math.Round(ValueBvgRevision.Value - ValueCurrentBvg) : null;
-    }
-
     private BvgPersonViewModel Person { get; set; } = new ();
     private BvgCalculationResult? RevisionCalculationResult { get; set; }
     private BvgCalculationResult? CurrentCalculationResult { get; set; }
@@ -86,19 +73,6 @@
         {
             Person = GetTestPerson();
         }
-    }
-
-    private BvgPersonViewModel GetTestPerson()
-    {
-        return new BvgPersonViewModel
-        {
-            Name = "Toni Vorsorger",
-            DateOfBirth = new DateTime(1969, 3, 17),
-            ReportedSalary = 100_000,
-            BvgRetirementCapitalEndOfYear = 11245,
-            FinalRetirementCapital = 250_000,
-            Gender = Gender.Male,
-        };
     }
 
     private void OnBvgCalculate(MouseEventArgs obj)
@@ -137,17 +111,43 @@
                     Logger.LogWarning($"Fehler: {error}");
                     CurrentCalculationResult = null;
                 });
+
+        if (RevisionCalculationResult is not null && PreCondition.IsEligible())
+        {
+            decimal finalRetirementCapital = Math.Max(Person.FinalRetirementCapital, RevisionCalculationResult.FinalRetirementCapital);
+
+            decimal pensionSupplement = BvgPensionSupplementCalculator.CalculatePensionSupplement(Person.DateOfBirth ?? DateTime.MaxValue, finalRetirementCapital);
+
+            RevisionCalculationResult.RetirementPension += pensionSupplement;
+        }
     }
 
-    private TableResult[] ResultItems => 
-    [
-        new TableResult("Altersguthaben", Math.Round(CurrentCalculationResult?.FinalRetirementCapital ?? decimal.Zero), Math.Round(RevisionCalculationResult?.FinalRetirementCapital ?? decimal.Zero)),
-    new TableResult("Altersrente", Math.Round(CurrentCalculationResult?.RetirementPension ?? decimal.Zero), Math.Round(RevisionCalculationResult?.RetirementPension ?? decimal.Zero)),
-    ];
+    private TableResult[] ResultItems()
+    {
+        return
+        [
+            new TableResult("Altersguthaben", Math.Round(CurrentCalculationResult?.FinalRetirementCapital ?? decimal.Zero), Math.Round(RevisionCalculationResult?.FinalRetirementCapital ?? decimal.Zero)),
+            new TableResult("Altersrente", Math.Round(CurrentCalculationResult?.RetirementPension ?? decimal.Zero), Math.Round(RevisionCalculationResult?.RetirementPension ?? decimal.Zero)),
+        ];
+    }
+    
 
     private bool IsPersonNotValid()
     {
         return !(Person.Gender is not Gender.Undefined &&
                Person.DateOfBirth is not null);
+    }
+
+    private BvgPersonViewModel GetTestPerson()
+    {
+        return new BvgPersonViewModel
+            {
+                Name = "Toni Vorsorger",
+                DateOfBirth = new DateTime(1969, 3, 17),
+                ReportedSalary = 100_000,
+                BvgRetirementCapitalEndOfYear = 11245,
+                FinalRetirementCapital = 250_000,
+                Gender = Gender.Male,
+            };
     }
 }
