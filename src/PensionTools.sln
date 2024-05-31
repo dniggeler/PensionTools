@@ -90,7 +90,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Tests", "Domain.Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBvgRevisionApp", "BlazorBvgRevisionApp\BlazorBvgRevisionApp.csproj", "{435F6D3D-DFAA-4A87-A9B5-2B7B0AF2DD0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PensionToolsComponentLibrary", "PensionToolsComponentLibrary\PensionToolsComponentLibrary.csproj", "{187FDC48-1AFA-4FA4-AF62-A3FDECFE56DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PensionToolsComponentLibrary", "PensionToolsComponentLibrary\PensionToolsComponentLibrary.csproj", "{187FDC48-1AFA-4FA4-AF62-A3FDECFE56DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
