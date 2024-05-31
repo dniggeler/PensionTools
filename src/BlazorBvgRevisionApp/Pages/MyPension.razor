@@ -111,24 +111,42 @@
                     Logger.LogWarning($"Fehler: {error}");
                     CurrentCalculationResult = null;
                 });
-
-        if (RevisionCalculationResult is not null && PreCondition.IsEligible())
-        {
-            decimal finalRetirementCapital = Math.Max(Person.FinalRetirementCapital, RevisionCalculationResult.FinalRetirementCapital);
-
-            decimal pensionSupplement = BvgPensionSupplementCalculator.CalculatePensionSupplement(Person.DateOfBirth ?? DateTime.MaxValue, finalRetirementCapital);
-
-            RevisionCalculationResult.RetirementPension += pensionSupplement;
-        }
     }
 
     private TableResult[] ResultItems()
     {
-        return
+        List<TableResult> results =
         [
             new TableResult("Altersguthaben", Math.Round(CurrentCalculationResult?.FinalRetirementCapital ?? decimal.Zero), Math.Round(RevisionCalculationResult?.FinalRetirementCapital ?? decimal.Zero)),
-            new TableResult("Altersrente", Math.Round(CurrentCalculationResult?.RetirementPension ?? decimal.Zero), Math.Round(RevisionCalculationResult?.RetirementPension ?? decimal.Zero)),
         ];
+
+        if (RevisionCalculationResult is not null)
+        {
+            if (PreCondition.IsEligible())
+            {
+                decimal finalRetirementCapital = Math.Max(Person.FinalRetirementCapital, RevisionCalculationResult.FinalRetirementCapital);
+
+                decimal pensionSupplement = BvgPensionSupplementCalculator.CalculatePensionSupplement(Person.DateOfBirth ?? DateTime.MaxValue, finalRetirementCapital);
+
+                RevisionCalculationResult.RetirementPension += pensionSupplement;
+
+                results.Add(
+                    new TableResult("Altersrente",
+                        Math.Round(CurrentCalculationResult?.RetirementPension ?? decimal.Zero),
+                        Math.Round(RevisionCalculationResult?.RetirementPension ?? decimal.Zero)));
+
+                results.Add(new TableResult("davon Rentenzuschlag", null, Math.Round(pensionSupplement), true));
+            }
+            else
+            {
+                results.Add(
+                    new TableResult("Altersrente",
+                        Math.Round(CurrentCalculationResult?.RetirementPension ?? decimal.Zero),
+                        Math.Round(RevisionCalculationResult?.RetirementPension ?? decimal.Zero)));
+            }
+        }
+
+        return results.ToArray();
     }
     
 

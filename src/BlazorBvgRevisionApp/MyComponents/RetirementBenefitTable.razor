@@ -8,7 +8,16 @@
             <MudTh Style="text-align:right">&#916;</MudTh>
         </HeaderContent>
         <RowTemplate>
-            <MudTd><strong>@context.Benefit</strong></MudTd>
+            <MudTd>
+                @if(context.IsSubordinated)
+                {
+                    @context.Benefit
+                }
+                else
+                {
+                    <strong>@context.Benefit</strong>
+                }
+            </MudTd>
             <MudTd Style="text-align:right">@context.ValueBvgRevision</MudTd>
             <MudTd Style="text-align:right">@context.ValueCurrentBvg</MudTd>
             <MudTd Style="text-align:right">@($"{context.Difference:+0;-0;0}")</MudTd>
