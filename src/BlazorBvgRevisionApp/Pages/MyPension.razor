@@ -2,6 +2,7 @@
 
 @using System.Text.Json
 @using Application.Bvg
+@using Application.Bvg.Models
 @using BlazorBvgRevisionApp.MyComponents.Models
 @using Domain.Enums
 @using Domain.Models.Bvg
@@ -16,9 +17,9 @@
 <PageTitle>Meine Vorsorge</PageTitle>
 
 <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
-    <MudText Class="mb-4" Typo="Typo.h4">Nur BVG vergleichen</MudText>
+    <MudText Class="mb-4" Typo="Typo.h4">BVG Leistungen vor und nach der Reform</MudText>
     
-    <MudText Class="mb-4" Typo="Typo.h6">Schritt 1: notwendige persönliche Angaben</MudText>
+    <MudText Class="mb-4" Typo="Typo.h6">Schritt 1: Notwendige persönliche Angaben</MudText>
 
     <MudText Class="mb-4">
         Die Höhe Deines angesparten Guthabens und der daraus resultierenden Rente wird durch verschiedene Faktoren bestimmt.
@@ -46,6 +47,10 @@
             <MudButton OnClick="OnBvgCalculate" Variant="Variant.Filled" Color="Color.Primary" Disabled="@IsPersonNotValid()">Berechne</MudButton>
         </MudItem>
     </MudGrid>
+    
+    <MudText Class="mt-8" Typo="Typo.h6">Schritt 3 (Experimentell): Was ändert sich tatsächlich?</MudText>
+    
+    <PensionPlanForm PensionPlan="@PensionPlan"></PensionPlanForm>
 </MudPaper>
 
 @if(RevisionCalculationResult is not null)
@@ -66,12 +71,14 @@
     private BvgCalculationResult? RevisionCalculationResult { get; set; }
     private BvgCalculationResult? CurrentCalculationResult { get; set; }
     private EligibleForPensionViewModel PreCondition { get; } = new();
+    private PensionPlanViewModel PensionPlan = new();
 
     protected override void OnInitialized()
     {
         if (EnvironmentService.IsDevelopment())
         {
             Person = GetTestPerson();
+            PensionPlan = GetTestPensionPlan();
         }
     }
 
@@ -118,7 +125,7 @@
         List<TableResult> results =
         [
             new TableResult("Altersguthaben", Math.Round(CurrentCalculationResult?.FinalRetirementCapital ?? decimal.Zero), Math.Round(RevisionCalculationResult?.FinalRetirementCapital ?? decimal.Zero)),
-        ];
+    ];
 
         if (RevisionCalculationResult is not null)
         {
@@ -148,7 +155,7 @@
 
         return results.ToArray();
     }
-    
+
 
     private bool IsPersonNotValid()
     {
@@ -167,5 +174,21 @@
                 FinalRetirementCapital = 250_000,
                 Gender = Gender.Male,
             };
+    }
+
+    private PensionPlanViewModel GetTestPensionPlan()
+    {
+        return new PensionPlanViewModel
+        {
+            ProjectionInterestRate = 0.02M,
+            InsuredSalary = 5090,
+            RetirementCapitalEndOfYear = 75642.55M,
+            RetirementCredits = [
+                new BvgTimeSeriesPoint((25,0), DateTime.MinValue, 0.07M),
+                new BvgTimeSeriesPoint((35,0), DateTime.MinValue, 0.10M),
+                new BvgTimeSeriesPoint((45,0), DateTime.MinValue, 0.15M),
+                new BvgTimeSeriesPoint((55,0), DateTime.MinValue, 0.18M),
+            ]
+        };
     }
 }
