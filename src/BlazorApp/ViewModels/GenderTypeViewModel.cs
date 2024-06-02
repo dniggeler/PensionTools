@@ -1,4 +1,4 @@
-﻿using PensionCoach.Tools.CommonTypes;
+﻿using Domain.Enums;
 
 namespace BlazorApp.ViewModels;
 

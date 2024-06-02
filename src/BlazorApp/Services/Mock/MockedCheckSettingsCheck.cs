@@ -2,28 +2,29 @@
 using System.Threading.Tasks;
 using BlazorApp.Services.CheckSettings;
 
-namespace BlazorApp.Services.Mock;
-
-public class MockedCheckSettingsCheck : ICheckSettingsService
+namespace BlazorApp.Services.Mock
 {
-    public Task<bool> HealthCheckAsync()
+    public class MockedCheckSettingsCheck : ICheckSettingsService
     {
-        return Task.FromResult(true);
-    }
-
-    public Task<Dictionary<string, string>> GetFrontendConfigurationAsync()
-    {
-        return Task.FromResult(new Dictionary<string, string>()
+        public Task<bool> HealthCheckAsync()
         {
-            {"Environment", "Mocked"}
-        });
-    }
+            return Task.FromResult(true);
+        }
 
-    public Task<Dictionary<string, string>> GetBackendConfigurationAsync()
-    {
-        return Task.FromResult(new Dictionary<string, string>()
+        public Task<Dictionary<string, string>> GetFrontendConfigurationAsync()
         {
-            {"Steuerrechner", "Mock"}
-        });
+            return Task.FromResult(new Dictionary<string, string>()
+            {
+                {"Environment", "Mocked"}
+            });
+        }
+
+        public Task<Dictionary<string, string>> GetBackendConfigurationAsync()
+        {
+            return Task.FromResult(new Dictionary<string, string>()
+            {
+                {"Steuerrechner", "Mock"}
+            });
+        }
     }
 }

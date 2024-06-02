@@ -2,21 +2,24 @@
 using System.IO;
 using System.Reflection;
 using System.Text.Json.Serialization;
-using Calculators.CashFlow;
+using Application.Extensions;
+using Application.Features.FullTaxCalculation;
+using Application.Features.PensionVersusCapital;
+using Application.Features.TaxComparison;
+using Application.MultiPeriodCalculator;
+using Infrastructure.Configuration;
+using Infrastructure.DataStaging;
+using Infrastructure.EstvTaxCalculator;
+using Infrastructure.HealthChecks;
+using Infrastructure.PostOpenApi;
+using Infrastructure.Tax.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using PensionCoach.Tools.BvgCalculator;
-using PensionCoach.Tools.EstvTaxCalculators;
-using PensionCoach.Tools.PostOpenApi;
-using PensionCoach.Tools.TaxCalculator;
 using Swashbuckle.AspNetCore.Filters;
-using Tax.Data;
-using Tax.Tools.Comparison;
-using TaxCalculator.WebApi.HealthChecks;
 
 namespace TaxCalculator.WebApi
 {
@@ -43,6 +46,8 @@ namespace TaxCalculator.WebApi
                         "https://localhost:5001",
                         "http://localhost:44331",
                         "https://localhost:44331",
+                        "http://localhost:44353",
+                        "https://localhost:44353",
                         "http://localhost:57094",
                         "https://localhost:57094",
                         "https://x14qsqjz-44331.euw.devtunnels.ms",
@@ -63,10 +68,12 @@ namespace TaxCalculator.WebApi
                 .AddJsonOptions(options =>
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             services.AddTaxData(Configuration);
-            services.AddTaxCalculators(Configuration);
+            services.AddTaxCalculators(Configuration.GetApplicationMode());
             services.AddTaxComparers();
+            services.AddDataStagingServices();
             services.AddBvgCalculators();
             services.AddCashFlowCalculators();
+            services.AddToolsCalculators();
             services.AddEstvTaxCalculatorClient(Configuration);
             services.AddPostOpenApiClient(Configuration);
             services.AddSwaggerExamplesFromAssemblyOf<Examples.CapitalBenefitTaxRequestExample>();

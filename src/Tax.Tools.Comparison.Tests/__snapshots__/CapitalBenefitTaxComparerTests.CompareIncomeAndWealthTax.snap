@@ -1,0 +1,78 @@
+﻿[
+  {
+    "MunicipalityId": 3,
+    "MunicipalityName": "Bonstetten",
+    "Canton": "ZH",
+    "MaxSupportedTaxYear": 2019,
+    "TaxResult": {
+      "StateTaxResult": {
+        "BasisIncomeTax": {
+          "DeterminingFactorTaxableAmount": 100000.0,
+          "TaxAmount": 6296.0
+        },
+        "BasisWealthTax": {
+          "DeterminingFactorTaxableAmount": 500000.0,
+          "TaxAmount": 307.5
+        },
+        "ChurchTax": {
+          "TaxAmount": 858.4550,
+          "TaxAmountPartner": 0.00,
+          "TaxRate": 13.0
+        },
+        "CantonRate": 100.0,
+        "MunicipalityRate": 109.0,
+        "MunicipalityTaxAmount": 7197.815,
+        "CantonTaxAmount": 6603.5,
+        "ChurchTaxAmount": 858.4550,
+        "TotalWealthTax": 642.675,
+        "TotalIncomeTax": 14017.0950,
+        "TotalTaxAmount": 14683.7700,
+        "PollTaxAmount": 24.0
+      },
+      "FederalTaxResult": {
+        "DeterminingFactorTaxableAmount": 100000.0,
+        "TaxAmount": 2874.0
+      },
+      "TotalTaxAmount": 17557.7700
+    },
+    "TotalCount": 2
+  },
+  {
+    "MunicipalityId": 261,
+    "MunicipalityName": "Zürich",
+    "Canton": "ZH",
+    "MaxSupportedTaxYear": 2019,
+    "TaxResult": {
+      "StateTaxResult": {
+        "BasisIncomeTax": {
+          "DeterminingFactorTaxableAmount": 100000.0,
+          "TaxAmount": 6296.0
+        },
+        "BasisWealthTax": {
+          "DeterminingFactorTaxableAmount": 500000.0,
+          "TaxAmount": 307.5
+        },
+        "ChurchTax": {
+          "TaxAmount": 660.350,
+          "TaxAmountPartner": 0.00,
+          "TaxRate": 10.0
+        },
+        "CantonRate": 100.0,
+        "MunicipalityRate": 119.0,
+        "MunicipalityTaxAmount": 7858.165,
+        "CantonTaxAmount": 6603.5,
+        "ChurchTaxAmount": 660.350,
+        "TotalWealthTax": 673.425,
+        "TotalIncomeTax": 14448.590,
+        "TotalTaxAmount": 15146.015,
+        "PollTaxAmount": 24.0
+      },
+      "FederalTaxResult": {
+        "DeterminingFactorTaxableAmount": 100000.0,
+        "TaxAmount": 2874.0
+      },
+      "TotalTaxAmount": 18020.015
+    },
+    "TotalCount": 2
+  }
+]

@@ -7,7 +7,7 @@
       "Accounts": [
         {
           "Year": 2021,
-          "Amount": -504436.2550,
+          "Amount": -505000.00,
           "AccountType": "Exogenous"
         },
         {
@@ -23,80 +23,93 @@
         {
           "Year": 2021,
           "Amount": 0.0,
+          "AccountType": "Investment"
+        },
+        {
+          "Year": 2021,
+          "Amount": 0.0,
           "AccountType": "OccupationalPension"
         },
         {
           "Year": 2021,
           "Amount": 0.0,
           "AccountType": "ThirdPillar"
+        },
+        {
+          "Year": 2021,
+          "Amount": 563.7450,
+          "AccountType": "Tax"
         }
       ],
-      "ExogenousAccount": {
-        "Id": "b5cc39fe-d40e-407a-9bb0-c70f541007bd",
-        "Name": "Exogenous Account",
-        "Balance": -504436.2550,
-        "InterestRate": 0.0,
-        "Transactions": [
-          {
-            "Description": "Simple cash-flow: outflow to Wealth Account",
-            "ValutaDate": "2021-01-01T00:00:00",
-            "Amount": -500000.0
-          },
-          {
-            "Description": "Compound Return Wealth: outflow to Wealth Account",
-            "ValutaDate": "2022-01-01T00:00:00",
-            "Amount": -5000.00
-          },
-          {
-            "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
-            "ValutaDate": "2022-01-01T00:00:00",
-            "Amount": 563.7450
-          }
-        ]
-      },
-      "IncomeAccount": {
-        "Id": "29c99d31-c54c-4602-b560-874844f05c64",
-        "Name": "Income Account",
-        "Balance": 0.0,
-        "InterestRate": 0.0,
-        "Transactions": []
-      },
-      "WealthAccount": {
-        "Id": "281a023f-7a3a-4e1f-9158-90d1092d15d2",
-        "Name": "Wealth Account",
-        "Balance": 504436.2550,
-        "NetGrowthRate": 0.0,
-        "Transactions": [
-          {
-            "Description": "Simple cash-flow: inflow from Exogenous Account",
-            "ValutaDate": "2021-01-01T00:00:00",
-            "Amount": 500000.0
-          },
-          {
-            "Description": "Compound Return Wealth: inflow from Exogenous Account",
-            "ValutaDate": "2022-01-01T00:00:00",
-            "Amount": 5000.00
-          },
-          {
-            "Description": "Yearly Income and Wealth Tax: outflow to Exogenous Account",
-            "ValutaDate": "2022-01-01T00:00:00",
-            "Amount": -563.7450
-          }
-        ]
-      },
-      "OccupationalPensionAccount": {
-        "Id": "e0f0758d-fcf7-4620-b8cd-53fe9891143c",
-        "Name": "Occupational Pension Account",
-        "Balance": 0.0,
-        "NetGrowthRate": 0.0,
-        "Transactions": []
-      },
-      "ThirdPillarAccount": {
-        "Id": "af38a140-0566-4458-8026-3f42b801b532",
-        "Name": "Third Pillar Account",
-        "Balance": 0.0,
-        "NetGrowthRate": 0.0,
-        "Transactions": []
+      "Transactions": {
+        "ExogenousAccount": {
+          "Id": "f38cbd4b-5a01-49b5-9a60-3f89efb8bebe",
+          "Name": "Exogenous Account",
+          "Transactions": [
+            {
+              "Description": "Simple cash-flow: outflow to Wealth Account",
+              "ValutaDate": "2021-01-01T00:00:00",
+              "Amount": -500000.0
+            },
+            {
+              "Description": "Compound Return Wealth: outflow to Wealth Account",
+              "ValutaDate": "2022-01-01T00:00:00",
+              "Amount": -5000.00
+            }
+          ]
+        },
+        "IncomeAccount": {
+          "Id": "ef2f59c5-47a0-4b1b-a39d-c56f1b08ec98",
+          "Name": "Income Account",
+          "Transactions": []
+        },
+        "WealthAccount": {
+          "Id": "74c9475c-2efd-42c5-83f0-492d6d599e70",
+          "Name": "Wealth Account",
+          "Transactions": [
+            {
+              "Description": "Simple cash-flow: inflow from Exogenous Account",
+              "ValutaDate": "2021-01-01T00:00:00",
+              "Amount": 500000.0
+            },
+            {
+              "Description": "Compound Return Wealth: inflow from Exogenous Account",
+              "ValutaDate": "2022-01-01T00:00:00",
+              "Amount": 5000.00
+            },
+            {
+              "Description": "Yearly Income and Wealth Tax: outflow to Tax Account",
+              "ValutaDate": "2022-01-01T00:00:00",
+              "Amount": -563.7450
+            }
+          ]
+        },
+        "InvestmentAccount": {
+          "Id": "236f7341-c5e7-45e8-8203-c93986c1ee80",
+          "Name": "Investment Account",
+          "Transactions": []
+        },
+        "OccupationalPensionAccount": {
+          "Id": "85496fce-9a73-4f00-954f-3b13049c0c5d",
+          "Name": "Occupational Pension Account",
+          "Transactions": []
+        },
+        "ThirdPillarAccount": {
+          "Id": "14c35e7a-4198-4357-aa22-136bcbd46a2c",
+          "Name": "Third Pillar Account",
+          "Transactions": []
+        },
+        "TaxAccount": {
+          "Id": "3a7075f4-bc63-493b-8cd7-262773b9ca63",
+          "Name": "Tax Account",
+          "Transactions": [
+            {
+              "Description": "Yearly Income and Wealth Tax: inflow from Wealth Account",
+              "ValutaDate": "2022-01-01T00:00:00",
+              "Amount": 563.7450
+            }
+          ]
+        }
       }
     },
     "Left": null

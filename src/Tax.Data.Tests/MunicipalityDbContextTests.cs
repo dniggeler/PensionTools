@@ -1,74 +1,77 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Domain.Models.Municipality;
+using Domain.Models.Tax;
 using FluentAssertions;
+using Infrastructure.Tax.Data;
 using Microsoft.Extensions.DependencyInjection;
-using Tax.Data.Abstractions.Models;
 using Xunit;
 
-namespace Tax.Data.Tests;
-
-[Trait("Data", "Municipality DB Context")]
-public class MunicipalityDbContextTests : IClassFixture<TaxDataFixture>
+namespace Tax.Data.Tests
 {
-    private readonly TaxDataFixture _fixture;
-
-    public MunicipalityDbContextTests(TaxDataFixture fixture)
+    [Trait("Data", "Municipality DB Context")]
+    public class MunicipalityDbContextTests : IClassFixture<TaxDataFixture>
     {
-        _fixture = fixture;
-    }
+        private readonly TaxDataFixture _fixture;
 
-    [Fact(DisplayName = "Get Zürich")]
-    public void ShouldLoadSingleMunicipalityByBfsNumber()
-    {
-        // given
-        int bfsNumber = 261;
-
-        // when
-        var result = GetMunicipalityEntities();
-
-        // then
-        result.Should().NotBeNullOrEmpty();
-
-        IEnumerable<MunicipalityEntity> GetMunicipalityEntities()
+        public MunicipalityDbContextTests(TaxDataFixture fixture)
         {
-            using var dbContext = _fixture.Provider.GetService<MunicipalityDbContext>();
-            return dbContext.MunicipalityEntities
-                .Where(item => item.BfsNumber == bfsNumber)
-                .ToList();
+            _fixture = fixture;
         }
-    }
 
-    [Fact(DisplayName = "Load Staged Zip Data")]
-    public void LoadStagesZipData()
-    {
-        // given
-        int bfsNumber = 261;
-
-        // when
-        var result = GetZipEntities();
-
-        // then
-        result.Should().NotBeNullOrEmpty();
-
-        IEnumerable<ZipEntity> GetZipEntities()
+        [Fact(DisplayName = "Get Zürich")]
+        public void ShouldLoadSingleMunicipalityByBfsNumber()
         {
-            using var dbContext = _fixture.Provider.GetService<MunicipalityDbContext>();
-            return dbContext.TaxMunicipalityEntities
-                .Where(item => item.BfsNumber == bfsNumber)
-                .ToList();
+            // given
+            int bfsNumber = 261;
+
+            // when
+            var result = GetMunicipalityEntities();
+
+            // then
+            result.Should().NotBeNullOrEmpty();
+
+            IEnumerable<MunicipalityEntity> GetMunicipalityEntities()
+            {
+                using var dbContext = _fixture.Provider.GetService<MunicipalityDbContext>();
+                return dbContext.MunicipalityEntities
+                    .Where(item => item.BfsNumber == bfsNumber)
+                    .ToList();
+            }
         }
-    }
 
-    [Fact(DisplayName = "Truncate Stage Zip Data Table", Skip = "Preserve date")]
-    public void TruncateTaxMunicipalityTable()
-    {
-        // given
+        [Fact(DisplayName = "Load Staged Zip Data")]
+        public void LoadStagesZipData()
+        {
+            // given
+            int bfsNumber = 261;
 
-        // when
-        using var dbContext = _fixture.Provider.GetService<MunicipalityDbContext>();
-        var result = dbContext.TruncateTaxMunicipalityTable();
+            // when
+            var result = GetZipEntities();
 
-        // then
-        result.Should().BeGreaterThan(0);
+            // then
+            result.Should().NotBeNullOrEmpty();
+
+            IEnumerable<ZipEntity> GetZipEntities()
+            {
+                using var dbContext = _fixture.Provider.GetService<MunicipalityDbContext>();
+                return dbContext.TaxMunicipalityEntities
+                    .Where(item => item.BfsNumber == bfsNumber)
+                    .ToList();
+            }
+        }
+
+        [Fact(DisplayName = "Truncate Stage Zip Data Table", Skip = "Preserve date")]
+        public void TruncateTaxMunicipalityTable()
+        {
+            // given
+
+            // when
+            using var dbContext = _fixture.Provider.GetService<MunicipalityDbContext>();
+            var result = dbContext.TruncateTaxMunicipalityTable();
+
+            // then
+            result.Should().BeGreaterThan(0);
+        }
     }
 }

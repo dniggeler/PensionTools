@@ -1,11 +1,11 @@
 ﻿@page "/TaxScenario/Purchase"
 
-@using Microsoft.AspNetCore.Components
-@using PensionCoach.Tools.CommonTypes
 @using PensionCoach.Tools.CommonTypes.MultiPeriod
-@using PensionCoach.Tools.TaxComparison
 @using System.Globalization
-@using ApexCharts;
+@using Application.Features.TaxScenarios.Models
+@using Domain.Enums
+@using Domain.Models.MultiPeriod
+@using Domain.Models.Tax
 @using Color = MudBlazor.Color
 
 @inject IPersonService PersonService
@@ -58,8 +58,8 @@
                             </MudText>
                         </MudItem>
                         <MudItem md="8">
-                            <MudNumericField T="decimal" Label="Gesamtbetrag" Format="n0" Step="1000" @bind-Value="transferInAmount" Culture="CultureInfo.InvariantCulture"/>
-                            <MudNumericField T="int" Label="Anzahl Einkäufe" Format="n0" @bind-Value="numberOfTransferIns" Culture="CultureInfo.InvariantCulture"/>
+                            <MudNumericField T="decimal" Label="Gesamtbetrag" Format="n0" Step="5000" Min="1000"@bind-Value="transferInAmount" Culture="CultureInfo.InvariantCulture"/>
+                            <MudNumericField T="int" Label="Anzahl Einkäufe" Format="n0" @bind-Value="numberOfTransferIns" Min="1" Culture="CultureInfo.InvariantCulture"/>
                         </MudItem>
                     </MudGrid>
                 </MudTabPanel>
@@ -74,7 +74,7 @@
                             </MudText>
                         </MudItem>
                         <MudItem md="8">
-                            <MudSwitch @bind-Checked="taxRequest.WithCapitalBenefitTaxation" Color="MudBlazor.Color.Primary"/>
+                            <MudSwitch @bind-Checked="taxRequest.WithCapitalBenefitTaxation" Color="Color.Primary"/>
 
                             <MudNumericField T="int" Disabled="@(!taxRequest.WithCapitalBenefitTaxation)" Label="Bezugsjahr" Format="n0" @bind-Value="yearOfFirstWithdrawal" Max="2099" Culture="CultureInfo.InvariantCulture"/>
                             <MudNumericField T="decimal" Disabled="@(!taxRequest.WithCapitalBenefitTaxation)" Label="Vorsorgekapital (ohne Einkauf)" Format="n0" Step="1000" @bind-Value="totalWithdrawalAmount" Culture="CultureInfo.InvariantCulture"/>
@@ -91,6 +91,7 @@
                             </MudText>
                         </MudItem>
                         <MudItem md="8">
+                            <MudSwitch @bind-Checked="@WithSalary" Color="Color.Primary" Label="Jährliches Einkommen berücksichtigen" Size="MudBlazor.Size.Small"/>
                             <MudNumericField T="decimal" Label="Rendite p.a. auf Vermögen" Format="p2" Step="0.005M" @bind-Value="taxRequest.NetWealthReturn" Culture="CultureInfo.InvariantCulture"/>
                             <MudNumericField T="decimal" Label="Rendite p.a. Vorsorgekapitalien" Format="p2" Step="0.005M" @bind-Value="taxRequest.NetPensionCapitalReturn" Culture="CultureInfo.InvariantCulture"/>
                         </MudItem>
@@ -207,8 +208,9 @@
 
 @code {
     private bool showLoading;
+    private bool WithSalary;
     private CapitalBenefitTransferInComparerRequest taxRequest;
-    private CapitalBenefitsTransferInResponse taxResponse;
+    private ScenarioCalculationResponse taxResponse;
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
     private int[] supportedTaxYears;
@@ -383,6 +385,11 @@
 
         IReadOnlyCollection<SingleTransferInModel> CreateWithdrawals(int years, int startingYear)
         {
+            if(years == 0)
+            {
+                return new List<SingleTransferInModel>();
+            }
+            
             List<SingleTransferInModel> transferIns = new();
 
             for (int ii = 0; ii < years; ii++)
@@ -396,6 +403,11 @@
 
         IReadOnlyCollection<SingleTransferInModel> CreateTransferIns(decimal amount, int years, int startingYear)
         {
+            if(years == 0)
+            {
+                return new List<SingleTransferInModel>();
+            }
+
             List<SingleTransferInModel> transferIns = new();
             decimal amountPerYear = amount / years;
 

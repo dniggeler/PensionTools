@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.CommonTypes.Municipality;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
+using Application.Municipality;
+using Domain.Enums;
+using Domain.Models.Municipality;
 using Snapshooter.Xunit;
 using Xunit;
 

@@ -22,7 +22,7 @@
                 }
             </MudItem>
         </MudGrid>
-       
+
     </MudCardContent>
 </MudCard>
 
@@ -50,31 +50,33 @@
     </MudCardContent>
 </MudCard>
 
-<MudCard Class="pa-4" Outlined="true">
-    <MudCardHeader>
-        <MudText Typo="Typo.subtitle1">Backend</MudText>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudGrid>
+@if (backendConfiguration.Count > 0)
+{
+    <MudCard Class="pa-4" Outlined="true">
+        <MudCardHeader>
+            <MudText Typo="Typo.subtitle1">Backend</MudText>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudGrid>
+                @foreach (var key in backendConfiguration)
+                {
+                    <MudItem md="4" Class="d-flex justify-start align-center">
+                        <MudText Typo="Typo.body2">
+                            @(key.Key + ":")
+                        </MudText>
+                    </MudItem>
 
-            @foreach (var key in backendConfiguration)
-            {
-                <MudItem md="4" Class="d-flex justify-start align-center">
-                    <MudText Typo="Typo.body2">
-                        @(key.Key + ":")
-                    </MudText>
-                </MudItem>
+                    <MudItem md="8" Class="d-flex justify-end">
+                        <MudText Typo="Typo.body2">
+                            <i>@(key.Value)</i>
+                        </MudText>
+                    </MudItem>
+                }
+            </MudGrid>
+        </MudCardContent>
+    </MudCard>
+}
 
-                <MudItem md="8" Class="d-flex justify-end">
-                    <MudText Typo="Typo.body2">
-                        <i>@(key.Value)</i>
-                    </MudText>
-                </MudItem>
-            }
-
-        </MudGrid>
-    </MudCardContent>
-</MudCard>
 
 @code {
     private bool healthCheckStatus;
@@ -87,4 +89,5 @@
         frontendConfiguration = await SettingsService.GetFrontendConfigurationAsync();
         backendConfiguration = await SettingsService.GetBackendConfigurationAsync();
     }
+
 }

@@ -1,25 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Domain.Enums;
+using Domain.Models.Municipality;
+using Domain.Models.Tax;
 using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.CommonTypes.Municipality;
 using PensionCoach.Tools.CommonTypes.Tax;
 
-namespace BlazorApp.Services;
-
-public record MunicipalityFilter
+namespace BlazorApp.Services
 {
-    public int[] BfsNumberList { get; set; } = Array.Empty<int>();
+    public record MunicipalityFilter
+    {
+        public int[] BfsNumberList { get; set; } = Array.Empty<int>();
 
-    public Canton[] CantonList { get; set; }
-}
+        public Canton[] CantonList { get; set; }
+    }
 
-public interface IMunicipalityService
-{
+    public interface IMunicipalityService
+    {
         
-    Task<IEnumerable<MunicipalityModel>> GetAllAsync();
+        Task<IEnumerable<MunicipalityModel>> GetAllAsync();
 
-    Task<IEnumerable<TaxSupportedMunicipalityModel>> GetTaxSupportingAsync();
+        Task<IEnumerable<TaxSupportedMunicipalityModel>> GetTaxSupportingAsync();
 
-    Task<IEnumerable<TaxSupportedMunicipalityModel>> GetTaxSupportingAsync(MunicipalityFilter filter);
+        Task<IEnumerable<TaxSupportedMunicipalityModel>> GetTaxSupportingAsync(MunicipalityFilter filter);
+    }
 }

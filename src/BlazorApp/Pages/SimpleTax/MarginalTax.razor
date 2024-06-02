@@ -1,7 +1,7 @@
-﻿@page "/SimpleTax/MarginalTax"
+﻿@page "/SimpleTax/MarginalTax/IncomeAndWealth"
 
 @using PensionCoach.Tools.CommonTypes.Tax
-@using Microsoft.AspNetCore.Components
+@using Domain.Models.Tax
 @using Microsoft.Extensions.Logging
 @using System.Globalization
 
@@ -67,7 +67,7 @@
         </MudItem>
         
         <MudItem md="12">
-            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
+            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
         </MudItem>
         
     </MudGrid>
@@ -76,7 +76,7 @@
 
 @if(showLoading)
 {
-    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-7" />
+    <MudProgressLinear Color="MudBlazor.Color.Primary" Indeterminate="true" Class="my-7" />
 }
 
 @if (taxResponse is not null)
@@ -113,6 +113,8 @@
 
 @code
 {
+    const int DefaultNumberOfSamples = 20;
+
     private MarginalTaxRequest taxRequest = new();
     private MarginalTaxResponse taxResponse;
     private PersonViewModel selectedPerson;
@@ -129,6 +131,10 @@
     {
         persons = (await PersonService.GetPersonsAsync()).ToList();
 
+        taxRequest.NumberOfSamples = DefaultNumberOfSamples;
+        taxRequest.LowerSalaryLimit = 0;
+        taxRequest.UpperSalaryLimit = Convert.ToInt32(selectedPerson?.TaxableIncome + 100_000);
+
         supportedTaxYears = await MarginalTaxCurveCalculationService.SupportedTaxYearsAsync();
     }
 
@@ -140,6 +146,7 @@
     private void HandleSelectPerson(Guid personId)
     {
         selectedPerson = persons.Single(item => item.Id == personId);
+        taxRequest.UpperSalaryLimit = Convert.ToInt32(selectedPerson?.TaxableIncome + 100_000);
     }
 
     private async Task OnSubmit()
@@ -158,8 +165,9 @@
                 ReligiousGroup = selectedPerson.ReligiousGroupType,
                 BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
                 CalculationYear = supportedTaxYears.Max(),
-                UpperSalaryLimit = Convert.ToInt32(selectedPerson.TaxableIncome + 100_000),
-                NumberOfSamples = 20
+                LowerSalaryLimit = taxRequest.LowerSalaryLimit,
+                UpperSalaryLimit = taxRequest.UpperSalaryLimit,
+                NumberOfSamples = taxRequest.NumberOfSamples
             };
 
             taxResponse = await MarginalTaxCurveCalculationService.CalculateIncomeCurveAsync(taxRequest);

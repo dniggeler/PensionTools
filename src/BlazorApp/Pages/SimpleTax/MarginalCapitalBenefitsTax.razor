@@ -1,0 +1,232 @@
+﻿@page "/SimpleTax/MarginalTax/CapitalBenefits"
+
+@using PensionCoach.Tools.CommonTypes.Tax
+@using Domain.Models.Tax
+@using Microsoft.Extensions.Logging
+@using System.Globalization
+@using Microsoft.AspNetCore.Components
+
+@inject IPersonService PersonService
+@inject ILogger<MarginalTax> Logger
+@inject IMarginalTaxCurveCalculationService MarginalTaxCurveCalculationService
+
+<MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+    <MudGrid>
+        <MudItem md="12">
+            <MudText Typo="Typo.h5">Steuerberechnung</MudText>
+        </MudItem>
+
+        <MudItem md="12">
+
+            <MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+
+                <MudTabPanel Text="Auswahl">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Die Cashflow-Simulation basiert auf Angaben zur Person sowie steuerrevelanten Daten wie Wohnort und Vorsorgekapital.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <PersonSelector Persons="persons" OnSelect="@HandleSelectPerson"/>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+                
+                <MudTabPanel Text="Steuerdaten" Disabled="@(selectedPerson is null)">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Steuerlich relevante Angaben zur Person sind der Zivilstand,
+                                die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter,
+                                welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.
+                                Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <PersonDetails IsReadOnly="false" Person="@selectedPerson"/>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+                
+                <MudTabPanel Text="Simulation" Disabled="@(selectedPerson is null)">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <MudNumericField Label="Untergrenze" Format="n0" Step="1000" @bind-Value="taxRequest.LowerSalaryLimit" Culture="CultureInfo.InvariantCulture" />
+                            <MudNumericField Label="Obergrenze" Format="n0" Step="1000" @bind-Value="taxRequest.UpperSalaryLimit" Culture="CultureInfo.InvariantCulture" />
+                            <MudNumericField Label="Anzahl Kurvenpunkte" Format="n0" Step="5" @bind-Value="taxRequest.NumberOfSamples" Culture="CultureInfo.InvariantCulture" />
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+
+            </MudTabs>
+        </MudItem>
+        
+        <MudItem md="12">
+            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
+        </MudItem>
+        
+    </MudGrid>
+</MudPaper>
+
+
+@if(showLoading)
+{
+    <MudProgressLinear Color="MudBlazor.Color.Primary" Indeterminate="true" Class="my-7" />
+}
+
+@if (taxResponse is not null)
+{
+    <MudExpansionPanels Class="mb-4 pa-6">
+        <MudExpansionPanel Text="Steuerkurven - Einkommen" IsInitiallyExpanded="true">
+            <MudGrid>
+                <MudItem lg="6" md="12">
+                    <TaxCurve
+                        XMin="@taxRequest.LowerSalaryLimit"
+                        XMax="@taxRequest.UpperSalaryLimit"
+                        CurveTitle="Grenzsteuer"
+                        XAxisTitle="Einkommen"
+                        YAxisTitle="Grenzsteuersatz"
+                        IsInPercent="true"
+                        CurrentPoint="@currentTaxRatePoint"
+                        CurvePoints="@taxRateCurvePoints"/>
+                </MudItem>
+                <MudItem lg="6" md="12">
+                    <TaxCurve XMin="@taxRequest.LowerSalaryLimit"
+                              XMax="@taxRequest.UpperSalaryLimit"
+                              CurveTitle="Steuerbetrag"
+                              XAxisTitle="Einkommen"
+                              YAxisTitle="Steuerbetrag"
+                              IsInPercent="false"
+                              CurrentPoint="@currentTotalTaxPoint"
+                              CurvePoints="@totalTaxCurvePoints" />
+                </MudItem>
+
+            </MudGrid>
+        </MudExpansionPanel>
+    </MudExpansionPanels>
+}
+
+@code
+{
+    const int DefaultNumberOfSamples = 20;
+
+    private MarginalTaxRequest taxRequest = new();
+    private MarginalTaxResponse taxResponse;
+    private PersonViewModel selectedPerson;
+    private IReadOnlyCollection<PersonViewModel> persons;
+    private int[] supportedTaxYears;
+    private bool showLoading;
+
+    private TaxCurve.CurvePoint currentTaxRatePoint = new();
+    private TaxCurve.CurvePoint currentTotalTaxPoint = new();
+    private TaxCurve.CurvePoint[] taxRateCurvePoints = { };
+    private TaxCurve.CurvePoint[] totalTaxCurvePoints = { };
+
+    protected override async Task OnInitializedAsync()
+    {
+        persons = (await PersonService.GetPersonsAsync()).ToList();
+
+        taxRequest.NumberOfSamples = DefaultNumberOfSamples;
+        taxRequest.LowerSalaryLimit = 0;
+        taxRequest.UpperSalaryLimit = Convert.ToInt32(selectedPerson?.TaxableIncome + 500_000);
+
+        supportedTaxYears = await MarginalTaxCurveCalculationService.SupportedTaxYearsAsync();
+    }
+
+    private void HandleChangeResidence(TaxSupportedMunicipalityModel municipalityModel)
+    {
+        taxRequest.BfsMunicipalityId = municipalityModel.BfsMunicipalityNumber;
+    }
+
+    private void HandleSelectPerson(Guid personId)
+    {
+        selectedPerson = persons.Single(item => item.Id == personId);
+        taxRequest.UpperSalaryLimit = Convert.ToInt32(selectedPerson?.TaxableIncome + 500_000);
+    }
+
+    private async Task OnSubmit()
+    {
+        try
+        {
+            taxResponse = null;
+            showLoading = true;
+
+            taxRequest = new MarginalTaxRequest
+            {
+                Name = selectedPerson.Name,
+                CivilStatus = selectedPerson.CivilStatus,
+                TaxableAmount = selectedPerson.FinalRetirementCapital + selectedPerson.FinalCapital3a,
+                PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
+                ReligiousGroup = selectedPerson.ReligiousGroupType,
+                BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
+                CalculationYear = supportedTaxYears.Max(),
+                LowerSalaryLimit = taxRequest.LowerSalaryLimit,
+                UpperSalaryLimit = taxRequest.UpperSalaryLimit,
+                NumberOfSamples = taxRequest.NumberOfSamples
+            };
+
+            taxResponse = await MarginalTaxCurveCalculationService.CalculateCapitalBenefitsCurveAsync(taxRequest);
+            
+            taxRateCurvePoints = TaxRateCurvePoints();
+            totalTaxCurvePoints = TotalTaxCurvePoints();
+
+            currentTaxRatePoint = new TaxCurve.CurvePoint
+            {
+                XValue = Convert.ToInt32(taxResponse.CurrentMarginalTaxRate.Salary),
+                YValue = taxResponse.CurrentMarginalTaxRate.Rate
+            };
+
+            currentTotalTaxPoint = new TaxCurve.CurvePoint
+            {
+                XValue = Convert.ToInt32(taxResponse.CurrentMarginalTaxRate.Salary),
+                YValue = taxResponse.CurrentMarginalTaxRate.TotalTaxAmount
+            };
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError($"Loading marginal tax rate curve failed {ex.Message}");
+        }
+        finally
+        {
+            showLoading = false;
+        }
+    }
+
+    private TaxCurve.CurvePoint[] TaxRateCurvePoints()
+    {
+        if (taxResponse == null)
+        {
+            return Enumerable.Empty<TaxCurve.CurvePoint>().ToArray();
+        }
+
+        return taxResponse.MarginalTaxCurve
+            .Select(item => new TaxCurve.CurvePoint
+                {
+                    XValue = Convert.ToInt32(item.Salary),
+                    YValue = item.Rate
+                })
+            .ToArray();
+    }
+
+    private TaxCurve.CurvePoint[] TotalTaxCurvePoints()
+    {
+        if (taxResponse == null)
+        {
+            return Enumerable.Empty<TaxCurve.CurvePoint>().ToArray();
+        }
+
+        return taxResponse.MarginalTaxCurve
+            .Select(item => new TaxCurve.CurvePoint
+            {
+                XValue = Convert.ToInt32(item.Salary),
+                YValue = item.TotalTaxAmount
+            })
+            .ToArray();
+    }
+}

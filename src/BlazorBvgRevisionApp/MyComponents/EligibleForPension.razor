@@ -1,0 +1,14 @@
+﻿@using BlazorBvgRevisionApp.MyComponents.Models
+
+<MudGrid Spacing="0">
+    <MudItem md="12">
+        <MudCheckBox T="bool" @bind-Value="PreCondition.IsEligibleBvg">BVG: mind. 15 Jahre versichert</MudCheckBox>
+    </MudItem>
+    <MudItem md="12">
+        <MudCheckBox T="bool" @bind-Value="PreCondition.IsEligibleAhv">AHV: 10 Jahre kein Unterbruch</MudCheckBox>
+    </MudItem>
+</MudGrid>
+
+@code {
+    [Parameter] public required EligibleForPensionViewModel PreCondition { get; set; }
+}

@@ -1,0 +1,40 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="3">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@(_ => DrawerToggle())" />
+        <MudText Typo="Typo.h5" Class="ml-3">Reform BVG 21</MudText>
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Material.Filled.Email" Color="Color.Inherit" Edge="Edge.End" Href="mailto:dniggeler@outlook.com" Target="_blank" />
+        <MudIconButton Icon="@Icons.Custom.Brands.X" Color="Color.Inherit" Edge="Edge.End" Href="https://twitter.com/dnig69" Target="_blank" />
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+        <NavMenu/>
+    </MudDrawer>
+    <MudMainContent>
+        <MudPaper Class="ma-10 pa-6 align-center" Elevation="1">
+            @Body
+        </MudPaper>
+    </MudMainContent>
+    
+    <MudAppBar Bottom="true" Fixed="true" Color="Color.Primary" Elevation="1">
+        <MudIcon Icon="@Icons.Material.Filled.Copyright"/>
+        <MudText>2024 by Dieter Niggeler</MudText>
+        <MudSpacer/>
+        <MudIconButton Icon="@Icons.Custom.Brands.MudBlazor" Color="Color.Inherit" Edge="Edge.End" Href="https://mudblazor.com" Target="_blank" />
+    </MudAppBar>
+
+</MudLayout>
+
+@code {
+    bool _drawerOpen = true;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}
+

@@ -11,12 +11,12 @@
 
 <MudLayout>
     <MudAppBar Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="DrawerToggle" />
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="MudBlazor.Color.Inherit" Edge="Edge.Start" OnClick="DrawerToggle" />
         <MudText>PensionTools</MudText>
         <MudSpacer/>
 
         <MudText>Light</MudText>
-        <MudSwitch @bind-Checked="@IsDarkMode" Color="Color.Primary" Class="ml-4" Label="Dark" LabelPosition="LabelPosition.End" T="bool"/>
+        <MudSwitch @bind-Checked="@IsDarkMode" Color="MudBlazor.Color.Primary" Class="ml-4" Label="Dark" LabelPosition="MudBlazor.LabelPosition.End" T="bool" />
         
         <MudPaper Elevation="0">
             <MudButtonGroup Variant="Variant.Outlined">
@@ -29,25 +29,39 @@
         </MudPaper>
 
 
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" OnClick="OpenSettings" />
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="MudBlazor.Color.Inherit" Edge="Edge.End" OnClick="OpenSettings" />
 
     </MudAppBar>
     
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <MudNavLink Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
-    
+
         <MudNavLink Href="PersonListing" Match="NavLinkMatch.Prefix">Personen</MudNavLink>
-        <MudNavGroup Title="Steuerrechner" Expanded="false">
-            <MudNavLink Href="/SimpleTax/TaxCalculation" Match="NavLinkMatch.Prefix">Einkommen/Vermögen</MudNavLink>
-            <MudNavLink Href="/SimpleTax/MarginalTax" Match="NavLinkMatch.Prefix">Grenzsteuerkurve</MudNavLink>
+        <MudNavGroup Title="Steuerrechner">
+                <MudNavGroup Title="Einkommen/Vermögen">
+                    <MudNavLink Href="/SimpleTax/TaxCalculation" Match="NavLinkMatch.Prefix">Detailliert</MudNavLink>
+                    <MudNavLink Href="/SimpleTax/MarginalTax/IncomeAndWealth" Match="NavLinkMatch.Prefix">Steuerkurven</MudNavLink>
+            </MudNavGroup>
+            <MudNavGroup Title="Kapitalbezug">
+                <MudNavLink Href="/SimpleTax/CapitalBenefitsTaxCalculation/" Match="NavLinkMatch.Prefix">Detailliert</MudNavLink>
+                    <MudNavLink Href="/SimpleTax/MarginalTax/CapitalBenefits" Match="NavLinkMatch.Prefix">Steuerkurven</MudNavLink>
+            </MudNavGroup>
         </MudNavGroup>
+        
+        <MudNavGroup Title="Vorsorge">
+            <MudNavLink Href="/SocialSecurity/BvgRevision21Comparison" Match="NavLinkMatch.Prefix">BVG Revision 21</MudNavLink>
+        </MudNavGroup>
+
         <MudNavGroup Title="Gemeindevergleich">
             <MudNavLink Href="/TaxComparer/IncomeAndWealth" Match="NavLinkMatch.Prefix">Einkommen/Vermögen</MudNavLink>
             <MudNavLink Href="/TaxComparer/CapitalBenefits" Match="NavLinkMatch.Prefix">Kapitalbezug</MudNavLink>
         </MudNavGroup>
+
         <MudNavGroup Title="Vordefinierte Szenarien">
             <MudNavLink Href="/TaxScenario/Purchase" Match="NavLinkMatch.Prefix">PK Einkauf</MudNavLink>
+            <MudNavLink Href="/TaxScenario/PensionVersusCapital" Match="NavLinkMatch.Prefix">Rente vs Kapital</MudNavLink>
         </MudNavGroup>
+
         <MudNavGroup Title="Eigene Szenarien">
             <MudNavLink Href="/FinancialPlanning/WealthPlanning" Match="NavLinkMatch.Prefix">Vermögensentwicklung (exp.)</MudNavLink>
         </MudNavGroup>

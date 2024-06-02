@@ -5,7 +5,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1000,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": null
   },
   {
     "BfsNumber": 71,
@@ -13,7 +14,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1000,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 819600000
   },
   {
     "BfsNumber": 121,
@@ -21,7 +23,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1000,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 862000000
   },
   {
     "BfsNumber": 231,
@@ -29,7 +32,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1000,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 848700000
   },
   {
     "BfsNumber": 160,
@@ -37,7 +41,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1000,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 812600000
   },
   {
     "BfsNumber": 120,
@@ -45,7 +50,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1000,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 863600000
   },
   {
     "BfsNumber": 83,
@@ -53,7 +59,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1000,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 810700000
   },
   {
     "BfsNumber": 22,
@@ -61,7 +68,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1000,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 846300000
   },
   {
     "BfsNumber": 115,
@@ -69,7 +77,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1000,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 862500000
   },
   {
     "BfsNumber": 151,
@@ -77,7 +86,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1000,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 870300000
   },
   {
     "BfsNumber": 154,
@@ -85,7 +95,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1000,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 870000000
   },
   {
     "BfsNumber": 135,
@@ -93,7 +104,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1000,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 880200000
   },
   {
     "BfsNumber": 118,
@@ -101,7 +113,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1000,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 863000000
   },
   {
     "BfsNumber": 225,
@@ -109,7 +122,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1000,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 854500000
   },
   {
     "BfsNumber": 161,
@@ -117,7 +131,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1493,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 870200000
   },
   {
     "BfsNumber": 261,
@@ -125,7 +140,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1498,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 800000000
   },
   {
     "BfsNumber": 242,
@@ -133,7 +149,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1500,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 890300000
   },
   {
     "BfsNumber": 251,
@@ -141,7 +158,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1509,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 810400000
   },
   {
     "BfsNumber": 226,
@@ -149,7 +167,8 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 1920,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 841800000
   },
   {
     "BfsNumber": 241,
@@ -157,6 +176,7 @@
     "Canton": "ZH",
     "DateOfMutation": null,
     "MutationId": 2165,
-    "SuccessorId": 0
+    "SuccessorId": 0,
+    "EstvTaxLocationId": 890400000
   }
 ]

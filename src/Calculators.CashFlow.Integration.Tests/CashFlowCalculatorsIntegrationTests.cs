@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Application.Features.TaxScenarios.Models;
+using Domain.Enums;
+using Domain.Models.Tax;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
-using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.TaxComparison;
 using Snapshooter.Xunit;
 using TaxCalculator.WebApi;
 using Xunit;
@@ -39,7 +40,7 @@ namespace Calculators.CashFlow.Integration.Tests
         {
             CapitalBenefitTransferInComparerRequest request = GetRequest();
 
-            var response = await client.PostAsJsonAsync("CalculateTransferInCapitalBenefits", request);
+            var response = await client.PostAsJsonAsync("CalculateCapitalBenefitTransferInsYears", request);
 
             response.EnsureSuccessStatusCode();
 

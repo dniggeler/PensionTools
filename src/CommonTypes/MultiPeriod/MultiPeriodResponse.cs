@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Domain.Models.MultiPeriod;
 
 namespace PensionCoach.Tools.CommonTypes.MultiPeriod
 {

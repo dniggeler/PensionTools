@@ -1,0 +1,37 @@
+﻿@using System.Globalization
+@using BlazorBvgRevisionApp.MyComponents.Models
+
+<MudGrid>
+    <MudItem md="4" xs="6">
+        <MudNumericField T="int" Label="VA Gültigkeitsdatum" Min="2023" Step="1" @bind-Value="@Person.ValidityYearCertificate" Placeholder="Gültigkeitsdatum" />
+    </MudItem>
+    
+    <MudItem md="4" xs="6">
+        <MudTextField Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name"/>
+    </MudItem>
+    
+    <MudItem md="4">
+        <MudDatePicker Label="Geburtsdatum" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="yyyy-MM-dd" Placeholder="Geburtstag" Mask="@(new DateMask("0000-00-00"))"/>
+    </MudItem>
+
+    <MudItem md="4">
+        <GenderSelector Label="Geschlecht" SelectedGender="@Person.Gender" OnSelected="@(arg => Person.Gender = arg)"/>
+    </MudItem>
+
+    <MudItem md="4">
+        <MudNumericField Label="AHV-Jahreslohn" Format="n0" Min="0" Step="1000" @bind-Value="Person.ReportedSalary" Culture="CultureInfo.InvariantCulture"/>
+    </MudItem>
+
+    <MudItem md="4">
+        <MudNumericField Label="BVG Alterguthaben Ende des Jahres" Format="n0" Min="0" Step="1000" @bind-Value="Person.BvgRetirementCapitalEndOfYear" Culture="CultureInfo.InvariantCulture"/>
+    </MudItem>
+
+    <MudItem md="4">
+        <MudNumericField Label="Alterguthaben PK im Schlussalter" Format="n0" Min="0" Step="1000" @bind-Value="Person.FinalRetirementCapital" Culture="CultureInfo.InvariantCulture"/>
+    </MudItem>
+
+</MudGrid>
+
+@code {
+    [Parameter] public required BvgPersonViewModel Person { get; set; }
+}

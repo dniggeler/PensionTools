@@ -1,0 +1,37 @@
+﻿@inject IStringLocalizer<Resource> Localizer
+
+<MudTable Items="@Persons" Hover="true" Breakpoint="Breakpoint.Md" @ref="mudTable" OnRowClick="HandleRowClickAsync" T="PersonViewModel">
+    <HeaderContent>
+        <MudTh>@Localizer["person.name"]</MudTh>
+        <MudTh>@Localizer["person.residence"]</MudTh>
+        <MudTh>@Localizer["person.birthdate"]</MudTh>
+        <MudTh>@Localizer["person.gender"]</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Name">@context.Name</MudTd>
+        <MudTd DataLabel="Gemeinde">@context.MunicipalityName</MudTd>
+        <MudTd DataLabel="Geburtstag">@(context.DateOfBirth.HasValue ? DateOnly.FromDateTime(context.DateOfBirth.Value) : "-")</MudTd>
+        <MudTd DataLabel="Geschlecht">
+            <GenderSelector IsReadOnly="true" DisplayInGrid="true" SelectedGender="@context.Gender" />
+        </MudTd>
+    </RowTemplate>
+</MudTable>
+
+@code {
+    [Parameter]
+    public IEnumerable<PersonViewModel> Persons { get; set; }
+
+    [Parameter]
+    public EventCallback<Guid> OnSelect { get; set; }
+
+    private PersonViewModel SelectedPerson { get; set; }
+    private int selectedRowNumber = -1;
+    private MudTable<PersonViewModel> mudTable;
+
+    private async Task HandleRowClickAsync(TableRowClickEventArgs<PersonViewModel> args)
+    {
+        SelectedPerson = args.Item;
+
+        await OnSelect.InvokeAsync(SelectedPerson.Id);
+    }
+}

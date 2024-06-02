@@ -2,77 +2,78 @@
 using ApexCharts;
 using static BlazorApp.Pages.SimpleTax.TaxCurve;
 
-namespace BlazorApp.Services;
-
-public class ApexChartConfigurator : IApexChartConfigurator
+namespace BlazorApp.Services
 {
-    const string PrimaryColorLight = "#594ae2ff";
-    const string PrimaryColorDark = "#776be7ff";
-
-    const string SecondaryColorLight = "#00c853ff";
-    const string SecondaryColorDark = "#0bba83ff";
-
-    public ApexChartOptions<CurvePoint> CurvePointOptions(bool isDarkMode)
+    public class ApexChartConfigurator : IApexChartConfigurator
     {
-        var options = new ApexChartOptions<CurvePoint>
+        const string PrimaryColorLight = "#594ae2ff";
+        const string PrimaryColorDark = "#776be7ff";
+
+        const string SecondaryColorLight = "#00c853ff";
+        const string SecondaryColorDark = "#0bba83ff";
+
+        public ApexChartOptions<CurvePoint> CurvePointOptions(bool isDarkMode)
         {
-            Theme = new Theme
+            var options = new ApexChartOptions<CurvePoint>
             {
-                Mode = isDarkMode ? Mode.Dark : Mode.Light,
-            },
-            Chart = new Chart
-            {
-                Toolbar = new Toolbar
+                Theme = new Theme
                 {
-                    Show = true,
-                    Tools = new Tools
+                    Mode = isDarkMode ? Mode.Dark : Mode.Light,
+                },
+                Chart = new Chart
+                {
+                    Toolbar = new Toolbar
                     {
-                        Download = true,
-                        Selection = false,
-                        Zoom = false,
-                        Zoomin = false,
-                        Zoomout = false,
-                        Pan = false,
-                        Reset = false,
+                        Show = true,
+                        Tools = new Tools
+                        {
+                            Download = true,
+                            Selection = false,
+                            Zoom = false,
+                            Zoomin = false,
+                            Zoomout = false,
+                            Pan = false,
+                            Reset = false,
+                        },
                     },
                 },
-            },
-            Stroke =
-                new Stroke
-                {
-                    Curve = Curve.Stepline,
-                    Colors = new List<string> { PrimaryColor(isDarkMode), SecondaryColor(isDarkMode) },
-                    Width = 2
-                },
-            Grid = new Grid { Show = true, Xaxis = new GridXAxis { Lines = new Lines { Show = true } }, },
-            Xaxis = new XAxis
-            {
-                Labels = new XAxisLabels
-                {
-                    Formatter = "function(val) { return val.toFixed(0) }",
-                    Style = new AxisLabelStyle { Colors = new ApexCharts.Color(AxisColor(isDarkMode)) }
-                },
-            },
-            Yaxis = new List<YAxis>
-            {
-                new()
-                {
-                    Labels = new YAxisLabels
+                Stroke =
+                    new Stroke
                     {
-                        Style = new AxisLabelStyle { Colors = new Color(AxisColor(isDarkMode)) }
+                        Curve = Curve.Stepline,
+                        Colors = new List<string> { PrimaryColor(isDarkMode), SecondaryColor(isDarkMode) },
+                        Width = 2
                     },
-                    TickAmount = 5,
-                    DecimalsInFloat = 2,
+                Grid = new Grid { Show = true, Xaxis = new GridXAxis { Lines = new Lines { Show = true } }, },
+                Xaxis = new XAxis
+                {
+                    Labels = new XAxisLabels
+                    {
+                        Formatter = "function(val) { return val.toFixed(0) }",
+                        Style = new AxisLabelStyle { Colors = new ApexCharts.Color(AxisColor(isDarkMode)) }
+                    },
+                },
+                Yaxis = new List<YAxis>
+                {
+                    new()
+                    {
+                        Labels = new YAxisLabels
+                        {
+                            Style = new AxisLabelStyle { Colors = new Color(AxisColor(isDarkMode)) }
+                        },
+                        TickAmount = 5,
+                        DecimalsInFloat = 2,
+                    }
                 }
-            }
-        };
+            };
 
-        return options;
+            return options;
+        }
+
+        public string PrimaryColor(bool isDarkMode) => isDarkMode ? PrimaryColorDark : PrimaryColorLight;
+
+        public string SecondaryColor(bool isDarkMode) => isDarkMode ? SecondaryColorDark : SecondaryColorLight;
+
+        public string AxisColor(bool isDarkMode) => isDarkMode ? "lightgrey" : "darkgrey";
     }
-
-    public string PrimaryColor(bool isDarkMode) => isDarkMode ? PrimaryColorDark : PrimaryColorLight;
-
-    public string SecondaryColor(bool isDarkMode) => isDarkMode ? SecondaryColorDark : SecondaryColorLight;
-
-    public string AxisColor(bool isDarkMode) => isDarkMode ? "lightgrey" : "darkgrey";
 }

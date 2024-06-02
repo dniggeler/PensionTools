@@ -1,19 +1,18 @@
-﻿using PensionCoach.Tools.CommonTypes;
-using PensionCoach.Tools.CommonTypes.Municipality;
+﻿using Domain.Enums;
+using Domain.Models.Municipality;
 using Swashbuckle.AspNetCore.Filters;
 
-namespace TaxCalculator.WebApi.Examples
+namespace TaxCalculator.WebApi.Examples;
+
+public class MunicipalitySearchRequestExample : IExamplesProvider<MunicipalitySearchFilter>
 {
-    public class MunicipalitySearchRequestExample : IExamplesProvider<MunicipalitySearchFilter>
+    public MunicipalitySearchFilter GetExamples()
     {
-        public MunicipalitySearchFilter GetExamples()
+        return new MunicipalitySearchFilter
         {
-            return new MunicipalitySearchFilter
-            {
-                Name = "R",
-                Canton = Canton.ZH,
-                YearOfValidity = 2019,
-            };
-        }
+            Name = "R",
+            Canton = Canton.ZH,
+            YearOfValidity = 2019,
+        };
     }
 }

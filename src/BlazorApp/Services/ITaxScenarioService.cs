@@ -1,11 +1,13 @@
 ﻿using System.Threading.Tasks;
+using Application.Features.TaxScenarios.Models;
+using PensionCoach.Tools.CommonTypes.Features.PensionVersusCapital;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.TaxComparison;
 
-namespace BlazorApp.Services
+namespace BlazorApp.Services;
+
+public interface ITaxScenarioService
 {
-    public interface ITaxScenarioService
-    {
-        Task<CapitalBenefitsTransferInResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request);
-    }
+    Task<ScenarioCalculationResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request);
+
+    Task<ScenarioCalculationResponse> CalculateAsync(PensionVersusCapitalRequest request);
 }

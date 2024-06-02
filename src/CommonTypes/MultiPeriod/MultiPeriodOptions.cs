@@ -5,11 +5,14 @@
         private const decimal DefaultSalaryGrowthRate = 0.01M;
         private const decimal DefaultWealthGrowthRate = decimal.Zero;
         private const decimal DefaultCapitalBenefitsGrowthRate = decimal.Zero;
+        private const decimal DefaultInvestmentGrowthRate = 0.02M;
         private const decimal DefaultSavingsQuota = 0.30M;
 
         public decimal SalaryNetGrowthRate { get; set; } = DefaultSalaryGrowthRate;
 
         public decimal WealthNetGrowthRate { get; set; } = DefaultWealthGrowthRate;
+
+        public decimal InvestmentNetGrowthRate { get; set; } = DefaultInvestmentGrowthRate;
 
         public decimal CapitalBenefitsNetGrowthRate { get; set; } = DefaultCapitalBenefitsGrowthRate;
 

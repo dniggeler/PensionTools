@@ -1,28 +1,29 @@
 ﻿using System.Threading.Tasks;
+using Application.Features.CheckSettings;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PensionCoach.Tools.TaxCalculator.Abstractions;
 
-namespace TaxCalculator.WebApi.Controllers;
-
-[Produces("application/json")]
-[ApiController]
-[Route("api/check")]
-public class CheckSettingsController : Controller
+namespace TaxCalculator.WebApi.Controllers
 {
-    private readonly ICheckSettingsConnector checkSettingsConnector;
-
-    public CheckSettingsController(ICheckSettingsConnector checkSettingsConnector)
+    [Produces("application/json")]
+    [ApiController]
+    [Route("api/check")]
+    public class CheckSettingsController : Controller
     {
-        this.checkSettingsConnector = checkSettingsConnector;
-    }
+        private readonly ICheckSettingsConnector checkSettingsConnector;
 
-    [HttpGet("settings")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IActionResult> Get()
-    {
-        var settings = await checkSettingsConnector.GetAsync();
+        public CheckSettingsController(ICheckSettingsConnector checkSettingsConnector)
+        {
+            this.checkSettingsConnector = checkSettingsConnector;
+        }
 
-        return Ok(settings);
+        [HttpGet("settings")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Get()
+        {
+            var settings = await checkSettingsConnector.GetAsync();
+
+            return Ok(settings);
+        }
     }
 }

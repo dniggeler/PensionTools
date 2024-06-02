@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using PensionCoach.Tools.CommonTypes;
+using Domain.Enums;
 
 namespace BlazorApp.ViewModels;
 
@@ -36,6 +36,8 @@ public record PersonViewModel
 
     public string MunicipalityName { get; set; }
 
+    public decimal FinalRetirementPension { get; set; }
+
     public decimal FinalRetirementCapital { get; set; }
 
     public decimal FinalCapital3a { get; set; }
@@ -53,6 +55,7 @@ public record PersonViewModel
         Canton = source.Canton;
         MunicipalityName = source.MunicipalityName;
         BfsMunicipalityId = source.BfsMunicipalityId;
+        FinalRetirementPension = source.FinalRetirementPension;
         FinalCapital3a = source.FinalCapital3a;
         FinalRetirementCapital = source.FinalRetirementCapital;
 

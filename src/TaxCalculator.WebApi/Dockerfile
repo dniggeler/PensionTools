@@ -14,7 +14,7 @@ RUN dotnet publish "TaxCalculator.WebApi.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
-COPY ["Tax.Data/files/TaxDb.db", "/data/TaxDb.db"]
+COPY ["Infrastructure/files/TaxDb.db", "/data/TaxDb.db"]
 COPY --from=publish /app/publish .
 
 # Do not run as root user

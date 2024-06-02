@@ -1,4 +1,5 @@
 ﻿@page "/PersonListing"
+@using BlazorApp.MyComponents.CheckSettings.Person
 
 @inject IPersonService PersonService
 @inject IDialogService DialogService
@@ -90,6 +91,7 @@
             Gender = sourcePerson.Gender,
             TaxableIncome = sourcePerson.TaxableIncome,
             TaxableWealth = sourcePerson.TaxableWealth,
+            FinalRetirementPension = sourcePerson.FinalRetirementPension,
             FinalCapital3a = sourcePerson.FinalCapital3a,
             FinalRetirementCapital = sourcePerson.FinalRetirementCapital,
             DateOfBirth = sourcePerson.DateOfBirth

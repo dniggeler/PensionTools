@@ -8,65 +8,79 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace BlazorApp.Services.CheckSettings;
-
-public class CheckSettingsService : ICheckSettingsService
+namespace BlazorApp.Services.CheckSettings
 {
-    private readonly IWebAssemblyHostEnvironment webAssemblyHostEnvironment;
-    private readonly IConfiguration configuration;
-    private readonly HttpClient httpClient;
-    private readonly ILogger<TaxCalculationService> logger;
-
-    public CheckSettingsService(
-        IWebAssemblyHostEnvironment webAssemblyHostEnvironment,
-        IConfiguration configuration,
-        HttpClient httpClient,
-        ILogger<TaxCalculationService> logger)
+    public class CheckSettingsService : ICheckSettingsService
     {
-        this.webAssemblyHostEnvironment = webAssemblyHostEnvironment;
-        this.configuration = configuration;
-        this.httpClient = httpClient;
-        this.logger = logger;
-    }
+        private readonly IWebAssemblyHostEnvironment webAssemblyHostEnvironment;
+        private readonly IConfiguration configuration;
+        private readonly HttpClient httpClient;
+        private readonly ILogger<TaxCalculationService> logger;
 
-    public async Task<bool> HealthCheckAsync()
-    {
-        string urlPath = Path.Combine(BaseAddress(), "health");
-
-        var response = await httpClient.GetStringAsync(urlPath);
-
-        logger.LogInformation($"Health check response: {response}");
-
-        return "Healthy" == response;
-    }
-
-    public Task<Dictionary<string, string>> GetFrontendConfigurationAsync()
-    {
-        var configs = new Dictionary<string, string>();
-
-        configs.TryAdd("Environment", webAssemblyHostEnvironment.Environment);
-        
-        return Task.FromResult(configs);
-    }
-
-    public async Task<Dictionary<string, string>> GetBackendConfigurationAsync()
-    {
-        string urlPath = Path.Combine(BaseAddress(), "api/check/settings");
-
-        Dictionary<string, string> response = await httpClient.GetFromJsonAsync<Dictionary<string,string>>(urlPath);
-
-        return response;
-    }
-
-    private string BaseAddress()
-    {
-        string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
-
-        if (baseUri is null)
+        public CheckSettingsService(
+            IWebAssemblyHostEnvironment webAssemblyHostEnvironment,
+            IConfiguration configuration,
+            HttpClient httpClient,
+            ILogger<TaxCalculationService> logger)
         {
-            throw new ArgumentNullException(nameof(baseUri));
+            this.webAssemblyHostEnvironment = webAssemblyHostEnvironment;
+            this.configuration = configuration;
+            this.httpClient = httpClient;
+            this.logger = logger;
         }
 
-        return new Uri(baseUri).GetLeftPart(UriPartial.Authority);
+        public async Task<bool> HealthCheckAsync()
+        {
+            string urlPath = Path.Combine(BaseAddress(), "health");
+
+            try
+            {
+                var response = await httpClient.GetStringAsync(urlPath);
+
+                return "Healthy" == response;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, $"Health check failed: {ex.Message}");
+                return false;
+            }
+        }
+
+        public Task<Dictionary<string, string>> GetFrontendConfigurationAsync()
+        {
+            var configs = new Dictionary<string, string>();
+
+            configs.TryAdd("Environment", webAssemblyHostEnvironment.Environment);
+        
+            return Task.FromResult(configs);
+        }
+
+        public async Task<Dictionary<string, string>> GetBackendConfigurationAsync()
+        {
+            string urlPath = Path.Combine(BaseAddress(), "api/check/settings");
+
+            try
+            {
+                return await httpClient.GetFromJsonAsync<Dictionary<string,string>>(urlPath);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, $"Backend configuration failed to load: {ex.Message}");
+            }
+
+            return new Dictionary<string, string>();
+        }
+
+        private string BaseAddress()
+        {
+            string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+
+            if (baseUri is null)
+            {
+                throw new ArgumentNullException(nameof(baseUri));
+            }
+
+            return new Uri(baseUri).GetLeftPart(UriPartial.Authority);
+        }
     }
 }

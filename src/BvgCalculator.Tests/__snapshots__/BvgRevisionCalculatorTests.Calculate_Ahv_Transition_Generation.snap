@@ -1,0 +1,265 @@
+﻿{
+  "DateOfRetirement": "2026-10-01T00:00:00",
+  "EffectiveSalary": 100000.0,
+  "InsuredSalary": 62475.00,
+  "RetirementCredit": 11245.5000,
+  "RetirementCreditFactor": 0.18,
+  "RetirementCapitalEndOfYear": 11245.5,
+  "FinalRetirementCapital": 30252.53970703125,
+  "FinalRetirementCapitalWithoutInterest": 29899.800000,
+  "RetirementPension": 1815.1523824218750,
+  "DisabilityPension": 1793.98800000,
+  "PartnerPension": 1076.392800000,
+  "OrphanPension": 358.797600000,
+  "ChildPensionForDisabled": 358.797600000,
+  "RetirementCreditSequence": [
+    {
+      "Age": 61,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 61,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 61,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 62,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 62,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 62,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 62,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 62,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 62,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 62,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 62,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 62,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 62,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 62,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 62,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 63,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 63,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 63,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 63,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 63,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 63,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 63,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 63,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 63,
+      "AmountRaw": 11245.5000
+    },
+    {
+      "Age": 63,
+      "AmountRaw": 9878.4000
+    },
+    {
+      "Age": 63,
+      "AmountRaw": 9878.4000
+    },
+    {
+      "Age": 63,
+      "AmountRaw": 9878.4000
+    },
+    {
+      "Age": 64,
+      "AmountRaw": 9878.4000
+    },
+    {
+      "Age": 64,
+      "AmountRaw": 9878.4000
+    },
+    {
+      "Age": 64,
+      "AmountRaw": 9878.4000
+    },
+    {
+      "Age": 64,
+      "AmountRaw": 9878.4000
+    },
+    {
+      "Age": 64,
+      "AmountRaw": 9878.4000
+    },
+    {
+      "Age": 64,
+      "AmountRaw": 9878.4000
+    },
+    {
+      "Age": 64,
+      "AmountRaw": 9878.4000
+    }
+  ],
+  "RetirementCapitalSequence": [
+    {
+      "Date": "2025-01-01T00:00:00",
+      "Value": 11245.5,
+      "ValueWithoutInterest": 11245.5
+    },
+    {
+      "Date": "2025-02-01T00:00:00",
+      "Value": 12194.339062500000000000000000,
+      "ValueWithoutInterest": 12182.625000000000000000000000
+    },
+    {
+      "Date": "2025-03-01T00:00:00",
+      "Value": 13143.178125000000000000000000,
+      "ValueWithoutInterest": 13119.750000000000000000000000
+    },
+    {
+      "Date": "2025-04-01T00:00:00",
+      "Value": 14092.0171875,
+      "ValueWithoutInterest": 14056.875000
+    },
+    {
+      "Date": "2025-05-01T00:00:00",
+      "Value": 15040.856250000000000000000000,
+      "ValueWithoutInterest": 14994.000000000000000000000000
+    },
+    {
+      "Date": "2025-06-01T00:00:00",
+      "Value": 15989.695312500000000000000000,
+      "ValueWithoutInterest": 15931.125000000000000000000000
+    },
+    {
+      "Date": "2025-07-01T00:00:00",
+      "Value": 16938.534375,
+      "ValueWithoutInterest": 16868.25000
+    },
+    {
+      "Date": "2025-08-01T00:00:00",
+      "Value": 17887.373437500000000000000000,
+      "ValueWithoutInterest": 17805.375000000000000000000000
+    },
+    {
+      "Date": "2025-09-01T00:00:00",
+      "Value": 18836.212500000000000000000000,
+      "ValueWithoutInterest": 18742.500000000000000000000000
+    },
+    {
+      "Date": "2025-10-01T00:00:00",
+      "Value": 19785.0515625,
+      "ValueWithoutInterest": 19679.625000
+    },
+    {
+      "Date": "2025-11-01T00:00:00",
+      "Value": 20733.890625000000000000000000,
+      "ValueWithoutInterest": 20616.750000000000000000000000
+    },
+    {
+      "Date": "2025-12-01T00:00:00",
+      "Value": 21682.729687500000000000000000,
+      "ValueWithoutInterest": 21553.875000000000000000000000
+    },
+    {
+      "Date": "2026-01-01T00:00:00",
+      "Value": 22631.56875,
+      "ValueWithoutInterest": 22491.0000
+    },
+    {
+      "Date": "2026-02-01T00:00:00",
+      "Value": 23478.343300781250000000000001,
+      "ValueWithoutInterest": 23314.200000000000000000000000
+    },
+    {
+      "Date": "2026-03-01T00:00:00",
+      "Value": 24325.117851562499999999999999,
+      "ValueWithoutInterest": 24137.400000000000000000000000
+    },
+    {
+      "Date": "2026-04-01T00:00:00",
+      "Value": 25171.89240234375,
+      "ValueWithoutInterest": 24960.600000
+    },
+    {
+      "Date": "2026-05-01T00:00:00",
+      "Value": 26018.666953125000000000000001,
+      "ValueWithoutInterest": 25783.800000000000000000000000
+    },
+    {
+      "Date": "2026-06-01T00:00:00",
+      "Value": 26865.441503906249999999999999,
+      "ValueWithoutInterest": 26607.000000000000000000000000
+    },
+    {
+      "Date": "2026-07-01T00:00:00",
+      "Value": 27712.2160546875,
+      "ValueWithoutInterest": 27430.20000
+    },
+    {
+      "Date": "2026-08-01T00:00:00",
+      "Value": 28558.990605468750000000000001,
+      "ValueWithoutInterest": 28253.400000000000000000000000
+    },
+    {
+      "Date": "2026-09-01T00:00:00",
+      "Value": 29405.765156249999999999999999,
+      "ValueWithoutInterest": 29076.600000000000000000000000
+    },
+    {
+      "Date": "2026-10-01T00:00:00",
+      "Value": 30252.53970703125,
+      "ValueWithoutInterest": 29899.800000
+    }
+  ]
+}

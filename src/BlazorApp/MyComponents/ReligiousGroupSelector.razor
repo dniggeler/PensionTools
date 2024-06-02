@@ -1,6 +1,4 @@
-﻿@using Microsoft.AspNetCore.Components
-@using Microsoft.Extensions.Localization
-@using PensionCoach.Tools.CommonTypes
+﻿@using Domain.Enums
 
 @inject IStringLocalizer<Resource> Localizer
 
@@ -37,7 +35,7 @@
     protected override void OnInitialized()
     {
         religiousGroupTypes.Add(new ReligiousGroupTypeViewModel { Name = "andere", Value = ReligiousGroupType.Other });
-        religiousGroupTypes.Add(new ReligiousGroupTypeViewModel { Name = "evangelisch", Value = ReligiousGroupType.Protestant });
+        religiousGroupTypes.Add(new ReligiousGroupTypeViewModel { Name = "reformiert", Value = ReligiousGroupType.Protestant });
         religiousGroupTypes.Add(new ReligiousGroupTypeViewModel { Name = "christ-katholisch", Value = ReligiousGroupType.Catholic });
         religiousGroupTypes.Add(new ReligiousGroupTypeViewModel { Name = "römisch-katholisch", Value = ReligiousGroupType.Roman });
     }

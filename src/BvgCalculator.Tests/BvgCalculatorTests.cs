@@ -1,184 +1,268 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using Application.Bvg.Models;
+using Domain.Enums;
+using Domain.Models.Bvg;
 using FluentAssertions;
 using LanguageExt;
 using Newtonsoft.Json;
-using PensionCoach.Tools.BvgCalculator.Models;
-using PensionCoach.Tools.CommonTypes;
 using Snapshooter.Xunit;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace BvgCalculator.Tests
+namespace BvgCalculator.Tests;
+
+[Trait("BVG", "Calculator")]
+public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application.Bvg.BvgCalculator>>
 {
-    [Trait("BVG", "Calculator")]
-    public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture>
+    private readonly BvgCalculatorFixture<Application.Bvg.BvgCalculator> _fixture;
+    private readonly ITestOutputHelper _outputHelper;
+
+    public BvgCalculatorTests(BvgCalculatorFixture<Application.Bvg.BvgCalculator> fixture, ITestOutputHelper outputHelper)
     {
-        private readonly BvgCalculatorFixture _fixture;
-        private readonly ITestOutputHelper _outputHelper;
+        _fixture = fixture;
+        _outputHelper = outputHelper;
+    }
 
-        public BvgCalculatorTests(BvgCalculatorFixture fixture, ITestOutputHelper outputHelper)
+    [Fact(DisplayName = "BVG Result When Retiring")]
+    public void ShouldCalculateResultWhenRetiring()
+    {
+        // given
+        DateTime processDate = new DateTime(2019, 1, 1);
+        DateTime birthdate = new DateTime(1954, 3, 13);
+
+        BvgPerson person = _fixture.GetTestPerson(birthdate);
+        person.ReportedSalary = 85000M;
+        person.PartTimeDegree = 0.8M;
+
+        // when
+        Either<string, BvgCalculationResult> response = _fixture.GetBvgBenefits(0, person, processDate);
+
+        BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
+
+        // then
+        result.RetirementCapitalSequence.Should().NotBeNullOrEmpty();
+
+        Snapshot.Match(result);
+    }
+
+    [Fact(DisplayName = "Default BVG Result")]
+    public void ShouldCalculateDefaultResult()
+    {
+        // given
+        DateTime processDate = new DateTime(2019, 1, 1);
+        DateTime birthdate = new DateTime(1974, 8, 31);
+
+        BvgPerson person = _fixture.GetTestPerson(birthdate);
+
+        // when
+        var response = _fixture.GetBvgBenefits(0, person, processDate);
+
+        BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
+
+        // then
+        result.RetirementCapitalSequence.Should().NotBeNullOrEmpty();
+
+        Snapshot.Match(result);
+    }
+
+    [Fact(DisplayName = "Calculate Benefits")]
+    public void ShouldReturnBenefitsCalculationResult()
+    {
+        // given
+        BvgCalculationResult expectedResult = new BvgCalculationResult
         {
-            _fixture = fixture;
-            _outputHelper = outputHelper;
-        }
+            DateOfRetirement = new DateTime(2039, 9, 1),
+            EffectiveSalary = 100000,
+            InsuredSalary = 60435M,
+            RetirementCredit = 9065.25M,
+            RetirementCreditFactor = 0.15M,
+            RetirementCapitalEndOfYear = 9065.0M,
+            FinalRetirementCapital = 227286,
+            FinalRetirementCapitalWithoutInterest = 206687,
+            PartnerPension = 8433,
+            OrphanPension = 2811,
+            ChildPensionForDisabled = 2811,
+            DisabilityPension = 14055,
+            RetirementPension = 15455
+        };
 
-        [Fact(DisplayName = "BVG Result When Retiring")]
-        public async Task ShouldCalculateResultWhenRetiring()
+        DateTime processDate = new DateTime(2019, 1, 1);
+        DateTime birthdate = new DateTime(1974, 8, 31);
+
+        BvgPerson person = _fixture.GetTestPerson(birthdate);
+
+        // when
+        var response = _fixture.GetBvgBenefits(9065, person, processDate);
+
+        BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
+
+        // then
+        result.RetirementCapitalSequence.Should().NotBeNullOrEmpty();
+        result.RetirementCreditSequence.Should().NotBeNullOrEmpty();
+
+        result.Should().BeEquivalentTo(expectedResult,
+            o => o.Excluding(obj => obj.RetirementCapitalSequence)
+                .Excluding(obj => obj.RetirementCreditSequence));
+
+        _outputHelper.WriteLine(JsonConvert.SerializeObject(result));
+    }
+
+    [Fact(DisplayName = "Benefits If Below Salary Threshold")]
+    public void ShouldReturnBenefitsIfBelowSalaryThreshold()
+    {
+        // given
+        BvgCalculationResult expectedResult = new BvgCalculationResult
         {
-            // given
-            DateTime processDate = new DateTime(2019, 1, 1);
-            DateTime birthdate = new DateTime(1954, 3, 13);
+            DateOfRetirement = new DateTime(2039, 9, 1),
+            EffectiveSalary = 20000M,
+            InsuredSalary = 0M,
+            RetirementCredit = 0M,
+            RetirementCreditFactor = 0.15M,
+        };
 
-            BvgPerson person = _fixture.GetTestPerson(birthdate);
-            person.ReportedSalary = 85000M;
-            person.PartTimeDegree = 0.8M;
+        DateTime processDate = new DateTime(2019, 1, 1);
 
-            // when
-            Either<string, BvgCalculationResult> response =
-                await _fixture.GetBvgBenefitsAsync(0, person, processDate);
+        BvgPerson person = _fixture.GetCurrentPersonDetails(new DateTime(1974, 8, 31), 20_000, 1M);
 
-            BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
+        // when
+        var response = _fixture.GetBvgBenefits(0, person, processDate);
 
-            // then
-            result.RetirementCapitalSequence.Should().NotBeNullOrEmpty();
+        BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
 
-            Snapshot.Match(result);
-        }
+        // then
+        result.RetirementCapitalSequence.Should().NotBeNullOrEmpty();
+        result.RetirementCreditSequence.Should().NotBeNullOrEmpty();
 
-        [Fact(DisplayName = "Default BVG Result")]
-        public async Task ShouldCalculateDefaultResult()
-        {
-            // given
-            DateTime processDate = new DateTime(2019, 1, 1);
-            DateTime birthdate = new DateTime(1974, 8, 31);
+        result.Should().BeEquivalentTo(expectedResult, options => options.Excluding(o => o.RetirementCapitalSequence)
+            .Excluding(o => o.RetirementCreditSequence));
 
-            BvgPerson person = _fixture.GetTestPerson(birthdate);
+        _outputHelper.WriteLine(JsonConvert.SerializeObject(result));
+    }
 
-            // when
-            var response =
-                await _fixture.GetBvgBenefitsAsync(0, person, processDate);
+    [Theory(DisplayName = "BVG Benefits")]
+    [MemberData(nameof(GetTestData))]
+    public void Calculate_Bvg_Benefits(
+        string dateOfProcessString,
+        decimal salary,
+        string dateOfBirthString,
+        int genderCode,
+        decimal currentRetirementCapital,
+        decimal expectedRetirementPension)
+    {
+        DateTime dateOfProcess = DateTime.Parse(dateOfProcessString);
+        DateTime dateOfBirth = DateTime.Parse(dateOfBirthString);
+        Gender gender = (Gender)genderCode;
 
-            BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
+        BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, salary, 1M);
+        person.Gender = gender;
 
-            // then
-            result.RetirementCapitalSequence.Should().NotBeNullOrEmpty();
+        var response = _fixture.GetBvgBenefits(currentRetirementCapital, person, dateOfProcess);
 
-            Snapshot.Match(result);
-        }
+        BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
 
-        [Fact(DisplayName = "Calculate Benefits")]
-        public async Task ShouldReturnBenefitsCalculationResult()
-        {
-            // given
-            BvgCalculationResult expectedResult = new BvgCalculationResult
-            {
-                DateOfRetirement = new DateTime(2039, 9, 1),
-                EffectiveSalary = 100000,
-                InsuredSalary = 60435M,
-                RetirementCredit = 9065.25M,
-                RetirementCreditFactor = 0.15M,
-                RetirementCapitalEndOfYear = 9065.0M,
-                FinalRetirementCapital = 227286,
-                FinalRetirementCapitalWithoutInterest = 206687,
-                PartnerPension = 8433,
-                OrphanPension = 2811,
-                ChildPensionForDisabled = 2811,
-                DisabilityPension = 14055,
-                RetirementPension = 15455
-            };
+        // then
+        result.RetirementPension.Should().Be(expectedRetirementPension);
+    }
 
-            DateTime processDate = new DateTime(2019, 1, 1);
-            DateTime birthdate = new DateTime(1974, 8, 31);
+    [Theory(DisplayName = "Insured Salary")]
+    [InlineData(2024, 100_000, "1969-03-17", 1, 62475)]
+    [InlineData(2024, 20_000, "1969-03-17", 1, 0)]
+    [InlineData(2024, 18_000, "1969-03-17", 1, 0)]
+    public void Calculate_Insured_Salary(
+        int processingYear,
+        decimal effectiveSalary,
+        string dateOfBirthString,
+        int genderCode,
+        decimal expectedInsuredSalary)
+    {
+        DateTime dateOfBirth = DateTime.Parse(dateOfBirthString);
+        Gender gender = (Gender)genderCode;
 
-            BvgPerson person = _fixture.GetTestPerson(birthdate);
+        BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, effectiveSalary, 1M);
+        person.Gender = gender;
 
-            // when
-            var response =
-                await _fixture.GetBvgBenefitsAsync(9065, person, processDate);
+        Either<string, decimal> response = _fixture.Calculator().InsuredSalary(processingYear, person);
 
-            BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
+        decimal result = response.IfLeft(err => throw new ApplicationException(err));
 
-            // then
-            result.RetirementCapitalSequence.Should().NotBeNullOrEmpty();
-            result.RetirementCreditSequence.Should().NotBeNullOrEmpty();
+        // then
+        result.Should().Be(expectedInsuredSalary);
+    }
 
-            result.Should().BeEquivalentTo(expectedResult,
-                o => o.Excluding(obj => obj.RetirementCapitalSequence)
-                    .Excluding(obj => obj.RetirementCreditSequence));
+    [Fact(DisplayName = "Salary Array for BVG Maximum")]
+    public void Calculate_Insured_Salaries_For_BVG_Maximum()
+    {
+        // given
+        int processingYear = 2024;
+        DateTime dateOfBirth = new(1969, 12, 17);
+        Gender gender = Gender.Male;
+        decimal reportedSalary = 100_000;
 
-            _outputHelper.WriteLine(JsonConvert.SerializeObject(result));
-        }
+        BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, reportedSalary, 1M);
+        person.Gender = gender;
 
-        [Fact(DisplayName = "Benefits If Below Salary Threshold")]
-        public async Task ShouldReturnBenefitsIfBelowSalaryThreshold()
-        {
-            // given
-            BvgCalculationResult expectedResult = new BvgCalculationResult
-            {
-                DateOfRetirement = new DateTime(2039, 9, 1),
-                EffectiveSalary = 20000M,
-                InsuredSalary = 0M,
-                RetirementCredit = 0M,
-                RetirementCreditFactor = 0.15M,
-            };
+        Either<string, BvgTimeSeriesPoint[]> response = _fixture.Calculator().InsuredSalaries(processingYear, person);
 
-            DateTime processDate = new DateTime(2019, 1, 1);
+        BvgTimeSeriesPoint[] result = response.IfLeft(err => throw new ApplicationException(err));
 
-            BvgPerson person = _fixture.GetCurrentPersonDetails(new DateTime(1974, 8, 31), 20_000, 1M);
+        // then
+        result.Should().NotBeNullOrEmpty();
+        Snapshot.Match(result);
+    }
 
-            // when
-            var response =
-                await _fixture.GetBvgBenefitsAsync(0, person, processDate);
+    [Fact(DisplayName = "Retirement Credits Array")]
+    public void Calculate_Retirement_Credits_Array()
+    {
+        // given
+        int processingYear = 2024;
+        DateTime dateOfBirth = new(1969, 12, 17);
+        Gender gender = Gender.Male;
+        decimal reportedSalary = 100_000;
 
-            BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
+        BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, reportedSalary, 1M);
+        person.Gender = gender;
 
-            // then
-            result.RetirementCapitalSequence.Should().NotBeNullOrEmpty();
-            result.RetirementCreditSequence.Should().NotBeNullOrEmpty();
+        Either<string, BvgTimeSeriesPoint[]> response = _fixture.Calculator().RetirementCredits(processingYear, person);
 
-            result.Should().BeEquivalentTo(expectedResult, options => options.Excluding(o => o.RetirementCapitalSequence)
-                 .Excluding(o => o.RetirementCreditSequence));
+        BvgTimeSeriesPoint[] result = response.IfLeft(err => throw new ApplicationException(err));
 
-            _outputHelper.WriteLine(JsonConvert.SerializeObject(result));
-        }
+        // then
+        result.Should().NotBeNullOrEmpty();
+        Snapshot.Match(result);
+    }
 
-        [Theory(DisplayName = "BVG Benefits")]
-        [MemberData(nameof(GetTestData))]
-        public async Task Calculate_Bvg_Benefits(
-            string dateOfProcessString,
-            decimal salary,
-            string dateOfBirthString,
-            int genderCode,
-            decimal currentRetirementCapital,
-            decimal expectedRetirementPension)
-        {
-            DateTime dateOfProcess = DateTime.Parse(dateOfProcessString);
-            DateTime dateOfBirth = DateTime.Parse(dateOfBirthString);
-            Gender gender = (Gender)genderCode;
+    [Fact(DisplayName = "Retirement Credit Factors Array")]
+    public void Calculate_Retirement_Credit_Factors_Array()
+    {
+        // given
+        int processingYear = 2024;
+        DateTime dateOfBirth = new(1969, 12, 17);
+        Gender gender = Gender.Male;
+        decimal reportedSalary = 100_000;
 
-            BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, salary, 1M);
-            person.Gender = gender;
+        BvgPerson person = _fixture.GetCurrentPersonDetails(dateOfBirth, reportedSalary, 1M);
+        person.Gender = gender;
 
-            var response =
-                await _fixture.GetBvgBenefitsAsync(currentRetirementCapital, person, dateOfProcess);
+        Either<string, BvgTimeSeriesPoint[]> response = _fixture.Calculator().RetirementCreditFactors(processingYear, person);
 
-            BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
+        BvgTimeSeriesPoint[] result = response.IfLeft(err => throw new ApplicationException(err));
 
-            // then
-            result.RetirementPension.Should().Be(expectedRetirementPension);
-        }
+        // then
+        result.Should().NotBeNullOrEmpty();
+        Snapshot.Match(result);
+    }
 
-        public static IEnumerable<object[]> GetTestData()
-        {
-            yield return new object[]
-                { "2017-01-01",
-                    100_000,
-                    "1969-03-17",
-                    Gender.Male,
-                    107202,
-                    20610 };
-        }
+    public static IEnumerable<object[]> GetTestData()
+    {
+        yield return
+        [
+            "2017-01-01",
+            100_000,
+            "1969-03-17",
+            Gender.Male,
+            107202,
+            20610
+        ];
     }
 }

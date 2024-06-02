@@ -1,5 +1,4 @@
-﻿@using PensionCoach.Tools.CommonTypes
-@using PensionCoach.Tools.CommonTypes.Tax
+﻿@using Domain.Enums
 
 <MudSelect T="Canton" Label="@Label" ReadOnly="@IsReadOnly" Value="@CantonCode" ValueChanged="HandleCantonChange">
     @foreach (var m in cantons)

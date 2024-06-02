@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Calculators.CashFlow.Models;
+using Application.Extensions;
+using Application.MultiPeriodCalculator;
+using Domain.Contracts;
+using Domain.Enums;
+using Domain.Models.MultiPeriod;
+using Domain.Models.MultiPeriod.Actions;
+using Domain.Models.MultiPeriod.Definitions;
 using LanguageExt;
-using PensionCoach.Tools.BvgCalculator;
-using PensionCoach.Tools.CommonTypes;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions;
-using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions;
 using Snapshooter.Xunit;
 using Xunit;
 
@@ -50,6 +52,80 @@ public class MultiPeriodCashFlowCalculatorTests : IClassFixture<CashFlowFixture<
 
         // then
         Snapshot.Match(result, opt => opt.IgnoreFields("$..Id"));
+    }
+
+    [Fact(DisplayName = "Investment Portfolio Simulation")]
+    public async Task Calculate_Investment_Portfolio()
+    {
+        // given
+        int startingYear = 2021;
+        int numberOfPeriods = 0;
+        int municipalityId = 261;
+        Canton canton = Canton.ZH;
+        decimal initialInvestmentAmount = 93277;
+        MultiPeriodOptions options = new();
+        MultiPeriodCalculatorPerson person = GetMarriedPerson(canton, municipalityId) with
+        {
+            Income = 100_000,
+            Wealth = 500_000,
+            CapitalBenefits = (decimal.Zero, decimal.Zero)
+        };
+
+        // when
+        var result = await _fixture.Service.CalculateAsync(
+            startingYear,
+            numberOfPeriods,
+            person,
+            new CashFlowDefinitionHolder
+            {
+                InvestmentDefinitions = CreateInvestmentPortfolios().ToList(),
+                Composites = CreateComposites(person, initialInvestmentAmount).ToList()
+            },
+            options);
+
+        // then
+        Snapshot.Match(result, opt => opt.IgnoreFields("$..Id"));
+
+        static IEnumerable<InvestmentPortfolioDefinition> CreateInvestmentPortfolios()
+        {
+            yield return new InvestmentPortfolioDefinition
+            {
+                Header = new CashFlowHeader()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "Investment Portfolio",
+                },
+                DateOfProcess = new DateTime(2021, 1, 1),
+                NetCapitalGrowthRate = 0.02M,
+                NetIncomeRate = 0.01M,
+                RecurringInvestment = new RecurringInvestment
+                {
+                    Amount = 6723,
+                    Frequency = FrequencyType.Yearly,
+                },
+                InvestmentPeriod = new InvestmentPeriod
+                {
+                    Year = 2021,
+                    NumberOfPeriods = 10
+                },
+            };
+        }
+
+        static IEnumerable<ICompositeCashFlowDefinition> CreateComposites(
+            MultiPeriodCalculatorPerson person, decimal initialInvestmentAmount)
+        {
+            yield return new SalaryPaymentsDefinition
+            {
+                YearlyAmount = person.Income,
+                DateOfEndOfPeriod = new DateTime(2021, 1, 1).AddYears(10)
+            };
+
+            yield return new SetupAccountDefinition
+            {
+                InitialWealth = person.Wealth,
+                InitialInvestmentAssets = initialInvestmentAmount
+            };
+        }
     }
 
     [Fact(DisplayName = "Wealth Only Simulation")]

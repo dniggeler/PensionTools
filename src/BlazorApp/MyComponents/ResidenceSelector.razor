@@ -1,7 +1,6 @@
-﻿@using BlazorApp.Services
+﻿@using Domain.Enums
+@using Domain.Models.Tax
 @using LanguageExt
-@using PensionCoach.Tools.CommonTypes
-@using PensionCoach.Tools.CommonTypes.Tax
 
 @inject IMunicipalityService MunicipalityService
 
@@ -22,7 +21,7 @@
                          ValueChanged="HandleResidenceChangeAsync"
                          ResetValueOnEmptyText="false"
                          AdornmentIcon="@Icons.Material.Filled.Search"
-                         AdornmentColor="Color.Primary"/>
+                         AdornmentColor="MudBlazor.Color.Primary" />
     </MudItem>
 </MudGrid>
 

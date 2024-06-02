@@ -1,7 +1,6 @@
 ﻿@page "/TaxComparer/IncomeAndWealth"
-
-@using PensionCoach.Tools.TaxComparison
-@using PensionCoach.Tools.CommonTypes
+@using Domain.Enums
+@using Application.Features.TaxComparison.Models
 
 @inject IPersonService PersonService
 @inject ITaxComparisonService TaxComparisonService
@@ -61,7 +60,7 @@
         </MudItem>
 
         <MudItem md="12">
-            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
+            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
         </MudItem>
 
     </MudGrid>

@@ -1,0 +1,83 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+    </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Features\BvgRevision21\BvgRevision21Comparison.razor.css" />
+    <None Remove="Features\BvgRevision21\BvgRevision21Comparison.razor.js" />
+    <None Remove="Pages\IncomeWealth.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazor-ApexCharts" Version="3.2.0" />
+    <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+    <PackageReference Include="LanguageExt.Core" Version="4.4.8" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="8.0.0" />
+    <PackageReference Include="MudBlazor" Version="6.19.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.4" PrivateAssets="all" />
+    <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\CommonTypes\CommonTypes.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\BvgRevision21\NewFolder\" />
+    <Folder Include="wwwroot\assets\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\PensionComponents.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PensionComponents.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Resource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\PensionComponents.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\PensionComponents.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PensionComponents.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resource.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="MyComponents\JsonPrettyFormat.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Features\BvgRevision21\BvgRevision21Comparison.razor" />
+    <_ContentIncludedByDefault Remove="MyComponents\JsonPrettyFormat.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Features\BvgRevision21\BvgRevision21Comparison.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Features\BvgRevision21\BvgRevision21Comparison.razor.css" />
+    <Content Include="Features\BvgRevision21\BvgRevision21Comparison.razor.js" />
+  </ItemGroup>
+
+</Project>

@@ -1,7 +1,7 @@
 ﻿using BlazorApp.Services;
 using BlazorApp.ViewModels;
 using Bunit;
-using PensionCoach.Tools.CommonTypes;
+using Domain.Enums;
 
 namespace BlazorApp.Components.Tests;
 
@@ -91,6 +91,7 @@ public class PersonServiceWithBrowserStorageTests : TestContext
             ReligiousGroupType = ReligiousGroupType.Protestant,
             TaxableIncome = 100_000,
             TaxableWealth = 500_000,
+            FinalRetirementPension = 30_000,
             FinalCapital3a = 150_000,
             FinalRetirementCapital = 500_000
         };

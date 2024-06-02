@@ -1,0 +1,358 @@
+﻿@page "/TaxScenario/PensionVersusCapital"
+
+@using Microsoft.AspNetCore.Components
+@using ApexCharts;
+@using Domain.Enums
+@using Domain.Models.MultiPeriod
+@using Domain.Models.Tax
+@using PensionCoach.Tools.CommonTypes.Features.PensionVersusCapital
+@using PensionCoach.Tools.CommonTypes.MultiPeriod
+@using BlazorApp.Pages.Converters
+@using Color = MudBlazor.Color
+
+@inject IPersonService PersonService
+@inject IApexChartConfigurator ChartConfigurator
+@inject ITaxScenarioService TaxScenarioService
+
+<MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+    <MudGrid>
+        <MudItem md="12">
+            <MudText Typo="Typo.h5">Rente vs. Kapitalbezug</MudText>
+        </MudItem>
+        <MudItem md="12">
+            <MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+                
+                <MudTabPanel Text="Person">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Die Cashflow-Simulation basiert auf Angaben zur Person sowie steuerrevelanten Daten wie Wohnort, Einkommen und Vermögen.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <PersonSelector Persons="persons" OnSelect="@HandleSelectPerson"/>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+                
+                <MudTabPanel Text="Steuerdaten" Disabled="@(selectedPerson is null)">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Steuerlich relevante Angaben zur Person sind der Zivilstand,
+                                die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter,
+                                welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.
+                                Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <PersonDetails IsReadOnly="false" Person="@selectedPerson"/>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+
+                <MudTabPanel Text="Szenario" Disabled="@(selectedPerson is null)">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Höhe der jährlichen Rente und wie viel Vorsorgekapital bei der Pensionierung vorhanden ist. Aus steuerlicher Sicht ist auch wichtig, wie hoch das
+                                Vermögen ist und welches Einkommen nach der Pensionierung erzielt wird (z.B. AHV-Rente).
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <MudNumericField Label="Pensionierungsjahr" Step="1" @bind-Value="taxRequest.CalculationYear"/>
+                            <MudNumericField T="decimal" Label="Sonstiges Einkommen (z.B. AHV)" Format="n0" Step="100" @bind-Value="otherIncome" />
+                            <MudNumericField T="decimal" Label="Sonstiges Vermögen" Format="n0" Step="1000" @bind-Value="taxRequest.TaxPerson.TaxableWealth" />
+                            <MudNumericField T="decimal" Label="Altersrente" Format="n0" Step="100" @bind-Value="taxRequest.RetirementPension" />
+                            <MudNumericField T="decimal" Label="Altersguthaben" Format="n0" Step="1000" @bind-Value="taxRequest.RetirementCapital" />
+                            <MudNumericField T="decimal" Label="Vermögensverzehr" Format="N0" Step="1000" @bind-Value="taxRequest.YearlyConsumptionAmount" />
+                            <MudNumericField T="decimal" Label="Rendite auf Vermögen" Converter=@PercentConverter.DecimalConverter Format="P2" Step="0.005M" @bind-Value="netWealthReturn" Min="0" />
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+            </MudTabs>
+        </MudItem>
+
+        <MudItem md="12">
+            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="Color.Primary">Berechne</MudButton>
+        </MudItem>
+
+    </MudGrid>
+</MudPaper>
+
+@if (showLoading)
+{
+    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-7"/>
+}
+
+@if (taxResponse != null)
+{
+    <MudExpansionPanels Class="mb-4 pa-6">
+        <MudExpansionPanel Text="Vermögen Rente vs Kapital" IsInitiallyExpanded="true">
+            <ApexChart @ref=netChart
+                TItem="TaxCurve.CurvePoint"
+                Options="@netOptions"
+                Height="400"
+                XAxisType="XAxisType.Numeric"
+                FormatYAxisLabel="GetYAxisLabel">
+
+                <ApexPointSeries
+                    Name="Netto Vermögen"
+                    TItem="TaxCurve.CurvePoint"
+                    Items="@netWealthDataPoints"
+                    SeriesType="SeriesType.Bar"
+                    Color="@(ChartConfigurator.PrimaryColor(IsDarkMode))"
+                    OrderBy="p => p.X"
+                    XValue="p => p.XValue"
+                    YValue="p => p.YValue"
+                    ShowDataLabels/>
+
+            </ApexChart>
+        </MudExpansionPanel>
+
+        <MudExpansionPanel Text="Detailsicht">
+            <ApexChart
+                @ref=scenarioChart
+                TItem="TaxCurve.CurvePoint"
+                Title="Vermögensentwicklung Kapitalbezug"
+                Options="@scenarioOptions"
+                Height="400"
+                XAxisType="XAxisType.Numeric"
+                FormatYAxisLabel="GetYAxisLabel">
+
+                <ApexPointSeries
+                    Name="Vermögen"
+                    TItem="TaxCurve.CurvePoint"
+                    Items="@(SeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.Wealth))"
+                    SeriesType="SeriesType.Bar"
+                    Color="@(ChartConfigurator.PrimaryColor(IsDarkMode))"
+                    OrderBy="p => p.X"
+                    XValue="p => p.XValue"
+                    YValue="p => p.YValue"
+                    ShowDataLabels/>
+            </ApexChart>
+
+            <ApexChart @ref=benchmarkChart
+                TItem="TaxCurve.CurvePoint"
+                Title="Vermögensentwicklung Rente"
+                Options="@benchmarkOptions"
+                Height="400"
+                XAxisType="XAxisType.Numeric"
+                FormatYAxisLabel="GetYAxisLabel">
+
+                <ApexPointSeries
+                    Name="Vermögen"
+                    TItem="TaxCurve.CurvePoint"
+                    Items="@(SeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.Wealth))"
+                    SeriesType="SeriesType.Bar"
+                    Color="@(ChartConfigurator.PrimaryColor(IsDarkMode))"
+                    OrderBy="p => p.X"
+                    XValue="p => p.XValue"
+                    YValue="p => p.YValue"
+                    ShowDataLabels/>
+            </ApexChart>
+        </MudExpansionPanel>
+
+    </MudExpansionPanels>
+}
+
+@code {
+    private bool showLoading;
+    private PersonViewModel selectedPerson;
+    private IReadOnlyCollection<PersonViewModel> persons;
+    private PensionVersusCapitalRequest taxRequest = new ()
+    {
+        TaxPerson = new TaxPerson
+        {
+            CivilStatus = CivilStatus.Single,
+            ReligiousGroupType = ReligiousGroupType.Other,
+            PartnerReligiousGroupType = ReligiousGroupType.Other,
+        }
+    };
+    private ScenarioCalculationResponse taxResponse;
+    private decimal otherIncome;
+    private decimal netWealthReturn;
+    private ApexChartOptions<TaxCurve.CurvePoint> netOptions;
+    private ApexChartOptions<TaxCurve.CurvePoint> scenarioOptions;
+    private ApexChartOptions<TaxCurve.CurvePoint> benchmarkOptions;
+    private ApexChart<TaxCurve.CurvePoint> netChart;
+    private ApexChart<TaxCurve.CurvePoint> scenarioChart;
+    private ApexChart<TaxCurve.CurvePoint> benchmarkChart;
+    private TaxCurve.CurvePoint[] netWealthDataPoints;
+    private TaxCurve.CurvePoint[] scenario1DataPoints;
+    private TaxCurve.CurvePoint[] benchmark1DataPoints;
+
+    [CascadingParameter]
+    public bool IsDarkMode { get; set; }
+
+    [CascadingParameter]
+    public MudTheme _theme { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        string formatter = "function(val) { return val.toFixed(0) }";
+        string emptyFormatter = "function(val) { return '' }";
+        netOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
+        netOptions.DataLabels = new DataLabels
+        {
+            Enabled = false,
+                Formatter = emptyFormatter
+        };
+
+        scenarioOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
+        scenarioOptions.Chart.Stacked = true;
+        scenarioOptions.DataLabels = new DataLabels
+        {
+            Enabled = true,
+            Formatter = formatter,
+
+        };
+        scenarioOptions.PlotOptions = new PlotOptions
+        {
+            Bar = new PlotOptionsBar
+            {
+                DataLabels = new PlotOptionsBarDataLabels
+                {
+                    Total = new BarTotalDataLabels
+                    {
+                        Enabled = true,
+                    }
+                }
+            }
+        };
+
+        benchmarkOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
+        benchmarkOptions.Chart.Stacked = true;
+        benchmarkOptions.DataLabels = new DataLabels
+        {
+            Enabled = true,
+            Formatter = formatter
+        };
+        benchmarkOptions.PlotOptions = new PlotOptions
+            {
+                Bar = new PlotOptionsBar
+                {
+                    DataLabels = new PlotOptionsBarDataLabels
+                    {
+                        Total = new BarTotalDataLabels
+                        {
+                            Enabled = true,
+                        }
+                    }
+                }
+            };
+
+        persons = (await PersonService.GetPersonsAsync()).ToList();
+    }
+
+    private async Task OnSubmit()
+    {
+        showLoading = true;
+
+        try
+        {
+            taxRequest.TaxPerson.TaxableFederalIncome = taxRequest.TaxPerson.TaxableIncome = otherIncome;
+            taxRequest.NetWealthReturn = netWealthReturn;
+            taxResponse = await TaxScenarioService.CalculateAsync(taxRequest);
+
+            netWealthDataPoints = NetWealthDataPoints();
+            scenario1DataPoints = SeriesData(taxResponse.ScenarioSeries.ToList(), AccountType.Wealth);
+            benchmark1DataPoints = SeriesData(taxResponse.BenchmarkSeries.ToList(), AccountType.Wealth);
+
+            if (netChart is not null)
+            {
+                netChart.Series[0].Items = netWealthDataPoints;
+
+                await netChart.RenderAsync();
+            }
+
+            if (scenarioChart is not null)
+            {
+                scenarioChart.Series[0].Items = scenario1DataPoints;
+
+                await scenarioChart.RenderAsync();
+            }
+
+            if (benchmarkChart is not null)
+            {
+                benchmarkChart.Series[0].Items = benchmark1DataPoints;
+
+                await benchmarkChart.RenderAsync();
+            }
+        }
+        finally
+        {
+            showLoading = false;
+        }
+    }
+
+    private void HandleSelectPerson(Guid personId)
+    {
+        selectedPerson = persons.Single(item => item.Id == personId);
+
+        taxRequest = new PensionVersusCapitalRequest
+        {
+            CalculationYear = (selectedPerson.DateOfBirth??DateTime.Today).AddYears(65).Year,
+            TaxPerson = new TaxPerson
+            {
+                Name = selectedPerson.Name,
+                TaxableWealth = selectedPerson.TaxableWealth,
+                TaxableIncome = selectedPerson.TaxableIncome,
+                TaxableFederalIncome = selectedPerson.TaxableFederalIncome,
+                CivilStatus = selectedPerson.CivilStatus,
+                PartnerReligiousGroupType = selectedPerson.PartnerReligiousGroupType,
+                ReligiousGroupType = selectedPerson.ReligiousGroupType,
+
+            },
+            YearlyConsumptionAmount = selectedPerson.FinalRetirementPension,
+            RetirementPension = selectedPerson.FinalRetirementPension,
+            RetirementCapital = selectedPerson.FinalRetirementCapital,
+            MunicipalityId = selectedPerson.BfsMunicipalityId,
+        };
+
+        otherIncome = selectedPerson.TaxableIncome;
+    }
+
+    private TaxCurve.CurvePoint[] NetWealthDataPoints()
+    {
+        List<TaxCurve.CurvePoint> points = new();
+
+        for (int year = taxResponse.StartingYear; year < taxResponse.NumberOfPeriods + taxResponse.StartingYear; year++)
+        {
+            points.Add(new TaxCurve.CurvePoint
+            {
+                XValue = year,
+                    YValue = taxResponse.DeltaSeries
+                    .Where(item => item.Year == year)
+                    .Sum(item => item.Amount)
+            });
+        }
+
+        return points.ToArray();
+    }
+
+    private TaxCurve.CurvePoint[] SeriesData(IReadOnlyCollection<SinglePeriodCalculationResult> series, AccountType accountType)
+    {
+        List<TaxCurve.CurvePoint> points = new();
+
+        for (int year = taxResponse.StartingYear; year < taxResponse.NumberOfPeriods + taxResponse.StartingYear; year++)
+        {
+            points.Add(new TaxCurve.CurvePoint
+            {
+                XValue = year,
+                YValue = series
+                    .Where(item => item.AccountType == accountType &&
+                                   item.Year == year)
+                    .Sum(item => item.Amount)
+            });
+        }
+
+        return points.ToArray();
+    }
+
+    private string GetYAxisLabel(decimal value)
+    {
+        return value.ToString("N0");
+    }
+
+}

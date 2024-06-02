@@ -1,13 +1,14 @@
 ﻿@page "/FinancialPlanning/WealthPlanning"
 
-@using PensionCoach.Tools.CommonTypes
 @using PensionCoach.Tools.CommonTypes.MultiPeriod
-@using PensionCoach.Tools.CommonTypes.MultiPeriod.Actions
-@using PensionCoach.Tools.CommonTypes.MultiPeriod.Definitions
 @using PensionCoach.Tools.CommonTypes.Tax
-@using Microsoft.AspNetCore.Components
 @using System.Text.Json
 @using System.Globalization
+@using Domain.Enums
+@using Domain.Models.MultiPeriod
+@using Domain.Models.MultiPeriod.Actions
+@using Domain.Models.MultiPeriod.Definitions
+@using Domain.Models.Tax
 @using Microsoft.Extensions.Logging
 
 @inject ILogger<WealthPlanning> Logger
@@ -65,7 +66,7 @@
                             </MudText>
                         </MudItem>
                         <MudItem md="8">
-                            <MudSwitch @bind-Checked="isChangeResidenceActive" Color="Color.Primary"/>
+                            <MudSwitch @bind-Checked="isChangeResidenceActive" Color="MudBlazor.Color.Primary" />
 
                             @if (isChangeResidenceActive)
                             {
@@ -96,7 +97,7 @@
                             </MudText>
                         </MudItem>
                         <MudItem md="8">
-                            <MudSwitch @bind-Checked="isClearActionActive" Color="Color.Primary"/>
+                            <MudSwitch @bind-Checked="isClearActionActive" Color="MudBlazor.Color.Primary" />
 
                             @if (isClearActionActive)
                             {
@@ -164,7 +165,7 @@
         </MudItem>
         
         <MudItem md="12">
-            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
+            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
         </MudItem>
 
     </MudGrid>
@@ -172,7 +173,7 @@
 
 @if (showLoading)
 {
-    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-7"/>
+    <MudProgressLinear Color="MudBlazor.Color.Primary" Indeterminate="true" Class="my-7" />
 }
 
 @if (multiPeriodCalculationResponse != null)
@@ -351,7 +352,7 @@
         }
 
         var datas = multiPeriodCalculationResponse.Accounts
-            .Where(item => item.AccountType != AccountType.Exogenous)
+            .Where(item => item.AccountType is not (AccountType.Exogenous or AccountType.Tax))
             .GroupBy(keySelector => keySelector.Year)
             .Select(g => new WealthTimeSeriesChart.TimeSeriesPoint
             {

@@ -15,150 +15,87 @@
   "RetirementCreditSequence": [
     {
       "Age": 45,
-      "AmountRaw": 9065.2500,
-      "AmountRounded10": 9065.30,
-      "AmountRounded60": 9065.40,
-      "AmountRounded100": 9065.0
+      "AmountRaw": 9065.2500
     },
     {
       "Age": 46,
-      "AmountRaw": 9065.2500,
-      "AmountRounded10": 9065.30,
-      "AmountRounded60": 9065.40,
-      "AmountRounded100": 9065.0
+      "AmountRaw": 9065.2500
     },
     {
       "Age": 47,
-      "AmountRaw": 9065.2500,
-      "AmountRounded10": 9065.30,
-      "AmountRounded60": 9065.40,
-      "AmountRounded100": 9065.0
+      "AmountRaw": 9065.2500
     },
     {
       "Age": 48,
-      "AmountRaw": 9065.2500,
-      "AmountRounded10": 9065.30,
-      "AmountRounded60": 9065.40,
-      "AmountRounded100": 9065.0
+      "AmountRaw": 9065.2500
     },
     {
       "Age": 49,
-      "AmountRaw": 9065.2500,
-      "AmountRounded10": 9065.30,
-      "AmountRounded60": 9065.40,
-      "AmountRounded100": 9065.0
+      "AmountRaw": 9065.2500
     },
     {
       "Age": 50,
-      "AmountRaw": 9065.2500,
-      "AmountRounded10": 9065.30,
-      "AmountRounded60": 9065.40,
-      "AmountRounded100": 9065.0
+      "AmountRaw": 9065.2500
     },
     {
       "Age": 51,
-      "AmountRaw": 9065.2500,
-      "AmountRounded10": 9065.30,
-      "AmountRounded60": 9065.40,
-      "AmountRounded100": 9065.0
+      "AmountRaw": 9065.2500
     },
     {
       "Age": 52,
-      "AmountRaw": 9065.2500,
-      "AmountRounded10": 9065.30,
-      "AmountRounded60": 9065.40,
-      "AmountRounded100": 9065.0
+      "AmountRaw": 9065.2500
     },
     {
       "Age": 53,
-      "AmountRaw": 9065.2500,
-      "AmountRounded10": 9065.30,
-      "AmountRounded60": 9065.40,
-      "AmountRounded100": 9065.0
+      "AmountRaw": 9065.2500
     },
     {
       "Age": 54,
-      "AmountRaw": 9065.2500,
-      "AmountRounded10": 9065.30,
-      "AmountRounded60": 9065.40,
-      "AmountRounded100": 9065.0
+      "AmountRaw": 9065.2500
     },
     {
       "Age": 55,
-      "AmountRaw": 10878.3000,
-      "AmountRounded10": 10878.30,
-      "AmountRounded60": 10878.60,
-      "AmountRounded100": 10878.0
+      "AmountRaw": 10878.3000
     },
     {
       "Age": 56,
-      "AmountRaw": 10878.3000,
-      "AmountRounded10": 10878.30,
-      "AmountRounded60": 10878.60,
-      "AmountRounded100": 10878.0
+      "AmountRaw": 10878.3000
     },
     {
       "Age": 57,
-      "AmountRaw": 10878.3000,
-      "AmountRounded10": 10878.30,
-      "AmountRounded60": 10878.60,
-      "AmountRounded100": 10878.0
+      "AmountRaw": 10878.3000
     },
     {
       "Age": 58,
-      "AmountRaw": 10878.3000,
-      "AmountRounded10": 10878.30,
-      "AmountRounded60": 10878.60,
-      "AmountRounded100": 10878.0
+      "AmountRaw": 10878.3000
     },
     {
       "Age": 59,
-      "AmountRaw": 10878.3000,
-      "AmountRounded10": 10878.30,
-      "AmountRounded60": 10878.60,
-      "AmountRounded100": 10878.0
+      "AmountRaw": 10878.3000
     },
     {
       "Age": 60,
-      "AmountRaw": 10878.3000,
-      "AmountRounded10": 10878.30,
-      "AmountRounded60": 10878.60,
-      "AmountRounded100": 10878.0
+      "AmountRaw": 10878.3000
     },
     {
       "Age": 61,
-      "AmountRaw": 10878.3000,
-      "AmountRounded10": 10878.30,
-      "AmountRounded60": 10878.60,
-      "AmountRounded100": 10878.0
+      "AmountRaw": 10878.3000
     },
     {
       "Age": 62,
-      "AmountRaw": 10878.3000,
-      "AmountRounded10": 10878.30,
-      "AmountRounded60": 10878.60,
-      "AmountRounded100": 10878.0
+      "AmountRaw": 10878.3000
     },
     {
       "Age": 63,
-      "AmountRaw": 10878.3000,
-      "AmountRounded10": 10878.30,
-      "AmountRounded60": 10878.60,
-      "AmountRounded100": 10878.0
+      "AmountRaw": 10878.3000
     },
     {
       "Age": 64,
-      "AmountRaw": 10878.3000,
-      "AmountRounded10": 10878.30,
-      "AmountRounded60": 10878.60,
-      "AmountRounded100": 10878.0
+      "AmountRaw": 10878.3000
     },
     {
       "Age": 65,
-      "AmountRaw": 10878.3000,
-      "AmountRounded10": 10878.30,
-      "AmountRounded60": 10878.60,
-      "AmountRounded100": 10878.0
+      "AmountRaw": 10878.3000
     }
   ],
   "RetirementCapitalSequence": [

@@ -4,10 +4,11 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Application.Features.TaxScenarios.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using PensionCoach.Tools.CommonTypes.Features.PensionVersusCapital;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.TaxComparison;
 
 namespace BlazorApp.Services;
 
@@ -27,12 +28,17 @@ public class TaxScenarioService : ITaxScenarioService
         this.logger = logger;
     }
 
-    public Task<CapitalBenefitsTransferInResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
+    public Task<ScenarioCalculationResponse> CalculateAsync(CapitalBenefitTransferInComparerRequest request)
     {
-        return CalculateAsync(request, "CalculateTransferInCapitalBenefits");
+        return CalculateAsync(request, "CalculateCapitalBenefitTransferInsYears");
     }
 
-    private async Task<CapitalBenefitsTransferInResponse> CalculateAsync<T>(T request, string urlMethodPart)
+    public Task<ScenarioCalculationResponse> CalculateAsync(PensionVersusCapitalRequest request)
+    {
+        return CalculateAsync(request, "CalculatePensionVersusCapitalComparison");
+    }
+
+    private async Task<ScenarioCalculationResponse> CalculateAsync<T>(T request, string urlMethodPart)
     {
         string baseUri = configuration.GetSection("TaxScenarioServiceUrl").Value;
         string urlPath = Path.Combine(baseUri, urlMethodPart);
@@ -54,6 +60,6 @@ public class TaxScenarioService : ITaxScenarioService
 
         response.EnsureSuccessStatusCode();
 
-        return await response.Content.ReadFromJsonAsync<CapitalBenefitsTransferInResponse>();
+        return await response.Content.ReadFromJsonAsync<ScenarioCalculationResponse>();
     }
 }

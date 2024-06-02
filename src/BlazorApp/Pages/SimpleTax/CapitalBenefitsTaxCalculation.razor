@@ -1,0 +1,178 @@
+﻿@page "/SimpleTax/CapitalBenefitsTaxCalculation"
+
+@using PensionCoach.Tools.CommonTypes.Tax
+@using System.Globalization
+
+@inject IPersonService PersonService
+@inject ITaxCalculationService TaxCalculationService
+
+<MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+    <MudGrid>
+        <MudItem md="12">
+            <MudText Typo="Typo.h5">Steuerberechnung</MudText>
+        </MudItem>
+        <MudItem md="12">
+
+            <MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+
+                <MudTabPanel Text="Auswahl">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Die Cashflow-Simulation basiert auf Angaben zur Person sowie steuerrevelanten Daten wie Wohnort, Einkommen und Vermögen.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <PersonSelector Persons="persons" OnSelect="@HandleSelectPerson"/>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+
+                <MudTabPanel Text="Steuerdaten" Disabled="@(selectedPerson is null)">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Steuerlich relevante Angaben zur Person sind der Zivilstand,
+                                die Konfession und, falls verheiratet, die Konfession der Partnerin. Daneben gibt es auch Angaben wie das Alter,
+                                welche zwar für die Berechnung der Steuern irrelevant sind, aber Geldflüsse in der Vorsorge wirken.
+                                Der aktuelle Lohn und das derzeitige Vermögen sind der Startpunkt für Vermögensentwicklung über die Zeit.
+                            </MudText>
+                        </MudItem>
+                        <MudItem md="8">
+                            <PersonDetails IsReadOnly="false" Person="@selectedPerson"/>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+
+                <MudTabPanel Text="Simulation" Disabled="@(selectedPerson is null)">
+                    <MudGrid>
+                        <MudItem md="4">
+                            <MudText Typo="Typo.body2">
+                                Das Ergebnis einer Simulation lässt sich von weiteren Parametern steuern.
+                            </MudText>
+                            <MudNumericField Label="Kapitalbezug" Format="n0" Step="1000" @bind-Value="capitalWithdrawalAmount" Culture="CultureInfo.InvariantCulture" />
+                        </MudItem>
+                        <MudItem md="8">
+
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+
+            </MudTabs>
+
+        </MudItem>
+        
+        <MudItem md="12">
+            <MudButton OnClick="Calculate" Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
+        </MudItem>
+    </MudGrid>
+</MudPaper>
+
+@if (taxResponse != null)
+{
+    <MudExpansionPanels Class="mb-4 pa-6">
+        <MudExpansionPanel Text="Resultat Steuerberechnung" IsInitiallyExpanded="true">
+            <MudTreeView Items="TreeItems" @bind-ActivatedValue="ActivatedValue">
+                <ItemTemplate>
+                    <MudTreeViewItem @bind-Expanded="@context.IsExpanded" Items="@context.TreeItems" Value="@context"
+                                     Icon="@context.Icon" Text="@context.Title" EndText="@context.Number?.ToString()" EndTextTypo="@Typo.body2"/>
+                </ItemTemplate>
+            </MudTreeView>
+        </MudExpansionPanel>
+
+        <MudExpansionPanel Text="Rohdaten">
+            <JsonPrettyFormat ObjectValue="taxResponse" />
+        </MudExpansionPanel>
+    </MudExpansionPanels>
+}
+
+@code
+{
+    private CapitalBenefitTaxRequest taxRequest = new();
+    private CapitalBenefitTaxResponse taxResponse;
+    private decimal? capitalWithdrawalAmount;
+    private PersonViewModel selectedPerson;
+    private IReadOnlyCollection<PersonViewModel> persons;
+    private int[] supportedTaxYears;
+
+    private TreeItemData ActivatedValue { get; set; }
+
+    private HashSet<TreeItemData> TreeItems { get; set; } = new();
+
+    public class TreeItemData
+    {
+        public string Title { get; set; }
+
+        public string Icon { get; set; }
+
+        public int? Number { get; set; }
+
+        public bool IsExpanded { get; set; }
+
+        public HashSet<TreeItemData> TreeItems { get; set; }
+
+        public TreeItemData(string title, string icon, int? number = null)
+        {
+            Title = title;
+            Icon = icon;
+            Number = number;
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Task<int[]> yearsTask = TaxCalculationService.SupportedTaxYearsAsync();
+        persons = (await PersonService.GetPersonsAsync()).ToList();
+
+        supportedTaxYears = await yearsTask;
+    }
+
+    private void HandleSelectPerson(Guid personId)
+    {
+        selectedPerson = persons.Single(item => item.Id == personId);
+
+        capitalWithdrawalAmount =
+            selectedPerson?.FinalRetirementCapital +
+            selectedPerson?.FinalCapital3a;
+    }
+
+    private async Task Calculate()
+    {
+        if (selectedPerson is null)
+        {
+            return;
+        }
+
+        taxRequest = new CapitalBenefitTaxRequest()
+            {
+                Name = selectedPerson.Name,
+                CivilStatus = selectedPerson.CivilStatus,
+                TaxableBenefits = capitalWithdrawalAmount ?? 0,
+                PartnerReligiousGroup = selectedPerson.PartnerReligiousGroupType,
+                ReligiousGroup = selectedPerson.ReligiousGroupType,
+                BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
+                CalculationYear = supportedTaxYears.Max()
+            };
+        
+        taxResponse = await TaxCalculationService.CalculateAsync(taxRequest);
+
+        TreeItems.Add(new TreeItemData($"{selectedPerson.Name} {taxResponse.CalculationYear}", null)
+        {
+            IsExpanded = true,
+            TreeItems = new HashSet<TreeItemData>
+            {
+                new($"Gesamtsteuerbelastung", null, Convert.ToInt32(taxResponse.TotalTaxAmount))
+                {
+                    IsExpanded = true,
+                    TreeItems = new HashSet<TreeItemData>
+                    {
+                        new("Bundessteuer", null, Convert.ToInt32(taxResponse.TaxDetails.FederalTaxAmount)),
+                        new("Gemeindesteuer", null, Convert.ToInt32(taxResponse.TaxDetails.MunicipalityTaxAmount)),
+                        new("Staatssteuer", null, Convert.ToInt32(taxResponse.TaxDetails.CantonTaxAmount)),
+                        new("Kirchensteuer", null, Convert.ToInt32(taxResponse.TaxDetails.ChurchTaxAmount)),
+                    }
+                }
+            }
+        });
+    }
+}

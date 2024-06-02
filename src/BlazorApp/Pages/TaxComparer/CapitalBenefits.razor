@@ -1,9 +1,9 @@
 ﻿@page "/TaxComparer/CapitalBenefits"
 
 @using Microsoft.AspNetCore.Components
-@using PensionCoach.Tools.TaxComparison
 @using System.Globalization
-@using PensionCoach.Tools.CommonTypes
+@using Application.Features.TaxComparison.Models
+@using Domain.Enums
 
 @inject IPersonService PersonService
 @inject ITaxComparisonService TaxComparisonService
@@ -65,7 +65,7 @@
         </MudItem>
 
         <MudItem md="12">
-            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
+            <MudButton OnClick="OnSubmit" Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
         </MudItem>
 
     </MudGrid>

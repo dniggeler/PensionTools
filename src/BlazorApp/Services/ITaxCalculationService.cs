@@ -7,5 +7,7 @@ public interface ITaxCalculationService
 {
     Task<FullTaxResponse> CalculateAsync(FullTaxRequest request);
 
+    Task<CapitalBenefitTaxResponse> CalculateAsync(CapitalBenefitTaxRequest request);
+
     Task<int[]> SupportedTaxYearsAsync();
 }

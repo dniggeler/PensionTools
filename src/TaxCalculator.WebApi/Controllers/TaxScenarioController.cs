@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Calculators.CashFlow;
+using Application.Features.TaxScenarios;
+using Application.Features.TaxScenarios.Models;
+using Domain.Enums;
+using Domain.Models.Scenarios;
+using Domain.Models.Tax;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PensionCoach.Tools.CommonTypes;
+using PensionCoach.Tools.CommonTypes.Features.PensionVersusCapital;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.CommonTypes.Tax;
-using PensionCoach.Tools.TaxComparison;
 
 namespace TaxCalculator.WebApi.Controllers;
 
@@ -32,15 +34,15 @@ public class TaxScenarioController : ControllerBase
     /// If request is incomplete or cannot be validated.
     /// </response>
     /// <remarks>
-    /// Berechnet die Wertentwicklung von ein oder mehreren Kapitaleinlagen in die Pensionkasse oder auf ein 3a Konto.
+    /// Berechnet die Wertentwicklung von ein oder mehreren Kapitaleinlagen in die Pensionskasse oder auf ein 3a Konto.
     /// Dabei werden steuerliche Aspekte bei der Einlage (Abzugsmöglichkeit) sowie die anfallende Kapitalbezugssteuer beim Bezug der
     /// Kapitalleistungen berücksichtigt.
     /// </remarks>
     [HttpPost]
-    [Route(nameof(CalculateTransferInCapitalBenefits))]
+    [Route(nameof(CalculateCapitalBenefitTransferInsYears))]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<CapitalBenefitsTransferInResponse>> CalculateTransferInCapitalBenefits(CapitalBenefitTransferInComparerRequest request)
+    public async Task<ActionResult<ScenarioCalculationResponse>> CalculateCapitalBenefitTransferInsYears(CapitalBenefitTransferInComparerRequest request)
     {
         if (request == null)
         {
@@ -50,10 +52,10 @@ public class TaxScenarioController : ControllerBase
         var taxPerson = MapPerson();
         var scenarioModel = MapScenarioModel();
 
-        var response = new CapitalBenefitsTransferInResponse();
+        var response = new ScenarioCalculationResponse();
 
-        await scenarioCalculator.TransferInCapitalBenefitsAsync(
-            request.CalculationYear, request.BfsMunicipalityId, taxPerson, scenarioModel)
+        await scenarioCalculator.CapitalBenefitTransferInsAsync(
+                request.CalculationYear, request.BfsMunicipalityId, taxPerson, scenarioModel)
             .IterAsync(r =>
             {
                 response.NumberOfPeriods = r.NumberOfPeriods;
@@ -65,9 +67,9 @@ public class TaxScenarioController : ControllerBase
 
         return response;
 
-        TransferInCapitalBenefitsScenarioModel MapScenarioModel()
+        CapitalBenefitTransferInsScenarioModel MapScenarioModel()
         {
-            return new TransferInCapitalBenefitsScenarioModel
+            return new CapitalBenefitTransferInsScenarioModel
             {
                 TransferIns = request.TransferIns,
                 NetReturnCapitalBenefits = request.NetPensionCapitalReturn,
@@ -95,5 +97,100 @@ public class TaxScenarioController : ControllerBase
                 TaxableWealth = request.TaxableWealth,
             };
         }
+    }
+
+    [HttpPost]
+    [Route(nameof(CalculateThirdPillarVersusSelfInvestmentComparison))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<ScenarioCalculationResponse>> CalculateThirdPillarVersusSelfInvestmentComparison(ThirdPillarVersusSelfInvestmentComparerRequest request)
+    {
+        if (request == null)
+        {
+            return BadRequest(nameof(request));
+        }
+
+        var taxPerson = MapPerson();
+        var scenarioModel = MapScenarioModel();
+
+        var response = new ScenarioCalculationResponse();
+
+        await scenarioCalculator.ThirdPillarVersusSelfInvestmentAsync(
+                request.CalculationYear, request.BfsMunicipalityId, taxPerson, scenarioModel)
+            .IterAsync(r =>
+            {
+                response.NumberOfPeriods = r.NumberOfPeriods;
+                response.StartingYear = r.StartingYear;
+                response.DeltaSeries = r.DeltaSeries;
+                response.BenchmarkSeries = r.BenchmarkSeries;
+                response.ScenarioSeries = r.ScenarioSeries;
+            });
+
+        return response;
+
+        ThirdPillarVersusSelfInvestmentScenarioModel MapScenarioModel()
+        {
+            return new ThirdPillarVersusSelfInvestmentScenarioModel
+            {
+                FinalYear = request.FinalYear,
+                InvestmentAmount = request.InvestmentAmount,
+                InvestmentNetGrowthRate = request.InvestmentNetGrowthRate,
+                InvestmentNetIncomeYield = request.InvestmentNetIncomeRate,
+                ThirdPillarNetGrowthRate = request.ThirdPillarNetGrowthRate,
+            };
+        }
+
+        TaxPerson MapPerson()
+        {
+            var name = string.IsNullOrEmpty(request.Name)
+                ? Guid.NewGuid().ToString()[..6]
+                : request.Name;
+
+            return new TaxPerson
+            {
+                Name = name,
+                CivilStatus = request.CivilStatus,
+                ReligiousGroupType = request.ReligiousGroup,
+                PartnerReligiousGroupType = request.PartnerReligiousGroup ?? ReligiousGroupType.Other,
+                NumberOfChildren = 0,
+                TaxableFederalIncome = request.TaxableFederalIncome,
+                TaxableIncome = request.TaxableIncome,
+                TaxableWealth = request.TaxableWealth,
+            };
+        }
+    }
+
+    [HttpPost]
+    [Route(nameof(CalculatePensionVersusCapitalComparison))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<ScenarioCalculationResponse>> CalculatePensionVersusCapitalComparison(PensionVersusCapitalRequest request)
+    {
+        if (request == null)
+        {
+            return BadRequest(nameof(request));
+        }
+
+        var response = new ScenarioCalculationResponse();
+
+        var result = await scenarioCalculator.PensionVersusCapitalComparisonAsync(
+                request.CalculationYear,
+                request.MunicipalityId,
+                request.YearlyConsumptionAmount,
+                request.RetirementPension,
+                request.RetirementCapital,
+                request.NetWealthReturn,
+                request.TaxPerson);
+
+        result.Iter(r =>
+        {
+            response.NumberOfPeriods = r.NumberOfPeriods;
+            response.StartingYear = r.StartingYear;
+            response.DeltaSeries = r.DeltaSeries;
+            response.BenchmarkSeries = r.BenchmarkSeries;
+            response.ScenarioSeries = r.ScenarioSeries;
+        });
+
+        return response;
     }
 }

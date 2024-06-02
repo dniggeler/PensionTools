@@ -39,6 +39,37 @@ public class TaxCalculationService : ITaxCalculationService, IMarginalTaxCurveCa
         return await response.Content.ReadFromJsonAsync<FullTaxResponse>();
     }
 
+    public async Task<CapitalBenefitTaxResponse> CalculateAsync(CapitalBenefitTaxRequest request)
+    {
+        string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+        string urlPath = Path.Combine(baseUri, "full/capitalbenefit");
+
+        logger.LogInformation(JsonSerializer.Serialize(request));
+
+        HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
+
+        response.EnsureSuccessStatusCode();
+
+        return await response.Content.ReadFromJsonAsync<CapitalBenefitTaxResponse>();
+    }
+
+    public async Task<MarginalTaxResponse> CalculateCapitalBenefitsCurveAsync(MarginalTaxRequest request)
+    {
+        string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;
+        string urlPath = Path.Combine(baseUri, "marginaltaxcurve/capitalbenefits");
+
+        logger.LogInformation(JsonSerializer.Serialize(request));
+
+        HttpResponseMessage response = await httpClient.PostAsJsonAsync(urlPath, request);
+
+        response.EnsureSuccessStatusCode();
+
+        MarginalTaxResponse result =
+            await response.Content.ReadFromJsonAsync<MarginalTaxResponse>();
+
+        return result;
+    }
+
     public async Task<int[]> SupportedTaxYearsAsync()
     {
         string baseUri = configuration.GetSection("TaxCalculatorServiceUrl").Value;

@@ -1,0 +1,40 @@
+﻿{
+  "DateOfRetirement": "2024-04-01T00:00:00",
+  "EffectiveSalary": 85000.0,
+  "InsuredSalary": 59275.00,
+  "RetirementCredit": 10669.5000,
+  "RetirementCreditFactor": 0.18,
+  "RetirementCapitalEndOfYear": 2667.375,
+  "FinalRetirementCapital": 2667.375,
+  "FinalRetirementCapitalWithoutInterest": 2667.375,
+  "RetirementPension": 181.0,
+  "DisabilityPension": 181.0,
+  "PartnerPension": 108.6,
+  "OrphanPension": 36.2,
+  "ChildPensionForDisabled": 36.2,
+  "RetirementCreditSequence": [
+    {
+      "Age": 64,
+      "AmountRaw": 10669.5000
+    },
+    {
+      "Age": 64,
+      "AmountRaw": 10669.5000
+    },
+    {
+      "Age": 64,
+      "AmountRaw": 10669.5000
+    },
+    {
+      "Age": 65,
+      "AmountRaw": 10669.5000
+    }
+  ],
+  "RetirementCapitalSequence": [
+    {
+      "Date": "2024-04-01T00:00:00",
+      "Value": 2667.375,
+      "ValueWithoutInterest": 2667.375
+    }
+  ]
+}

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
-using PensionCoach.Tools.TaxComparison;
+using Application.Features.TaxComparison.Models;
 
-namespace BlazorApp.Services;
-
-public interface ITaxComparisonService
+namespace BlazorApp.Services
 {
-    IAsyncEnumerable<TaxComparerResponse> CalculateAsync(CapitalBenefitTaxComparerRequest request);
+    public interface ITaxComparisonService
+    {
+        IAsyncEnumerable<TaxComparerResponse> CalculateAsync(CapitalBenefitTaxComparerRequest request);
 
-    IAsyncEnumerable<TaxComparerResponse> CalculateAsync(IncomeAndWealthComparerRequest request);
+        IAsyncEnumerable<TaxComparerResponse> CalculateAsync(IncomeAndWealthComparerRequest request);
+    }
 }
