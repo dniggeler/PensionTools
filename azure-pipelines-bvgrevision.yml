@@ -14,4 +14,25 @@ variables:
   buildConfiguration: 'Release'
 
 stages:
-  stage: build_and_deploy_blazor_app
+  - stage: build_and_deploy_blazor_app
+    displayName: 'Build blazor app and deploy it'
+    jobs:
+    - job: build_and_deploy
+      steps:
+      - task: UseDotNet@2
+        displayName: 'Use .NET Core sdk'
+        inputs:
+          packageType: sdk
+          version: 8.x
+          installationPath: $(Agent.ToolsDirectory)/dotnet  
+      - script: dotnet build --configuration $(buildConfiguration) src/BlazorBvgRevisionApp/BlazorBvgRevisionApp.csproj
+        displayName: 'Building $(buildConfiguration)'     
+      - task: DotNetCoreCLI@2
+        displayName: 'Publishing App'
+        inputs:
+          command: publish
+          publishWebProjects: true
+          arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+          zipAfterPublish: false
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publishing Build Artifacts'
