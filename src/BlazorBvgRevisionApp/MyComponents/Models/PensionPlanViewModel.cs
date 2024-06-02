@@ -1,6 +1,4 @@
-﻿using Application.Bvg.Models;
-
-namespace BlazorBvgRevisionApp.MyComponents.Models;
+﻿namespace BlazorBvgRevisionApp.MyComponents.Models;
 
 public class PensionPlanViewModel
 {
@@ -12,5 +10,5 @@ public class PensionPlanViewModel
 
     public decimal ConversionRate { get; set; }
 
-    public BvgTimeSeriesPoint[] RetirementCredits { get; set; } = [];
+    public RetirementCreditRange[] RetirementCredits { get; set; } = [];
 }

@@ -11,6 +11,9 @@ public class BvgPersonViewModel
     [StringLength(25, ErrorMessage = "Name ist zu lang.", ErrorMessageResourceName = "error.person.name")]
     public string Name { get; set; }
 
+    [Required]
+    public int CalculationYear { get; set; }
+
     public DateTime? DateOfBirth { get; set; }
 
     public Gender Gender { get; set; }
