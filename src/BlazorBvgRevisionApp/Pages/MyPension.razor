@@ -79,7 +79,7 @@
             <MudText Typo="Typo.body2">Das Ergebnis der Berechnung zeigt die voraussichtlichen Altersleistungen gemäss Ihres Vorsorgeplanes.
                 Die Leistungen sind auf Ihren ordentlichen Rentenbeginn gerechnet.</MudText>
 
-            <MudText Typo="Typo.body1" Class="mt-4">Ihr Pensionierungsdatum: @RevisionCalculationResult.DateOfRetirement.ToString("d. MMMM, yyyy")</MudText>
+            <MudText Typo="Typo.body1" Class="mt-4">Ihr Pensionierungsdatum: @RevisionCalculationResult?.DateOfRetirement.ToString("d. MMMM, yyyy")</MudText>
 
             <RetirementBenefitTable Benefits="@SimulationResultItems()" />
         </MudPaper>
@@ -190,35 +190,29 @@
         decimal? simulationRevisionRetirementCapital =
             SimulationRevisionCalculationResult?.FinalRetirementCapital is not null ? Math.Round(SimulationRevisionCalculationResult.FinalRetirementCapital) : null;
 
-        List<TableResult> results = 
+        decimal? simulationRetirementPension =
+            PlanSimulationResult?.RetirementPension.HasValue ?? false ? Math.Round(PlanSimulationResult.RetirementPension.Value) : null;
+        decimal? simulationRevisionRetirementPension =
+            SimulationRevisionCalculationResult?.RetirementPension is not null ? Math.Round(SimulationRevisionCalculationResult.RetirementPension) : null;
+
+        List<TableResult> results =
         [
             new TableResult("Altersguthaben", simulationRetirementCapital, simulationRevisionRetirementCapital),
+            new TableResult("Altersrente", simulationRetirementPension, simulationRevisionRetirementPension)
         ];
 
-        if (SimulationRevisionCalculationResult is not null)
+        if (PreCondition.IsEligible() &&
+            SimulationRevisionCalculationResult is not null)
         {
-            decimal? simulationRetirementPension =
-                PlanSimulationResult?.RetirementPension.HasValue ?? false ? Math.Round(PlanSimulationResult.RetirementPension.Value) : null;
-            decimal? simulationRevisionRetirementPension =
-                SimulationRevisionCalculationResult?.RetirementPension is not null ? Math.Round(SimulationRevisionCalculationResult.RetirementPension) : null;
+            decimal finalRetirementCapital = Math.Max(Person.FinalRetirementCapital, SimulationRevisionCalculationResult?.FinalRetirementCapital ?? decimal.Zero);
 
-            if (PreCondition.IsEligible())
-            {
-                decimal finalRetirementCapital = Math.Max(Person.FinalRetirementCapital, SimulationRevisionCalculationResult?.FinalRetirementCapital ?? decimal.Zero);
+            decimal pensionSupplement = BvgPensionSupplementCalculator.CalculatePensionSupplement(Person.DateOfBirth ?? DateTime.MaxValue, finalRetirementCapital);
 
-                decimal pensionSupplement = BvgPensionSupplementCalculator.CalculatePensionSupplement(Person.DateOfBirth ?? DateTime.MaxValue, finalRetirementCapital);
+            SimulationRevisionCalculationResult.RetirementPension += pensionSupplement;
 
-                RevisionCalculationResult.RetirementPension += pensionSupplement;
-
-                results.Add(new TableResult("Altersrente", simulationRetirementPension, simulationRevisionRetirementPension));
-
-                results.Add(new TableResult("davon Rentenzuschlag", null, Math.Round(pensionSupplement), true));
-            }
-            else
-            {
-                results.Add(new TableResult("Altersrente", simulationRetirementPension, simulationRevisionRetirementPension));
-            }
+            results.Add(new TableResult("davon Rentenzuschlag", null, Math.Round(pensionSupplement), true));
         }
+
 
         return results.ToArray();
     }
