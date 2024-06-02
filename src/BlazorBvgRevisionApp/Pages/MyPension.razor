@@ -4,6 +4,7 @@
 @using Application.Bvg
 @using BlazorBvgRevisionApp.MyComponents.Models
 @using BlazorBvgRevisionApp.Services
+@using BlazorBvgRevisionApp.Services.Models
 @using Domain.Enums
 @using Domain.Models.Bvg
 @using Microsoft.AspNetCore.Components.WebAssembly.Hosting
@@ -70,15 +71,30 @@
             <MudButton OnClick="OnSimulatePlan" Variant="Variant.Filled" Color="Color.Secondary" Disabled="@IsPersonNotValid()">Prüfe Plan</MudButton>
         </MudItem>
     </MudGrid>
+    
+    @if (PlanSimulationResult is not null)
+    {
+        <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+            <MudText Class="mb-4" Typo="Typo.h5">Ihr Vorsorgeplan: </MudText>
+            <MudText Typo="Typo.body2">Das Ergebnis der Berechnung zeigt die voraussichtlichen Altersleistungen gemäss Ihres Vorsorgeplanes.
+                Die Leistungen sind auf Ihren ordentlichen Rentenbeginn gerechnet.</MudText>
+
+            <MudText Typo="Typo.body1" Class="mt-4">Ihr Pensionierungsdatum: @RevisionCalculationResult.DateOfRetirement.ToString("d. MMMM, yyyy")</MudText>
+
+            <RetirementBenefitTable Benefits="@SimulationResultItems()" />
+        </MudPaper>
+    }
 </MudPaper>
 
 @code
 {
     private BvgPersonViewModel Person { get; set; } = new ();
     private BvgCalculationResult? RevisionCalculationResult { get; set; }
+    private BvgCalculationResult? SimulationRevisionCalculationResult { get; set; }
     private BvgCalculationResult? CurrentCalculationResult { get; set; }
     private EligibleForPensionViewModel PreCondition { get; } = new();
     private PensionPlanViewModel PensionPlan = new();
+    private PensionPlanSimulationResult? PlanSimulationResult;
 
     protected override void OnInitialized()
     {
@@ -128,9 +144,7 @@
 
     private void OnSimulatePlan(MouseEventArgs obj)
     {
-        var simulationResult = PlanSimulator.Calculate(PensionPlan, Person);
-
-        Logger.LogInformation($"Simulation Result: {JsonSerializer.Serialize(simulationResult)}");
+        PlanSimulationResult = PlanSimulator.Calculate(PensionPlan, Person);
     }
 
     private TableResult[] ResultItems()
@@ -169,6 +183,45 @@
         return results.ToArray();
     }
 
+    private TableResult[] SimulationResultItems()
+    {
+        decimal? simulationRetirementCapital =
+            PlanSimulationResult?.FinalRetirementCapital.HasValue ?? false ? Math.Round(PlanSimulationResult.FinalRetirementCapital.Value) : null;
+        decimal? simulationRevisionRetirementCapital =
+            SimulationRevisionCalculationResult?.FinalRetirementCapital is not null ? Math.Round(SimulationRevisionCalculationResult.FinalRetirementCapital) : null;
+
+        List<TableResult> results = 
+        [
+            new TableResult("Altersguthaben", simulationRetirementCapital, simulationRevisionRetirementCapital),
+        ];
+
+        if (SimulationRevisionCalculationResult is not null)
+        {
+            decimal? simulationRetirementPension =
+                PlanSimulationResult?.RetirementPension.HasValue ?? false ? Math.Round(PlanSimulationResult.RetirementPension.Value) : null;
+            decimal? simulationRevisionRetirementPension =
+                SimulationRevisionCalculationResult?.RetirementPension is not null ? Math.Round(SimulationRevisionCalculationResult.RetirementPension) : null;
+
+            if (PreCondition.IsEligible())
+            {
+                decimal finalRetirementCapital = Math.Max(Person.FinalRetirementCapital, SimulationRevisionCalculationResult?.FinalRetirementCapital ?? decimal.Zero);
+
+                decimal pensionSupplement = BvgPensionSupplementCalculator.CalculatePensionSupplement(Person.DateOfBirth ?? DateTime.MaxValue, finalRetirementCapital);
+
+                RevisionCalculationResult.RetirementPension += pensionSupplement;
+
+                results.Add(new TableResult("Altersrente", simulationRetirementPension, simulationRevisionRetirementPension));
+
+                results.Add(new TableResult("davon Rentenzuschlag", null, Math.Round(pensionSupplement), true));
+            }
+            else
+            {
+                results.Add(new TableResult("Altersrente", simulationRetirementPension, simulationRevisionRetirementPension));
+            }
+        }
+
+        return results.ToArray();
+    }
 
     private bool IsPersonNotValid()
     {

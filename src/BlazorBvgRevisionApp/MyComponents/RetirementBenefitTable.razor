@@ -18,9 +18,9 @@
                     <strong>@context.Benefit</strong>
                 }
             </MudTd>
-            <MudTd Style="text-align:right">@context.ValueBvgRevision</MudTd>
-            <MudTd Style="text-align:right">@context.ValueCurrentBvg</MudTd>
-            <MudTd Style="text-align:right">@($"{context.Difference:+0;-0;0}")</MudTd>
+            <MudTd Style="text-align:right">@(context.ValueCurrentBvg.HasValue ? context.ValueBvgRevision : "-")</MudTd>
+            <MudTd Style="text-align:right">@(context.ValueCurrentBvg.HasValue ? context.ValueCurrentBvg : "-")</MudTd>
+            <MudTd Style="text-align:right">@(context.Difference.HasValue ? $"{context.Difference:+0;-0;0}" : "-")</MudTd>
         </RowTemplate>
     </MudTable>
 }
