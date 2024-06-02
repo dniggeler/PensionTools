@@ -12,7 +12,7 @@ public class BvgPersonViewModel
     public string Name { get; set; }
 
     [Required]
-    public int CalculationYear { get; set; }
+    public int ValidityYearCertificate { get; set; }
 
     public DateTime? DateOfBirth { get; set; }
 

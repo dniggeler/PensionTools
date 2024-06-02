@@ -10,7 +10,7 @@ using Xunit.Abstractions;
 
 namespace BvgCalculator.Tests.Projection;
 
-[Trait("Savings Process Projection Calculator", "Pension Plan")]
+[Trait("Pension Plan", "Savings Projection Calculator")]
 public class PensionPlanSavingsProjectionTests(ITestOutputHelper outputHelper)
 {
     const decimal Deviation = 10;
@@ -19,7 +19,8 @@ public class PensionPlanSavingsProjectionTests(ITestOutputHelper outputHelper)
     private readonly BvgRetirementDateCalculator retirementDateCalculator = new();
 
     [Theory]
-    [InlineData("1968-06-12", 1, 5090, 0.02, 2025, 75642.55, 97914)]
+    [InlineData("1968-06-12", 1, 5090, 0.0125, 2024, 32136, 45344)]
+    [InlineData("1968-06-12", 1, 5090, 0.02, 2024, 75642.55, 100788)]
     [InlineData("1969-03-17", 2, 192967, 0.01, 2024, 721065.05, 1171484)]
     public void ProjectionTableTheory(
         string dateOfBirthAsString,

@@ -23,9 +23,9 @@ public class PensionPlanSimulator(
         TechnicalAge retirementAge = retirementDateCalculator.RetirementAge(person.Gender, person.DateOfBirth.Value);
         TechnicalAge finalAge = retirementAge;
 
-        int yearOfBeginProjection = person.CalculationYear + 1;
+        int yearOfBeginProjection = person.ValidityYearCertificate + 1;
 
-        Either<string, BvgCalculationResult> bvgCalculationResult = bvgCalculator.Calculate(person.CalculationYear, person.BvgRetirementCapitalEndOfYear,
+        Either<string, BvgCalculationResult> bvgCalculationResult = bvgCalculator.Calculate(person.ValidityYearCertificate, person.BvgRetirementCapitalEndOfYear,
             new BvgPerson
             {
                 ReportedSalary = person.ReportedSalary,

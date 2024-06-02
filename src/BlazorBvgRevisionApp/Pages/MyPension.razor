@@ -99,7 +99,7 @@
             PartTimeDegree = 1
         };
 
-        BvgRevisionCalculator.Calculate(Person.CalculationYear, Person.BvgRetirementCapitalEndOfYear, bvgPerson)
+        BvgRevisionCalculator.Calculate(Person.ValidityYearCertificate, Person.BvgRetirementCapitalEndOfYear, bvgPerson)
         .Match(
             Right: revisionResult =>
             {
@@ -112,7 +112,7 @@
                 RevisionCalculationResult = null;
             });
 
-        BvgCalculator.Calculate(Person.CalculationYear, Person.BvgRetirementCapitalEndOfYear, bvgPerson)
+        BvgCalculator.Calculate(Person.ValidityYearCertificate, Person.BvgRetirementCapitalEndOfYear, bvgPerson)
             .Match(
                 Right: result =>
                 {
@@ -138,7 +138,7 @@
         List<TableResult> results =
         [
             new TableResult("Altersguthaben", Math.Round(CurrentCalculationResult?.FinalRetirementCapital ?? decimal.Zero), Math.Round(RevisionCalculationResult?.FinalRetirementCapital ?? decimal.Zero)),
-    ];
+        ];
 
         if (RevisionCalculationResult is not null)
         {
@@ -181,11 +181,11 @@
         return new BvgPersonViewModel
             {
                 Name = "Bubu Vorsorger",
-                CalculationYear = 2024,
-                DateOfBirth = new DateTime(1968, 6, 12),
-                ReportedSalary = 30815,
-                BvgRetirementCapitalEndOfYear = 32136.6M,
-                FinalRetirementCapital = 97914M,
+                ValidityYearCertificate = 2023,
+                DateOfBirth = new DateTime(1969, 3, 17),
+                ReportedSalary = 192967,
+                BvgRetirementCapitalEndOfYear = 169805M,
+                FinalRetirementCapital = 1171484,
                 Gender = Gender.Female,
             };
     }
@@ -194,10 +194,10 @@
     {
         return new PensionPlanViewModel
         {
-            ProjectionInterestRate = 0.02M,
-            InsuredSalary = 5090,
-            RetirementCapitalEndOfYear = 75642.55M,
-            ConversionRate = 0.068M,
+            ProjectionInterestRate = 0.01M,
+            InsuredSalary = 192967,
+            RetirementCapitalEndOfYear = 721065M,
+            ConversionRate = 0.058M,
             RetirementCredits = [
                 new RetirementCreditRange{FromAge = 0, ToAge = 24, Rate = 0M},
                 new RetirementCreditRange{FromAge = 25, ToAge = 34, Rate = 0.07M},
