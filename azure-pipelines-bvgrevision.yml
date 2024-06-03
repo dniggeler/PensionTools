@@ -15,7 +15,7 @@ variables:
 
 stages:
   - stage: build_and_deploy_blazor_app
-    displayName: 'Build blazor app and deploy it'
+    displayName: 'Build Blazor BVG Revision app and deploy it'
     jobs:
     - job: build_and_deploy
       steps:
