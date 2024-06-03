@@ -31,7 +31,8 @@ stages:
         displayName: 'Publishing App'
         inputs:
           command: publish
-          publishWebProjects: true
+          projects: '**/BlazorBvgRevisionApp.csproj'
+          publishWebProjects: false
           arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
           zipAfterPublish: false
       - task: PublishBuildArtifacts@1
