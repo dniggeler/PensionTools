@@ -3,6 +3,7 @@ using Application.Bvg;
 using Application.Bvg.Models;
 using BlazorBvgRevisionApp.MyComponents.Models;
 using BlazorBvgRevisionApp.Services.Models;
+using Domain.Enums;
 using Domain.Models.Bvg;
 using LanguageExt;
 using static System.Decimal;
@@ -19,8 +20,8 @@ public class PensionPlanSimulator(
     {
         ArgumentNullException.ThrowIfNull(person.DateOfBirth);
 
-        DateTime dateOfRetirement = retirementDateCalculator.DateOfRetirement(person.Gender, person.DateOfBirth.Value);
-        TechnicalAge retirementAge = retirementDateCalculator.RetirementAge(person.Gender, person.DateOfBirth.Value);
+        DateTime dateOfRetirement = retirementDateCalculator.DateOfRetirement(person.Gender ?? Gender.Undefined, person.DateOfBirth.Value);
+        TechnicalAge retirementAge = retirementDateCalculator.RetirementAge(person.Gender ?? Gender.Undefined, person.DateOfBirth.Value);
         TechnicalAge finalAge = retirementAge;
 
         int yearOfBeginProjection = person.ValidityYearCertificate + 1;
@@ -31,7 +32,7 @@ public class PensionPlanSimulator(
                 ReportedSalary = person.ReportedSalary,
                 DateOfBirth = person.DateOfBirth.Value,
                 DisabilityDegree = Zero,
-                Gender = person.Gender,
+                Gender = person.Gender ?? Gender.Undefined,
                 PartTimeDegree = One
             });
 

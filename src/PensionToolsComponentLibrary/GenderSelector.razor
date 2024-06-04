@@ -3,30 +3,19 @@
 
 @inject IStringLocalizer<PensionComponents> Localizer
 
-@if (IsReadOnly)
-{
-    @if (DisplayInGrid)
-    {
-        @GetViewModel().Name
-    }
-    else
-    {
-        <MudTextField T="string" Label="@Label" Text="@GetViewModel().Name" ReadOnly="@IsReadOnly"/>
-    }
-}
-else
-{
-    <MudSelect T="Gender" ReadOnly="@IsReadOnly" Label="@Label" ValueChanged="HandleChange" Value="@SelectedGender">
+<MudSelect T="GenderViewModel"
+           Label="@Label"
+           @bind-Value="selectedGenderModel"
+           Required="true">
 
-        @foreach (var g in genderModels)
-        {
-            <MudSelectItem Value="g.Value">@g.Name</MudSelectItem>
-        }
-    </MudSelect>
-}
+    @foreach (var g in genderModels)
+    {
+        <MudSelectItem T="GenderViewModel" Value="g">@g.Name</MudSelectItem>
+    }
+</MudSelect>
 
 @code {
-    internal class GenderViewModel
+    public record GenderViewModel
     {
         public Gender Value { get; set; }
 
@@ -36,12 +25,14 @@ else
     [Parameter] public string Label { get; set; }
     [Parameter] public bool IsReadOnly { get; set; }
     [Parameter] public bool DisplayInGrid { get; set; }
-    [Parameter] public Gender SelectedGender { get; set; } = Gender.Undefined;
+    [Parameter] public Gender? SelectedGender { get; set; }
 
     [Parameter]
-    public EventCallback<Gender> OnSelected { get; set; }
+    public EventCallback<GenderViewModel> OnSelected { get; set; }
 
     private readonly List<GenderViewModel> genderModels = new();
+
+    private GenderViewModel? selectedGenderModel;
 
     protected override void OnInitialized()
     {
@@ -49,14 +40,19 @@ else
         genderModels.Add(new GenderViewModel { Name = Localizer["gender.female"], Value = Gender.Female });
     }
 
-    private async Task HandleChange(Gender value)
+    private async Task HandleChange(GenderViewModel value)
     {
-        SelectedGender = value;
+        SelectedGender = value.Value;
         await OnSelected.InvokeAsync(value);
     }
 
-    private GenderViewModel GetViewModel()
+    private GenderViewModel? From(Gender? gender)
     {
-        return genderModels.Single(item => item.Value == SelectedGender);
+        return gender is null ? null : genderModels.FirstOrDefault(item => item.Value == gender.Value);
+    }
+
+    private Func<GenderViewModel?,bool> CheckSelection()
+    {
+        return vm => vm is not null;
     }
 }

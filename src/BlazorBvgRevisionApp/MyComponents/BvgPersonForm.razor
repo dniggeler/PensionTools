@@ -2,20 +2,20 @@
 @using BlazorBvgRevisionApp.MyComponents.Models
 
 <MudGrid>
-    <MudItem md="4" xs="6">
-        <MudNumericField T="int" Label="VA Gültigkeitsdatum" Min="2023" Step="1" @bind-Value="@Person.ValidityYearCertificate" Placeholder="Gültigkeitsdatum" />
+    <MudItem md="3" xs="6">
+        <MudNumericField T="int" Label="VA Gültigkeitsjahrdatum" Min="2023" Step="1" @bind-Value="@Person.ValidityYearCertificate" Placeholder="Gültigkeitsjahr" />
     </MudItem>
     
-    <MudItem md="4" xs="6">
-        <MudTextField Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name"/>
+    <MudItem md="3" xs="6">
+        <MudTextField Required="true" Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name" />
     </MudItem>
     
-    <MudItem md="4">
-        <MudDatePicker Label="Geburtsdatum" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="yyyy-MM-dd" Placeholder="Geburtstag" Mask="@(new DateMask("0000-00-00"))"/>
+    <MudItem md="3" xs="6">
+        <MudDatePicker Label="Geburtsdatum" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="yyyy-MM-dd" Required="true" Placeholder="Geburtstag" Mask="@(new DateMask("0000-00-00"))"/>
     </MudItem>
 
-    <MudItem md="4">
-        <GenderSelector Label="Geschlecht" SelectedGender="@Person.Gender" OnSelected="@(arg => Person.Gender = arg)"/>
+    <MudItem md="3" xs="6">
+        <GenderSelector Label="Geschlecht" SelectedGender="@Person.Gender" OnSelected="@(arg => Person.Gender = arg.Value)" />
     </MudItem>
 
     <MudItem md="4">

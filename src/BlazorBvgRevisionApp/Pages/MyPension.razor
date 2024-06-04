@@ -32,23 +32,25 @@
     <MudText Class="mb-4">
         Alle diese Werte sind auf Ihrem Vorsorgeausweis, den Sie mindestens einmal jährlich erhalten, aufgeführt.
     </MudText>
-
-    <BvgPersonForm Person="@Person"></BvgPersonForm>
     
-    <MudText Class="mt-8" Typo="Typo.h6">Schritt 2: Haben Sie Anspruch auf einen Rentenzuschlag?</MudText>
+    <MudForm Model="@Person" @ref="form">
+        <BvgPersonForm Person="@Person"></BvgPersonForm>
 
-    <MudText Class="mt-4">
-        Falls Sie die beiden Vorraussetzungen für einen Rentenzuschlag erfüllen und Sie einer Übergangsgeneration angehören,
-        erhöht sich BVG Altersrente. Details dazu finden Sie <MudLink Target="_blank" Href="https://www.bsv.admin.ch/bsv/de/home/sozialversicherungen/bv/reformen-und-revisionen.html">hier</MudLink>.
-    </MudText>
+        <MudText Class="mt-8" Typo="Typo.h6">Schritt 2: Haben Sie Anspruch auf einen Rentenzuschlag?</MudText>
 
-    <EligibleForPension PreCondition="@PreCondition"/>
+        <MudText Class="mt-4">
+            Falls Sie die beiden Vorraussetzungen für einen Rentenzuschlag erfüllen und Sie einer Übergangsgeneration angehören,
+            erhöht sich BVG Altersrente. Details dazu finden Sie <MudLink Target="_blank" Href="https://www.bsv.admin.ch/bsv/de/home/sozialversicherungen/bv/reformen-und-revisionen.html">hier</MudLink>.
+        </MudText>
 
-    <MudGrid>
-        <MudItem md="12">
-            <MudButton OnClick="OnBvgCalculate" Variant="Variant.Filled" Color="Color.Primary" Disabled="@IsPersonNotValid()">Berechne</MudButton>
-        </MudItem>
-    </MudGrid>
+        <EligibleForPension PreCondition="@PreCondition"/>
+
+        <MudGrid>
+            <MudItem md="12">
+                <MudButton OnClick="OnBvgCalculate" Variant="Variant.Filled" Color="Color.Primary">Berechne</MudButton>
+            </MudItem>
+        </MudGrid>
+    </MudForm>
 
     @if(RevisionCalculationResult is not null)
     {
@@ -95,22 +97,26 @@
     private EligibleForPensionViewModel PreCondition { get; } = new();
     private PensionPlanViewModel PensionPlan = new();
     private PensionPlanSimulationResult? PlanSimulationResult;
+    private MudForm form;
 
     protected override void OnInitialized()
     {
         if (EnvironmentService.IsDevelopment())
         {
-            Person = GetTestPerson();
+            Person.ValidityYearCertificate = DateTime.Today.Year;
+            Person.Name = "BVG";
             PensionPlan = GetTestPensionPlan();
         }
     }
 
-    private void OnBvgCalculate(MouseEventArgs obj)
+    private void OnBvgCalculate(MouseEventArgs _)
     {
+        //form.Validate();
+
         BvgPerson bvgPerson = new()
         {
             ReportedSalary = Person.ReportedSalary,
-            Gender = Person.Gender,
+            Gender = Person.Gender ?? Gender.Undefined,
             DateOfBirth = Person.DateOfBirth ?? DateTime.MinValue,
             PartTimeDegree = 1
         };
@@ -253,5 +259,15 @@
                 new RetirementCreditRange{FromAge = 55, ToAge = 65, Rate = 0.18M},
             ]
         };
+    }
+
+    private void OnValidSubmit(EditContext obj)
+    {
+        OnBvgCalculate(new MouseEventArgs());
+    }
+
+    private void OnInvalidSubmit(EditContext obj)
+    {
+        Console.WriteLine("Invalid Submit");
     }
 }

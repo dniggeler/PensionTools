@@ -14,9 +14,11 @@ public class BvgPersonViewModel
     [Required]
     public int ValidityYearCertificate { get; set; }
 
+    [Required]
     public DateTime? DateOfBirth { get; set; }
 
-    public Gender Gender { get; set; }
+    [Required]
+    public Gender? Gender { get; set; }
 
     public decimal BvgRetirementCapitalEndOfYear { get; set; }
 
