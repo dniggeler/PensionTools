@@ -1,5 +1,6 @@
 ﻿@using System.Globalization
 @using BlazorBvgRevisionApp.MyComponents.Models
+@using Domain.Enums
 
 <MudGrid>
     <MudItem md="3" xs="6">
@@ -7,15 +8,15 @@
     </MudItem>
     
     <MudItem md="3" xs="6">
-        <MudTextField Required="true" Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name" />
+        <MudTextField Required="true" RequiredError="" Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name" />
     </MudItem>
     
     <MudItem md="3" xs="6">
-        <MudDatePicker Label="Geburtsdatum" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="yyyy-MM-dd" Required="true" Placeholder="Geburtstag" Mask="@(new DateMask("0000-00-00"))"/>
+        <MudDatePicker Label="Geburtsdatum" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="yyyy-MM-dd" Required="true" RequiredError="" Placeholder="Geburtstag" Mask="@(new DateMask("0000-00-00"))"/>
     </MudItem>
 
     <MudItem md="3" xs="6">
-        <GenderSelector Label="Geschlecht" SelectedGender="@Person.Gender" OnSelected="@(arg => Person.Gender = arg.Value)" />
+        <GenderSelector Label="Geschlecht" SelectedGender="@gender" OnSelected="@(SetGender)" />
     </MudItem>
 
     <MudItem md="4">
@@ -33,5 +34,16 @@
 </MudGrid>
 
 @code {
+    private Gender? gender;
+
     [Parameter] public required BvgPersonViewModel Person { get; set; }
+
+    private void SetGender(Gender? g)
+    {
+        gender = g;
+        if (g.HasValue)
+        {
+            Person.Gender = g.Value;
+        }
+    }
 }

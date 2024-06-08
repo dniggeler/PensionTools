@@ -33,9 +33,9 @@
         Alle diese Werte sind auf Ihrem Vorsorgeausweis, den Sie mindestens einmal jährlich erhalten, aufgeführt.
     </MudText>
     
-    <MudForm Model="@Person" @ref="form">
-        <BvgPersonForm Person="@Person"></BvgPersonForm>
-
+    <MudForm Model="@Person" @ref="form" @bind-IsValid="@success">
+        <BvgPersonForm Person="@Person"/>
+        
         <MudText Class="mt-8" Typo="Typo.h6">Schritt 2: Haben Sie Anspruch auf einen Rentenzuschlag?</MudText>
 
         <MudText Class="mt-4">
@@ -47,7 +47,7 @@
 
         <MudGrid>
             <MudItem md="12">
-                <MudButton OnClick="OnBvgCalculate" Variant="Variant.Filled" Color="Color.Primary">Berechne</MudButton>
+                <MudButton OnClick="OnBvgCalculate" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!success)">Berechne</MudButton>
             </MudItem>
         </MudGrid>
     </MudForm>
@@ -70,7 +70,7 @@
     
     <MudGrid>
         <MudItem md="12">
-            <MudButton OnClick="OnSimulatePlan" Variant="Variant.Filled" Color="Color.Secondary" Disabled="@IsPersonNotValid()">Prüfe Plan</MudButton>
+            <MudButton OnClick="OnSimulatePlan" Variant="Variant.Filled" Color="Color.Secondary" Disabled="@(!ValidPersonDateOfBirth())">Prüfe Plan</MudButton>
         </MudItem>
     </MudGrid>
     
@@ -97,7 +97,8 @@
     private EligibleForPensionViewModel PreCondition { get; } = new();
     private PensionPlanViewModel PensionPlan = new();
     private PensionPlanSimulationResult? PlanSimulationResult;
-    private MudForm form;
+    private MudForm? form;
+    private bool success;
 
     protected override void OnInitialized()
     {
@@ -111,12 +112,17 @@
 
     private void OnBvgCalculate(MouseEventArgs _)
     {
-        //form.Validate();
+        form?.Validate();
+
+        if(!ValidPersonDateOfBirth())
+        {
+            return;
+        }
 
         BvgPerson bvgPerson = new()
         {
             ReportedSalary = Person.ReportedSalary,
-            Gender = Person.Gender ?? Gender.Undefined,
+            Gender = Person.Gender,
             DateOfBirth = Person.DateOfBirth ?? DateTime.MinValue,
             PartTimeDegree = 1
         };
@@ -207,8 +213,7 @@
             new TableResult("Altersrente", simulationRetirementPension, simulationRevisionRetirementPension)
         ];
 
-        if (PreCondition.IsEligible() &&
-            SimulationRevisionCalculationResult is not null)
+        if (PreCondition.IsEligible() && SimulationRevisionCalculationResult is not null)
         {
             decimal finalRetirementCapital = Math.Max(Person.FinalRetirementCapital, SimulationRevisionCalculationResult?.FinalRetirementCapital ?? decimal.Zero);
 
@@ -223,10 +228,9 @@
         return results.ToArray();
     }
 
-    private bool IsPersonNotValid()
+    private bool ValidPersonDateOfBirth()
     {
-        return !(Person.Gender is not Gender.Undefined &&
-               Person.DateOfBirth is not null);
+        return Person.DateOfBirth is not null;
     }
 
     private BvgPersonViewModel GetTestPerson()
@@ -259,15 +263,5 @@
                 new RetirementCreditRange{FromAge = 55, ToAge = 65, Rate = 0.18M},
             ]
         };
-    }
-
-    private void OnValidSubmit(EditContext obj)
-    {
-        OnBvgCalculate(new MouseEventArgs());
-    }
-
-    private void OnInvalidSubmit(EditContext obj)
-    {
-        Console.WriteLine("Invalid Submit");
     }
 }

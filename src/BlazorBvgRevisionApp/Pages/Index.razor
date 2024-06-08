@@ -17,7 +17,7 @@
     Es ist jedoch nicht einfach, die Auswirkungen dieser Änderungen auf die persönliche Vorsorge abzuleiten.
     Dies liegt hauptsächlich an zwei Gründen:
 
-    <MudList Dense="true">
+    <MudList T="string" Dense="true">
         <MudListItem Icon="@Icons.Material.Filled.ArrowRight">
             Die Herausforderung für Personen, die sich nicht jeden Tag mit Ihrer Vorsorge beschäftigen, besteht darin,
             aus dem komplexen Geflecht von BVG-Regeln, Rechenvorschriften und Grenzwerten die zukünftigen Leistungen zu berechnen.
@@ -38,7 +38,7 @@
 </MudText>
 <MudText>
     Ihre persönliche Auswirkungsberechnung erfolgt in mehreren Schritten:
-    <MudList Dense="true">
+    <MudList T="string" Dense="true">
         <MudListItem Icon="@Icons.Material.Filled.ArrowRight">
             Im ersten Schritt geben Sie Ihre persönlichen Daten ein, die für die Berechnung der Rentenleistungen erforderlich sind.
         </MudListItem>
@@ -54,12 +54,15 @@
     </MudList>
     
     Die Auswirkungsberechnung unterliegt den folgenden Einschränkungen:
-    <ul>
+    <MudList T="string" Dense="true">
         <li>Personenkreis: die Berechnung von Leistungen einer (Teil-)invaliden Person ist nicht unterstützt. Pensionierte sind von der Reform nicht betroffen.</li>
-        <li>Leistungen: die Berechnung beschränkt sich auf die Sparleistung (das Altersguthaben zum ordentlichen Rentenbeginn) und der daraus resultierenden Alterrente.
-            Ausgenommen sind also Risikoleistungen (wie Invaliden-, Partner-/Witwen- und Waisenrenten)</li>
+        <li>
+            Leistungen: die Berechnung beschränkt sich auf die Sparleistung (das Altersguthaben zum ordentlichen Rentenbeginn) und der daraus resultierenden Alterrente.
+            Ausgenommen sind also Risikoleistungen (wie Invaliden-, Partner-/Witwen- und Waisenrenten)
+        </li>
         <li></li>
-    </ul>
+    </MudList>
+
 </MudText>
 
 <MudText>

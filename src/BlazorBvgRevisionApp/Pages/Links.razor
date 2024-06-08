@@ -2,10 +2,10 @@
 
 <MudContainer>
     <MudText Typo="Typo.h6">Nützliche Links zur Reform BVG 21</MudText>
-    <MudList Clickable="true">
+    <MudList T="string" Clickable="true">
         @foreach ((string Title, string Url) link in links)
         {
-            <MudListItem>
+            <MudListItem T="string">
                 @link.Title
                 <BibLink Url="@link.Url" MaxLength="50" />
             </MudListItem>
