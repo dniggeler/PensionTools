@@ -104,8 +104,7 @@
     {
         if (EnvironmentService.IsDevelopment())
         {
-            Person.ValidityYearCertificate = DateTime.Today.Year;
-            Person.Name = "BVG";
+            Person = GetTestPerson();
             PensionPlan = GetTestPensionPlan();
         }
     }
@@ -242,7 +241,7 @@
                 ReportedSalary = 192967,
                 BvgRetirementCapitalEndOfYear = 169805M,
                 FinalRetirementCapital = 1171484,
-                Gender = Gender.Female,
+                Gender = Gender.Male,
             };
     }
 
