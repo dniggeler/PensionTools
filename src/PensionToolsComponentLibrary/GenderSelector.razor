@@ -3,60 +3,24 @@
 
 @inject IStringLocalizer<PensionComponents> Localizer
 
-@if (IsReadOnly)
-{
-    @if (DisplayInGrid)
-    {
-        @GetViewModel().Name
-    }
-    else
-    {
-        <MudTextField T="string" Label="@Label" Text="@GetViewModel().Name" ReadOnly="@IsReadOnly"/>
-    }
-}
-else
-{
-    <MudSelect T="Gender" ReadOnly="@IsReadOnly" Label="@Label" ValueChanged="HandleChange" Value="@SelectedGender">
+<MudSelect T="Gender?"
+           Label="@Label"
+           ValueChanged="HandleChange"
+           Value="@SelectedGender"
+           Required="true">
 
-        @foreach (var g in genderModels)
-        {
-            <MudSelectItem Value="g.Value">@g.Name</MudSelectItem>
-        }
-    </MudSelect>
-}
+    <MudSelectItem T="Gender?" Value="Gender.Female">@Localizer["gender.female"]</MudSelectItem>
+    <MudSelectItem T="Gender?" Value="Gender.Male">@Localizer["gender.male"]</MudSelectItem>
+</MudSelect>
 
 @code {
-    internal class GenderViewModel
-    {
-        public Gender Value { get; set; }
-
-        public string Name { get; set;}
-    }
-
     [Parameter] public string Label { get; set; }
-    [Parameter] public bool IsReadOnly { get; set; }
-    [Parameter] public bool DisplayInGrid { get; set; }
-    [Parameter] public Gender SelectedGender { get; set; } = Gender.Undefined;
+    [Parameter] public Gender? SelectedGender { get; set; }
+    [Parameter] public EventCallback<Gender?> OnSelected { get; set; }
 
-    [Parameter]
-    public EventCallback<Gender> OnSelected { get; set; }
-
-    private readonly List<GenderViewModel> genderModels = new();
-
-    protected override void OnInitialized()
-    {
-        genderModels.Add(new GenderViewModel { Name = Localizer["gender.male"], Value = Gender.Male });
-        genderModels.Add(new GenderViewModel { Name = Localizer["gender.female"], Value = Gender.Female });
-    }
-
-    private async Task HandleChange(Gender value)
+    private async Task HandleChange(Gender? value)
     {
         SelectedGender = value;
         await OnSelected.InvokeAsync(value);
-    }
-
-    private GenderViewModel GetViewModel()
-    {
-        return genderModels.Single(item => item.Value == SelectedGender);
     }
 }

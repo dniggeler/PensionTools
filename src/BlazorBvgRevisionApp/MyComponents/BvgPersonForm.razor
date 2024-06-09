@@ -1,21 +1,22 @@
 ﻿@using System.Globalization
 @using BlazorBvgRevisionApp.MyComponents.Models
+@using Domain.Enums
 
 <MudGrid>
-    <MudItem md="4" xs="6">
-        <MudNumericField T="int" Label="VA Gültigkeitsdatum" Min="2023" Step="1" @bind-Value="@Person.ValidityYearCertificate" Placeholder="Gültigkeitsdatum" />
+    <MudItem md="3" xs="6">
+        <MudNumericField T="int" Label="VA Gültigkeitsjahrdatum" Min="2023" Step="1" @bind-Value="@Person.ValidityYearCertificate" Placeholder="Gültigkeitsjahr" />
     </MudItem>
     
-    <MudItem md="4" xs="6">
-        <MudTextField Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name"/>
+    <MudItem md="3" xs="6">
+        <MudTextField Required="true" RequiredError="" Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name" />
     </MudItem>
     
-    <MudItem md="4">
-        <MudDatePicker Label="Geburtsdatum" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="yyyy-MM-dd" Placeholder="Geburtstag" Mask="@(new DateMask("0000-00-00"))"/>
+    <MudItem md="3" xs="6">
+        <MudDatePicker Label="Geburtsdatum" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="yyyy-MM-dd" Required="true" RequiredError="" Placeholder="Geburtstag" Mask="@(new DateMask("0000-00-00"))"/>
     </MudItem>
 
-    <MudItem md="4">
-        <GenderSelector Label="Geschlecht" SelectedGender="@Person.Gender" OnSelected="@(arg => Person.Gender = arg)"/>
+    <MudItem md="3" xs="6">
+        <GenderSelector Label="Geschlecht" SelectedGender="@gender" OnSelected="@(SetGender)" />
     </MudItem>
 
     <MudItem md="4">
@@ -33,5 +34,24 @@
 </MudGrid>
 
 @code {
+    private Gender? gender;
+
     [Parameter] public required BvgPersonViewModel Person { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        if (Person.Gender != Gender.Undefined)
+        {
+            gender = Person.Gender;
+        }
+    }
+
+    private void SetGender(Gender? g)
+    {
+        gender = g;
+        if (g.HasValue)
+        {
+            Person.Gender = g.Value;
+        }
+    }
 }

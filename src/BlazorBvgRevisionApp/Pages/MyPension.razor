@@ -32,23 +32,25 @@
     <MudText Class="mb-4">
         Alle diese Werte sind auf Ihrem Vorsorgeausweis, den Sie mindestens einmal jährlich erhalten, aufgeführt.
     </MudText>
-
-    <BvgPersonForm Person="@Person"></BvgPersonForm>
     
-    <MudText Class="mt-8" Typo="Typo.h6">Schritt 2: Haben Sie Anspruch auf einen Rentenzuschlag?</MudText>
+    <MudForm Model="@Person" @ref="bvgForm" @bind-IsValid="@success">
+        <BvgPersonForm Person="@Person"/>
+        
+        <MudText Class="mt-8" Typo="Typo.h6">Schritt 2: Haben Sie Anspruch auf einen Rentenzuschlag?</MudText>
 
-    <MudText Class="mt-4">
-        Falls Sie die beiden Vorraussetzungen für einen Rentenzuschlag erfüllen und Sie einer Übergangsgeneration angehören,
-        erhöht sich BVG Altersrente. Details dazu finden Sie <MudLink Target="_blank" Href="https://www.bsv.admin.ch/bsv/de/home/sozialversicherungen/bv/reformen-und-revisionen.html">hier</MudLink>.
-    </MudText>
+        <MudText Class="mt-4">
+            Falls Sie die beiden Vorraussetzungen für einen Rentenzuschlag erfüllen und Sie einer Übergangsgeneration angehören,
+            erhöht sich BVG Altersrente. Details dazu finden Sie <MudLink Target="_blank" Href="https://www.bsv.admin.ch/bsv/de/home/sozialversicherungen/bv/reformen-und-revisionen.html">hier</MudLink>.
+        </MudText>
 
-    <EligibleForPension PreCondition="@PreCondition"/>
+        <EligibleForPension PreCondition="@PreCondition"/>
 
-    <MudGrid>
-        <MudItem md="12">
-            <MudButton OnClick="OnBvgCalculate" Variant="Variant.Filled" Color="Color.Primary" Disabled="@IsPersonNotValid()">Berechne</MudButton>
-        </MudItem>
-    </MudGrid>
+        <MudGrid>
+            <MudItem md="12">
+                <MudButton OnClick="OnBvgCalculate" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!success)">Berechne</MudButton>
+            </MudItem>
+        </MudGrid>
+    </MudForm>
 
     @if(RevisionCalculationResult is not null)
     {
@@ -68,7 +70,7 @@
     
     <MudGrid>
         <MudItem md="12">
-            <MudButton OnClick="OnSimulatePlan" Variant="Variant.Filled" Color="Color.Secondary" Disabled="@IsPersonNotValid()">Prüfe Plan</MudButton>
+            <MudButton OnClick="OnSimulatePlan" Variant="Variant.Filled" Color="Color.Secondary" Disabled="@(!ValidPersonDateOfBirth())">Prüfe Plan</MudButton>
         </MudItem>
     </MudGrid>
     
@@ -90,23 +92,32 @@
 {
     private BvgPersonViewModel Person { get; set; } = new ();
     private BvgCalculationResult? RevisionCalculationResult { get; set; }
-    private BvgCalculationResult? SimulationRevisionCalculationResult { get; set; }
+    private BvgCalculationResult? SimulationRevisionCalculationResult;
     private BvgCalculationResult? CurrentCalculationResult { get; set; }
     private EligibleForPensionViewModel PreCondition { get; } = new();
     private PensionPlanViewModel PensionPlan = new();
     private PensionPlanSimulationResult? PlanSimulationResult;
+    private MudForm? bvgForm;
+    private bool success;
 
     protected override void OnInitialized()
     {
         if (EnvironmentService.IsDevelopment())
         {
             Person = GetTestPerson();
-            PensionPlan = GetTestPensionPlan();
+            PensionPlan = GetDefaultPensionPlan();
         }
     }
 
-    private void OnBvgCalculate(MouseEventArgs obj)
+    private void OnBvgCalculate(MouseEventArgs _)
     {
+        bvgForm?.Validate();
+
+        if(!ValidPersonDateOfBirth())
+        {
+            return;
+        }
+
         BvgPerson bvgPerson = new()
         {
             ReportedSalary = Person.ReportedSalary,
@@ -201,26 +212,26 @@
             new TableResult("Altersrente", simulationRetirementPension, simulationRevisionRetirementPension)
         ];
 
-        if (PreCondition.IsEligible() &&
-            SimulationRevisionCalculationResult is not null)
+        if (PreCondition.IsEligible() && SimulationRevisionCalculationResult is not null)
         {
             decimal finalRetirementCapital = Math.Max(Person.FinalRetirementCapital, SimulationRevisionCalculationResult?.FinalRetirementCapital ?? decimal.Zero);
 
             decimal pensionSupplement = BvgPensionSupplementCalculator.CalculatePensionSupplement(Person.DateOfBirth ?? DateTime.MaxValue, finalRetirementCapital);
 
-            SimulationRevisionCalculationResult.RetirementPension += pensionSupplement;
+            if (SimulationRevisionCalculationResult is not null)
+            {
+                SimulationRevisionCalculationResult.RetirementPension += pensionSupplement;
+            }
 
             results.Add(new TableResult("davon Rentenzuschlag", null, Math.Round(pensionSupplement), true));
         }
 
-
         return results.ToArray();
     }
 
-    private bool IsPersonNotValid()
+    private bool ValidPersonDateOfBirth()
     {
-        return !(Person.Gender is not Gender.Undefined &&
-               Person.DateOfBirth is not null);
+        return Person.DateOfBirth is not null;
     }
 
     private BvgPersonViewModel GetTestPerson()
@@ -233,18 +244,16 @@
                 ReportedSalary = 192967,
                 BvgRetirementCapitalEndOfYear = 169805M,
                 FinalRetirementCapital = 1171484,
-                Gender = Gender.Female,
+                Gender = Gender.Male,
             };
     }
 
-    private PensionPlanViewModel GetTestPensionPlan()
+    private PensionPlanViewModel GetDefaultPensionPlan()
     {
         return new PensionPlanViewModel
         {
-            ProjectionInterestRate = 0.01M,
-            InsuredSalary = 192967,
-            RetirementCapitalEndOfYear = 721065M,
-            ConversionRate = 0.058M,
+            ProjectionInterestRate = 0.015M,
+            ConversionRate = 0.068M,
             RetirementCredits = [
                 new RetirementCreditRange{FromAge = 0, ToAge = 24, Rate = 0M},
                 new RetirementCreditRange{FromAge = 25, ToAge = 34, Rate = 0.07M},
@@ -253,5 +262,14 @@
                 new RetirementCreditRange{FromAge = 55, ToAge = 65, Rate = 0.18M},
             ]
         };
+    }
+
+    private PensionPlanViewModel GetTestPensionPlan()
+    {
+        PensionPlanViewModel defaultPlan = GetDefaultPensionPlan();
+        defaultPlan.InsuredSalary = 192967;
+        defaultPlan.RetirementCapitalEndOfYear = 721065M;
+
+        return defaultPlan;
     }
 }

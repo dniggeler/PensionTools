@@ -36,7 +36,7 @@ public class PensionPlanSimulator(
             });
 
         bvgCalculationResult.Match(
-            Left: error => logger.LogError("BVG calculation error: {error}", error),
+            Left: error => logger.LogError($"BVG calculation error: {error}"),
             Right: result => logger.LogInformation($"BVG calculation result: {JsonSerializer.Serialize(result)}"));
 
         RetirementSavingsProcessResult[] projections = projectionCalculator.ProjectionTable(
@@ -60,7 +60,7 @@ public class PensionPlanSimulator(
         return new PensionPlanSimulationResult(null, null);
     }
 
-    private Func<TechnicalAge, decimal> RetirementCreditSelector(decimal insuredSalary, RetirementCreditRange[] retirementCreditTable)
+    private static Func<TechnicalAge, decimal> RetirementCreditSelector(decimal insuredSalary, RetirementCreditRange[] retirementCreditTable)
     {
         Dictionary<int, decimal> retirementCreditByAge = CreateRetirementCreditDictionary(retirementCreditTable);
 
@@ -74,7 +74,7 @@ public class PensionPlanSimulator(
         };
     }
 
-    private Dictionary<int, decimal> CreateRetirementCreditDictionary(RetirementCreditRange[] pensionPlanRetirementCredits)
+    private static Dictionary<int, decimal> CreateRetirementCreditDictionary(RetirementCreditRange[] pensionPlanRetirementCredits)
     {
         Dictionary<int, decimal> retirementCreditByAge = Enumerable.Range(0,100).ToDictionary(item => item, _ => Zero);
 
