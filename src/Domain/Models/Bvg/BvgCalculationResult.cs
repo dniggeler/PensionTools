@@ -4,6 +4,8 @@
     {
         public DateTime DateOfRetirement { get; set; }
 
+        public TechnicalAge RetirementAge { get; set; }
+
         public decimal EffectiveSalary { get; set; }
 
         public decimal InsuredSalary { get; set; }

@@ -147,10 +147,10 @@ public class BvgRevisionCalculator(
             not null => finalRetirementCapital.ValueWithoutInterest
         };
 
-        decimal retirementPension = RetirementPension(finalRetirementCapitalWithInterest, retirementDate, CurrentBvgCalculatorFunc(retirementCredit));
+        decimal retirementPension = RetirementPension(finalRetirementCapitalWithInterest, retirementDate, CurrentBvgCalculatorFunc(actualRetirementCapitalEndOfYear));
 
         // reset risk benefits to 0 if below salary threshold
-        decimal disabilityPension = DisabilityPension(finalRetirementCapitalWithoutInterest, retirementDate, CurrentBvgCalculatorFunc(retirementCredit));
+        decimal disabilityPension = DisabilityPension(finalRetirementCapitalWithoutInterest, retirementDate, CurrentBvgCalculatorFunc(actualRetirementCapitalEndOfYear));
         decimal partnerPension = disabilityPension * Bvg.FactorPartnersPension;
         decimal childPension = disabilityPension * Bvg.FactorChildPension;
         decimal orphanPension = childPension;
@@ -158,6 +158,7 @@ public class BvgRevisionCalculator(
         Either<string, BvgCalculationResult> result = new BvgCalculationResult
         {
             DateOfRetirement = GetRetirementDate(person.DateOfBirth, person.Gender),
+            RetirementAge = GetRetirementAge(person.Gender, person.DateOfBirth),
             EffectiveSalary = person.ReportedSalary,
             InsuredSalary = insuredSalary,
             RetirementCredit = retirementCredit,

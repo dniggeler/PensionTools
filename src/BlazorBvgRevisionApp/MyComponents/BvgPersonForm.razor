@@ -4,13 +4,9 @@
 
 <MudGrid>
     <MudItem md="3" xs="6">
-        <MudNumericField T="int" Label="VA Gültigkeitsjahrdatum" Min="2023" Step="1" @bind-Value="@Person.ValidityYearCertificate" Placeholder="Gültigkeitsjahr" />
+        <MudNumericField T="int" Label="Ausstellungsjahr" Min="2023" Step="1" @bind-Value="@Person.ValidityYearCertificate" HelperText="Gültigkeit der Werte auf dem Vorsorgeausweis" HelperTextOnFocus="true" Placeholder="Gültigkeitsjahr"/>
     </MudItem>
-    
-    <MudItem md="3" xs="6">
-        <MudTextField Required="true" RequiredError="" Label="Name" Variant="Variant.Text" @bind-Value="@Person.Name" />
-    </MudItem>
-    
+
     <MudItem md="3" xs="6">
         <MudDatePicker Label="Geburtsdatum" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="yyyy-MM-dd" Required="true" RequiredError="" Placeholder="Geburtstag" Mask="@(new DateMask("0000-00-00"))"/>
     </MudItem>

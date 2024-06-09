@@ -127,6 +127,7 @@ public class BvgCalculator(
         Either<string, BvgCalculationResult> result = new BvgCalculationResult
         {
             DateOfRetirement = GetRetirementDate(person.DateOfBirth, person.Gender),
+            RetirementAge = GetRetirementAge(person.Gender, person.DateOfBirth),
             EffectiveSalary = salary.EffectiveSalary,
             InsuredSalary = salary.InsuredSalary,
             RetirementCredit = retirementCredit,

@@ -1,5 +1,9 @@
 ﻿{
   "DateOfRetirement": "2024-04-01T00:00:00",
+  "RetirementAge": {
+    "Years": 65,
+    "Months": 0
+  },
   "EffectiveSalary": 85000.0,
   "InsuredSalary": 59275.00,
   "RetirementCredit": 10669.5000,

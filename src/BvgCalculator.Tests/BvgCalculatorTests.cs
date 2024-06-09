@@ -73,6 +73,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
         BvgCalculationResult expectedResult = new BvgCalculationResult
         {
             DateOfRetirement = new DateTime(2039, 9, 1),
+            RetirementAge = (65, 0),
             EffectiveSalary = 100000,
             InsuredSalary = 60435M,
             RetirementCredit = 9065.25M,
@@ -115,6 +116,7 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
         BvgCalculationResult expectedResult = new BvgCalculationResult
         {
             DateOfRetirement = new DateTime(2039, 9, 1),
+            RetirementAge = (65,0),
             EffectiveSalary = 20000M,
             InsuredSalary = 0M,
             RetirementCredit = 0M,

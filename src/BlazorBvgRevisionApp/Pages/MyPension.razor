@@ -58,7 +58,8 @@
             <MudText Class="mb-4" Typo="Typo.h5">BVG Berechnungsergebnis</MudText>
             <MudText Typo="Typo.body2">Das Ergebnis der Berechnung zeigt Ihre voraussichtlichen BVG-Altersleistungen. Die Leistungen sind auf Ihren ordentlichen Rentenbeginn gerechnet.</MudText>
 
-            <MudText Typo="Typo.body1" Class="mt-4">Ihr Pensionierungsdatum: @RevisionCalculationResult.DateOfRetirement.ToString("d. MMMM, yyyy")</MudText>
+            <MudText Typo="Typo.body1" Class="mt-4"><strong>Ihr Pensionierungsdatum: </strong>@RevisionCalculationResult.DateOfRetirement.ToString("d. MMMM, yyyy")</MudText>
+            <MudText Typo="Typo.body1" Class="mt-4"><strong>Ihr Alter bei Pensionierung: </strong>@RetirementAgeText(RevisionCalculationResult.RetirementAge)</MudText>
 
             <RetirementBenefitTable Benefits="@ResultItems()"/>
         </MudPaper>
@@ -131,7 +132,7 @@
             Right: revisionResult =>
             {
                 RevisionCalculationResult = revisionResult;
-                Logger.LogInformation($"Calculation Result: {JsonSerializer.Serialize(revisionResult)}");
+                Logger.LogInformation($"Current BVG Result: {JsonSerializer.Serialize(revisionResult)}");
             },
             Left: error =>
             {
@@ -144,7 +145,7 @@
                 Right: result =>
                 {
                     CurrentCalculationResult = result;
-                    Logger.LogInformation($"Calculation Result: {JsonSerializer.Serialize(result)}");
+                    Logger.LogInformation($"Bvg Revision Result: {JsonSerializer.Serialize(result)}");
                 },
                 Left: error =>
                 {
@@ -236,16 +237,23 @@
 
     private BvgPersonViewModel GetTestPerson()
     {
+        BvgPersonViewModel person = GetDefaultBvgPerson();
+        person.DateOfBirth = new DateTime(1969, 3, 17);
+        person.ReportedSalary = 192967;
+        person.BvgRetirementCapitalEndOfYear = 169805M;
+        person.FinalRetirementCapital = 1171484;
+        person.Gender = Gender.Male;
+
+        return person;
+    }
+
+    private BvgPersonViewModel GetDefaultBvgPerson()
+    {
         return new BvgPersonViewModel
-            {
-                Name = "Bubu Vorsorger",
-                ValidityYearCertificate = 2023,
-                DateOfBirth = new DateTime(1969, 3, 17),
-                ReportedSalary = 192967,
-                BvgRetirementCapitalEndOfYear = 169805M,
-                FinalRetirementCapital = 1171484,
-                Gender = Gender.Male,
-            };
+        {
+            Name = "Bubu Vorsorger",
+            ValidityYearCertificate = 2023,
+        };
     }
 
     private PensionPlanViewModel GetDefaultPensionPlan()
@@ -271,5 +279,10 @@
         defaultPlan.RetirementCapitalEndOfYear = 721065M;
 
         return defaultPlan;
+    }
+
+    private string RetirementAgeText(TechnicalAge retirementAge)
+    {
+        return $"{retirementAge.Years} Jahre und {retirementAge.Months} Monate";
     }
 }
