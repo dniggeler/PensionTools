@@ -9,7 +9,7 @@ public class BvgPersonViewModel
 
     [Required]
     [StringLength(25, ErrorMessage = "Name ist zu lang.", ErrorMessageResourceName = "error.person.name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [Required]
     public int ValidityYearCertificate { get; set; }

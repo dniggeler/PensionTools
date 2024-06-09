@@ -33,7 +33,7 @@
         Alle diese Werte sind auf Ihrem Vorsorgeausweis, den Sie mindestens einmal jährlich erhalten, aufgeführt.
     </MudText>
     
-    <MudForm Model="@Person" @ref="form" @bind-IsValid="@success">
+    <MudForm Model="@Person" @ref="bvgForm" @bind-IsValid="@success">
         <BvgPersonForm Person="@Person"/>
         
         <MudText Class="mt-8" Typo="Typo.h6">Schritt 2: Haben Sie Anspruch auf einen Rentenzuschlag?</MudText>
@@ -92,12 +92,12 @@
 {
     private BvgPersonViewModel Person { get; set; } = new ();
     private BvgCalculationResult? RevisionCalculationResult { get; set; }
-    private BvgCalculationResult? SimulationRevisionCalculationResult { get; set; }
+    private BvgCalculationResult? SimulationRevisionCalculationResult;
     private BvgCalculationResult? CurrentCalculationResult { get; set; }
     private EligibleForPensionViewModel PreCondition { get; } = new();
     private PensionPlanViewModel PensionPlan = new();
     private PensionPlanSimulationResult? PlanSimulationResult;
-    private MudForm? form;
+    private MudForm? bvgForm;
     private bool success;
 
     protected override void OnInitialized()
@@ -105,13 +105,13 @@
         if (EnvironmentService.IsDevelopment())
         {
             Person = GetTestPerson();
-            PensionPlan = GetTestPensionPlan();
+            PensionPlan = GetDefaultPensionPlan();
         }
     }
 
     private void OnBvgCalculate(MouseEventArgs _)
     {
-        form?.Validate();
+        bvgForm?.Validate();
 
         if(!ValidPersonDateOfBirth())
         {
@@ -218,7 +218,10 @@
 
             decimal pensionSupplement = BvgPensionSupplementCalculator.CalculatePensionSupplement(Person.DateOfBirth ?? DateTime.MaxValue, finalRetirementCapital);
 
-            SimulationRevisionCalculationResult.RetirementPension += pensionSupplement;
+            if (SimulationRevisionCalculationResult is not null)
+            {
+                SimulationRevisionCalculationResult.RetirementPension += pensionSupplement;
+            }
 
             results.Add(new TableResult("davon Rentenzuschlag", null, Math.Round(pensionSupplement), true));
         }
@@ -245,14 +248,12 @@
             };
     }
 
-    private PensionPlanViewModel GetTestPensionPlan()
+    private PensionPlanViewModel GetDefaultPensionPlan()
     {
         return new PensionPlanViewModel
         {
-            ProjectionInterestRate = 0.01M,
-            InsuredSalary = 192967,
-            RetirementCapitalEndOfYear = 721065M,
-            ConversionRate = 0.058M,
+            ProjectionInterestRate = 0.015M,
+            ConversionRate = 0.068M,
             RetirementCredits = [
                 new RetirementCreditRange{FromAge = 0, ToAge = 24, Rate = 0M},
                 new RetirementCreditRange{FromAge = 25, ToAge = 34, Rate = 0.07M},
@@ -261,5 +262,14 @@
                 new RetirementCreditRange{FromAge = 55, ToAge = 65, Rate = 0.18M},
             ]
         };
+    }
+
+    private PensionPlanViewModel GetTestPensionPlan()
+    {
+        PensionPlanViewModel defaultPlan = GetDefaultPensionPlan();
+        defaultPlan.InsuredSalary = 192967;
+        defaultPlan.RetirementCapitalEndOfYear = 721065M;
+
+        return defaultPlan;
     }
 }

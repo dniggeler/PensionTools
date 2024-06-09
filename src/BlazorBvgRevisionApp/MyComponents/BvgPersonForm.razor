@@ -38,6 +38,14 @@
 
     [Parameter] public required BvgPersonViewModel Person { get; set; }
 
+    protected override void OnParametersSet()
+    {
+        if (Person.Gender != Gender.Undefined)
+        {
+            gender = Person.Gender;
+        }
+    }
+
     private void SetGender(Gender? g)
     {
         gender = g;
