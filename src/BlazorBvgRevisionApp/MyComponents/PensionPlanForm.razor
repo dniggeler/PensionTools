@@ -3,20 +3,32 @@
 @using BlazorBvgRevisionApp.Pages.Converters
 
 <MudGrid>
-    <MudItem md="3">
-        <MudNumericField Label="Versicherter Lohn" Format="n0" Min="0" Step="1000" @bind-Value="PensionPlan.InsuredSalary" Culture="CultureInfo.InvariantCulture" />
+    <MudItem md="3" xs="12">
+        <MudNumericField Label="Versicherter Lohn" Format="n0" Min="0" Step="1000" @bind-Value="PensionPlan.InsuredSalary"
+                         HelperTextOnFocus="true"
+                         HelperText="Lohn für die jährlichen Altersgutschriften"
+                         Placeholder=""
+                         Culture="CultureInfo.InvariantCulture" />
     </MudItem>
 
-   <MudItem md="3">
-        <MudNumericField Label="PK Guthaben Ende Jahr" Format="n0" Min="0" Step="1000" @bind-Value="PensionPlan.RetirementCapitalEndOfYear" Culture="CultureInfo.InvariantCulture" />
+    <MudItem md="3" xs="12">
+       <MudNumericField Label="Guthaben Ende Jahr" Format="n0" Min="0" Step="1000" @bind-Value="PensionPlan.RetirementCapitalEndOfYear"
+                        HelperTextOnFocus="true"
+                        HelperText="Gesamtes Altersguthaben gemäss BVG"
+                        Culture="CultureInfo.InvariantCulture"/>
     </MudItem>
 
-    <MudItem md="3">
-        <MudNumericField T="decimal" Label="Projektionszins" Converter="@PercentConverter.DecimalConverter" Format="P2" Min="0M" Step="0.005M" @bind-Value="PensionPlan.ProjectionInterestRate" Culture="CultureInfo.InvariantCulture" />
+    <MudItem md="3" xs="12">
+        <MudNumericField T="decimal" Label="Projektionszins" Converter="@PercentConverter.DecimalConverter"
+                         Format="P2"
+                         Min="0M" Max="0.05M" Step="0.005M" @bind-Value="PensionPlan.ProjectionInterestRate"
+                         HelperTextOnFocus="true"
+                         HelperText="Nicht garantierter (fiktiver) Zins auf dem Altersguthaben"
+                         Culture="CultureInfo.InvariantCulture" />
     </MudItem>
 
-    <MudItem md="3">
-        <MudNumericField T="decimal" Label="Umwandlungssatz" Converter="@PercentConverter.DecimalConverter" Format="P2" Min="0M" Step="0.005M" @bind-Value="PensionPlan.ConversionRate" Culture="CultureInfo.InvariantCulture" />
+    <MudItem md="3" xs="12">
+        <MudNumericField T="decimal" Label="Umwandlungssatz" Converter="@PercentConverter.DecimalConverter" Format="P2" Min="0M" Step="0.001M" @bind-Value="PensionPlan.ConversionRate" Culture="CultureInfo.InvariantCulture" />
     </MudItem>
     
     <MudItem md="12">
@@ -40,4 +52,17 @@
 
 @code {
     [Parameter] public required PensionPlanViewModel PensionPlan { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        if (PensionPlan is { BvgInsuredSalary: not null, InsuredSalary: null })
+        {
+            PensionPlan.InsuredSalary = PensionPlan.BvgInsuredSalary;
+        }
+
+        if (PensionPlan is { BvgRetirementCapitalEndOfYear: not null, RetirementCapitalEndOfYear: null })
+        {
+            PensionPlan.RetirementCapitalEndOfYear = PensionPlan.BvgRetirementCapitalEndOfYear;
+        }
+    }
 }

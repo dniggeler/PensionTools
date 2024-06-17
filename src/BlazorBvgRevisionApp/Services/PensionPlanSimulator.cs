@@ -46,7 +46,7 @@ public class PensionPlanSimulator(
             retirementAge,
             finalAge,
             yearOfBeginProjection,
-            pensionPlan.RetirementCapitalEndOfYear,
+            pensionPlan.RetirementCapitalEndOfYear ?? Zero,
             RetirementCreditSelector(pensionPlan.InsuredSalary, pensionPlan.RetirementCredits));
 
         RetirementSavingsProcessResult? simulationResult = projections.SingleOrDefault(item => item.IsRetirementDate);
@@ -60,15 +60,20 @@ public class PensionPlanSimulator(
         return new PensionPlanSimulationResult(null, null);
     }
 
-    private static Func<TechnicalAge, decimal> RetirementCreditSelector(decimal insuredSalary, RetirementCreditRange[] retirementCreditTable)
+    private static Func<TechnicalAge, decimal> RetirementCreditSelector(decimal? insuredSalary, RetirementCreditRange[] retirementCreditTable)
     {
         Dictionary<int, decimal> retirementCreditByAge = CreateRetirementCreditDictionary(retirementCreditTable);
 
         return age =>
         {
-            if(retirementCreditByAge.TryGetValue(age.Years, out decimal retirementCredit))
+            if (!insuredSalary.HasValue)
             {
-                return insuredSalary * retirementCredit;
+                return Zero;
+            }
+
+            if (retirementCreditByAge.TryGetValue(age.Years, out decimal retirementCredit))
+            {
+                return insuredSalary.Value * retirementCredit;
             }
             return Zero;
         };

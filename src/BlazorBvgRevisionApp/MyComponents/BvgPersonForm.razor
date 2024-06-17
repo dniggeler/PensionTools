@@ -3,15 +3,18 @@
 @using Domain.Enums
 
 <MudGrid>
-    <MudItem md="3" xs="6">
-        <MudNumericField T="int" Label="Ausstellungsjahr" Min="2023" Step="1" @bind-Value="@Person.ValidityYearCertificate" HelperText="Gültigkeit der Werte auf dem Vorsorgeausweis" HelperTextOnFocus="true" Placeholder="Gültigkeitsjahr"/>
+    <MudItem md="4" xs="12">
+        <MudNumericField T="int" Label="Ausstellungsjahr" Min="2023" Step="1" @bind-Value="@Person.ValidityYearCertificate"
+                         HelperText="Gültigkeit der Werte auf dem Vorsorgeausweis"
+                         HelperTextOnFocus="true"
+                         Placeholder="Gültigkeitsjahr"/>
     </MudItem>
 
-    <MudItem md="3" xs="6">
+    <MudItem md="4" xs="12">
         <MudDatePicker Label="Geburtsdatum" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="yyyy-MM-dd" Required="true" RequiredError="" Placeholder="Geburtstag" Mask="@(new DateMask("0000-00-00"))"/>
     </MudItem>
 
-    <MudItem md="3" xs="6">
+    <MudItem md="4" xs="12">
         <GenderSelector Label="Geschlecht" SelectedGender="@gender" OnSelected="@(SetGender)" />
     </MudItem>
 
@@ -20,11 +23,17 @@
     </MudItem>
 
     <MudItem md="4">
-        <MudNumericField Label="BVG Alterguthaben Ende des Jahres" Format="n0" Min="0" Step="1000" @bind-Value="Person.BvgRetirementCapitalEndOfYear" Culture="CultureInfo.InvariantCulture"/>
+        <MudNumericField Label="Kapital Ende Jahr" Format="n0" Min="0" Step="1000" @bind-Value="Person.BvgRetirementCapitalEndOfYear"
+                         HelperTextOnFocus="true"
+                         HelperText="Gesamtes Altersguthaben gemäss BVG"
+                         Culture="CultureInfo.InvariantCulture" />
     </MudItem>
 
     <MudItem md="4">
-        <MudNumericField Label="Alterguthaben PK im Schlussalter" Format="n0" Min="0" Step="1000" @bind-Value="Person.FinalRetirementCapital" Culture="CultureInfo.InvariantCulture"/>
+        <MudNumericField Label="PK Kapital Schlussalter" Format="n0" Min="0" Step="1000" @bind-Value="Person.FinalRetirementCapital"
+                         HelperTextOnFocus="true"
+                         HelperText="Gesamtes Altersguthaben bei Ihrer Pensionskasse bei Pensionierung"
+                         Culture="CultureInfo.InvariantCulture" />
     </MudItem>
 
 </MudGrid>
