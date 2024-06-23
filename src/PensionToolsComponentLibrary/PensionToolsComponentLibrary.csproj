@@ -11,9 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-      <PackageReference Include="MudBlazor" Version="6.19.1" />
-      <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.5" />
-    <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.5" />
+      <PackageReference Include="MudBlazor" Version="6.20.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.6" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.6" />
   </ItemGroup>
 
   <ItemGroup>
