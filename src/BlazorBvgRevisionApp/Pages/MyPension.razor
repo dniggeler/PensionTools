@@ -59,7 +59,7 @@
     {
         <MudExpansionPanel IsExpanded="true" Class="mt-4" Style="background-color: lightgrey;">
             <TitleContent>
-                <MudText Class="mb-4" Typo="Typo.h5">BVG Berechnungsergebnis</MudText>
+                <MudText Class="mb-4" Typo="Typo.h5">Meine Leistungen</MudText>
             </TitleContent>
             <ChildContent>
                 <MudText Typo="Typo.body2">Das Ergebnis der Berechnung zeigt Ihre voraussichtlichen BVG-Altersleistungen. Die Leistungen sind auf Ihren ordentlichen Rentenbeginn gerechnet.</MudText>
@@ -124,6 +124,10 @@
         {
             Person = GetTestPerson();
             PensionPlan = GetDefaultPensionPlan();
+        }
+        else
+        {
+            Person.ValidityYearCertificate = DateTime.Now.Year;
         }
 
         IsEnabledFeatureExperimentalRevision = await RevisionFeatureManager.IsEnabledAsync("BetaFullRevision");
