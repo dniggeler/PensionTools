@@ -1,5 +1,6 @@
 ﻿@page "/MeineVorsorge"
 
+@using System.Text
 @using System.Text.Json
 @using Application.Bvg
 @using BlazorBvgRevisionApp.MyComponents.Models
@@ -8,6 +9,7 @@
 @using Domain.Enums
 @using Domain.Models.Bvg
 @using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@using Microsoft.FeatureManagement
 
 @inject IWebAssemblyHostEnvironment EnvironmentService
 @inject BvgRevisionCalculator BvgRevisionCalculator
@@ -15,6 +17,7 @@
 @inject IPensionSupplementCalculator BvgPensionSupplementCalculator
 @inject PensionPlanSimulator PlanSimulator
 @inject ILogger<MyPension> Logger
+@inject IFeatureManager RevisionFeatureManager
 
 <PageTitle>Meine Vorsorge</PageTitle>
 
@@ -54,38 +57,50 @@
 
     @if(RevisionCalculationResult is not null)
     {
-        <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
-            <MudText Class="mb-4" Typo="Typo.h5">BVG Berechnungsergebnis</MudText>
-            <MudText Typo="Typo.body2">Das Ergebnis der Berechnung zeigt Ihre voraussichtlichen BVG-Altersleistungen. Die Leistungen sind auf Ihren ordentlichen Rentenbeginn gerechnet.</MudText>
+        <MudExpansionPanel IsExpanded="true" Class="mt-4" Style="background-color: lightgrey;">
+            <TitleContent>
+                <MudText Class="mb-4" Typo="Typo.h5">BVG Berechnungsergebnis</MudText>
+            </TitleContent>
+            <ChildContent>
+                <MudText Typo="Typo.body2">Das Ergebnis der Berechnung zeigt Ihre voraussichtlichen BVG-Altersleistungen. Die Leistungen sind auf Ihren ordentlichen Rentenbeginn gerechnet.</MudText>
 
-            <MudText Typo="Typo.body1" Class="mt-4">Ihr Pensionierungsdatum: @RevisionCalculationResult.DateOfRetirement.ToString("d. MMMM, yyyy")</MudText>
+                <MudText Typo="Typo.body1" Class="mt-4"><strong>Ihr Pensionierungsdatum: </strong>@RevisionCalculationResult.DateOfRetirement.ToString("yyyy-MM-dd")</MudText>
+                <MudText Typo="Typo.body1" Class="mt-4"><strong>Ihr Alter bei Pensionierung: </strong>@RetirementAgeText(RevisionCalculationResult.RetirementAge)</MudText>
 
-            <RetirementBenefitTable Benefits="@ResultItems()"/>
-        </MudPaper>
+                <RetirementBenefitTable Benefits="@ResultItems()"/>
+            </ChildContent>
+        </MudExpansionPanel>
     }
-
-    <MudText Class="mt-8" Typo="Typo.h6">Schritt 3 (Experimentell): Was ändert sich tatsächlich?</MudText>
     
-    <PensionPlanForm PensionPlan="@PensionPlan"></PensionPlanForm>
-    
-    <MudGrid>
-        <MudItem md="12">
-            <MudButton OnClick="OnSimulatePlan" Variant="Variant.Filled" Color="Color.Secondary" Disabled="@(!ValidPersonDateOfBirth())">Prüfe Plan</MudButton>
-        </MudItem>
-    </MudGrid>
-    
-    @if (PlanSimulationResult is not null)
+    @if (IsEnabledFeatureExperimentalRevision)
     {
-        <MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
-            <MudText Class="mb-4" Typo="Typo.h5">Ihr Vorsorgeplan: </MudText>
-            <MudText Typo="Typo.body2">Das Ergebnis der Berechnung zeigt die voraussichtlichen Altersleistungen gemäss Ihres Vorsorgeplanes.
-                Die Leistungen sind auf Ihren ordentlichen Rentenbeginn gerechnet.</MudText>
+        <MudText Class="mt-8" Typo="Typo.h6">Schritt 3 (Experimentell): Was ändert sich tatsächlich?</MudText>
+    
+        <MudForm Model="@PensionPlan" @ref="simulationForm" @bind-IsValid="@successSimulation">
 
-            <MudText Typo="Typo.body1" Class="mt-4">Ihr Pensionierungsdatum: @RevisionCalculationResult?.DateOfRetirement.ToString("d. MMMM, yyyy")</MudText>
+            <PensionPlanForm PensionPlan="@PensionPlan"/>
 
-            <RetirementBenefitTable Benefits="@SimulationResultItems()" />
-        </MudPaper>
+            <MudGrid>
+                <MudItem md="12">
+                    <MudButton OnClick="OnSimulatePlan" Variant="Variant.Filled" Color="Color.Secondary" Disabled="@(!ValidPersonDateOfBirth())">Prüfe Plan</MudButton>
+                </MudItem>
+            </MudGrid>
+        </MudForm>
+    
+        @if (PlanSimulationResult is not null)
+        {
+            <MudPaper Class="mb-4 mt-4 pa-4 align-center" Style="background-color: lightgrey" Elevation="0">
+                <MudText Class="mb-4" Typo="Typo.h5">Ihr Vorsorgeplan: </MudText>
+                <MudText Typo="Typo.body2">Das Ergebnis der Berechnung zeigt die voraussichtlichen Altersleistungen gemäss Ihres Vorsorgeplanes.
+                    Die Leistungen sind auf Ihren ordentlichen Rentenbeginn gerechnet.</MudText>
+
+                <MudText Typo="Typo.body1" Class="mt-4">Ihr Pensionierungsdatum: @RevisionCalculationResult?.DateOfRetirement.ToString("d. MMMM, yyyy")</MudText>
+
+                <RetirementBenefitTable Benefits="@SimulationResultItems()" />
+            </MudPaper>
+        }
     }
+
 </MudPaper>
 
 @code
@@ -98,15 +113,20 @@
     private PensionPlanViewModel PensionPlan = new();
     private PensionPlanSimulationResult? PlanSimulationResult;
     private MudForm? bvgForm;
+    private MudForm? simulationForm;
     private bool success;
+    private bool successSimulation;
+    private bool IsEnabledFeatureExperimentalRevision;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         if (EnvironmentService.IsDevelopment())
         {
             Person = GetTestPerson();
             PensionPlan = GetDefaultPensionPlan();
         }
+
+        IsEnabledFeatureExperimentalRevision = await RevisionFeatureManager.IsEnabledAsync("BetaFullRevision");
     }
 
     private void OnBvgCalculate(MouseEventArgs _)
@@ -131,7 +151,9 @@
             Right: revisionResult =>
             {
                 RevisionCalculationResult = revisionResult;
-                Logger.LogInformation($"Calculation Result: {JsonSerializer.Serialize(revisionResult)}");
+                PensionPlan.BvgInsuredSalary = revisionResult.InsuredSalary;
+                PensionPlan.BvgRetirementCapitalEndOfYear = revisionResult.RetirementCapitalEndOfYear;
+                Logger.LogInformation($"Current BVG Result: {JsonSerializer.Serialize(revisionResult)}");
             },
             Left: error =>
             {
@@ -144,7 +166,7 @@
                 Right: result =>
                 {
                     CurrentCalculationResult = result;
-                    Logger.LogInformation($"Calculation Result: {JsonSerializer.Serialize(result)}");
+                    Logger.LogInformation($"Bvg Revision Result: {JsonSerializer.Serialize(result)}");
                 },
                 Left: error =>
                 {
@@ -236,16 +258,23 @@
 
     private BvgPersonViewModel GetTestPerson()
     {
+        BvgPersonViewModel person = GetDefaultBvgPerson();
+        person.DateOfBirth = new DateTime(1968, 6, 12);
+        person.ReportedSalary = 30815;
+        person.BvgRetirementCapitalEndOfYear = 32137;
+        person.FinalRetirementCapital = 97914;
+        person.Gender = Gender.Female;
+
+        return person;
+    }
+
+    private BvgPersonViewModel GetDefaultBvgPerson()
+    {
         return new BvgPersonViewModel
-            {
-                Name = "Bubu Vorsorger",
-                ValidityYearCertificate = 2023,
-                DateOfBirth = new DateTime(1969, 3, 17),
-                ReportedSalary = 192967,
-                BvgRetirementCapitalEndOfYear = 169805M,
-                FinalRetirementCapital = 1171484,
-                Gender = Gender.Male,
-            };
+        {
+            Name = "Bubu Vorsorger",
+            ValidityYearCertificate = 2023,
+        };
     }
 
     private PensionPlanViewModel GetDefaultPensionPlan()
@@ -267,9 +296,18 @@
     private PensionPlanViewModel GetTestPensionPlan()
     {
         PensionPlanViewModel defaultPlan = GetDefaultPensionPlan();
-        defaultPlan.InsuredSalary = 192967;
-        defaultPlan.RetirementCapitalEndOfYear = 721065M;
+        defaultPlan.InsuredSalary = 5090;
+        defaultPlan.RetirementCapitalEndOfYear = 75642.55M;
 
         return defaultPlan;
+    }
+
+    private string RetirementAgeText(TechnicalAge retirementAge)
+    {
+        // create a string representation of the retirement age with string builder
+        StringBuilder sb = new($"{retirementAge.Years} Jahre");
+        sb.Append(retirementAge.Months > 0 ? $" und {retirementAge.Months} Monate" : string.Empty);
+        
+        return sb.ToString();
     }
 }

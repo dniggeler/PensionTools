@@ -36,24 +36,9 @@ namespace Application.Bvg
 
             if (retirementDate <= endOfFinancialYear)
             {
-                decimal aghEoYProRata = retirementCapitalEndOfYear;
-
-                RetirementCapital aghProRataBoY =
-                    new RetirementCapital(beginOfFinancialYear,
-                        decimal.Zero,
-                        decimal.Zero);
-                RetirementCapital aghProRataEoY =
-                    new RetirementCapital(endOfFinancialYear,
-                        aghEoYProRata,
-                        aghEoYProRata);
-
-                RetirementCapital aghProRataEndOfPeriod =
-                    aghProRataBoY
-                        .Interpolate(true, retirementDate, aghProRataEoY)
-                        .Round60()
-                        .Round();
-
-                return List(aghProRataEndOfPeriod);
+                return [new RetirementCapital(retirementDate,
+                    retirementCapitalEndOfYear,
+                    retirementCapitalEndOfYear)];
             }
 
             RetirementCapital retirementCapitalItem = new (endOfFinancialYear, retirementCapitalEndOfYear, retirementCapitalEndOfYear);
