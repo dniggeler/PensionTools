@@ -9,6 +9,7 @@
 @using Domain.Enums
 @using Domain.Models.Bvg
 @using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@using Microsoft.FeatureManagement
 
 @inject IWebAssemblyHostEnvironment EnvironmentService
 @inject BvgRevisionCalculator BvgRevisionCalculator
@@ -16,6 +17,7 @@
 @inject IPensionSupplementCalculator BvgPensionSupplementCalculator
 @inject PensionPlanSimulator PlanSimulator
 @inject ILogger<MyPension> Logger
+@inject IFeatureManager RevisionFeatureManager
 
 <PageTitle>Meine Vorsorge</PageTitle>
 
@@ -69,32 +71,36 @@
             </ChildContent>
         </MudExpansionPanel>
     }
-
-    <MudText Class="mt-8" Typo="Typo.h6">Schritt 3 (Experimentell): Was ändert sich tatsächlich?</MudText>
     
-    <MudForm Model="@PensionPlan" @ref="simulationForm" @bind-IsValid="@successSimulation">
-
-        <PensionPlanForm PensionPlan="@PensionPlan"/>
-
-        <MudGrid>
-            <MudItem md="12">
-                <MudButton OnClick="OnSimulatePlan" Variant="Variant.Filled" Color="Color.Secondary" Disabled="@(!ValidPersonDateOfBirth())">Prüfe Plan</MudButton>
-            </MudItem>
-        </MudGrid>
-    </MudForm>
-    
-    @if (PlanSimulationResult is not null)
+    @if (IsEnabledFeatureExperimentalRevision)
     {
-        <MudPaper Class="mb-4 mt-4 pa-4 align-center" Style="background-color: lightgrey" Elevation="0">
-            <MudText Class="mb-4" Typo="Typo.h5">Ihr Vorsorgeplan: </MudText>
-            <MudText Typo="Typo.body2">Das Ergebnis der Berechnung zeigt die voraussichtlichen Altersleistungen gemäss Ihres Vorsorgeplanes.
-                Die Leistungen sind auf Ihren ordentlichen Rentenbeginn gerechnet.</MudText>
+        <MudText Class="mt-8" Typo="Typo.h6">Schritt 3 (Experimentell): Was ändert sich tatsächlich?</MudText>
+    
+        <MudForm Model="@PensionPlan" @ref="simulationForm" @bind-IsValid="@successSimulation">
 
-            <MudText Typo="Typo.body1" Class="mt-4">Ihr Pensionierungsdatum: @RevisionCalculationResult?.DateOfRetirement.ToString("d. MMMM, yyyy")</MudText>
+            <PensionPlanForm PensionPlan="@PensionPlan"/>
 
-            <RetirementBenefitTable Benefits="@SimulationResultItems()" />
-        </MudPaper>
+            <MudGrid>
+                <MudItem md="12">
+                    <MudButton OnClick="OnSimulatePlan" Variant="Variant.Filled" Color="Color.Secondary" Disabled="@(!ValidPersonDateOfBirth())">Prüfe Plan</MudButton>
+                </MudItem>
+            </MudGrid>
+        </MudForm>
+    
+        @if (PlanSimulationResult is not null)
+        {
+            <MudPaper Class="mb-4 mt-4 pa-4 align-center" Style="background-color: lightgrey" Elevation="0">
+                <MudText Class="mb-4" Typo="Typo.h5">Ihr Vorsorgeplan: </MudText>
+                <MudText Typo="Typo.body2">Das Ergebnis der Berechnung zeigt die voraussichtlichen Altersleistungen gemäss Ihres Vorsorgeplanes.
+                    Die Leistungen sind auf Ihren ordentlichen Rentenbeginn gerechnet.</MudText>
+
+                <MudText Typo="Typo.body1" Class="mt-4">Ihr Pensionierungsdatum: @RevisionCalculationResult?.DateOfRetirement.ToString("d. MMMM, yyyy")</MudText>
+
+                <RetirementBenefitTable Benefits="@SimulationResultItems()" />
+            </MudPaper>
+        }
     }
+
 </MudPaper>
 
 @code
@@ -110,14 +116,17 @@
     private MudForm? simulationForm;
     private bool success;
     private bool successSimulation;
+    private bool IsEnabledFeatureExperimentalRevision;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         if (EnvironmentService.IsDevelopment())
         {
             Person = GetTestPerson();
             PensionPlan = GetDefaultPensionPlan();
         }
+
+        IsEnabledFeatureExperimentalRevision = await RevisionFeatureManager.IsEnabledAsync("BetaFullRevision");
     }
 
     private void OnBvgCalculate(MouseEventArgs _)
