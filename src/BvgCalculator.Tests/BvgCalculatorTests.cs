@@ -24,6 +24,29 @@ public class BvgCalculatorTests : IClassFixture<BvgCalculatorFixture<Application
         _outputHelper = outputHelper;
     }
 
+    [Fact(DisplayName = "Is Retired according to BVG")]
+    public void CalculateResultIfRetired()
+    {
+        // given
+        DateTime processDate = new DateTime(2024, 1, 1);
+        DateTime birthdate = new DateTime(1946, 3, 13);
+        decimal retirementCapitalEndOfYear = 0;
+
+        BvgPerson person = _fixture.GetTestPerson(birthdate);
+        person.ReportedSalary = 85000M;
+        person.PartTimeDegree = 0.8M;
+
+        // when
+        Either<string, BvgCalculationResult> response = _fixture.GetBvgBenefits(retirementCapitalEndOfYear, person, processDate);
+
+        BvgCalculationResult result = response.IfLeft(err => throw new ApplicationException(err));
+
+        // then
+        result.RetirementCapitalSequence.Should().BeEmpty();
+
+        Snapshot.Match(result);
+    }
+
     [Fact(DisplayName = "BVG Result When Retiring")]
     public void ShouldCalculateResultWhenRetiring()
     {

@@ -15,10 +15,14 @@ public class BvgRevisionPensionSupplementCalculator : IPensionSupplementCalculat
 
         decimal s = decimal.One - (finalRetirementCapital - lBound) / (uBound - lBound);
 
+        if (!IsBirthdateEligible(dateOfBirth))
+        {
+            return decimal.Zero;
+        }
+
         decimal pensionIncrease = (dateOfBirth.Year, finalRetirementCapital) switch
         {
             (_, > uBound) => decimal.Zero,
-            ( < 1961, _) => decimal.Zero,
             ( >= 1961 and <= 1965, <= lBound) => pensionUpperBound,
             ( <= 1970, <= lBound) => pensionMediumBound,
             ( <= 1975, <= lBound) => pensionLowerBound,
@@ -29,5 +33,14 @@ public class BvgRevisionPensionSupplementCalculator : IPensionSupplementCalculat
         };
 
         return pensionIncrease;
+    }
+
+    public bool IsBirthdateEligible(DateTime dateOfBirth)
+    {
+        return dateOfBirth.Year switch
+        {
+            >= 1961 and <= 1975 => true,
+            _ => false
+        };
     }
 }

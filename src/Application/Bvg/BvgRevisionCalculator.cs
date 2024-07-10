@@ -112,7 +112,18 @@ public class BvgRevisionCalculator(
 
     private Either<string, BvgCalculationResult> CalculateInternal(int calculationYear, decimal retirementCapitalEndOfYear, BvgPerson person)
     {
+        DateTime processingDate = new(calculationYear, 1, 1);
         DateTime retirementDate = GetRetirementDate(person.DateOfBirth, person.Gender);
+
+        if (IsRetired(person, processingDate))
+        {
+            return new BvgCalculationResult
+            {
+                DateOfRetirement = retirementDate,
+                RetirementCreditSequence = [],
+                RetirementCapitalSequence = []
+            };
+        }
 
         decimal insuredSalary = InsuredSalary(calculationYear, person).IfLeft(() => decimal.Zero);
 
@@ -122,8 +133,6 @@ public class BvgRevisionCalculator(
 
         IReadOnlyCollection<RetirementCapital> retirementCapitalSequence =
             GetRetirementCapitalSequence(retirementCapitalEndOfYear, calculationYear, person, retirementCreditSequence);
-
-        DateTime processingDate = new(calculationYear, 1, 1);
 
         decimal retirementCredit = retirementCreditSequence.SingleOrDefault(item => item.Date == processingDate) switch
         {
@@ -192,14 +201,18 @@ public class BvgRevisionCalculator(
 
         if (match is null)
         {
-            if (followingYearDate > retirementDate)
+            if (followingYearDate <= retirementDate)
             {
-                return retirementCapitalSequence
-                    .Where(item => item.Date.Year == calculationYear)
-                    .MaxBy(item => item.Date)
-                    .Value;
+                return decimal.Zero;
             }
-            return decimal.Zero;
+
+            IEnumerable<RetirementCapital> matches = retirementCapitalSequence
+                .Where(item => item.Date.Year == calculationYear)
+                .ToList();
+
+            return matches.Length() > 0
+                ? matches.MaxBy(item => item.Date).Value
+                : decimal.Zero;
         }
 
         return match.Value;

@@ -54,7 +54,10 @@
             erhöht sich BVG Altersrente. Details dazu finden Sie <MudLink Target="_blank" Href="https://www.bsv.admin.ch/bsv/de/home/sozialversicherungen/bv/reformen-und-revisionen.html">hier</MudLink>.
         </MudText>
 
-        <EligibleForPension PreCondition="@PreCondition"/>
+        @if (isBirthdateEligible)
+        {
+            <EligibleForPension PreCondition="@PreCondition"/>
+        }
 
         <MudGrid>
             <MudItem md="12">
@@ -80,7 +83,7 @@
         </MudExpansionPanel>
     }
     
-    @if (IsEnabledFeatureExperimentalRevision)
+    @if (isEnabledFeatureExperimentalRevision)
     {
         <MudText Class="mt-8" Typo="Typo.h6">Schritt 3 (Experimentell): Was ändert sich tatsächlich?</MudText>
     
@@ -124,7 +127,8 @@
     private MudForm? simulationForm;
     private bool success;
     private bool successSimulation;
-    private bool IsEnabledFeatureExperimentalRevision;
+    private bool isBirthdateEligible;
+    private bool isEnabledFeatureExperimentalRevision;
 
     protected override async Task OnInitializedAsync()
     {
@@ -138,7 +142,9 @@
             Person.ValidityYearCertificate = DateTime.Now.Year;
         }
 
-        IsEnabledFeatureExperimentalRevision = await RevisionFeatureManager.IsEnabledAsync("BetaFullRevision");
+        isBirthdateEligible = IsBirthdateEligible(Person.DateOfBirth);
+
+        isEnabledFeatureExperimentalRevision = await RevisionFeatureManager.IsEnabledAsync("BetaFullRevision");
     }
 
     private void OnBvgCalculate(MouseEventArgs _)
@@ -190,6 +196,11 @@
     private void OnSimulatePlan(MouseEventArgs obj)
     {
         PlanSimulationResult = PlanSimulator.Calculate(PensionPlan, Person);
+    }
+
+    private bool IsBirthdateEligible(DateTime? dateOfBirth)
+    {
+        return dateOfBirth is not null && BvgPensionSupplementCalculator.IsBirthdateEligible(dateOfBirth.Value);
     }
 
     private TableResult[] ResultItems()

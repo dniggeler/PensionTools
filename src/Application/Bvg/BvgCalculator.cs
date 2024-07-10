@@ -89,6 +89,17 @@ public class BvgCalculator(
 
     private Either<string, BvgCalculationResult> CalculateInternal(int calculationYear, decimal retirementCapitalEndOfYear, BvgPerson person)
     {
+        DateTime dateOfProcess = new DateTime(calculationYear, 1, 1);
+
+        if (IsRetired(person, dateOfProcess))
+        {
+            return new BvgCalculationResult
+            {
+                RetirementCreditSequence = [],
+                RetirementCapitalSequence = []
+            };
+        }
+
         BvgSalary salary = GetBvgSalary(calculationYear, person);
 
         decimal retirementCreditFactor = GetRetirementCreditFactor(person, calculationYear);
@@ -105,8 +116,6 @@ public class BvgCalculator(
 
         decimal finalRetirementCapitalWithoutInterest =
             GetFinalRetirementCapitalWithoutInterest(retirementCapitalSequence);
-
-        DateTime dateOfProcess = new DateTime(calculationYear, 1, 1);
 
         decimal retirementPension = GetRetirementPension(retirementCapitalEndOfYear, person, dateOfProcess, retirementCreditSequence);
 

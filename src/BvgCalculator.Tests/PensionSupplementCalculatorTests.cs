@@ -12,6 +12,7 @@ public class PensionSupplementCalculatorTests(ITestOutputHelper outputHelper)
     private readonly IPensionSupplementCalculator pensionSupplementCalculator = new BvgRevisionPensionSupplementCalculator();
 
     [Theory(DisplayName = "Rentenzuschlag")]
+    [InlineData("1946-07-31", 0, 0)]
     [InlineData("1960-12-31", 0, 0)]
     [InlineData("1960-12-31", 220500, 0)]
     [InlineData("1961-01-01", 441000, 0)]
