@@ -1,11 +1,18 @@
-﻿@using BlazorBvgRevisionApp.MyComponents.Models
+﻿@using System.Globalization
+@using BlazorBvgRevisionApp.MyComponents.Models
 
 <MudGrid Spacing="0">
+    <MudItem md="4">
+        <MudNumericField Label="PK Kapital Schlussalter" Format="n0" Min="0" Step="1000" @bind-Value="PreCondition.FinalRetirementCapital"
+                         HelperTextOnFocus="true"
+                         HelperText="Gesamtes Altersguthaben bei Ihrer Pensionskasse bei Pensionierung"
+                         Culture="CultureInfo.InvariantCulture" />
+    </MudItem>
     <MudItem md="12">
         <MudCheckBox T="bool" @bind-Value="PreCondition.IsEligibleBvg">BVG: mind. 15 Jahre versichert</MudCheckBox>
     </MudItem>
     <MudItem md="12">
-        <MudCheckBox T="bool" @bind-Value="PreCondition.IsEligibleAhv">AHV: 10 Jahre vor Pensionerung kein Unterbruch</MudCheckBox>
+        <MudCheckBox T="bool" @bind-Value="PreCondition.IsEligibleAhv">AHV: 10 Jahre vor Pensionerung ohne Unterbruch versichert</MudCheckBox>
     </MudItem>
 </MudGrid>
 

@@ -2,7 +2,10 @@
 
 public class EligibleForPensionViewModel
 {
+    public decimal? FinalRetirementCapital { get; set; }
+
     public bool IsEligibleAhv { get; set; }
+    
     public bool IsEligibleBvg { get; set; }
 
     public bool IsEligible() => IsEligibleBvg && IsEligibleAhv;

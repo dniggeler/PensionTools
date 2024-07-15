@@ -135,6 +135,7 @@
         if (EnvironmentService.IsDevelopment())
         {
             Person = GetTestPerson();
+            PreCondition.FinalRetirementCapital = 97914;
             PensionPlan = GetDefaultPensionPlan();
         }
         else
@@ -214,9 +215,11 @@
         {
             if (PreCondition.IsEligible())
             {
-                decimal finalRetirementCapital = Math.Max(Person.FinalRetirementCapital, RevisionCalculationResult.FinalRetirementCapital);
+                decimal finalRetirementCapital =
+                    Math.Max(PreCondition.FinalRetirementCapital ?? decimal.Zero, RevisionCalculationResult.FinalRetirementCapital);
 
-                decimal pensionSupplement = BvgPensionSupplementCalculator.CalculatePensionSupplement(Person.DateOfBirth ?? DateTime.MaxValue, finalRetirementCapital);
+                decimal pensionSupplement =
+                    BvgPensionSupplementCalculator.CalculatePensionSupplement(Person.DateOfBirth ?? DateTime.MaxValue, finalRetirementCapital);
 
                 RevisionCalculationResult.RetirementPension += pensionSupplement;
 
@@ -259,7 +262,8 @@
 
         if (PreCondition.IsEligible() && SimulationRevisionCalculationResult is not null)
         {
-            decimal finalRetirementCapital = Math.Max(Person.FinalRetirementCapital, SimulationRevisionCalculationResult?.FinalRetirementCapital ?? decimal.Zero);
+            decimal finalRetirementCapital =
+                Math.Max(PreCondition.FinalRetirementCapital ?? decimal.Zero, SimulationRevisionCalculationResult?.FinalRetirementCapital ?? decimal.Zero);
 
             decimal pensionSupplement = BvgPensionSupplementCalculator.CalculatePensionSupplement(Person.DateOfBirth ?? DateTime.MaxValue, finalRetirementCapital);
 
@@ -282,10 +286,9 @@
     private BvgPersonViewModel GetTestPerson()
     {
         BvgPersonViewModel person = GetDefaultBvgPerson();
-        person.DateOfBirth = new DateTime(1978, 6, 12);
+        person.DateOfBirth = new DateTime(1968, 6, 12);
         person.ReportedSalary = 30815;
         person.BvgRetirementCapitalEndOfYear = 32137;
-        person.FinalRetirementCapital = 97914;
         person.Gender = Gender.Female;
 
         return person;

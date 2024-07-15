@@ -21,7 +21,5 @@ public class BvgPersonViewModel
 
     public decimal BvgRetirementCapitalEndOfYear { get; set; }
 
-    public decimal FinalRetirementCapital { get; set; }
-
     public decimal ReportedSalary { get; set; }
 }
