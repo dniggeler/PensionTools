@@ -11,7 +11,7 @@
     </MudItem>
 
     <MudItem md="4" xs="12">
-        <MudDatePicker Label="Geburtsdatum" Editable="true" @bind-Date="@Person.DateOfBirth" DateFormat="yyyy-MM-dd" Required="true" RequiredError="" Placeholder="z.B.1981-02-28" Mask="@(new DateMask("0000-00-00"))"/>
+        <MudDatePicker @ref="birthdatePicker" Label="Geburtsdatum" Editable="true" DateChanged="@(d => Person.DateOfBirth = d)" DateFormat="yyyy-MM-dd" Required="true" RequiredError="" Placeholder="z.B.1981-02-28" Mask="@(new DateMask("0000-00-00"))" />
     </MudItem>
 
     <MudItem md="4" xs="12">
@@ -33,14 +33,22 @@
 
 @code {
     private Gender? gender;
+    private MudDatePicker? birthdatePicker;
 
     [Parameter] public required BvgPersonViewModel Person { get; set; }
+
+    [Parameter] public EventCallback<DateTime?> OnBirthDateChanged { get; set; }
 
     protected override void OnParametersSet()
     {
         if (Person.Gender != Gender.Undefined)
         {
             gender = Person.Gender;
+        }
+
+        if(birthdatePicker is not null)
+        {
+            birthdatePicker.Date = Person.DateOfBirth;
         }
     }
 
@@ -51,5 +59,10 @@
         {
             Person.Gender = g.Value;
         }
+    }
+
+    private async Task BirthdateChange(ChangeEventArgs args)
+    {
+        await OnBirthDateChanged.InvokeAsync();
     }
 }

@@ -45,7 +45,7 @@
     </MudText>
     
     <MudForm Model="@Person" @ref="bvgForm" @bind-IsValid="@success">
-        <BvgPersonForm Person="@Person"/>
+        <BvgPersonForm Person="@Person" OnBirthDateChanged="BirthdateChanged"/>
         
         <MudText Class="mt-8" Typo="Typo.h6">Schritt 2: Haben Sie Anspruch auf einen Rentenzuschlag?</MudText>
 
@@ -146,6 +146,12 @@
         isBirthdateEligible = IsBirthdateEligible(Person.DateOfBirth);
 
         isEnabledFeatureExperimentalRevision = await RevisionFeatureManager.IsEnabledAsync("BetaFullRevision");
+    }
+
+    private void BirthdateChanged()
+    {
+        Console.WriteLine($"Birthdate changed {Person.DateOfBirth}");
+        isBirthdateEligible = IsBirthdateEligible(Person.DateOfBirth);
     }
 
     private void OnBvgCalculate(MouseEventArgs _)
@@ -286,7 +292,7 @@
     private BvgPersonViewModel GetTestPerson()
     {
         BvgPersonViewModel person = GetDefaultBvgPerson();
-        person.DateOfBirth = new DateTime(1968, 6, 12);
+        person.DateOfBirth = new DateTime(1978, 6, 12);
         person.ReportedSalary = 30815;
         person.BvgRetirementCapitalEndOfYear = 32137;
         person.Gender = Gender.Female;
