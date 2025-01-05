@@ -20,7 +20,7 @@ public class BvgRevisionCalculator(
     private const decimal PensionConversionRate = 0.06M;
     private const decimal SalaryThresholdFactor = 0.675M;
     private const decimal CoordinationDeductionFactor = 0.2M;
-    private static readonly DateTime StartOfBvgRevision = new(2026, 1, 1);
+    private static readonly DateTime StartOfBvgRevision = new(2027, 1, 1);
     
     public Either<string, BvgCalculationResult> Calculate(int calculationYear, decimal retirementCapitalEndOfYear, BvgPerson person)
     {

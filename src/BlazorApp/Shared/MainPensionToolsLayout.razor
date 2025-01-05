@@ -8,6 +8,7 @@
 <MudThemeProvider @bind-IsDarkMode="@IsDarkMode" Theme="_theme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
+<MudPopoverProvider/>
 
 <MudLayout>
     <MudAppBar Elevation="1">
@@ -48,10 +49,6 @@
             </MudNavGroup>
         </MudNavGroup>
         
-        <MudNavGroup Title="Vorsorge">
-            <MudNavLink Href="/SocialSecurity/BvgRevision21Comparison" Match="NavLinkMatch.Prefix">BVG Revision 21</MudNavLink>
-        </MudNavGroup>
-
         <MudNavGroup Title="Gemeindevergleich">
             <MudNavLink Href="/TaxComparer/IncomeAndWealth" Match="NavLinkMatch.Prefix">Einkommen/Vermögen</MudNavLink>
             <MudNavLink Href="/TaxComparer/CapitalBenefits" Match="NavLinkMatch.Prefix">Kapitalbezug</MudNavLink>

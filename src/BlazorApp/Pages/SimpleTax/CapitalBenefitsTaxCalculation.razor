@@ -2,6 +2,8 @@
 
 @using PensionCoach.Tools.CommonTypes.Tax
 @using System.Globalization
+@using BlazorApp.Pages.SimpleTax.Display
+@using BlazorApp.Pages.SimpleTax.ViewModels
 
 @inject IPersonService PersonService
 @inject ITaxCalculationService TaxCalculationService
@@ -61,7 +63,7 @@
             </MudTabs>
 
         </MudItem>
-        
+
         <MudItem md="12">
             <MudButton OnClick="Calculate" Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@(selectedPerson == null)">Berechne</MudButton>
         </MudItem>
@@ -71,13 +73,8 @@
 @if (taxResponse != null)
 {
     <MudExpansionPanels Class="mb-4 pa-6">
-        <MudExpansionPanel Text="Resultat Steuerberechnung" IsInitiallyExpanded="true">
-            <MudTreeView Items="TreeItems" @bind-ActivatedValue="ActivatedValue">
-                <ItemTemplate>
-                    <MudTreeViewItem @bind-Expanded="@context.IsExpanded" Items="@context.TreeItems" Value="@context"
-                                     Icon="@context.Icon" Text="@context.Title" EndText="@context.Number?.ToString()" EndTextTypo="@Typo.body2"/>
-                </ItemTemplate>
-            </MudTreeView>
+        <MudExpansionPanel Text="Resultat Steuerberechnung" Expanded="true">
+            <SimpleTaxResultDisplay CalculationResult ="taxResponse" />
         </MudExpansionPanel>
 
         <MudExpansionPanel Text="Rohdaten">
@@ -89,35 +86,11 @@
 @code
 {
     private CapitalBenefitTaxRequest taxRequest = new();
-    private CapitalBenefitTaxResponse taxResponse;
+    private SimpleTaxResultViewModel taxResponse;
     private decimal? capitalWithdrawalAmount;
     private PersonViewModel selectedPerson;
     private IReadOnlyCollection<PersonViewModel> persons;
     private int[] supportedTaxYears;
-
-    private TreeItemData ActivatedValue { get; set; }
-
-    private HashSet<TreeItemData> TreeItems { get; set; } = new();
-
-    public class TreeItemData
-    {
-        public string Title { get; set; }
-
-        public string Icon { get; set; }
-
-        public int? Number { get; set; }
-
-        public bool IsExpanded { get; set; }
-
-        public HashSet<TreeItemData> TreeItems { get; set; }
-
-        public TreeItemData(string title, string icon, int? number = null)
-        {
-            Title = title;
-            Icon = icon;
-            Number = number;
-        }
-    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -143,7 +116,11 @@
             return;
         }
 
-        taxRequest = new CapitalBenefitTaxRequest()
+        capitalWithdrawalAmount =
+            selectedPerson?.FinalRetirementCapital +
+            selectedPerson?.FinalCapital3a;
+
+        taxRequest = new CapitalBenefitTaxRequest
             {
                 Name = selectedPerson.Name,
                 CivilStatus = selectedPerson.CivilStatus,
@@ -153,26 +130,21 @@
                 BfsMunicipalityId = selectedPerson.BfsMunicipalityId,
                 CalculationYear = supportedTaxYears.Max()
             };
-        
-        taxResponse = await TaxCalculationService.CalculateAsync(taxRequest);
 
-        TreeItems.Add(new TreeItemData($"{selectedPerson.Name} {taxResponse.CalculationYear}", null)
-        {
-            IsExpanded = true,
-            TreeItems = new HashSet<TreeItemData>
+        var taxResult = await TaxCalculationService.CalculateAsync(taxRequest);
+
+        taxResponse = new SimpleTaxResultViewModel
             {
-                new($"Gesamtsteuerbelastung", null, Convert.ToInt32(taxResponse.TotalTaxAmount))
-                {
-                    IsExpanded = true,
-                    TreeItems = new HashSet<TreeItemData>
-                    {
-                        new("Bundessteuer", null, Convert.ToInt32(taxResponse.TaxDetails.FederalTaxAmount)),
-                        new("Gemeindesteuer", null, Convert.ToInt32(taxResponse.TaxDetails.MunicipalityTaxAmount)),
-                        new("Staatssteuer", null, Convert.ToInt32(taxResponse.TaxDetails.CantonTaxAmount)),
-                        new("Kirchensteuer", null, Convert.ToInt32(taxResponse.TaxDetails.ChurchTaxAmount)),
-                    }
-                }
-            }
-        });
+                Name = taxRequest.Name,
+                CalculationYear = taxResult.CalculationYear,
+                Municipality = selectedPerson.MunicipalityName,
+                TaxableAmount = taxRequest.TaxableBenefits,
+                TotalTaxAmount = taxResult.TotalTaxAmount,
+                CantonTaxAmount = taxResult.TaxDetails.CantonTaxAmount,
+                FederalTaxAmount = taxResult.TaxDetails.FederalTaxAmount,
+                ChurchTaxAmount = taxResult.TaxDetails.ChurchTaxAmount,
+                MunicipalityTaxAmount = taxResult.TaxDetails.MunicipalityTaxAmount,
+                WithTaxBreakDown = false
+            };
     }
 }

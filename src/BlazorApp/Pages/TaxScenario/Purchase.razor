@@ -74,7 +74,7 @@
                             </MudText>
                         </MudItem>
                         <MudItem md="8">
-                            <MudSwitch @bind-Checked="taxRequest.WithCapitalBenefitTaxation" Color="Color.Primary"/>
+                            <MudSwitch T="bool" @bind-Checked="taxRequest.WithCapitalBenefitTaxation" Color="Color.Primary"/>
 
                             <MudNumericField T="int" Disabled="@(!taxRequest.WithCapitalBenefitTaxation)" Label="Bezugsjahr" Format="n0" @bind-Value="yearOfFirstWithdrawal" Max="2099" Culture="CultureInfo.InvariantCulture"/>
                             <MudNumericField T="decimal" Disabled="@(!taxRequest.WithCapitalBenefitTaxation)" Label="Vorsorgekapital (ohne Einkauf)" Format="n0" Step="1000" @bind-Value="totalWithdrawalAmount" Culture="CultureInfo.InvariantCulture"/>
@@ -91,7 +91,7 @@
                             </MudText>
                         </MudItem>
                         <MudItem md="8">
-                            <MudSwitch @bind-Checked="@WithSalary" Color="Color.Primary" Label="Jährliches Einkommen berücksichtigen" Size="MudBlazor.Size.Small"/>
+                            <MudSwitch T="bool" @bind-Checked="@WithSalary" Color="Color.Primary" Label="Jährliches Einkommen berücksichtigen" Size="MudBlazor.Size.Small"/>
                             <MudNumericField T="decimal" Label="Rendite p.a. auf Vermögen" Format="p2" Step="0.005M" @bind-Value="taxRequest.NetWealthReturn" Culture="CultureInfo.InvariantCulture"/>
                             <MudNumericField T="decimal" Label="Rendite p.a. Vorsorgekapitalien" Format="p2" Step="0.005M" @bind-Value="taxRequest.NetPensionCapitalReturn" Culture="CultureInfo.InvariantCulture"/>
                         </MudItem>
@@ -116,7 +116,7 @@
 @if (taxResponse != null)
 {
     <MudExpansionPanels Class="mb-4 pa-6">
-        <MudExpansionPanel Text="Netto Vermögenszuwachs" IsInitiallyExpanded="true">
+        <MudExpansionPanel Text="Netto Vermögenszuwachs" Expanded="true">
             <ApexChart @ref=netChart
                 TItem="TaxCurve.CurvePoint"
                 Options="@netOptions"

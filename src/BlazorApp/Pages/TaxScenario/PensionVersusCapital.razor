@@ -88,7 +88,7 @@
 @if (taxResponse != null)
 {
     <MudExpansionPanels Class="mb-4 pa-6">
-        <MudExpansionPanel Text="Vermögen Rente vs Kapital" IsInitiallyExpanded="true">
+        <MudExpansionPanel Text="Vermögen Rente vs Kapital" Expanded="true">
             <ApexChart @ref=netChart
                 TItem="TaxCurve.CurvePoint"
                 Options="@netOptions"

@@ -1,0 +1,55 @@
+﻿@using System.Globalization
+@using BlazorApp.Pages.SimpleTax.ViewModels
+
+<MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+    <MudCard>
+        <MudCardHeader><MudText Typo="Typo.subtitle2">@CalculationResult.Name</MudText></MudCardHeader>
+        <MudCardContent>
+            <MudGrid>
+                <MudItem md="3"><MudText Typo="Typo.body2">Steuerjahr:</MudText></MudItem>
+                <MudItem md="9"><MudText Typo="Typo.body2">@CalculationResult.CalculationYear</MudText></MudItem>
+
+                <MudItem md="3"><MudText Typo="Typo.body2">Steuergemeinde:</MudText></MudItem>
+                <MudItem md="9"><MudText Typo="Typo.body2">@CalculationResult.Municipality</MudText></MudItem>
+
+                <MudItem md="3"><MudText Typo="Typo.body2">Steuerbetrag:</MudText></MudItem>
+                <MudItem md="9"><MudText Typo="Typo.body2">@CalculationResult.TaxableAmount</MudText></MudItem>
+
+                <MudItem md="3"><MudText Typo="Typo.body2">Gesamtsteuer:</MudText></MudItem>
+                <MudItem md="9"><MudText Typo="Typo.body2">@CalculationResult.TotalTaxAmount.ToString("N0", CultureInfo.InvariantCulture)</MudText></MudItem>
+
+                <MudItem md="3"><MudText Class="ml-2" Typo="Typo.body2">- Kantonssteuer:</MudText></MudItem>
+                <MudItem md="9"><MudText Typo="Typo.body2">@CalculationResult.CantonTaxAmount.ToString("N0", CultureInfo.InvariantCulture)</MudText></MudItem>
+
+                <MudItem md="3"><MudText Class="ml-2" Typo="Typo.body2">- Gemeindesteuer:</MudText></MudItem>
+                <MudItem md="9"><MudText Typo="Typo.body2">@CalculationResult.MunicipalityTaxAmount.ToString("N0", CultureInfo.InvariantCulture)</MudText></MudItem>
+
+                <MudItem md="3"><MudText Class="ml-2" Typo="Typo.body2">- Bundessteuer:</MudText></MudItem>
+                <MudItem md="9"><MudText Typo="Typo.body2">@CalculationResult.FederalTaxAmount.ToString("N0", CultureInfo.InvariantCulture)</MudText></MudItem>
+
+                <MudItem md="3"><MudText Class="ml-2" Typo="Typo.body2">- Kirchensteuer:</MudText></MudItem>
+                <MudItem md="9"><MudText Typo="Typo.body2">@CalculationResult.ChurchTaxAmount.ToString("N0", CultureInfo.InvariantCulture)</MudText></MudItem>
+
+                <MudItem md="3"><MudText Class="ml-2" Typo="Typo.body2">- Personalsteuer:</MudText></MudItem>
+                <MudItem md="9"><MudText Typo="Typo.body2">@CalculationResult.PollTaxAmount.ToString("N0", CultureInfo.InvariantCulture)</MudText></MudItem>
+
+                @if (CalculationResult.WithTaxBreakDown)
+                {
+                    <MudItem md="12"><MudText Typo="Typo.body2">Details nach Steuertyp:</MudText></MudItem>
+
+                    <MudItem md="3"><MudText Class="ml-2" Typo="Typo.body2">- Einkommenssteuer:</MudText></MudItem>
+                    <MudItem md="9"><MudText Typo="Typo.body2">@CalculationResult.IncomeTaxAmount.ToString("N0", CultureInfo.InvariantCulture)</MudText></MudItem>
+
+                    <MudItem md="3"><MudText Class="ml-2" Typo="Typo.body2">- Vermögenssteuer:</MudText></MudItem>
+                    <MudItem md="9"><MudText Typo="Typo.body2">@CalculationResult.WealthTaxAmount.ToString("N0", CultureInfo.InvariantCulture)</MudText></MudItem>
+                }
+
+            </MudGrid>
+        </MudCardContent>
+    </MudCard>
+
+</MudPaper>
+
+@code {
+    [Parameter] public SimpleTaxResultViewModel CalculationResult { get; set; }
+}

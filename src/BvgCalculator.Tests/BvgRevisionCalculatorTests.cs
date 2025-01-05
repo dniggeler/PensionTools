@@ -177,9 +177,9 @@ public class BvgRevisionCalculatorTests : IClassFixture<BvgCalculatorFixture<App
     [InlineData(2024, 100_000, "1969-03-17", 1, 62475)]
     [InlineData(2024, 20_000, "1969-03-17", 1, 0)]
     [InlineData(2024, 18_000, "1969-03-17", 1, 0)]
-    [InlineData(2026, 100_000, "1969-03-17", 1, 70560)]
-    [InlineData(2026, 20_000, "1969-03-17", 1, 16000)]
-    [InlineData(2026, 18_000, "1969-03-17", 1, 0)]
+    [InlineData(2027, 100_000, "1969-03-17", 1, 70560)]
+    [InlineData(2027, 20_000, "1969-03-17", 1, 16000)]
+    [InlineData(2027, 18_000, "1969-03-17", 1, 0)]
     public void Calculate_Insured_Salary(
         int processingYear,
         decimal effectiveSalary,

@@ -4,7 +4,7 @@ namespace Application.Tax.Estv
 {
     public class EstvTaxSupportedYearProvider : ITaxSupportedYearProvider
     {
-        private readonly int[] supportedTaxYears = { 2019, 2020, 2021, 2022, 2023 };
+        private readonly int[] supportedTaxYears = { 2019, 2020, 2021, 2022, 2023, 2024 };
 
         public int[] GetSupportedTaxYears()
         {
