@@ -1,7 +1,5 @@
 ﻿@page "/TaxScenario/PensionVersusCapital"
 
-@using Microsoft.AspNetCore.Components
-@using ApexCharts;
 @using Domain.Enums
 @using Domain.Models.MultiPeriod
 @using Domain.Models.Tax
@@ -196,7 +194,7 @@
         netOptions.DataLabels = new DataLabels
         {
             Enabled = false,
-                Formatter = emptyFormatter
+            Formatter = emptyFormatter
         };
 
         scenarioOptions = ChartConfigurator.CurvePointOptions(IsDarkMode);
