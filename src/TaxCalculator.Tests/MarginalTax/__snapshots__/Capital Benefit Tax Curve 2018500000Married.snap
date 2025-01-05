@@ -11,128 +11,128 @@
       "TotalTaxAmount": 0.000
     },
     {
-      "Salary": 80000.0,
-      "Rate": 0.008,
-      "TotalTaxAmount": 214.200
+      "Salary": 83333.0,
+      "Rate": 0.0080,
+      "TotalTaxAmount": 240.6000
     },
     {
-      "Salary": 160000.0,
+      "Salary": 166666.0,
       "Rate": 0.0726,
-      "TotalTaxAmount": 2637.400
+      "TotalTaxAmount": 3088.6000
     },
     {
-      "Salary": 240000.0,
+      "Salary": 249999.0,
       "Rate": 0.0959,
-      "TotalTaxAmount": 9470.600
+      "TotalTaxAmount": 10357.1000
     },
     {
-      "Salary": 320000.0,
+      "Salary": 333333.0,
       "Rate": 0.1192,
-      "TotalTaxAmount": 18237.700
+      "TotalTaxAmount": 19795.1000
     },
     {
-      "Salary": 400000.0,
+      "Salary": 416666.0,
       "Rate": 0.1425,
-      "TotalTaxAmount": 28542.600
+      "TotalTaxAmount": 30838.2000
     },
     {
-      "Salary": 480000.0,
+      "Salary": 499999.0,
       "Rate": 0.1658,
-      "TotalTaxAmount": 40082.400
+      "TotalTaxAmount": 43256.0000
     },
     {
-      "Salary": 560000.0,
+      "Salary": 500000.0,
       "Rate": 0.1658,
-      "TotalTaxAmount": 53346.400
+      "TotalTaxAmount": 43398.400
     },
     {
-      "Salary": 640000.0,
+      "Salary": 583333.0,
+      "Rate": 0.1658,
+      "TotalTaxAmount": 57167.6000
+    },
+    {
+      "Salary": 666666.0,
       "Rate": 0.1891,
-      "TotalTaxAmount": 67239.500
+      "TotalTaxAmount": 72171.7000
     },
     {
-      "Salary": 720000.0,
+      "Salary": 749999.0,
       "Rate": 0.1891,
-      "TotalTaxAmount": 82367.500
+      "TotalTaxAmount": 87874.8000
     },
     {
-      "Salary": 800000.0,
+      "Salary": 833333.0,
       "Rate": 0.1891,
-      "TotalTaxAmount": 97495.500
+      "TotalTaxAmount": 103743.6000
     },
     {
-      "Salary": 880000.0,
+      "Salary": 916666.0,
       "Rate": 0.1891,
-      "TotalTaxAmount": 112623.500
+      "TotalTaxAmount": 119384.5000
     },
     {
-      "Salary": 960000.0,
+      "Salary": 1000000.0,
       "Rate": 0.2094,
-      "TotalTaxAmount": 128467.800
+      "TotalTaxAmount": 136843.800
     },
     {
-      "Salary": 1040000.0,
+      "Salary": 1083333.0,
       "Rate": 0.2094,
-      "TotalTaxAmount": 145219.800
+      "TotalTaxAmount": 154230.9000
     },
     {
-      "Salary": 1120000.0,
+      "Salary": 1166666.0,
       "Rate": 0.2094,
-      "TotalTaxAmount": 161971.800
+      "TotalTaxAmount": 171618.0000
     },
     {
-      "Salary": 1200000.0,
-      "Rate": 0.2094,
-      "TotalTaxAmount": 178723.800
-    },
-    {
-      "Salary": 1280000.0,
+      "Salary": 1250000.0,
       "Rate": 0.2327,
-      "TotalTaxAmount": 196664.100
+      "TotalTaxAmount": 189683.100
     },
     {
-      "Salary": 1360000.0,
+      "Salary": 1333333.0,
       "Rate": 0.2327,
-      "TotalTaxAmount": 215280.100
+      "TotalTaxAmount": 209004.1000
     },
     {
-      "Salary": 1440000.0,
+      "Salary": 1416666.0,
       "Rate": 0.2327,
-      "TotalTaxAmount": 233896.100
+      "TotalTaxAmount": 228325.1000
     },
     {
-      "Salary": 1520000.0,
+      "Salary": 1499999.0,
       "Rate": 0.2327,
-      "TotalTaxAmount": 252512.100
+      "TotalTaxAmount": 247646.1000
     },
     {
-      "Salary": 1600000.0,
+      "Salary": 1583333.0,
       "Rate": 0.2327,
-      "TotalTaxAmount": 271128.100
+      "TotalTaxAmount": 267179.1000
     },
     {
-      "Salary": 1680000.0,
+      "Salary": 1666666.0,
       "Rate": 0.2327,
-      "TotalTaxAmount": 289744.100
+      "TotalTaxAmount": 286500.1000
     },
     {
-      "Salary": 1760000.0,
-      "Rate": 0.256,
-      "TotalTaxAmount": 309921.200
+      "Salary": 1749999.0,
+      "Rate": 0.2560,
+      "TotalTaxAmount": 307125.9000
     },
     {
-      "Salary": 1840000.0,
-      "Rate": 0.256,
-      "TotalTaxAmount": 330401.200
+      "Salary": 1833333.0,
+      "Rate": 0.2560,
+      "TotalTaxAmount": 328616.1000
     },
     {
-      "Salary": 1920000.0,
-      "Rate": 0.256,
-      "TotalTaxAmount": 350881.200
+      "Salary": 1916666.0,
+      "Rate": 0.2560,
+      "TotalTaxAmount": 349871.0000
     },
     {
       "Salary": 2000000.0,
-      "Rate": 0.256,
+      "Rate": 0.2560,
       "TotalTaxAmount": 371361.200
     }
   ]

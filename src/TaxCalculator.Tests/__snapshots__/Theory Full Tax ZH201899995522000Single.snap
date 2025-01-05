@@ -12,12 +12,8 @@
           "TaxAmount": 329.5
         },
         "ChurchTax": {
-          "TaxAmount": [
-            661.650
-          ],
-          "TaxAmountPartner": [
-            0.00
-          ],
+          "TaxAmount": 661.650,
+          "TaxAmountPartner": 0.00,
           "TaxRate": 10.0
         },
         "CantonRate": 100.0,
@@ -28,9 +24,7 @@
         "TotalWealthTax": 721.605,
         "TotalIncomeTax": 14430.180,
         "TotalTaxAmount": 15175.785,
-        "PollTaxAmount": [
-          24.0
-        ]
+        "PollTaxAmount": 24.0
       },
       "FederalTaxResult": {
         "DeterminingFactorTaxableAmount": 99900.0,

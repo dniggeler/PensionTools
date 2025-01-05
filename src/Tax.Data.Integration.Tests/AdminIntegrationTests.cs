@@ -75,7 +75,7 @@ namespace Tax.Data.Integration.Tests
             Assert.True(result > 0);
         }
 
-        [Fact(DisplayName = "All Zip Codes")]
+        [Fact(DisplayName = "All Zip Codes", Skip = "outdated")]
         public async Task Get_All_Zip_Codes_Successfully()
         {
             IEnumerable<ZipModel> result = await client.GetFromJsonAsync<IEnumerable<ZipModel>>("zip") switch

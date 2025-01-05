@@ -5,5 +5,7 @@
         public string Search { get; set; }
 
         public int Language { get; set; } = 1;
+
+        public int TaxYear { get; set; } = 2024;
     }
 }

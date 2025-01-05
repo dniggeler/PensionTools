@@ -11,12 +11,8 @@
         "TaxAmount": 252.5
       },
       "ChurchTax": {
-        "TaxAmount": [
-          256.525
-        ],
-        "TaxAmountPartner": [
-          256.525
-        ],
+        "TaxAmount": 256.525,
+        "TaxAmountPartner": 256.525,
         "TaxRate": 10.0
       },
       "CantonRate": 100.0,
@@ -27,9 +23,7 @@
       "TotalWealthTax": 552.975,
       "TotalIncomeTax": 11195.870,
       "TotalTaxAmount": 11796.845,
-      "PollTaxAmount": [
-        48.0
-      ]
+      "PollTaxAmount": 48.0
     },
     "Left": null
   }

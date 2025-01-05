@@ -2,12 +2,8 @@
   {
     "State": "IsRight",
     "Right": {
-      "TaxAmount": [
-        0.00
-      ],
-      "TaxAmountPartner": [
-        0.00
-      ],
+      "TaxAmount": 0.00,
+      "TaxAmountPartner": 0.00,
       "TaxRate": 10.0
     },
     "Left": null

@@ -8,12 +8,8 @@
           "TaxAmount": 0.0
         },
         "ChurchTax": {
-          "TaxAmount": [
-            0.00
-          ],
-          "TaxAmountPartner": [
-            0.00
-          ],
+          "TaxAmount": 0.00,
+          "TaxAmountPartner": 0.00,
           "TaxRate": 0.0
         },
         "CantonRate": 100.0,

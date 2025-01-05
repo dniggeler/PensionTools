@@ -8,12 +8,8 @@
           "TaxAmount": 40000.00
         },
         "ChurchTax": {
-          "TaxAmount": [
-            4600.00000
-          ],
-          "TaxAmountPartner": [
-            4600.00000
-          ],
+          "TaxAmount": 4600.00000,
+          "TaxAmountPartner": 4600.00000,
           "TaxRate": 23.0
         },
         "CantonRate": 115.0,
