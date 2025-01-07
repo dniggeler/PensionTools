@@ -7,5 +7,7 @@ public abstract class GenericCashFlowAccount
 
     public string? Description { get; set; }
 
+    public decimal InitialBalance { get; set; }
+
     public List<AccountTransaction>? Transactions { get; set; } = [];
 }

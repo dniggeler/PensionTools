@@ -15,12 +15,12 @@ public sealed class MultiPeriodCashFlowQueries
             new IncomeAccount
             {
                 Id = Guid.NewGuid(),
-                Balance = 5000,
+                InitialBalance = 5000,
             },
             new ExogenousAccount
             {
                 Id = Guid.NewGuid(),
-                Balance = 1000,
+                InitialBalance = 1000,
             }
         ];
     }

@@ -8,8 +8,6 @@
 /// </summary>
 public class InvestmentAccount : GenericCashFlowAccount
 {
-    public decimal? Balance { get; set; }
-
     /// <summary>
     /// Gets or sets the net income yield. Income types are dividends and interests which are subject to income tax.
     /// This is the yield before income taxes.
