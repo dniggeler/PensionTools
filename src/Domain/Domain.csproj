@@ -5,4 +5,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="HotChocolate.Types" Version="14.3.0" />
+  </ItemGroup>
+
 </Project>

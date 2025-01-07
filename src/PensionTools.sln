@@ -88,6 +88,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Tests", "Domain.Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PensionToolsComponentLibrary", "PensionToolsComponentLibrary\PensionToolsComponentLibrary.csproj", "{187FDC48-1AFA-4FA4-AF62-A3FDECFE56DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlowCalculationEngine.Server", "CashFlowCalculationEngine.Server\CashFlowCalculationEngine.Server.csproj", "{8974EC91-0BC5-4131-AD77-1244FB929AE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -190,6 +192,10 @@ Global
 		{187FDC48-1AFA-4FA4-AF62-A3FDECFE56DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{187FDC48-1AFA-4FA4-AF62-A3FDECFE56DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{187FDC48-1AFA-4FA4-AF62-A3FDECFE56DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8974EC91-0BC5-4131-AD77-1244FB929AE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8974EC91-0BC5-4131-AD77-1244FB929AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8974EC91-0BC5-4131-AD77-1244FB929AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8974EC91-0BC5-4131-AD77-1244FB929AE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -230,6 +236,7 @@ Global
 		{F1743BB6-65C2-44D3-940C-F0BF17C0557F} = {955F3700-AC87-456C-B645-3F9451EAFA57}
 		{C68CF325-C730-4111-9F11-E4CF453B620A} = {F1743BB6-65C2-44D3-940C-F0BF17C0557F}
 		{187FDC48-1AFA-4FA4-AF62-A3FDECFE56DA} = {89C541A7-00DE-42C9-A51D-D3E23A22FFB5}
+		{8974EC91-0BC5-4131-AD77-1244FB929AE0} = {6BC3D884-18CD-4328-9EEF-39B7FFBB7F3E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB937E37-4C08-4EB0-86F7-87F74A7F6C44}
