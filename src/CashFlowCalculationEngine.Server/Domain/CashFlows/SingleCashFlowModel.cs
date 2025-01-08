@@ -2,7 +2,7 @@
 
 namespace CashFlowCalculationEngine.Server.Domain.CashFlows;
 
-public record CashFlowModel(
+public record SingleCashFlow(
     DateOnly DateOfProcess,
     decimal Amount,
     Guid SourceAccountId,

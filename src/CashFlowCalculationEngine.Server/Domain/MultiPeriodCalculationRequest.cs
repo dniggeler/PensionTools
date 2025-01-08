@@ -19,5 +19,5 @@ public class MultiPeriodCalculationRequest
     public ExogenousAccount[]? ExogenousAccounts { get; set; }
 
     // all cash flows operating on the accounts
-    public CashFlowModel[] CashFlows { get; set; } = [];
+    public SingleCashFlow[] CashFlows { get; set; } = [];
 }
