@@ -8,15 +8,4 @@
 /// </summary>
 public class InvestmentAccount : GenericCashFlowAccount
 {
-    /// <summary>
-    /// Gets or sets the net income yield. Income types are dividends and interests which are subject to income tax.
-    /// This is the yield before income taxes.
-    /// </summary>
-    public decimal NetIncomeYield { get; set; }
-
-    /// <summary>
-    /// Gets or sets the net rate of return. This is the yield before wealth taxes,
-    /// and does not include the dividends.
-    /// </summary>
-    public decimal NetGrowthRate { get; set; }
 }
