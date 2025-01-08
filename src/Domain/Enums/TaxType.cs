@@ -1,4 +1,4 @@
-﻿namespace PensionCoach.Tools.CommonTypes.Tax
+﻿namespace Domain.Enums
 {
     public enum TaxType
     {

@@ -1,11 +1,11 @@
 ﻿using Domain.Enums;
 
-namespace Domain.Models.Cashflows;
+namespace CashFlowCalculationEngine.Server.Domain.CashFlows;
 
 public record CashFlowModel(
     DateOnly DateOfProcess,
     decimal Amount,
-    AccountType Source,
-    AccountType Target,
+    Guid SourceAccountId,
+    Guid TargetAccountId,
     bool IsTaxable,
     TaxType TaxType);

@@ -1,6 +1,6 @@
 ﻿using Domain.Contracts;
+using Domain.Enums;
 using Domain.Models.MultiPeriod.Definitions;
-using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace Domain.Models.MultiPeriod.Actions
 {
