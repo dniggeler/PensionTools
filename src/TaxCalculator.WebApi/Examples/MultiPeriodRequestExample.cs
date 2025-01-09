@@ -89,7 +89,7 @@ public class MultiPeriodRequestExample : IExamplesProvider<MultiPeriodRequest>
                             NumberOfPeriods = numberOfPeriods,
                         },
                         IsTaxable = false,
-                        TaxType = TaxType.Undefined,
+                        TaxType = TaxType.None,
                     },
                     new ()
                     {
@@ -113,7 +113,7 @@ public class MultiPeriodRequestExample : IExamplesProvider<MultiPeriodRequest>
                             NumberOfPeriods = 5,
                         },
                         IsTaxable = false,
-                        TaxType = TaxType.Undefined
+                        TaxType = TaxType.None
                     },
                 },
             },

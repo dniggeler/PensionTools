@@ -376,7 +376,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
                     TransferAmount = Math.Abs(deltaWealthConsumption),
                     Flow = new FlowPair(AccountType.Wealth, AccountType.Exogenous),
                     IsTaxable = false,
-                    TaxType = TaxType.Undefined
+                    TaxType = TaxType.None
                 };
             }
         }
@@ -460,7 +460,7 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
             DateOfProcess = new DateTime(finalDate.Year, 1, 1),
             Flow = new FlowPair(AccountType.Exogenous, AccountType.OccupationalPension),
             TransferAmount = scenarioModel.CapitalBenefitsBeforeWithdrawal,
-            TaxType = TaxType.Undefined,
+            TaxType = TaxType.None,
             IsTaxable = false,
         };
     }

@@ -227,7 +227,7 @@ public static class CashFlowHelperExtensions
                 NumberOfPeriods = purchaseDefinition.NumberOfInvestments,
             },
             IsTaxable = false,
-            TaxType = TaxType.Undefined
+            TaxType = TaxType.None
         };
 
         yield return new StaticGenericCashFlowDefinition
@@ -252,7 +252,7 @@ public static class CashFlowHelperExtensions
                 NumberOfPeriods = purchaseDefinition.NumberOfInvestments,
             },
             IsTaxable = false,
-            TaxType = TaxType.Undefined
+            TaxType = TaxType.None
         };
     }
 
@@ -343,7 +343,7 @@ public static class CashFlowHelperExtensions
                 NumberOfPeriods = thirdPillarDefinition.NumberOfInvestments,
             },
             IsTaxable = false,
-            TaxType = TaxType.Undefined
+            TaxType = TaxType.None
         };
 
         yield return new StaticGenericCashFlowDefinition
@@ -368,7 +368,7 @@ public static class CashFlowHelperExtensions
                 NumberOfPeriods = thirdPillarDefinition.NumberOfInvestments,
             },
             IsTaxable = false,
-            TaxType = TaxType.Undefined
+            TaxType = TaxType.None
         };
     }
 
@@ -518,7 +518,7 @@ public static class CashFlowHelperExtensions
                 Frequency = FrequencyType.Yearly,
             },
             IsTaxable = false,
-            TaxType = TaxType.Undefined
+            TaxType = TaxType.None
         };
 
         yield return new DynamicTransferAccountAction
@@ -538,7 +538,7 @@ public static class CashFlowHelperExtensions
             TransferRatio = decimal.One,
             Flow = new FlowPair(AccountType.OccupationalPension, AccountType.Exogenous),
             IsTaxable = false,
-            TaxType = TaxType.Undefined
+            TaxType = TaxType.None
         };
     }
 }

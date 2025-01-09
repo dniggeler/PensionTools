@@ -2,10 +2,10 @@
 
 namespace CashFlowCalculationEngine.Server.Domain.CashFlows;
 
-public record SingleCashFlow(
+public record FixedAmountCashFlow(
+    string? Description,
     DateOnly DateOfProcess,
     decimal Amount,
     Guid SourceAccountId,
     Guid TargetAccountId,
-    bool IsTaxable,
-    TaxType TaxType);
+    TaxType TaxType) : SingleCashFlow(Description, DateOfProcess, SourceAccountId, TargetAccountId);

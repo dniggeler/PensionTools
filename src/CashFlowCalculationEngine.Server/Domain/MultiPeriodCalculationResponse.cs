@@ -9,7 +9,7 @@ public record MultiPeriodCalculationResponse
         
     public int NumberOfPeriods { get; set; }
 
-    public IEnumerable<SinglePeriodCalculationResult> Accounts{ get; set; }
+    public IEnumerable<SinglePeriodCalculationResult> Accounts { get; set; } = [];
 
-    public AccountTransactionResultHolder Transactions { get; set; }
+    public AccountTransactionResultHolder? Transactions { get; set; }
 }

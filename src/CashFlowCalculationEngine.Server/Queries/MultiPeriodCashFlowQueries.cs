@@ -1,11 +1,14 @@
-﻿using CashFlowCalculationEngine.Server.Domain;
+﻿using AppAny.HotChocolate.FluentValidation;
+using CashFlowCalculationEngine.Server.Application.Validators;
+using CashFlowCalculationEngine.Server.Domain;
 using CashFlowCalculationEngine.Server.Domain.Accounts;
 
 namespace CashFlowCalculationEngine.Server.Queries;
 
 public sealed class MultiPeriodCashFlowQueries
 {
-    public IEnumerable<GenericCashFlowAccount> CalculateAsync(MultiPeriodCalculationRequest request)
+    public IEnumerable<GenericCashFlowAccount> CalculateAsync(
+        [UseFluentValidation, UseValidator<MultiPeriodCalculationRequestValidator>]MultiPeriodCalculationRequest request)
     {
         var result = new MultiPeriodCalculationResponse()
         {

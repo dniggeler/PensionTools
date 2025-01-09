@@ -1,7 +1,11 @@
-﻿using CashFlowCalculationEngine.Server.Domain.Accounts;
+﻿using AppAny.HotChocolate.FluentValidation;
+using CashFlowCalculationEngine.Server.Application.Validators;
+using CashFlowCalculationEngine.Server.Domain.Accounts;
 using CashFlowCalculationEngine.Server.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddTransient<MultiPeriodCalculationRequestValidator>();
 
 builder.Services.AddGraphQLServer()
     .AddQueryType<MultiPeriodCashFlowQueries>()
@@ -13,7 +17,8 @@ builder.Services.AddGraphQLServer()
     .AddType<ThirdPillarAccount>()
     .AddType<WealthAccount>()
     //.AddType<InvestmentAccount>()
-    .ModifyOptions(c => c.EnableOneOf = true);
+    .ModifyOptions(c => c.EnableOneOf = true)
+    .AddFluentValidation();
 
 // Add services to the container.
 var app = builder.Build();

@@ -126,7 +126,7 @@ public class GenericCashFlowTests
                 Year = 2021,
                 NumberOfPeriods = 0
             },
-            TaxType = TaxType.Undefined,
+            TaxType = TaxType.None,
             IsTaxable = false,
         };
 
