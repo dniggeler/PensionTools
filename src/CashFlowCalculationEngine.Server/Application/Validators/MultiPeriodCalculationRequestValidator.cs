@@ -1,4 +1,4 @@
-﻿using CashFlowCalculationEngine.Server.Domain;
+﻿using CashFlowCalculationEngine.Server.Domain.Calculator;
 using CashFlowCalculationEngine.Server.Domain.CashFlows;
 using FluentValidation;
 
