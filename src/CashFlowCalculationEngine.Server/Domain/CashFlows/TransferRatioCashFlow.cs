@@ -7,5 +7,6 @@ public record TransferRatioCashFlow(
     decimal TransferFactor,
     TaxType TaxType,
     DateOnly DateOfProcess,
+    int? Sequence,
     Guid SourceAccountId,
-    Guid TargetAccountId) : SingleCashFlow(Description, DateOfProcess, SourceAccountId, TargetAccountId);
+    Guid TargetAccountId) : SingleCashFlow(Description, DateOfProcess, Sequence, SourceAccountId, TargetAccountId);

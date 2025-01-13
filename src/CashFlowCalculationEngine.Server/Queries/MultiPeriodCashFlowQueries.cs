@@ -21,7 +21,8 @@ public sealed class MultiPeriodCashFlowQueries(IMultiPeriodCashFlowCalculator ca
 
         var response = new MultiPeriodCalculationResponse
         {
-            CalculationId = request.CalculationId
+            CalculationId = request.CalculationId,
+            Transactions = result.Transactions
         };
 
         return response;

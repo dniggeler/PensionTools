@@ -1,4 +1,6 @@
-﻿namespace CashFlowCalculationEngine.Server.Domain.Accounts;
+﻿using CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
 
-public class TaxAccount : GenericCashFlowAccount
+namespace CashFlowCalculationEngine.Server.Domain.Accounts;
+
+public class TaxAccount : GenericCashFlowAccountInput
 { }

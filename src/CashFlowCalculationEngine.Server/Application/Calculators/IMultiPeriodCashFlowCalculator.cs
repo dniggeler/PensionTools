@@ -1,6 +1,6 @@
-﻿using CashFlowCalculationEngine.Server.Domain.Accounts;
-using CashFlowCalculationEngine.Server.Domain.Calculator;
+﻿using CashFlowCalculationEngine.Server.Domain.Calculator;
 using CashFlowCalculationEngine.Server.Domain.CashFlows;
+using CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
 using CashFlowCalculationEngine.Server.Domain.Location;
 using CashFlowCalculationEngine.Server.Domain.Person;
 
@@ -25,11 +25,11 @@ public interface IMultiPeriodCashFlowCalculator
     /// <param name="cashFlowHolder"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<MultiPeriodCalculationResult> CalculateAsync(
+    Task<MultiPeriodCalculationResponse> CalculateAsync(
         CalculationParameters calculationParameters,
         CalculationPerson person,
         Municipality municipality,
-        AccountHolder accountHolder,
-        CashFlowHolder cashFlowHolder,
+        AccountInput accountHolder,
+        CashFlowInput cashFlowHolder,
         CancellationToken cancellationToken);
 }

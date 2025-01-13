@@ -1,5 +1,5 @@
-﻿using CashFlowCalculationEngine.Server.Domain.Accounts;
-using CashFlowCalculationEngine.Server.Domain.CashFlows;
+﻿using CashFlowCalculationEngine.Server.Domain.CashFlows;
+using CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
 using CashFlowCalculationEngine.Server.Domain.Location;
 using CashFlowCalculationEngine.Server.Domain.Person;
 
@@ -15,7 +15,7 @@ public class MultiPeriodCalculationRequest
 
     public Municipality Municipality { get; set; } = new();
 
-    public AccountHolder AccountHolder { get; set; } = new();
+    public AccountInput AccountHolder { get; set; } = new();
 
-    public CashFlowHolder CashFlowHolder { get; set; } = new();
+    public CashFlowInput CashFlowHolder { get; set; } = new();
 }

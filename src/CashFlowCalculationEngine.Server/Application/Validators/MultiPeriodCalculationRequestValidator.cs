@@ -1,5 +1,4 @@
 ﻿using CashFlowCalculationEngine.Server.Domain.Calculator;
-using CashFlowCalculationEngine.Server.Domain.CashFlows;
 using FluentValidation;
 
 namespace CashFlowCalculationEngine.Server.Application.Validators;
@@ -8,16 +7,30 @@ public class MultiPeriodCalculationRequestValidator : AbstractValidator<MultiPer
 {
     public MultiPeriodCalculationRequestValidator()
     {
-        RuleForEach(x => x.CashFlowHolder.TransferRatioCashFlows)
-            .Must(x => x.TransferFactor is >= 0 and <= 1)
-            .WithMessage($"{nameof(TransferRatioCashFlow.TransferFactor)} must be between 0 and 1");
+        RuleFor(x => x)
+            .Must(x => Exist(x))
+            .WithMessage("One or multiple cash-flows reference a non-existing account.");
+    }
 
-        RuleForEach(x => x.CashFlowHolder.TransferRatioCashFlows)
-            .Must(x => (x.Description?.Length ?? 0) <= 50)
-            .WithMessage($"{nameof(SingleCashFlow.Description)} must be less than or equal to 50 characters");
+    private bool Exist(MultiPeriodCalculationRequest request)
+    {
+        HashSet<Guid> accountIds =
+            request.AccountHolder.ExogenousAccounts.Select(a => a.Id)
+            .Concat(request.AccountHolder.IncomeAccounts.Select(a => a.Id))
+            .Concat(request.AccountHolder.WealthAccounts.Select(a => a.Id))
+            .Concat(request.AccountHolder.OccupationalPensionAccounts.Select(a => a.Id))
+            .Concat(request.AccountHolder.ThirdPillarAccounts.Select(a => a.Id))
+            .Concat(request.AccountHolder.InvestmentAccounts.Select(a => a.Id))
+            .ToHashSet();
 
-        RuleForEach(x => x.CashFlowHolder.FixedAmountCashFlows)
-            .Must(x => (x.Description?.Length ?? 0) <= 50)
-            .WithMessage($"{nameof(SingleCashFlow.Description)} must be less than or equal to 50 characters");
+        HashSet<Guid> cashFlowAccountIds =
+            request.CashFlowHolder.FixedAmountCashFlows
+                .SelectMany(cf => new[] { cf.SourceAccountId, cf.TargetAccountId })
+                .Concat(request.CashFlowHolder.TransferRatioCashFlows
+                    .SelectMany(cf => new[] { cf.SourceAccountId, cf.TargetAccountId }))
+                .ToHashSet();
+
+        // check if all cash-flow account ids are in the account ids
+        return cashFlowAccountIds.All(accountIds.Contains);
     }
 }

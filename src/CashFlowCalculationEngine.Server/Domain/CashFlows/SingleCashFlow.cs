@@ -3,5 +3,6 @@
 public record SingleCashFlow(
     string? Description,
     DateOnly DateOfProcess,
+    int? Sequence,
     Guid SourceAccountId,
     Guid TargetAccountId);

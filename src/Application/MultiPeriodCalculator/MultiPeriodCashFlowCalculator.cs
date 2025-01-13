@@ -13,7 +13,6 @@ using Domain.Models.Tax;
 using LanguageExt;
 using Microsoft.Extensions.Logging;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace Application.MultiPeriodCalculator
 {
@@ -453,14 +452,14 @@ namespace Application.MultiPeriodCalculator
             }
 
             AccountTransaction trxCreditAccount =
-                new($"{description}: inflow from {debitAccount.Name}", transactionDate, amount);
+                new($"{description}: inflow from {debitAccount.Name}", transactionDate, amount, FlowType.InFlow);
 
             creditAccount.Balance += amount;
             creditAccount.Transactions.Add(trxCreditAccount);
 
 
             AccountTransaction trxDebitAccount =
-                new($"{description}: outflow to {creditAccount.Name}", transactionDate, -amount);
+                new($"{description}: outflow to {creditAccount.Name}", transactionDate, -amount, FlowType.OutFlow);
 
             debitAccount.Balance -= amount;
             debitAccount.Transactions.Add(trxDebitAccount);

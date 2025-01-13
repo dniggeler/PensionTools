@@ -10,6 +10,6 @@
 
         public decimal NetGrowthRate { get; set; }
 
-        public List<AccountTransaction> Transactions { get; set; } = new();
+        public List<AccountTransaction> Transactions { get; set; } = [];
     }
 }
