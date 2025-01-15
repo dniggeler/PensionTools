@@ -5,8 +5,8 @@ namespace CashFlowCalculationEngine.Server.Domain.CashFlows;
 public record TransferRatioCashFlow(
     string? Description,
     decimal TransferFactor,
-    TaxType TaxType,
     DateOnly DateOfProcess,
     int? Sequence,
+    TaxType TaxType,
     Guid SourceAccountId,
-    Guid TargetAccountId) : SingleCashFlow(Description, DateOfProcess, Sequence, SourceAccountId, TargetAccountId);
+    Guid TargetAccountId) : SingleCashFlow(Description, DateOfProcess, Sequence, TaxType, SourceAccountId, TargetAccountId);

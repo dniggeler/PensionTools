@@ -1,4 +1,6 @@
-﻿namespace CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
+﻿using Domain.Enums;
+
+namespace CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
 
 [InterfaceType]
 public abstract class GenericCashFlowAccountInput

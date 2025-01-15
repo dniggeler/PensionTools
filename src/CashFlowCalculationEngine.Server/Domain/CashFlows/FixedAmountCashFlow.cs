@@ -7,6 +7,6 @@ public record FixedAmountCashFlow(
     DateOnly DateOfProcess,
     decimal Amount,
     int? Sequence,
+    TaxType TaxType,
     Guid SourceAccountId,
-    Guid TargetAccountId,
-    TaxType TaxType) : SingleCashFlow(Description, DateOfProcess, Sequence, SourceAccountId, TargetAccountId);
+    Guid TargetAccountId) : SingleCashFlow(Description, DateOfProcess, Sequence, TaxType, SourceAccountId, TargetAccountId);
