@@ -46,6 +46,7 @@ public class MultiPeriodCashFlowCalculator(
             cashFlowHolder.FixedAmountCashFlows
             .OfType<SingleCashFlow>()
             .Concat(cashFlowHolder.TransferRatioCashFlows)
+            .Concat(cashFlowHolder.BalanceGrowthCashFlows)
             .ToList();
 
         int startingYear = calculationParameters.StartDate.Year;
@@ -144,13 +145,17 @@ public class MultiPeriodCashFlowCalculator(
 
         switch (cashFlow)
         {
-            case TransferRatioCashFlow t:
+            case TransferRatioCashFlow f:
                 ExecuteTransferRatioCashFlow(
-                    debitAccount, creditAccount, "Transfer cash-flow", cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue), t.TransferFactor);
+                    debitAccount, creditAccount, f.Description, cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue), f.TransferFactor);
                 break;
             case FixedAmountCashFlow f:
                 ExecuteFixedCashFlow(
-                    debitAccount, creditAccount, "Fixed cash-flow", cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue), f.Amount);
+                    debitAccount, creditAccount, f.Description, cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue), f.Amount);
+                break;
+            case BalanceGrowthCashFlow f:
+                ExecuteBalanceGrowthCashFlow(
+                    debitAccount, creditAccount, f.Description, cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue), f.NetReturn);
                 break;
         }
 
@@ -158,7 +163,7 @@ public class MultiPeriodCashFlowCalculator(
     }
 
     private static void ExecuteFixedCashFlow(
-        ICashFlowAccount debitAccount, ICashFlowAccount creditAccount, string description, DateTime transactionDate, decimal amount)
+        ICashFlowAccount debitAccount, ICashFlowAccount creditAccount, string? description, DateTime transactionDate, decimal amount)
     {
         AccountTransaction trxCreditAccount =
             new($"{description}: inflow from {debitAccount.Name}", transactionDate, amount, FlowType.InFlow);
@@ -175,9 +180,28 @@ public class MultiPeriodCashFlowCalculator(
     }
 
     private static void ExecuteTransferRatioCashFlow(
-        ICashFlowAccount debitAccount, ICashFlowAccount creditAccount, string description, DateTime transactionDate, decimal ratio)
+        ICashFlowAccount debitAccount, ICashFlowAccount creditAccount, string? description, DateTime transactionDate, decimal ratio)
     {
         decimal amount = debitAccount.Balance * ratio;
+
+        AccountTransaction trxCreditAccount =
+            new($"{description}: inflow from {debitAccount.Name}", transactionDate, amount, FlowType.InFlow);
+
+        creditAccount.Balance += amount;
+        creditAccount.Transactions.Add(trxCreditAccount);
+
+
+        AccountTransaction trxDebitAccount =
+            new($"{description}: outflow to {creditAccount.Name}", transactionDate, -amount, FlowType.OutFlow);
+
+        debitAccount.Balance -= amount;
+        debitAccount.Transactions.Add(trxDebitAccount);
+    }
+
+    private static void ExecuteBalanceGrowthCashFlow(
+        ICashFlowAccount debitAccount, ICashFlowAccount creditAccount, string? description, DateTime transactionDate, decimal netReturnDecimal)
+    {
+        decimal amount = creditAccount.Balance * netReturnDecimal;
 
         AccountTransaction trxCreditAccount =
             new($"{description}: inflow from {debitAccount.Name}", transactionDate, amount, FlowType.InFlow);

@@ -6,4 +6,6 @@ public class CashFlowInput
     public FixedAmountCashFlow[] FixedAmountCashFlows { get; set; } = [];
 
     public TransferRatioCashFlow[] TransferRatioCashFlows { get; set; } = [];
+
+    public BalanceGrowthCashFlow[] BalanceGrowthCashFlows { get; set; } = [];
 }

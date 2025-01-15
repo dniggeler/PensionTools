@@ -2,7 +2,7 @@
 
 namespace CashFlowCalculationEngine.Server.Domain.Graph.Actions;
 
-public class TaxationActionInput
+public class TaxBalanceActionInput
 {
     public string? Description { get; set; }
 
@@ -12,7 +12,7 @@ public class TaxationActionInput
     
     public int? Sequence { get; set; }
 
-    public Guid TaxDestinationAccountId { get; set; }
+    public Guid TargetAccountId { get; set; }
 
     public decimal TaxFactor { get; set; }
 
