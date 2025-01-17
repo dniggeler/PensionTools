@@ -1,9 +1,11 @@
 ﻿using Application.Municipality;
 using Application.Tax.Contracts;
 using CashFlowCalculationEngine.Server.Domain;
+using CashFlowCalculationEngine.Server.Domain.Accounts;
 using CashFlowCalculationEngine.Server.Domain.Calculator;
 using CashFlowCalculationEngine.Server.Domain.CashFlows;
 using CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
+using CashFlowCalculationEngine.Server.Domain.Graph.Actions;
 using CashFlowCalculationEngine.Server.Domain.Location;
 using CashFlowCalculationEngine.Server.Domain.Person;
 using Domain.Enums;
@@ -24,6 +26,7 @@ public class MultiPeriodCashFlowCalculator(
         Municipality municipality,
         AccountInput accountHolder,
         CashFlowInput cashFlowHolder,
+        TaxBalanceActionInput[] taxationActions,
         CancellationToken cancellationToken)
     {
         Dictionary<Guid, ExogenousAccount> exogenousAccounts = Build(accountHolder.ExogenousAccounts);
@@ -42,6 +45,14 @@ public class MultiPeriodCashFlowCalculator(
         occupationalPensionAccounts.Iter(a => allAccounts.Add(a.Key, a.Value));
         investmentAccounts.Iter(a => allAccounts.Add(a.Key, a.Value));
 
+        // setup internal tax accounts
+        Dictionary<TaxType, InternalTaxAccount> taxAccounts = new Dictionary<TaxType, InternalTaxAccount>
+        {
+            { TaxType.Income, new InternalTaxAccount { Name = "IncomeTax", TaxType = TaxType.Income} },
+            { TaxType.Wealth, new InternalTaxAccount { Name = "WealthTax" } },
+            { TaxType.CapitalBenefits, new InternalTaxAccount { Name = "CapitalBenefitTax" } }
+        };
+
         List<SingleCashFlow> allCashFlows =
             cashFlowHolder.FixedAmountCashFlows
             .OfType<SingleCashFlow>()
@@ -57,6 +68,15 @@ public class MultiPeriodCashFlowCalculator(
             DateOnly startingDate = new DateOnly(currentYear, 1, 1);
             DateOnly finalDate = new DateOnly(currentYear, 1, 1).AddYears(1);
 
+            // tax actions for begin of year
+            foreach (TaxBalanceActionInput action in taxationActions.Where(a => a.KindOfProcessDate == ProcessDateKind.BeginOfYear))
+            {
+                if (action.DateOfProcess.HasValue && action.DateOfProcess.Value.Year == currentYear)
+                {
+
+                }
+            }
+
             // all days in the current year
             for (DateOnly currentDate = startingDate; currentDate < finalDate; currentDate = currentDate.AddDays(1))
             {
@@ -68,7 +88,18 @@ public class MultiPeriodCashFlowCalculator(
                 // 2. process simple cash-flow: move amount from source to target account
                 foreach (var cashFlow in currentDateCashFlows)
                 {
-                    ProcessSimpleCashFlow(allAccounts, cashFlow, person);
+                    ProcessSimpleCashFlow(allAccounts, cashFlow, taxAccounts);
+                }
+            }
+
+            // tax actions for end of year
+            foreach (TaxBalanceActionInput action in taxationActions.Where(a => a.KindOfProcessDate == ProcessDateKind.EndOfYear))
+            {
+                if (action.DateOfProcess.HasValue && action.DateOfProcess.Value.Year == currentYear)
+                {
+                    //var accountsByTaxType = allAccounts
+                    //    .Where(a => a.Value. == action.TaxType)
+                    //    .ToDictionary(keySelector: (a) => a.Key, elementSelector: (a) => a.Value);
                 }
             }
         }
@@ -119,6 +150,14 @@ public class MultiPeriodCashFlowCalculator(
                 Transactions = a.Value.Transactions,
             });
 
+        var taxTransactionResult = taxAccounts
+            .Select(a => new AccountTransactionResult
+            {
+                Id = a.Value.Id,
+                Name = a.Value.Name,
+                Transactions = a.Value.Transactions,
+            });
+
 
         MultiPeriodCalculationResponse response = new MultiPeriodCalculationResponse
         {
@@ -131,6 +170,7 @@ public class MultiPeriodCashFlowCalculator(
                 InvestmentAccounts = investmentTransactionResult,
                 OccupationalPensionAccounts = occupationalTransactionResult,
                 ThirdPillarAccounts = thirdPillarTransactionResult,
+                TaxAccounts = taxTransactionResult
             }
         };
 
@@ -138,7 +178,7 @@ public class MultiPeriodCashFlowCalculator(
     }
 
     private Dictionary<Guid, ICashFlowAccount> ProcessSimpleCashFlow(
-        Dictionary<Guid, ICashFlowAccount> currentAccounts, SingleCashFlow cashFlow, CalculationPerson person)
+        Dictionary<Guid, ICashFlowAccount> currentAccounts, SingleCashFlow cashFlow, Dictionary<TaxType, InternalTaxAccount> taxAccounts)
     {
         ICashFlowAccount creditAccount = currentAccounts[cashFlow.TargetAccountId];
         ICashFlowAccount debitAccount = currentAccounts[cashFlow.SourceAccountId];
@@ -151,11 +191,23 @@ public class MultiPeriodCashFlowCalculator(
                 break;
             case FixedAmountCashFlow f:
                 ExecuteFixedCashFlow(
-                    debitAccount, creditAccount, f.Description, cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue), f.Amount);
+                    taxAccounts,
+                    debitAccount,
+                    creditAccount,
+                    f.Description,
+                    f.TaxType,
+                    cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue),
+                    f.Amount);
                 break;
             case BalanceGrowthCashFlow f:
                 ExecuteBalanceGrowthCashFlow(
-                    debitAccount, creditAccount, f.Description, cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue), f.NetReturn);
+                    taxAccounts,
+                    debitAccount,
+                    creditAccount,
+                    f.Description,
+                    f.TaxType,
+                    cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue),
+                    f.NetReturn);
                 break;
         }
 
@@ -163,20 +215,39 @@ public class MultiPeriodCashFlowCalculator(
     }
 
     private static void ExecuteFixedCashFlow(
-        ICashFlowAccount debitAccount, ICashFlowAccount creditAccount, string? description, DateTime transactionDate, decimal amount)
+        Dictionary<TaxType, InternalTaxAccount> taxAccounts,
+        ICashFlowAccount debitAccount,
+        ICashFlowAccount creditAccount,
+        string? description,
+        TaxType taxType,
+        DateTime trxDate,
+        decimal amount)
     {
         AccountTransaction trxCreditAccount =
-            new($"{description}: inflow from {debitAccount.Name}", transactionDate, amount, FlowType.InFlow);
+            new($"{description}: inflow from {debitAccount.Name}", trxDate, amount, FlowType.InFlow);
 
         creditAccount.Balance += amount;
         creditAccount.Transactions.Add(trxCreditAccount);
 
 
         AccountTransaction trxDebitAccount =
-            new($"{description}: outflow to {creditAccount.Name}", transactionDate, -amount, FlowType.OutFlow);
+            new($"{description}: outflow to {creditAccount.Name}", trxDate, -amount, FlowType.OutFlow);
 
         debitAccount.Balance -= amount;
         debitAccount.Transactions.Add(trxDebitAccount);
+
+        ExecuteTaxTransaction(taxAccounts, taxType, trxDate, amount);
+    }
+
+    private static void ExecuteTaxTransaction(Dictionary<TaxType, InternalTaxAccount> taxAccounts, TaxType taxType, DateTime trxDate, decimal amount)
+    {
+        if (taxType is (TaxType.None or TaxType.Person))
+        {
+            return;
+        }
+
+        taxAccounts[taxType].Balance += amount;
+        taxAccounts[taxType].Transactions.Add(new AccountTransaction("Tax", trxDate, amount, FlowType.InFlow));
     }
 
     private static void ExecuteTransferRatioCashFlow(
@@ -199,22 +270,30 @@ public class MultiPeriodCashFlowCalculator(
     }
 
     private static void ExecuteBalanceGrowthCashFlow(
-        ICashFlowAccount debitAccount, ICashFlowAccount creditAccount, string? description, DateTime transactionDate, decimal netReturnDecimal)
+        Dictionary<TaxType, InternalTaxAccount> taxAccounts,
+        ICashFlowAccount debitAccount,
+        ICashFlowAccount creditAccount,
+        string? description,
+        TaxType taxType,
+        DateTime trxDate,
+        decimal netReturnDecimal)
     {
         decimal amount = creditAccount.Balance * netReturnDecimal;
 
         AccountTransaction trxCreditAccount =
-            new($"{description}: inflow from {debitAccount.Name}", transactionDate, amount, FlowType.InFlow);
+            new($"{description}: inflow from {debitAccount.Name}", trxDate, amount, FlowType.InFlow);
 
         creditAccount.Balance += amount;
         creditAccount.Transactions.Add(trxCreditAccount);
 
 
         AccountTransaction trxDebitAccount =
-            new($"{description}: outflow to {creditAccount.Name}", transactionDate, -amount, FlowType.OutFlow);
+            new($"{description}: outflow to {creditAccount.Name}", trxDate, -amount, FlowType.OutFlow);
 
         debitAccount.Balance -= amount;
         debitAccount.Transactions.Add(trxDebitAccount);
+
+        ExecuteTaxTransaction(taxAccounts, taxType, trxDate, amount);
     }
 
     private Dictionary<Guid, ExogenousAccount> Build(IEnumerable<ExogenousAccountInput> accounts)
