@@ -6,7 +6,7 @@ namespace CashFlowCalculationEngine.Server.Domain.Graph.Actions;
 /// Represents the input for a tax balance action. All accounts of tax type will be affected by this action.
 /// Tax amount is the balance of the account at date of process. Therefore, the source account is derived implicitly.
 /// </summary>
-public class TaxBalanceActionInput
+public class TaxBalanceAction
 {
     /// <summary>
     /// The description of the action.
@@ -27,11 +27,6 @@ public class TaxBalanceActionInput
     /// The sequence of the action. It is used to determine the order of the actions occurred at the same date.
     /// </summary>
     public int? Sequence { get; set; }
-
-    /// <summary>
-    /// The target account that will be affected by this action. Normally, it references an exogenous account.
-    /// </summary>
-    public Guid TargetAccountId { get; set; }
 
     /// <summary>
     /// The tax factor that will be applied to the balance of the source account.

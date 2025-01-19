@@ -20,5 +20,5 @@ public class MultiPeriodCalculationRequest
 
     public CashFlowInput CashFlowHolder { get; set; } = new();
 
-    public TaxBalanceActionInput[] TaxationActions { get; set; } = [];
+    public TaxActionInput TaxationActionHolder { get; set; } = new();
 }

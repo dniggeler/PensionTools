@@ -11,6 +11,9 @@ using CashFlowCalculationEngine.Server.Domain.Person;
 using Domain.Enums;
 using Domain.Models.Cashflows;
 using Domain.Models.Cashflows.Accounts;
+using Domain.Models.Municipality;
+using Domain.Models.Tax;
+using LanguageExt;
 
 namespace CashFlowCalculationEngine.Server.Application.Calculators;
 
@@ -20,13 +23,13 @@ public class MultiPeriodCashFlowCalculator(
     IMunicipalityConnector municipalityConnector,
     ILogger<MultiPeriodCashFlowCalculator> logger) : IMultiPeriodCashFlowCalculator
 {
-    public Task<MultiPeriodCalculationResponse> CalculateAsync(
+    public async Task<MultiPeriodCalculationResponse> CalculateAsync(
         CalculationParameters calculationParameters,
         CalculationPerson person,
         Municipality municipality,
         AccountInput accountHolder,
         CashFlowInput cashFlowHolder,
-        TaxBalanceActionInput[] taxationActions,
+        TaxActionInput taxationActionHolder,
         CancellationToken cancellationToken)
     {
         Dictionary<Guid, ExogenousAccount> exogenousAccounts = Build(accountHolder.ExogenousAccounts);
@@ -69,7 +72,7 @@ public class MultiPeriodCashFlowCalculator(
             DateOnly finalDate = new DateOnly(currentYear, 1, 1).AddYears(1);
 
             // tax actions for begin of year
-            foreach (TaxBalanceActionInput action in taxationActions.Where(a => a.KindOfProcessDate == ProcessDateKind.BeginOfYear))
+            foreach (TaxBalanceAction action in taxationActionHolder.BalanceActions.Where(a => a.KindOfProcessDate == ProcessDateKind.BeginOfYear))
             {
                 if (action.DateOfProcess.HasValue && action.DateOfProcess.Value.Year == currentYear)
                 {
@@ -92,16 +95,97 @@ public class MultiPeriodCashFlowCalculator(
                 }
             }
 
-            // tax actions for end of year
-            foreach (TaxBalanceActionInput action in taxationActions.Where(a => a.KindOfProcessDate == ProcessDateKind.EndOfYear))
+            // end of year tax actions
+            decimal? wealthTaxAmount = null;
+            decimal? incomeTaxAmount = null;
+            decimal? capitalBenefitTaxAmount = null;
+            foreach (TaxBalanceAction action in taxationActionHolder.BalanceActions.Where(a => a.KindOfProcessDate == ProcessDateKind.EndOfYear))
             {
                 if (action.DateOfProcess.HasValue && action.DateOfProcess.Value.Year == currentYear)
                 {
-                    //var accountsByTaxType = allAccounts
-                    //    .Where(a => a.Value. == action.TaxType)
-                    //    .ToDictionary(keySelector: (a) => a.Key, elementSelector: (a) => a.Value);
+                    if (action.TaxType == TaxType.Wealth)
+                    {
+                        wealthTaxAmount ??= 0;
+                        wealthTaxAmount += taxAccounts[action.TaxType].Transactions
+                            .Where(t => t.ValutaDate <= action.DateOfProcess.Value.ToDateTime(TimeOnly.MinValue) &&
+                                        t.Flow != FlowType.Undefined)
+                            .Sum(t => t.Flow == FlowType.InFlow ? t.Amount : -t.Amount);
+                    }
+
+                    if (action.TaxType == TaxType.Income)
+                    {
+                        incomeTaxAmount ??= 0;
+                        incomeTaxAmount += taxAccounts[action.TaxType].Transactions
+                            .Where(t => t.ValutaDate <= action.DateOfProcess.Value.ToDateTime(TimeOnly.MinValue) &&
+                                        t.Flow != FlowType.Undefined)
+                            .Sum(t => t.Flow == FlowType.InFlow ? t.Amount : -t.Amount);
+                    }
                 }
             }
+
+            if (wealthTaxAmount is not null || incomeTaxAmount is not null)
+            {
+                Either<string, FullTaxResult> taxCalculationResult = await wealthAndIncomeTaxCalculator.CalculateAsync(
+                    currentYear, new MunicipalityModel
+                    {
+                        BfsNumber = municipality.MunicipalityId,
+                        Canton = municipality.Canton ?? Canton.Undefined,
+                        EstvTaxLocationId = municipality.TaxLocationId,
+
+                    },
+                    new TaxPerson
+                    {
+                        Name = person.Name,
+                        CivilStatus = person.CivilStatus,
+                        NumberOfChildren = person.NumberOfChildren ?? 0,
+                        ReligiousGroupType = person.ReligiousGroupType,
+                        PartnerReligiousGroupType = person.PartnerReligiousGroupType,
+                        TaxableWealth = Math.Max(0, wealthTaxAmount ?? decimal.Zero),
+                        TaxableFederalIncome = incomeTaxAmount ?? decimal.Zero,
+                        TaxableIncome = incomeTaxAmount ?? decimal.Zero,
+                    });
+
+                taxCalculationResult.Iter(r =>
+                {
+                    ExecuteAccountTransaction(
+                        allAccounts[taxationActionHolder.TaxPaymentSourceAccountId],
+                        allAccounts[taxationActionHolder.TaxPaymentTargetAccountId],
+                        "Income and Wealth tax payments",
+                        finalDate.AddDays(-1).ToDateTime(TimeOnly.MinValue),
+                        r.TotalTaxAmount);
+                });
+            }
+
+            if (capitalBenefitTaxAmount is not null)
+            {
+                var taxCalculationResult = await capitalBenefitTaxCalculator.CalculateAsync(
+                    currentYear, new MunicipalityModel
+                    {
+                        BfsNumber = municipality.MunicipalityId,
+                        Canton = municipality.Canton ?? Canton.Undefined,
+                        EstvTaxLocationId = municipality.TaxLocationId,
+                    },
+                    new CapitalBenefitTaxPerson
+                    {
+                        Name = person.Name,
+                        CivilStatus = person.CivilStatus,
+                        NumberOfChildren = person.NumberOfChildren ?? 0,
+                        ReligiousGroupType = person.ReligiousGroupType,
+                        PartnerReligiousGroupType = person.PartnerReligiousGroupType,
+                        TaxableCapitalBenefits = (decimal)capitalBenefitTaxAmount,
+                    });
+
+                taxCalculationResult.Iter(r =>
+                {
+                    ExecuteAccountTransaction(
+                        allAccounts[taxationActionHolder.TaxPaymentSourceAccountId],
+                        allAccounts[taxationActionHolder.TaxPaymentTargetAccountId],
+                        "Capital benefits tax payments",
+                        finalDate.AddDays(-1).ToDateTime(TimeOnly.MinValue),
+                        r.TotalTaxAmount);
+                });
+            }
+
         }
 
         var exogenousTransactionResult = exogenousAccounts
@@ -174,7 +258,7 @@ public class MultiPeriodCashFlowCalculator(
             }
         };
 
-        return Task.FromResult(response);
+        return response;
     }
 
     private Dictionary<Guid, ICashFlowAccount> ProcessSimpleCashFlow(
@@ -187,7 +271,14 @@ public class MultiPeriodCashFlowCalculator(
         {
             case TransferRatioCashFlow f:
                 ExecuteTransferRatioCashFlow(
-                    debitAccount, creditAccount, f.Description, cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue), f.TransferFactor);
+                    taxAccounts,
+                    debitAccount,
+                    creditAccount,
+                    f.Description,
+                    f.TaxType,
+                    f.TaxFlowType,
+                    cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue),
+                    f.TransferFactor);
                 break;
             case FixedAmountCashFlow f:
                 ExecuteFixedCashFlow(
@@ -196,6 +287,7 @@ public class MultiPeriodCashFlowCalculator(
                     creditAccount,
                     f.Description,
                     f.TaxType,
+                    f.TaxFlowType,
                     cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue),
                     f.Amount);
                 break;
@@ -206,6 +298,7 @@ public class MultiPeriodCashFlowCalculator(
                     creditAccount,
                     f.Description,
                     f.TaxType,
+                    f.TaxFlowType,
                     cashFlow.DateOfProcess.ToDateTime(TimeOnly.MinValue),
                     f.NetReturn);
                 break;
@@ -220,6 +313,7 @@ public class MultiPeriodCashFlowCalculator(
         ICashFlowAccount creditAccount,
         string? description,
         TaxType taxType,
+        FlowType taxFlowType,
         DateTime trxDate,
         decimal amount)
     {
@@ -236,37 +330,34 @@ public class MultiPeriodCashFlowCalculator(
         debitAccount.Balance -= amount;
         debitAccount.Transactions.Add(trxDebitAccount);
 
-        ExecuteTaxTransaction(taxAccounts, taxType, trxDate, amount);
-    }
-
-    private static void ExecuteTaxTransaction(Dictionary<TaxType, InternalTaxAccount> taxAccounts, TaxType taxType, DateTime trxDate, decimal amount)
-    {
-        if (taxType is (TaxType.None or TaxType.Person))
-        {
-            return;
-        }
-
-        taxAccounts[taxType].Balance += amount;
-        taxAccounts[taxType].Transactions.Add(new AccountTransaction("Tax", trxDate, amount, FlowType.InFlow));
+        ExecuteTaxTransaction(taxAccounts, taxType, taxFlowType, trxDate, amount);
     }
 
     private static void ExecuteTransferRatioCashFlow(
-        ICashFlowAccount debitAccount, ICashFlowAccount creditAccount, string? description, DateTime transactionDate, decimal ratio)
+        Dictionary<TaxType, InternalTaxAccount> taxAccounts,
+        ICashFlowAccount debitAccount,
+        ICashFlowAccount creditAccount,
+        string? description,
+        TaxType taxType,
+        FlowType taxFlowType,
+        DateTime trxDate,
+        decimal ratio)
     {
         decimal amount = debitAccount.Balance * ratio;
 
         AccountTransaction trxCreditAccount =
-            new($"{description}: inflow from {debitAccount.Name}", transactionDate, amount, FlowType.InFlow);
+            new($"{description}: inflow from {debitAccount.Name}", trxDate, amount, FlowType.InFlow);
 
         creditAccount.Balance += amount;
         creditAccount.Transactions.Add(trxCreditAccount);
 
-
         AccountTransaction trxDebitAccount =
-            new($"{description}: outflow to {creditAccount.Name}", transactionDate, -amount, FlowType.OutFlow);
+            new($"{description}: outflow to {creditAccount.Name}", trxDate, -amount, FlowType.OutFlow);
 
         debitAccount.Balance -= amount;
         debitAccount.Transactions.Add(trxDebitAccount);
+
+        ExecuteTaxTransaction(taxAccounts, taxType, taxFlowType, trxDate, amount);
     }
 
     private static void ExecuteBalanceGrowthCashFlow(
@@ -275,6 +366,7 @@ public class MultiPeriodCashFlowCalculator(
         ICashFlowAccount creditAccount,
         string? description,
         TaxType taxType,
+        FlowType taxFlowType,
         DateTime trxDate,
         decimal netReturnDecimal)
     {
@@ -293,7 +385,45 @@ public class MultiPeriodCashFlowCalculator(
         debitAccount.Balance -= amount;
         debitAccount.Transactions.Add(trxDebitAccount);
 
-        ExecuteTaxTransaction(taxAccounts, taxType, trxDate, amount);
+        ExecuteTaxTransaction(taxAccounts, taxType, taxFlowType, trxDate, amount);
+    }
+
+    private static void ExecuteTaxTransaction(
+        Dictionary<TaxType, InternalTaxAccount> taxAccounts,
+        TaxType taxType,
+        FlowType taxFlowType,
+        DateTime trxDate,
+        decimal amount)
+    {
+        if (taxType is (TaxType.None or TaxType.Person))
+        {
+            return;
+        }
+
+        taxAccounts[taxType].Balance += amount;
+        taxAccounts[taxType].Transactions.Add(new AccountTransaction("Tax", trxDate, amount, taxFlowType));
+    }
+
+    private static void ExecuteAccountTransaction(
+        ICashFlowAccount debitAccount, ICashFlowAccount creditAccount, string description, DateTime transactionDate, decimal amount)
+    {
+        if (amount == decimal.Zero)
+        {
+            return;
+        }
+
+        AccountTransaction trxCreditAccount =
+            new($"{description}: inflow from {debitAccount.Name}", transactionDate, amount, FlowType.InFlow);
+
+        creditAccount.Balance += amount;
+        creditAccount.Transactions.Add(trxCreditAccount);
+
+
+        AccountTransaction trxDebitAccount =
+            new($"{description}: outflow to {creditAccount.Name}", transactionDate, -amount, FlowType.OutFlow);
+
+        debitAccount.Balance -= amount;
+        debitAccount.Transactions.Add(trxDebitAccount);
     }
 
     private Dictionary<Guid, ExogenousAccount> Build(IEnumerable<ExogenousAccountInput> accounts)

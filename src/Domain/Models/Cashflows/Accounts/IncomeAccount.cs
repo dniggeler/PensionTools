@@ -1,4 +1,6 @@
-﻿namespace Domain.Models.Cashflows.Accounts
+﻿using Domain.Enums;
+
+namespace Domain.Models.Cashflows.Accounts
 {
     public class IncomeAccount : ICashFlowAccount
     {
@@ -9,6 +11,8 @@
         public decimal Balance { get; set; }
 
         public decimal NetGrowthRate { get; set; }
+
+        public AccountType AccountType => AccountType.Income;
 
         public List<AccountTransaction> Transactions { get; set; } = [];
     }

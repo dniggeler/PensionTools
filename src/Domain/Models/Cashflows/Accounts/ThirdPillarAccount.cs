@@ -1,4 +1,6 @@
-﻿namespace Domain.Models.Cashflows.Accounts
+﻿using Domain.Enums;
+
+namespace Domain.Models.Cashflows.Accounts
 {
     public class ThirdPillarAccount : ICashFlowAccount
     {
@@ -10,6 +12,8 @@
 
         public decimal NetGrowthRate { get; set; }
 
-        public List<AccountTransaction> Transactions { get; set; } = new();
+        public AccountType AccountType => AccountType.ThirdPillar;
+
+        public List<AccountTransaction> Transactions { get; set; } = [];
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Domain.Models.Cashflows.Accounts
+﻿using Domain.Enums;
+
+namespace Domain.Models.Cashflows.Accounts
 {
     public interface ICashFlowAccount
     {
@@ -9,6 +11,8 @@
         decimal Balance { get; set; }
 
         decimal NetGrowthRate { get; set; }
+
+        AccountType AccountType { get; }
 
         List<AccountTransaction> Transactions { get; set; }
     }

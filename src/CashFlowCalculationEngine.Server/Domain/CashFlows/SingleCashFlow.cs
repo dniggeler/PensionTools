@@ -7,5 +7,6 @@ public record SingleCashFlow(
     DateOnly DateOfProcess,
     int? Sequence,
     TaxType TaxType,
+    FlowType TaxFlowType,
     Guid SourceAccountId,
     Guid TargetAccountId);

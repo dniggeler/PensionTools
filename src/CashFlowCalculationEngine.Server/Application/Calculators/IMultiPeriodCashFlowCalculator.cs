@@ -24,7 +24,7 @@ public interface IMultiPeriodCashFlowCalculator
     /// <param name="municipality"></param>
     /// <param name="accountHolder"></param>
     /// <param name="cashFlowHolder"></param>
-    /// <param name="taxationActions"></param>
+    /// <param name="taxationActionHolder"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<MultiPeriodCalculationResponse> CalculateAsync(
@@ -33,6 +33,6 @@ public interface IMultiPeriodCashFlowCalculator
         Municipality municipality,
         AccountInput accountHolder,
         CashFlowInput cashFlowHolder,
-        TaxBalanceActionInput[] taxationActions,
+        TaxActionInput taxationActionHolder,
         CancellationToken cancellationToken);
 }

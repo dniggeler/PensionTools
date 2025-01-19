@@ -17,7 +17,7 @@ public sealed class MultiPeriodCashFlowQueries(IMultiPeriodCashFlowCalculator ca
             request.Municipality,
             request.AccountHolder, 
             request.CashFlowHolder,
-            request.TaxationActions,
+            request.TaxationActionHolder,
             cancellationToken);
 
         var response = new MultiPeriodCalculationResponse

@@ -1,4 +1,6 @@
-﻿namespace Domain.Models.Cashflows.Accounts
+﻿using Domain.Enums;
+
+namespace Domain.Models.Cashflows.Accounts
 {
     /// <summary>
     /// Represents an investment account. it models the cash flow of an investment account.
@@ -25,6 +27,8 @@
         /// and does not include the dividends.
         /// </summary>
         public decimal NetGrowthRate { get; set; }
+
+        public AccountType AccountType => AccountType.Investment;
 
         public List<AccountTransaction> Transactions { get; set; } = new();
     }

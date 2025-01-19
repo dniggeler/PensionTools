@@ -36,6 +36,11 @@ namespace Domain.Enums
         ThirdPillar,
 
         /// <summary>
+        /// Real estate assets which are subject to wealth tax scheme. However, rental incomes are subjects to the income tax.
+        /// </summary>
+        RealEstate,
+
+        /// <summary>
         /// Accumulated tax amounts which are subject to all tax types like income, wealth and capital benefits tax scheme.
         /// It is cleared at the end of the year.
         /// </summary>
