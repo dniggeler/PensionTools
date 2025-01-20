@@ -52,8 +52,8 @@ public class MultiPeriodCashFlowCalculator(
         Dictionary<TaxType, InternalTaxAccount> taxAccounts = new Dictionary<TaxType, InternalTaxAccount>
         {
             { TaxType.Income, new InternalTaxAccount { Name = "IncomeTax", TaxType = TaxType.Income} },
-            { TaxType.Wealth, new InternalTaxAccount { Name = "WealthTax" } },
-            { TaxType.CapitalBenefits, new InternalTaxAccount { Name = "CapitalBenefitTax" } }
+            { TaxType.Wealth, new InternalTaxAccount { Name = "WealthTax", TaxType = TaxType.Wealth} },
+            { TaxType.CapitalBenefits, new InternalTaxAccount { Name = "CapitalBenefitTax", TaxType = TaxType.CapitalBenefits} }
         };
 
         List<SingleCashFlow> allCashFlows =
@@ -116,7 +116,20 @@ public class MultiPeriodCashFlowCalculator(
                     {
                         incomeTaxAmount ??= 0;
                         incomeTaxAmount += taxAccounts[action.TaxType].Transactions
-                            .Where(t => t.ValutaDate <= action.DateOfProcess.Value.ToDateTime(TimeOnly.MinValue) &&
+                            .Where(t => t.ValutaDate >= startingDate.ToDateTime(TimeOnly.MinValue) &&
+                                t.ValutaDate <= action.DateOfProcess.Value.ToDateTime(TimeOnly.MinValue) &&
+                                        t.Flow != FlowType.Undefined)
+                            .Sum(t => t.Flow == FlowType.InFlow ? t.Amount : -t.Amount);
+
+
+                    }
+
+                    if (action.TaxType == TaxType.CapitalBenefits)
+                    {
+                        capitalBenefitTaxAmount ??= 0;
+                        capitalBenefitTaxAmount += taxAccounts[action.TaxType].Transactions
+                            .Where(t => t.ValutaDate >= startingDate.ToDateTime(TimeOnly.MinValue) &&
+                                        t.ValutaDate <= action.DateOfProcess.Value.ToDateTime(TimeOnly.MinValue) &&
                                         t.Flow != FlowType.Undefined)
                             .Sum(t => t.Flow == FlowType.InFlow ? t.Amount : -t.Amount);
                     }
@@ -131,7 +144,6 @@ public class MultiPeriodCashFlowCalculator(
                         BfsNumber = municipality.MunicipalityId,
                         Canton = municipality.Canton ?? Canton.Undefined,
                         EstvTaxLocationId = municipality.TaxLocationId,
-
                     },
                     new TaxPerson
                     {
@@ -185,6 +197,8 @@ public class MultiPeriodCashFlowCalculator(
                         r.TotalTaxAmount);
                 });
             }
+
+            // clear income tax accounts
 
         }
 
