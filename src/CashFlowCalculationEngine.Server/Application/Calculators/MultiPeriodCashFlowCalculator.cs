@@ -51,9 +51,9 @@ public class MultiPeriodCashFlowCalculator(
         // setup internal tax accounts
         Dictionary<TaxType, InternalTaxAccount> taxAccounts = new Dictionary<TaxType, InternalTaxAccount>
         {
-            { TaxType.Income, new InternalTaxAccount { Name = "IncomeTax", TaxType = TaxType.Income} },
-            { TaxType.Wealth, new InternalTaxAccount { Name = "WealthTax", TaxType = TaxType.Wealth} },
-            { TaxType.CapitalBenefits, new InternalTaxAccount { Name = "CapitalBenefitTax", TaxType = TaxType.CapitalBenefits} }
+            { TaxType.Income, new InternalTaxAccount { Id = Guid.NewGuid(), Name = "IncomeTax", TaxType = TaxType.Income} },
+            { TaxType.Wealth, new InternalTaxAccount { Id = Guid.NewGuid(), Name = "WealthTax", TaxType = TaxType.Wealth} },
+            { TaxType.CapitalBenefits, new InternalTaxAccount { Id = Guid.NewGuid(), Name = "CapitalBenefitTax", TaxType = TaxType.CapitalBenefits} }
         };
 
         List<SingleCashFlow> allCashFlows =
@@ -72,9 +72,9 @@ public class MultiPeriodCashFlowCalculator(
             DateOnly finalDate = new DateOnly(currentYear, 1, 1).AddYears(1);
 
             // tax actions for begin of year
-            foreach (TaxBalanceAction action in taxationActionHolder.BalanceActions.Where(a => a.KindOfProcessDate == ProcessDateKind.BeginOfYear))
+            foreach (TaxBalanceAction action in taxationActionHolder.BalanceActions.Where(a => a.KindEndOfTaxationPeriod == ProcessDateKind.BeginOfYear))
             {
-                if (action.DateOfProcess.HasValue && action.DateOfProcess.Value.Year == currentYear)
+                if (action.EndOfTaxationPeriod.HasValue && action.EndOfTaxationPeriod.Value.Year == currentYear)
                 {
 
                 }
@@ -99,15 +99,34 @@ public class MultiPeriodCashFlowCalculator(
             decimal? wealthTaxAmount = null;
             decimal? incomeTaxAmount = null;
             decimal? capitalBenefitTaxAmount = null;
-            foreach (TaxBalanceAction action in taxationActionHolder.BalanceActions.Where(a => a.KindOfProcessDate == ProcessDateKind.EndOfYear))
+            foreach (TaxBalanceAction action in taxationActionHolder.BalanceActions.Where(a => a.KindEndOfTaxationPeriod == ProcessDateKind.EndOfYear))
             {
-                if (action.DateOfProcess.HasValue && action.DateOfProcess.Value.Year == currentYear)
+                DateTime beginOfPeriod = (action.KindBeginOfTaxationPeriod, action.BeginOfTaxationPeriod) switch
+                {
+                    (ProcessDateKind.None, _) => DateTime.MinValue,
+                    (ProcessDateKind.BeginOfYear, null) => throw new ArgumentException("date for begin year not set"),
+                    (ProcessDateKind.BeginOfYear, {} a) => new DateTime(a.Year, 1, 1),
+                    (ProcessDateKind.Custom, { } a) => a.ToDateTime(TimeOnly.MinValue),
+                    _ => throw new ArgumentException("invalid date kind")
+                };
+
+                DateTime endOfPeriod = (action.KindEndOfTaxationPeriod, action.EndOfTaxationPeriod) switch
+                {
+                    (ProcessDateKind.None, _) => DateTime.MaxValue,
+                    (ProcessDateKind.EndOfYear, null) => throw new ArgumentException("date for begin year not set"),
+                    (ProcessDateKind.EndOfYear, { } a) => new DateTime(a.Year, 1, 1).AddYears(1),
+                    (ProcessDateKind.Custom, { } a) => a.ToDateTime(TimeOnly.MinValue),
+                    _ => throw new ArgumentException("invalid date kind")
+                };
+
+                if (action.EndOfTaxationPeriod.HasValue && action.EndOfTaxationPeriod.Value.Year == currentYear)
                 {
                     if (action.TaxType == TaxType.Wealth)
                     {
                         wealthTaxAmount ??= 0;
                         wealthTaxAmount += taxAccounts[action.TaxType].Transactions
-                            .Where(t => t.ValutaDate <= action.DateOfProcess.Value.ToDateTime(TimeOnly.MinValue) &&
+                            .Where(t => t.ValutaDate >= beginOfPeriod &&
+                                        t.ValutaDate < endOfPeriod &&
                                         t.Flow != FlowType.Undefined)
                             .Sum(t => t.Flow == FlowType.InFlow ? t.Amount : -t.Amount);
                     }
@@ -116,20 +135,18 @@ public class MultiPeriodCashFlowCalculator(
                     {
                         incomeTaxAmount ??= 0;
                         incomeTaxAmount += taxAccounts[action.TaxType].Transactions
-                            .Where(t => t.ValutaDate >= startingDate.ToDateTime(TimeOnly.MinValue) &&
-                                t.ValutaDate <= action.DateOfProcess.Value.ToDateTime(TimeOnly.MinValue) &&
+                            .Where(t => t.ValutaDate >= beginOfPeriod &&
+                                t.ValutaDate < endOfPeriod &&
                                         t.Flow != FlowType.Undefined)
                             .Sum(t => t.Flow == FlowType.InFlow ? t.Amount : -t.Amount);
-
-
                     }
 
                     if (action.TaxType == TaxType.CapitalBenefits)
                     {
                         capitalBenefitTaxAmount ??= 0;
                         capitalBenefitTaxAmount += taxAccounts[action.TaxType].Transactions
-                            .Where(t => t.ValutaDate >= startingDate.ToDateTime(TimeOnly.MinValue) &&
-                                        t.ValutaDate <= action.DateOfProcess.Value.ToDateTime(TimeOnly.MinValue) &&
+                            .Where(t => t.ValutaDate >= beginOfPeriod &&
+                                        t.ValutaDate < endOfPeriod &&
                                         t.Flow != FlowType.Undefined)
                             .Sum(t => t.Flow == FlowType.InFlow ? t.Amount : -t.Amount);
                     }
@@ -197,9 +214,6 @@ public class MultiPeriodCashFlowCalculator(
                         r.TotalTaxAmount);
                 });
             }
-
-            // clear income tax accounts
-
         }
 
         var exogenousTransactionResult = exogenousAccounts

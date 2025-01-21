@@ -16,12 +16,22 @@ public class TaxBalanceAction
     /// <summary>
     /// 
     /// </summary>
-    public ProcessDateKind KindOfProcessDate { get; set; }
+    public ProcessDateKind KindBeginOfTaxationPeriod { get; set; }
 
     /// <summary>
-    /// The date of the process. It is active if <see cref="KindOfProcessDate"/> is <see cref="ProcessDateKind.Custom"/>.
+    /// The beginning date of the process. It is active if <see cref="KindBeginOfTaxationPeriod"/> is <see cref="ProcessDateKind.Custom"/>.
     /// </summary>
-    public DateOnly? DateOfProcess { get; set; }
+    public DateOnly? BeginOfTaxationPeriod { get; set; }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public ProcessDateKind KindEndOfTaxationPeriod { get; set; }
+
+    /// <summary>
+    /// The date of the process. It is active if <see cref="KindEndOfTaxationPeriod"/> is <see cref="ProcessDateKind.Custom"/>.
+    /// </summary>
+    public DateOnly? EndOfTaxationPeriod { get; set; }
 
     /// <summary>
     /// The sequence of the action. It is used to determine the order of the actions occurred at the same date.
