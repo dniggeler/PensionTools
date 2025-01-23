@@ -61,7 +61,6 @@
             IOperationResult<ICalculateResult> response = await CalculatorClient.Calculate.ExecuteAsync(
                 Guid.NewGuid(), new DateTime(2024, 1, 1), new DateTime(2030, 1, 1));
         }
-
         catch (Exception e)
         {
             Console.WriteLine(e);
