@@ -1,0 +1,143 @@
+﻿query Calculate($calculationId: UUID!, $startDate: Date!, $endDate: Date!) {
+  calculate(request: {
+        calculationId: $calculationId
+        calculationParameter:  {
+           startDate: $startDate
+           endDate: $endDate
+        }
+        person:  {
+           id: "b00d246d-e518-497a-8629-9adb2f2bbae0"
+           civilStatus: SINGLE
+           religiousGroupType: PROTESTANT
+        }
+
+        municipality:  {
+           municipalityId: 134,
+           taxLocationId: 330400000 
+        }
+
+        accountHolder: {
+      
+          thirdPillarAccounts: [ {
+            id: "f00d246d-e518-497a-8629-9adb2f2bbae0"
+            description: "3a SL"
+          }
+          {
+            id:"f00d246d-e518-497a-8629-9adb2f2bbae1"
+            description: "3a Banking"
+          }]
+
+         occupationalPensionAccounts:  [{
+           id: "f00d246d-e518-497b-8629-9adb2f2bbae1"
+           description: "Mein PK"
+         }]
+
+         incomeAccounts: [ {
+            id: "f00d246d-e518-497a-8629-9adb2f2bbae2"
+            description: "Lohnkonto"
+         }]
+
+         wealthAccounts: [ {
+            id: "e00d246d-e518-497a-8629-9adb2f2bbae4"
+            description: "Sonstiges Vermögen"
+         }]
+
+         exogenousAccounts: [ {
+            id: "f00d246d-e518-497a-8629-9adb2f2bbae3"
+            description: "Arbeitgeber"
+         }
+         {
+            id: "f10d246d-e518-497a-8629-9adb2f2bbae3"
+            description: "Initialer Setup"
+         }
+         {
+            id: "b10d246d-e518-497a-8629-9adb2f2bbae3"
+            description: "Steueramt"
+         }
+         {
+            id: "a10d246d-e518-497a-8629-9adb2f2bbae3"
+            description: "Wachstum"
+         }]
+     
+         investmentAccounts: []
+    }
+
+        cashFlowHolder: []
+
+        taxationActionHolder:  {
+       
+              taxPaymentSourceAccountId: "e00d246d-e518-497a-8629-9adb2f2bbae4"
+              taxPaymentTargetAccountId: "b10d246d-e518-497a-8629-9adb2f2bbae3"
+              balanceActions: [{
+                description: "Tax all wealth"
+                kindBeginOfTaxationPeriod: NONE
+                kindEndOfTaxationPeriod: END_OF_YEAR
+                endOfTaxationPeriod: "2024-12-31"
+                taxType: WEALTH
+                balanceFactor: 1.0
+              },
+              {
+                description: "Tax all wealth"
+                kindBeginOfTaxationPeriod: NONE
+                kindEndOfTaxationPeriod: END_OF_YEAR
+                endOfTaxationPeriod: "2025-12-31"
+                taxType: WEALTH
+                balanceFactor: 1.0
+              },
+              {
+                description: "Tax all income"
+                kindBeginOfTaxationPeriod: BEGIN_OF_YEAR
+                beginOfTaxationPeriod: "2024-01-01"
+                kindEndOfTaxationPeriod: END_OF_YEAR
+                endOfTaxationPeriod: "2024-12-31"
+                taxType: INCOME
+                balanceFactor: 1.0
+              },
+              {
+                description: "Tax all income"
+                kindBeginOfTaxationPeriod: BEGIN_OF_YEAR
+                beginOfTaxationPeriod: "2025-01-01"
+                kindEndOfTaxationPeriod: END_OF_YEAR
+                endOfTaxationPeriod: "2025-12-31"
+                taxType: INCOME
+                balanceFactor: 1.0
+              },
+              {
+                description: "Tax capital benefits"
+                kindBeginOfTaxationPeriod: BEGIN_OF_YEAR
+                beginOfTaxationPeriod: "2026-01-01"
+                kindEndOfTaxationPeriod: END_OF_YEAR
+                endOfTaxationPeriod: "2026-12-31"
+                taxType: CAPITAL_BENEFITS
+                balanceFactor: 1.0
+              }]
+            }
+    })
+    {
+        calculationId
+
+        transactions {
+            incomeAccounts{
+              id
+              name
+              transactions{
+                description
+                valutaDate
+                amount
+                flow
+              }
+            }
+
+            wealthAccounts{
+              id
+              name
+                transactions{
+                description
+                valutaDate
+                amount
+                flow
+              }
+            }
+        }
+    }
+}

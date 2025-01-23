@@ -16,25 +16,13 @@ using PensionCoach.Tools.CommonTypes.MultiPeriod;
 
 namespace Application.MultiPeriodCalculator
 {
-    public class MultiPeriodCashFlowCalculator : IMultiPeriodCashFlowCalculator
+    public class MultiPeriodCashFlowCalculator(
+        IFullWealthAndIncomeTaxCalculator fullTaxCalculator,
+        IFullCapitalBenefitTaxCalculator capitalBenefitCalculator,
+        IMunicipalityConnector municipalityConnector,
+        ILogger<MultiPeriodCashFlowCalculator> logger)
+        : IMultiPeriodCashFlowCalculator
     {
-        private readonly IFullWealthAndIncomeTaxCalculator _fullTaxCalculator;
-        private readonly IFullCapitalBenefitTaxCalculator _capitalBenefitCalculator;
-        private readonly IMunicipalityConnector municipalityConnector;
-        private readonly ILogger<MultiPeriodCashFlowCalculator> _logger;
-
-        public MultiPeriodCashFlowCalculator(
-            IFullWealthAndIncomeTaxCalculator fullTaxCalculator,
-            IFullCapitalBenefitTaxCalculator capitalBenefitCalculator,
-            IMunicipalityConnector municipalityConnector,
-            ILogger<MultiPeriodCashFlowCalculator> logger)
-        {
-            _fullTaxCalculator = fullTaxCalculator;
-            _capitalBenefitCalculator = capitalBenefitCalculator;
-            this.municipalityConnector = municipalityConnector;
-            _logger = logger;
-        }
-        
         /// <inheritdoc />
         public async Task<Either<string, MultiPeriodCalculationResult>> CalculateAsync(
             int startingYear,
@@ -365,9 +353,7 @@ namespace Application.MultiPeriodCalculator
 
             void InvestmentTransactions(ICashFlowAccount cashFlowAccount)
             {
-                var account = cashFlowAccount as InvestmentAccount;
-            
-                if (account == null)
+                if (cashFlowAccount is not InvestmentAccount account)
                 {
                     throw new ArgumentException($"Account {cashFlowAccount.Name} is not a investment account", nameof(cashFlowAccount));
                 }
@@ -402,13 +388,13 @@ namespace Application.MultiPeriodCalculator
                 await municipalityConnector.GetAsync(calculatorPerson.MunicipalityId, currentYear);
 
             Either<string, FullTaxResult> result = await municipality
-                .BindAsync(m => _fullTaxCalculator.CalculateAsync(currentYear, m, taxPerson, true));
+                .BindAsync(m => fullTaxCalculator.CalculateAsync(currentYear, m, taxPerson, true));
 
             return result.Match(
                 Right: r => r.TotalTaxAmount,
                 Left: error =>
                 {
-                    _logger.LogError(error);
+                    logger.LogError(error);
                     return decimal.Zero;
                 });
         }
@@ -430,14 +416,14 @@ namespace Application.MultiPeriodCalculator
                 await municipalityConnector.GetAsync(person.MunicipalityId, currentYear);
 
             Either<string, FullCapitalBenefitTaxResult> result = await municipality
-                .BindAsync(m => _capitalBenefitCalculator.CalculateAsync(
+                .BindAsync(m => capitalBenefitCalculator.CalculateAsync(
                     currentYear, m, taxPerson, true));
 
             return result.Match(
                 Right: r => r.TotalTaxAmount,
                 Left: error =>
                 {
-                    _logger.LogError(error);
+                    logger.LogError(error);
                     return decimal.Zero;
 
                 });

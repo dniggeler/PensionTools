@@ -11,23 +11,14 @@ using Domain.Models.Scenarios;
 using Domain.Models.Tax;
 using LanguageExt;
 using PensionCoach.Tools.CommonTypes.MultiPeriod;
-using PensionCoach.Tools.CommonTypes.Tax;
 
 namespace Application.Features.TaxScenarios;
 
-public class TaxScenarioCalculator : ITaxScenarioCalculator
+public class TaxScenarioCalculator(
+    IMultiPeriodCashFlowCalculator multiPeriodCashFlowCalculator,
+    IMunicipalityConnector municipalityResolver)
+    : ITaxScenarioCalculator
 {
-    private readonly IMultiPeriodCashFlowCalculator multiPeriodCashFlowCalculator;
-    private readonly IMunicipalityConnector municipalityResolver;
-
-    public TaxScenarioCalculator(
-        IMultiPeriodCashFlowCalculator multiPeriodCashFlowCalculator,
-        IMunicipalityConnector municipalityResolver)
-    {
-        this.multiPeriodCashFlowCalculator = multiPeriodCashFlowCalculator;
-        this.municipalityResolver = municipalityResolver;
-    }
-
     public async Task<Either<string, ScenarioCalculationResult>> CapitalBenefitTransferInsAsync(
         int startingYear, int bfsMunicipalityId, TaxPerson person, CapitalBenefitTransferInsScenarioModel scenarioModel)
     {
@@ -96,11 +87,13 @@ public class TaxScenarioCalculator : ITaxScenarioCalculator
     {
         var birthdate = new DateTime(1969, 3, 17);
 
-        MultiPeriodOptions options = new();
-        options.CapitalBenefitsNetGrowthRate = decimal.Zero;
-        options.WealthNetGrowthRate = decimal.Zero;
-        options.InvestmentNetGrowthRate = scenarioModel.InvestmentNetGrowthRate;
-        options.SavingsQuota = decimal.Zero;
+        MultiPeriodOptions options = new()
+        {
+            CapitalBenefitsNetGrowthRate = decimal.Zero,
+            WealthNetGrowthRate = decimal.Zero,
+            InvestmentNetGrowthRate = scenarioModel.InvestmentNetGrowthRate,
+            SavingsQuota = decimal.Zero
+        };
 
         CashFlowDefinitionHolder cashFlowDefinitionHolder = CreateScenarioDefinitions();
 

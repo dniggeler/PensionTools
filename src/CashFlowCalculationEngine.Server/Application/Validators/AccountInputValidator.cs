@@ -8,11 +8,11 @@ public class AccountInputValidator : AbstractValidator<AccountInput>
     public AccountInputValidator()
     {
         RuleFor(x => x)
-            .Must(x => UniqueIds(x))
+            .Must(UniqueIds)
             .WithMessage("Referenced accounts are not unique");
     }
 
-    private bool UniqueIds(AccountInput accountInput)
+    private static bool UniqueIds(AccountInput accountInput)
     {
         IEnumerable<Guid> idList =
             accountInput.ExogenousAccounts.Select(a => a.Id)

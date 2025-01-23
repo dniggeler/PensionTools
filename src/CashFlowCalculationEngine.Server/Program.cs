@@ -21,11 +21,21 @@ builder.Services.AddGraphQLServer()
     .ModifyOptions(c => c.EnableOneOf = true)
     .AddFluentValidation();
 
+builder.Services.AddCors(options => {
+    options.AddPolicy("_myAllowSpecificOrigins", policy =>
+        {
+            policy.WithOrigins("https://localhost", "https://localhost:57276", "http://localhost:57276")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 // Add services to the container.
 var app = builder.Build();
 
 app.MapGraphQL();
 
 app.UseHttpsRedirection();
+app.UseCors("_myAllowSpecificOrigins");
 
 app.Run();

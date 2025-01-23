@@ -9,17 +9,10 @@ using LanguageExt;
 
 namespace Application.Tax.Estv
 {
-    public class EstvFullTaxCalculator : IFullWealthAndIncomeTaxCalculator
+    public class EstvFullTaxCalculator(
+        IEstvTaxCalculatorClient estvTaxCalculatorClient,
+        ITaxSupportedYearProvider taxSupportedYearProvider) : IFullWealthAndIncomeTaxCalculator
     {
-        private readonly IEstvTaxCalculatorClient estvTaxCalculatorClient;
-        private readonly ITaxSupportedYearProvider taxSupportedYearProvider;
-
-        public EstvFullTaxCalculator(IEstvTaxCalculatorClient estvTaxCalculatorClient, ITaxSupportedYearProvider taxSupportedYearProvider)
-        {
-            this.estvTaxCalculatorClient = estvTaxCalculatorClient;
-            this.taxSupportedYearProvider = taxSupportedYearProvider;
-        }
-
         public async Task<Either<string, FullTaxResult>> CalculateAsync(
             int calculationYear, MunicipalityModel municipality, TaxPerson person, bool withMaxAvailableCalculationYear = false)
         {

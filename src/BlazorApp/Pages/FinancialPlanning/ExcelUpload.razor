@@ -1,0 +1,75 @@
+﻿@page "/FinancialPlanning/ExcelUpload"
+
+@using Calculator
+@using StrawberryShake
+
+@inject IGraphClient CalculatorClient
+
+<PageTitle>Excel Cash-Flow Modell</PageTitle>
+
+<MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+    @if (showProgressBar)
+    {
+        <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-7"/>
+    }
+
+    <MudGrid>
+        <MudItem md="12">
+            <MudText Typo="Typo.h5">Excel Cash-Flow-Modell</MudText>
+        </MudItem>
+        <MudItem md="12">
+            <MudText Typo="Typo.body2">
+                Laden Sie Ihr Cash-Flow-Modell im Excel-Format hoch.
+            </MudText>
+        </MudItem>
+        <MudItem md="12">
+            <MudFileUpload T="IBrowserFile" FilesChanged="HandleFileSelected" Accept=".xlsx">
+                <ActivatorContent>
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.UploadFile">
+                        Wähle Datei
+                    </MudButton>
+                </ActivatorContent>
+            </MudFileUpload>
+        </MudItem>
+        <MudItem md="12">
+            <MudButton OnClick="Run" Variant="Variant.Filled" Color="Color.Primary" Disabled="@(selectedFile == null)">Berechne</MudButton>
+        </MudItem>
+    </MudGrid>
+</MudPaper>
+
+@code {
+    private bool showProgressBar;
+    private IBrowserFile selectedFile;
+    private string errorMessage;
+
+    private void HandleFileSelected(IBrowserFile file)
+    {
+        errorMessage = string.Empty;
+
+        selectedFile = file;
+    }
+
+    private async Task Run()
+    {
+        if (selectedFile != null)
+        {
+            showProgressBar = true;
+        }
+
+        try
+        {
+            IOperationResult<ICalculateResult> response = await CalculatorClient.Calculate.ExecuteAsync(
+                Guid.NewGuid(), new DateTime(2024, 1, 1), new DateTime(2030, 1, 1));
+        }
+
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            showProgressBar = false;
+        }
+    }
+}
