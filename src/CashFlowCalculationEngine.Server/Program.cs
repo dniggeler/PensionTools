@@ -12,6 +12,8 @@ using OpenTelemetry.Trace;
 
 var builder = WebApplication.CreateBuilder(args);
 
+string corsPolicyName = "_myAllowSpecificOrigins";
+
 builder.Logging.AddOpenTelemetry(logging =>
 {
     logging.IncludeFormattedMessage = true;
@@ -54,9 +56,12 @@ builder.Services
     .AddFluentValidation();
 
 builder.Services.AddCors(options => {
-    options.AddPolicy("_myAllowSpecificOrigins", policy =>
+    options.AddPolicy(corsPolicyName, policy =>
         {
-            policy.WithOrigins("https://localhost", "https://localhost:57276", "http://localhost:57276")
+            policy.WithOrigins(
+                    "https://localhost",
+                    "https://localhost:49383",
+                    "https://localhost:57276")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
@@ -68,6 +73,6 @@ var app = builder.Build();
 app.MapGraphQL();
 
 app.UseHttpsRedirection();
-app.UseCors("_myAllowSpecificOrigins");
+app.UseCors(corsPolicyName);
 
 app.Run();

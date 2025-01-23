@@ -7,7 +7,7 @@ var cashFlowEngineService = builder.AddProject<CashFlowCalculationEngine_Server>
 
 builder
     .AddProject<BlazorApp>("webfrontend")
-    .WithReference(apiService)
+    //.WithReference(apiService)
     .WithReference(cashFlowEngineService)
     .WithExternalHttpEndpoints();
 

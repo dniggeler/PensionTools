@@ -62,7 +62,11 @@
          investmentAccounts: []
     }
 
-        cashFlowHolder: []
+        cashFlowHolder: {
+            fixedAmountCashFlows: []
+            transferRatioCashFlows: []
+            balanceGrowthCashFlows: []
+        }
 
         taxationActionHolder:  {
        
