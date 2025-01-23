@@ -1,5 +1,6 @@
 ﻿@page "/FinancialPlanning/ExcelUpload"
 
+@using BlazorApp.MultiPeriod
 @using Calculator
 @using StrawberryShake
 
@@ -38,25 +39,50 @@
 
 </MudPaper>
 
-<MudPaper>
-    <MudGrid>
-        <MudItem md="12">
-            <MudText Typo="Typo.h5">Calculation Result</MudText>
-        </MudItem>
-        <MudItem md="12">
-            @if (!string.IsNullOrEmpty(ResultMessage))
-            {
-                <MudAlert Severity="Severity.Success">@ResultMessage</MudAlert>
-            }
-        </MudItem>
-    </MudGrid>
+<MudPaper Class="mb-4 pa-6 align-center" Elevation="0">
+    @if (BalanceSheet is not null)
+    {
+        <MudGrid>
+            <MudItem md="12">
+                <MudText Typo="Typo.h5">Calculation Result</MudText>
+            </MudItem>
+            <MudItem md="12">
+                <MudAlert Severity="Severity.Success">Berechnung erfolgreich</MudAlert>
+            </MudItem>
+            <MudItem md="12">
+                <MudSimpleTable>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Saldo</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>Vermögen</td>
+                        <td>@BalanceSheet.TotalWealth</td>
+                    </tr>
+                    <tr>
+                        <td>3a Vorsorge</td>
+                        <td>@BalanceSheet.TotalThirdPillar</td>
+                    </tr>
+                    <tr>
+                        <td>Pensionskasse PK</td>
+                        <td>@BalanceSheet.TotalOccupationalPension</td>
+                    </tr>
+                    </tbody>
+                </MudSimpleTable>
+            </MudItem>
+        </MudGrid>
+    }
 </MudPaper>
 
 @code {
     private bool showProgressBar;
     private IBrowserFile selectedFile;
     private string errorMessage;
-    private string ResultMessage;
+    private BalanceSheet BalanceSheet;
 
     private void HandleFileSelected(IBrowserFile file)
     {
@@ -74,17 +100,43 @@
 
         try
         {
+            CalculationParametersInput calculationParameters = new()
+            {
+                StartDate = new DateTime(2024, 1, 1),
+                EndDate = new DateTime(2030, 1, 1),
+            };
+
+            MunicipalityInput municipality = new()
+            {
+                MunicipalityId = 134,
+                TaxLocationId = 330400000,
+                Canton = Canton.Zh,
+            };
+
+            CalculationPersonInput person = new()
+            {
+                Id = Guid.NewGuid(),
+                DateOfBirth = new DateTime(1980, 1, 1),
+                Gender = Gender.Male,
+                CivilStatus = CivilStatus.Married,
+                ReligiousGroupType = ReligiousGroupType.Other,
+                PartnerReligiousGroupType = ReligiousGroupType.Other
+            };
+
             IOperationResult<ICalculateResult> response = await CalculatorClient.Calculate.ExecuteAsync(
-                Guid.NewGuid(), new DateTime(2024, 1, 1), new DateTime(2030, 1, 1));
+                Guid.NewGuid(), calculationParameters, municipality, person);
 
             response.EnsureNoErrors();
 
-            ResultMessage = "Calculation successful";
+            BalanceSheet = new BalanceCalculator()
+                .Calculate(
+                    calculationParameters.StartDate,
+                    calculationParameters.EndDate,
+                    response!.Data!.Calculate.Transactions);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
         }
         finally
         {

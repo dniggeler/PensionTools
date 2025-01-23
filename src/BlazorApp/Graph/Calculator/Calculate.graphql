@@ -1,20 +1,17 @@
-﻿query Calculate($calculationId: UUID!, $startDate: Date!, $endDate: Date!) {
+﻿query Calculate(
+    $calculationId: UUID!,
+    $calculationParameter: CalculationParametersInput!,
+    $municipality: MunicipalityInput!,
+    $person: CalculationPersonInput!) {
+
   calculate(request: {
         calculationId: $calculationId
-        calculationParameter:  {
-           startDate: $startDate
-           endDate: $endDate
-        }
-        person:  {
-           id: "b00d246d-e518-497a-8629-9adb2f2bbae0"
-           civilStatus: SINGLE
-           religiousGroupType: PROTESTANT
-        }
+        
+        calculationParameter: $calculationParameter
 
-        municipality:  {
-           municipalityId: 134,
-           taxLocationId: 330400000 
-        }
+        person:  $person
+
+        municipality:  $municipality
 
         accountHolder: {
       
