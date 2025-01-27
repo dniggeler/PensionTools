@@ -46,7 +46,7 @@ else
 }
 
 builder.Services.AddBvgCalculators();
-builder.Services.AddGraphClient().ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7173/graphql")); ;  
+builder.Services.AddGraphClient().ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7173/graphql"));  
 
 builder.Services.AddMudServices();
 builder.Services.AddBlazoredLocalStorage();
