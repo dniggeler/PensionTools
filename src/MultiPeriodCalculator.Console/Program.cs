@@ -4,11 +4,11 @@ using StrawberryShake;
 
 IServiceCollection serviceCollection = new ServiceCollection();
 
-serviceCollection.AddGraphClient().ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7173/graphql"));
+serviceCollection.AddMultiPeriodGraphClient().ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7173/graphql"));
 
 IServiceProvider provider = serviceCollection.BuildServiceProvider();
 
-GraphClient? graphClient = provider.GetService<GraphClient>();
+Calculator.MultiPeriodGraphClient? graphClient = provider.GetService<Calculator.MultiPeriodGraphClient>();
 
 if(graphClient == null)
 {
