@@ -15,5 +15,5 @@ public class BalanceSheet
             : null;
     }
 
-    public IEnumerable<BalanceSheetEntry> Entries { get; set; } = [];
+    public BalanceSheetEntry? Entry { get; set; }
 }

@@ -3,10 +3,6 @@
         <TargetFramework>net9.0</TargetFramework>
         <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
     </PropertyGroup>
-    <ItemGroup>
-      <GraphQL Remove="Graph\Calculate.graphql" />
-      <GraphQL Remove="Graph\schema.graphql" />
-    </ItemGroup>
   <ItemGroup>
     <None Remove="Pages\IncomeWealth.razor.css" />
   </ItemGroup>
@@ -28,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\CommonTypes\CommonTypes.csproj" />
+    <ProjectReference Include="..\MultiPeriodGraphClient\MultiPeriodGraphClient.csproj" />
   </ItemGroup>
 
   <ItemGroup>

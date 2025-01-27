@@ -213,7 +213,40 @@
                 amount
                 flow
               }
-        }
+            }
+
+            occupationalPensionAccounts{
+              id
+              name
+              transactions{
+                description
+                valutaDate,
+                amount,
+                flow
+              }          
+            }
+
+            investmentAccounts{
+              id
+              name
+              transactions{
+                description
+                valutaDate,
+                amount,
+                flow
+              }    
+            }
+
+            taxAccounts{
+              id
+              name
+              transactions{
+                description
+                valutaDate,
+                amount,
+                flow
+              } 
+            }
         }
     }
 }

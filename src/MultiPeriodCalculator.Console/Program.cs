@@ -1,14 +1,15 @@
 ﻿using Calculator;
 using Microsoft.Extensions.DependencyInjection;
+using MultiPeriodGraphClient;
 using StrawberryShake;
 
 IServiceCollection serviceCollection = new ServiceCollection();
 
-serviceCollection.AddMultiPeriodGraphClient().ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7173/graphql"));
+serviceCollection.AddCashFlowGraphClient().ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7173/graphql"));
 
 IServiceProvider provider = serviceCollection.BuildServiceProvider();
 
-Calculator.MultiPeriodGraphClient? graphClient = provider.GetService<Calculator.MultiPeriodGraphClient>();
+var graphClient = provider.GetService<CashFlowGraphClient>();
 
 if(graphClient == null)
 {
@@ -60,6 +61,7 @@ foreach (var accounts in calculateResult.Transactions?.WealthAccounts ?? [])
     }
 }
 Console.WriteLine();
+Console.WriteLine();
 
 Console.WriteLine("Income Accounts");
 foreach (var accounts in calculateResult.Transactions?.IncomeAccounts ?? [])
@@ -75,6 +77,7 @@ foreach (var accounts in calculateResult.Transactions?.IncomeAccounts ?? [])
     }
 }
 Console.WriteLine();
+Console.WriteLine();
 
 Console.WriteLine("Third Pillar Accounts");
 foreach (var accounts in calculateResult.Transactions?.ThirdPillarAccounts ?? [])
@@ -89,4 +92,29 @@ foreach (var accounts in calculateResult.Transactions?.ThirdPillarAccounts ?? []
         Console.WriteLine($"Type:           {transaction?.Amount}");
     }
 }
+
+Console.WriteLine();
+Console.WriteLine();
+
+Console.WriteLine("Occupational Pension Accounts");
+foreach (var accounts in calculateResult.Transactions?.OccupationalPensionAccounts ?? [])
+{
+    Console.WriteLine($"Account Id: {accounts.Id}");
+    Console.WriteLine($"Name:       {accounts.Name}");
+    foreach (var transaction in accounts.Transactions ?? [])
+    {
+        Console.WriteLine($"Transaction Id: {transaction?.Description}");
+        Console.WriteLine($"Date:           {transaction?.ValutaDate}");
+        Console.WriteLine($"Amount:         {transaction?.Flow}");
+        Console.WriteLine($"Type:           {transaction?.Amount}");
+    }
+}
+
+IBalanceSheetGenerator balanceSheetGenerator = new BalanceSheetGenerator();
+var balanceSheet = balanceSheetGenerator.GenerateBalanceSheet(calculationParameters.StartDate, calculationParameters.EndDate, calculateResult.Transactions);
+Console.WriteLine($"Total Wealth:   {balanceSheet.Entry?.TotalWealth}");
+Console.WriteLine($"Total Säule 3a: {balanceSheet.Entry?.TotalThirdPillar}");
+Console.WriteLine($"Total 2.Säule:  {balanceSheet.Entry?.TotalOccupationalPension}");
+Console.WriteLine("------------------------");
+Console.WriteLine($"Total Overall: {balanceSheet.Entry?.Total}");
 
