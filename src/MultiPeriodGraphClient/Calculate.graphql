@@ -83,6 +83,15 @@
           {
             dateOfProcess: "2024-01-01"
             description: "Initialer Saldo"
+            amount: 150000
+            sourceAccountId: "f10d246d-e518-497a-8629-9adb2f2bbae3"
+            targetAccountId: "f00d246d-e518-497b-8629-9adb2f2bbae1"
+            taxType: NONE,
+            taxFlowType: UNDEFINED
+          }
+          {
+            dateOfProcess: "2024-01-01"
+            description: "Initialer Saldo"
             amount: 20000
             sourceAccountId: "f10d246d-e518-497a-8629-9adb2f2bbae3"
             targetAccountId: "f00d246d-e518-497a-8629-9adb2f2bbae0"
@@ -220,8 +229,8 @@
               name
               transactions{
                 description
-                valutaDate,
-                amount,
+                valutaDate
+                amount
                 flow
               }          
             }
@@ -231,8 +240,8 @@
               name
               transactions{
                 description
-                valutaDate,
-                amount,
+                valutaDate
+                amount
                 flow
               }    
             }
@@ -242,8 +251,19 @@
               name
               transactions{
                 description
-                valutaDate,
-                amount,
+                valutaDate
+                amount
+                flow
+              } 
+            }
+
+            exogenousAccounts{
+              id
+              name
+              transactions{
+                description
+                valutaDate
+                amount
                 flow
               } 
             }

@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Net;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using Application.Tax.Estv.Client;
@@ -6,20 +7,13 @@ using Application.Tax.Estv.Client.Models;
 using Domain.Enums;
 using Domain.Models.Tax;
 using Infrastructure.EstvTaxCalculator.Models;
+using Replicant;
 
 namespace Infrastructure.EstvTaxCalculator
 {
-    public class EstvTaxCalculatorClient : IEstvTaxCalculatorClient
+    public class EstvTaxCalculatorClient(IHttpClientFactory httpClientFactory) : IEstvTaxCalculatorClient
     {
         internal static string EstvTaxCalculatorClientName = "EstvTaxCalculatorClient";
-
-        private readonly IHttpClientFactory httpClientFactory;
-
-        public EstvTaxCalculatorClient(
-            IHttpClientFactory httpClientFactory)
-        {
-            this.httpClientFactory = httpClientFactory;
-        }
 
         public async Task<TaxLocation[]> GetTaxLocationsAsync(string zip, string city)
         {
@@ -88,8 +82,9 @@ namespace Infrastructure.EstvTaxCalculator
             HttpClient client = httpClientFactory.CreateClient("EstvTaxCalculatorClient");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
             var content = new StringContent(request, Encoding.UTF8, "application/json");
+
             HttpResponseMessage response = await client.PostAsync(path, content);
-        
+
             response.EnsureSuccessStatusCode();
         
             string json = await response.Content.ReadAsStringAsync();

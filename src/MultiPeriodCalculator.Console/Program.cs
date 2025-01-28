@@ -20,7 +20,7 @@ Guid calculationId = Guid.NewGuid();
 
 CalculationParametersInput calculationParameters = new()
 {
-    StartDate = new DateTime(2024, 1, 1),
+    StartDate = new DateTime(2023, 12, 31),
     EndDate = new DateTime(2030, 1, 1),
 };
 
@@ -36,7 +36,7 @@ CalculationPersonInput person = new()
     Id = Guid.NewGuid(),
     DateOfBirth = new DateTime(1980, 1, 1),
     Gender = Gender.Male,
-    CivilStatus = CivilStatus.Married,
+    CivilStatus = CivilStatus.Single,
     ReligiousGroupType = ReligiousGroupType.Other,
     PartnerReligiousGroupType = ReligiousGroupType.Other
 };
@@ -47,6 +47,40 @@ response.EnsureNoErrors();
 
 ICalculate_Calculate calculateResult = response.Data!.Calculate;
 
+Console.WriteLine("Tax Accounts");
+foreach (var accounts in calculateResult.Transactions?.TaxAccounts ?? [])
+{
+    Console.WriteLine($"Account Id: {accounts.Id}");
+    Console.WriteLine($"Name:       {accounts.Name}");
+    foreach (var transaction in accounts.Transactions ?? [])
+    {
+        Console.WriteLine(
+            $"    Description:    {transaction?.Description,-55} " +
+            $"Date: {transaction?.ValutaDate,-15:yyyy-MM-dd} " +
+            $"Amount: {transaction?.Flow,-10} " +
+            $"Type: {transaction?.Amount,-10}");
+    }
+}
+Console.WriteLine();
+Console.WriteLine();
+
+Console.WriteLine("Exogenous Accounts");
+foreach (var accounts in calculateResult.Transactions?.TaxAccounts ?? [])
+{
+    Console.WriteLine($"Account Id: {accounts.Id}");
+    Console.WriteLine($"Name:       {accounts.Name}");
+    foreach (var transaction in accounts.Transactions ?? [])
+    {
+        Console.WriteLine(
+            $"    Description:    {transaction?.Description,-55} " +
+            $"Date: {transaction?.ValutaDate,-15:yyyy-MM-dd} " +
+            $"Amount: {transaction?.Flow,-10} " +
+            $"Type: {transaction?.Amount,-10}");
+    }
+}
+Console.WriteLine();
+Console.WriteLine();
+
 Console.WriteLine("Wealth Accounts");
 foreach (var accounts in calculateResult.Transactions?.WealthAccounts ?? [])
 {
@@ -54,10 +88,11 @@ foreach (var accounts in calculateResult.Transactions?.WealthAccounts ?? [])
     Console.WriteLine($"Name:       {accounts.Name}");
     foreach (var transaction in accounts.Transactions ?? [])
     {
-        Console.WriteLine($"Transaction Id: {transaction?.Description}");
-        Console.WriteLine($"Date:           {transaction?.ValutaDate}");
-        Console.WriteLine($"Amount:         {transaction?.Flow}");
-        Console.WriteLine($"Type:           {transaction?.Amount}");
+        Console.WriteLine(
+            $"    Description:    {transaction?.Description,-55} " +
+            $"Date: {transaction?.ValutaDate,-15:yyyy-MM-dd} " +
+            $"Amount: {transaction?.Flow,-10} " +
+            $"Type: {transaction?.Amount,-10}");
     }
 }
 Console.WriteLine();
@@ -70,10 +105,11 @@ foreach (var accounts in calculateResult.Transactions?.IncomeAccounts ?? [])
     Console.WriteLine($"Name:       {accounts.Name}");
     foreach (var transaction in accounts.Transactions ?? [])
     {
-        Console.WriteLine($"Transaction Id: {transaction?.Description}");
-        Console.WriteLine($"Date:           {transaction?.ValutaDate}");
-        Console.WriteLine($"Amount:         {transaction?.Flow}");
-        Console.WriteLine($"Type:           {transaction?.Amount}");
+        Console.WriteLine(
+            $"    Description:    {transaction?.Description,-55} " +
+            $"Date: {transaction?.ValutaDate,-15:yyyy-MM-dd} " +
+            $"Amount: {transaction?.Flow,-10} " +
+            $"Type: {transaction?.Amount,-10}");
     }
 }
 Console.WriteLine();
@@ -86,10 +122,11 @@ foreach (var accounts in calculateResult.Transactions?.ThirdPillarAccounts ?? []
     Console.WriteLine($"Name:       {accounts.Name}");
     foreach (var transaction in accounts.Transactions ?? [])
     {
-        Console.WriteLine($"Transaction Id: {transaction?.Description}");
-        Console.WriteLine($"Date:           {transaction?.ValutaDate}");
-        Console.WriteLine($"Amount:         {transaction?.Flow}");
-        Console.WriteLine($"Type:           {transaction?.Amount}");
+        Console.WriteLine(
+            $"    Description:    {transaction?.Description,-55} " +
+            $"Date: {transaction?.ValutaDate,-15:yyyy-MM-dd} " +
+            $"Amount: {transaction?.Flow,-10} " +
+            $"Type: {transaction?.Amount,-10}");
     }
 }
 
@@ -103,12 +140,15 @@ foreach (var accounts in calculateResult.Transactions?.OccupationalPensionAccoun
     Console.WriteLine($"Name:       {accounts.Name}");
     foreach (var transaction in accounts.Transactions ?? [])
     {
-        Console.WriteLine($"Transaction Id: {transaction?.Description}");
-        Console.WriteLine($"Date:           {transaction?.ValutaDate}");
-        Console.WriteLine($"Amount:         {transaction?.Flow}");
-        Console.WriteLine($"Type:           {transaction?.Amount}");
+        Console.WriteLine(
+            $"    Description:    {transaction?.Description,-55} " +
+            $"Date: {transaction?.ValutaDate,-15:yyyy-MM-dd} " +
+            $"Amount: {transaction?.Flow,-10} " +
+            $"Type: {transaction?.Amount,-10}");
     }
 }
+Console.WriteLine();
+Console.WriteLine();
 
 IBalanceSheetGenerator balanceSheetGenerator = new BalanceSheetGenerator();
 var balanceSheet = balanceSheetGenerator.GenerateBalanceSheet(calculationParameters.StartDate, calculationParameters.EndDate, calculateResult.Transactions);
