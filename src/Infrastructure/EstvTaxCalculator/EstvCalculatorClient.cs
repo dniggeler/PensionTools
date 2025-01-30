@@ -1,5 +1,4 @@
-﻿using System.Net;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using Application.Tax.Estv.Client;
@@ -7,11 +6,13 @@ using Application.Tax.Estv.Client.Models;
 using Domain.Enums;
 using Domain.Models.Tax;
 using Infrastructure.EstvTaxCalculator.Models;
+using Microsoft.Extensions.Logging;
 using Replicant;
 
 namespace Infrastructure.EstvTaxCalculator
 {
-    public class EstvTaxCalculatorClient(IHttpClientFactory httpClientFactory) : IEstvTaxCalculatorClient
+    public class EstvTaxCalculatorClient(IHttpClientFactory httpClientFactory, ILogger<EstvTaxCalculatorClient> logger)
+        : IEstvTaxCalculatorClient
     {
         internal static string EstvTaxCalculatorClientName = "EstvTaxCalculatorClient";
 
@@ -83,11 +84,34 @@ namespace Infrastructure.EstvTaxCalculator
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
             var content = new StringContent(request, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await client.PostAsync(path, content);
+            HttpCache cache = new HttpCache("/temp/replicant", client, 10000);
+
+            string hashRequest = Hash.Compute(request);
+
+            string realUri = $"https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/{path}";
+            string cacheUri = $"{realUri}?tag={hashRequest}";
+            bool cacheHit = true;
+            HttpResponseMessage response = await cache.ResponseAsync(
+                cacheUri, true, m =>
+                {
+                    cacheHit = false;
+                    m.Method = HttpMethod.Post;
+                    m.RequestUri = new Uri(realUri);
+                    m.Content = content;
+                }, CancellationToken.None);
 
             response.EnsureSuccessStatusCode();
-        
+
             string json = await response.Content.ReadAsStringAsync();
+
+            if (cacheHit is false)
+            {
+                await cache.AddItemAsync(cacheUri, json, null, null, null, null, null, null, CancellationToken.None);
+            }
+            else
+            {
+                logger.LogInformation($"Cache hit for ESTV calculator");
+            }
 
             return JsonSerializer.Deserialize<TOut>(json);
         }

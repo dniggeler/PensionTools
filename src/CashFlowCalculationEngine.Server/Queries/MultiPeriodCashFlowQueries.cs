@@ -20,11 +20,7 @@ public sealed class MultiPeriodCashFlowQueries(IMultiPeriodCashFlowCalculator ca
             request.TaxationActionHolder,
             cancellationToken);
 
-        var response = new MultiPeriodCalculationResponse
-        {
-            CalculationId = request.CalculationId,
-            Transactions = result.Transactions
-        };
+        var response = result with { CalculationId = request.CalculationId };
 
         return response;
     }
