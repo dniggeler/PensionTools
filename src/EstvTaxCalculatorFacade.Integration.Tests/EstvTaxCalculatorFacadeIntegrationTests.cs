@@ -19,7 +19,7 @@ namespace EstvTaxCalculatorFacade.Integration.Tests
         {
             IServiceCollection services = new ServiceCollection();
 
-            services.AddEstvTaxCalculatorClient(EstvTaxCalculatorBaseUrl);
+            services.AddEstvTaxCalculatorClient(EstvTaxCalculatorBaseUrl, true);
 
             provider = services.BuildServiceProvider();
         }

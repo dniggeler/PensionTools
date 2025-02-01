@@ -2,27 +2,38 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.EstvTaxCalculator
+namespace Infrastructure.EstvTaxCalculator;
+
+public static class ServiceCollectionExtensions
 {
-    public static class ServiceCollectionExtensions
+    public static IServiceCollection AddEstvTaxCalculatorClient(this IServiceCollection services, IConfiguration configuration)
     {
-        public static IServiceCollection AddEstvTaxCalculatorClient(this IServiceCollection services, IConfiguration configuration)
-        {
-            string baseUrl = configuration["TaxCalculatorClient:EstvTaxCalculatorBaseUrl"];
+        string baseUrl = configuration["TaxCalculatorClient:EstvTaxCalculatorBaseUrl"];
+        var useCache = configuration.GetSection("TaxCalculatorClient").GetValue<bool>("UseCache");
 
-            return services.AddEstvTaxCalculatorClient(baseUrl);
-        }
+        return services.AddEstvTaxCalculatorClient(baseUrl, useCache);
+    }
 
-        public static IServiceCollection AddEstvTaxCalculatorClient(this IServiceCollection services, string baseUrl)
+    public static IServiceCollection AddEstvTaxCalculatorClient(this IServiceCollection services, string baseUrl, bool useCache)
+    {
+        services.AddHttpClient(EstvTaxCalculatorClientBase.EstvTaxCalculatorClientName, c =>
         {
-            services.AddHttpClient(EstvTaxCalculatorClient.EstvTaxCalculatorClientName, c =>
+            c.BaseAddress = new Uri(baseUrl);
+        });
+
+        services
+            .AddTransient<CachedEstvTaxCalculatorClient>()
+            .AddTransient<EstvTaxCalculatorClient>()
+            .AddTransient<IEstvTaxCalculatorClient>(provider =>
             {
-                c.BaseAddress = new Uri(baseUrl);
+                if (useCache)
+                {
+                    return provider.GetRequiredService<CachedEstvTaxCalculatorClient>();
+                }
+
+                return provider.GetRequiredService<EstvTaxCalculatorClient>(); ;
             });
 
-            services.AddTransient<IEstvTaxCalculatorClient, EstvTaxCalculatorClient>();
-
-            return services;
-        }
+        return services;
     }
 }
