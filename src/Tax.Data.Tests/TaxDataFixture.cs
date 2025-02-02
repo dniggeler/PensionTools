@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Infrastructure.Tax.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -32,7 +31,7 @@ namespace Tax.Data.Tests
                 .Build();
 
             ServiceCollection coll = new ServiceCollection();
-            coll.AddScoped(c => configuration);
+            coll.AddScoped(_ => configuration);
 
             Provider = coll.BuildServiceProvider();
         }

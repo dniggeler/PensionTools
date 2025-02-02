@@ -1,19 +1,18 @@
 ﻿using Application.Features.FullTaxCalculation;
 
-namespace Application.Tax.Estv
+namespace Application.Tax.Estv;
+
+public class EstvTaxSupportedYearProvider : ITaxSupportedYearProvider
 {
-    public class EstvTaxSupportedYearProvider : ITaxSupportedYearProvider
+    private readonly int[] supportedTaxYears = [2019, 2020, 2021, 2022, 2023, 2024];
+
+    public int[] GetSupportedTaxYears()
     {
-        private readonly int[] supportedTaxYears = { 2019, 2020, 2021, 2022, 2023, 2024 };
+        return supportedTaxYears;
+    }
 
-        public int[] GetSupportedTaxYears()
-        {
-            return supportedTaxYears;
-        }
-
-        public int MapToSupportedYear(int taxYear)
-        {
-            return GetSupportedTaxYears().Max();
-        }
+    public int MapToSupportedYear(int taxYear)
+    {
+        return GetSupportedTaxYears().Max();
     }
 }
