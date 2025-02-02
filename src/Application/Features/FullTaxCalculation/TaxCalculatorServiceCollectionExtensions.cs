@@ -3,8 +3,6 @@ using Application.Municipality;
 using Application.Tax.Contracts;
 using Application.Tax.Estv;
 using Application.Tax.Mock;
-using Application.Tax.Proprietary.Basis.Income;
-using Application.Tax.Proprietary.Contracts;
 using Application.Tax.Proprietary.Models;
 using Application.Validators;
 using AutoMapper;
@@ -30,7 +28,6 @@ namespace Application.Features.FullTaxCalculation
             collection.AddSingleton(_ => mappingConfig.CreateMapper());
 
             collection.AddValidators();
-            collection.AddBasisCalculators();
         }
 
         private static void AddFullTaxCalculators(this IServiceCollection collection, ApplicationMode applicationMode)
@@ -64,11 +61,6 @@ namespace Application.Features.FullTaxCalculation
             collection.AddSingleton<IValidator<PollTaxPerson>, PollTaxPersonValidator>();
             collection.AddSingleton<IValidator<ChurchTaxPerson>, ChurchTaxPersonValidator>();
             collection.AddSingleton<IValidator<AggregatedBasisTaxResult>, AggregatedTaxResultValidator>();
-        }
-
-        private static void AddBasisCalculators(this IServiceCollection collection)
-        {
-            collection.AddTransient<IDefaultBasisIncomeTaxCalculator, DefaultBasisIncomeTaxCalculator>();
         }
     }
 }
