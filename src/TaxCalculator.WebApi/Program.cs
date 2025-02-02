@@ -59,16 +59,12 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddHealthChecks()
     .AddCheck<TaxCalculatorHealthCheck>("Tax calculator check")
-    .AddDbContextCheck<FederalTaxTariffDbContext>()
-    .AddDbContextCheck<TaxTariffDbContext>()
-    .AddDbContextCheck<TaxRateDbContext>()
     .AddDbContextCheck<MunicipalityDbContext>();
 
 builder.Services.AddControllersWithViews()
     .AddJsonOptions(options =>
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
-builder.Services.AddTaxData(builder.Configuration);
 builder.Services.AddTaxCalculators(builder.Configuration.GetApplicationMode());
 builder.Services.AddTaxComparers();
 builder.Services.AddDataStagingServices();

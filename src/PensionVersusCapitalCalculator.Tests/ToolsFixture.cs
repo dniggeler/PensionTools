@@ -41,7 +41,6 @@ public class ToolsFixture<T>
         ServiceCollection coll = new ServiceCollection();
         coll.AddToolsCalculators();
         coll.AddTaxCalculators(configuration.GetApplicationMode());
-        coll.AddTaxData(configuration);
 
         Provider = coll.BuildServiceProvider();
 

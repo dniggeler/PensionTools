@@ -54,15 +54,11 @@ namespace TaxCalculator.WebApi
 
             services.AddHealthChecks()
                 .AddCheck<TaxCalculatorHealthCheck>("Tax calculator check")
-                .AddDbContextCheck<FederalTaxTariffDbContext>()
-                .AddDbContextCheck<TaxTariffDbContext>()
-                .AddDbContextCheck<TaxRateDbContext>()
                 .AddDbContextCheck<MunicipalityDbContext>();
 
             services.AddControllersWithViews()
                 .AddJsonOptions(options =>
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-            services.AddTaxData(Configuration);
             services.AddTaxCalculators(Configuration.GetApplicationMode());
             services.AddTaxComparers();
             services.AddDataStagingServices();

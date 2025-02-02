@@ -42,7 +42,6 @@ public class TaxComparerFixture<T>
 
         coll.AddLogging();
         coll.AddTaxCalculators(configuration.GetApplicationMode());
-        coll.AddTaxData(configuration);
         coll.AddTaxComparers();
 
         Provider = coll.BuildServiceProvider();

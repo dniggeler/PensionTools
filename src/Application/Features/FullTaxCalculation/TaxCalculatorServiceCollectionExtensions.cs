@@ -46,9 +46,6 @@ namespace Application.Features.FullTaxCalculation
                     collection.AddTransient<IMunicipalityConnector, MockedFullTaxCalculator>();
                     collection.AddTransient<ITaxSupportedYearProvider, MockedFullTaxCalculator>();
                     break;
-                default:
-                    collection.AddTransient<IMunicipalityConnector, ProprietaryMunicipalityConnector>();
-                    break;
             }
         }
 

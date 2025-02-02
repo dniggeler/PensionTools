@@ -46,9 +46,7 @@ public class CashFlowFixture<T>
         coll.AddCashFlowCalculators();
         coll.AddToolsCalculators();
         coll.AddTaxCalculators(configuration.GetApplicationMode());
-        coll.AddTaxData(configuration);
-
-
+        
         Provider = coll.BuildServiceProvider();
 
         Calculator = Provider.GetRequiredService<T>();

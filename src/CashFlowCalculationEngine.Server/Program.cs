@@ -45,7 +45,6 @@ builder.Services.AddHealthChecks()
 builder.Services.AddTransient<MultiPeriodCalculationRequestValidator>();
 builder.Services.AddTransient<IMultiPeriodCashFlowCalculator, MultiPeriodCashFlowCalculator>();
 
-builder.Services.AddTaxData(builder.Configuration);
 builder.Services.AddTaxCalculators(builder.Configuration.GetApplicationMode());
 builder.Services.AddEstvTaxCalculatorClient(builder.Configuration);
 
