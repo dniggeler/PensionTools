@@ -5,15 +5,8 @@ using LanguageExt;
 
 namespace Application.Features.PensionVersusCapital;
 
-public class PensionVersusCapitalCalculator : IPensionVersusCapitalCalculator
+public class PensionVersusCapitalCalculator(ITaxCalculatorConnector taxCalculatorConnector) : IPensionVersusCapitalCalculator
 {
-    private readonly ITaxCalculatorConnector taxCalculatorConnector;
-
-    public PensionVersusCapitalCalculator(ITaxCalculatorConnector taxCalculatorConnector)
-    {
-        this.taxCalculatorConnector = taxCalculatorConnector;
-    }
-
     public async Task<Either<string, decimal>> CalculateAsync(
         int calculationYear,
         int municipalityId,

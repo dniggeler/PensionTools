@@ -1,7 +1,7 @@
 ﻿using Application.Features.FullTaxCalculation;
 using Application.Municipality;
 using Application.Tax.Contracts;
-using Application.Tax.Proprietary;
+using Application.Tax.Proprietary.Abstractions.Models;
 using Domain.Enums;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
@@ -15,31 +15,71 @@ namespace Application.Tax.Mock
         const int DefaultBfsMunicipalityId = 261;
         const Canton DefaultCanton = Canton.ZH;
 
-        private readonly ProprietaryFullTaxCalculator fullTaxCalculator;
-        private readonly ProprietaryFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator;
-
-        public MockedFullTaxCalculator(
-            ProprietaryFullTaxCalculator fullTaxCalculator,
-            ProprietaryFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator)
-        {
-            this.fullTaxCalculator = fullTaxCalculator;
-            this.fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;
-        }
-
-        public Task<Either<string, FullTaxResult>> CalculateAsync(
+        public async Task<Either<string, FullTaxResult>> CalculateAsync(
             int calculationYear, MunicipalityModel municipality, TaxPerson person, bool withMaxAvailableCalculationYear = false)
         {
             MunicipalityModel adaptedModel = GetAdaptedModel();
 
-            return fullTaxCalculator.CalculateAsync(calculationYear, adaptedModel, person, withMaxAvailableCalculationYear);
+            var result = new FullTaxResult
+            {
+                FederalTaxResult = new BasisTaxResult
+                {
+                    TaxAmount = 1200,
+                    DeterminingFactorTaxableAmount = 0.05M
+                },
+
+                StateTaxResult = new StateTaxResult
+                {
+                    BasisIncomeTax = new BasisTaxResult
+                    {
+                        TaxAmount = 1000,
+                        DeterminingFactorTaxableAmount = 0.04M
+                    },
+
+                    BasisWealthTax = new BasisTaxResult
+                    {
+                        TaxAmount = 500,
+                        DeterminingFactorTaxableAmount = 0.03M
+                    },
+                    ChurchTax = new ChurchTaxResult
+                    {
+                        TaxAmount = 100,
+                    }
+                }
+            };
+
+            return await result.AsTask();
         }
 
-        public Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
+        public async Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
             int calculationYear, MunicipalityModel municipality, CapitalBenefitTaxPerson person, bool withMaxAvailableCalculationYear = false)
         {
             MunicipalityModel adaptedModel = GetAdaptedModel();
 
-            return fullCapitalBenefitTaxCalculator.CalculateAsync(calculationYear, adaptedModel, person, withMaxAvailableCalculationYear);
+            var result = new FullCapitalBenefitTaxResult
+            {
+                FederalResult = new BasisTaxResult
+                {
+                    TaxAmount = 100,
+                    DeterminingFactorTaxableAmount = 0.02M,
+                },
+                StateResult = new CapitalBenefitTaxResult
+                {
+                    BasisTax = new BasisTaxResult
+                    {
+                        TaxAmount = 500,
+                        DeterminingFactorTaxableAmount = 0.03M,
+                    },
+                    ChurchTax = new ChurchTaxResult
+                    {
+                        TaxAmount = 50,
+                        TaxAmountPartner = 0,
+                        TaxRate = 0.01M,
+                    }
+                }
+            };
+
+            return await Task.FromResult(result);
         }
 
         public Task<IEnumerable<MunicipalityModel>> GetAllAsync()
