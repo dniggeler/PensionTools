@@ -6,5 +6,5 @@ public class MarginalTaxCurveResult
 {
     public MarginalTaxInfo CurrentMarginalTaxRate { get; set; }
 
-    public IList<MarginalTaxInfo> MarginalTaxCurve { get; set; } = new List<MarginalTaxInfo>();
+    public IList<MarginalTaxInfo> MarginalTaxCurve { get; set; } = [];
 }

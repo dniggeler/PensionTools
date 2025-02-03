@@ -36,7 +36,7 @@ CalculationPersonInput person = new()
     Id = Guid.NewGuid(),
     DateOfBirth = new DateTime(1980, 1, 1),
     Gender = Gender.Male,
-    CivilStatus = CivilStatus.Single,
+    CivilStatus = CivilStatus.Married,
     ReligiousGroupType = ReligiousGroupType.Other,
     PartnerReligiousGroupType = ReligiousGroupType.Other
 };

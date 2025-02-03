@@ -4,17 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Tax.Data;
 
-public class MunicipalityDbContext : DbContext
+public class MunicipalityDbContext(DbContextOptions<MunicipalityDbContext> options) : DbContext(options)
 {
     private const string StagePlzTableName = "StagePlzMunicipality";
 
     public DbSet<MunicipalityEntity> MunicipalityEntities { get; set; }
 
     public DbSet<ZipEntity> TaxMunicipalityEntities { get; set; }
-
-    public MunicipalityDbContext(DbContextOptions<MunicipalityDbContext> options)
-        :base(options)
-    {}
 
     public int TruncateTaxMunicipalityTable()
     {

@@ -24,7 +24,7 @@ namespace BlazorApp.Services.Mock
         const int NumberOfSamples = 200;
 
         private readonly Random randomGenerator;
-        readonly string[] municipalityNames = { "Bagnes", "Bern", "Zürich", "Lachen", "Wettingen", "Zuzwil" };
+        readonly string[] municipalityNames = ["Bagnes", "Bern", "Zürich", "Lachen", "Wettingen", "Zuzwil"];
 
         public MockTaxComparisonService()
         {

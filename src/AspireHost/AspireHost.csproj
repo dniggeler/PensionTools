@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BlazorApp\BlazorApp.csproj" />
     <ProjectReference Include="..\CashFlowCalculationEngine.Server\CashFlowCalculationEngine.Server.csproj" />
+    <ProjectReference Include="..\MultiPeriodCalculator.Console\MultiPeriodCalculator.Console.csproj" />
     <ProjectReference Include="..\TaxCalculator.WebApi\TaxCalculator.WebApi.csproj" />
   </ItemGroup>
 

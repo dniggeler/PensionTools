@@ -113,9 +113,7 @@ namespace Application.Tax.Mock
 
         public int[] GetSupportedTaxYears()
         {
-            int[] years = { 2022, 2023 };
-
-            return years;
+            return [2022, 2023];
         }
 
         public int MapToSupportedYear(int taxYear)

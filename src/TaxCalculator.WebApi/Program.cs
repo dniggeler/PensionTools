@@ -8,6 +8,7 @@ using Application.Features.PensionVersusCapital;
 using Application.Features.TaxComparison;
 using Application.MultiPeriodCalculator;
 using Aspire;
+using Infrastructure;
 using Infrastructure.Configuration;
 using Infrastructure.DataStaging;
 using Infrastructure.EstvTaxCalculator;
@@ -65,6 +66,7 @@ builder.Services.AddControllersWithViews()
     .AddJsonOptions(options =>
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
+builder.Services.AddTaxData(builder.Configuration);
 builder.Services.AddTaxCalculators(builder.Configuration.GetApplicationMode());
 builder.Services.AddTaxComparers();
 builder.Services.AddDataStagingServices();

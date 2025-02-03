@@ -4,26 +4,15 @@ using Application.Tax.Proprietary.Models;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using LanguageExt;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Application.Features.MarginalTaxCurve;
 
-public class MarginalTaxCurveCalculatorConnector : IMarginalTaxCurveCalculatorConnector
+public class MarginalTaxCurveCalculatorConnector(
+    IFullWealthAndIncomeTaxCalculator fullWealthAndIncomeTaxCalculator,
+    IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator,
+    IMunicipalityConnector municipalityResolver)
+    : IMarginalTaxCurveCalculatorConnector
 {
-    private readonly IFullWealthAndIncomeTaxCalculator fullWealthAndIncomeTaxCalculator;
-    private readonly IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator;
-    private readonly IMunicipalityConnector municipalityResolver;
-
-    public MarginalTaxCurveCalculatorConnector(
-        IFullWealthAndIncomeTaxCalculator fullWealthAndIncomeTaxCalculator,
-        IFullCapitalBenefitTaxCalculator fullCapitalBenefitTaxCalculator,
-        IMunicipalityConnector municipalityResolver)
-    {
-        this.fullWealthAndIncomeTaxCalculator = fullWealthAndIncomeTaxCalculator;
-        this.fullCapitalBenefitTaxCalculator = fullCapitalBenefitTaxCalculator;
-        this.municipalityResolver = municipalityResolver;
-    }
-
     public async Task<Either<string, MarginalTaxCurveResult>> CalculateIncomeTaxCurveAsync(
         int calculationYear,
         int bfsMunicipalityId,

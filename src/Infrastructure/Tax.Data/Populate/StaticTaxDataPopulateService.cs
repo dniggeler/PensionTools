@@ -203,7 +203,7 @@ namespace Infrastructure.Tax.Data.Populate
                     {
                         SearchLevel = 0,
                         MunicipalityEntity = model,
-                        TaxLocations = Array.Empty<TaxLocation>()
+                        TaxLocations = []
                     });
             }
         }
@@ -212,12 +212,12 @@ namespace Infrastructure.Tax.Data.Populate
         {
             if (searchRequest is null || (searchRequest.Zipcode == "" && searchRequest.Name == ""))
             {
-                return Array.Empty<TaxLocation>();
+                return [];
             }
 
             return await estvTaxCalculatorClient.GetTaxLocationsAsync(searchRequest.Zipcode, searchRequest.Name) switch
             {
-                null => Array.Empty<TaxLocation>(),
+                null => [],
                 { } a => a
             };
         }
@@ -225,14 +225,14 @@ namespace Infrastructure.Tax.Data.Populate
         private (bool, TaxLocation[]) ApplyCheckers(TaxLocationSearchHolder searchHolder)
         {
             Func<TaxLocation[], MunicipalityEntity, TaxLocation[]>[] checkers =
-            {
+            [
                 MatchZipAndName,
                 MatchNameOnly,
                 MatchCanton,
                 MatchContainsNameAndCanton,
                 MatchByZipAsTaxId,
                 MatchByNamePart
-            };
+            ];
 
             if (searchHolder.TaxLocations == null)
             {
@@ -287,10 +287,10 @@ namespace Infrastructure.Tax.Data.Populate
         {
             if (entity is null)
             {
-                return Array.Empty<TaxLocation>();
+                return [];
             }
 
-            return (sourceLocations ?? Array.Empty<TaxLocation>())
+            return (sourceLocations ?? [])
                 .Where(item => item.ZipCode == entity.ZipCode && item.City == entity.CleanName)
                 .ToArray();
         }
@@ -299,24 +299,24 @@ namespace Infrastructure.Tax.Data.Populate
         {
             if (entity is null)
             {
-                return Array.Empty<TaxLocation>();
+                return [];
             }
 
-            return (sourceLocations ?? Array.Empty<TaxLocation>())
+            return (sourceLocations ?? [])
                 .Where(item => item.City == entity.CleanName)
                 .ToArray();
         }
 
         private TaxLocation[] MatchCanton(TaxLocation[] sourceLocations, MunicipalityEntity entity)
         {
-            return (sourceLocations ?? Array.Empty<TaxLocation>())
+            return (sourceLocations ?? [])
                 .Where(item => item.Canton == entity.Canton)
                 .ToArray();
         }
 
         private TaxLocation[] MatchContainsNameAndCanton(TaxLocation[] sourceLocations, MunicipalityEntity entity)
         {
-            return (sourceLocations ?? Array.Empty<TaxLocation>())
+            return (sourceLocations ?? [])
                 .Where(item => item.City.Contains(entity.CleanName) && item.Canton == entity.Canton)
                 .ToArray();
         }
@@ -325,7 +325,7 @@ namespace Infrastructure.Tax.Data.Populate
         {
             int taxIdFromZipCode = Convert.ToInt32(entity.ZipCode) * 100000;
 
-            return (sourceLocations ?? Array.Empty<TaxLocation>())
+            return (sourceLocations ?? [])
                 .Where(item => item.Id == taxIdFromZipCode)
                 .ToArray();
         }
@@ -336,12 +336,12 @@ namespace Infrastructure.Tax.Data.Populate
             return GetSplitName(entity) switch
             {
                 { } p => Filter(p),
-                _ => Array.Empty<TaxLocation>()
+                _ => []
             };
 
             TaxLocation[] Filter(string part)
             {
-                return (sourceLocations ?? Array.Empty<TaxLocation>())
+                return (sourceLocations ?? [])
                     .Where(item => item.City == part)
                     .ToArray();
             }

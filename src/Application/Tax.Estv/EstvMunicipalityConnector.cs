@@ -7,19 +7,10 @@ using LanguageExt;
 
 namespace Application.Tax.Estv
 {
-    public class EstvMunicipalityConnector : IMunicipalityConnector
+    public class EstvMunicipalityConnector(
+        IMapper mapper,
+        IMunicipalityRepository municipalityRepository) : IMunicipalityConnector
     {
-        private readonly IMapper mapper;
-        private readonly IMunicipalityRepository municipalityRepository;
-
-        public EstvMunicipalityConnector(
-            IMapper mapper,
-            IMunicipalityRepository municipalityRepository)
-        {
-            this.mapper = mapper;
-            this.municipalityRepository = municipalityRepository;
-        }
-
         public Task<IEnumerable<MunicipalityModel>> GetAllAsync()
         {
             return Task.FromResult(
