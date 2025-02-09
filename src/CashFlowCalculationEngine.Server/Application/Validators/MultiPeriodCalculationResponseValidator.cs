@@ -7,6 +7,8 @@ public class MultiPeriodCalculationResponseValidator : AbstractValidator<MultiPe
 {
     public MultiPeriodCalculationResponseValidator()
     {
+        RuleFor(x => x.Transactions)
+            .SetValidator(new AccountTransactionValidator());
     }
 }
 
