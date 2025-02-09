@@ -1,5 +1,6 @@
 ﻿using Application.Municipality;
 using Application.Tax.Contracts;
+using CashFlowCalculationEngine.Server.Application.Validators;
 using CashFlowCalculationEngine.Server.Domain;
 using CashFlowCalculationEngine.Server.Domain.Accounts;
 using CashFlowCalculationEngine.Server.Domain.Calculator;
@@ -262,15 +263,6 @@ public class MultiPeriodCashFlowCalculator(
                 Transactions = a.Value.Transactions,
             });
 
-        var taxTransactionResult = taxAccounts
-            .Select(a => new AccountTransactionResult
-            {
-                Id = a.Value.Id,
-                Name = a.Value.Name,
-                Transactions = a.Value.Transactions,
-            });
-
-
         MultiPeriodCalculationResponse response = new MultiPeriodCalculationResponse
         {
             CalculationId = Guid.NewGuid(),
@@ -282,9 +274,13 @@ public class MultiPeriodCashFlowCalculator(
                 InvestmentAccounts = investmentTransactionResult,
                 OccupationalPensionAccounts = occupationalTransactionResult,
                 ThirdPillarAccounts = thirdPillarTransactionResult,
-                TaxAccounts = taxTransactionResult
             }
         };
+
+        var calculationResponseValidator = new MultiPeriodCalculationResponseValidator();
+        var validationResult = calculationResponseValidator.Validate(response);
+
+        response.IsSuccess = validationResult.IsValid;
 
         return response;
     }

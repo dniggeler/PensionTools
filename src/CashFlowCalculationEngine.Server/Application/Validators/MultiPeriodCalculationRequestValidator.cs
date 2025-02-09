@@ -7,21 +7,20 @@ public class MultiPeriodCalculationRequestValidator : AbstractValidator<MultiPer
 {
     public MultiPeriodCalculationRequestValidator()
     {
+        RuleFor(x =>x.AccountHolder)
+            .SetValidator(new AccountInputValidator());
+
+        RuleFor(x => x.CashFlowHolder)
+            .SetValidator(new CashFlowInputValidator());
+
         RuleFor(x => x)
-            .Must(x => Exist(x))
+            .Must(Exist)
             .WithMessage("One or multiple cash-flows reference a non-existing account.");
     }
 
     private bool Exist(MultiPeriodCalculationRequest request)
     {
-        HashSet<Guid> accountIds =
-            request.AccountHolder.ExogenousAccounts.Select(a => a.Id)
-            .Concat(request.AccountHolder.IncomeAccounts.Select(a => a.Id))
-            .Concat(request.AccountHolder.WealthAccounts.Select(a => a.Id))
-            .Concat(request.AccountHolder.OccupationalPensionAccounts.Select(a => a.Id))
-            .Concat(request.AccountHolder.ThirdPillarAccounts.Select(a => a.Id))
-            .Concat(request.AccountHolder.InvestmentAccounts.Select(a => a.Id))
-            .ToHashSet();
+        HashSet<Guid> accountIds = [..ValidatorHelpers.AccountIdList(request.AccountHolder)];
 
         HashSet<Guid> cashFlowAccountIds =
             request.CashFlowHolder.FixedAmountCashFlows
