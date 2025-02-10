@@ -41,31 +41,45 @@ CalculationPersonInput person = new()
     PartnerReligiousGroupType = ReligiousGroupType.Other
 };
 
-IOperationResult<ICalculateResult> response = await graphClient.Calculate.ExecuteAsync(calculationId, calculationParameters, municipality, person);
+AccountInput accountInput = new AccountInput
+{
+    ThirdPillarAccounts =
+    [
+        new ThirdPillarAccountInput { Id = Guid.Parse("f00d246d-e518-497a-8629-9adb2f2bbae0"), Description = "3a SL" },
+        new ThirdPillarAccountInput { Id = Guid.Parse("f00d246d-e518-497a-8629-9adb2f2bbae1"), Description = "3a Bank" }
+    ],
+    OccupationalPensionAccounts = [
+        new OccupationalPensionAccountInput { Id = Guid.Parse("f00d246d-e518-497b-8629-9adb2f2bbae1"), Description = "Meine PK" }
+    ],
+    WealthAccounts = [
+        new WealthAccountInput { Id = Guid.Parse("e00d246d-e518-497a-8629-9adb2f2bbae4"), Description = "Sonstiges Vermögen" }
+    ],
+    IncomeAccounts = [
+        new IncomeAccountInput { Id = Guid.Parse("f00d246d-e518-497a-8629-9adb2f2bbae2"), Description = "Lohnkonto" }
+    ],
+    ExogenousAccounts = [
+        new ExogenousAccountInput { Id = Guid.Parse("f00d246d-e518-497a-8629-9adb2f2bbae3"), Description = "Arbeitgeber" },
+        new ExogenousAccountInput { Id = Guid.Parse("f10d246d-e518-497a-8629-9adb2f2bbae3"), Description = "Initialer Setup" },
+        new ExogenousAccountInput { Id = Guid.Parse("b10d246d-e518-497a-8629-9adb2f2bbae3"), Description = "Steueramt" },
+        new ExogenousAccountInput { Id = Guid.Parse("a10d246d-e518-497a-8629-9adb2f2bbae3"), Description = "Wachstum" }
+    ],
+    InvestmentAccounts = [],
+};
+
+
+IOperationResult<ICalculateResult> response = await graphClient.Calculate.ExecuteAsync(
+    calculationId,
+    calculationParameters,
+    municipality,
+    person,
+    accountInput);
 
 response.EnsureNoErrors();
 
 ICalculate_Calculate calculateResult = response.Data!.Calculate;
 
-Console.WriteLine("Tax Accounts");
-foreach (var accounts in calculateResult.Transactions?.TaxAccounts ?? [])
-{
-    Console.WriteLine($"Account Id: {accounts.Id}");
-    Console.WriteLine($"Name:       {accounts.Name}");
-    foreach (var transaction in accounts.Transactions ?? [])
-    {
-        Console.WriteLine(
-            $"    Description:    {transaction?.Description,-55} " +
-            $"Date: {transaction?.ValutaDate,-15:yyyy-MM-dd} " +
-            $"Amount: {transaction?.Flow,-10} " +
-            $"Type: {transaction?.Amount,-10}");
-    }
-}
-Console.WriteLine();
-Console.WriteLine();
-
 Console.WriteLine("Exogenous Accounts");
-foreach (var accounts in calculateResult.Transactions?.TaxAccounts ?? [])
+foreach (var accounts in calculateResult.Transactions?.ExogenousAccounts ?? [])
 {
     Console.WriteLine($"Account Id: {accounts.Id}");
     Console.WriteLine($"Name:       {accounts.Name}");
@@ -91,8 +105,8 @@ foreach (var accounts in calculateResult.Transactions?.WealthAccounts ?? [])
         Console.WriteLine(
             $"    Description:    {transaction?.Description,-55} " +
             $"Date: {transaction?.ValutaDate,-15:yyyy-MM-dd} " +
-            $"Amount: {transaction?.Flow,-10} " +
-            $"Type: {transaction?.Amount,-10}");
+            $"Type: {transaction?.Flow,-10} " +
+            $"Amount: {transaction?.Amount,-10}");
     }
 }
 Console.WriteLine();
@@ -108,8 +122,8 @@ foreach (var accounts in calculateResult.Transactions?.IncomeAccounts ?? [])
         Console.WriteLine(
             $"    Description:    {transaction?.Description,-55} " +
             $"Date: {transaction?.ValutaDate,-15:yyyy-MM-dd} " +
-            $"Amount: {transaction?.Flow,-10} " +
-            $"Type: {transaction?.Amount,-10}");
+            $"Type: {transaction?.Flow,-10} " +
+            $"Amount: {transaction?.Amount,-10}");
     }
 }
 Console.WriteLine();
@@ -125,8 +139,8 @@ foreach (var accounts in calculateResult.Transactions?.ThirdPillarAccounts ?? []
         Console.WriteLine(
             $"    Description:    {transaction?.Description,-55} " +
             $"Date: {transaction?.ValutaDate,-15:yyyy-MM-dd} " +
-            $"Amount: {transaction?.Flow,-10} " +
-            $"Type: {transaction?.Amount,-10}");
+            $"Type: {transaction?.Flow,-10} " +
+            $"Amount: {transaction?.Amount,-10}");
     }
 }
 
@@ -143,8 +157,8 @@ foreach (var accounts in calculateResult.Transactions?.OccupationalPensionAccoun
         Console.WriteLine(
             $"    Description:    {transaction?.Description,-55} " +
             $"Date: {transaction?.ValutaDate,-15:yyyy-MM-dd} " +
-            $"Amount: {transaction?.Flow,-10} " +
-            $"Type: {transaction?.Amount,-10}");
+            $"Type: {transaction?.Flow,-10} " +
+            $"Amount: {transaction?.Amount,-10}");
     }
 }
 Console.WriteLine();

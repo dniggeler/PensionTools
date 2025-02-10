@@ -1,4 +1,7 @@
 ﻿using CashFlowCalculationEngine.Server.Domain;
+using Domain.Enums;
+using Domain.Models.Cashflows;
+using Domain.Models.Cashflows.Accounts;
 using FluentValidation;
 
 namespace CashFlowCalculationEngine.Server.Application.Validators;
@@ -10,6 +13,34 @@ public class AccountTransactionValidator : AbstractValidator<AccountTransactionR
         RuleFor(x => x)
             .Must(Exist)
             .WithMessage("One or multiple cash-flows reference a non-existing account.");
+
+        RuleFor(x => x)
+            .Must(CheckBalance)
+            .WithMessage("The total balance across all accounts must sum up to zero.");
+    }
+
+    private bool CheckBalance(AccountTransactionResponse? response)
+    {
+        IEnumerable<AccountTransaction> allTransactions = response?.ThirdPillarAccounts
+            .Concat(response.ExogenousAccounts)
+            .Concat(response.IncomeAccounts)
+            .Concat(response.OccupationalPensionAccounts)
+            .Concat(response.WealthAccounts)
+            .Concat(response.InvestmentAccounts)
+            .SelectMany(t => t.Transactions)
+            .ToList() ?? [];
+
+        // sum up all transactions of type in-flow
+        decimal inflowBalance = allTransactions
+            .Where(t => t.Flow == FlowType.InFlow)
+            .Sum(t => t.Amount);
+
+        decimal outflowBalance = allTransactions
+            .Where(t => t.Flow == FlowType.OutFlow)
+            .Sum(t => t.Amount);
+
+        
+        return Math.Abs(inflowBalance + outflowBalance) < 0.01M;
     }
 
     private bool Exist(AccountTransactionResponse? response)

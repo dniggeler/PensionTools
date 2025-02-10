@@ -7,4 +7,6 @@ public record MultiPeriodCalculationResponse
     public bool IsSuccess { get; set; }
 
     public AccountTransactionResponse? Transactions { get; set; }
+
+    public string[] Errors { get; set; } = [];
 }

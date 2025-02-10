@@ -44,6 +44,7 @@ builder.Services.AddHealthChecks()
     .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
 
 builder.Services.AddTransient<MultiPeriodCalculationRequestValidator>();
+builder.Services.AddTransient<MultiPeriodCalculationResponseValidator>();
 builder.Services.AddTransient<IMultiPeriodCashFlowCalculator, MultiPeriodCashFlowCalculator>();
 
 builder.Services.AddTaxData(builder.Configuration);

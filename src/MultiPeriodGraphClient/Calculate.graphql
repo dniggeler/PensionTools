@@ -2,7 +2,8 @@
     $calculationId: UUID!,
     $calculationParameter: CalculationParametersInput!,
     $municipality: MunicipalityInput!,
-    $person: CalculationPersonInput!) {
+    $person: CalculationPersonInput!,
+    $accountHolder: AccountInput!) {
 
   calculate(request: {
         calculationId: $calculationId
@@ -13,52 +14,8 @@
 
         municipality:  $municipality
 
-        accountHolder: {
-      
-          thirdPillarAccounts: [ {
-            id: "f00d246d-e518-497a-8629-9adb2f2bbae0"
-            description: "3a SL"
-          }
-          {
-            id:"f00d246d-e518-497a-8629-9adb2f2bbae1"
-            description: "3a Banking"
-          }]
-
-         occupationalPensionAccounts:  [{
-           id: "f00d246d-e518-497b-8629-9adb2f2bbae1"
-           description: "Mein PK"
-         }]
-
-         incomeAccounts: [ {
-            id: "f00d246d-e518-497a-8629-9adb2f2bbae2"
-            description: "Lohnkonto"
-         }]
-
-         wealthAccounts: [ {
-            id: "e00d246d-e518-497a-8629-9adb2f2bbae4"
-            description: "Sonstiges Vermögen"
-         }]
-
-         exogenousAccounts: [ {
-            id: "f00d246d-e518-497a-8629-9adb2f2bbae3"
-            description: "Arbeitgeber"
-         }
-         {
-            id: "f10d246d-e518-497a-8629-9adb2f2bbae3"
-            description: "Initialer Setup"
-         }
-         {
-            id: "b10d246d-e518-497a-8629-9adb2f2bbae3"
-            description: "Steueramt"
-         }
-         {
-            id: "a10d246d-e518-497a-8629-9adb2f2bbae3"
-            description: "Wachstum"
-         }]
-     
-         investmentAccounts: []
-    }
-
+        accountHolder: $accountHolder
+    
         cashFlowHolder: {
             fixedAmountCashFlows: [
             
@@ -188,6 +145,10 @@
             }
     })
     {
+        isSuccess
+        
+        errors
+
         calculationId
 
         transactions {
@@ -244,17 +205,6 @@
                 amount
                 flow
               }    
-            }
-
-            taxAccounts{
-              id
-              name
-              transactions{
-                description
-                valutaDate
-                amount
-                flow
-              } 
             }
 
             exogenousAccounts{

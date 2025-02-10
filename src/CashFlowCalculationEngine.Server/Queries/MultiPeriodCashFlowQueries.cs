@@ -2,10 +2,13 @@
 using CashFlowCalculationEngine.Server.Application.Calculators;
 using CashFlowCalculationEngine.Server.Application.Validators;
 using CashFlowCalculationEngine.Server.Domain.Calculator;
+using FluentValidation.Results;
 
 namespace CashFlowCalculationEngine.Server.Queries;
 
-public sealed class MultiPeriodCashFlowQueries(IMultiPeriodCashFlowCalculator calculator)
+public sealed class MultiPeriodCashFlowQueries(
+    IMultiPeriodCashFlowCalculator calculator,
+    MultiPeriodCalculationResponseValidator responseValidator)
 {
     public async Task<MultiPeriodCalculationResponse> CalculateAsync(
         [UseFluentValidation, UseValidator<MultiPeriodCalculationRequestValidator>]MultiPeriodCalculationRequest request,
@@ -20,7 +23,15 @@ public sealed class MultiPeriodCashFlowQueries(IMultiPeriodCashFlowCalculator ca
             request.TaxationActionHolder,
             cancellationToken);
 
-        var response = result with { CalculationId = request.CalculationId };
+        var response = result with { IsSuccess = true, CalculationId = request.CalculationId };
+
+        ValidationResult? validationResult = responseValidator.Validate(response);
+
+        if (!validationResult.IsValid)
+        {
+            response.IsSuccess = false;
+            response.Errors = validationResult.Errors.Select(f => f.ErrorMessage).ToArray();
+        }
 
         return response;
     }

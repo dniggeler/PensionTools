@@ -59,18 +59,18 @@
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td>Vermögen</td>
-                        <td>@BalanceSheet.TotalWealth</td>
-                    </tr>
-                    <tr>
-                        <td>3a Vorsorge</td>
-                        <td>@BalanceSheet.TotalThirdPillar</td>
-                    </tr>
-                    <tr>
-                        <td>Pensionskasse PK</td>
-                        <td>@BalanceSheet.TotalOccupationalPension</td>
-                    </tr>
+                        <tr>
+                            <td>Vermögen</td>
+                            <td>@BalanceSheet.TotalWealth</td>
+                        </tr>
+                        <tr>
+                            <td>3a Vorsorge</td>
+                            <td>@BalanceSheet.TotalThirdPillar</td>
+                        </tr>
+                        <tr>
+                            <td>Pensionskasse PK</td>
+                            <td>@BalanceSheet.TotalOccupationalPension</td>
+                        </tr>
                     </tbody>
                 </MudSimpleTable>
             </MudItem>
@@ -123,8 +123,38 @@
                 PartnerReligiousGroupType = ReligiousGroupType.Other
             };
 
+            AccountInput accountInput = new()
+            {
+                ThirdPillarAccounts =
+                [
+                    new ThirdPillarAccountInput { Id = Guid.Parse("f00d246d-e518-497a-8629-9adb2f2bbae0"), Description = "3a SL" },
+                    new ThirdPillarAccountInput { Id = Guid.Parse("f00d246d-e518-497a-8629-9adb2f2bbae1"), Description = "3a Bank" }
+                ],
+                OccupationalPensionAccounts = [
+                    new OccupationalPensionAccountInput { Id = Guid.Parse("f00d246d-e518-497b-8629-9adb2f2bbae1"), Description = "Meine PK" }
+                ],
+                WealthAccounts = [
+                    new WealthAccountInput { Id = Guid.Parse("e00d246d-e518-497a-8629-9adb2f2bbae4"), Description = "Sonstiges Vermögen" }
+                ],
+                IncomeAccounts = [
+                    new IncomeAccountInput { Id = Guid.Parse("f00d246d-e518-497a-8629-9adb2f2bbae2"), Description = "Lohnkonto" }
+                ],
+                ExogenousAccounts = [
+                    new ExogenousAccountInput { Id = Guid.Parse("f00d246d-e518-497a-8629-9adb2f2bbae3"), Description = "Arbeitgeber" },
+                    new ExogenousAccountInput { Id = Guid.Parse("f10d246d-e518-497a-8629-9adb2f2bbae3"), Description = "Initialer Setup" },
+                    new ExogenousAccountInput { Id = Guid.Parse("b10d246d-e518-497a-8629-9adb2f2bbae3"), Description = "Steueramt" },
+                    new ExogenousAccountInput { Id = Guid.Parse("a10d246d-e518-497a-8629-9adb2f2bbae3"), Description = "Wachstum" }
+                ],
+                InvestmentAccounts = [],
+            };
+
             IOperationResult<ICalculateResult> response = await CalculatorClient.Calculate.ExecuteAsync(
-                Guid.NewGuid(), calculationParameters, municipality, person);
+                Guid.NewGuid(),
+                calculationParameters,
+                municipality,
+                person,
+                accountInput
+                );
 
             response.EnsureNoErrors();
 
