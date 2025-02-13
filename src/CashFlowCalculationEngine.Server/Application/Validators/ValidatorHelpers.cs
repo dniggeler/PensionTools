@@ -1,5 +1,6 @@
 ﻿using CashFlowCalculationEngine.Server.Domain;
 using CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
+using Domain.Models.Cashflows.Accounts;
 
 namespace CashFlowCalculationEngine.Server.Application.Validators;
 
@@ -13,6 +14,7 @@ internal class ValidatorHelpers
             .Concat(model.OccupationalPensionAccounts.Select(a => a.Id))
             .Concat(model.ThirdPillarAccounts.Select(a => a.Id))
             .Concat(model.InvestmentAccounts.Select(a => a.Id))
+            .Concat(model.LiabilityAccounts.Select(a => a.Id))
             .ToList();
     }
 
@@ -29,6 +31,19 @@ internal class ValidatorHelpers
             .Concat(model.OccupationalPensionAccounts.Select(a => a.Id))
             .Concat(model.ThirdPillarAccounts.Select(a => a.Id))
             .Concat(model.InvestmentAccounts.Select(a => a.Id))
+            .Concat(model.LiabilityAccounts.Select(a => a.Id))
             .ToList();
+    }
+
+    public static List<AccountTransaction> AccountTransactionList(AccountTransactionResponse? model)
+    {
+        return model?.ThirdPillarAccounts
+            .Concat(model.ExogenousAccounts)
+            .Concat(model.IncomeAccounts)
+            .Concat(model.OccupationalPensionAccounts)
+            .Concat(model.WealthAccounts)
+            .Concat(model.InvestmentAccounts)
+            .SelectMany(t => t.Transactions)
+            .ToList() ?? [];
     }
 }

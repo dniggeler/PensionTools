@@ -15,4 +15,6 @@ public record AccountTransactionResponse
     public IEnumerable<AccountTransactionResult> OccupationalPensionAccounts { get; set; } = [];
 
     public IEnumerable<AccountTransactionResult> ThirdPillarAccounts { get; set; } = [];
+
+    public IEnumerable<AccountTransactionResult> LiabilityAccounts { get; set; } = [];
 }

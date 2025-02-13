@@ -1,9 +1,7 @@
-﻿using Domain.Enums;
-
-namespace CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
+﻿namespace CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
 
 [InterfaceType]
-public abstract class GenericCashFlowAccountInput
+public abstract class AccountInputBase
 {
     [GraphQLDescription("Unique account id")]
     public Guid Id { get; set; }

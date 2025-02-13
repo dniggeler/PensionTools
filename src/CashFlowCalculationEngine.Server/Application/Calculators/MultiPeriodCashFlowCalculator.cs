@@ -1,5 +1,4 @@
-﻿using Application.Municipality;
-using Application.Tax.Contracts;
+﻿using Application.Tax.Contracts;
 using CashFlowCalculationEngine.Server.Application.Validators;
 using CashFlowCalculationEngine.Server.Domain;
 using CashFlowCalculationEngine.Server.Domain.Accounts;
@@ -20,9 +19,7 @@ namespace CashFlowCalculationEngine.Server.Application.Calculators;
 
 public class MultiPeriodCashFlowCalculator(
     IFullWealthAndIncomeTaxCalculator wealthAndIncomeTaxCalculator,
-    IFullCapitalBenefitTaxCalculator capitalBenefitTaxCalculator,
-    IMunicipalityConnector municipalityConnector,
-    ILogger<MultiPeriodCashFlowCalculator> logger) : IMultiPeriodCashFlowCalculator
+    IFullCapitalBenefitTaxCalculator capitalBenefitTaxCalculator) : IMultiPeriodCashFlowCalculator
 {
     public async Task<MultiPeriodCalculationResponse> CalculateAsync(
         CalculationParameters calculationParameters,
@@ -39,6 +36,7 @@ public class MultiPeriodCashFlowCalculator(
         Dictionary<Guid, ThirdPillarAccount> thirdPillarAccounts = Build(accountHolder.ThirdPillarAccounts);
         Dictionary<Guid, OccupationalPensionAccount> occupationalPensionAccounts = Build(accountHolder.OccupationalPensionAccounts);
         Dictionary<Guid, InvestmentAccount> investmentAccounts = Build(accountHolder.InvestmentAccounts);
+        Dictionary<Guid, LiabilityAccount> liabilityAccounts = Build(accountHolder.LiabilityAccounts);
 
         // create a dictionary of all accounts
         Dictionary<Guid, ICashFlowAccount> allAccounts = new Dictionary<Guid,ICashFlowAccount>();
@@ -48,6 +46,7 @@ public class MultiPeriodCashFlowCalculator(
         thirdPillarAccounts.Iter(a => allAccounts.Add(a.Key, a.Value));
         occupationalPensionAccounts.Iter(a => allAccounts.Add(a.Key, a.Value));
         investmentAccounts.Iter(a => allAccounts.Add(a.Key, a.Value));
+        liabilityAccounts.Iter(a => allAccounts.Add(a.Key, a.Value));
 
         // setup internal tax accounts
         Dictionary<TaxType, InternalTaxAccount> taxAccounts = new Dictionary<TaxType, InternalTaxAccount>
@@ -263,6 +262,14 @@ public class MultiPeriodCashFlowCalculator(
                 Transactions = a.Value.Transactions,
             });
 
+        var liabilityTransactionResult = liabilityAccounts
+            .Select(a => new AccountTransactionResult
+            {
+                Id = a.Key,
+                Name = a.Value.Name,
+                Transactions = a.Value.Transactions,
+            });
+
         MultiPeriodCalculationResponse response = new MultiPeriodCalculationResponse
         {
             CalculationId = Guid.NewGuid(),
@@ -274,6 +281,7 @@ public class MultiPeriodCashFlowCalculator(
                 InvestmentAccounts = investmentTransactionResult,
                 OccupationalPensionAccounts = occupationalTransactionResult,
                 ThirdPillarAccounts = thirdPillarTransactionResult,
+                LiabilityAccounts = liabilityTransactionResult,
             }
         };
 
@@ -448,6 +456,17 @@ public class MultiPeriodCashFlowCalculator(
 
         debitAccount.Balance -= amount;
         debitAccount.Transactions.Add(trxDebitAccount);
+    }
+
+    private Dictionary<Guid, LiabilityAccount> Build(IEnumerable<LiabilityAccountInput> accounts)
+    {
+        return accounts
+            .Select(a => new LiabilityAccount()
+            {
+                Id = a.Id,
+                Name = a.Description ?? string.Empty,
+            })
+            .ToDictionary(keySelector: (a) => a.Id);
     }
 
     private Dictionary<Guid, ExogenousAccount> Build(IEnumerable<ExogenousAccountInput> accounts)

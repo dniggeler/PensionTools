@@ -6,6 +6,6 @@
 /// 1. the cash flow of the capital gains
 /// 2. the cash flow of the dividends or interests
 /// </summary>
-public class InvestmentAccountInput : GenericCashFlowAccountInput
+public class InvestmentAccountInput : AccountInputBase
 {
 }

@@ -217,6 +217,17 @@
                 flow
               } 
             }
+
+            liabilityAccounts{
+              id
+              name
+              transactions{
+                description
+                valutaDate
+                amount
+                flow
+              } 
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿namespace CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
 
-public class ExogenousAccountInput : AccountInputBase
+public class LiabilityAccountInput : AccountInputBase
 {
 }

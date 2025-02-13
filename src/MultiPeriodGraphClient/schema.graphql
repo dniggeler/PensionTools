@@ -16,6 +16,7 @@ type AccountTransactionResponse {
   investmentAccounts: [AccountTransactionResult!]!
   occupationalPensionAccounts: [AccountTransactionResult!]!
   thirdPillarAccounts: [AccountTransactionResult!]!
+  liabilityAccounts: [AccountTransactionResult!]!
 }
 
 type AccountTransactionResult {
@@ -28,7 +29,7 @@ type MultiPeriodCalculationResponse {
   calculationId: UUID!
   isSuccess: Boolean!
   transactions: AccountTransactionResponse
-  errors: [String!]
+  errors: [String!]!
 }
 
 type MultiPeriodCashFlowQueries {
@@ -43,6 +44,7 @@ input AccountInput {
   wealthAccounts: [WealthAccountInput!]!
   occupationalPensionAccounts: [OccupationalPensionAccountInput!]!
   thirdPillarAccounts: [ThirdPillarAccountInput!]!
+  liabilityAccounts: [LiabilityAccountInput!]!
   exogenousAccounts: [ExogenousAccountInput!]!
 }
 
@@ -105,6 +107,13 @@ input IncomeAccountInput {
 }
 
 input InvestmentAccountInput {
+  "Unique account id"
+  id: UUID!
+  "Account description"
+  description: String
+}
+
+input LiabilityAccountInput {
   "Unique account id"
   id: UUID!
   "Account description"

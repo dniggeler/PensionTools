@@ -1,6 +1,5 @@
 ﻿using CashFlowCalculationEngine.Server.Domain;
 using Domain.Enums;
-using Domain.Models.Cashflows;
 using Domain.Models.Cashflows.Accounts;
 using FluentValidation;
 
@@ -21,14 +20,7 @@ public class AccountTransactionValidator : AbstractValidator<AccountTransactionR
 
     private bool CheckBalance(AccountTransactionResponse? response)
     {
-        IEnumerable<AccountTransaction> allTransactions = response?.ThirdPillarAccounts
-            .Concat(response.ExogenousAccounts)
-            .Concat(response.IncomeAccounts)
-            .Concat(response.OccupationalPensionAccounts)
-            .Concat(response.WealthAccounts)
-            .Concat(response.InvestmentAccounts)
-            .SelectMany(t => t.Transactions)
-            .ToList() ?? [];
+        List<AccountTransaction> allTransactions = [..ValidatorHelpers.AccountTransactionList(response)];
 
         // sum up all transactions of type in-flow
         decimal inflowBalance = allTransactions

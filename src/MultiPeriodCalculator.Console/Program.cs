@@ -64,6 +64,7 @@ AccountInput accountInput = new AccountInput
         new ExogenousAccountInput { Id = Guid.Parse("a10d246d-e518-497a-8629-9adb2f2bbae3"), Description = "Wachstum" }
     ],
     InvestmentAccounts = [],
+    LiabilityAccounts = []
 };
 
 
