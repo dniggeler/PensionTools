@@ -1,5 +1,5 @@
 ﻿using CashFlowCalculationEngine.Server.Domain;
-using CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
+using Domain.Models.AccountInputs;
 using Domain.Models.Cashflows.Accounts;
 
 namespace CashFlowCalculationEngine.Server.Application.Validators;

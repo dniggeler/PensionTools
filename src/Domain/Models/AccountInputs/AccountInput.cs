@@ -1,4 +1,4 @@
-﻿namespace CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
+﻿namespace Domain.Models.AccountInputs;
 
 public class AccountInput
 {

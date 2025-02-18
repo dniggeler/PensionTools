@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="HotChocolate.Types" Version="14.3.0" />
+    <PackageReference Include="HotChocolate.Types.Analyzers" Version="14.3.0" />
   </ItemGroup>
 
 </Project>

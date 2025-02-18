@@ -1,4 +1,4 @@
-﻿namespace CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
+﻿namespace Domain.Models.AccountInputs;
 
 /// <summary>
 /// Represents an investment account. it models the cash flow of an investment account.

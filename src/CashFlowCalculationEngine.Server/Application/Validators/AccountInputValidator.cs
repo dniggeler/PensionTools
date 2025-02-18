@@ -1,4 +1,4 @@
-﻿using CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
+﻿using Domain.Models.AccountInputs;
 using FluentValidation;
 using FluentValidation.Results;
 

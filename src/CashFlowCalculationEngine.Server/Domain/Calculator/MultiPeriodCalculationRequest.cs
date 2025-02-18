@@ -1,8 +1,8 @@
 ﻿using CashFlowCalculationEngine.Server.Domain.CashFlows;
-using CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
 using CashFlowCalculationEngine.Server.Domain.Graph.Actions;
 using CashFlowCalculationEngine.Server.Domain.Location;
 using CashFlowCalculationEngine.Server.Domain.Person;
+using Domain.Models.AccountInputs;
 
 namespace CashFlowCalculationEngine.Server.Domain.Calculator;
 

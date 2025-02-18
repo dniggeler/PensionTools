@@ -1,5 +1,6 @@
 ﻿using Calculator;
 using Microsoft.Extensions.DependencyInjection;
+using MultiPeriodCalculator.Console.Excel;
 using MultiPeriodGraphClient;
 using StrawberryShake;
 
@@ -40,6 +41,8 @@ CalculationPersonInput person = new()
     ReligiousGroupType = ReligiousGroupType.Other,
     PartnerReligiousGroupType = ReligiousGroupType.Other
 };
+
+var excelAccounts = ExcelReader.ReadAccountInput(@"C:\Users\dnigg\OneDrive\private\dev\PensionTools\mpcf.xlsx");
 
 AccountInput accountInput = new AccountInput
 {

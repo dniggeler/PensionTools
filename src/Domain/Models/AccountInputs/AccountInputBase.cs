@@ -1,4 +1,7 @@
-﻿namespace CashFlowCalculationEngine.Server.Domain.Graph.Accounts;
+﻿using HotChocolate;
+using HotChocolate.Types;
+
+namespace Domain.Models.AccountInputs;
 
 [InterfaceType]
 public abstract class AccountInputBase
