@@ -40,6 +40,15 @@
           {
             dateOfProcess: "2024-01-01"
             description: "Initialer Saldo"
+            amount: 80000
+            sourceAccountId: "f0000000-e518-497a-8629-000000000000"
+            targetAccountId: "c0000000-0000-0000-8629-9adb2f2bbae4"
+            taxType: WEALTH,
+            taxFlowType: IN_FLOW
+          }
+          {
+            dateOfProcess: "2024-01-01"
+            description: "Initialer Saldo"
             amount: 150000
             sourceAccountId: "f10d246d-e518-497a-8629-9adb2f2bbae3"
             targetAccountId: "f00d246d-e518-497b-8629-9adb2f2bbae1"

@@ -26,6 +26,10 @@ public class BalanceSheetGenerator : IBalanceSheetGenerator
             calculateTransactions.OccupationalPensionAccounts.SelectMany(a => a.Transactions ?? [])
                 .Sum(t => t?.Amount);
 
+        entry.TotalLiability =
+            calculateTransactions.LiabilityAccounts.SelectMany(a => a.Transactions ?? [])
+                .Sum(t => t?.Amount);
+
         return new BalanceSheet
         {
             Entry = entry
