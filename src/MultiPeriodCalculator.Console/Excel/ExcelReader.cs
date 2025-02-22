@@ -1,4 +1,6 @@
-﻿using Aspose.Cells;
+﻿using System.Security.Cryptography;
+using System.Text;
+using Aspose.Cells;
 using Domain.Enums;
 using Domain.Models.AccountInputs;
 
@@ -19,7 +21,7 @@ public class ExcelReader
         int rowCount = cells.MaxDataRow + 1;
         for (int i = 1; i < rowCount; i++)
         {
-            int counter = Convert.ToInt32(cells[i, 0].StringValue);
+            string counter = cells[i, 0].StringValue;
             string accountName = cells[i, 1].StringValue;
             string accountType = cells[i, 2].StringValue;
 
@@ -76,7 +78,7 @@ public class ExcelReader
         return accountInput;
     }
 
-    private static ExcelAccountDefinition? Create(int counter, string? accountName, string? accountTypeName)
+    private static ExcelAccountDefinition? Create(string counter, string? accountName, string? accountTypeName)
     {
         if (string.IsNullOrEmpty(accountTypeName))
         {
@@ -94,6 +96,16 @@ public class ExcelReader
             _ => throw new ArgumentException(nameof(accountTypeName))
         };
 
-        return new ExcelAccountDefinition(counter, accountName ?? "na", accountType);
+        return new ExcelAccountDefinition(StringToGuid(counter), accountName ?? "na", accountType);
+    }
+
+    public static Guid StringToGuid(string input)
+    {
+        using SHA256 sha256 = SHA256.Create();
+        byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+        byte[] truncatedHashBytes = new byte[16];
+        Array.Copy(hashBytes, truncatedHashBytes, 16);
+
+        return new Guid(truncatedHashBytes);
     }
 }

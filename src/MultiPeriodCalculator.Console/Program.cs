@@ -46,30 +46,20 @@ var excelAccounts = ExcelReader.ReadAccountInput(@"C:\Users\dnigg\OneDrive\priva
 
 AccountInput accountInput = new AccountInput
 {
-    ThirdPillarAccounts =
-    [
-        new ThirdPillarAccountInput { Id = Guid.Parse("f00d246d-e518-497a-8629-9adb2f2bbae0"), Description = "3a SL" },
-        new ThirdPillarAccountInput { Id = Guid.Parse("f00d246d-e518-497a-8629-9adb2f2bbae1"), Description = "3a Bank" }
-    ],
-    OccupationalPensionAccounts = [
-        new OccupationalPensionAccountInput { Id = Guid.Parse("f00d246d-e518-497b-8629-9adb2f2bbae1"), Description = "Meine PK" }
-    ],
-    WealthAccounts = [
-        new WealthAccountInput { Id = Guid.Parse("e00d246d-e518-497a-8629-9adb2f2bbae4"), Description = "Sonstiges Vermögen" },
-        new WealthAccountInput { Id = Guid.Parse("c0000000-0000-0000-8629-9adb2f2bbae4"), Description = "Kredit" }
-    ],
-    IncomeAccounts = [
-        new IncomeAccountInput { Id = Guid.Parse("f00d246d-e518-497a-8629-9adb2f2bbae2"), Description = "Lohnkonto" }
-    ],
-    ExogenousAccounts = [
-        new ExogenousAccountInput { Id = Guid.Parse("f0000000-e518-497a-8629-000000000000"), Description = "Kreditgeber" },
-        new ExogenousAccountInput { Id = Guid.Parse("f00d246d-e518-497a-8629-9adb2f2bbae3"), Description = "Arbeitgeber" },
-        new ExogenousAccountInput { Id = Guid.Parse("f10d246d-e518-497a-8629-9adb2f2bbae3"), Description = "Initialer Setup" },
-        new ExogenousAccountInput { Id = Guid.Parse("b10d246d-e518-497a-8629-9adb2f2bbae3"), Description = "Steueramt" },
-        new ExogenousAccountInput { Id = Guid.Parse("a10d246d-e518-497a-8629-9adb2f2bbae3"), Description = "Wachstum" }
-    ],
-    InvestmentAccounts = [],
-    LiabilityAccounts = []
+    ExogenousAccounts = excelAccounts.ExogenousAccounts
+        .Select(a => new ExogenousAccountInput { Id = a.Id, Description = a.Description }).ToList(),
+    ThirdPillarAccounts = excelAccounts.ThirdPillarAccounts
+        .Select(a => new ThirdPillarAccountInput { Id = a.Id, Description = a.Description }).ToList(),
+    OccupationalPensionAccounts = excelAccounts.OccupationalPensionAccounts
+        .Select(a => new OccupationalPensionAccountInput { Id = a.Id, Description = a.Description }).ToList(),
+    WealthAccounts = excelAccounts.WealthAccounts
+        .Select(a => new WealthAccountInput { Id = a.Id, Description = a.Description }).ToList(),
+    InvestmentAccounts = excelAccounts.InvestmentAccounts
+        .Select(a => new InvestmentAccountInput { Id = a.Id, Description = a.Description }).ToList(),
+    IncomeAccounts = excelAccounts.IncomeAccounts
+        .Select(a => new IncomeAccountInput { Id = a.Id, Description = a.Description }).ToList(),
+    LiabilityAccounts = excelAccounts.LiabilityAccounts
+        .Select(a => new LiabilityAccountInput { Id = a.Id, Description = a.Description }).ToList(),
 };
 
 
