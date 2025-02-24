@@ -36,14 +36,14 @@ public class ExcelReader
 
         accountInput.IncomeAccounts = definitionList
             .Where(x => x.AccountType == AccountType.Income)
-            .Select(x => new IncomeAccountInput { Id = Guid.NewGuid(), Description = x.Name, })
+            .Select(x => new IncomeAccountInput { Id = x.AccountId, Description = x.Name, })
             .ToArray();
 
         accountInput.WealthAccounts = definitionList
             .Where(x => x.AccountType == AccountType.Wealth)
             .Select(x => new WealthAccountInput
             {
-                Id = Guid.NewGuid(),
+                Id = x.AccountId,
                 Description = x.Name,
             })
             .ToArray();
@@ -52,7 +52,7 @@ public class ExcelReader
             .Where(x => x.AccountType == AccountType.Exogenous)
             .Select(x => new ExogenousAccountInput
             {
-                Id = Guid.NewGuid(),
+                Id = x.AccountId,
                 Description = x.Name,
             })
             .ToArray();
@@ -61,7 +61,7 @@ public class ExcelReader
             .Where(x => x.AccountType == AccountType.ThirdPillar)
             .Select(x => new ThirdPillarAccountInput
             {
-                Id = Guid.NewGuid(),
+                Id = x.AccountId,
                 Description = x.Name,
             })
             .ToArray();
@@ -70,7 +70,7 @@ public class ExcelReader
             .Where(x => x.AccountType == AccountType.OccupationalPension)
             .Select(x => new OccupationalPensionAccountInput
             {
-                Id = Guid.NewGuid(),
+                Id = x.AccountId,
                 Description = x.Name,
             })
             .ToArray();
@@ -101,11 +101,19 @@ public class ExcelReader
 
     public static Guid StringToGuid(string input)
     {
-        using SHA256 sha256 = SHA256.Create();
-        byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
-        byte[] truncatedHashBytes = new byte[16];
-        Array.Copy(hashBytes, truncatedHashBytes, 16);
+        // Convert the input string to a byte array
+        byte[] inputBytes = System.Text.Encoding.UTF8.GetBytes(input);
 
-        return new Guid(truncatedHashBytes);
+        // Create a byte array to hold the GUID components
+        byte[] guidBytes = new byte[16];
+
+        // Copy the input bytes into the GUID byte array
+        for (int i = 0; i < Math.Min(inputBytes.Length, guidBytes.Length); i++)
+        {
+            guidBytes[i] = inputBytes[i];
+        }
+
+        // Create the GUID from the byte array
+        return new Guid(guidBytes);
     }
 }
