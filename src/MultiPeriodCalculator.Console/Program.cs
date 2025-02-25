@@ -45,7 +45,7 @@ CalculationPersonInput person = new()
     PartnerReligiousGroupType = ReligiousGroupType.Other
 };
 
-IEnumerable<ExcelAccount> excelAccounts = ExcelReader.ReadAccountInput(excelWorkbookFilename).ToList();
+IEnumerable<ExcelAccount> excelAccounts = ExcelCashFlowReader.ReadAccounts(excelWorkbookFilename).ToList();
 
 AccountInput accountInput = new AccountInput
 {
@@ -98,7 +98,7 @@ AccountInput accountInput = new AccountInput
     LiabilityAccounts = [],
 };
 
-var excelFixAmountCashFlows = ExcelReader.ReadCashFlowInput(excelWorkbookFilename);
+var excelFixAmountCashFlows = ExcelCashFlowReader.ReadCashFlows(excelWorkbookFilename);
 
 CashFlowInput cashFlowInput = new CashFlowInput
 {

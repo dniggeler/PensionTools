@@ -1,0 +1,62 @@
+﻿[
+  {
+    "AccountId": "00000031-0000-0000-0000-000000000000",
+    "Name": "Arbeitgeber",
+    "AccountType": "Exogenous"
+  },
+  {
+    "AccountId": "00000032-0000-0000-0000-000000000000",
+    "Name": "Vermögen",
+    "AccountType": "Wealth"
+  },
+  {
+    "AccountId": "00000033-0000-0000-0000-000000000000",
+    "Name": "SL",
+    "AccountType": "ThirdPillar"
+  },
+  {
+    "AccountId": "00000034-0000-0000-0000-000000000000",
+    "Name": "UBS",
+    "AccountType": "ThirdPillar"
+  },
+  {
+    "AccountId": "00000035-0000-0000-0000-000000000000",
+    "Name": "Meine PK",
+    "AccountType": "OccupationalPension"
+  },
+  {
+    "AccountId": "00000036-0000-0000-0000-000000000000",
+    "Name": "Steueramt",
+    "AccountType": "Exogenous"
+  },
+  {
+    "AccountId": "00000037-0000-0000-0000-000000000000",
+    "Name": "Kredit",
+    "AccountType": "Wealth"
+  },
+  {
+    "AccountId": "00000038-0000-0000-0000-000000000000",
+    "Name": "Kreditgeber",
+    "AccountType": "Exogenous"
+  },
+  {
+    "AccountId": "00000039-0000-0000-0000-000000000000",
+    "Name": "Wachstum",
+    "AccountType": "Exogenous"
+  },
+  {
+    "AccountId": "00003031-0000-0000-0000-000000000000",
+    "Name": "Setup",
+    "AccountType": "Exogenous"
+  },
+  {
+    "AccountId": "00003131-0000-0000-0000-000000000000",
+    "Name": "Lohnkonto",
+    "AccountType": "Income"
+  },
+  {
+    "AccountId": "00003231-0000-0000-0000-000000000000",
+    "Name": "Ausgaben",
+    "AccountType": "Exogenous"
+  }
+]

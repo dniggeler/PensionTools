@@ -7,6 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ExcelReader\Files\einkauf.xlsx" />
+    <None Remove="ExcelReader\Files\empty.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ExcelReader\Files\einkauf.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExcelReader\Files\empty.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
     <PackageReference Include="Snapshooter.Xunit" Version="1.0.1" />

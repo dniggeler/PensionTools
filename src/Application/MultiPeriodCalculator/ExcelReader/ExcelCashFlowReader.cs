@@ -1,19 +1,13 @@
 ﻿using Aspose.Cells;
 using Domain.Enums;
-using AccountInput = Domain.Models.AccountInputs.AccountInput;
-using ExogenousAccountInput = Domain.Models.AccountInputs.ExogenousAccountInput;
-using IncomeAccountInput = Domain.Models.AccountInputs.IncomeAccountInput;
-using OccupationalPensionAccountInput = Domain.Models.AccountInputs.OccupationalPensionAccountInput;
 using TaxType = Domain.Enums.TaxType;
 using FlowType = Domain.Enums.FlowType;
-using ThirdPillarAccountInput = Domain.Models.AccountInputs.ThirdPillarAccountInput;
-using WealthAccountInput = Domain.Models.AccountInputs.WealthAccountInput;
 
 namespace Application.MultiPeriodCalculator.ExcelReader;
 
-public class ExcelReader
+public class ExcelCashFlowReader
 {
-    public static IEnumerable<ExcelAccount> ReadAccountInput(string workbookName)
+    public static IEnumerable<ExcelAccount> ReadAccounts(string workbookName)
     {
         Workbook workbook = new Workbook(workbookName);
         Worksheet worksheet = workbook.Worksheets[3];
@@ -40,7 +34,7 @@ public class ExcelReader
         return definitionList;
     }
 
-    public static IEnumerable<ExcelFixAmountCashFlow> ReadCashFlowInput(string workbookName)
+    public static IEnumerable<ExcelFixAmountCashFlow> ReadCashFlows(string workbookName)
     {
 
         Workbook workbook = new Workbook(workbookName);
@@ -52,10 +46,10 @@ public class ExcelReader
         int rowCount = cells.MaxDataRow + 1;
         for (int i = 1; i < rowCount; i++)
         {
-            string? processDate = cells[i, 0].StringValue;
+            string processDate = cells[i, 0].StringValue;
             string description = cells[i, 1].StringValue;
-            string? debitAccountNumber = cells[i, 2].StringValue;
-            string? creditAccountNumber = cells[i, 3].StringValue;
+            string debitAccountNumber = cells[i, 2].StringValue;
+            string creditAccountNumber = cells[i, 3].StringValue;
             string amount = cells[i, 4].StringValue;
             string taxType = cells[i, 5].StringValue;
             string flowType = cells[i, 6].StringValue;
@@ -72,7 +66,30 @@ public class ExcelReader
         return cashFlowList;
     }
 
-    private static ExcelAccount? Create(string counter, string? accountName, string? accountTypeName)
+    public static Guid StringToGuid(string input)
+    {
+        // Convert the input string to a byte array
+        byte[] inputBytes = System.Text.Encoding.UTF8.GetBytes(input);
+
+        // Create a byte array to hold the GUID components
+        byte[] guidBytes = new byte[16];
+
+        // Copy the input bytes into the GUID byte array
+        for (int i = 0; i < Math.Min(inputBytes.Length, guidBytes.Length); i++)
+        {
+            guidBytes[i] = inputBytes[i];
+        }
+
+        // Create the GUID from the byte array
+        return new Guid(guidBytes);
+    }
+
+    public static Guid IntToGuid(int input)
+    {
+        return StringToGuid(input.ToString());
+    }
+
+    private static ExcelAccount Create(string counter, string accountName, string accountTypeName)
     {
         if (string.IsNullOrEmpty(accountTypeName))
         {
@@ -93,11 +110,11 @@ public class ExcelReader
         return new ExcelAccount(StringToGuid(counter), accountName ?? "na", accountType);
     }
 
-    private static ExcelFixAmountCashFlow? Create(
-        string? processDateString,
-        string? debitAccountNumberString,
-        string? creditAccountNumberString,
-        string? description,
+    private static ExcelFixAmountCashFlow Create(
+        string processDateString,
+        string debitAccountNumberString,
+        string creditAccountNumberString,
+        string description,
         string amountString,
         string taxTypeString,
         string taxFlowTypeString)
@@ -152,28 +169,5 @@ public class ExcelReader
             amount,
             taxType,
             flowType);
-    }
-
-    public static Guid StringToGuid(string input)
-    {
-        // Convert the input string to a byte array
-        byte[] inputBytes = System.Text.Encoding.UTF8.GetBytes(input);
-
-        // Create a byte array to hold the GUID components
-        byte[] guidBytes = new byte[16];
-
-        // Copy the input bytes into the GUID byte array
-        for (int i = 0; i < Math.Min(inputBytes.Length, guidBytes.Length); i++)
-        {
-            guidBytes[i] = inputBytes[i];
-        }
-
-        // Create the GUID from the byte array
-        return new Guid(guidBytes);
-    }
-
-    public static Guid IntToGuid(int input)
-    {
-        return StringToGuid(input.ToString());
     }
 }
