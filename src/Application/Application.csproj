@@ -6,6 +6,7 @@
   </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Aspose.Cells" Version="25.2.0" />
         <PackageReference Include="LanguageExt.Core" Version="4.4.9" />
         <PackageReference Include="FluentValidation" Version="11.11.0" />
         <PackageReference Include="AutoMapper" Version="13.0.1" />

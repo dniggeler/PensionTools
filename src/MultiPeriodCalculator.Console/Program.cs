@@ -1,8 +1,9 @@
-﻿using Calculator;
+﻿using Application.MultiPeriodCalculator.ExcelReader;
+using Calculator;
 using Microsoft.Extensions.DependencyInjection;
-using MultiPeriodCalculator.Console.Excel;
 using MultiPeriodGraphClient;
 using StrawberryShake;
+using AccountType = Domain.Enums.AccountType;
 
 IServiceCollection serviceCollection = new ServiceCollection();
 
@@ -44,27 +45,60 @@ CalculationPersonInput person = new()
     PartnerReligiousGroupType = ReligiousGroupType.Other
 };
 
-var excelAccounts = ExcelReader.ReadAccountInput(excelWorkbookFilename);
+IEnumerable<ExcelAccount> excelAccounts = ExcelReader.ReadAccountInput(excelWorkbookFilename).ToList();
 
 AccountInput accountInput = new AccountInput
 {
-    ExogenousAccounts = excelAccounts.ExogenousAccounts
-        .Select(a => new ExogenousAccountInput { Id = a.Id, Description = a.Description }).ToList(),
-    ThirdPillarAccounts = excelAccounts.ThirdPillarAccounts
-        .Select(a => new ThirdPillarAccountInput { Id = a.Id, Description = a.Description }).ToList(),
-    OccupationalPensionAccounts = excelAccounts.OccupationalPensionAccounts
-        .Select(a => new OccupationalPensionAccountInput { Id = a.Id, Description = a.Description }).ToList(),
-    WealthAccounts = excelAccounts.WealthAccounts
-        .Select(a => new WealthAccountInput { Id = a.Id, Description = a.Description }).ToList(),
-    InvestmentAccounts = excelAccounts.InvestmentAccounts
-        .Select(a => new InvestmentAccountInput { Id = a.Id, Description = a.Description }).ToList(),
-    IncomeAccounts = excelAccounts.IncomeAccounts
-        .Select(a => new IncomeAccountInput { Id = a.Id, Description = a.Description }).ToList(),
-    LiabilityAccounts = excelAccounts.LiabilityAccounts
-        .Select(a => new LiabilityAccountInput { Id = a.Id, Description = a.Description }).ToList(),
+    ExogenousAccounts = excelAccounts
+        .Where(x => x.AccountType == AccountType.Exogenous)
+        .Select(x => new ExogenousAccountInput
+        {
+            Id = x.AccountId,
+            Description = x.Name,
+        })
+        .ToArray(),
+
+    ThirdPillarAccounts = excelAccounts
+        .Where(x => x.AccountType == AccountType.ThirdPillar)
+        .Select(x => new ThirdPillarAccountInput
+        {
+            Id = x.AccountId,
+            Description = x.Name,
+        })
+        .ToArray(),
+
+    OccupationalPensionAccounts = excelAccounts
+        .Where(x => x.AccountType == AccountType.OccupationalPension)
+        .Select(x => new OccupationalPensionAccountInput
+        {
+            Id = x.AccountId,
+            Description = x.Name,
+        })
+        .ToArray(),
+
+    WealthAccounts = excelAccounts
+        .Where(x => x.AccountType == AccountType.Wealth)
+        .Select(x => new WealthAccountInput
+        {
+            Id = x.AccountId,
+            Description = x.Name,
+        })
+        .ToArray(),
+
+    InvestmentAccounts = excelAccounts
+        .Where(x => x.AccountType == AccountType.Investment)
+        .Select(x => new InvestmentAccountInput { Id = x.AccountId, Description = x.Name, })
+        .ToArray(),
+
+    IncomeAccounts = excelAccounts
+        .Where(x => x.AccountType == AccountType.Income)
+        .Select(x => new IncomeAccountInput { Id = x.AccountId, Description = x.Name, })
+        .ToArray(),
+
+    LiabilityAccounts = [],
 };
 
-IEnumerable<ExcelFixAmountCashFlow> excelFixAmountCashFlows = ExcelReader.ReadCashFlowInput(excelWorkbookFilename);
+var excelFixAmountCashFlows = ExcelReader.ReadCashFlowInput(excelWorkbookFilename);
 
 CashFlowInput cashFlowInput = new CashFlowInput
 {

@@ -14,11 +14,15 @@ public class MultiPeriodCalculationRequestValidator : AbstractValidator<MultiPer
             .SetValidator(new CashFlowInputValidator());
 
         RuleFor(x => x)
-            .Must(Exist)
-            .WithMessage("One or multiple cash-flows reference a non-existing account.");
+            .Must(ExistCashFlowAccounts)
+            .WithMessage("One or multiple cash-flows refer to non-existing accounts.");
+
+        RuleFor(x => x)
+            .Must(ExistTaxActionAccounts)
+            .WithMessage("One or multiple tax actions refer to non-existing accounts.");
     }
 
-    private bool Exist(MultiPeriodCalculationRequest request)
+    private bool ExistCashFlowAccounts(MultiPeriodCalculationRequest request)
     {
         HashSet<Guid> accountIds = [..ValidatorHelpers.AccountIdList(request.AccountHolder)];
 
@@ -29,14 +33,20 @@ public class MultiPeriodCalculationRequestValidator : AbstractValidator<MultiPer
                     .SelectMany(cf => new[] { cf.SourceAccountId, cf.TargetAccountId }))
                 .ToHashSet();
 
+        // check if all cash-flow account ids are in the account ids
+        return cashFlowAccountIds.All(accountIds.Contains);
+    }
+
+    private bool ExistTaxActionAccounts(MultiPeriodCalculationRequest request)
+    {
+        HashSet<Guid> accountIds = [.. ValidatorHelpers.AccountIdList(request.AccountHolder)];
+
         HashSet<Guid> taxActionAccountIds = [
             request.TaxationActionHolder.TaxPaymentSourceAccountId,
             request.TaxationActionHolder.TaxPaymentTargetAccountId
         ];
 
         // check if all cash-flow account ids are in the account ids
-        return cashFlowAccountIds
-            .Concat(taxActionAccountIds)
-            .All(accountIds.Contains);
+        return taxActionAccountIds.All(accountIds.Contains);
     }
 }

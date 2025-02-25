@@ -9,14 +9,12 @@ using FlowType = Domain.Enums.FlowType;
 using ThirdPillarAccountInput = Domain.Models.AccountInputs.ThirdPillarAccountInput;
 using WealthAccountInput = Domain.Models.AccountInputs.WealthAccountInput;
 
-namespace MultiPeriodCalculator.Console.Excel;
+namespace Application.MultiPeriodCalculator.ExcelReader;
 
 public class ExcelReader
 {
-    public static AccountInput ReadAccountInput(string workbookName)
+    public static IEnumerable<ExcelAccount> ReadAccountInput(string workbookName)
     {
-        var accountInput = new AccountInput();
-
         Workbook workbook = new Workbook(workbookName);
         Worksheet worksheet = workbook.Worksheets[3];
         Cells cells = worksheet.Cells;
@@ -39,48 +37,7 @@ public class ExcelReader
             definitionList.Add(excelAccountDefinition);
         }
 
-        accountInput.IncomeAccounts = definitionList
-            .Where(x => x.AccountType == AccountType.Income)
-            .Select(x => new IncomeAccountInput { Id = x.AccountId, Description = x.Name, })
-            .ToArray();
-
-        accountInput.WealthAccounts = definitionList
-            .Where(x => x.AccountType == AccountType.Wealth)
-            .Select(x => new WealthAccountInput
-            {
-                Id = x.AccountId,
-                Description = x.Name,
-            })
-            .ToArray();
-
-        accountInput.ExogenousAccounts = definitionList
-            .Where(x => x.AccountType == AccountType.Exogenous)
-            .Select(x => new ExogenousAccountInput
-            {
-                Id = x.AccountId,
-                Description = x.Name,
-            })
-            .ToArray();
-
-        accountInput.ThirdPillarAccounts = definitionList
-            .Where(x => x.AccountType == AccountType.ThirdPillar)
-            .Select(x => new ThirdPillarAccountInput
-            {
-                Id = x.AccountId,
-                Description = x.Name,
-            })
-            .ToArray();
-
-        accountInput.OccupationalPensionAccounts = definitionList
-            .Where(x => x.AccountType == AccountType.OccupationalPension)
-            .Select(x => new OccupationalPensionAccountInput
-            {
-                Id = x.AccountId,
-                Description = x.Name,
-            })
-            .ToArray();
-
-        return accountInput;
+        return definitionList;
     }
 
     public static IEnumerable<ExcelFixAmountCashFlow> ReadCashFlowInput(string workbookName)
