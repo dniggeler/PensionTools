@@ -29,7 +29,14 @@ public class MultiPeriodCalculationRequestValidator : AbstractValidator<MultiPer
                     .SelectMany(cf => new[] { cf.SourceAccountId, cf.TargetAccountId }))
                 .ToHashSet();
 
+        HashSet<Guid> taxActionAccountIds = [
+            request.TaxationActionHolder.TaxPaymentSourceAccountId,
+            request.TaxationActionHolder.TaxPaymentTargetAccountId
+        ];
+
         // check if all cash-flow account ids are in the account ids
-        return cashFlowAccountIds.All(accountIds.Contains);
+        return cashFlowAccountIds
+            .Concat(taxActionAccountIds)
+            .All(accountIds.Contains);
     }
 }

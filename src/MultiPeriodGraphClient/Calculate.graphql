@@ -3,7 +3,8 @@
     $calculationParameter: CalculationParametersInput!,
     $municipality: MunicipalityInput!,
     $person: CalculationPersonInput!,
-    $accountHolder: AccountInput!) {
+    $accountHolder: AccountInput!
+    $cashFlowHolder: CashFlowInput!) {
 
   calculate(request: {
         calculationId: $calculationId
@@ -16,93 +17,7 @@
 
         accountHolder: $accountHolder
     
-        cashFlowHolder: {
-            fixedAmountCashFlows: [
-            
-            {
-            dateOfProcess: "2024-01-01"
-            description: "Initialer Saldo"
-            amount: 200000
-            sourceAccountId: "f10d246d-e518-497a-8629-9adb2f2bbae3"
-            targetAccountId: "e00d246d-e518-497a-8629-9adb2f2bbae4"
-            taxType: WEALTH,
-            taxFlowType: IN_FLOW
-          }
-          {
-            dateOfProcess: "2024-01-01"
-            description: "Initialer Saldo"
-            amount: 50000
-            sourceAccountId: "f10d246d-e518-497a-8629-9adb2f2bbae3"
-            targetAccountId: "f00d246d-e518-497a-8629-9adb2f2bbae1"
-            taxType: NONE,
-            taxFlowType: UNDEFINED
-          }
-          {
-            dateOfProcess: "2024-01-01"
-            description: "Initialer Saldo"
-            amount: 80000
-            sourceAccountId: "f0000000-e518-497a-8629-000000000000"
-            targetAccountId: "c0000000-0000-0000-8629-9adb2f2bbae4"
-            taxType: WEALTH,
-            taxFlowType: IN_FLOW
-          }
-          {
-            dateOfProcess: "2024-01-01"
-            description: "Initialer Saldo"
-            amount: 150000
-            sourceAccountId: "f10d246d-e518-497a-8629-9adb2f2bbae3"
-            targetAccountId: "f00d246d-e518-497b-8629-9adb2f2bbae1"
-            taxType: NONE,
-            taxFlowType: UNDEFINED
-          }
-          {
-            dateOfProcess: "2024-01-01"
-            description: "Initialer Saldo"
-            amount: 20000
-            sourceAccountId: "f10d246d-e518-497a-8629-9adb2f2bbae3"
-            targetAccountId: "f00d246d-e518-497a-8629-9adb2f2bbae0"
-            taxType: NONE,
-            taxFlowType: UNDEFINED
-          }
-          {
-            dateOfProcess: "2024-01-01"
-            description: "Lohnzahlung 1"
-            amount: 50000
-            sourceAccountId: "f00d246d-e518-497a-8629-9adb2f2bbae3"
-            targetAccountId: "f00d246d-e518-497a-8629-9adb2f2bbae2"
-            taxType: INCOME,
-            taxFlowType: IN_FLOW
-         }
-         {
-            dateOfProcess: "2024-07-01"
-            description: "Lohnzahlung 2"
-            amount: 50000
-            sourceAccountId: "f00d246d-e518-497a-8629-9adb2f2bbae3"
-            targetAccountId: "f00d246d-e518-497a-8629-9adb2f2bbae2"
-            taxType: INCOME,
-            taxFlowType: IN_FLOW
-         }
-         {
-            dateOfProcess: "2024-07-01"
-            description: "Einkauf"
-            amount: 5000
-            sourceAccountId: "f00d246d-e518-497a-8629-9adb2f2bbae2"
-            targetAccountId: "f00d246d-e518-497a-8629-9adb2f2bbae0"
-            taxType: INCOME,
-            taxFlowType: OUT_FLOW
-         }
-            ]
-            transferRatioCashFlows: [
-            {
-                dateOfProcess: "2026-12-31"
-                transferFactor: 0.5
-                sourceAccountId: "f00d246d-e518-497a-8629-9adb2f2bbae1"
-                targetAccountId: "e00d246d-e518-497a-8629-9adb2f2bbae4"
-                taxType: CAPITAL_BENEFITS,
-                taxFlowType: IN_FLOW
-             }]
-            balanceGrowthCashFlows: []
-        }
+        cashFlowHolder: $cashFlowHolder
 
         taxationActionHolder:  {
        

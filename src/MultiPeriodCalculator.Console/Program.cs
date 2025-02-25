@@ -17,6 +17,8 @@ if(graphClient == null)
     throw new Exception("GraphClient not found");
 }
 
+var excelWorkbookFilename = @"C:\Users\dnigg\OneDrive\private\dev\PensionTools\mpcf.xlsx";
+
 Guid calculationId = Guid.NewGuid();
 
 CalculationParametersInput calculationParameters = new()
@@ -42,7 +44,7 @@ CalculationPersonInput person = new()
     PartnerReligiousGroupType = ReligiousGroupType.Other
 };
 
-var excelAccounts = ExcelReader.ReadAccountInput(@"C:\Users\dnigg\OneDrive\private\dev\PensionTools\mpcf.xlsx");
+var excelAccounts = ExcelReader.ReadAccountInput(excelWorkbookFilename);
 
 AccountInput accountInput = new AccountInput
 {
@@ -62,13 +64,33 @@ AccountInput accountInput = new AccountInput
         .Select(a => new LiabilityAccountInput { Id = a.Id, Description = a.Description }).ToList(),
 };
 
+IEnumerable<ExcelFixAmountCashFlow> excelFixAmountCashFlows = ExcelReader.ReadCashFlowInput(excelWorkbookFilename);
+
+CashFlowInput cashFlowInput = new CashFlowInput
+{
+    FixedAmountCashFlows = excelFixAmountCashFlows
+        .Select(a => new FixedAmountCashFlowInput
+        {
+            SourceAccountId = a.DebitAccountId,
+            TargetAccountId = a.CreditAccountId,
+            DateOfProcess = a.ProcessDate.ToDateTime(TimeOnly.MinValue),
+            Description = a.Description,
+            Amount = a.Amount,
+            TaxType = (TaxType)(int)a.TaxType,
+            TaxFlowType = (FlowType)(int)a.FlowType
+        }).ToList(),
+    BalanceGrowthCashFlows = [],
+    TransferRatioCashFlows = [],
+};
+
 
 IOperationResult<ICalculateResult> response = await graphClient.Calculate.ExecuteAsync(
     calculationId,
     calculationParameters,
     municipality,
     person,
-    accountInput);
+    accountInput,
+    cashFlowInput);
 
 response.EnsureNoErrors();
 
