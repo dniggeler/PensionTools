@@ -18,10 +18,10 @@
     [Parameter]
     public PersonViewModel Person { get; set; }
 
-    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [CascadingParameter] MudDialog MudDialog { get; set; }
 
-    private void HandleValidSubmit()
+    private async Task HandleValidSubmit()
     {
-        MudDialog.Close(DialogResult.Ok(Person));
+        await MudDialog.CloseAsync(DialogResult.Ok(Person));
     }
 }

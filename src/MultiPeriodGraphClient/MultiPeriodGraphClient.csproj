@@ -8,6 +8,6 @@
 
 
     <ItemGroup>
-        <PackageReference Include="StrawberryShake.Server" Version="14.3.0" />
+        <PackageReference Include="StrawberryShake.Server" Version="15.0.3" />
     </ItemGroup>
 </Project>
