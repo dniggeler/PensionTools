@@ -35,14 +35,16 @@ MunicipalityInput municipality = new()
     Canton = Canton.Zh,
 };
 
+var excelPerson = ExcelCashFlowReader.ReadPersons(excelWorkbookFilename).First();
+
 CalculationPersonInput person = new()
 {
     Id = Guid.NewGuid(),
-    DateOfBirth = new DateTime(1980, 1, 1),
-    Gender = Gender.Male,
-    CivilStatus = CivilStatus.Married,
-    ReligiousGroupType = ReligiousGroupType.Other,
-    PartnerReligiousGroupType = ReligiousGroupType.Other
+    DateOfBirth = excelPerson.Birthdate.ToDateTime(TimeOnly.MinValue),
+    Gender = (Gender)(int)excelPerson.Gender,
+    CivilStatus = (CivilStatus)(int)excelPerson.CivilStatus,
+    ReligiousGroupType = (ReligiousGroupType)(int)excelPerson.ReligiousGroupType,
+    PartnerReligiousGroupType = excelPerson.PartnerReligiousGroupType.HasValue ? (ReligiousGroupType)(int)excelPerson.PartnerReligiousGroupType : null,
 };
 
 IEnumerable<ExcelAccount> excelAccounts = ExcelCashFlowReader.ReadAccounts(excelWorkbookFilename).ToList();
