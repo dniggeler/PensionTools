@@ -18,7 +18,7 @@ if(graphClient == null)
     throw new Exception("GraphClient not found");
 }
 
-var excelWorkbookFilename = @"C:\Users\dnigg\OneDrive\private\dev\PensionTools\mpcf.xlsx";
+var excelWorkbookFilename = @"Files\mpcf.xlsx";
 
 Guid calculationId = Guid.NewGuid();
 

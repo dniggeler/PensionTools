@@ -8,6 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Files\mpcf.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Files\mpcf.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Aspose.Cells" Version="25.2.0" />
   </ItemGroup>
 
