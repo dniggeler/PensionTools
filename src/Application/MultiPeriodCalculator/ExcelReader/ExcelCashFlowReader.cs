@@ -1,5 +1,6 @@
 ﻿using Aspose.Cells;
 using Domain.Enums;
+using Domain.Models.ActionInputs;
 using TaxType = Domain.Enums.TaxType;
 using FlowType = Domain.Enums.FlowType;
 
@@ -119,6 +120,17 @@ public class ExcelCashFlowReader
         }
 
         return cashFlowList;
+    }
+
+    public static IEnumerable<ExcelTaxAction> ReadTaxActions(string workbookName)
+    {
+        Workbook workbook = new Workbook(workbookName);
+        Worksheet worksheet = workbook.Worksheets[4];
+        Cells cells = worksheet.Cells;
+
+        List<ExcelTaxAction> actions = [];
+
+        return actions;
     }
 
     public static Guid StringToGuid(string input)

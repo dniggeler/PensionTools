@@ -121,7 +121,6 @@ CashFlowInput cashFlowInput = new CashFlowInput
     TransferRatioCashFlows = [],
 };
 
-
 IOperationResult<ICalculateResult> response = await graphClient.Calculate.ExecuteAsync(
     calculationId,
     calculationParameters,
