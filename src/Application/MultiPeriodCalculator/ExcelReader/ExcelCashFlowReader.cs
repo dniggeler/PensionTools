@@ -7,6 +7,36 @@ namespace Application.MultiPeriodCalculator.ExcelReader;
 
 public class ExcelCashFlowReader
 {
+    public static IEnumerable<ExcelPerson> ReadPersons(string workbookName)
+    {
+        Workbook workbook = new Workbook(workbookName);
+        Worksheet worksheet = workbook.Worksheets[0];
+        Cells cells = worksheet.Cells;
+        List<ExcelPerson> personList = [];
+
+        int rowCount = cells.MaxDataRow + 1;
+        for (int i = 1; i < rowCount; i++)
+        {
+            int number = cells[i, 0].IntValue;
+            string name = cells[i, 1].StringValue;
+            string birthdate = cells[i, 2].StringValue;
+            string civilStatus = cells[i, 3].StringValue;
+            string gender = cells[i, 4].StringValue;
+            string religiousGroupType = cells[i, 5].StringValue;
+            string partnerReligiousGroupType = cells[i, 6].StringValue;
+
+            var excelPerson = Create(number, name, birthdate, civilStatus, gender, religiousGroupType, partnerReligiousGroupType);
+            if (excelPerson is null)
+            {
+                continue;
+            }
+
+            personList.Add(excelPerson);
+        }
+
+        return personList;
+    }
+
     public static IEnumerable<ExcelAccount> ReadAccounts(string workbookName)
     {
         Workbook workbook = new Workbook(workbookName);
@@ -89,6 +119,71 @@ public class ExcelCashFlowReader
         return StringToGuid(input.ToString());
     }
 
+    private static ExcelPerson Create(
+        int? counter,
+        string name,
+        string birthdateString,
+        string civilStatusString,
+        string genderString,
+        string religiousGroupTypeString,
+        string partnerReligiousGroupTypeString)
+    {
+        if (!counter.HasValue)
+        {
+            return null;
+        }
+
+        string personName = name;
+
+        if (string.IsNullOrEmpty(name))
+        {
+            personName = $"Test-{counter}";
+        }
+
+        if (!DateOnly.TryParse(birthdateString, out DateOnly birthdate))
+        {
+            birthdate = new DateOnly(DateTime.Today.Year - 50, 7, 1);
+        }
+
+        if (string.IsNullOrEmpty(birthdateString))
+        {
+            personName = $"Test-{counter}";
+        }
+
+        CivilStatus civilStatus = civilStatusString switch
+        {
+            "Ledig" => CivilStatus.Single,
+            "Verheiratet" => CivilStatus.Married,
+
+            _ => throw new ArgumentException(nameof(CivilStatus))
+        };
+
+        Gender gender = genderString switch
+        {
+            "M" => Gender.Male,
+            "W" => Gender.Female,
+            _ => Gender.Undefined
+        };
+
+        ReligiousGroupType religiousGroupType = religiousGroupTypeString switch
+        {
+            "Katholisch" => ReligiousGroupType.Catholic,
+            "Reformiert" => ReligiousGroupType.Protestant,
+            "Andere" or "Keine" => ReligiousGroupType.Other,
+            _ => throw new ArgumentException(nameof(religiousGroupType))
+        };
+
+        ReligiousGroupType partnerReligiousGroupType = partnerReligiousGroupTypeString switch
+        {
+            "Katholisch" => ReligiousGroupType.Catholic,
+            "Reformiert" => ReligiousGroupType.Protestant,
+            "Andere" or "Keine" => ReligiousGroupType.Other,
+            _ => ReligiousGroupType.Other
+        };
+
+        return new ExcelPerson(counter, personName, birthdate, civilStatus, gender, religiousGroupType, partnerReligiousGroupType);
+    }
+
     private static ExcelAccount Create(string counter, string accountName, string accountTypeName)
     {
         if (string.IsNullOrEmpty(accountTypeName))
@@ -156,8 +251,8 @@ public class ExcelCashFlowReader
 
         FlowType flowType = taxFlowTypeString switch
         {
-            "InFlow" => FlowType.InFlow,
-            "OutFlow" => FlowType.OutFlow,
+            "IN" => FlowType.InFlow,
+            "OUT" => FlowType.OutFlow,
             _ => FlowType.Undefined
         };
 
