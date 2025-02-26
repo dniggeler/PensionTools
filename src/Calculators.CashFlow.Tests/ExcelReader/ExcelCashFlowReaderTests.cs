@@ -12,13 +12,13 @@ public class ExcelCashFlowReaderTests
     private const string RelativeTemplateFolderPath = "ExcelReader/Files";
 
     [Fact]
-    public void ReadAccounts_ValidWorkbook_ReturnsEmptyList()
+    public void ReadMunicipalities_ValidWorkbook_ReturnsEmptyList()
     {
         // Arrange
         string workbookName = Path.Combine(RelativeTemplateFolderPath, "empty.xlsx");
 
         // Act
-        IEnumerable<ExcelAccount> result = ExcelCashFlowReader.ReadAccounts(workbookName);
+        var result = ExcelCashFlowReader.ReadTaxMunicipalities(workbookName);
 
         // Assert
         Assert.NotNull(result);
@@ -26,7 +26,35 @@ public class ExcelCashFlowReaderTests
     }
 
     [Fact]
-    public void ReadAccountInput_ValidWorkbook_ReturnsEmptyList()
+    public void ReadMunicipalities_ValidWorkbook_ReturnsExpectedList()
+    {
+        // Arrange
+        string workbookName = Path.Combine(RelativeTemplateFolderPath, "einkauf.xlsx");
+
+        // Act
+        var result = ExcelCashFlowReader.ReadTaxMunicipalities(workbookName);
+
+        // Assert
+        Assert.NotNull(result);
+        Snapshot.Match(result);
+    }
+
+    [Fact]
+    public void ReadAccounts_ValidWorkbook_ReturnsEmptyList()
+    {
+        // Arrange
+        string workbookName = Path.Combine(RelativeTemplateFolderPath, "empty.xlsx");
+
+        // Act
+        var result = ExcelCashFlowReader.ReadAccounts(workbookName);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public void ReadFixAmountCashFlows_ValidWorkbook_ReturnsEmptyList()
     {
         // Arrange
         string workbookName = Path.Combine(RelativeTemplateFolderPath, "empty.xlsx");

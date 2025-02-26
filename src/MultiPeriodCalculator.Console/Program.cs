@@ -28,11 +28,13 @@ CalculationParametersInput calculationParameters = new()
     EndDate = new DateTime(2030, 1, 1),
 };
 
+var excelMunicipality = ExcelCashFlowReader.ReadTaxMunicipalities(excelWorkbookFilename).First();
+
 MunicipalityInput municipality = new()
 {
-    MunicipalityId = 134,
-    TaxLocationId = 330400000,
-    Canton = Canton.Zh,
+    MunicipalityId = excelMunicipality.MunicipalityId,
+    TaxLocationId = excelMunicipality.TaxLocationId,
+    Canton = (Canton)(int)excelMunicipality.Canton,
 };
 
 var excelPerson = ExcelCashFlowReader.ReadPersons(excelWorkbookFilename).First();

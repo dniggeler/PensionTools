@@ -7,6 +7,31 @@ namespace Application.MultiPeriodCalculator.ExcelReader;
 
 public class ExcelCashFlowReader
 {
+    public static IEnumerable<ExcelTaxMunicipality> ReadTaxMunicipalities(string workbookName)
+    {
+        Workbook workbook = new Workbook(workbookName);
+        Worksheet worksheet = workbook.Worksheets[1];
+        Cells cells = worksheet.Cells;
+        
+        List<ExcelTaxMunicipality> taxMunicipalityList = [];
+
+        int rowCount = cells.MaxDataRow + 1;
+        for (int i = 1; i < rowCount; i++)
+        {
+            int municipalityId = cells[i, 0].IntValue;
+            int taxLocationId = cells[i, 1].IntValue;
+            string canton = cells[i, 2].StringValue;
+
+            var excelTaxMunicipality = Create(municipalityId, taxLocationId, canton);
+            if (excelTaxMunicipality is null)
+            {
+                continue;
+            }
+            taxMunicipalityList.Add(excelTaxMunicipality);
+        }
+        return taxMunicipalityList;
+    }
+
     public static IEnumerable<ExcelPerson> ReadPersons(string workbookName)
     {
         Workbook workbook = new Workbook(workbookName);
@@ -182,6 +207,18 @@ public class ExcelCashFlowReader
         };
 
         return new ExcelPerson(counter, personName, birthdate, civilStatus, gender, religiousGroupType, partnerReligiousGroupType);
+    }
+
+    private static ExcelTaxMunicipality Create(int municipalityId, int taxLocationId, string cantonString)
+    {
+        if (string.IsNullOrEmpty(cantonString))
+        {
+            return null;
+        }
+
+        Canton canton = Enum.Parse<Canton>(cantonString);
+
+        return new ExcelTaxMunicipality(municipalityId, taxLocationId, canton);
     }
 
     private static ExcelAccount Create(string counter, string accountName, string accountTypeName)
