@@ -1,6 +1,5 @@
 ﻿using Aspose.Cells;
 using Domain.Enums;
-using Domain.Models.ActionInputs;
 using TaxType = Domain.Enums.TaxType;
 using FlowType = Domain.Enums.FlowType;
 
@@ -125,10 +124,31 @@ public class ExcelCashFlowReader
     public static IEnumerable<ExcelTaxAction> ReadTaxActions(string workbookName)
     {
         Workbook workbook = new Workbook(workbookName);
-        Worksheet worksheet = workbook.Worksheets[4];
+        Worksheet worksheet = workbook.Worksheets[7];
         Cells cells = worksheet.Cells;
 
         List<ExcelTaxAction> actions = [];
+
+        int rowCount = cells.MaxDataRow + 1;
+        for (int i = 1; i < rowCount; i++)
+        {
+            var row = cells.Rows[i];
+            string periodBeginDate = cells[i, 0].StringValue;
+            string periodEndDate = cells[i, 1].StringValue;
+            string kindOfPeriod = cells[i, 2].StringValue;
+            string description = cells[i, 3].StringValue;
+            int? debitAccountNumber = row.GetCellOrNull(4)?.IntValue;
+            int? creditAccountNumber = row.GetCellOrNull(5)?.IntValue;
+            string taxType = cells[i, 6].StringValue;
+
+            ExcelTaxAction excelAction = Create(periodBeginDate, periodEndDate, kindOfPeriod, debitAccountNumber, creditAccountNumber, description, taxType);
+            if (excelAction is null)
+            {
+                continue;
+            }
+
+            actions.Add(excelAction);
+        }
 
         return actions;
     }
@@ -290,13 +310,7 @@ public class ExcelCashFlowReader
             amount = decimal.Zero;
         }
 
-        TaxType taxType = taxTypeString switch
-        {
-            "Einkommen" => TaxType.Income,
-            "Vermögen" => TaxType.Wealth,
-            "Kapitalbezug" => TaxType.CapitalBenefits,
-            _ => TaxType.None
-        };
+        TaxType taxType = MapTaxType(taxTypeString);
 
         FlowType flowType = taxFlowTypeString switch
         {
@@ -313,5 +327,59 @@ public class ExcelCashFlowReader
             amount,
             taxType,
             flowType);
+    }
+
+    private static ExcelTaxAction Create(
+        string periodBeginDateString,
+        string periodEndDateString,
+        string kindOfPeriodString,
+        int? debitAccountNumber,
+        int? creditAccountNumber,
+        string description,
+        string taxTypeString)
+    {
+        if (string.IsNullOrEmpty(kindOfPeriodString))
+        {
+            return null;
+        }
+
+        if (string.IsNullOrEmpty(periodEndDateString) ||
+            debitAccountNumber is null ||
+            creditAccountNumber is null)
+        {
+            return null;
+        }
+
+        if (!DateOnly.TryParse(periodBeginDateString, out DateOnly periodBeginDate))
+        {
+            return null;
+        }
+
+        if (!DateOnly.TryParse(periodEndDateString, out DateOnly periodEndDate))
+        {
+            return null;
+        }
+
+        TaxType taxType = MapTaxType(taxTypeString);
+
+        return new ExcelTaxAction(
+            IntToGuid(debitAccountNumber.Value),
+            IntToGuid(creditAccountNumber.Value),
+            description,
+            periodBeginDate,
+            periodEndDate,
+            taxType);
+    }
+
+    private static TaxType MapTaxType(string taxTypeString)
+    {
+        TaxType taxType = taxTypeString switch
+        {
+            "Einkommen" => TaxType.Income,
+            "Vermögen" => TaxType.Wealth,
+            "Kapitalbezug" => TaxType.CapitalBenefits,
+            _ => TaxType.None
+        };
+        return taxType;
     }
 }

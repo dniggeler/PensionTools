@@ -1,0 +1,34 @@
+﻿[
+  {
+    "DebitAccountId": "00000032-0000-0000-0000-000000000000",
+    "CreditAccountId": "00000036-0000-0000-0000-000000000000",
+    "Description": "Kapitalbesteuerung",
+    "StartPeriodDateString": "2026-01-01",
+    "EndPeriodDateString": "2026-12-31",
+    "TaxType": "CapitalBenefits"
+  },
+  {
+    "DebitAccountId": "00000032-0000-0000-0000-000000000000",
+    "CreditAccountId": "00000036-0000-0000-0000-000000000000",
+    "Description": "Einkommensbesteuerung",
+    "StartPeriodDateString": "2024-01-01",
+    "EndPeriodDateString": "2024-12-31",
+    "TaxType": "Income"
+  },
+  {
+    "DebitAccountId": "00000032-0000-0000-0000-000000000000",
+    "CreditAccountId": "00000036-0000-0000-0000-000000000000",
+    "Description": "Einkommensbesteuerung",
+    "StartPeriodDateString": "2025-01-01",
+    "EndPeriodDateString": "2025-12-31",
+    "TaxType": "Income"
+  },
+  {
+    "DebitAccountId": "00000032-0000-0000-0000-000000000000",
+    "CreditAccountId": "00000036-0000-0000-0000-000000000000",
+    "Description": "Einkommensbesteuerung",
+    "StartPeriodDateString": "2026-01-01",
+    "EndPeriodDateString": "2026-12-31",
+    "TaxType": "Income"
+  }
+]

@@ -12,6 +12,34 @@ public class ExcelCashFlowReaderTests
     private const string RelativeTemplateFolderPath = "ExcelReader/Files";
 
     [Fact]
+    public void ReadTaxActions_ValidWorkbook_ReturnsEmptyList()
+    {
+        // Arrange
+        string workbookName = Path.Combine(RelativeTemplateFolderPath, "empty.xlsx");
+
+        // Act
+        var result = ExcelCashFlowReader.ReadTaxActions(workbookName);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public void ReadTaxActions_ValidWorkbook_ReturnsExpectedList()
+    {
+        // Arrange
+        string workbookName = Path.Combine(RelativeTemplateFolderPath, "einkauf.xlsx");
+
+        // Act
+        var result = ExcelCashFlowReader.ReadTaxActions(workbookName);
+
+        // Assert
+        Assert.NotNull(result);
+        Snapshot.Match(result);
+    }
+
+    [Fact]
     public void ReadMunicipalities_ValidWorkbook_ReturnsEmptyList()
     {
         // Arrange
