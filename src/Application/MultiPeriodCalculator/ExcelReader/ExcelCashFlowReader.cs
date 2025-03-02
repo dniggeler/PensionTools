@@ -141,7 +141,7 @@ public class ExcelCashFlowReader
             int? creditAccountNumber = row.GetCellOrNull(5)?.IntValue;
             string taxType = cells[i, 6].StringValue;
 
-            ExcelTaxAction excelAction = Create(periodBeginDate, periodEndDate, kindOfPeriod, debitAccountNumber, creditAccountNumber, description, taxType);
+            ExcelTaxAction excelAction = Create(periodBeginDate, periodEndDate, debitAccountNumber, creditAccountNumber, description, taxType);
             if (excelAction is null)
             {
                 continue;
@@ -332,17 +332,11 @@ public class ExcelCashFlowReader
     private static ExcelTaxAction Create(
         string periodBeginDateString,
         string periodEndDateString,
-        string kindOfPeriodString,
         int? debitAccountNumber,
         int? creditAccountNumber,
         string description,
         string taxTypeString)
     {
-        if (string.IsNullOrEmpty(kindOfPeriodString))
-        {
-            return null;
-        }
-
         if (string.IsNullOrEmpty(periodEndDateString) ||
             debitAccountNumber is null ||
             creditAccountNumber is null)
@@ -352,7 +346,7 @@ public class ExcelCashFlowReader
 
         if (!DateOnly.TryParse(periodBeginDateString, out DateOnly periodBeginDate))
         {
-            return null;
+            periodBeginDate = DateOnly.MinValue;
         }
 
         if (!DateOnly.TryParse(periodEndDateString, out DateOnly periodEndDate))

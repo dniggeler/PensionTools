@@ -121,13 +121,38 @@ CashFlowInput cashFlowInput = new CashFlowInput
     TransferRatioCashFlows = [],
 };
 
+TaxActionInput taxActionInput = new TaxActionInput();
+
+List<ExcelTaxAction> excelTaxActions = ExcelCashFlowReader.ReadTaxActions(excelWorkbookFilename).ToList();
+if (excelTaxActions.Count > 0)
+{
+    taxActionInput = new TaxActionInput
+    {
+        TaxPaymentSourceAccountId = excelTaxActions.First().DebitAccountId,
+        TaxPaymentTargetAccountId = excelTaxActions.First().CreditAccountId,
+
+        BalanceActions = excelTaxActions
+            .Select(a => new TaxBalanceActionInput
+            {
+                BeginOfTaxationPeriod = a.StartPeriodDateString.ToDateTime(TimeOnly.MinValue),
+                KindBeginOfTaxationPeriod = ProcessDateKind.BeginOfYear,
+                EndOfTaxationPeriod = a.EndPeriodDateString.ToDateTime(TimeOnly.MinValue),
+                KindEndOfTaxationPeriod = ProcessDateKind.EndOfYear,
+                Description = a.Description,
+                BalanceFactor = decimal.One,
+                TaxType = (TaxType)(int)a.TaxType
+            }).ToList()
+    };
+}
+
 IOperationResult<ICalculateResult> response = await graphClient.Calculate.ExecuteAsync(
     calculationId,
     calculationParameters,
     municipality,
     person,
     accountInput,
-    cashFlowInput);
+    cashFlowInput,
+    taxActionInput);
 
 response.EnsureNoErrors();
 

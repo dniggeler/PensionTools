@@ -4,7 +4,8 @@
     $municipality: MunicipalityInput!,
     $person: CalculationPersonInput!,
     $accountHolder: AccountInput!
-    $cashFlowHolder: CashFlowInput!) {
+    $cashFlowHolder: CashFlowInput!
+    $taxActionHolder: TaxActionInput!) {
 
   calculate(request: {
         calculationId: $calculationId
@@ -19,54 +20,7 @@
     
         cashFlowHolder: $cashFlowHolder
 
-        taxationActionHolder:  {
-       
-              taxPaymentSourceAccountId: "e00d246d-e518-497a-8629-9adb2f2bbae4"
-              taxPaymentTargetAccountId: "b10d246d-e518-497a-8629-9adb2f2bbae3"
-              balanceActions: [{
-                description: "Tax all wealth"
-                kindBeginOfTaxationPeriod: NONE
-                kindEndOfTaxationPeriod: END_OF_YEAR
-                endOfTaxationPeriod: "2024-12-31"
-                taxType: WEALTH
-                balanceFactor: 1.0
-              },
-              {
-                description: "Tax all wealth"
-                kindBeginOfTaxationPeriod: NONE
-                kindEndOfTaxationPeriod: END_OF_YEAR
-                endOfTaxationPeriod: "2025-12-31"
-                taxType: WEALTH
-                balanceFactor: 1.0
-              },
-              {
-                description: "Tax all income"
-                kindBeginOfTaxationPeriod: BEGIN_OF_YEAR
-                beginOfTaxationPeriod: "2024-01-01"
-                kindEndOfTaxationPeriod: END_OF_YEAR
-                endOfTaxationPeriod: "2024-12-31"
-                taxType: INCOME
-                balanceFactor: 1.0
-              },
-              {
-                description: "Tax all income"
-                kindBeginOfTaxationPeriod: BEGIN_OF_YEAR
-                beginOfTaxationPeriod: "2025-01-01"
-                kindEndOfTaxationPeriod: END_OF_YEAR
-                endOfTaxationPeriod: "2025-12-31"
-                taxType: INCOME
-                balanceFactor: 1.0
-              },
-              {
-                description: "Tax capital benefits"
-                kindBeginOfTaxationPeriod: BEGIN_OF_YEAR
-                beginOfTaxationPeriod: "2026-01-01"
-                kindEndOfTaxationPeriod: END_OF_YEAR
-                endOfTaxationPeriod: "2026-12-31"
-                taxType: CAPITAL_BENEFITS
-                balanceFactor: 1.0
-              }]
-            }
+        taxationActionHolder: $taxActionHolder
     })
     {
         isSuccess
