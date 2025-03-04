@@ -7,10 +7,16 @@ namespace Application.MultiPeriodCalculator.ExcelReader;
 
 public class ExcelCashFlowReader
 {
+    private const int WorkSheetPerson = 0;
+    private const int WorkSheetTaxMunicipality = 1;
+    private const int WorkSheetAccount = 3;
+    private const int WorkSheetCashFlow = 4;
+    private const int WorkSheetTaxAction = 7;
+
     public static IEnumerable<ExcelTaxMunicipality> ReadTaxMunicipalities(string workbookName)
     {
         Workbook workbook = new Workbook(workbookName);
-        Worksheet worksheet = workbook.Worksheets[1];
+        Worksheet worksheet = workbook.Worksheets[WorkSheetTaxMunicipality];
         Cells cells = worksheet.Cells;
         
         List<ExcelTaxMunicipality> taxMunicipalityList = [];
@@ -35,7 +41,7 @@ public class ExcelCashFlowReader
     public static IEnumerable<ExcelPerson> ReadPersons(string workbookName)
     {
         Workbook workbook = new Workbook(workbookName);
-        Worksheet worksheet = workbook.Worksheets[0];
+        Worksheet worksheet = workbook.Worksheets[WorkSheetPerson];
         Cells cells = worksheet.Cells;
         List<ExcelPerson> personList = [];
 
@@ -65,7 +71,7 @@ public class ExcelCashFlowReader
     public static IEnumerable<ExcelAccount> ReadAccounts(string workbookName)
     {
         Workbook workbook = new Workbook(workbookName);
-        Worksheet worksheet = workbook.Worksheets[3];
+        Worksheet worksheet = workbook.Worksheets[WorkSheetAccount];
         Cells cells = worksheet.Cells;
 
         List<ExcelAccount> definitionList = [];
@@ -93,7 +99,7 @@ public class ExcelCashFlowReader
     {
 
         Workbook workbook = new Workbook(workbookName);
-        Worksheet worksheet = workbook.Worksheets[4];
+        Worksheet worksheet = workbook.Worksheets[WorkSheetCashFlow];
         Cells cells = worksheet.Cells;
 
         List<ExcelFixAmountCashFlow> cashFlowList = [];
@@ -124,7 +130,7 @@ public class ExcelCashFlowReader
     public static IEnumerable<ExcelTaxAction> ReadTaxActions(string workbookName)
     {
         Workbook workbook = new Workbook(workbookName);
-        Worksheet worksheet = workbook.Worksheets[7];
+        Worksheet worksheet = workbook.Worksheets[WorkSheetTaxAction];
         Cells cells = worksheet.Cells;
 
         List<ExcelTaxAction> actions = [];
