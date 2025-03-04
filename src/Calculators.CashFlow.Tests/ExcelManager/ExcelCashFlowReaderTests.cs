@@ -1,15 +1,15 @@
 ﻿using System;
-using Application.MultiPeriodCalculator.ExcelReader;
-using Xunit;
 using System.Collections.Generic;
 using System.IO;
+using Application.MultiPeriodCalculator.ExcelManager;
 using Snapshooter.Xunit;
+using Xunit;
 
-namespace Calculators.CashFlow.Tests.ExcelReader;
+namespace Calculators.CashFlow.Tests.ExcelManager;
 
 public class ExcelCashFlowReaderTests
 {
-    private const string RelativeTemplateFolderPath = "ExcelReader/Files";
+    private const string RelativeTemplateFolderPath = "ExcelManager/Files";
 
     [Fact]
     public void ReadTaxActions_ValidWorkbook_ReturnsEmptyList()
@@ -18,7 +18,7 @@ public class ExcelCashFlowReaderTests
         string workbookName = Path.Combine(RelativeTemplateFolderPath, "empty.xlsx");
 
         // Act
-        var result = ExcelCashFlowReader.ReadTaxActions(workbookName);
+        var result = ExcelCashFlowManager.ReadTaxActions(workbookName);
 
         // Assert
         Assert.NotNull(result);
@@ -32,7 +32,7 @@ public class ExcelCashFlowReaderTests
         string workbookName = Path.Combine(RelativeTemplateFolderPath, "einkauf.xlsx");
 
         // Act
-        var result = ExcelCashFlowReader.ReadTaxActions(workbookName);
+        var result = ExcelCashFlowManager.ReadTaxActions(workbookName);
 
         // Assert
         Assert.NotNull(result);
@@ -46,7 +46,7 @@ public class ExcelCashFlowReaderTests
         string workbookName = Path.Combine(RelativeTemplateFolderPath, "empty.xlsx");
 
         // Act
-        var result = ExcelCashFlowReader.ReadTaxMunicipalities(workbookName);
+        var result = ExcelCashFlowManager.ReadTaxMunicipalities(workbookName);
 
         // Assert
         Assert.NotNull(result);
@@ -60,7 +60,7 @@ public class ExcelCashFlowReaderTests
         string workbookName = Path.Combine(RelativeTemplateFolderPath, "einkauf.xlsx");
 
         // Act
-        var result = ExcelCashFlowReader.ReadTaxMunicipalities(workbookName);
+        var result = ExcelCashFlowManager.ReadTaxMunicipalities(workbookName);
 
         // Assert
         Assert.NotNull(result);
@@ -74,7 +74,7 @@ public class ExcelCashFlowReaderTests
         string workbookName = Path.Combine(RelativeTemplateFolderPath, "empty.xlsx");
 
         // Act
-        var result = ExcelCashFlowReader.ReadAccounts(workbookName);
+        var result = ExcelCashFlowManager.ReadAccounts(workbookName);
 
         // Assert
         Assert.NotNull(result);
@@ -88,7 +88,7 @@ public class ExcelCashFlowReaderTests
         string workbookName = Path.Combine(RelativeTemplateFolderPath, "empty.xlsx");
 
         // Act
-        IEnumerable<ExcelFixAmountCashFlow> result = ExcelCashFlowReader.ReadCashFlows(workbookName);
+        IEnumerable<ExcelFixAmountCashFlow> result = ExcelCashFlowManager.ReadCashFlows(workbookName);
 
         // Assert
         Assert.NotNull(result);
@@ -102,7 +102,7 @@ public class ExcelCashFlowReaderTests
         string workbookName = Path.Combine(RelativeTemplateFolderPath, "einkauf.xlsx");
 
         // Act
-        var result = ExcelCashFlowReader.ReadAccounts(workbookName);
+        var result = ExcelCashFlowManager.ReadAccounts(workbookName);
 
         // Assert
         Assert.NotNull(result);
@@ -116,7 +116,7 @@ public class ExcelCashFlowReaderTests
         string workbookName = Path.Combine(RelativeTemplateFolderPath, "einkauf.xlsx");
 
         // Act
-        IEnumerable<ExcelFixAmountCashFlow> result = ExcelCashFlowReader.ReadCashFlows(workbookName);
+        IEnumerable<ExcelFixAmountCashFlow> result = ExcelCashFlowManager.ReadCashFlows(workbookName);
 
         // Assert
         Assert.NotNull(result);
@@ -131,7 +131,7 @@ public class ExcelCashFlowReaderTests
         string workbookName = Path.Combine(RelativeTemplateFolderPath, "empty.xlsx");
 
         // Act
-        IEnumerable<ExcelPerson> result = ExcelCashFlowReader.ReadPersons(workbookName);
+        IEnumerable<ExcelPerson> result = ExcelCashFlowManager.ReadPersons(workbookName);
 
         // Assert
         Assert.NotNull(result);
@@ -146,7 +146,7 @@ public class ExcelCashFlowReaderTests
         string workbookName = Path.Combine(RelativeTemplateFolderPath, "einkauf.xlsx");
 
         // Act
-        IEnumerable<ExcelPerson> result = ExcelCashFlowReader.ReadPersons(workbookName);
+        IEnumerable<ExcelPerson> result = ExcelCashFlowManager.ReadPersons(workbookName);
 
         // Assert
         Assert.NotNull(result);
@@ -160,7 +160,7 @@ public class ExcelCashFlowReaderTests
         string input = "testString";
 
         // Act
-        Guid result = ExcelCashFlowReader.StringToGuid(input);
+        Guid result = ExcelCashFlowManager.StringToGuid(input);
 
         // Assert
         Snapshot.Match(result);
@@ -173,7 +173,7 @@ public class ExcelCashFlowReaderTests
         int input = 12345;
 
         // Act
-        Guid result = ExcelCashFlowReader.IntToGuid(input);
+        Guid result = ExcelCashFlowManager.IntToGuid(input);
 
         // Assert
         Snapshot.Match(result);

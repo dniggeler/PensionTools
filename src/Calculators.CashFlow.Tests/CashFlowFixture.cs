@@ -7,7 +7,6 @@ using Application.Features.FullTaxCalculation;
 using Application.Features.PensionVersusCapital;
 using Application.MultiPeriodCalculator;
 using Infrastructure.Configuration;
-using Infrastructure.Tax.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

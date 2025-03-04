@@ -1,6 +1,6 @@
 ﻿using Domain.Enums;
 
-namespace Application.MultiPeriodCalculator.ExcelReader;
+namespace Application.MultiPeriodCalculator.ExcelManager;
 
 public record ExcelPerson(
     int? PersonNumber,

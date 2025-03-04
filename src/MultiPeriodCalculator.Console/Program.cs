@@ -1,4 +1,4 @@
-﻿using Application.MultiPeriodCalculator.ExcelReader;
+﻿using Application.MultiPeriodCalculator.ExcelManager;
 using Calculator;
 using Microsoft.Extensions.DependencyInjection;
 using MultiPeriodGraphClient;
@@ -28,7 +28,7 @@ CalculationParametersInput calculationParameters = new()
     EndDate = new DateTime(2030, 1, 1),
 };
 
-var excelMunicipality = ExcelCashFlowReader.ReadTaxMunicipalities(excelWorkbookFilename).First();
+var excelMunicipality = ExcelCashFlowManager.ReadTaxMunicipalities(excelWorkbookFilename).First();
 
 MunicipalityInput municipality = new()
 {
@@ -37,7 +37,7 @@ MunicipalityInput municipality = new()
     Canton = (Canton)(int)excelMunicipality.Canton,
 };
 
-var excelPerson = ExcelCashFlowReader.ReadPersons(excelWorkbookFilename).First();
+var excelPerson = ExcelCashFlowManager.ReadPersons(excelWorkbookFilename).First();
 
 CalculationPersonInput person = new()
 {
@@ -49,7 +49,7 @@ CalculationPersonInput person = new()
     PartnerReligiousGroupType = excelPerson.PartnerReligiousGroupType.HasValue ? (ReligiousGroupType)(int)excelPerson.PartnerReligiousGroupType : null,
 };
 
-IEnumerable<ExcelAccount> excelAccounts = ExcelCashFlowReader.ReadAccounts(excelWorkbookFilename).ToList();
+IEnumerable<ExcelAccount> excelAccounts = ExcelCashFlowManager.ReadAccounts(excelWorkbookFilename).ToList();
 
 AccountInput accountInput = new AccountInput
 {
@@ -102,7 +102,7 @@ AccountInput accountInput = new AccountInput
     LiabilityAccounts = [],
 };
 
-var excelFixAmountCashFlows = ExcelCashFlowReader.ReadCashFlows(excelWorkbookFilename);
+var excelFixAmountCashFlows = ExcelCashFlowManager.ReadCashFlows(excelWorkbookFilename);
 
 CashFlowInput cashFlowInput = new CashFlowInput
 {
@@ -123,7 +123,7 @@ CashFlowInput cashFlowInput = new CashFlowInput
 
 TaxActionInput taxActionInput = new TaxActionInput();
 
-List<ExcelTaxAction> excelTaxActions = ExcelCashFlowReader.ReadTaxActions(excelWorkbookFilename).ToList();
+List<ExcelTaxAction> excelTaxActions = ExcelCashFlowManager.ReadTaxActions(excelWorkbookFilename).ToList();
 if (excelTaxActions.Count > 0)
 {
     taxActionInput = new TaxActionInput
@@ -155,6 +155,8 @@ IOperationResult<ICalculateResult> response = await graphClient.Calculate.Execut
     taxActionInput);
 
 response.EnsureNoErrors();
+
+ExcelCashFlowManager.WriteTransactions(excelWorkbookFilename, []);
 
 ICalculate_Calculate calculateResult = response.Data!.Calculate;
 

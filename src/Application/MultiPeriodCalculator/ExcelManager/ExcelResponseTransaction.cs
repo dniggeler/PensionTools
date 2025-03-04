@@ -1,0 +1,8 @@
+﻿using Domain.Enums;
+
+namespace Application.MultiPeriodCalculator.ExcelManager;
+
+public record ExcelResponseTransaction(
+    Guid AccountId,
+    AccountType AccountType,
+    string AccountName);

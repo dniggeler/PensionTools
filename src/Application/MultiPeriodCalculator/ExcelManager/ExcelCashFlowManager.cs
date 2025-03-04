@@ -3,15 +3,37 @@ using Domain.Enums;
 using TaxType = Domain.Enums.TaxType;
 using FlowType = Domain.Enums.FlowType;
 
-namespace Application.MultiPeriodCalculator.ExcelReader;
+namespace Application.MultiPeriodCalculator.ExcelManager;
 
-public class ExcelCashFlowReader
+public class ExcelCashFlowManager
 {
     private const int WorkSheetPerson = 0;
     private const int WorkSheetTaxMunicipality = 1;
     private const int WorkSheetAccount = 3;
     private const int WorkSheetCashFlow = 4;
     private const int WorkSheetTaxAction = 7;
+
+    public static void WriteTransactions(string workbookName, IEnumerable<ExcelResponseTransaction> transactions)
+    {
+        using Workbook workbook = new Workbook(workbookName);
+        // add a new worksheet
+        Worksheet worksheet = workbook.Worksheets.Add("Transktionen");
+        // add header to wo
+        worksheet.Cells[0, 0].PutValue("Konto");
+        worksheet.Cells[0, 1].PutValue("Konto-Typ");
+        worksheet.Cells[0, 2].PutValue("Konto-Name");
+
+        foreach (ExcelResponseTransaction trx in transactions)
+        {
+            // add the transaction to the worksheet
+            worksheet.Cells[worksheet.Cells.MaxDataRow + 1, 0].PutValue(trx.AccountId);
+            worksheet.Cells[worksheet.Cells.MaxDataRow, 1].PutValue(trx.AccountType);
+            worksheet.Cells[worksheet.Cells.MaxDataRow, 2].PutValue(trx.AccountName);
+        }
+
+        // save the workbook
+        workbook.Save(workbookName);
+    }
 
     public static IEnumerable<ExcelTaxMunicipality> ReadTaxMunicipalities(string workbookName)
     {
