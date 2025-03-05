@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MultiPeriodGraphClient;
 using StrawberryShake;
 using AccountType = Domain.Enums.AccountType;
+using static MultiPeriodCalculator.Console.ConsoleHelperExtensions;
 
 IServiceCollection serviceCollection = new ServiceCollection();
 
@@ -156,9 +157,22 @@ IOperationResult<ICalculateResult> response = await graphClient.Calculate.Execut
 
 response.EnsureNoErrors();
 
-ExcelCashFlowManager.WriteTransactions(excelWorkbookFilename, []);
-
 ICalculate_Calculate calculateResult = response.Data!.Calculate;
+
+IEnumerable<ExcelResponseTransaction> incomeTransactions = calculateResult.Transactions?.IncomeAccounts.CreateExcelTransactions() ?? [];
+IEnumerable<ExcelResponseTransaction> wealthTransactions = calculateResult.Transactions?.WealthAccounts.CreateExcelTransactions() ?? [];
+IEnumerable<ExcelResponseTransaction> exogenousTransactions = calculateResult.Transactions?.ExogenousAccounts.CreateExcelTransactions() ?? [];
+IEnumerable<ExcelResponseTransaction> secondPillarTransactions = calculateResult.Transactions?.OccupationalPensionAccounts.CreateExcelTransactions() ?? [];
+IEnumerable<ExcelResponseTransaction> thirdPillarTransactions = calculateResult.Transactions?.ThirdPillarAccounts.CreateExcelTransactions() ?? [];
+
+ExcelCashFlowManager.WriteTransactions(
+    excelWorkbookFilename,
+    incomeTransactions
+        .Concat(wealthTransactions)
+        .Concat(exogenousTransactions)
+        .Concat(secondPillarTransactions)
+        .Concat(thirdPillarTransactions));
+
 
 Console.WriteLine("Exogenous Accounts");
 foreach (var accounts in calculateResult.Transactions?.ExogenousAccounts ?? [])

@@ -15,6 +15,11 @@ public class ExcelCashFlowManager
 
     public static void WriteTransactions(string workbookName, IEnumerable<ExcelResponseTransaction> transactions)
     {
+        if (transactions is null)
+        {
+            return;
+        }
+
         using Workbook workbook = new Workbook(workbookName);
         // add a new worksheet
         Worksheet worksheet = workbook.Worksheets.Add("Transktionen");
@@ -22,6 +27,10 @@ public class ExcelCashFlowManager
         worksheet.Cells[0, 0].PutValue("Konto");
         worksheet.Cells[0, 1].PutValue("Konto-Typ");
         worksheet.Cells[0, 2].PutValue("Konto-Name");
+        worksheet.Cells[0, 3].PutValue("Beschreibung");
+        worksheet.Cells[0, 4].PutValue("Valuta");
+        worksheet.Cells[0, 5].PutValue("Betrag");
+        worksheet.Cells[0, 6].PutValue("Geldfluss");
 
         foreach (ExcelResponseTransaction trx in transactions)
         {
@@ -29,6 +38,10 @@ public class ExcelCashFlowManager
             worksheet.Cells[worksheet.Cells.MaxDataRow + 1, 0].PutValue(trx.AccountId);
             worksheet.Cells[worksheet.Cells.MaxDataRow, 1].PutValue(trx.AccountType);
             worksheet.Cells[worksheet.Cells.MaxDataRow, 2].PutValue(trx.AccountName);
+            worksheet.Cells[worksheet.Cells.MaxDataRow, 3].PutValue(trx.Description);
+            worksheet.Cells[worksheet.Cells.MaxDataRow, 4].PutValue(trx.ProcessDate);
+            worksheet.Cells[worksheet.Cells.MaxDataRow, 5].PutValue(trx.Amount);
+            worksheet.Cells[worksheet.Cells.MaxDataRow, 6].PutValue(trx.FlowType);
         }
 
         // save the workbook

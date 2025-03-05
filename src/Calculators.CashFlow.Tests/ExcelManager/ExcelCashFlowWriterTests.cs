@@ -22,8 +22,8 @@ public class ExcelCashFlowManagerTests
         Guid accountId = Guid.NewGuid();
         var transactions = new List<ExcelResponseTransaction>
         {
-            new ExcelResponseTransaction(accountId, AccountType.Income, "Lohn"),
-            new ExcelResponseTransaction(accountId, AccountType.Income, "Lohn")
+            new(accountId, AccountType.Income, "Lohn", "Desc", 1000, new DateOnly(2025, 1, 1), FlowType.InFlow),
+            new(accountId, AccountType.Income, "Lohn", "Desc", 1000, new DateOnly(2025, 1, 1), FlowType.InFlow),
         };
 
         // Act
