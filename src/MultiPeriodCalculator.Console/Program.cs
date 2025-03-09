@@ -103,7 +103,8 @@ AccountInput accountInput = new AccountInput
     LiabilityAccounts = [],
 };
 
-var excelFixAmountCashFlows = ExcelCashFlowManager.ReadCashFlows(excelWorkbookFilename);
+var excelFixAmountCashFlows = ExcelCashFlowManager.ReadFixAmountCashFlows(excelWorkbookFilename);
+var excelTransferRatioCashFlows = ExcelCashFlowManager.ReadTransferRatioCashFlows(excelWorkbookFilename);
 
 CashFlowInput cashFlowInput = new CashFlowInput
 {
@@ -119,7 +120,17 @@ CashFlowInput cashFlowInput = new CashFlowInput
             TaxFlowType = (FlowType)(int)a.FlowType
         }).ToList(),
     BalanceGrowthCashFlows = [],
-    TransferRatioCashFlows = [],
+    TransferRatioCashFlows = excelTransferRatioCashFlows
+        .Select(a => new TransferRatioCashFlowInput
+        {
+            SourceAccountId = a.DebitAccountId,
+            TargetAccountId = a.CreditAccountId,
+            DateOfProcess = a.ProcessDate.ToDateTime(TimeOnly.MinValue),
+            Description = a.Description,
+            TransferFactor = a.TransferFactor,
+            TaxType = (TaxType)(int)a.TaxType,
+            TaxFlowType = (FlowType)(int)a.FlowType
+        }).ToList(),
 };
 
 TaxActionInput taxActionInput = new TaxActionInput();

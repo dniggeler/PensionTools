@@ -24,6 +24,10 @@ public class CashFlowInputValidator : AbstractValidator<CashFlowInput>
             .Must(x => (x.Description?.Length ?? 0) <= 50)
             .WithMessage($"{nameof(SingleCashFlow.Description)} must be less than or equal to 50 characters");
 
+        RuleForEach(x => x.TransferRatioCashFlows)
+            .Must(x => x.TransferFactor is > decimal.Zero and <= decimal.One)
+            .WithMessage("Transfer factor must be in range ]0, 1]");
+
         RuleForEach(x => x.FixedAmountCashFlows)
             .Must(x => (x.Description?.Length ?? 0) <= 50)
             .WithMessage($"{nameof(SingleCashFlow.Description)} must be less than or equal to 50 characters");

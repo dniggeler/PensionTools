@@ -88,7 +88,21 @@ public class ExcelCashFlowReaderTests
         string workbookName = Path.Combine(RelativeTemplateFolderPath, "empty.xlsx");
 
         // Act
-        IEnumerable<ExcelFixAmountCashFlow> result = ExcelCashFlowManager.ReadCashFlows(workbookName);
+        IEnumerable<ExcelFixAmountCashFlow> result = ExcelCashFlowManager.ReadFixAmountCashFlows(workbookName);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public void ReadTransferRatioCashFlows_ValidWorkbook_ReturnsEmptyList()
+    {
+        // Arrange
+        string workbookName = Path.Combine(RelativeTemplateFolderPath, "empty.xlsx");
+
+        // Act
+        IEnumerable<ExcelTransferRatioCashFlow> result = ExcelCashFlowManager.ReadTransferRatioCashFlows(workbookName);
 
         // Assert
         Assert.NotNull(result);
@@ -116,7 +130,21 @@ public class ExcelCashFlowReaderTests
         string workbookName = Path.Combine(RelativeTemplateFolderPath, "einkauf.xlsx");
 
         // Act
-        IEnumerable<ExcelFixAmountCashFlow> result = ExcelCashFlowManager.ReadCashFlows(workbookName);
+        IEnumerable<ExcelFixAmountCashFlow> result = ExcelCashFlowManager.ReadFixAmountCashFlows(workbookName);
+
+        // Assert
+        Assert.NotNull(result);
+        Snapshot.Match(result);
+    }
+
+    [Fact]
+    public void ReadTransferRatioCashFlows_ValidWorkbook_ReturnsExpectedList()
+    {
+        // Arrange
+        string workbookName = Path.Combine(RelativeTemplateFolderPath, "einkauf.xlsx");
+
+        // Act
+        IEnumerable<ExcelTransferRatioCashFlow> result = ExcelCashFlowManager.ReadTransferRatioCashFlows(workbookName);
 
         // Assert
         Assert.NotNull(result);

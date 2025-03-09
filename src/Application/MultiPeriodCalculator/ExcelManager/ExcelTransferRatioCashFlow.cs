@@ -2,12 +2,12 @@
 
 namespace Application.MultiPeriodCalculator.ExcelManager;
 
-public record ExcelFixAmountCashFlow(
+public record ExcelTransferRatioCashFlow(
     DateOnly ProcessDate,
     Guid DebitAccountId,
     Guid CreditAccountId,
     string Description,
-    decimal Amount,
+    decimal TransferFactor,
     TaxType TaxType,
     FlowType FlowType)
     : ExcelCashFlowBase(ProcessDate, DebitAccountId, CreditAccountId, Description, TaxType, FlowType);

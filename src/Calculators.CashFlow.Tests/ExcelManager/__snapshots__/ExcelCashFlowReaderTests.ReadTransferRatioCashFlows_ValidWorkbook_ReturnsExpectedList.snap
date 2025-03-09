@@ -1,0 +1,20 @@
+﻿[
+  {
+    "TransferFactor": 1.00,
+    "ProcessDate": "2026-12-31",
+    "DebitAccountId": "00000034-0000-0000-0000-000000000000",
+    "CreditAccountId": "00000032-0000-0000-0000-000000000000",
+    "Description": "Kapitalbezug",
+    "TaxType": "CapitalBenefits",
+    "FlowType": "InFlow"
+  },
+  {
+    "TransferFactor": 1.00,
+    "ProcessDate": "2026-12-31",
+    "DebitAccountId": "00000033-0000-0000-0000-000000000000",
+    "CreditAccountId": "00000032-0000-0000-0000-000000000000",
+    "Description": "Kapitalbezug",
+    "TaxType": "CapitalBenefits",
+    "FlowType": "InFlow"
+  }
+]

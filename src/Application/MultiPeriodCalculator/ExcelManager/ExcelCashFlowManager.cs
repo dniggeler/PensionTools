@@ -10,7 +10,8 @@ public class ExcelCashFlowManager
     private const int WorkSheetPerson = 0;
     private const int WorkSheetTaxMunicipality = 1;
     private const int WorkSheetAccount = 3;
-    private const int WorkSheetCashFlow = 4;
+    private const int WorkSheetFixAmountCashFlow = 4;
+    private const int WorkSheetTransferRatioCashFlow = 5;
     private const int WorkSheetTaxAction = 7;
 
     public static void WriteTransactions(string workbookName, IEnumerable<ExcelResponseTransaction> transactions)
@@ -21,9 +22,20 @@ public class ExcelCashFlowManager
         }
 
         using Workbook workbook = new Workbook(workbookName);
-        // add a new worksheet
-        Worksheet worksheet = workbook.Worksheets.Add("Transktionen");
-        // add header to wo
+
+        // Check if the worksheet already exists and add it with a unique name if it does
+        string baseSheetName = "Transktionen";
+        string sheetName = baseSheetName;
+        int counter = 1;
+        while (workbook.Worksheets.Any(ws => ws.Name == sheetName))
+        {
+            sheetName = $"{baseSheetName}_{counter}";
+            counter++;
+        }
+
+        Worksheet worksheet = workbook.Worksheets.Add(sheetName);
+
+        // add header to worksheet
         worksheet.Cells[0, 0].PutValue("Konto");
         worksheet.Cells[0, 1].PutValue("Konto-Typ");
         worksheet.Cells[0, 2].PutValue("Konto-Name");
@@ -130,11 +142,11 @@ public class ExcelCashFlowManager
         return definitionList;
     }
 
-    public static IEnumerable<ExcelFixAmountCashFlow> ReadCashFlows(string workbookName)
+    public static IEnumerable<ExcelFixAmountCashFlow> ReadFixAmountCashFlows(string workbookName)
     {
 
         Workbook workbook = new Workbook(workbookName);
-        Worksheet worksheet = workbook.Worksheets[WorkSheetCashFlow];
+        Worksheet worksheet = workbook.Worksheets[WorkSheetFixAmountCashFlow];
         Cells cells = worksheet.Cells;
 
         List<ExcelFixAmountCashFlow> cashFlowList = [];
@@ -159,6 +171,42 @@ public class ExcelCashFlowManager
             cashFlowList.Add(excelCashFlow);
         }
 
+        return cashFlowList;
+    }
+
+    public static IEnumerable<ExcelTransferRatioCashFlow> ReadTransferRatioCashFlows(string workbookName)
+    {
+        Workbook workbook = new Workbook(workbookName);
+        Worksheet worksheet = workbook.Worksheets[WorkSheetTransferRatioCashFlow];
+        Cells cells = worksheet.Cells;
+        List<ExcelTransferRatioCashFlow> cashFlowList = [];
+        int rowCount = cells.MaxDataRow + 1;
+        for (int i = 1; i < rowCount; i++)
+        {
+            string processDate = cells[i, 0].StringValue;
+            string description = cells[i, 1].StringValue;
+            string debitAccountNumber = cells[i, 2].StringValue;
+            string creditAccountNumber = cells[i, 3].StringValue;
+            string ratioFactor = cells[i, 4].StringValue;
+            string taxType = cells[i, 5].StringValue;
+            string flowType = cells[i, 6].StringValue;
+
+            var excelCashFlow = CreateTransferRatio(
+                processDate,
+                debitAccountNumber,
+                creditAccountNumber,
+                description,
+                ratioFactor,
+                taxType,
+                flowType);
+
+            if (excelCashFlow is null)
+            {
+                continue;
+            }
+
+            cashFlowList.Add(excelCashFlow);
+        }
         return cashFlowList;
     }
 
@@ -315,15 +363,51 @@ public class ExcelCashFlowManager
         return new ExcelAccount(StringToGuid(counter), accountName ?? "na", accountType);
     }
 
-    private static ExcelFixAmountCashFlow Create(
+    private static ExcelTransferRatioCashFlow CreateTransferRatio(
         string processDateString,
         string debitAccountNumberString,
         string creditAccountNumberString,
         string description,
-        string amountString,
+        string ratioFactorString,
         string taxTypeString,
         string taxFlowTypeString)
     {
+        var baseObject = Create(
+            processDateString,
+            debitAccountNumberString,
+            creditAccountNumberString,
+            description,
+            taxTypeString,
+            taxFlowTypeString);
+
+        if (decimal.TryParse(ratioFactorString.TrimEnd('%', ' '), out decimal ratioFactor))
+        {
+            ratioFactor /= 100M;
+        }
+
+        return new ExcelTransferRatioCashFlow(
+            baseObject.ProcessDate,
+            baseObject.DebitAccountId,
+            baseObject.CreditAccountId,
+            baseObject.Description,
+            ratioFactor,
+            baseObject.TaxType,
+            baseObject.FlowType);
+    }
+
+    private static ExcelCashFlowBase Create(
+        string processDateString,
+        string debitAccountNumberString,
+        string creditAccountNumberString,
+        string description,
+        string taxTypeString,
+        string taxFlowTypeString)
+    {
+        if (!IsInUse(processDateString))
+        {
+            return null;
+        }
+
         if (string.IsNullOrEmpty(description) ||
             debitAccountNumberString is null ||
             creditAccountNumberString is null)
@@ -346,11 +430,6 @@ public class ExcelCashFlowManager
             return null;
         }
 
-        if (!decimal.TryParse(amountString, out decimal amount))
-        {
-            amount = decimal.Zero;
-        }
-
         TaxType taxType = MapTaxType(taxTypeString);
 
         FlowType flowType = taxFlowTypeString switch
@@ -360,14 +439,59 @@ public class ExcelCashFlowManager
             _ => FlowType.Undefined
         };
 
-        return new ExcelFixAmountCashFlow(
+        return new ExcelCashFlowBase(
             processDate,
             IntToGuid(debitAccountNumber),
             IntToGuid(creditAccountNumber),
             description,
-            amount,
             taxType,
             flowType);
+    }
+
+    private static ExcelFixAmountCashFlow Create(
+        string processDateString,
+        string debitAccountNumberString,
+        string creditAccountNumberString,
+        string description,
+        string amountString,
+        string taxTypeString,
+        string taxFlowTypeString)
+    {
+        var baseObject = Create(processDateString,
+            debitAccountNumberString,
+            creditAccountNumberString,
+            description,
+            taxTypeString,
+            taxFlowTypeString);
+
+        if (baseObject is null)
+        {
+            return null;
+        }
+
+        if (!decimal.TryParse(amountString, out decimal amount))
+        {
+            amount = decimal.Zero;
+        }
+
+        return new ExcelFixAmountCashFlow(
+            baseObject.ProcessDate,
+            baseObject.DebitAccountId,
+            baseObject.CreditAccountId,
+            baseObject.Description,
+            amount,
+            baseObject.TaxType,
+            baseObject.FlowType);
+    }
+
+    private static bool IsInUse(string content)
+    {
+        if (content.TrimStart().StartsWith('#'))
+        {
+            return false;
+        }
+
+        return true;
     }
 
     private static ExcelTaxAction Create(
