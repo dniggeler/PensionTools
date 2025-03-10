@@ -11,6 +11,7 @@ using Domain.Enums;
 using Domain.Models.AccountInputs;
 using Domain.Models.Cashflows;
 using Domain.Models.Cashflows.Accounts;
+using Domain.Models.MultiPeriod;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using LanguageExt;
@@ -68,8 +69,7 @@ public class MultiPeriodCashFlowCalculator(
 
         for (int currentYear = startingYear; currentYear <= finalYear; currentYear++)
         {
-            DateOnly startingDate = new DateOnly(currentYear, 1, 1);
-            DateOnly finalDate = new DateOnly(currentYear, 1, 1).AddYears(1);
+            DatePeriod currentYearPeriod = new DatePeriod(new DateOnly(currentYear, 1, 1), 1);
 
             // tax actions for begin of year
             foreach (TaxBalanceAction action in taxationActionHolder.BalanceActions.Where(a => a.KindEndOfTaxationPeriod == ProcessDateKind.BeginOfYear))
@@ -81,7 +81,7 @@ public class MultiPeriodCashFlowCalculator(
             }
 
             // all days in the current year
-            for (DateOnly currentDate = startingDate; currentDate < finalDate; currentDate = currentDate.AddDays(1))
+            foreach (var currentDate in currentYearPeriod)
             {
                 DateOnly date = currentDate;
                 IEnumerable<SingleCashFlow> currentDateCashFlows = allCashFlows
@@ -180,7 +180,7 @@ public class MultiPeriodCashFlowCalculator(
                         allAccounts[taxationActionHolder.TaxPaymentSourceAccountId],
                         allAccounts[taxationActionHolder.TaxPaymentTargetAccountId],
                         "Income and Wealth tax payments",
-                        finalDate.AddDays(-1).ToDateTime(TimeOnly.MinValue),
+                        currentYearPeriod.End.AddDays(-1).ToDateTime(TimeOnly.MinValue),
                         r.TotalTaxAmount);
                 });
             }
@@ -210,7 +210,7 @@ public class MultiPeriodCashFlowCalculator(
                         allAccounts[taxationActionHolder.TaxPaymentSourceAccountId],
                         allAccounts[taxationActionHolder.TaxPaymentTargetAccountId],
                         "Capital benefits tax payments",
-                        finalDate.AddDays(-1).ToDateTime(TimeOnly.MinValue),
+                        currentYearPeriod.End.AddDays(-1).ToDateTime(TimeOnly.MinValue),
                         r.TotalTaxAmount);
                 });
             }

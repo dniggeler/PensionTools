@@ -344,6 +344,11 @@ public class ExcelCashFlowManager
 
     private static ExcelAccount Create(string counter, string accountName, string accountTypeName)
     {
+        if (!IsInUse(counter))
+        {
+            return null;
+        }
+
         if (string.IsNullOrEmpty(accountTypeName))
         {
             return null;
