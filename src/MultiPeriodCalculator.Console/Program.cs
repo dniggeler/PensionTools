@@ -25,8 +25,8 @@ Guid calculationId = Guid.NewGuid();
 
 CalculationParametersInput calculationParameters = new()
 {
-    StartDate = new DateTime(2023, 12, 31),
-    EndDate = new DateTime(2030, 1, 1),
+    StartDate = new DateOnly(2023, 12, 31),
+    EndDate = new DateOnly(2030, 1, 1),
 };
 
 var excelMunicipality = ExcelCashFlowManager.ReadTaxMunicipalities(excelWorkbookFilename).First();
@@ -43,7 +43,7 @@ var excelPerson = ExcelCashFlowManager.ReadPersons(excelWorkbookFilename).First(
 CalculationPersonInput person = new()
 {
     Id = Guid.NewGuid(),
-    DateOfBirth = excelPerson.Birthdate.ToDateTime(TimeOnly.MinValue),
+    DateOfBirth = excelPerson.Birthdate,
     Gender = (Gender)(int)excelPerson.Gender,
     CivilStatus = (CivilStatus)(int)excelPerson.CivilStatus,
     ReligiousGroupType = (ReligiousGroupType)(int)excelPerson.ReligiousGroupType,
@@ -113,7 +113,7 @@ CashFlowInput cashFlowInput = new CashFlowInput
         {
             SourceAccountId = a.DebitAccountId,
             TargetAccountId = a.CreditAccountId,
-            DateOfProcess = a.ProcessDate.ToDateTime(TimeOnly.MinValue),
+            DateOfProcess = a.ProcessDate,
             Description = a.Description,
             Amount = a.Amount,
             TaxType = (TaxType)(int)a.TaxType,
@@ -125,7 +125,7 @@ CashFlowInput cashFlowInput = new CashFlowInput
         {
             SourceAccountId = a.DebitAccountId,
             TargetAccountId = a.CreditAccountId,
-            DateOfProcess = a.ProcessDate.ToDateTime(TimeOnly.MinValue),
+            DateOfProcess = a.ProcessDate,
             Description = a.Description,
             TransferFactor = a.TransferFactor,
             TaxType = (TaxType)(int)a.TaxType,
@@ -146,9 +146,9 @@ if (excelTaxActions.Count > 0)
         BalanceActions = excelTaxActions
             .Select(a => new TaxBalanceActionInput
             {
-                BeginOfTaxationPeriod = a.StartPeriodDateString.ToDateTime(TimeOnly.MinValue),
+                BeginOfTaxationPeriod = a.StartPeriodDateString,
                 KindBeginOfTaxationPeriod = ProcessDateKind.BeginOfYear,
-                EndOfTaxationPeriod = a.EndPeriodDateString.ToDateTime(TimeOnly.MinValue),
+                EndOfTaxationPeriod = a.EndPeriodDateString,
                 KindEndOfTaxationPeriod = ProcessDateKind.EndOfYear,
                 Description = a.Description,
                 BalanceFactor = decimal.One,

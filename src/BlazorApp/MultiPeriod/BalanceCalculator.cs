@@ -6,7 +6,7 @@ namespace BlazorApp.MultiPeriod;
 
 public class BalanceCalculator
 {
-    public BalanceSheet Calculate(DateTime startDate, DateTime endDate, ICalculate_Calculate_Transactions calculateTransactions)
+    public BalanceSheet Calculate(DateOnly startDate, DateOnly endDate, ICalculate_Calculate_Transactions calculateTransactions)
     {
         BalanceSheet balanceSheet = new BalanceSheet();
 

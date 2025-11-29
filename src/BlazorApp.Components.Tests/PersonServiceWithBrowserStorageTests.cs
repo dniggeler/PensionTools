@@ -2,15 +2,17 @@
 using BlazorApp.ViewModels;
 using Bunit;
 using Domain.Enums;
+using Blazored.LocalStorage; // Add this using directive
 
 namespace BlazorApp.Components.Tests;
 
-public class PersonServiceWithBrowserStorageTests : TestContext
+public class PersonServiceWithBrowserStorageTests : BunitContext
 {
     public PersonServiceWithBrowserStorageTests()
     {
-        this.AddBlazoredLocalStorage(null);
-        Services.AddServices();
+        // Fix: Use base context for extension method
+        this.JSInterop.SetupModule("./_content/Blazored.LocalStorage/blazored-local-storage.js"); // Optional: Setup JS module if needed
+        this.Services.AddBlazoredLocalStorage(); // Use DI extension to add local storage services
     }
 
     [Fact(DisplayName = "Add New Person")]

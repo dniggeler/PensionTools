@@ -19,9 +19,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using TaxCalculator.WebApi.Examples;
+using Microsoft.OpenApi;
 
 string myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 

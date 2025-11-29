@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Aspose.Cells" Version="25.2.0" />
+        <PackageReference Include="Aspose.Cells" Version="25.11.0" />
         <PackageReference Include="LanguageExt.Core" Version="4.4.9" />
-        <PackageReference Include="FluentValidation" Version="11.11.0" />
+        <PackageReference Include="FluentValidation" Version="12.1.0" />
         <PackageReference Include="AutoMapper" Version="13.0.1" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.2" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.2" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0" />
     </ItemGroup>
     
   <ItemGroup>

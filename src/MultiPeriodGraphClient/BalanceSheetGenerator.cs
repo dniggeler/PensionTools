@@ -4,7 +4,7 @@ namespace MultiPeriodGraphClient;
 
 public class BalanceSheetGenerator : IBalanceSheetGenerator
 {
-    public BalanceSheet GenerateBalanceSheet(DateTime startDate, DateTime endDate, ICalculate_Calculate_Transactions? calculateTransactions)
+    public BalanceSheet GenerateBalanceSheet(DateOnly startDate, DateOnly endDate, ICalculate_Calculate_Transactions? calculateTransactions)
     {
         ArgumentNullException.ThrowIfNull(calculateTransactions);
 

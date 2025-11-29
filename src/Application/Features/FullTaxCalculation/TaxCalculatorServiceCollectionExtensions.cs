@@ -20,6 +20,8 @@ namespace Application.Features.FullTaxCalculation
         {
             collection.AddFullTaxCalculators(applicationMode);
             
+            // create a logger from the LoggerFactory
+
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());

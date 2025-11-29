@@ -3,15 +3,8 @@ using Bunit;
 
 namespace BlazorApp.Components.Tests
 {
-    public class BrowserStorageTests : TestContext
+    public class BrowserStorageTests(ILocalStorageService localStorageService) : BunitContext
     {
-        private readonly ILocalStorageService localStorageService;
-
-        public BrowserStorageTests()
-        {
-            localStorageService = this.AddBlazoredLocalStorage();
-        }
-
         [Fact]
         public async Task Successfully_Use_LocalStorage()
         {

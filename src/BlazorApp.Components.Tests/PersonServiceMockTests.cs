@@ -1,15 +1,18 @@
 ﻿using BlazorApp.Services;
 using BlazorApp.ViewModels;
+using Blazored.LocalStorage;
 using Bunit;
 using Domain.Enums;
 
 namespace BlazorApp.Components.Tests;
 
-public class PersonServiceMockTests : TestContext
+public class PersonServiceMockTests : BunitContext
 {
     public PersonServiceMockTests()
     {
-        this.AddBlazoredLocalStorage();
+        // Fix: Use base context for extension method
+        this.JSInterop.SetupModule("./_content/Blazored.LocalStorage/blazored-local-storage.js"); // Optional: Setup JS module if needed
+        this.Services.AddBlazoredLocalStorage(); // Use DI extension to add local storage services
         Services.AddMockServices();
     }
 
