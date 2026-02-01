@@ -213,7 +213,8 @@ namespace Application.Bvg
             {2019, 28200},
             {2021, 28440},
             {2023, 28680},
-            {9999, 29400},
+            {2024, 29400},
+            {2025, 30240},
         };
 
         private const decimal MinimalSalaryFactor = 0.125M;

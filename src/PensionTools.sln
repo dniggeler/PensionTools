@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31919.166
+# Visual Studio Version 18
+VisualStudioVersion = 18.2.11415.280
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Data.Tests", "Tax.Data.Tests\Tax.Data.Tests.csproj", "{38D1A086-2A5D-4654-B465-04C662DDEA1A}"
 EndProject
@@ -93,6 +93,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiPeriodCalculator.Console", "MultiPeriodCalculator.Console\MultiPeriodCalculator.Console.csproj", "{9F1E0906-F4DC-413B-9EC0-4EE3F7778031}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiPeriodGraphClient", "MultiPeriodGraphClient\MultiPeriodGraphClient.csproj", "{81536CCA-7E76-48FA-BAC0-7784A8323F3F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mcp", "Mcp", "{C34B5A6B-882D-442B-8C94-235F82EE308B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BvgCalculator.McpServer", "BvgCalculator.McpServer\BvgCalculator.McpServer.csproj", "{1CA36C72-6528-EF84-C7C1-619736B8804E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -208,6 +212,10 @@ Global
 		{81536CCA-7E76-48FA-BAC0-7784A8323F3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81536CCA-7E76-48FA-BAC0-7784A8323F3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81536CCA-7E76-48FA-BAC0-7784A8323F3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CA36C72-6528-EF84-C7C1-619736B8804E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CA36C72-6528-EF84-C7C1-619736B8804E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CA36C72-6528-EF84-C7C1-619736B8804E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CA36C72-6528-EF84-C7C1-619736B8804E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -251,6 +259,7 @@ Global
 		{8974EC91-0BC5-4131-AD77-1244FB929AE0} = {6BC3D884-18CD-4328-9EEF-39B7FFBB7F3E}
 		{9F1E0906-F4DC-413B-9EC0-4EE3F7778031} = {89C541A7-00DE-42C9-A51D-D3E23A22FFB5}
 		{81536CCA-7E76-48FA-BAC0-7784A8323F3F} = {89C541A7-00DE-42C9-A51D-D3E23A22FFB5}
+		{1CA36C72-6528-EF84-C7C1-619736B8804E} = {C34B5A6B-882D-442B-8C94-235F82EE308B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB937E37-4C08-4EB0-86F7-87F74A7F6C44}
