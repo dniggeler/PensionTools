@@ -83,7 +83,7 @@ try
                                 new
                                 {
                                     name = "bvg_calculate",
-                                    description = "Calculate BVG (Swiss occupational pension) benefits",
+                                    description = "Berechnet BVG-Leistungen (schweizerische berufliche Vorsorge)",
                                     inputSchema = new
                                     {
                                         type = "object",
@@ -109,7 +109,7 @@ try
                                 new
                                 {
                                     name = "bvg_insured_salary",
-                                    description = "Calculate BVG insured salary",
+                                    description = "Berechnet das BVG-versicherte Einkommen",
                                     inputSchema = new
                                     {
                                         type = "object",
