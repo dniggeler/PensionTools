@@ -20,7 +20,7 @@ services.AddTaxCalculators(ApplicationMode.Estv);
 
 // Register Tax Calculator Service
 services.AddSingleton<SwissTaxCalculatorService>();
-services.AddEstvTaxCalculatorClient("", false);
+services.AddEstvTaxCalculatorClient("https://swisstaxcalculator.estv.admin.ch/delegate/ost-integration/v1/lg-proxy/operation/c3b67379_ESTV/", false);
 
 // Build service provider
 var serviceProvider = services.BuildServiceProvider();
