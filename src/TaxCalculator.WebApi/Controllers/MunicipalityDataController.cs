@@ -11,16 +11,8 @@ namespace TaxCalculator.WebApi.Controllers
     [Produces("application/json")]
     [ApiController]
     [Route("api/data/municipality")]
-    public class MunicipalityDataController : ControllerBase
+    public class MunicipalityDataController(IMunicipalityConnector municipalityConnector) : ControllerBase
     {
-        private readonly IMunicipalityConnector municipalityConnector;
-
-        public MunicipalityDataController(
-            IMunicipalityConnector municipalityConnector)
-        {
-            this.municipalityConnector = municipalityConnector;
-        }
-
         /// <summary>
         /// Gets municipality data supported by the calculators.
         /// </summary>
