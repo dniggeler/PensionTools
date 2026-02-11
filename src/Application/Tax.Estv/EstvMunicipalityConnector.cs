@@ -22,28 +22,26 @@ namespace Application.Tax.Estv
         /// </summary>
         /// <param name="searchFilter">The search filter.</param>
         /// <returns>List of municipalities.</returns>
-        public IEnumerable<MunicipalityModel> Search(MunicipalitySearchFilter searchFilter)
+        public async  Task<IEnumerable<MunicipalityModel>> SearchAsync(MunicipalitySearchFilter searchFilter)
         {
             foreach (MunicipalityEntity entity in municipalityRepository.Search(searchFilter))
             {
-                var model = mapper.Map<MunicipalityModel>(entity);
+                MunicipalityModel model = mapper.Map<MunicipalityModel>(entity);
 
                 if (searchFilter.YearOfValidity.HasValue)
                 {
-                    if (!model.DateOfMutation.HasValue)
+                    if (!model.DateOfMutation.HasValue || model.DateOfMutation.Value.Year > searchFilter.YearOfValidity)
                     {
-                        yield return model;
-                    }
-                    else if (model.DateOfMutation.Value.Year > searchFilter.YearOfValidity)
-                    {
-                        yield return model;
+                        return await Task.FromResult(new List<MunicipalityModel>{model});
                     }
                 }
                 else
                 {
-                    yield return model;
+                    return await Task.FromResult(new List<MunicipalityModel>{model});
                 }
             }
+            
+            return await Task.FromResult(new List<MunicipalityModel>());
         }
 
         public Task<Either<string, MunicipalityModel>> GetAsync(int bfsNumber, int year)

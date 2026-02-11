@@ -8,7 +8,7 @@ public interface IMunicipalityConnector
 {
     Task<IEnumerable<MunicipalityModel>> GetAllAsync();
 
-    IEnumerable<MunicipalityModel> Search(MunicipalitySearchFilter searchFilter);
+    Task<IEnumerable<MunicipalityModel>> SearchAsync(MunicipalitySearchFilter searchFilter);
 
     Task<Either<string, MunicipalityModel>> GetAsync(int bfsNumber, int year);
 

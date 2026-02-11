@@ -18,8 +18,6 @@ namespace Application.Tax.Mock
         public async Task<Either<string, FullTaxResult>> CalculateAsync(
             int calculationYear, MunicipalityModel municipality, TaxPerson person, bool withMaxAvailableCalculationYear = false)
         {
-            MunicipalityModel adaptedModel = GetAdaptedModel();
-
             var result = new FullTaxResult
             {
                 FederalTaxResult = new BasisTaxResult
@@ -54,8 +52,6 @@ namespace Application.Tax.Mock
         public async Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
             int calculationYear, MunicipalityModel municipality, CapitalBenefitTaxPerson person, bool withMaxAvailableCalculationYear = false)
         {
-            MunicipalityModel adaptedModel = GetAdaptedModel();
-
             var result = new FullCapitalBenefitTaxResult
             {
                 FederalResult = new BasisTaxResult
@@ -84,12 +80,15 @@ namespace Application.Tax.Mock
 
         public Task<IEnumerable<MunicipalityModel>> GetAllAsync()
         {
-            return Search(null).AsTask();
+            return SearchAsync(null);
         }
 
-        public IEnumerable<MunicipalityModel> Search(MunicipalitySearchFilter searchFilter)
+        public async Task<IEnumerable<MunicipalityModel>> SearchAsync(MunicipalitySearchFilter searchFilter)
         {
-            yield return GetAdaptedModel();
+            MunicipalityModel adaptedModel = GetAdaptedModel();
+            List<MunicipalityModel> models = [adaptedModel];
+            
+            return await Task.FromResult(models);
         }
 
         public Task<Either<string, MunicipalityModel>> GetAsync(int bfsNumber, int year)
@@ -113,7 +112,7 @@ namespace Application.Tax.Mock
 
         public int[] GetSupportedTaxYears()
         {
-            return [2022, 2023];
+            return [2022, 2023, 2024, 2025];
         }
 
         public int MapToSupportedYear(int taxYear)

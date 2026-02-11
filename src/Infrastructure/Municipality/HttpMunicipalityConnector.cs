@@ -27,15 +27,15 @@ public class HttpMunicipalityConnector(
         return response ?? new List<MunicipalityModel>();
     }
 
-    public IEnumerable<MunicipalityModel> Search(MunicipalitySearchFilter searchFilter)
+    public async Task<IEnumerable<MunicipalityModel>> SearchAsync(MunicipalitySearchFilter searchFilter)
     {
         logger.LogInformation("Searching municipalities with filter: {Name}", searchFilter.Name);
         
         var payload = new { Search = searchFilter.Name ?? string.Empty };
-        var response = PostAsync<List<MunicipalityModel>>(payload).GetAwaiter().GetResult();
+        var response = await PostAsync<List<MunicipalityModel>>(payload);
         
         if (response == null)
-            return Enumerable.Empty<MunicipalityModel>();
+            return [];
 
         var filtered = response.AsEnumerable();
 

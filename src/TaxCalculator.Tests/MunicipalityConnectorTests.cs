@@ -40,7 +40,7 @@ namespace TaxCalculator.Tests
             };
 
             // when
-            var result = _fixture.Service.Search(filter);
+            var result = _fixture.Service.SearchAsync(filter);
 
             Snapshot.Match(result, $"Search Municipalities");
         }
