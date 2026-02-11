@@ -22,6 +22,8 @@
 
     <ItemGroup>
         <ProjectReference Include="..\TaxCalculator.WebApi\TaxCalculator.WebApi.csproj" />
+        <ProjectReference Include="..\Application\Application.csproj" />
+        <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
