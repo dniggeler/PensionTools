@@ -94,18 +94,7 @@ try
                                         properties = new
                                         {
                                             calculationYear = new { type = "integer", description = "The tax year for calculation" },
-                                            municipality = new
-                                            {
-                                                type = "object",
-                                                properties = new
-                                                {
-                                                    bfsNumber = new { type = "integer", description = "Swiss BFS number of the municipality" },
-                                                    name = new { type = "string", description = "Municipality name (optional)" },
-                                                    canton = new { type = "string", description = "Canton code (e.g., 'ZH', 'BE', 'GE')" },
-                                                    estvTaxLocationId = new { type = "integer", description = "ESTV tax location ID (optional)" }
-                                                },
-                                                required = new[] { "bfsNumber", "canton" }
-                                            },
+                                            taxLocationId = new { type = "long", description = "The ESTV tax location id" },
                                             person = new
                                             {
                                                 type = "object",
@@ -121,10 +110,9 @@ try
                                                     taxableWealth = new { type = "number", description = "Taxable wealth amount" }
                                                 },
                                                 required = new[] { "civilStatus", "taxableIncome", "taxableFederalIncome", "taxableWealth" }
-                                            },
-                                            withMaxAvailableCalculationYear = new { type = "boolean", description = "Use maximum available calculation year if specified year not available (default: false)" }
+                                            }
                                         },
-                                        required = new[] { "calculationYear", "municipality", "person" }
+                                        required = new[] { "calculationYear", "taxLocationId", "person" }
                                     }
                                 },
                                 new
@@ -137,18 +125,7 @@ try
                                         properties = new
                                         {
                                             calculationYear = new { type = "integer", description = "The tax year for calculation" },
-                                            municipality = new
-                                            {
-                                                type = "object",
-                                                properties = new
-                                                {
-                                                    bfsNumber = new { type = "integer", description = "Swiss BFS number of the municipality" },
-                                                    name = new { type = "string", description = "Municipality name (optional)" },
-                                                    canton = new { type = "string", description = "Canton code (e.g., 'ZH', 'BE', 'GE')" },
-                                                    estvTaxLocationId = new { type = "integer", description = "ESTV tax location ID (optional)" }
-                                                },
-                                                required = new[] { "bfsNumber", "canton" }
-                                            },
+                                            taxLocationId = new { type = "long", description = "The ESTV tax location id" },
                                             person = new
                                             {
                                                 type = "object",
@@ -162,10 +139,9 @@ try
                                                     taxableCapitalBenefits = new { type = "number", description = "Taxable capital benefits amount (e.g., pension lump sum)" }
                                                 },
                                                 required = new[] { "civilStatus", "taxableCapitalBenefits" }
-                                            },
-                                            withMaxAvailableCalculationYear = new { type = "boolean", description = "Use maximum available calculation year if specified year not available (default: false)" }
+                                            }
                                         },
-                                        required = new[] { "calculationYear", "municipality", "person" }
+                                        required = new[] { "calculationYear", "taxLocationId", "person" }
                                     }
                                 }
                             }
