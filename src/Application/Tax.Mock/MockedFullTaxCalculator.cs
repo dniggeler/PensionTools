@@ -18,6 +18,16 @@ namespace Application.Tax.Mock
         public async Task<Either<string, FullTaxResult>> CalculateAsync(
             int calculationYear, MunicipalityModel municipality, TaxPerson person, bool withMaxAvailableCalculationYear = false)
         {
+            if (!municipality.EstvTaxLocationId.HasValue)
+            {
+                return "tax location id is missing";
+            }
+
+            return await CalculateAsync(calculationYear, municipality.EstvTaxLocationId.Value, person);
+        }
+
+        public async Task<Either<string, FullTaxResult>> CalculateAsync(int calculationYear, long taxLocationId, TaxPerson person)
+        {
             var result = new FullTaxResult
             {
                 FederalTaxResult = new BasisTaxResult
@@ -51,6 +61,16 @@ namespace Application.Tax.Mock
 
         public async Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
             int calculationYear, MunicipalityModel municipality, CapitalBenefitTaxPerson person, bool withMaxAvailableCalculationYear = false)
+        {
+            if (!municipality.EstvTaxLocationId.HasValue)
+            {
+                return "tax location id is missing";
+            }
+
+            return await CalculateAsync(calculationYear, municipality.EstvTaxLocationId.Value, person);
+        }
+
+        public async Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(int calculationYear, long taxLocationId, CapitalBenefitTaxPerson person)
         {
             var result = new FullCapitalBenefitTaxResult
             {

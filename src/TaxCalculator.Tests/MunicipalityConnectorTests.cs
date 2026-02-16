@@ -5,69 +5,62 @@ using Domain.Models.Municipality;
 using Snapshooter.Xunit;
 using Xunit;
 
-namespace TaxCalculator.Tests
+namespace TaxCalculator.Tests;
+
+[Trait("Connector", "Municipality")]
+public class MunicipalityConnectorTests(TaxCalculatorFixture<IMunicipalityConnector> fixture)
+    : IClassFixture<TaxCalculatorFixture<IMunicipalityConnector>>
 {
-    [Trait("Connector", "Municipality")]
-    public class MunicipalityConnectorTests : IClassFixture<TaxCalculatorFixture<IMunicipalityConnector>>
+    [Fact(DisplayName = "Get All")]
+    public async Task ShouldReturnAllMunicipalities()
     {
-        private readonly TaxCalculatorFixture<IMunicipalityConnector> _fixture;
+        // given
 
-        public MunicipalityConnectorTests(TaxCalculatorFixture<IMunicipalityConnector> fixture)
+        // when
+        var result = await fixture.Service.GetAllAsync();
+
+        Snapshot.Match(result,"Get All Municipalities");
+    }
+
+    [Fact(DisplayName = "Search")]
+    public void ShouldSearchMunicipalitiesByFilter()
+    {
+        // given
+        var filter = new MunicipalitySearchFilter
         {
-            _fixture = fixture;
-        }
+            Canton = Canton.BE,
+            Name = "Zuzwil",
+            YearOfValidity = 2008
+        };
 
-        [Fact(DisplayName = "Get All")]
-        public async Task ShouldReturnAllMunicipalities()
-        {
-            // given
+        // when
+        var result = fixture.Service.SearchAsync(filter);
 
-            // when
-            var result = await _fixture.Service.GetAllAsync();
+        Snapshot.Match(result, $"Search Municipalities");
+    }
 
-            Snapshot.Match(result,"Get All Municipalities");
-        }
+    [Fact(DisplayName = "Get Municipality")]
+    public async Task ShouldReturnMunicipalityByBfsNumber()
+    {
+        // given
+        int bfsNumber = 261;
+        int year = 2019;
 
-        [Fact(DisplayName = "Search")]
-        public void ShouldSearchMunicipalitiesByFilter()
-        {
-            // given
-            var filter = new MunicipalitySearchFilter
-            {
-                Canton = Canton.BE,
-                Name = "Zuzwil",
-                YearOfValidity = 2008
-            };
+        // when
+        var result = await fixture.Service.GetAsync(bfsNumber, year);
 
-            // when
-            var result = _fixture.Service.SearchAsync(filter);
+        Snapshot.Match(result, $"Get Municipality {bfsNumber}");
+    }
 
-            Snapshot.Match(result, $"Search Municipalities");
-        }
+    [Fact(DisplayName = "Get All Supporting Tax Calculation")]
+    public async Task ShouldReturnAllMunicipalitiesSupportingTaxCalculation()
+    {
+        // given
 
-        [Fact(DisplayName = "Get Municipality")]
-        public async Task ShouldReturnMunicipalityByBfsNumber()
-        {
-            // given
-            int bfsNumber = 261;
-            int year = 2019;
+        // when
+        var result =
+            await fixture.Service.GetAllSupportTaxCalculationAsync();
 
-            // when
-            var result = await _fixture.Service.GetAsync(bfsNumber, year);
-
-            Snapshot.Match(result, $"Get Municipality {bfsNumber}");
-        }
-
-        [Fact(DisplayName = "Get All Supporting Tax Calculation")]
-        public async Task ShouldReturnAllMunicipalitiesSupportingTaxCalculation()
-        {
-            // given
-
-            // when
-            var result =
-                await _fixture.Service.GetAllSupportTaxCalculationAsync();
-
-            Snapshot.Match(result, "SupportTaxCalculation");
-        }
+        Snapshot.Match(result, "SupportTaxCalculation");
     }
 }

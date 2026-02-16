@@ -8,4 +8,6 @@ public interface IFullWealthAndIncomeTaxCalculator
 {
     Task<Either<string, FullTaxResult>> CalculateAsync(
         int calculationYear, MunicipalityModel municipality, TaxPerson person, bool withMaxAvailableCalculationYear = false);
+
+    Task<Either<string, FullTaxResult>> CalculateAsync(int calculationYear, long taxLocationId, TaxPerson person);
 }

@@ -11,4 +11,9 @@ public interface IFullCapitalBenefitTaxCalculator
         MunicipalityModel municipality,
         CapitalBenefitTaxPerson person,
         bool withMaxAvailableCalculationYear = false);
+
+    Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
+        int calculationYear,
+        long taxLocationId,
+        CapitalBenefitTaxPerson person);
 }

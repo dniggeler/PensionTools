@@ -38,6 +38,16 @@ public class TaxCalculatorConnector(
                 person));
     }
 
+    public Task<Either<string, FullTaxResult>> CalculateAsync(int calculationYear, long taxLocationId, TaxPerson person)
+    {
+        return fullWealthAndIncomeTaxCalculator.CalculateAsync(calculationYear, taxLocationId, person);
+    }
+
+    public Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(int calculationYear, long taxLocationId, CapitalBenefitTaxPerson person)
+    {
+        return fullCapitalBenefitTaxCalculator.CalculateAsync(calculationYear, taxLocationId, person);
+    }
+
     public Task<int[]> GetSupportedTaxYears()
     {
         return supportedTaxYears.AsTask();

@@ -1,7 +1,6 @@
 ﻿using System.Text.Json;
 using Application.Tax.Contracts;
 using Domain.Enums;
-using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using LanguageExt;
 using Microsoft.Extensions.Logging;
@@ -20,20 +19,17 @@ public class SwissTaxCalculatorService(
 {
     public async Task<string> CalculateWealthAndIncomeTax(
         int calculationYear,
-        JsonElement municipality,
-        JsonElement person,
-        bool withMaxAvailableCalculationYear = false)
+        long taxLocationId,
+        JsonElement person)
     {
         try
         {
-            var municipalityModel = ParseMunicipality(municipality);
             var taxPerson = ParseTaxPerson(person);
             
             Either<string, FullTaxResult> result = await wealthAndIncomeTaxCalculator.CalculateAsync(
                 calculationYear,
-                municipalityModel,
-                taxPerson,
-                withMaxAvailableCalculationYear);
+                taxLocationId,
+                taxPerson);
 
             return result.Match(
                 Right: taxResult => JsonSerializer.Serialize(new
@@ -81,20 +77,18 @@ public class SwissTaxCalculatorService(
 
     public async Task<string> CalculateCapitalBenefitTax(
         int calculationYear,
-        JsonElement municipality,
+        long taxLocationId,
         JsonElement person,
         bool withMaxAvailableCalculationYear = false)
     {
         try
         {
-            var municipalityModel = ParseMunicipality(municipality);
             var capitalBenefitPerson = ParseCapitalBenefitTaxPerson(person);
             
             Either<string, FullCapitalBenefitTaxResult> result = await capitalBenefitTaxCalculator.CalculateAsync(
                 calculationYear,
-                municipalityModel,
-                capitalBenefitPerson,
-                withMaxAvailableCalculationYear);
+                taxLocationId,
+                capitalBenefitPerson);
 
             return result.Match(
                 Right: taxResult => JsonSerializer.Serialize(new
@@ -135,19 +129,6 @@ public class SwissTaxCalculatorService(
                 error = ex.Message
             }, new JsonSerializerOptions { WriteIndented = true });
         }
-    }
-
-    private static MunicipalityModel ParseMunicipality(JsonElement municipality)
-    {
-        return new MunicipalityModel
-        {
-            BfsNumber = municipality.GetProperty("bfsNumber").GetInt32(),
-            Name = municipality.TryGetProperty("name", out var name) ? name.GetString() ?? "" : "",
-            Canton = Enum.Parse<Canton>(municipality.GetProperty("canton").GetString() ?? "Undefined", true),
-            EstvTaxLocationId = municipality.TryGetProperty("estvTaxLocationId", out var estvId) && !estvId.ValueKind.Equals(JsonValueKind.Null)
-                ? estvId.GetInt32()
-                : null
-        };
     }
 
     private static TaxPerson ParseTaxPerson(JsonElement person)

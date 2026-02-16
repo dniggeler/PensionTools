@@ -30,7 +30,7 @@ var calculatorService = serviceProvider.GetRequiredService<SwissTaxCalculatorSer
 
 // Simple MCP stdio handler
 using var cts = new CancellationTokenSource();
-Console.CancelKeyPress += (s, e) =>
+Console.CancelKeyPress += (_, e) =>
 {
     cts.Cancel();
     e.Cancel = true;
@@ -183,14 +183,12 @@ try
                     {
                         "calculate_wealth_and_income_tax" => await calculatorService.CalculateWealthAndIncomeTax(
                             arguments.GetProperty("calculationYear").GetInt32(),
-                            arguments.GetProperty("municipality"),
-                            arguments.GetProperty("person"),
-                            arguments.TryGetProperty("withMaxAvailableCalculationYear", out var withMaxYear) && withMaxYear.GetBoolean()),
+                            arguments.GetProperty("taxLocationId").GetInt64(),
+                            arguments.GetProperty("person")),
                         "calculate_capital_benefit_tax" => await calculatorService.CalculateCapitalBenefitTax(
                             arguments.GetProperty("calculationYear").GetInt32(),
-                            arguments.GetProperty("municipality"),
-                            arguments.GetProperty("person"),
-                            arguments.TryGetProperty("withMaxAvailableCalculationYear", out var withMaxYear2) && withMaxYear2.GetBoolean()),
+                            arguments.GetProperty("taxLocationId").GetInt64(),
+                            arguments.GetProperty("person")),
                         _ => JsonSerializer.Serialize(new { success = false, error = "Unknown tool" })
                     };
 

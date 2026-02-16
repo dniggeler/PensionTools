@@ -11,6 +11,10 @@ namespace Application.Features.FullTaxCalculation
         Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
             int calculationYear, int bfsMunicipalityId, CapitalBenefitTaxPerson person, bool withMaxAvailableCalculationYear = false);
 
+        Task<Either<string, FullTaxResult>> CalculateAsync(int calculationYear, long taxLocationId, TaxPerson person);
+
+        Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(int calculationYear, long taxLocationId, CapitalBenefitTaxPerson person);
+
         Task<int[]> GetSupportedTaxYears();
     }
 }

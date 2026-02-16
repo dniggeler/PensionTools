@@ -7,62 +7,58 @@ using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using LanguageExt;
 
-namespace Application.Tax.Estv
+namespace Application.Tax.Estv;
+
+/// <summary>
+/// Facade for the ESTV tax calculation service.
+/// </summary>
+public class EstvFullCapitalBenefitTaxCalculator(
+    IEstvTaxCalculatorClient estvTaxCalculatorClient,
+    ITaxSupportedYearProvider taxSupportedYearProvider)
+    : IFullCapitalBenefitTaxCalculator
 {
-    /// <summary>
-    /// Facade for the ESTV tax calculation service.
-    /// </summary>
-    public class EstvFullCapitalBenefitTaxCalculator : IFullCapitalBenefitTaxCalculator
+    public async Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
+        int calculationYear,
+        MunicipalityModel municipality,
+        CapitalBenefitTaxPerson person,
+        bool withMaxAvailableCalculationYear = false)
     {
-        private readonly IEstvTaxCalculatorClient estvTaxCalculatorClient;
-        private readonly ITaxSupportedYearProvider taxSupportedYearProvider;
-
-        public EstvFullCapitalBenefitTaxCalculator(
-            IEstvTaxCalculatorClient estvTaxCalculatorClient,
-            ITaxSupportedYearProvider taxSupportedYearProvider)
+        if (!municipality.EstvTaxLocationId.HasValue)
         {
-            this.estvTaxCalculatorClient = estvTaxCalculatorClient;
-            this.taxSupportedYearProvider = taxSupportedYearProvider;
+            return "ESTV tax location id is null";
         }
 
-        public async Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
-            int calculationYear,
-            MunicipalityModel municipality,
-            CapitalBenefitTaxPerson person,
-            bool withMaxAvailableCalculationYear = false)
+        return await CalculateAsync(calculationYear, municipality.EstvTaxLocationId.Value, person);
+    }
+
+    public async Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(int calculationYear, long taxLocationId, CapitalBenefitTaxPerson person)
+    {
+        int supportedTaxYear = taxSupportedYearProvider.MapToSupportedYear(calculationYear);
+
+        SimpleCapitalTaxResult calculationResult =
+            await estvTaxCalculatorClient.CalculateCapitalBenefitTaxAsync((int)taxLocationId, supportedTaxYear, person);
+
+        decimal municipalityRate = calculationResult.TaxCanton == 0
+            ? decimal.Zero
+            : calculationResult.TaxCity / (decimal)calculationResult.TaxCanton * 100M;
+
+        return new FullCapitalBenefitTaxResult
         {
-            if (!municipality.EstvTaxLocationId.HasValue)
+            FederalResult = new BasisTaxResult { TaxAmount = calculationResult.TaxFed },
+            StateResult = new CapitalBenefitTaxResult
             {
-                return "ESTV tax location id is null";
-            }
-
-            int supportedTaxYear = taxSupportedYearProvider.MapToSupportedYear(calculationYear);
-
-            SimpleCapitalTaxResult calculationResult = await estvTaxCalculatorClient.CalculateCapitalBenefitTaxAsync(
-                municipality.EstvTaxLocationId.Value, supportedTaxYear, person);
-
-            decimal municipalityRate = calculationResult.TaxCanton == 0
-                ? decimal.Zero
-                : calculationResult.TaxCity / (decimal)calculationResult.TaxCanton * 100M;
-
-            return new FullCapitalBenefitTaxResult
-            {
-                FederalResult = new BasisTaxResult { TaxAmount = calculationResult.TaxFed },
-                StateResult = new CapitalBenefitTaxResult
+                MunicipalityRate = municipalityRate,
+                CantonRate = 100,
+                ChurchTax = new ChurchTaxResult
                 {
-                    MunicipalityRate = municipalityRate,
-                    CantonRate = 100,
-                    ChurchTax = new ChurchTaxResult
-                    {
-                        TaxAmount = calculationResult.TaxChurch,
-                    },
-                    BasisTax = new BasisTaxResult
-                    {
-                        TaxAmount = calculationResult.TaxCanton,
-                        DeterminingFactorTaxableAmount = municipalityRate
-                    }
+                    TaxAmount = calculationResult.TaxChurch,
+                },
+                BasisTax = new BasisTaxResult
+                {
+                    TaxAmount = calculationResult.TaxCanton,
+                    DeterminingFactorTaxableAmount = municipalityRate
                 }
-            };
-        }
+            }
+        };
     }
 }

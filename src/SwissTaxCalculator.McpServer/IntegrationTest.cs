@@ -1,6 +1,5 @@
 ﻿using System.Text.Json;
 using Application.Tax.Contracts;
-using Domain.Enums;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using LanguageExt;
@@ -23,12 +22,7 @@ public class IntegrationTest
             new MockCapitalBenefitTaxCalculator(),
             NullLogger<SwissTaxCalculatorService>.Instance);
 
-        var municipalityJson = JsonSerializer.SerializeToElement(new
-        {
-            bfsNumber = 261,
-            canton = "ZH",
-            name = "Zurich"
-        });
+        long taxLocationId = 800000000;
 
         var personJson = JsonSerializer.SerializeToElement(new
         {
@@ -42,9 +36,8 @@ public class IntegrationTest
 
         var result = await service.CalculateWealthAndIncomeTax(
             2024,
-            municipalityJson,
-            personJson,
-            false);
+            taxLocationId,
+            personJson);
 
         Console.WriteLine("Wealth and Income Tax Result:");
         Console.WriteLine(result);
@@ -58,12 +51,7 @@ public class IntegrationTest
             mockCalculator,
             NullLogger<SwissTaxCalculatorService>.Instance);
 
-        var municipalityJson = JsonSerializer.SerializeToElement(new
-        {
-            bfsNumber = 351,
-            canton = "BE",
-            name = "Bern"
-        });
+        long taxLocationId = 800000000;
 
         var personJson = JsonSerializer.SerializeToElement(new
         {
@@ -74,9 +62,8 @@ public class IntegrationTest
 
         var result = await service.CalculateCapitalBenefitTax(
             2024,
-            municipalityJson,
-            personJson,
-            false);
+            taxLocationId,
+            personJson);
 
         Console.WriteLine("Capital Benefit Tax Result:");
         Console.WriteLine(result);
@@ -88,11 +75,21 @@ public class IntegrationTest
 /// </summary>
 internal class MockWealthAndIncomeTaxCalculator : IFullWealthAndIncomeTaxCalculator
 {
-    public Task<Either<string, FullTaxResult>> CalculateAsync(
+    public async Task<Either<string, FullTaxResult>> CalculateAsync(
         int calculationYear,
         MunicipalityModel municipality,
         TaxPerson person,
         bool withMaxAvailableCalculationYear = false)
+    {
+        if (!municipality.EstvTaxLocationId.HasValue)
+        {
+            return "tax location id is missing";
+        }
+
+        return await CalculateAsync(calculationYear, municipality.EstvTaxLocationId.Value, person);
+    }
+
+    public Task<Either<string, FullTaxResult>> CalculateAsync(int calculationYear, long taxLocationId, TaxPerson person)
     {
         var result = new FullTaxResult
         {
@@ -132,11 +129,21 @@ internal class MockWealthAndIncomeTaxCalculator : IFullWealthAndIncomeTaxCalcula
 /// </summary>
 internal class MockCapitalBenefitTaxCalculator : IFullCapitalBenefitTaxCalculator
 {
-    public Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
+    public async Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(
         int calculationYear,
         MunicipalityModel municipality,
         CapitalBenefitTaxPerson person,
         bool withMaxAvailableCalculationYear = false)
+    {
+        if (!municipality.EstvTaxLocationId.HasValue)
+        {
+            return "tax location id is missing";
+        }
+
+        return await CalculateAsync(calculationYear, municipality.EstvTaxLocationId.Value, person);
+    }
+
+    public Task<Either<string, FullCapitalBenefitTaxResult>> CalculateAsync(int calculationYear, long taxLocationId, CapitalBenefitTaxPerson person)
     {
         var result = new FullCapitalBenefitTaxResult
         {
