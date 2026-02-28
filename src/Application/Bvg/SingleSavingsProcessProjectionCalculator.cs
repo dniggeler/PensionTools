@@ -17,7 +17,7 @@ public class SingleSavingsProcessProjectionCalculator : ISavingsProcessProjectio
     {
         // Values are only projected to final age
         // Note:
-        // person might retired in between, or even before the
+        // person might be retired in between, or even before the
         // begin of the projection period.
         DateTime dateOfTechnicalBirth = dateOfRetirement
             .AddMonths(-retirementAge.Months)

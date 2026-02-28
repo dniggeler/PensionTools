@@ -1,6 +1,8 @@
 ﻿using System.Text.Json;
+using Application.Municipality;
 using Application.Tax.Contracts;
 using Domain.Enums;
+using Domain.Models.Municipality;
 using Domain.Models.Tax;
 using LanguageExt;
 using Microsoft.Extensions.Logging;
@@ -9,17 +11,18 @@ namespace SwissTaxCalculator.McpServer;
 
 /// <summary>
 /// Swiss Tax Calculator Service that provides tax calculation logic
-/// This is a service wrapper around IFullWealthAndIncomeTaxCalculator and IFullCapitalBenefitTaxCalculator
+/// This is a service wrapper around IFullWealthAndIncomeTaxCalculator, IFullCapitalBenefitTaxCalculator, and IMunicipalityConnector
 /// for the MCP server implementation
 /// </summary>
 public class SwissTaxCalculatorService(
     IFullWealthAndIncomeTaxCalculator wealthAndIncomeTaxCalculator,
     IFullCapitalBenefitTaxCalculator capitalBenefitTaxCalculator,
+    IMunicipalityConnector municipalityConnector,
     ILogger<SwissTaxCalculatorService> logger)
 {
     public async Task<string> CalculateWealthAndIncomeTax(
         int calculationYear,
-        long taxLocationId,
+        int taxLocationId,
         JsonElement person)
     {
         try
@@ -77,9 +80,8 @@ public class SwissTaxCalculatorService(
 
     public async Task<string> CalculateCapitalBenefitTax(
         int calculationYear,
-        long taxLocationId,
-        JsonElement person,
-        bool withMaxAvailableCalculationYear = false)
+        int taxLocationId,
+        JsonElement person)
     {
         try
         {
@@ -131,6 +133,40 @@ public class SwissTaxCalculatorService(
         }
     }
 
+    public async Task<string> SearchMunicipalities(JsonElement searchFilter)
+    {
+        try
+        {
+            var filter = ParseMunicipalitySearchFilter(searchFilter);
+
+            var municipalities = await municipalityConnector.SearchAsync(filter);
+
+            return JsonSerializer.Serialize(new
+            {
+                success = true,
+                data = municipalities.Select(m => new
+                {
+                    bfsNumber = m.BfsNumber,
+                    name = m.Name,
+                    canton = m.Canton.ToString(),
+                    dateOfMutation = m.DateOfMutation,
+                    mutationId = m.MutationId,
+                    successorId = m.SuccessorId,
+                    estvTaxLocationId = m.EstvTaxLocationId
+                })
+            }, new JsonSerializerOptions { WriteIndented = true });
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error in SearchMunicipalities");
+            return JsonSerializer.Serialize(new
+            {
+                success = false,
+                error = ex.Message
+            }, new JsonSerializerOptions { WriteIndented = true });
+        }
+    }
+
     private static TaxPerson ParseTaxPerson(JsonElement person)
     {
         return new TaxPerson
@@ -162,6 +198,22 @@ public class SwissTaxCalculatorService(
                 ? Enum.Parse<ReligiousGroupType>(partnerReligious.GetString() ?? "Other", true)
                 : null,
             TaxableCapitalBenefits = person.GetProperty("taxableCapitalBenefits").GetDecimal()
+        };
+    }
+
+    private static MunicipalitySearchFilter ParseMunicipalitySearchFilter(JsonElement filter)
+    {
+        return new MunicipalitySearchFilter
+        {
+            Canton = filter.TryGetProperty("canton", out var canton) && !canton.ValueKind.Equals(JsonValueKind.Null)
+                ? Enum.Parse<Canton>(canton.GetString() ?? "Undefined", true)
+                : Canton.Undefined,
+            Name = filter.TryGetProperty("name", out var name) && !name.ValueKind.Equals(JsonValueKind.Null)
+                ? name.GetString() ?? string.Empty
+                : string.Empty,
+            YearOfValidity = filter.TryGetProperty("yearOfValidity", out var year) && !year.ValueKind.Equals(JsonValueKind.Null)
+                ? year.GetInt32()
+                : null
         };
     }
 }

@@ -12,54 +12,53 @@ using Domain.Models.Tax.Person;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.Features.FullTaxCalculation
+namespace Application.Features.FullTaxCalculation;
+
+public static class TaxCalculatorServiceCollectionExtensions
 {
-    public static class TaxCalculatorServiceCollectionExtensions
+    public static void  AddTaxCalculators(this IServiceCollection collection, ApplicationMode applicationMode)
     {
-        public static void AddTaxCalculators(this IServiceCollection collection, ApplicationMode applicationMode)
-        {
-            collection.AddFullTaxCalculators(applicationMode);
+        collection.AddFullTaxCalculators(applicationMode);
             
-            // create a logger from the LoggerFactory
+        // create a logger from the LoggerFactory
 
-            var mappingConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingProfile());
-            });
-
-            collection.AddSingleton(_ => mappingConfig.CreateMapper());
-            collection.AddTransient<ITaxCalculatorConnector, TaxCalculatorConnector>();
-            collection.AddTransient<IMarginalTaxCurveCalculatorConnector, MarginalTaxCurveCalculatorConnector>();
-            collection.AddValidators();
-        }
-
-        private static void AddFullTaxCalculators(this IServiceCollection collection, ApplicationMode applicationMode)
+        var mappingConfig = new MapperConfiguration(mc =>
         {
-            switch (applicationMode)
-            {
-                case ApplicationMode.Estv:
-                    collection.AddTransient<IFullWealthAndIncomeTaxCalculator, EstvFullTaxCalculator>();
-                    collection.AddTransient<IFullCapitalBenefitTaxCalculator, EstvFullCapitalBenefitTaxCalculator>();
-                    collection.AddTransient<IMunicipalityConnector, EstvMunicipalityConnector>();
-                    collection.AddTransient<ITaxSupportedYearProvider, EstvTaxSupportedYearProvider>();
-                    break;
-                case ApplicationMode.Mock:
-                    collection.AddTransient<IFullCapitalBenefitTaxCalculator, MockedFullTaxCalculator>();
-                    collection.AddTransient<IFullWealthAndIncomeTaxCalculator, MockedFullTaxCalculator>();
-                    collection.AddTransient<IMunicipalityConnector, MockedFullTaxCalculator>();
-                    collection.AddTransient<ITaxSupportedYearProvider, MockedFullTaxCalculator>();
-                    break;
-            }
-        }
+            mc.AddProfile(new MappingProfile());
+        });
 
-        private static void AddValidators(this IServiceCollection collection)
+        collection.AddSingleton(_ => mappingConfig.CreateMapper());
+        collection.AddTransient<ITaxCalculatorConnector, TaxCalculatorConnector>();
+        collection.AddTransient<IMarginalTaxCurveCalculatorConnector, MarginalTaxCurveCalculatorConnector>();
+        collection.AddValidators();
+    }
+
+    private static void AddFullTaxCalculators(this IServiceCollection collection, ApplicationMode applicationMode)
+    {
+        switch (applicationMode)
         {
-            collection.AddSingleton<IValidator<CapitalBenefitTaxPerson>, CapitalBenefitsTaxPersonValidator>();
-            collection.AddSingleton<IValidator<BasisTaxPerson>, BasisTaxPersonValidator>();
-            collection.AddSingleton<IValidator<TaxPerson>, TaxPersonValidator>();
-            collection.AddSingleton<IValidator<FederalTaxPerson>, FederalTaxPersonValidator>();
-            collection.AddSingleton<IValidator<PollTaxPerson>, PollTaxPersonValidator>();
-            collection.AddSingleton<IValidator<ChurchTaxPerson>, ChurchTaxPersonValidator>();
+            case ApplicationMode.Estv:
+                collection.AddTransient<IFullWealthAndIncomeTaxCalculator, EstvFullTaxCalculator>();
+                collection.AddTransient<IFullCapitalBenefitTaxCalculator, EstvFullCapitalBenefitTaxCalculator>();
+                collection.AddTransient<IMunicipalityConnector, EstvMunicipalityServiceClient>();
+                collection.AddTransient<ITaxSupportedYearProvider, EstvTaxSupportedYearProvider>();
+                break;
+            case ApplicationMode.Mock:
+                collection.AddTransient<IFullCapitalBenefitTaxCalculator, MockedFullTaxCalculator>();
+                collection.AddTransient<IFullWealthAndIncomeTaxCalculator, MockedFullTaxCalculator>();
+                collection.AddTransient<IMunicipalityConnector, MockedFullTaxCalculator>();
+                collection.AddTransient<ITaxSupportedYearProvider, MockedFullTaxCalculator>();
+                break;
         }
+    }
+
+    private static void AddValidators(this IServiceCollection collection)
+    {
+        collection.AddSingleton<IValidator<CapitalBenefitTaxPerson>, CapitalBenefitsTaxPersonValidator>();
+        collection.AddSingleton<IValidator<BasisTaxPerson>, BasisTaxPersonValidator>();
+        collection.AddSingleton<IValidator<TaxPerson>, TaxPersonValidator>();
+        collection.AddSingleton<IValidator<FederalTaxPerson>, FederalTaxPersonValidator>();
+        collection.AddSingleton<IValidator<PollTaxPerson>, PollTaxPersonValidator>();
+        collection.AddSingleton<IValidator<ChurchTaxPerson>, ChurchTaxPersonValidator>();
     }
 }

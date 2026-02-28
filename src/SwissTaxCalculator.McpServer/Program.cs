@@ -11,7 +11,7 @@ var services = new ServiceCollection();
 // Add logging
 services.AddLogging(builder =>
 {
-    builder.SetMinimumLevel(LogLevel.Information);
+    builder.SetMinimumLevel(LogLevel.Error);
 });
 
 // Register Tax Calculator services with Mock mode for now
@@ -94,7 +94,7 @@ try
                                         properties = new
                                         {
                                             calculationYear = new { type = "integer", description = "The tax year for calculation" },
-                                            taxLocationId = new { type = "long", description = "The ESTV tax location id" },
+                                            taxLocationId = new { type = "integer", description = "The ESTV tax location id" },
                                             person = new
                                             {
                                                 type = "object",
@@ -125,7 +125,7 @@ try
                                         properties = new
                                         {
                                             calculationYear = new { type = "integer", description = "The tax year for calculation" },
-                                            taxLocationId = new { type = "long", description = "The ESTV tax location id" },
+                                            taxLocationId = new { type = "integer", description = "The ESTV tax location id" },
                                             person = new
                                             {
                                                 type = "object",
@@ -143,6 +143,29 @@ try
                                         },
                                         required = new[] { "calculationYear", "taxLocationId", "person" }
                                     }
+                                },
+                                new
+                                {
+                                    name = "search_municipalities",
+                                    description = "Search for Swiss municipalities by name, canton, and year of validity",
+                                    inputSchema = new
+                                    {
+                                        type = "object",
+                                        properties = new
+                                        {
+                                            searchFilter = new
+                                            {
+                                                type = "object",
+                                                properties = new
+                                                {
+                                                    canton = new { type = "string", description = "Canton short name (e.g., 'ZH', 'BE', 'GE'). Optional." },
+                                                    name = new { type = "string", description = "Municipality name (substring search). Optional." },
+                                                    yearOfValidity = new { type = "integer", description = "Year of validity for municipality data. Optional." }
+                                                }
+                                            }
+                                        },
+                                        required = new[] { "searchFilter" }
+                                    }
                                 }
                             }
                         }
@@ -159,12 +182,14 @@ try
                     {
                         "calculate_wealth_and_income_tax" => await calculatorService.CalculateWealthAndIncomeTax(
                             arguments.GetProperty("calculationYear").GetInt32(),
-                            arguments.GetProperty("taxLocationId").GetInt64(),
+                            arguments.GetProperty("taxLocationId").GetInt32(),
                             arguments.GetProperty("person")),
                         "calculate_capital_benefit_tax" => await calculatorService.CalculateCapitalBenefitTax(
                             arguments.GetProperty("calculationYear").GetInt32(),
-                            arguments.GetProperty("taxLocationId").GetInt64(),
+                            arguments.GetProperty("taxLocationId").GetInt32(),
                             arguments.GetProperty("person")),
+                        "search_municipalities" => await calculatorService.SearchMunicipalities(
+                            arguments.GetProperty("searchFilter")),
                         _ => JsonSerializer.Serialize(new { success = false, error = "Unknown tool" })
                     };
 

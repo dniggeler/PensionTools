@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Application.Municipality;
 using Application.Tax.Contracts;
 using Domain.Models.Municipality;
 using Domain.Models.Tax;
@@ -20,9 +21,10 @@ public class IntegrationTest
         var service = new SwissTaxCalculatorService(
             mockCalculator,
             new MockCapitalBenefitTaxCalculator(),
+            new MockMunicipalityConnector(),
             NullLogger<SwissTaxCalculatorService>.Instance);
 
-        long taxLocationId = 800000000;
+        int taxLocationId = 800000000;
 
         var personJson = JsonSerializer.SerializeToElement(new
         {
@@ -49,9 +51,10 @@ public class IntegrationTest
         var service = new SwissTaxCalculatorService(
             new MockWealthAndIncomeTaxCalculator(),
             mockCalculator,
+            new MockMunicipalityConnector(),
             NullLogger<SwissTaxCalculatorService>.Instance);
 
-        long taxLocationId = 800000000;
+        int taxLocationId = 800000000;
 
         var personJson = JsonSerializer.SerializeToElement(new
         {
@@ -169,5 +172,51 @@ internal class MockCapitalBenefitTaxCalculator : IFullCapitalBenefitTaxCalculato
         };
 
         return Task.FromResult<Either<string, FullCapitalBenefitTaxResult>>(result);
+    }
+}
+
+/// <summary>
+/// Mock implementation for testing purposes
+/// </summary>
+internal class MockMunicipalityConnector : IMunicipalityConnector
+{
+    public Task<IEnumerable<MunicipalityModel>> GetAllAsync()
+    {
+        return Task.FromResult<IEnumerable<MunicipalityModel>>(new List<MunicipalityModel>());
+    }
+
+    public Task<IEnumerable<MunicipalityModel>> SearchAsync(MunicipalitySearchFilter searchFilter)
+    {
+        var municipalities = new List<MunicipalityModel>
+        {
+            new MunicipalityModel
+            {
+                BfsNumber = 261,
+                Name = "Zürich",
+                Canton = Domain.Enums.Canton.ZH,
+                EstvTaxLocationId = 800000000
+            }
+        };
+        
+        return Task.FromResult<IEnumerable<MunicipalityModel>>(municipalities);
+    }
+
+    public Task<Either<string, MunicipalityModel>> GetAsync(int bfsNumber, int year)
+    {
+        var municipality = new MunicipalityModel
+        {
+            BfsNumber = bfsNumber,
+            Name = "Mock Municipality",
+            Canton = Domain.Enums.Canton.ZH,
+            EstvTaxLocationId = 800000000
+        };
+        
+        return Task.FromResult<Either<string, MunicipalityModel>>(municipality);
+    }
+
+    public Task<IReadOnlyCollection<TaxSupportedMunicipalityModel>> GetAllSupportTaxCalculationAsync()
+    {
+        return Task.FromResult<IReadOnlyCollection<TaxSupportedMunicipalityModel>>(
+            new List<TaxSupportedMunicipalityModel>());
     }
 }

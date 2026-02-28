@@ -9,7 +9,7 @@ var services = new ServiceCollection();
 // Add logging to file instead of console (which would interfere with MCP stdio)
 services.AddLogging(builder =>
 {
-    builder.SetMinimumLevel(LogLevel.Information);
+    builder.SetMinimumLevel(LogLevel.Error);
 });
 
 // Register BVG Calculator services
