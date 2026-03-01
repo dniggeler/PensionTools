@@ -83,7 +83,7 @@ try
                                 new
                                 {
                                     name = "bvg_calculate",
-                                    description = "Berechnet BVG-Leistungen (schweizerische berufliche Vorsorge)",
+                                    description = "Berechnet die gesetzlich einzuhaltenden BVG-Leistungen (schweizerische berufliche Vorsorge)",
                                     inputSchema = new
                                     {
                                         type = "object",
@@ -130,6 +130,29 @@ try
                                         },
                                         required = new[] { "calculationYear", "person" }
                                     }
+                                },
+                                new
+                                {
+                                    name = "bvg_retirement_date",
+                                    description = "Berechnet das offizielle BVG-Rentenalter und Rentendatum einer Person",
+                                    inputSchema = new
+                                    {
+                                        type = "object",
+                                        properties = new
+                                        {
+                                            person = new
+                                            {
+                                                type = "object",
+                                                properties = new
+                                                {
+                                                    dateOfBirth = new { type = "string" },
+                                                    gender = new { type = "string" }
+                                                },
+                                                required = new[] { "dateOfBirth", "gender" }
+                                            }
+                                        },
+                                        required = new[] { "person" }
+                                    }
                                 }
                             }
                         }
@@ -159,6 +182,8 @@ try
                             arguments.GetProperty("person")),
                         "bvg_retirement_credits" => calculatorService.RetirementCredits(
                             arguments.GetProperty("calculationYear").GetInt32(),
+                            arguments.GetProperty("person")),
+                        "bvg_retirement_date" => calculatorService.RetirementDate(
                             arguments.GetProperty("person")),
                         _ => JsonSerializer.Serialize(new { success = false, error = "Unknown tool" })
                     };

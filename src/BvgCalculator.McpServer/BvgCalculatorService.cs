@@ -13,7 +13,7 @@ namespace BvgCalculator.McpServer;
 /// This is a simple service wrapper around IBvgCalculator
 /// for the MCP server implementation
 /// </summary>
-public class BvgCalculatorService(IBvgCalculator bvgCalculator, ILogger<BvgCalculatorService> logger)
+public class BvgCalculatorService(IBvgCalculator bvgCalculator, BvgRetirementDateCalculator retirementDateCalculator)
 {
     public string Calculate(int calculationYear, decimal retirementCapitalEndOfYear, JsonElement person)
     {
@@ -57,7 +57,6 @@ public class BvgCalculatorService(IBvgCalculator bvgCalculator, ILogger<BvgCalcu
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Error in Calculate");
             return JsonSerializer.Serialize(new
             {
                 success = false,
@@ -92,7 +91,6 @@ public class BvgCalculatorService(IBvgCalculator bvgCalculator, ILogger<BvgCalcu
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Error in InsuredSalary");
             return JsonSerializer.Serialize(new
             {
                 success = false,
@@ -131,7 +129,6 @@ public class BvgCalculatorService(IBvgCalculator bvgCalculator, ILogger<BvgCalcu
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Error in InsuredSalariesTimeSeries");
             return JsonSerializer.Serialize(new
             {
                 success = false,
@@ -170,7 +167,6 @@ public class BvgCalculatorService(IBvgCalculator bvgCalculator, ILogger<BvgCalcu
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Error in RetirementCreditFactors");
             return JsonSerializer.Serialize(new
             {
                 success = false,
@@ -209,7 +205,6 @@ public class BvgCalculatorService(IBvgCalculator bvgCalculator, ILogger<BvgCalcu
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Error in RetirementCredits");
             return JsonSerializer.Serialize(new
             {
                 success = false,
@@ -218,13 +213,59 @@ public class BvgCalculatorService(IBvgCalculator bvgCalculator, ILogger<BvgCalcu
         }
     }
 
+    public string RetirementDate(JsonElement person)
+    {
+        try
+        {
+            string dateOfBirthStr = person.GetProperty("dateOfBirth").GetString() ?? throw new ArgumentException("dateOfBirth is required");
+            DateTime dateOfBirth = DateTime.Parse(dateOfBirthStr);
+            Gender gender = ParseGender(person);
+
+            DateTime dateOfRetirement = retirementDateCalculator.DateOfRetirement(gender, dateOfBirth);
+            (int years, int months) retirementAge = retirementDateCalculator.RetirementAge(gender, dateOfBirth);
+
+            return JsonSerializer.Serialize(new
+            {
+                success = true,
+                data = new
+                {
+                    dateOfRetirement,
+                    retirementAge = new
+                    {
+                        years = retirementAge.years,
+                        months = retirementAge.months
+                    }
+                }
+            }, new JsonSerializerOptions { WriteIndented = true });
+        }
+        catch (Exception ex)
+        {
+            return JsonSerializer.Serialize(new
+            {
+                success = false,
+                error = ex.Message
+            }, new JsonSerializerOptions { WriteIndented = true });
+        }
+    }
+
+    private static Gender ParseGender(JsonElement personElement)
+    {
+        string genderStr = personElement.GetProperty("gender").GetString() ?? throw new ArgumentException("gender is required");
+        return genderStr.ToLowerInvariant() switch
+        {
+            "male" or "m" => Gender.Male,
+            "female" or "f" => Gender.Female,
+            _ => throw new ArgumentException($"Unknown gender value: {genderStr}")
+        };
+    }
+
     private BvgPerson ParseBvgPerson(JsonElement personElement)
     {
         return new BvgPerson
         {
             DateOfBirth = DateTime.Parse(personElement.GetProperty("dateOfBirth").GetString() ?? throw new ArgumentException("dateOfBirth is required")),
             //Gender = Enum.Parse<Gender>(personElement.GetProperty("gender").GetString() ?? throw new ArgumentException("gender is required")),
-            Gender = Gender.Male,
+            Gender = personElement.TryGetProperty("gender", out JsonElement genderEl) ? ParseGender(personElement) : Gender.Male,
             ReportedSalary = personElement.GetProperty("reportedSalary").GetDecimal(),
             PartTimeDegree = personElement.TryGetProperty("partTimeDegree", out JsonElement ptd) ? ptd.GetDecimal() : 1.0m,
             DisabilityDegree = personElement.TryGetProperty("disabilityDegree", out JsonElement dd) ? dd.GetDecimal() : 0.0m
