@@ -6,6 +6,81 @@ namespace Application.Features.ContributionCalculator;
 
 public class CompoundingContributionCalculator : ICompoundingContributionCalculator
 {
+    public Either<string, ContributionResult> CalculateFixedYearlyContribution(
+        DateTime startDate,
+        decimal initialAmount,
+        decimal yearlyContributionAmount,
+        int contributionCount,
+        bool investAtBeginningOfYear,
+        decimal annualInterestRate,
+        CompoundingFrequency compoundingFrequency,
+        bool returnSequence = false)
+    {
+        if (contributionCount < 0)
+        {
+            return "Contribution count must be non-negative";
+        }
+
+        var contributions = Enumerable.Range(0, contributionCount)
+            .Select(i =>
+            {
+                var date = investAtBeginningOfYear
+                    ? startDate.AddYears(i)
+                    : startDate.AddYears(i + 1);
+
+                return new Contribution(date, yearlyContributionAmount);
+            })
+            .ToList();
+
+        var finalDate = startDate.AddYears(contributionCount);
+
+        var request = new ContributionRequest(
+            startDate,
+            initialAmount,
+            contributions,
+            annualInterestRate,
+            finalDate,
+            compoundingFrequency,
+            returnSequence);
+
+        return Calculate(request);
+    }
+
+    public Either<string, ContributionResult> CalculateYearlyContributionUntilFinalDate(
+        DateTime startDate,
+        DateTime finalDate,
+        decimal initialAmount,
+        decimal yearlyContributionAmount,
+        bool investAtBeginningOfYear,
+        decimal annualInterestRate,
+        CompoundingFrequency compoundingFrequency,
+        bool returnSequence = false)
+    {
+        var contributions = new List<Contribution>();
+        var firstContributionDate = investAtBeginningOfYear
+            ? startDate
+            : startDate.AddYears(1);
+
+        var inclusiveFinalDate = !investAtBeginningOfYear;
+        for (var date = firstContributionDate;
+             inclusiveFinalDate ? date <= finalDate : date < finalDate;
+             date = date.AddYears(1))
+        {
+            contributions.Add(new Contribution(date, yearlyContributionAmount));
+        }
+
+        var request = new ContributionRequest(
+            startDate,
+            initialAmount,
+            contributions,
+            annualInterestRate,
+            finalDate,
+            compoundingFrequency,
+            returnSequence);
+
+        return Calculate(request);
+    }
+
     public Either<string, ContributionResult> Calculate(ContributionRequest request)
     {
         if (request.FinalDate < request.StartDate)

@@ -160,4 +160,76 @@ public class CompoundingContributionCalculatorTests
             r.FinalAmount.Should().BeApproximately(1126.83m, 0.01m);
         });
     }
+
+    [Fact]
+    public void CalculateFixedYearlyContribution_BeginningOfYear_ShouldReturnValidResult()
+    {
+        var startDate = new DateTime(2020, 1, 1);
+
+        var result = _calculator.CalculateFixedYearlyContribution(
+            startDate,
+            100000m,
+            5000m,
+            10,
+            false,
+            0.025m,
+            CompoundingFrequency.Annual,
+            returnSequence: true);
+
+        result.IsRight.Should().BeTrue();
+        Snapshot.Match(result);
+    }
+
+    [Fact]
+    public void CalculateYearlyContributionUntilDate_ShouldReturnValidResult()
+    {
+        var startDate = new DateTime(2020, 1, 1);
+        var finalDate = new DateTime(2030, 1, 1);
+
+        var result = _calculator.CalculateYearlyContributionUntilFinalDate(
+            startDate,
+            finalDate,
+            100000m,
+            5000m,
+            false,
+            0.025m,
+            CompoundingFrequency.Annual,
+            returnSequence: true);
+
+        result.IsRight.Should().BeTrue();
+        Snapshot.Match(result);
+    }
+
+    [Fact]
+    public void CalculateYearlyContributionUntilDate_BeginningOfYear_WithZeroInterest_ShouldKeepSameTotalContribution()
+    {
+        var startDate = new DateTime(2020, 1, 1);
+        var finalDate = new DateTime(2030, 1, 1);
+
+        var investAtEndOfYear = _calculator.CalculateYearlyContributionUntilFinalDate(
+            startDate,
+            finalDate,
+            0m,
+            5000m,
+            false,
+            0m,
+            CompoundingFrequency.Annual);
+
+        var investAtBeginningOfYear = _calculator.CalculateYearlyContributionUntilFinalDate(
+            startDate,
+            finalDate,
+            0m,
+            5000m,
+            true,
+            0m,
+            CompoundingFrequency.Annual);
+
+        investAtEndOfYear.IsRight.Should().BeTrue();
+        investAtBeginningOfYear.IsRight.Should().BeTrue();
+
+        var endResult = investAtEndOfYear.Match(r => r.FinalAmount, _ => 0m);
+        var beginningResult = investAtBeginningOfYear.Match(r => r.FinalAmount, _ => 0m);
+
+        beginningResult.Should().Be(endResult);
+    }
 }

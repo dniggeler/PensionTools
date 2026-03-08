@@ -117,6 +117,76 @@ try
                                         },
                                         required = new[] { "startDate", "initialAmount", "annualInterestRate", "finalDate" }
                                     }
+                                },
+                                new
+                                {
+                                    name = "calculate_fixed_yearly_contribution",
+                                    description = "Calculate a projection with a fixed yearly contribution amount for a fixed number of contributions.",
+                                    inputSchema = new
+                                    {
+                                        type = "object",
+                                        properties = new
+                                        {
+                                            startDate = new { type = "string", description = "Start date of the projection (ISO format)" },
+                                            initialAmount = new { type = "number", description = "Initial investment amount at start date" },
+                                            yearlyContributionAmount = new { type = "number", description = "Yearly contribution amount" },
+                                            contributionCount = new { type = "integer", description = "Number of yearly contributions" },
+                                            investAtBeginningOfYear = new { type = "boolean", description = "If true, contributions are invested at the start of each year" },
+                                            annualInterestRate = new { type = "number", description = "Annual interest rate (decimal, e.g. 0.05 for 5%)" },
+                                            compoundingFrequency = new
+                                            {
+                                                type = "string",
+                                                @enum = new[] { "Annual", "SemiAnnual", "Quarterly", "Monthly", "Daily", "Continuous" },
+                                                description = "Compounding frequency"
+                                            },
+                                            returnSequence = new { type = "boolean", description = "If true, returns the sequence of balances" }
+                                        },
+                                        required = new[]
+                                        {
+                                            "startDate",
+                                            "initialAmount",
+                                            "yearlyContributionAmount",
+                                            "contributionCount",
+                                            "investAtBeginningOfYear",
+                                            "annualInterestRate",
+                                            "compoundingFrequency"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    name = "calculate_yearly_contribution_until_final_date",
+                                    description = "Calculate a projection with fixed yearly contributions until a final date.",
+                                    inputSchema = new
+                                    {
+                                        type = "object",
+                                        properties = new
+                                        {
+                                            startDate = new { type = "string", description = "Start date of the projection (ISO format)" },
+                                            finalDate = new { type = "string", description = "Final date of the projection (ISO format)" },
+                                            initialAmount = new { type = "number", description = "Initial investment amount at start date" },
+                                            yearlyContributionAmount = new { type = "number", description = "Yearly contribution amount" },
+                                            investAtBeginningOfYear = new { type = "boolean", description = "If true, contributions are invested at the start of each year" },
+                                            annualInterestRate = new { type = "number", description = "Annual interest rate (decimal, e.g. 0.05 for 5%)" },
+                                            compoundingFrequency = new
+                                            {
+                                                type = "string",
+                                                @enum = new[] { "Annual", "SemiAnnual", "Quarterly", "Monthly", "Daily", "Continuous" },
+                                                description = "Compounding frequency"
+                                            },
+                                            returnSequence = new { type = "boolean", description = "If true, returns the sequence of balances" }
+                                        },
+                                        required = new[]
+                                        {
+                                            "startDate",
+                                            "finalDate",
+                                            "initialAmount",
+                                            "yearlyContributionAmount",
+                                            "investAtBeginningOfYear",
+                                            "annualInterestRate",
+                                            "compoundingFrequency"
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -132,6 +202,8 @@ try
                     string resultText = toolName switch
                     {
                         "calculate_contribution_projection" => calculatorService.CalculateContribution(arguments),
+                        "calculate_fixed_yearly_contribution" => calculatorService.CalculateFixedYearlyContribution(arguments),
+                        "calculate_yearly_contribution_until_final_date" => calculatorService.CalculateYearlyContributionUntilFinalDate(arguments),
                         _ => JsonSerializer.Serialize(new
                         {
                             success = false,
