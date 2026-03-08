@@ -1,10 +1,10 @@
-using Application.Features.ContributionCalculator.Models;
+﻿using Application.Features.ContributionCalculator.Models;
 using LanguageExt;
 using PensionCoach.Tools.CommonUtils;
 
 namespace Application.Features.ContributionCalculator;
 
-public class ContributionCalculator : IContributionCalculator
+public class CompoundingContributionCalculator : ICompoundingContributionCalculator
 {
     public Either<string, ContributionResult> Calculate(ContributionRequest request)
     {

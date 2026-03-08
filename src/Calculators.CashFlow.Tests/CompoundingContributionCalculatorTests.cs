@@ -4,13 +4,14 @@ using System.Linq;
 using Application.Features.ContributionCalculator;
 using Application.Features.ContributionCalculator.Models;
 using FluentAssertions;
+using Snapshooter.Xunit;
 using Xunit;
 
 namespace Calculators.CashFlow.Tests;
 
-public class ContributionCalculatorTests
+public class CompoundingContributionCalculatorTests
 {
-    private readonly ContributionCalculator _calculator = new();
+    private readonly CompoundingContributionCalculator _calculator = new();
 
     [Fact]
     public void Calculate_WithSingleInitialAmount_ShouldAccrueAnnualInterestCorrectly()
@@ -43,6 +44,40 @@ public class ContributionCalculatorTests
     }
 
     [Fact]
+    public void Calculate_WithTenContributions_ShouldHandleCorrectly()
+    {
+        // Arrange
+        var startDate = new DateTime(2020, 1, 1);
+        var finalDate = new DateTime(2030, 1, 1);
+        var initialAmount = 100000m;
+        var rate = 0.025m; // 2.5%
+
+        // 10 monthly contributions from Feb to Nov
+        var contributionAmount = 5000m;
+        var contributions = new List<Contribution>();
+        for (int year = 1; year < 11; year++)
+        {
+            contributions.Add(new Contribution(new DateTime(2020+year, 1, 1), contributionAmount));
+        }
+
+        var request = new ContributionRequest(
+            startDate,
+            initialAmount,
+            contributions,
+            rate,
+            finalDate,
+            CompoundingFrequency.Annual,
+            ReturnSequence: true);
+
+        // Act
+        var result = _calculator.Calculate(request);
+
+        // Assert
+        result.IsRight.Should().BeTrue();
+        Snapshot.Match(result);
+    }
+
+    [Fact]
     public void Calculate_WithContributions_ShouldAccumulateCorrectly()
     {
         // Arrange
@@ -51,7 +86,7 @@ public class ContributionCalculatorTests
         var finalDate = new DateTime(2021, 1, 1);
         var initialAmount = 1000m;
         var contributionAmount = 500m;
-        var rate = 0.10m; // 10%
+        var rate = 0.10m;
 
         // 1. Initial 1000 grows for 6 months (0.5 years) -> 1000 * (1.1)^0.5 = 1048.81 approx
         // 2. Add 500 -> 1548.81

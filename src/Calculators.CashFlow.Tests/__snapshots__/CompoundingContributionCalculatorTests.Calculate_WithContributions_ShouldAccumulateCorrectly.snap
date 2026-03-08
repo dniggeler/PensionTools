@@ -1,0 +1,29 @@
+﻿[
+  {
+    "State": "IsRight",
+    "Right": {
+      "FinalAmount": 1624.4044240850717550033510225,
+      "Sequence": [
+        {
+          "Date": "2020-01-01T00:00:00",
+          "Balance": 1000.0,
+          "CashFlow": 1000.0,
+          "InterestAccrued": 0.0
+        },
+        {
+          "Date": "2020-07-01T00:00:00",
+          "Balance": 1548.80884817015000,
+          "CashFlow": 500.0,
+          "InterestAccrued": 48.80884817015000
+        },
+        {
+          "Date": "2021-01-01T00:00:00",
+          "Balance": 1624.4044240850717550033510225,
+          "CashFlow": 0.0,
+          "InterestAccrued": 75.595575914921755003351022500
+        }
+      ]
+    },
+    "Left": null
+  }
+]

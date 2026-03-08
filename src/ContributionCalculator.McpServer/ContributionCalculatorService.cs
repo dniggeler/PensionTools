@@ -1,4 +1,4 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 using Application.Features.ContributionCalculator;
 using Application.Features.ContributionCalculator.Models;
 using Microsoft.Extensions.Logging;
@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 namespace ContributionCalculator.McpServer;
 
 public class ContributionCalculatorService(
-    IContributionCalculator calculator,
+    ICompoundingContributionCalculator calculator,
     ILogger<ContributionCalculatorService> logger)
 {
     public string CalculateContribution(JsonElement parameters)

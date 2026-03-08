@@ -1,4 +1,4 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 using Application.Features.ContributionCalculator;
 using ContributionCalculator.McpServer;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +13,7 @@ services.AddLogging(builder =>
 });
 
 // Register Contribution Calculator
-services.AddTransient<IContributionCalculator, Application.Features.ContributionCalculator.ContributionCalculator>();
+services.AddTransient<ICompoundingContributionCalculator, Application.Features.ContributionCalculator.CompoundingContributionCalculator>();
 services.AddSingleton<ContributionCalculatorService>();
 
 // Build service provider
