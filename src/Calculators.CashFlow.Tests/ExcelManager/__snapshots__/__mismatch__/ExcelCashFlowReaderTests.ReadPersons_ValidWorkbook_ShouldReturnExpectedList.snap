@@ -1,0 +1,11 @@
+﻿[
+  {
+    "PersonNumber": 1,
+    "Name": "Test-1",
+    "Birthdate": "1976-07-01",
+    "CivilStatus": "Married",
+    "Gender": "Male",
+    "ReligiousGroupType": "Protestant",
+    "PartnerReligiousGroupType": "Other"
+  }
+]
